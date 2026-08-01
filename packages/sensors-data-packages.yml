@@ -1,0 +1,88 @@
+generated: '2026-07-21'
+method: searched
+source: public package registries (npm, PyPI, Maven Central, RubyGems, Packagist, pub.dev, CocoaPods) + github.com/sensorsdata
+packages:
+  - language: javascript
+    registry: npm
+    name: sa-sdk-javascript
+    url: https://www.npmjs.com/package/sa-sdk-javascript
+    install: npm install sa-sdk-javascript
+    version: 1.27.13
+    repo: https://github.com/sensorsdata/sa-sdk-javascript
+    official: true
+    description: Official Sensors Data web / H5 data-collection SDK.
+  - language: javascript
+    registry: npm
+    name: sa-sdk-miniprogram
+    url: https://www.npmjs.com/package/sa-sdk-miniprogram
+    install: npm install sa-sdk-miniprogram
+    repo: https://github.com/sensorsdata/sa-sdk-miniprogram
+    official: true
+    description: Official Sensors Data SDK for WeChat and other mini-programs.
+  - language: python
+    registry: pypi
+    name: SensorsAnalyticsSDK
+    url: https://pypi.org/project/SensorsAnalyticsSDK/
+    install: pip install SensorsAnalyticsSDK
+    version: 1.11.0
+    repo: https://github.com/sensorsdata/sa-sdk-python
+    official: true
+    description: Official Python SDK for Sensors Analytics (server-side event tracking).
+  - language: java
+    registry: maven
+    name: com.sensorsdata.analytics.javasdk:SensorsAnalyticsSDK
+    url: https://central.sonatype.com/artifact/com.sensorsdata.analytics.javasdk/SensorsAnalyticsSDK
+    version: 3.6.9
+    repo: https://github.com/sensorsdata/sa-sdk-java
+    official: true
+    description: Official server-side Java SDK for Sensors Analytics event tracking.
+  - language: java
+    registry: maven
+    name: com.sensorsdata.analytics.javasdk:SensorsABTesting
+    url: https://central.sonatype.com/artifact/com.sensorsdata.analytics.javasdk/SensorsABTesting
+    version: 1.0.2
+    official: true
+    description: Official Java SDK for Sensors A/B Testing.
+  - language: php
+    registry: packagist
+    name: sensorsdata/sa-sdk-php
+    url: https://packagist.org/packages/sensorsdata/sa-sdk-php
+    install: composer require sensorsdata/sa-sdk-php
+    official: true
+    description: Official PHP SDK for Sensors Analytics.
+  - language: ruby
+    registry: rubygems
+    name: sensors_analytics_sdk
+    url: https://rubygems.org/gems/sensors_analytics_sdk
+    install: gem install sensors_analytics_sdk
+    official: true
+    description: Official Ruby SDK for Sensors Analytics.
+  - language: dart
+    registry: pub.dev
+    name: sensors_analytics_flutter_plugin
+    url: https://pub.dev/packages/sensors_analytics_flutter_plugin
+    install: flutter pub add sensors_analytics_flutter_plugin
+    version: 4.2.3
+    repo: https://github.com/sensorsdata/sensors_analytics_flutter_plugin
+    official: true
+    description: Official Flutter plugin (iOS, Android, Web, HarmonyOS).
+  - language: swift
+    registry: cocoapods
+    name: SensorsAnalyticsSDK
+    url: https://cocoapods.org/pods/SensorsAnalyticsSDK
+    install: pod 'SensorsAnalyticsSDK'
+    repo: https://github.com/sensorsdata/sa-sdk-ios
+    official: true
+    description: Official iOS data-collection SDK (auto-tracking via runtime).
+  - language: java
+    registry: github
+    name: sa-sdk-android
+    url: https://github.com/sensorsdata/sa-sdk-android
+    official: true
+    description: Official Android data-collection SDK with code instrumentation and auto-tracking.
+  - language: csharp
+    registry: github
+    name: sa-sdk-dotnet
+    url: https://github.com/sensorsdata/sa-sdk-dotnet
+    official: true
+    description: Official .NET SDK for Sensors Analytics data collection.

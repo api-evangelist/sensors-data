@@ -1,0 +1,30 @@
+generated: '2026-07-21'
+method: searched
+source: live probes of /.well-known/* on the website and docs hosts
+hosts:
+  - host: https://www.sensorsdata.com
+    documents:
+      - path: /.well-known/security.txt
+        status: 404
+      - path: /.well-known/openid-configuration
+        status: 404
+      - path: /.well-known/oauth-authorization-server
+        status: 404
+      - path: /.well-known/api-catalog
+        status: 404
+      - path: /.well-known/ai-plugin.json
+        status: 404
+  - host: https://manual.sensorsdata.cn
+    documents:
+      - path: /.well-known/security.txt
+        status: 302
+        note: host redirects all paths; no discovery document served
+      - path: /.well-known/openid-configuration
+        status: 302
+      - path: /.well-known/oauth-authorization-server
+        status: 302
+      - path: /.well-known/api-catalog
+        status: 302
+      - path: /.well-known/ai-plugin.json
+        status: 302
+result: no well-known discovery documents published

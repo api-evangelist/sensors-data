@@ -1,0 +1,32 @@
+# Sensors Data (神策数据)
+
+> Sensors Data is a customer data analytics and CDP (Customer Data Platform) company. Its platform unifies customer data across channels into real-time profiles and provides product analytics, user profiling, marketing/ad attribution, A/B testing, and smart-operations tooling. Sensors Data processes 250+ billion data points daily, ships 50+ data-collection SDKs, and serves 2,000+ enterprise customers, with both cloud and on-premise deployment. An OpenAPI is exposed for ecosystem integration; per-language SDKs handle client- and server-side event tracking.
+
+## Products
+- [Real-time CDP (Sensors Data Universe / 神策数界)](https://www.sensorsdata.com/): Unifies multi-channel data into real-time customer profiles with ID-mapping, segmentation, and an OpenAPI for integration.
+- [Product Analytics (神策分析)](https://www.sensorsdata.com/): Behavioral analytics for product teams.
+- [User Profiles (神策用户画像)](https://www.sensorsdata.com/): User segmentation and tagging.
+- [Ads Tracking (神策广告分析)](https://www.sensorsdata.com/): Cross-channel marketing/ad attribution and ROI.
+- [Smart Operations (神策智能运营)](https://www.sensorsdata.com/): Marketing automation.
+- [A/B Testing (神策A/B测试)](https://www.sensorsdata.com/): Experimentation platform.
+
+## Docs
+- [Website](https://www.sensorsdata.com/)
+- [Documentation / Manual](https://manual.sensorsdata.cn/)
+- [GitHub Organization](https://github.com/sensorsdata)
+
+## SDKs
+- [JavaScript (web/H5) — sa-sdk-javascript](https://www.npmjs.com/package/sa-sdk-javascript)
+- [Mini-program — sa-sdk-miniprogram](https://www.npmjs.com/package/sa-sdk-miniprogram)
+- [Python — SensorsAnalyticsSDK](https://pypi.org/project/SensorsAnalyticsSDK/)
+- [Java — com.sensorsdata.analytics.javasdk:SensorsAnalyticsSDK](https://central.sonatype.com/artifact/com.sensorsdata.analytics.javasdk/SensorsAnalyticsSDK)
+- [PHP — sensorsdata/sa-sdk-php](https://packagist.org/packages/sensorsdata/sa-sdk-php)
+- [Ruby — sensors_analytics_sdk](https://rubygems.org/gems/sensors_analytics_sdk)
+- [Flutter — sensors_analytics_flutter_plugin](https://pub.dev/packages/sensors_analytics_flutter_plugin)
+- [iOS — SensorsAnalyticsSDK](https://cocoapods.org/pods/SensorsAnalyticsSDK)
+- [Android — sa-sdk-android](https://github.com/sensorsdata/sa-sdk-android)
+- [.NET — sa-sdk-dotnet](https://github.com/sensorsdata/sa-sdk-dotnet)
+
+## Artifacts
+- [Client SDK packages](https://raw.githubusercontent.com/api-evangelist/sensors-data/refs/heads/main/packages/sensors-data-packages.yml)
+- [Domain security probe](https://raw.githubusercontent.com/api-evangelist/sensors-data/refs/heads/main/security/sensors-data-domain-security.yml)

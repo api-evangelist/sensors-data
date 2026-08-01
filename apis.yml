@@ -1,27 +1,68 @@
 aid: sensors-data
+accessModel:
+  pricing: unknown
+  onboarding: unknown
+  trial: false
+  try_now: false
+  public: false
+  label: Unknown
+  confidence: low
+  source: []
+  generated: '2026-07-22'
+  method: derived
+image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/icons/sensors-data.png
 name: Sensors Data
-description: 'Sensors Data is a company surfaced as a portfolio company of dcm-ventures and added to the
-  API Evangelist network as a stub for enrichment. Sector: enterprise. This profile is a lead awaiting
-  the enrichment pipeline.'
+description: 'Sensors Data (神策数据) is a customer data analytics and CDP (Customer Data
+  Platform) company. Its platform unifies customer data across channels into real-time
+  customer profiles and provides product analytics, user profiling, marketing and ad
+  attribution, A/B testing, and smart-operations tooling. Sensors Data processes 250+
+  billion data points daily, ships 50+ data-collection SDKs across web, mobile, mini-program
+  and server-side languages, and serves 2,000+ enterprise customers with both cloud and
+  on-premise deployment. An OpenAPI is exposed for ecosystem integration.'
 url: https://raw.githubusercontent.com/api-evangelist/sensors-data/refs/heads/main/apis.yml
 x-type: company
 x-source: vc-portfolio
 x-backed-by:
 - dcm-ventures
-x-tier: stub
+x-tier: enriched
 x-tier-reason: portfolio-lead
 specificationVersion: '0.20'
 created: '2026-07-17'
-modified: '2026-07-17'
+modified: '2026-07-21'
 tags:
 - Company
 - Enterprise
-apis: []
+- Analytics
+- Customer Data Platform
+- Product Analytics
+- Data Collection
+- SDK
+- Marketing
 maintainers:
 - FN: Kin Lane
   email: kin@apievangelist.com
 - FN: APIs.json
   email: info@apis.io
+apis: []
 common:
 - type: Website
   url: https://www.sensorsdata.com/
+- type: Documentation
+  url: https://manual.sensorsdata.cn/
+- type: DeveloperPortal
+  url: https://manual.sensorsdata.cn/
+- type: GitHubOrganization
+  url: https://github.com/sensorsdata
+- type: Packages
+  url: packages/sensors-data-packages.yml
+- type: SDKs
+  url: packages/sensors-data-packages.yml
+- type: LLMsTxt
+  url: llms/sensors-data-llms.txt
+- type: DomainSecurity
+  url: security/sensors-data-domain-security.yml
+x-enrichment:
+  date: '2026-07-21'
+  status: enriched
+  artifacts_added: 4
+  pass: local-v1
