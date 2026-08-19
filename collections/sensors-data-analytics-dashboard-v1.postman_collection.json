@@ -1,0 +1,1079 @@
+{
+  "item": [
+    {
+      "id": "b69b7686-a387-45bf-9a7d-8422dce657d6",
+      "name": "获取所有的概览分组信息",
+      "request": {
+        "name": "获取所有的概览分组信息",
+        "description": {
+          "content": "获取所有的概览分组信息",
+          "type": "text/plain"
+        },
+        "url": {
+          "path": [
+            "dashboard",
+            "navigation"
+          ],
+          "host": [
+            "{{baseUrl}}"
+          ],
+          "query": [
+            {
+              "disabled": false,
+              "key": "type",
+              "value": "<string>",
+              "description": "概览类型"
+            },
+            {
+              "disabled": false,
+              "key": "request_id",
+              "value": "<string>",
+              "description": "本次请求 ID, 方便后续追踪问题"
+            }
+          ],
+          "variable": []
+        },
+        "header": [
+          {
+            "disabled": false,
+            "description": "(Required) 全局唯一的密钥，用于验证和授权访问 API 接口",
+            "key": "api-key",
+            "value": "<string>"
+          },
+          {
+            "disabled": false,
+            "description": "(Required) 项目名, 指定请求所属项目",
+            "key": "sensorsdata-project",
+            "value": "<string>"
+          },
+          {
+            "key": "Accept",
+            "value": "application/json"
+          }
+        ],
+        "method": "GET",
+        "auth": null
+      },
+      "response": [
+        {
+          "id": "760f923c-283e-49e5-b45a-ff13a926c880",
+          "name": "sensorsdata.analytics.v1.DashboardNavigationResponse",
+          "originalRequest": {
+            "url": {
+              "path": [
+                "dashboard",
+                "navigation"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "key": "type",
+                  "value": "PRIVATE"
+                },
+                {
+                  "key": "request_id",
+                  "value": "12345696321548954"
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "disabled": false,
+                "description": "(Required) 全局唯一的密钥，用于验证和授权访问 API 接口",
+                "key": "api-key",
+                "value": "<string>"
+              },
+              {
+                "disabled": false,
+                "description": "(Required) 项目名, 指定请求所属项目",
+                "key": "sensorsdata-project",
+                "value": "<string>"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "body": {}
+          },
+          "status": "Internal Server Error",
+          "code": 500,
+          "header": [
+            {
+              "key": "Content-Type",
+              "value": "application/json"
+            }
+          ],
+          "body": "{\n  \"code\": \"SUCCESS\",\n  \"data\": {\n    \"dashboard_navigation_items\": [\n      {\n        \"edit_permission\": true,\n        \"create_time\": \"2022-10-08 14:53:09\",\n        \"user_id\": 205,\n        \"project_id\": 1,\n        \"user_name\": \"平台管理员\",\n        \"name\": \"数据概览\",\n        \"is_public\": true,\n        \"id\": 101,\n        \"type\": 1,\n        \"user_canme\": \"平台管理员\"\n      }\n    ],\n    \"groups\": [\n      {\n        \"id\": \"666666\",\n        \"title\": \"数据概览\",\n        \"dashboards\": [\n          101,\n          102\n        ]\n      }\n    ],\n    \"type\": \"PRIVATE\"\n  },\n  \"request_id\": \"1\"\n}",
+          "cookie": [],
+          "_postman_previewlanguage": "json"
+        }
+      ],
+      "event": [],
+      "protocolProfileBehavior": {
+        "disableBodyPruning": true
+      }
+    },
+    {
+      "id": "70900080-90c9-43f7-aef1-9cf7fdff85ac",
+      "name": "获取所有基础数据概览数据",
+      "request": {
+        "name": "获取所有基础数据概览数据",
+        "description": {
+          "content": "获取所有基础数据概览数据",
+          "type": "text/plain"
+        },
+        "url": {
+          "path": [
+            "dashboard",
+            "lego"
+          ],
+          "host": [
+            "{{baseUrl}}"
+          ],
+          "query": [],
+          "variable": []
+        },
+        "header": [
+          {
+            "disabled": false,
+            "description": "(Required) 全局唯一的密钥，用于验证和授权访问 API 接口",
+            "key": "api-key",
+            "value": "<string>"
+          },
+          {
+            "disabled": false,
+            "description": "(Required) 项目名, 指定请求所属项目",
+            "key": "sensorsdata-project",
+            "value": "<string>"
+          },
+          {
+            "key": "Accept",
+            "value": "application/json"
+          }
+        ],
+        "method": "GET",
+        "auth": null
+      },
+      "response": [
+        {
+          "id": "2dd9ef59-65eb-4389-9114-dc0f591c547e",
+          "name": "sensorsdata.analytics.v1.LegoDashboardResponse",
+          "originalRequest": {
+            "url": {
+              "path": [
+                "dashboard",
+                "lego"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "disabled": false,
+                "description": "(Required) 全局唯一的密钥，用于验证和授权访问 API 接口",
+                "key": "api-key",
+                "value": "<string>"
+              },
+              {
+                "disabled": false,
+                "description": "(Required) 项目名, 指定请求所属项目",
+                "key": "sensorsdata-project",
+                "value": "<string>"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "body": {}
+          },
+          "status": "Internal Server Error",
+          "code": 500,
+          "header": [
+            {
+              "key": "Content-Type",
+              "value": "application/json"
+            }
+          ],
+          "body": "{\n  \"code\": \"SUCCESS\",\n  \"data\": {\n    \"lego_dashboard_items\": [\n      {\n        \"name\": \"\\\"实时统计\\\"\",\n        \"navigation_name\": \"\\\"整体概览\\\"\",\n        \"source_type\": \"\\\"WEB\\\"\",\n        \"id\": 1\n      }\n    ]\n  },\n  \"request_id\": \"1\"\n}",
+          "cookie": [],
+          "_postman_previewlanguage": "json"
+        }
+      ],
+      "event": [],
+      "protocolProfileBehavior": {
+        "disableBodyPruning": true
+      }
+    },
+    {
+      "id": "5427aa06-a3d7-49e0-8ad8-d148f5185ecb",
+      "name": "获取单个概览详情",
+      "request": {
+        "name": "获取单个概览详情",
+        "description": {
+          "content": "获取单个概览详情",
+          "type": "text/plain"
+        },
+        "url": {
+          "path": [
+            "dashboard",
+            "detail"
+          ],
+          "host": [
+            "{{baseUrl}}"
+          ],
+          "query": [
+            {
+              "disabled": false,
+              "key": "id",
+              "value": "<integer>",
+              "description": "概览 ID"
+            },
+            {
+              "disabled": false,
+              "key": "request_id",
+              "value": "<string>",
+              "description": "本次请求 ID, 方便后续追踪问题"
+            }
+          ],
+          "variable": []
+        },
+        "header": [
+          {
+            "disabled": false,
+            "description": "(Required) 全局唯一的密钥，用于验证和授权访问 API 接口",
+            "key": "api-key",
+            "value": "<string>"
+          },
+          {
+            "disabled": false,
+            "description": "(Required) 项目名, 指定请求所属项目",
+            "key": "sensorsdata-project",
+            "value": "<string>"
+          },
+          {
+            "key": "Accept",
+            "value": "application/json"
+          }
+        ],
+        "method": "GET",
+        "auth": null
+      },
+      "response": [
+        {
+          "id": "4584893e-357b-4928-b87e-1290c07b9a13",
+          "name": "sensorsdata.analytics.v1.DashboardDetailResponse",
+          "originalRequest": {
+            "url": {
+              "path": [
+                "dashboard",
+                "detail"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "key": "id",
+                  "value": "1"
+                },
+                {
+                  "key": "request_id",
+                  "value": "12345696321548954"
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "disabled": false,
+                "description": "(Required) 全局唯一的密钥，用于验证和授权访问 API 接口",
+                "key": "api-key",
+                "value": "<string>"
+              },
+              {
+                "disabled": false,
+                "description": "(Required) 项目名, 指定请求所属项目",
+                "key": "sensorsdata-project",
+                "value": "<string>"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "body": {}
+          },
+          "status": "Internal Server Error",
+          "code": 500,
+          "header": [
+            {
+              "key": "Content-Type",
+              "value": "application/json"
+            }
+          ],
+          "body": "{\n  \"code\": \"SUCCESS\",\n  \"data\": {\n    \"create_time\": \"2022-10-08 14:53:09\",\n    \"user_id\": 205,\n    \"project_id\": 1,\n    \"contain_bookmark_items\": [\n      {\n        \"mode\": 0,\n        \"data\": \"\\\"{\\\\\\\"measures\\\\\\\":[{\\\\\\\"event_name\\\\\\\":\\\\\\\"$MPShow\\\\\\\",\\\\\\\"aggregator\\\\\\\":\\\\\\\"general\\\\\\\",\\\\\\\"name\\\\\\\":\\\\\\\"iOS 小程序显示的总次数\\\\\\\",\\\\\\\"filter\\\\\\\":{\\\\\\\"conditions\\\\\\\":[{\\\\\\\"field\\\\\\\":\\\\\\\"event.$Anything.$lib\\\\\\\",\\\\\\\"function\\\\\\\":\\\\\\\"equal\\\\\\\",\\\\\\\"params\\\\\\\":[\\\\\\\"iOS\\\\\\\"],\\\\\\\"$$render_index\\\\\\\":0}]},\\\\\\\"editName\\\\\\\":\\\\\\\"iOS 小程序显示的总次数\\\\\\\"},{\\\\\\\"event_name\\\\\\\":\\\\\\\"$MPShow\\\\\\\",\\\\\\\"aggregator\\\\\\\":\\\\\\\"general\\\\\\\",\\\\\\\"name\\\\\\\":\\\\\\\"Android 小程序显示的总次数\\\\\\\",\\\\\\\"filter\\\\\\\":{\\\\\\\"conditions\\\\\\\":[{\\\\\\\"field\\\\\\\":\\\\\\\"event.$Anything.$lib\\\\\\\",\\\\\\\"function\\\\\\\":\\\\\\\"equal\\\\\\\",\\\\\\\"params\\\\\\\":[\\\\\\\"Android\\\\\\\"],\\\\\\\"$$render_index\\\\\\\":0}]},\\\\\\\"editName\\\\\\\":\\\\\\\"Android 小程序显示的总次数\\\\\\\"},{\\\\\\\"event_name\\\\\\\":\\\\\\\"$MPShow\\\\\\\",\\\\\\\"aggregator\\\\\\\":\\\\\\\"general\\\\\\\",\\\\\\\"name\\\\\\\":\\\\\\\"python 小程序显示的总次数\\\\\\\",\\\\\\\"filter\\\\\\\":{\\\\\\\"conditions\\\\\\\":[{\\\\\\\"field\\\\\\\":\\\\\\\"event.$Anything.$lib\\\\\\\",\\\\\\\"function\\\\\\\":\\\\\\\"equal\\\\\\\",\\\\\\\"params\\\\\\\":[\\\\\\\"python\\\\\\\"],\\\\\\\"$$render_index\\\\\\\":0}]},\\\\\\\"editName\\\\\\\":\\\\\\\"python 小程序显示的总次数\\\\\\\"},{\\\\\\\"event_name\\\\\\\":\\\\\\\"$MPShow\\\\\\\",\\\\\\\"aggregator\\\\\\\":\\\\\\\"general\\\\\\\",\\\\\\\"name\\\\\\\":\\\\\\\"小程序显示的总次数\\\\\\\"}],\\\\\\\"from_date\\\\\\\":\\\\\\\"2022-10-01\\\\\\\",\\\\\\\"to_date\\\\\\\":\\\\\\\"2022-10-07\\\\\\\",\\\\\\\"unit\\\\\\\":\\\\\\\"day\\\\\\\",\\\\\\\"by_fields\\\\\\\":[],\\\\\\\"detail_and_rollup\\\\\\\":true,\\\\\\\"enable_detail_follow_rollup_by_values_rank\\\\\\\":true,\\\\\\\"sub_task_type\\\\\\\":\\\\\\\"SEGMENTATION\\\\\\\",\\\\\\\"time_zone_mode\\\\\\\":\\\\\\\"\\\\\\\",\\\\\\\"server_time_zone\\\\\\\":\\\\\\\"\\\\\\\",\\\\\\\"compareKey\\\\\\\":\\\\\\\"\\\\\\\"}\\\"\",\n        \"create_time\": \"2022-10-08 14:53:09\",\n        \"user_id\": 1,\n        \"project_id\": 1,\n        \"name\": \"\\\"事件分析\\\"\",\n        \"id\": 1,\n        \"type\": \"\\\"/segmentation/\\\"\",\n        \"config\": \"\\\"{\\\\\\\"chartsType\\\\\\\":\\\\\\\"line\\\\\\\",\\\\\\\"byFieldsCname\\\\\\\":[],\\\\\\\"byFieldsDataType\\\\\\\":[],\\\\\\\"byValuesFilter\\\\\\\":[],\\\\\\\"byFields\\\\\\\":null,\\\\\\\"measureIndexs\\\\\\\":[0,1,2,3],\\\\\\\"comment\\\\\\\":\\\\\\\"\\\\\\\",\\\\\\\"topN\\\\\\\":0,\\\\\\\"valueTypes\\\\\\\":\\\\\\\"number\\\\\\\"}\\\"\",\n        \"dashboards\": [\n          11,\n          23,\n          44\n        ],\n        \"is_lego\": false\n      }\n    ],\n    \"user_name\": \"平台管理员\",\n    \"name\": \"数据概览\",\n    \"is_public\": true,\n    \"id\": 101,\n    \"type\": \"PRIVATE\"\n  },\n  \"request_id\": \"1\"\n}",
+          "cookie": [],
+          "_postman_previewlanguage": "json"
+        }
+      ],
+      "event": [],
+      "protocolProfileBehavior": {
+        "disableBodyPruning": true
+      }
+    },
+    {
+      "id": "3c287619-c16c-4889-ba77-b1720b07edde",
+      "name": "添加概览分组信息",
+      "request": {
+        "name": "添加概览分组信息",
+        "description": {
+          "content": "添加概览分组信息",
+          "type": "text/plain"
+        },
+        "url": {
+          "path": [
+            "dashboard",
+            "navigation",
+            "create"
+          ],
+          "host": [
+            "{{baseUrl}}"
+          ],
+          "query": [],
+          "variable": []
+        },
+        "header": [
+          {
+            "disabled": false,
+            "description": "(Required) 全局唯一的密钥，用于验证和授权访问 API 接口",
+            "key": "api-key",
+            "value": "<string>"
+          },
+          {
+            "disabled": false,
+            "description": "(Required) 项目名, 指定请求所属项目",
+            "key": "sensorsdata-project",
+            "value": "<string>"
+          },
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          },
+          {
+            "key": "Accept",
+            "value": "application/json"
+          }
+        ],
+        "method": "POST",
+        "auth": null,
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"groups\": [\n    {\n      \"id\": \"<long>\",\n      \"title\": \"<string>\",\n      \"dashboards\": [\n        \"<integer>\",\n        \"<integer>\"\n      ]\n    },\n    {\n      \"id\": \"<long>\",\n      \"title\": \"<string>\",\n      \"dashboards\": [\n        \"<integer>\",\n        \"<integer>\"\n      ]\n    }\n  ],\n  \"default_group\": {\n    \"id\": \"<long>\",\n    \"title\": \"<string>\",\n    \"dashboards\": [\n      \"<integer>\",\n      \"<integer>\"\n    ]\n  },\n  \"type\": \"<string>\",\n  \"request_id\": \"<string>\"\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        }
+      },
+      "response": [
+        {
+          "id": "08e28107-ce22-4c7f-a4c6-d152c96095e9",
+          "name": "sensorsdata.analytics.v1.CommonResponse",
+          "originalRequest": {
+            "url": {
+              "path": [
+                "dashboard",
+                "navigation",
+                "create"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "disabled": false,
+                "description": "(Required) 全局唯一的密钥，用于验证和授权访问 API 接口",
+                "key": "api-key",
+                "value": "<string>"
+              },
+              {
+                "disabled": false,
+                "description": "(Required) 项目名, 指定请求所属项目",
+                "key": "sensorsdata-project",
+                "value": "<string>"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"groups\": [\n    {\n      \"id\": 5,\n      \"title\": \"数据概览\",\n      \"dashboards\": [\n        \"<integer>\",\n        \"<integer>\"\n      ]\n    },\n    {\n      \"id\": 5,\n      \"title\": \"数据概览\",\n      \"dashboards\": [\n        \"<integer>\",\n        \"<integer>\"\n      ]\n    }\n  ],\n  \"default_group\": {\n    \"id\": 5,\n    \"title\": \"数据概览\",\n    \"dashboards\": [\n      \"<integer>\",\n      \"<integer>\"\n    ]\n  },\n  \"type\": \"PRIVATE\",\n  \"request_id\": \"12345696321548954\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "status": "Internal Server Error",
+          "code": 500,
+          "header": [
+            {
+              "key": "Content-Type",
+              "value": "application/json"
+            }
+          ],
+          "body": "{\n  \"code\": \"SUCCESS\",\n  \"data\": {\n    \"flag\": true\n  },\n  \"request_id\": \"1\"\n}",
+          "cookie": [],
+          "_postman_previewlanguage": "json"
+        }
+      ],
+      "event": [],
+      "protocolProfileBehavior": {
+        "disableBodyPruning": true
+      }
+    },
+    {
+      "id": "6471d403-9ba6-4b5c-94fa-cc89ded99c86",
+      "name": "概览分享接口",
+      "request": {
+        "name": "概览分享接口",
+        "description": {
+          "content": "概览分享接口，可以实现分享和取消概览分享的能力",
+          "type": "text/plain"
+        },
+        "url": {
+          "path": [
+            "dashboard",
+            "share"
+          ],
+          "host": [
+            "{{baseUrl}}"
+          ],
+          "query": [],
+          "variable": []
+        },
+        "header": [
+          {
+            "disabled": false,
+            "description": "(Required) 全局唯一的密钥，用于验证和授权访问 API 接口",
+            "key": "api-key",
+            "value": "<string>"
+          },
+          {
+            "disabled": false,
+            "description": "(Required) 项目名, 指定请求所属项目",
+            "key": "sensorsdata-project",
+            "value": "<string>"
+          },
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          },
+          {
+            "key": "Accept",
+            "value": "application/json"
+          }
+        ],
+        "method": "POST",
+        "auth": null,
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"dashboard_ids\": [\n    \"<integer>\",\n    \"<integer>\"\n  ],\n  \"owners\": [\n    {\n      \"id\": \"<integer>\",\n      \"type\": \"<string>\"\n    },\n    {\n      \"id\": \"<integer>\",\n      \"type\": \"<string>\"\n    }\n  ],\n  \"publish\": \"<boolean>\",\n  \"request_id\": \"<string>\"\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        }
+      },
+      "response": [
+        {
+          "id": "fa6ace96-8de3-4041-a48b-bea5a86301eb",
+          "name": "sensorsdata.analytics.v1.CommonResponse",
+          "originalRequest": {
+            "url": {
+              "path": [
+                "dashboard",
+                "share"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "disabled": false,
+                "description": "(Required) 全局唯一的密钥，用于验证和授权访问 API 接口",
+                "key": "api-key",
+                "value": "<string>"
+              },
+              {
+                "disabled": false,
+                "description": "(Required) 项目名, 指定请求所属项目",
+                "key": "sensorsdata-project",
+                "value": "<string>"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"dashboard_ids\": [\n    \"<integer>\",\n    \"<integer>\"\n  ],\n  \"owners\": [\n    {\n      \"id\": 5,\n      \"type\": \"ACCOUNT\"\n    },\n    {\n      \"id\": 5,\n      \"type\": \"ACCOUNT\"\n    }\n  ],\n  \"publish\": true,\n  \"request_id\": \"12345696321548954\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "status": "Internal Server Error",
+          "code": 500,
+          "header": [
+            {
+              "key": "Content-Type",
+              "value": "application/json"
+            }
+          ],
+          "body": "{\n  \"code\": \"SUCCESS\",\n  \"data\": {\n    \"flag\": true\n  },\n  \"request_id\": \"1\"\n}",
+          "cookie": [],
+          "_postman_previewlanguage": "json"
+        }
+      ],
+      "event": [],
+      "protocolProfileBehavior": {
+        "disableBodyPruning": true
+      }
+    },
+    {
+      "id": "2ec8474e-2a1b-493c-aca2-a2e0b1aaf0ff",
+      "name": "获取所有的书签信息",
+      "request": {
+        "name": "获取所有的书签信息",
+        "description": {
+          "content": "获取所有的书签信息",
+          "type": "text/plain"
+        },
+        "url": {
+          "path": [
+            "dashboard",
+            "bookmarks"
+          ],
+          "host": [
+            "{{baseUrl}}"
+          ],
+          "query": [
+            {
+              "disabled": false,
+              "key": "type",
+              "value": "<integer>",
+              "description": "书签类型，0 私有书签，1 公共书签"
+            },
+            {
+              "disabled": false,
+              "key": "has_widget",
+              "value": "<string>",
+              "description": "是否包含组件类型的书签"
+            },
+            {
+              "disabled": false,
+              "key": "has_lego",
+              "value": "<string>",
+              "description": "是否包含 lego 类型的书签"
+            },
+            {
+              "disabled": false,
+              "key": "request_id",
+              "value": "<string>",
+              "description": "本次请求 ID, 方便后续追踪问题"
+            }
+          ],
+          "variable": []
+        },
+        "header": [
+          {
+            "disabled": false,
+            "description": "(Required) 全局唯一的密钥，用于验证和授权访问 API 接口",
+            "key": "api-key",
+            "value": "<string>"
+          },
+          {
+            "disabled": false,
+            "description": "(Required) 项目名, 指定请求所属项目",
+            "key": "sensorsdata-project",
+            "value": "<string>"
+          },
+          {
+            "key": "Accept",
+            "value": "application/json"
+          }
+        ],
+        "method": "GET",
+        "auth": null
+      },
+      "response": [
+        {
+          "id": "59a0cfc1-80c9-4449-a52c-d81e86e33d5e",
+          "name": "sensorsdata.analytics.v1.BookmarksResponse",
+          "originalRequest": {
+            "url": {
+              "path": [
+                "dashboard",
+                "bookmarks"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "key": "type",
+                  "value": "1"
+                },
+                {
+                  "key": "has_widget",
+                  "value": "true"
+                },
+                {
+                  "key": "has_lego",
+                  "value": "true"
+                },
+                {
+                  "key": "request_id",
+                  "value": "12345696321548954"
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "disabled": false,
+                "description": "(Required) 全局唯一的密钥，用于验证和授权访问 API 接口",
+                "key": "api-key",
+                "value": "<string>"
+              },
+              {
+                "disabled": false,
+                "description": "(Required) 项目名, 指定请求所属项目",
+                "key": "sensorsdata-project",
+                "value": "<string>"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "body": {}
+          },
+          "status": "Internal Server Error",
+          "code": 500,
+          "header": [
+            {
+              "key": "Content-Type",
+              "value": "application/json"
+            }
+          ],
+          "body": "{\n  \"code\": \"SUCCESS\",\n  \"data\": {\n    \"bookmarks\": [\n      {\n        \"id\": 1,\n        \"user_id\": 2,\n        \"type\": \"/segmentation/\",\n        \"name\": \"事件分析\",\n        \"user_cname\": \"平台管理员\",\n        \"data\": \"{\\\"measures\\\":[{\\\"event_name\\\":\\\"$MPShow\\\",\\\"aggregator\\\":\\\"general\\\",\\\"name\\\":\\\"iOS 小程序显示的总次数\\\",\\\"filter\\\":{\\\"conditions\\\":[{\\\"field\\\":\\\"event.$Anything.$lib\\\",\\\"function\\\":\\\"equal\\\",\\\"params\\\":[\\\"iOS\\\"],\\\"$$render_index\\\":0}]},\\\"editName\\\":\\\"iOS 小程序显示的总次数\\\"},{\\\"event_name\\\":\\\"$MPShow\\\",\\\"aggregator\\\":\\\"general\\\",\\\"name\\\":\\\"Android 小程序显示的总次数\\\",\\\"filter\\\":{\\\"conditions\\\":[{\\\"field\\\":\\\"event.$Anything.$lib\\\",\\\"function\\\":\\\"equal\\\",\\\"params\\\":[\\\"Android\\\"],\\\"$$render_index\\\":0}]},\\\"editName\\\":\\\"Android 小程序显示的总次数\\\"},{\\\"event_name\\\":\\\"$MPShow\\\",\\\"aggregator\\\":\\\"general\\\",\\\"name\\\":\\\"python 小程序显示的总次数\\\",\\\"filter\\\":{\\\"conditions\\\":[{\\\"field\\\":\\\"event.$Anything.$lib\\\",\\\"function\\\":\\\"equal\\\",\\\"params\\\":[\\\"python\\\"],\\\"$$render_index\\\":0}]},\\\"editName\\\":\\\"python 小程序显示的总次数\\\"},{\\\"event_name\\\":\\\"$MPShow\\\",\\\"aggregator\\\":\\\"general\\\",\\\"name\\\":\\\"小程序显示的总次数\\\"}],\\\"from_date\\\":\\\"2022-10-01\\\",\\\"to_date\\\":\\\"2022-10-07\\\",\\\"unit\\\":\\\"day\\\",\\\"by_fields\\\":[],\\\"detail_and_rollup\\\":true,\\\"enable_detail_follow_rollup_by_values_rank\\\":true,\\\"sub_task_type\\\":\\\"SEGMENTATION\\\",\\\"time_zone_mode\\\":\\\"\\\",\\\"server_time_zone\\\":\\\"\\\",\\\"compareKey\\\":\\\"\\\"}\",\n        \"time\": \"\",\n        \"create_time\": \"2022-10-08 14:53:09\",\n        \"related_events\": [],\n        \"project_id\": 2,\n        \"config\": \"{\\\"chartsType\\\":\\\"line\\\",\\\"byFieldsCname\\\":[],\\\"byFieldsDataType\\\":[],\\\"byValuesFilter\\\":[],\\\"byFields\\\":null,\\\"measureIndexs\\\":[0,1,2,3],\\\"comment\\\":\\\"\\\",\\\"topN\\\":0,\\\"valueTypes\\\":\\\"number\\\"}\",\n        \"lego_type\": 0,\n        \"mode\": 0,\n        \"dashboards\": [\n          {\n            \"id\": 1,\n            \"name\": \"事件分析概览\"\n          }\n        ]\n      }\n    ],\n    \"total\": 1\n  },\n  \"request_id\": \"1\"\n}",
+          "cookie": [],
+          "_postman_previewlanguage": "json"
+        }
+      ],
+      "event": [],
+      "protocolProfileBehavior": {
+        "disableBodyPruning": true
+      }
+    },
+    {
+      "id": "bd48fb96-c0b4-45d6-8c2b-08c2a1be16cb",
+      "name": "创建概览",
+      "request": {
+        "name": "创建概览",
+        "description": {
+          "content": "创建概览",
+          "type": "text/plain"
+        },
+        "url": {
+          "path": [
+            "dashboard",
+            "create"
+          ],
+          "host": [
+            "{{baseUrl}}"
+          ],
+          "query": [],
+          "variable": []
+        },
+        "header": [
+          {
+            "disabled": false,
+            "description": "(Required) 全局唯一的密钥，用于验证和授权访问 API 接口",
+            "key": "api-key",
+            "value": "<string>"
+          },
+          {
+            "disabled": false,
+            "description": "(Required) 项目名, 指定请求所属项目",
+            "key": "sensorsdata-project",
+            "value": "<string>"
+          },
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          },
+          {
+            "key": "Accept",
+            "value": "application/json"
+          }
+        ],
+        "method": "POST",
+        "auth": null,
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"type\": \"<string>\",\n  \"name\": \"<string>\",\n  \"config\": \"<string>\",\n  \"bookmarks\": [\n    {\n      \"id\": \"<integer>\",\n      \"type\": \"<string>\",\n      \"name\": \"<string>\",\n      \"data\": \"<string>\",\n      \"config\": \"<string>\",\n      \"mode\": \"<integer>\"\n    },\n    {\n      \"id\": \"<integer>\",\n      \"type\": \"<string>\",\n      \"name\": \"<string>\",\n      \"data\": \"<string>\",\n      \"config\": \"<string>\",\n      \"mode\": \"<integer>\"\n    }\n  ],\n  \"request_id\": \"<string>\",\n  \"group_id\": \"<long>\"\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        }
+      },
+      "response": [
+        {
+          "id": "98d817b2-26ff-4285-a019-039b43c4a0c4",
+          "name": "sensorsdata.analytics.v1.CreateDashboardResponse",
+          "originalRequest": {
+            "url": {
+              "path": [
+                "dashboard",
+                "create"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "disabled": false,
+                "description": "(Required) 全局唯一的密钥，用于验证和授权访问 API 接口",
+                "key": "api-key",
+                "value": "<string>"
+              },
+              {
+                "disabled": false,
+                "description": "(Required) 项目名, 指定请求所属项目",
+                "key": "sensorsdata-project",
+                "value": "<string>"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"type\": \"PRIVATE\",\n  \"name\": \"事件分析概览\",\n  \"config\": \"<string>\",\n  \"bookmarks\": [\n    {\n      \"id\": 5,\n      \"type\": \"\\\"/segmentation/\\\"\",\n      \"name\": \"\\\"事件分析\\\"\",\n      \"data\": \"<string>\",\n      \"config\": \"<string>\",\n      \"mode\": 0\n    },\n    {\n      \"id\": 5,\n      \"type\": \"\\\"/segmentation/\\\"\",\n      \"name\": \"\\\"事件分析\\\"\",\n      \"data\": \"<string>\",\n      \"config\": \"<string>\",\n      \"mode\": 0\n    }\n  ],\n  \"request_id\": \"93bcf68b74e6498aae888d794e776717\",\n  \"group_id\": 666666\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "status": "Internal Server Error",
+          "code": 500,
+          "header": [
+            {
+              "key": "Content-Type",
+              "value": "application/json"
+            }
+          ],
+          "body": "{\n  \"code\": \"SUCCESS\",\n  \"data\": {\n    \"group_id\": 666666,\n    \"bookmark_count\": 5,\n    \"id\": 101,\n    \"dashboard\": {\n      \"create_time\": \"2022-10-08 14:53:09\",\n      \"user_id\": 205,\n      \"project_id\": 1,\n      \"contain_bookmark_items\": [\n        {\n          \"mode\": 0,\n          \"data\": \"\\\"{\\\\\\\"measures\\\\\\\":[{\\\\\\\"event_name\\\\\\\":\\\\\\\"$MPShow\\\\\\\",\\\\\\\"aggregator\\\\\\\":\\\\\\\"general\\\\\\\",\\\\\\\"name\\\\\\\":\\\\\\\"iOS 小程序显示的总次数\\\\\\\",\\\\\\\"filter\\\\\\\":{\\\\\\\"conditions\\\\\\\":[{\\\\\\\"field\\\\\\\":\\\\\\\"event.$Anything.$lib\\\\\\\",\\\\\\\"function\\\\\\\":\\\\\\\"equal\\\\\\\",\\\\\\\"params\\\\\\\":[\\\\\\\"iOS\\\\\\\"],\\\\\\\"$$render_index\\\\\\\":0}]},\\\\\\\"editName\\\\\\\":\\\\\\\"iOS 小程序显示的总次数\\\\\\\"},{\\\\\\\"event_name\\\\\\\":\\\\\\\"$MPShow\\\\\\\",\\\\\\\"aggregator\\\\\\\":\\\\\\\"general\\\\\\\",\\\\\\\"name\\\\\\\":\\\\\\\"Android 小程序显示的总次数\\\\\\\",\\\\\\\"filter\\\\\\\":{\\\\\\\"conditions\\\\\\\":[{\\\\\\\"field\\\\\\\":\\\\\\\"event.$Anything.$lib\\\\\\\",\\\\\\\"function\\\\\\\":\\\\\\\"equal\\\\\\\",\\\\\\\"params\\\\\\\":[\\\\\\\"Android\\\\\\\"],\\\\\\\"$$render_index\\\\\\\":0}]},\\\\\\\"editName\\\\\\\":\\\\\\\"Android 小程序显示的总次数\\\\\\\"},{\\\\\\\"event_name\\\\\\\":\\\\\\\"$MPShow\\\\\\\",\\\\\\\"aggregator\\\\\\\":\\\\\\\"general\\\\\\\",\\\\\\\"name\\\\\\\":\\\\\\\"python 小程序显示的总次数\\\\\\\",\\\\\\\"filter\\\\\\\":{\\\\\\\"conditions\\\\\\\":[{\\\\\\\"field\\\\\\\":\\\\\\\"event.$Anything.$lib\\\\\\\",\\\\\\\"function\\\\\\\":\\\\\\\"equal\\\\\\\",\\\\\\\"params\\\\\\\":[\\\\\\\"python\\\\\\\"],\\\\\\\"$$render_index\\\\\\\":0}]},\\\\\\\"editName\\\\\\\":\\\\\\\"python 小程序显示的总次数\\\\\\\"},{\\\\\\\"event_name\\\\\\\":\\\\\\\"$MPShow\\\\\\\",\\\\\\\"aggregator\\\\\\\":\\\\\\\"general\\\\\\\",\\\\\\\"name\\\\\\\":\\\\\\\"小程序显示的总次数\\\\\\\"}],\\\\\\\"from_date\\\\\\\":\\\\\\\"2022-10-01\\\\\\\",\\\\\\\"to_date\\\\\\\":\\\\\\\"2022-10-07\\\\\\\",\\\\\\\"unit\\\\\\\":\\\\\\\"day\\\\\\\",\\\\\\\"by_fields\\\\\\\":[],\\\\\\\"detail_and_rollup\\\\\\\":true,\\\\\\\"enable_detail_follow_rollup_by_values_rank\\\\\\\":true,\\\\\\\"sub_task_type\\\\\\\":\\\\\\\"SEGMENTATION\\\\\\\",\\\\\\\"time_zone_mode\\\\\\\":\\\\\\\"\\\\\\\",\\\\\\\"server_time_zone\\\\\\\":\\\\\\\"\\\\\\\",\\\\\\\"compareKey\\\\\\\":\\\\\\\"\\\\\\\"}\\\"\",\n          \"create_time\": \"2022-10-08 14:53:09\",\n          \"user_id\": 1,\n          \"project_id\": 1,\n          \"name\": \"\\\"事件分析\\\"\",\n          \"id\": 1,\n          \"type\": \"\\\"/segmentation/\\\"\",\n          \"config\": \"\\\"{\\\\\\\"chartsType\\\\\\\":\\\\\\\"line\\\\\\\",\\\\\\\"byFieldsCname\\\\\\\":[],\\\\\\\"byFieldsDataType\\\\\\\":[],\\\\\\\"byValuesFilter\\\\\\\":[],\\\\\\\"byFields\\\\\\\":null,\\\\\\\"measureIndexs\\\\\\\":[0,1,2,3],\\\\\\\"comment\\\\\\\":\\\\\\\"\\\\\\\",\\\\\\\"topN\\\\\\\":0,\\\\\\\"valueTypes\\\\\\\":\\\\\\\"number\\\\\\\"}\\\"\",\n          \"dashboards\": [\n            11,\n            23,\n            44\n          ],\n          \"is_lego\": false\n        }\n      ],\n      \"user_name\": \"平台管理员\",\n      \"name\": \"数据概览\",\n      \"is_public\": true,\n      \"id\": 101,\n      \"type\": \"PRIVATE\"\n    }\n  },\n  \"request_id\": \"1\"\n}",
+          "cookie": [],
+          "_postman_previewlanguage": "json"
+        }
+      ],
+      "event": [],
+      "protocolProfileBehavior": {
+        "disableBodyPruning": true
+      }
+    },
+    {
+      "id": "ae9b6d6e-9a8d-417b-839c-40f71e30448c",
+      "name": "向已有概览批量追加书签草稿",
+      "request": {
+        "name": "向已有概览批量追加书签草稿",
+        "description": {
+          "content": "向已有概览批量追加书签草稿",
+          "type": "text/plain"
+        },
+        "url": {
+          "path": [
+            "dashboard",
+            "bookmarks",
+            "add"
+          ],
+          "host": [
+            "{{baseUrl}}"
+          ],
+          "query": [],
+          "variable": []
+        },
+        "header": [
+          {
+            "disabled": false,
+            "description": "(Required) 全局唯一的密钥，用于验证和授权访问 API 接口",
+            "key": "api-key",
+            "value": "<string>"
+          },
+          {
+            "disabled": false,
+            "description": "(Required) 项目名, 指定请求所属项目",
+            "key": "sensorsdata-project",
+            "value": "<string>"
+          },
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          },
+          {
+            "key": "Accept",
+            "value": "application/json"
+          }
+        ],
+        "method": "POST",
+        "auth": null,
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"dashboard_id\": \"<integer>\",\n  \"bookmarks\": [\n    {\n      \"id\": \"<integer>\",\n      \"type\": \"<string>\",\n      \"name\": \"<string>\",\n      \"data\": \"<string>\",\n      \"config\": \"<string>\",\n      \"mode\": \"<integer>\"\n    },\n    {\n      \"id\": \"<integer>\",\n      \"type\": \"<string>\",\n      \"name\": \"<string>\",\n      \"data\": \"<string>\",\n      \"config\": \"<string>\",\n      \"mode\": \"<integer>\"\n    }\n  ],\n  \"request_id\": \"<string>\"\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        }
+      },
+      "response": [
+        {
+          "id": "9a7ca53a-d18c-4bf5-affb-16672583d888",
+          "name": "sensorsdata.analytics.v1.AddBookmarksToDashboardResponse",
+          "originalRequest": {
+            "url": {
+              "path": [
+                "dashboard",
+                "bookmarks",
+                "add"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "disabled": false,
+                "description": "(Required) 全局唯一的密钥，用于验证和授权访问 API 接口",
+                "key": "api-key",
+                "value": "<string>"
+              },
+              {
+                "disabled": false,
+                "description": "(Required) 项目名, 指定请求所属项目",
+                "key": "sensorsdata-project",
+                "value": "<string>"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"dashboard_id\": 101,\n  \"bookmarks\": [\n    {\n      \"id\": 5,\n      \"type\": \"\\\"/segmentation/\\\"\",\n      \"name\": \"\\\"事件分析\\\"\",\n      \"data\": \"<string>\",\n      \"config\": \"<string>\",\n      \"mode\": 0\n    },\n    {\n      \"id\": 5,\n      \"type\": \"\\\"/segmentation/\\\"\",\n      \"name\": \"\\\"事件分析\\\"\",\n      \"data\": \"<string>\",\n      \"config\": \"<string>\",\n      \"mode\": 0\n    }\n  ],\n  \"request_id\": \"12345696321548954\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "status": "Internal Server Error",
+          "code": 500,
+          "header": [
+            {
+              "key": "Content-Type",
+              "value": "application/json"
+            }
+          ],
+          "body": "{\n  \"code\": \"SUCCESS\",\n  \"data\": {\n    \"bookmark_count\": 5,\n    \"dashboard\": {\n      \"create_time\": \"2022-10-08 14:53:09\",\n      \"user_id\": 205,\n      \"project_id\": 1,\n      \"contain_bookmark_items\": [\n        {\n          \"mode\": 0,\n          \"data\": \"\\\"{\\\\\\\"measures\\\\\\\":[{\\\\\\\"event_name\\\\\\\":\\\\\\\"$MPShow\\\\\\\",\\\\\\\"aggregator\\\\\\\":\\\\\\\"general\\\\\\\",\\\\\\\"name\\\\\\\":\\\\\\\"iOS 小程序显示的总次数\\\\\\\",\\\\\\\"filter\\\\\\\":{\\\\\\\"conditions\\\\\\\":[{\\\\\\\"field\\\\\\\":\\\\\\\"event.$Anything.$lib\\\\\\\",\\\\\\\"function\\\\\\\":\\\\\\\"equal\\\\\\\",\\\\\\\"params\\\\\\\":[\\\\\\\"iOS\\\\\\\"],\\\\\\\"$$render_index\\\\\\\":0}]},\\\\\\\"editName\\\\\\\":\\\\\\\"iOS 小程序显示的总次数\\\\\\\"},{\\\\\\\"event_name\\\\\\\":\\\\\\\"$MPShow\\\\\\\",\\\\\\\"aggregator\\\\\\\":\\\\\\\"general\\\\\\\",\\\\\\\"name\\\\\\\":\\\\\\\"Android 小程序显示的总次数\\\\\\\",\\\\\\\"filter\\\\\\\":{\\\\\\\"conditions\\\\\\\":[{\\\\\\\"field\\\\\\\":\\\\\\\"event.$Anything.$lib\\\\\\\",\\\\\\\"function\\\\\\\":\\\\\\\"equal\\\\\\\",\\\\\\\"params\\\\\\\":[\\\\\\\"Android\\\\\\\"],\\\\\\\"$$render_index\\\\\\\":0}]},\\\\\\\"editName\\\\\\\":\\\\\\\"Android 小程序显示的总次数\\\\\\\"},{\\\\\\\"event_name\\\\\\\":\\\\\\\"$MPShow\\\\\\\",\\\\\\\"aggregator\\\\\\\":\\\\\\\"general\\\\\\\",\\\\\\\"name\\\\\\\":\\\\\\\"python 小程序显示的总次数\\\\\\\",\\\\\\\"filter\\\\\\\":{\\\\\\\"conditions\\\\\\\":[{\\\\\\\"field\\\\\\\":\\\\\\\"event.$Anything.$lib\\\\\\\",\\\\\\\"function\\\\\\\":\\\\\\\"equal\\\\\\\",\\\\\\\"params\\\\\\\":[\\\\\\\"python\\\\\\\"],\\\\\\\"$$render_index\\\\\\\":0}]},\\\\\\\"editName\\\\\\\":\\\\\\\"python 小程序显示的总次数\\\\\\\"},{\\\\\\\"event_name\\\\\\\":\\\\\\\"$MPShow\\\\\\\",\\\\\\\"aggregator\\\\\\\":\\\\\\\"general\\\\\\\",\\\\\\\"name\\\\\\\":\\\\\\\"小程序显示的总次数\\\\\\\"}],\\\\\\\"from_date\\\\\\\":\\\\\\\"2022-10-01\\\\\\\",\\\\\\\"to_date\\\\\\\":\\\\\\\"2022-10-07\\\\\\\",\\\\\\\"unit\\\\\\\":\\\\\\\"day\\\\\\\",\\\\\\\"by_fields\\\\\\\":[],\\\\\\\"detail_and_rollup\\\\\\\":true,\\\\\\\"enable_detail_follow_rollup_by_values_rank\\\\\\\":true,\\\\\\\"sub_task_type\\\\\\\":\\\\\\\"SEGMENTATION\\\\\\\",\\\\\\\"time_zone_mode\\\\\\\":\\\\\\\"\\\\\\\",\\\\\\\"server_time_zone\\\\\\\":\\\\\\\"\\\\\\\",\\\\\\\"compareKey\\\\\\\":\\\\\\\"\\\\\\\"}\\\"\",\n          \"create_time\": \"2022-10-08 14:53:09\",\n          \"user_id\": 1,\n          \"project_id\": 1,\n          \"name\": \"\\\"事件分析\\\"\",\n          \"id\": 1,\n          \"type\": \"\\\"/segmentation/\\\"\",\n          \"config\": \"\\\"{\\\\\\\"chartsType\\\\\\\":\\\\\\\"line\\\\\\\",\\\\\\\"byFieldsCname\\\\\\\":[],\\\\\\\"byFieldsDataType\\\\\\\":[],\\\\\\\"byValuesFilter\\\\\\\":[],\\\\\\\"byFields\\\\\\\":null,\\\\\\\"measureIndexs\\\\\\\":[0,1,2,3],\\\\\\\"comment\\\\\\\":\\\\\\\"\\\\\\\",\\\\\\\"topN\\\\\\\":0,\\\\\\\"valueTypes\\\\\\\":\\\\\\\"number\\\\\\\"}\\\"\",\n          \"dashboards\": [\n            11,\n            23,\n            44\n          ],\n          \"is_lego\": false\n        }\n      ],\n      \"user_name\": \"平台管理员\",\n      \"name\": \"数据概览\",\n      \"is_public\": true,\n      \"id\": 101,\n      \"type\": \"PRIVATE\"\n    },\n    \"dashboard_id\": 101\n  },\n  \"request_id\": \"1\"\n}",
+          "cookie": [],
+          "_postman_previewlanguage": "json"
+        }
+      ],
+      "event": [],
+      "protocolProfileBehavior": {
+        "disableBodyPruning": true
+      }
+    },
+    {
+      "id": "1f27c284-0842-42d6-a230-63cdc5a47227",
+      "name": "全量更新概览及其包含的书签",
+      "request": {
+        "name": "全量更新概览及其包含的书签",
+        "description": {
+          "content": "全量更新概览及其包含的书签",
+          "type": "text/plain"
+        },
+        "url": {
+          "path": [
+            "dashboard",
+            "update"
+          ],
+          "host": [
+            "{{baseUrl}}"
+          ],
+          "query": [],
+          "variable": []
+        },
+        "header": [
+          {
+            "disabled": false,
+            "description": "(Required) 全局唯一的密钥，用于验证和授权访问 API 接口",
+            "key": "api-key",
+            "value": "<string>"
+          },
+          {
+            "disabled": false,
+            "description": "(Required) 项目名, 指定请求所属项目",
+            "key": "sensorsdata-project",
+            "value": "<string>"
+          },
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          },
+          {
+            "key": "Accept",
+            "value": "application/json"
+          }
+        ],
+        "method": "POST",
+        "auth": null,
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"id\": \"<integer>\",\n  \"name\": \"<string>\",\n  \"config\": \"<string>\",\n  \"bookmarks\": [\n    {\n      \"id\": \"<integer>\",\n      \"type\": \"<string>\",\n      \"name\": \"<string>\",\n      \"data\": \"<string>\",\n      \"config\": \"<string>\",\n      \"mode\": \"<integer>\"\n    },\n    {\n      \"id\": \"<integer>\",\n      \"type\": \"<string>\",\n      \"name\": \"<string>\",\n      \"data\": \"<string>\",\n      \"config\": \"<string>\",\n      \"mode\": \"<integer>\"\n    }\n  ],\n  \"request_id\": \"<string>\"\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        }
+      },
+      "response": [
+        {
+          "id": "a2f48e89-ef44-4b15-99a3-2e422c3bfd90",
+          "originalRequest": {
+            "url": {
+              "path": [
+                "dashboard",
+                "update"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "disabled": false,
+                "description": "(Required) 全局唯一的密钥，用于验证和授权访问 API 接口",
+                "key": "api-key",
+                "value": "<string>"
+              },
+              {
+                "disabled": false,
+                "description": "(Required) 项目名, 指定请求所属项目",
+                "key": "sensorsdata-project",
+                "value": "<string>"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"id\": 101,\n  \"name\": \"事件分析概览\",\n  \"config\": \"<string>\",\n  \"bookmarks\": [\n    {\n      \"id\": 5,\n      \"type\": \"\\\"/segmentation/\\\"\",\n      \"name\": \"\\\"事件分析\\\"\",\n      \"data\": \"<string>\",\n      \"config\": \"<string>\",\n      \"mode\": 0\n    },\n    {\n      \"id\": 5,\n      \"type\": \"\\\"/segmentation/\\\"\",\n      \"name\": \"\\\"事件分析\\\"\",\n      \"data\": \"<string>\",\n      \"config\": \"<string>\",\n      \"mode\": 0\n    }\n  ],\n  \"request_id\": \"12345696321548954\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "status": "Internal Server Error",
+          "code": 500,
+          "header": [
+            {
+              "key": "Content-Type",
+              "value": "application/json"
+            }
+          ],
+          "body": "{\n  \"code\": \"SUCCESS\",\n  \"data\": {},\n  \"request_id\": \"1\"\n}",
+          "cookie": [],
+          "_postman_previewlanguage": "json"
+        }
+      ],
+      "event": [],
+      "protocolProfileBehavior": {
+        "disableBodyPruning": true
+      }
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "/api/v3/analytics/v1",
+      "key": "baseUrl"
+    }
+  ],
+  "info": {
+    "_postman_id": "0bdc8948-992d-44cc-9162-008deed20a00",
+    "name": "神策分析",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "概览书签开放接口",
+      "type": "text/plain"
+    }
+  }
+}

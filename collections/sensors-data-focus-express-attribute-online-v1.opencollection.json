@@ -1,0 +1,67 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "神策智能运营"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "批量用户获取多属性/标签值",
+        "type": "http"
+      },
+      "http": {
+        "method": "POST",
+        "url": "/api/v3/focus/v1/express-attribute-online/batch-get",
+        "headers": [
+          {
+            "name": "api-key",
+            "value": ""
+          },
+          {
+            "name": "sensorsdata-project",
+            "value": ""
+          },
+          {
+            "name": "X-Organization-Id",
+            "value": ""
+          }
+        ],
+        "body": {
+          "type": "json",
+          "data": "{}"
+        }
+      },
+      "docs": "支持批量用户ID或其他业务ID.需要确保属性处于订阅状态"
+    },
+    {
+      "info": {
+        "name": "单个用户获取多属性/标签值",
+        "type": "http"
+      },
+      "http": {
+        "method": "POST",
+        "url": "/api/v3/focus/v1/express-attribute-online/get",
+        "headers": [
+          {
+            "name": "api-key",
+            "value": ""
+          },
+          {
+            "name": "sensorsdata-project",
+            "value": ""
+          },
+          {
+            "name": "X-Organization-Id",
+            "value": ""
+          }
+        ],
+        "body": {
+          "type": "json",
+          "data": "{}"
+        }
+      },
+      "docs": "支持批量用户ID或其他业务ID.需要确保属性处于订阅状态"
+    }
+  ],
+  "bundled": true
+}

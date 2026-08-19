@@ -1,0 +1,33 @@
+generated: '2026-08-13'
+method: searched
+source: https://www.sensorsdata.com/
+plan_count: 0
+public_pricing: false
+model: enterprise sales / contact-us
+currency: null
+plans: []
+evidence:
+  - url: https://www.sensorsdata.com/pricing
+    status: 404
+  - url: https://www.sensorsdata.com/price.html
+    status: 404
+  - url: https://www.sensorsdata.com/
+    status: 200
+    note: >-
+      Homepage navigation offers a demo request and a contact form (/form/parade) — no
+      pricing or plans page anywhere in the site nav on either the .com or .cn property.
+  - url: https://www.sensorsdata.cn/
+    status: 200
+    note: Chinese site nav is solutions/demo/contact only; no pricing page.
+detail: >-
+  Sensors Data publishes NO pricing. Every commercial dimension — SaaS vs private cluster,
+  event volume tiers, per-product licensing for Analytics / Focus / Horizon / A-B Testing —
+  is quoted through sales. Third-party Chinese SaaS directories circulate figures
+  (roughly ¥50k/yr SaaS under 50M monthly events; ¥80k/¥120k/¥180k private single-node
+  tiers), but those are resellers and review sites, not the provider, and they are NOT
+  recorded here as plans.
+access_model_consequence: >-
+  There is no self-serve signup, no free tier and no trial key. A developer cannot obtain
+  an api-key without a customer relationship, because the api-key is minted inside a
+  customer's own deployed cluster. The 252-operation contract is public and readable; the
+  ability to call it is not.

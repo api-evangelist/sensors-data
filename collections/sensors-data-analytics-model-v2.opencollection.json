@@ -1,0 +1,217 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "神策分析"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "查询漏斗分析报告",
+        "type": "http"
+      },
+      "http": {
+        "method": "POST",
+        "url": "/api/v3/analytics/v2/model/funnel/report",
+        "headers": [
+          {
+            "name": "api-key",
+            "value": ""
+          },
+          {
+            "name": "sensorsdata-project",
+            "value": ""
+          }
+        ],
+        "body": {
+          "type": "json",
+          "data": "{}"
+        }
+      },
+      "docs": "查询漏斗分析报告"
+    },
+    {
+      "info": {
+        "name": "查询留存分析报告",
+        "type": "http"
+      },
+      "http": {
+        "method": "POST",
+        "url": "/api/v3/analytics/v2/model/retention/report",
+        "headers": [
+          {
+            "name": "api-key",
+            "value": ""
+          },
+          {
+            "name": "sensorsdata-project",
+            "value": ""
+          }
+        ],
+        "body": {
+          "type": "json",
+          "data": "{}"
+        }
+      },
+      "docs": "查询留存分析报告"
+    },
+    {
+      "info": {
+        "name": "查询 LTV 分析报告（扁平模型）",
+        "type": "http"
+      },
+      "http": {
+        "method": "POST",
+        "url": "/api/v3/analytics/v2/model/ltv/report",
+        "headers": [
+          {
+            "name": "api-key",
+            "value": ""
+          },
+          {
+            "name": "sensorsdata-project",
+            "value": ""
+          }
+        ],
+        "body": {
+          "type": "json",
+          "data": "{}"
+        }
+      },
+      "docs": "查询 LTV 分析报告（扁平/新版模型）"
+    },
+    {
+      "info": {
+        "name": "查询归因分析报告",
+        "type": "http"
+      },
+      "http": {
+        "method": "POST",
+        "url": "/api/v3/analytics/v2/model/attribution/report",
+        "headers": [
+          {
+            "name": "api-key",
+            "value": ""
+          },
+          {
+            "name": "sensorsdata-project",
+            "value": ""
+          }
+        ],
+        "body": {
+          "type": "json",
+          "data": "{}"
+        }
+      },
+      "docs": "查询归因分析报告"
+    },
+    {
+      "info": {
+        "name": "查询用户群画像分析报告",
+        "type": "http"
+      },
+      "http": {
+        "method": "POST",
+        "url": "/api/v3/analytics/v2/model/personas/report",
+        "headers": [
+          {
+            "name": "api-key",
+            "value": ""
+          },
+          {
+            "name": "sensorsdata-project",
+            "value": ""
+          }
+        ],
+        "params": [
+          {
+            "name": "use_cache",
+            "value": "",
+            "type": "query",
+            "description": "是否使用缓存"
+          }
+        ],
+        "body": {
+          "type": "json",
+          "data": "{}"
+        }
+      },
+      "docs": "查询用户群画像分析报告"
+    },
+    {
+      "info": {
+        "name": "查询漏斗分析用户明细",
+        "type": "http"
+      },
+      "http": {
+        "method": "POST",
+        "url": "/api/v3/analytics/v2/model/funnel/users",
+        "headers": [
+          {
+            "name": "api-key",
+            "value": ""
+          },
+          {
+            "name": "sensorsdata-project",
+            "value": ""
+          }
+        ],
+        "body": {
+          "type": "json",
+          "data": "{}"
+        }
+      },
+      "docs": "查询漏斗分析用户明细"
+    },
+    {
+      "info": {
+        "name": "查询留存分析用户明细",
+        "type": "http"
+      },
+      "http": {
+        "method": "POST",
+        "url": "/api/v3/analytics/v2/model/retention/users",
+        "headers": [
+          {
+            "name": "api-key",
+            "value": ""
+          },
+          {
+            "name": "sensorsdata-project",
+            "value": ""
+          }
+        ],
+        "body": {
+          "type": "json",
+          "data": "{}"
+        }
+      },
+      "docs": "查询留存分析用户明细"
+    },
+    {
+      "info": {
+        "name": "自定义 sql 查询",
+        "type": "http"
+      },
+      "http": {
+        "method": "POST",
+        "url": "/api/v3/analytics/v2/model/sql/query",
+        "headers": [
+          {
+            "name": "api-key",
+            "value": ""
+          },
+          {
+            "name": "sensorsdata-project",
+            "value": ""
+          }
+        ],
+        "body": {
+          "type": "json",
+          "data": "{}"
+        }
+      },
+      "docs": "自定义 sql 查询"
+    }
+  ],
+  "bundled": true
+}

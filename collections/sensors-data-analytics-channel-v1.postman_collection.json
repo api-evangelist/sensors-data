@@ -1,0 +1,616 @@
+{
+  "item": [
+    {
+      "id": "59a3ea4a-0d37-4029-b1c4-0be5f1b7db22",
+      "name": "新建渠道链接",
+      "request": {
+        "name": "新建渠道链接",
+        "description": {
+          "content": "渠道链接 - 新建渠道链接",
+          "type": "text/plain"
+        },
+        "url": {
+          "path": [
+            "channel",
+            "links",
+            "create"
+          ],
+          "host": [
+            "{{baseUrl}}"
+          ],
+          "query": [],
+          "variable": []
+        },
+        "header": [
+          {
+            "disabled": false,
+            "description": "(Required) 全局唯一的密钥，用于验证和授权访问 API 接口",
+            "key": "api-key",
+            "value": "<string>"
+          },
+          {
+            "disabled": false,
+            "description": "(Required) 项目名, 指定请求所属项目",
+            "key": "sensorsdata-project",
+            "value": "<string>"
+          },
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          },
+          {
+            "key": "Accept",
+            "value": "application/json"
+          }
+        ],
+        "method": "POST",
+        "auth": null,
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"channel_urls\": [\n    {\n      \"channel_type\": \"<string>\",\n      \"device_type\": \"<string>\",\n      \"target_url\": \"<string>\",\n      \"app_address\": \"<string>\",\n      \"parameters\": {\n        \"key_0\": \"<string>\",\n        \"key_1\": \"<string>\"\n      },\n      \"app_inner_info\": \"<string>\",\n      \"web_landing_page\": \"<string>\",\n      \"application_name\": \"<string>\",\n      \"custom_properties\": [\n        {\n          \"name\": \"<string>\",\n          \"cname\": \"<string>\"\n        },\n        {\n          \"name\": \"<string>\",\n          \"cname\": \"<string>\"\n        }\n      ],\n      \"app_id\": \"<string>\",\n      \"app_secret\": \"<string>\",\n      \"mina_type\": \"<string>\",\n      \"access_token\": \"<string>\"\n    },\n    {\n      \"channel_type\": \"<string>\",\n      \"device_type\": \"<string>\",\n      \"target_url\": \"<string>\",\n      \"app_address\": \"<string>\",\n      \"parameters\": {\n        \"key_0\": \"<string>\",\n        \"key_1\": \"<string>\"\n      },\n      \"app_inner_info\": \"<string>\",\n      \"web_landing_page\": \"<string>\",\n      \"application_name\": \"<string>\",\n      \"custom_properties\": [\n        {\n          \"name\": \"<string>\",\n          \"cname\": \"<string>\"\n        },\n        {\n          \"name\": \"<string>\",\n          \"cname\": \"<string>\"\n        }\n      ],\n      \"app_id\": \"<string>\",\n      \"app_secret\": \"<string>\",\n      \"mina_type\": \"<string>\",\n      \"access_token\": \"<string>\"\n    }\n  ]\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        }
+      },
+      "response": [
+        {
+          "id": "ed7e2c29-c01b-499b-b245-358e7b1c29d6",
+          "name": "sensorsdata.analytics.v1.CreateChannelUrlGrpcResponse",
+          "originalRequest": {
+            "url": {
+              "path": [
+                "channel",
+                "links",
+                "create"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "disabled": false,
+                "description": "(Required) 全局唯一的密钥，用于验证和授权访问 API 接口",
+                "key": "api-key",
+                "value": "<string>"
+              },
+              {
+                "disabled": false,
+                "description": "(Required) 项目名, 指定请求所属项目",
+                "key": "sensorsdata-project",
+                "value": "<string>"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"channel_urls\": [\n    {\n      \"channel_type\": \"app_normal\",\n      \"device_type\": \"通用\",\n      \"target_url\": \"网址必须以 http:// 或 https:// 开头\",\n      \"app_address\": \"下载网址必须以 http:// 或 https:// 开头\",\n      \"parameters\": {\n        \"utm_term\": \"关键词\",\n        \"utm_campaign\": \"活动\",\n        \"utm_medium\": \"广告媒介\",\n        \"utm_source\": \"广告来源\",\n        \"utm_content\": \"广告内容\"\n      },\n      \"app_inner_info\": \"<string>\",\n      \"web_landing_page\": \"http://www.test.com\",\n      \"application_name\": \"Deeplink 应用名称\",\n      \"custom_properties\": [\n        {\n          \"name\": \"customize_field\",\n          \"cname\": \"自定义字段\"\n        },\n        {\n          \"name\": \"customize_field\",\n          \"cname\": \"自定义字段\"\n        }\n      ],\n      \"app_id\": \"wx123456\",\n      \"app_secret\": \"123456789123456789123456789\",\n      \"mina_type\": \"LINK_LONG\",\n      \"access_token\": \"123456789123456789123456789\"\n    },\n    {\n      \"channel_type\": \"app_normal\",\n      \"device_type\": \"通用\",\n      \"target_url\": \"网址必须以 http:// 或 https:// 开头\",\n      \"app_address\": \"下载网址必须以 http:// 或 https:// 开头\",\n      \"parameters\": {\n        \"utm_term\": \"关键词\",\n        \"utm_campaign\": \"活动\",\n        \"utm_medium\": \"广告媒介\",\n        \"utm_source\": \"广告来源\",\n        \"utm_content\": \"广告内容\"\n      },\n      \"app_inner_info\": \"<string>\",\n      \"web_landing_page\": \"http://www.test.com\",\n      \"application_name\": \"Deeplink 应用名称\",\n      \"custom_properties\": [\n        {\n          \"name\": \"customize_field\",\n          \"cname\": \"自定义字段\"\n        },\n        {\n          \"name\": \"customize_field\",\n          \"cname\": \"自定义字段\"\n        }\n      ],\n      \"app_id\": \"wx123456\",\n      \"app_secret\": \"123456789123456789123456789\",\n      \"mina_type\": \"LINK_LONG\",\n      \"access_token\": \"123456789123456789123456789\"\n    }\n  ]\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "status": "Internal Server Error",
+          "code": 500,
+          "header": [
+            {
+              "key": "Content-Type",
+              "value": "application/json"
+            }
+          ],
+          "body": "{\n  \"code\": \"SUCCESS\",\n  \"data\": {\n    \"duplicated\": 2,\n    \"created\": 5,\n    \"channel_urls\": {\n      \"duplicated\": 0,\n      \"image_base64\": \"\",\n      \"created\": 1,\n      \"channel_urls\": [\n        {\n          \"id\": 1,\n          \"name\": \"APP 通用渠道_活动_20230213_6758\",\n          \"app_address\": \"推广页面地址\",\n          \"short_url\": \"短链地址\",\n          \"whole_url\": \"\",\n          \"is_duplicate\": false,\n          \"error_msg\": \"\",\n          \"resource_base64\": \"\",\n          \"application_name\": \"\",\n          \"web_landing_page\": \"\"\n        }\n      ],\n      \"failed\": 0,\n      \"status\": \"success\"\n    },\n    \"failed\": 2,\n    \"error\": {\n      \"error_msg\": \"报错信息\",\n      \"error_code\": \"12345\"\n    },\n    \"status\": \"success\"\n  },\n  \"request_id\": \"1\"\n}",
+          "cookie": [],
+          "_postman_previewlanguage": "json"
+        }
+      ],
+      "event": [],
+      "protocolProfileBehavior": {
+        "disableBodyPruning": true
+      }
+    },
+    {
+      "id": "3d52caf8-6e55-46de-87cf-6019b7b73201",
+      "name": "更新渠道链接",
+      "request": {
+        "name": "更新渠道链接",
+        "description": {
+          "content": "渠道链接 - 更新渠道链接",
+          "type": "text/plain"
+        },
+        "url": {
+          "path": [
+            "channel",
+            "links",
+            "update"
+          ],
+          "host": [
+            "{{baseUrl}}"
+          ],
+          "query": [],
+          "variable": []
+        },
+        "header": [
+          {
+            "disabled": false,
+            "description": "(Required) 全局唯一的密钥，用于验证和授权访问 API 接口",
+            "key": "api-key",
+            "value": "<string>"
+          },
+          {
+            "disabled": false,
+            "description": "(Required) 项目名, 指定请求所属项目",
+            "key": "sensorsdata-project",
+            "value": "<string>"
+          },
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          },
+          {
+            "key": "Accept",
+            "value": "application/json"
+          }
+        ],
+        "method": "POST",
+        "auth": null,
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"channel_urls\": [\n    {\n      \"name\": \"<string>\",\n      \"id\": \"<integer>\"\n    },\n    {\n      \"name\": \"<string>\",\n      \"id\": \"<integer>\"\n    }\n  ]\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        }
+      },
+      "response": [
+        {
+          "id": "c3c02d71-db4b-437c-97d0-2f31402edf01",
+          "name": "sensorsdata.analytics.v1.UpdateChannelUrlGrpcResponse",
+          "originalRequest": {
+            "url": {
+              "path": [
+                "channel",
+                "links",
+                "update"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "disabled": false,
+                "description": "(Required) 全局唯一的密钥，用于验证和授权访问 API 接口",
+                "key": "api-key",
+                "value": "<string>"
+              },
+              {
+                "disabled": false,
+                "description": "(Required) 项目名, 指定请求所属项目",
+                "key": "sensorsdata-project",
+                "value": "<string>"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"channel_urls\": [\n    {\n      \"name\": \"修改后渠道名称\",\n      \"id\": 1\n    },\n    {\n      \"name\": \"修改后渠道名称\",\n      \"id\": 1\n    }\n  ]\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "status": "Internal Server Error",
+          "code": 500,
+          "header": [
+            {
+              "key": "Content-Type",
+              "value": "application/json"
+            }
+          ],
+          "body": "{\n  \"code\": \"SUCCESS\",\n  \"data\": {\n    \"update_data_results\": [\n      {\n        \"id\": 1,\n        \"name\": \"修改后渠道名称\",\n        \"before_name\": \"修改前渠道名称\"\n      }\n    ]\n  },\n  \"request_id\": \"1\"\n}",
+          "cookie": [],
+          "_postman_previewlanguage": "json"
+        }
+      ],
+      "event": [],
+      "protocolProfileBehavior": {
+        "disableBodyPruning": true
+      }
+    },
+    {
+      "id": "4e325bac-aa4b-4fb2-bd35-614dd6eb617b",
+      "name": "获取渠道链接列表",
+      "request": {
+        "name": "获取渠道链接列表",
+        "description": {
+          "content": "渠道链接 - 获取渠道链接列表",
+          "type": "text/plain"
+        },
+        "url": {
+          "path": [
+            "channel",
+            "links",
+            "list"
+          ],
+          "host": [
+            "{{baseUrl}}"
+          ],
+          "query": [],
+          "variable": []
+        },
+        "header": [
+          {
+            "disabled": false,
+            "description": "(Required) 全局唯一的密钥，用于验证和授权访问 API 接口",
+            "key": "api-key",
+            "value": "<string>"
+          },
+          {
+            "disabled": false,
+            "description": "(Required) 项目名, 指定请求所属项目",
+            "key": "sensorsdata-project",
+            "value": "<string>"
+          },
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          },
+          {
+            "key": "Accept",
+            "value": "application/json"
+          }
+        ],
+        "method": "POST",
+        "auth": null,
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"page_num\": \"<integer>\",\n  \"page_size\": \"<integer>\",\n  \"sort_type\": \"<integer>\",\n  \"campaign_filters\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"device_type_filters\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"channel_type_filters\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"global_filters\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"application_info_filters\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"channel_application_name_filters\": [\n    \"<string>\",\n    \"<string>\"\n  ]\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        }
+      },
+      "response": [
+        {
+          "id": "c518b31e-8c3a-4078-9dd3-3e6153b97d06",
+          "name": "sensorsdata.analytics.v1.GetChannelUrlGrpcResponse",
+          "originalRequest": {
+            "url": {
+              "path": [
+                "channel",
+                "links",
+                "list"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "disabled": false,
+                "description": "(Required) 全局唯一的密钥，用于验证和授权访问 API 接口",
+                "key": "api-key",
+                "value": "<string>"
+              },
+              {
+                "disabled": false,
+                "description": "(Required) 项目名, 指定请求所属项目",
+                "key": "sensorsdata-project",
+                "value": "<string>"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"page_num\": 0,\n  \"page_size\": 20,\n  \"sort_type\": 1,\n  \"campaign_filters\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"device_type_filters\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"channel_type_filters\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"global_filters\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"application_info_filters\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"channel_application_name_filters\": [\n    \"<string>\",\n    \"<string>\"\n  ]\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "status": "Internal Server Error",
+          "code": 500,
+          "header": [
+            {
+              "key": "Content-Type",
+              "value": "application/json"
+            }
+          ],
+          "body": "{\n  \"code\": \"SUCCESS\",\n  \"data\": {\n    \"total_rows\": 200,\n    \"total_page\": 10,\n    \"page_num\": 0,\n    \"detail_results\": [\n      {\n        \"id\": 1,\n        \"name\": \"APP 通用渠道_测试活动_20230203_4996\",\n        \"channel_type\": \"app_normal\",\n        \"device_type\": \"通用\",\n        \"short_url\": \"http://{hostname}:{port}/r/U\",\n        \"app_address\": \"http://{hostname}:{post}/sa/channel_sa/link_manage?project=default&utm_source=%E6%B5%8B%E8%AF%95%E6%9D%A5%E6%BA%90&utm_campaign=%E6%B5%8B%E8%AF%95%E7%9A%84%E6%B4%BB%E5%8A%A8%25%25&test=%E8%87%AA%E5%AE%9A%E4%B9%89%E5%B1%9E%E6%80%A7&_channel_track_key=U9itljXH\",\n        \"parameters\": {\n          \"utm_campaign\": \"测试活动\"\n        },\n        \"project_id\": 1,\n        \"create_time\": \"2023-02-03 16:19:57\",\n        \"update_time\": \"2023-02-03 16:19:57\",\n        \"short_url_id\": 0,\n        \"channel_track_key\": \"U9itljXH\",\n        \"is_show_whole_url\": 1\n      },\n      {\n        \"id\": 2,\n        \"name\": \"App Deeplink 通用渠道_测试应用_20230112_5511\",\n        \"channel_type\": \"app_deeplink\",\n        \"device_type\": \"通用\",\n        \"short_url\": \"https://{hostname}:{port}/sd/xfA/A/W1uy30\",\n        \"app_address\": \"\",\n        \"parameters\": {\n          \"utm_campaign\": \"测试活动\"\n        },\n        \"project_id\": 1,\n        \"create_time\": \"2023-01-12 18:11:40\",\n        \"update_time\": \"2023-01-12 18:11:40\",\n        \"short_url_id\": 0,\n        \"channel_track_key\": \"9jTlm9Gh\",\n        \"is_show_whole_url\": 1,\n        \"web_landing_page\": \"http://www.test.com\",\n        \"application_name\": \"测试应用\"\n      },\n      {\n        \"id\": 3,\n        \"name\": \"网页通用渠道_测试的活动%%_20230203_4983\",\n        \"channel_type\": \"web_normal\",\n        \"device_type\": \"通用\",\n        \"short_url\": \"http://{hostname}:{port}/t/E\",\n        \"app_address\": \"\",\n        \"parameters\": {\n          \"utm_campaign\": \"测试活动\"\n        },\n        \"project_id\": 1,\n        \"create_time\": \"2023-02-03 17:04:09\",\n        \"update_time\": \"2023-02-03 17:04:09\",\n        \"short_url_id\": 0,\n        \"channel_track_key\": \"BlCeGScT\",\n        \"is_show_whole_url\": 1,\n        \"whole_url\": \"http://www.test.com?utm_campaign=%E6%B5%8B%E8%AF%95%E7%9A%84%E6%B4%BB%E5%8A%A8%25%25&_channel_track_key=BlCeGScT\"\n      },\n      {\n        \"id\": 4,\n        \"name\": \"微信小程序通用渠道_测试活动_20230209_2179\",\n        \"channel_type\": \"mina_normal\",\n        \"device_type\": \"通用\",\n        \"parameters\": {\n          \"utm_campaign\": \"测试活动\"\n        },\n        \"project_id\": 1,\n        \"create_time\": \"2023-02-09 15:44:08\",\n        \"update_time\": \"2023-02-09 15:44:08\",\n        \"short_url_id\": 0,\n        \"channel_track_key\": \"FlnXUZQe\",\n        \"is_show_whole_url\": 1,\n        \"whole_url\": \"pages/details/index?id=2323323&sa_utm=j\"\n      },\n      {\n        \"id\": 5,\n        \"name\": \"支付宝小程序通用渠道_测试活动_20230203_3007\",\n        \"channel_type\": \"alipay_mini_track\",\n        \"device_type\": \"通用\",\n        \"app_address\": \"\",\n        \"parameters\": {\n          \"utm_campaign\": \"测试活动\"\n        },\n        \"project_id\": 1,\n        \"create_time\": \"2023-02-03 17:05:09\",\n        \"update_time\": \"2023-02-03 17:05:09\",\n        \"short_url_id\": 0,\n        \"channel_track_key\": \"l7dkBwWi\",\n        \"is_show_whole_url\": 1,\n        \"whole_url\": \"https://ds.alipay.com/?scheme=alipays%3A%2F%2Fplatformapi%2Fstartapp%3FappId%3D907%26page%3Dpage%2Fcommon%2Fsrch%2Fsech%26qry%3Dsa_utm%253Ds\"\n      }\n    ],\n    \"page_size\": 20\n  },\n  \"request_id\": \"1\"\n}",
+          "cookie": [],
+          "_postman_previewlanguage": "json"
+        }
+      ],
+      "event": [],
+      "protocolProfileBehavior": {
+        "disableBodyPruning": true
+      }
+    },
+    {
+      "id": "1d41d434-707e-4029-85bf-56fe25b37028",
+      "name": "删除渠道链接",
+      "request": {
+        "name": "删除渠道链接",
+        "description": {
+          "content": "渠道链接 - 删除渠道链接",
+          "type": "text/plain"
+        },
+        "url": {
+          "path": [
+            "channel",
+            "links",
+            "delete"
+          ],
+          "host": [
+            "{{baseUrl}}"
+          ],
+          "query": [],
+          "variable": []
+        },
+        "header": [
+          {
+            "disabled": false,
+            "description": "(Required) 全局唯一的密钥，用于验证和授权访问 API 接口",
+            "key": "api-key",
+            "value": "<string>"
+          },
+          {
+            "disabled": false,
+            "description": "(Required) 项目名, 指定请求所属项目",
+            "key": "sensorsdata-project",
+            "value": "<string>"
+          },
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          },
+          {
+            "key": "Accept",
+            "value": "application/json"
+          }
+        ],
+        "method": "POST",
+        "auth": null,
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"channel_link_ids\": [\n    \"<integer>\",\n    \"<integer>\"\n  ]\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        }
+      },
+      "response": [
+        {
+          "id": "1ff185f7-8fd3-492b-93f1-b18af3a0132e",
+          "name": "sensorsdata.analytics.v1.DeleteChannelUrlGrpcResponse",
+          "originalRequest": {
+            "url": {
+              "path": [
+                "channel",
+                "links",
+                "delete"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "disabled": false,
+                "description": "(Required) 全局唯一的密钥，用于验证和授权访问 API 接口",
+                "key": "api-key",
+                "value": "<string>"
+              },
+              {
+                "disabled": false,
+                "description": "(Required) 项目名, 指定请求所属项目",
+                "key": "sensorsdata-project",
+                "value": "<string>"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"channel_link_ids\": [\n    \"<integer>\",\n    \"<integer>\"\n  ]\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "status": "Internal Server Error",
+          "code": 500,
+          "header": [
+            {
+              "key": "Content-Type",
+              "value": "application/json"
+            }
+          ],
+          "body": "{\n  \"code\": \"SUCCESS\",\n  \"data\": {\n    \"success_channel_link_ids\": [\n      1,\n      5,\n      7\n    ]\n  },\n  \"request_id\": \"1\"\n}",
+          "cookie": [],
+          "_postman_previewlanguage": "json"
+        }
+      ],
+      "event": [],
+      "protocolProfileBehavior": {
+        "disableBodyPruning": true
+      }
+    },
+    {
+      "id": "7e30d6fe-4c09-494f-ab52-75ed463a7ba2",
+      "name": "获取活动列表",
+      "request": {
+        "name": "获取活动列表",
+        "description": {
+          "content": "活动管理 - 获取活动列表",
+          "type": "text/plain"
+        },
+        "url": {
+          "path": [
+            "channel",
+            "campaigns",
+            "list"
+          ],
+          "host": [
+            "{{baseUrl}}"
+          ],
+          "query": [],
+          "variable": []
+        },
+        "header": [
+          {
+            "disabled": false,
+            "description": "(Required) 全局唯一的密钥，用于验证和授权访问 API 接口",
+            "key": "api-key",
+            "value": "<string>"
+          },
+          {
+            "disabled": false,
+            "description": "(Required) 项目名, 指定请求所属项目",
+            "key": "sensorsdata-project",
+            "value": "<string>"
+          },
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          },
+          {
+            "key": "Accept",
+            "value": "application/json"
+          }
+        ],
+        "method": "POST",
+        "auth": null,
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"page_num\": \"<integer>\",\n  \"page_size\": \"<integer>\",\n  \"sort_info\": {\n    \"sort_field\": \"<string>\",\n    \"sort_strategy\": \"<string>\"\n  }\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        }
+      },
+      "response": [
+        {
+          "id": "a1119ac8-9898-4434-975e-0237c0231045",
+          "name": "sensorsdata.analytics.v1.CampaignListGrpcResponse",
+          "originalRequest": {
+            "url": {
+              "path": [
+                "channel",
+                "campaigns",
+                "list"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "disabled": false,
+                "description": "(Required) 全局唯一的密钥，用于验证和授权访问 API 接口",
+                "key": "api-key",
+                "value": "<string>"
+              },
+              {
+                "disabled": false,
+                "description": "(Required) 项目名, 指定请求所属项目",
+                "key": "sensorsdata-project",
+                "value": "<string>"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"page_num\": 0,\n  \"page_size\": 20,\n  \"sort_info\": {\n    \"sort_field\": \"latest_use_time\",\n    \"sort_strategy\": \"DESC\"\n  }\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "status": "Internal Server Error",
+          "code": 500,
+          "header": [
+            {
+              "key": "Content-Type",
+              "value": "application/json"
+            }
+          ],
+          "body": "{\n  \"code\": \"SUCCESS\",\n  \"data\": {\n    \"campaign_details\": [\n      {\n        \"campaign_name\": \"推广活动\",\n        \"branch_num\": 10,\n        \"latest_use_time\": \"2023-02-09 19:19:50\"\n      }\n    ],\n    \"total_rows\": 200,\n    \"total_page\": 10,\n    \"page_num\": 0,\n    \"page_size\": 20\n  },\n  \"request_id\": \"1\"\n}",
+          "cookie": [],
+          "_postman_previewlanguage": "json"
+        }
+      ],
+      "event": [],
+      "protocolProfileBehavior": {
+        "disableBodyPruning": true
+      }
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "/api/v3/analytics/v1",
+      "key": "baseUrl"
+    }
+  ],
+  "info": {
+    "_postman_id": "a5458316-841d-45e6-8429-e2a5177002a8",
+    "name": "神策分析",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "渠道追踪开放接口",
+      "type": "text/plain"
+    }
+  }
+}

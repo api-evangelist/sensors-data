@@ -1,6 +1,6 @@
-generated: '2026-07-21'
-method: searched
-source: live probes of /.well-known/* on the website and docs hosts
+generated: '2026-08-13'
+method: probed
+source: live probes of /.well-known/* on every website, docs and API-manual host
 hosts:
   - host: https://www.sensorsdata.com
     documents:
@@ -14,17 +14,72 @@ hosts:
         status: 404
       - path: /.well-known/ai-plugin.json
         status: 404
+      - path: /.well-known/agent-card.json
+        status: 404
+      - path: /.well-known/agent.json
+        status: 404
+  - host: https://www.sensorsdata.cn
+    documents:
+      - path: /.well-known/security.txt
+        status: 404
+      - path: /.well-known/openid-configuration
+        status: 404
+      - path: /.well-known/oauth-authorization-server
+        status: 404
+      - path: /.well-known/api-catalog
+        status: 404
+      - path: /.well-known/ai-plugin.json
+        status: 404
+      - path: /.well-known/agent-card.json
+        status: 404
+      - path: /.well-known/agent.json
+        status: 404
   - host: https://manual.sensorsdata.cn
     documents:
       - path: /.well-known/security.txt
-        status: 302
-        note: host redirects all paths; no discovery document served
+        status: 404
       - path: /.well-known/openid-configuration
-        status: 302
+        status: 404
       - path: /.well-known/oauth-authorization-server
-        status: 302
+        status: 404
       - path: /.well-known/api-catalog
-        status: 302
+        status: 404
       - path: /.well-known/ai-plugin.json
-        status: 302
-result: no well-known discovery documents published
+        status: 404
+      - path: /.well-known/agent-card.json
+        status: 404
+      - path: /.well-known/agent.json
+        status: 404
+  - host: https://docs.sensorsdata.com
+    documents:
+      - path: /.well-known/security.txt
+        status: 200
+        content_type: text/html;charset=utf-8
+        bytes: 602084
+        document: false
+        note: >-
+          NOT a document. The help-centre SPA answers 200 with its own HTML shell for this
+          path (identical byte count to the site root). Treated as a miss.
+      - path: /.well-known/openid-configuration
+        status: 414
+      - path: /.well-known/oauth-authorization-server
+        status: 414
+      - path: /.well-known/api-catalog
+        status: 414
+      - path: /.well-known/ai-plugin.json
+        status: 414
+      - path: /.well-known/agent-card.json
+        status: 414
+        note: JSON error body, not an agent card
+      - path: /.well-known/agent.json
+        status: 000
+        note: connection did not complete
+api_host_note: >-
+  The OpenAPI base host cannot be probed: Sensors Data is deployed per customer, so the
+  API host is the customer's own cluster ingress ({sensors_data_url}) and there is no
+  vendor-operated API host with a /.well-known/ surface to fetch.
+result: no well-known discovery documents published on any Sensors Data host
+pointer_emitted: false
+pointer_reason: >-
+  Every path either 404s or returns an HTML/SPA shell or an error body. A WellKnown pointer
+  would assert the provider serves a discovery surface it does not serve.

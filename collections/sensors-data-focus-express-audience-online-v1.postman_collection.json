@@ -1,0 +1,545 @@
+{
+  "item": [
+    {
+      "id": "3eb1c6b2-7edc-45f0-9167-61eb1ce1a36a",
+      "name": "判断一个用户是否在一批受众内",
+      "request": {
+        "name": "判断一个用户是否在一批受众内",
+        "description": {
+          "content": "判断一个用户是否在一批受众内, 需要确保受众处于ready状态",
+          "type": "text/plain"
+        },
+        "url": {
+          "path": [
+            "express-audience-online",
+            "audience-entity",
+            "exists"
+          ],
+          "host": [
+            "{{baseUrl}}"
+          ],
+          "query": [],
+          "variable": []
+        },
+        "header": [
+          {
+            "disabled": false,
+            "description": "(Required) 全局唯一的密钥，用于验证和授权访问 API 接口",
+            "key": "api-key",
+            "value": "<string>"
+          },
+          {
+            "disabled": false,
+            "description": "(Required) 项目名, 指定请求所属项目",
+            "key": "sensorsdata-project",
+            "value": "<string>"
+          },
+          {
+            "disabled": false,
+            "description": "(Required) 租户 ID, 用于请求所属租户",
+            "key": "X-Organization-Id",
+            "value": "<string>"
+          },
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          },
+          {
+            "key": "Accept",
+            "value": "application/json"
+          }
+        ],
+        "method": "POST",
+        "auth": null,
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"audience_biz_ids\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"audience_entity_id\": {\n    \"entity_name\": \"<string>\",\n    \"identity_id_map\": {\n      \"key_0\": \"<string>\",\n      \"key_1\": \"<string>\",\n      \"key_2\": \"<string>\"\n    },\n    \"entity_id\": {\n      \"data_type\": \"<string>\",\n      \"int_value\": \"<long>\",\n      \"string_value\": \"<string>\"\n    }\n  }\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        }
+      },
+      "response": [
+        {
+          "id": "14a8ee4a-ea99-4c6f-9e93-d99bb921383e",
+          "name": "sensorsdata.focus.v1.IsAudienceEntityExistsInRulesResponse",
+          "originalRequest": {
+            "url": {
+              "path": [
+                "express-audience-online",
+                "audience-entity",
+                "exists"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "disabled": false,
+                "description": "(Required) 全局唯一的密钥，用于验证和授权访问 API 接口",
+                "key": "api-key",
+                "value": "<string>"
+              },
+              {
+                "disabled": false,
+                "description": "(Required) 项目名, 指定请求所属项目",
+                "key": "sensorsdata-project",
+                "value": "<string>"
+              },
+              {
+                "disabled": false,
+                "description": "(Required) 租户 ID, 用于请求所属租户",
+                "key": "X-Organization-Id",
+                "value": "<string>"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"audience_biz_ids\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"audience_entity_id\": {\n    \"entity_name\": \"user\",\n    \"identity_id_map\": {\n      \"key_0\": \"<string>\",\n      \"key_1\": \"<string>\",\n      \"key_2\": \"<string>\"\n    },\n    \"entity_id\": {\n      \"data_type\": \"<string>\",\n      \"int_value\": \"<long>\",\n      \"string_value\": \"<string>\"\n    }\n  }\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "status": "Internal Server Error",
+          "code": 500,
+          "header": [
+            {
+              "key": "Content-Type",
+              "value": "application/json"
+            }
+          ],
+          "body": "{\n  \"code\": \"SUCCESS\",\n  \"data\": {\n    \"invalid_entity\": {\n      \"entity_name\": \"user\",\n      \"entity_id\": {}\n    },\n    \"results\": {\n      \"2\": true\n    }\n  },\n  \"request_id\": \"1\"\n}",
+          "cookie": [],
+          "_postman_previewlanguage": "json"
+        }
+      ],
+      "event": [],
+      "protocolProfileBehavior": {
+        "disableBodyPruning": true
+      }
+    },
+    {
+      "id": "b8dc0985-f72a-4e2d-a504-73e027e0d323",
+      "name": "查看一批用户是否在一个受众内",
+      "request": {
+        "name": "查看一批用户是否在一个受众内",
+        "description": {
+          "content": "查看一批用户是否在一个受众内",
+          "type": "text/plain"
+        },
+        "url": {
+          "path": [
+            "express-audience-online",
+            "audience-entities",
+            "exists"
+          ],
+          "host": [
+            "{{baseUrl}}"
+          ],
+          "query": [],
+          "variable": []
+        },
+        "header": [
+          {
+            "disabled": false,
+            "description": "(Required) 全局唯一的密钥，用于验证和授权访问 API 接口",
+            "key": "api-key",
+            "value": "<string>"
+          },
+          {
+            "disabled": false,
+            "description": "(Required) 项目名, 指定请求所属项目",
+            "key": "sensorsdata-project",
+            "value": "<string>"
+          },
+          {
+            "disabled": false,
+            "description": "(Required) 租户 ID, 用于请求所属租户",
+            "key": "X-Organization-Id",
+            "value": "<string>"
+          },
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          },
+          {
+            "key": "Accept",
+            "value": "application/json"
+          }
+        ],
+        "method": "POST",
+        "auth": null,
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"audience_biz_id\": \"<string>\",\n  \"audience_entity_ids\": [\n    {\n      \"entity_name\": \"<string>\",\n      \"identity_id_map\": {\n        \"key_0\": \"<string>\"\n      },\n      \"entity_id\": {\n        \"data_type\": \"<string>\",\n        \"int_value\": \"<long>\",\n        \"string_value\": \"<string>\"\n      }\n    },\n    {\n      \"entity_name\": \"<string>\",\n      \"identity_id_map\": {\n        \"key_0\": \"<string>\",\n        \"key_1\": \"<string>\",\n        \"key_2\": \"<string>\"\n      },\n      \"entity_id\": {\n        \"data_type\": \"<string>\",\n        \"int_value\": \"<long>\",\n        \"string_value\": \"<string>\"\n      }\n    }\n  ]\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        }
+      },
+      "response": [
+        {
+          "id": "d76e1bad-a2b7-4ef7-9520-04dc5746e055",
+          "name": "sensorsdata.focus.v1.IsBatchAudienceEntityExistsResponse",
+          "originalRequest": {
+            "url": {
+              "path": [
+                "express-audience-online",
+                "audience-entities",
+                "exists"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "disabled": false,
+                "description": "(Required) 全局唯一的密钥，用于验证和授权访问 API 接口",
+                "key": "api-key",
+                "value": "<string>"
+              },
+              {
+                "disabled": false,
+                "description": "(Required) 项目名, 指定请求所属项目",
+                "key": "sensorsdata-project",
+                "value": "<string>"
+              },
+              {
+                "disabled": false,
+                "description": "(Required) 租户 ID, 用于请求所属租户",
+                "key": "X-Organization-Id",
+                "value": "<string>"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"audience_biz_id\": \"2\",\n  \"audience_entity_ids\": [\n    {\n      \"entity_name\": \"user\",\n      \"identity_id_map\": {\n        \"key_0\": \"<string>\",\n        \"key_1\": \"<string>\",\n        \"key_2\": \"<string>\"\n      },\n      \"entity_id\": {\n        \"data_type\": \"<string>\",\n        \"int_value\": \"<long>\",\n        \"string_value\": \"<string>\"\n      }\n    },\n    {\n      \"entity_name\": \"user\",\n      \"identity_id_map\": {\n        \"key_0\": \"<string>\",\n        \"key_1\": \"<string>\"\n      },\n      \"entity_id\": {\n        \"data_type\": \"<string>\",\n        \"int_value\": \"<long>\",\n        \"string_value\": \"<string>\"\n      }\n    }\n  ]\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "status": "Internal Server Error",
+          "code": 500,
+          "header": [
+            {
+              "key": "Content-Type",
+              "value": "application/json"
+            }
+          ],
+          "body": "{\n  \"code\": \"SUCCESS\",\n  \"data\": {\n    \"results\": [\n      true,\n      false,\n      true\n    ],\n    \"invalid_entities\": [\n      {\n        \"entity_name\": \"user\",\n        \"entity_id\": {}\n      }\n    ]\n  },\n  \"request_id\": \"1\"\n}",
+          "cookie": [],
+          "_postman_previewlanguage": "json"
+        }
+      ],
+      "event": [],
+      "protocolProfileBehavior": {
+        "disableBodyPruning": true
+      }
+    },
+    {
+      "id": "db0207c6-021f-4bc0-9f40-47c7168cb021",
+      "name": "将一批用户写入一个受众规则",
+      "request": {
+        "name": "将一批用户写入一个受众规则",
+        "description": {
+          "content": "将一批用户写入一个受众规则",
+          "type": "text/plain"
+        },
+        "url": {
+          "path": [
+            "express-audience-online",
+            "audience-entity",
+            "put"
+          ],
+          "host": [
+            "{{baseUrl}}"
+          ],
+          "query": [],
+          "variable": []
+        },
+        "header": [
+          {
+            "disabled": false,
+            "description": "(Required) 全局唯一的密钥，用于验证和授权访问 API 接口",
+            "key": "api-key",
+            "value": "<string>"
+          },
+          {
+            "disabled": false,
+            "description": "(Required) 项目名, 指定请求所属项目",
+            "key": "sensorsdata-project",
+            "value": "<string>"
+          },
+          {
+            "disabled": false,
+            "description": "(Required) 租户 ID, 用于请求所属租户",
+            "key": "X-Organization-Id",
+            "value": "<string>"
+          },
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          },
+          {
+            "key": "Accept",
+            "value": "application/json"
+          }
+        ],
+        "method": "POST",
+        "auth": null,
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"audience_biz_id\": \"<string>\",\n  \"audience_entity_ids\": [\n    {\n      \"entity_name\": \"<string>\",\n      \"identity_id_map\": {\n        \"key_0\": \"<string>\",\n        \"key_1\": \"<string>\",\n        \"key_2\": \"<string>\",\n        \"key_3\": \"<string>\"\n      },\n      \"entity_id\": {\n        \"data_type\": \"<string>\",\n        \"int_value\": \"<long>\",\n        \"string_value\": \"<string>\"\n      }\n    },\n    {\n      \"entity_name\": \"<string>\",\n      \"identity_id_map\": {\n        \"key_0\": \"<string>\",\n        \"key_1\": \"<string>\",\n        \"key_2\": \"<string>\"\n      },\n      \"entity_id\": {\n        \"data_type\": \"<string>\",\n        \"int_value\": \"<long>\",\n        \"string_value\": \"<string>\"\n      }\n    }\n  ]\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        }
+      },
+      "response": [
+        {
+          "id": "3a6e6913-3ea9-4d94-bd55-7b94653a2d43",
+          "name": "sensorsdata.focus.v1.PutBatchAudienceEntityResponse",
+          "originalRequest": {
+            "url": {
+              "path": [
+                "express-audience-online",
+                "audience-entity",
+                "put"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "disabled": false,
+                "description": "(Required) 全局唯一的密钥，用于验证和授权访问 API 接口",
+                "key": "api-key",
+                "value": "<string>"
+              },
+              {
+                "disabled": false,
+                "description": "(Required) 项目名, 指定请求所属项目",
+                "key": "sensorsdata-project",
+                "value": "<string>"
+              },
+              {
+                "disabled": false,
+                "description": "(Required) 租户 ID, 用于请求所属租户",
+                "key": "X-Organization-Id",
+                "value": "<string>"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"audience_biz_id\": \"2\",\n  \"audience_entity_ids\": [\n    {\n      \"entity_name\": \"user\",\n      \"identity_id_map\": {\n        \"key_0\": \"<string>\",\n        \"key_1\": \"<string>\",\n        \"key_2\": \"<string>\"\n      },\n      \"entity_id\": {\n        \"data_type\": \"<string>\",\n        \"int_value\": \"<long>\",\n        \"string_value\": \"<string>\"\n      }\n    },\n    {\n      \"entity_name\": \"user\",\n      \"identity_id_map\": {\n        \"key_0\": \"<string>\",\n        \"key_1\": \"<string>\"\n      },\n      \"entity_id\": {\n        \"data_type\": \"<string>\",\n        \"int_value\": \"<long>\",\n        \"string_value\": \"<string>\"\n      }\n    }\n  ]\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "status": "Internal Server Error",
+          "code": 500,
+          "header": [
+            {
+              "key": "Content-Type",
+              "value": "application/json"
+            }
+          ],
+          "body": "{\n  \"code\": \"SUCCESS\",\n  \"data\": {\n    \"results\": {\n      \"2\": true\n    }\n  },\n  \"request_id\": \"1\"\n}",
+          "cookie": [],
+          "_postman_previewlanguage": "json"
+        }
+      ],
+      "event": [],
+      "protocolProfileBehavior": {
+        "disableBodyPruning": true
+      }
+    },
+    {
+      "id": "e9de2875-4bc9-4c07-b43f-2b7e6470a1bc",
+      "name": "将一批用户移出一个受众规则",
+      "request": {
+        "name": "将一批用户移出一个受众规则",
+        "description": {
+          "content": "将一批用户移出一个受众规则",
+          "type": "text/plain"
+        },
+        "url": {
+          "path": [
+            "express-audience-online",
+            "audience-entity",
+            "delete"
+          ],
+          "host": [
+            "{{baseUrl}}"
+          ],
+          "query": [],
+          "variable": []
+        },
+        "header": [
+          {
+            "disabled": false,
+            "description": "(Required) 全局唯一的密钥，用于验证和授权访问 API 接口",
+            "key": "api-key",
+            "value": "<string>"
+          },
+          {
+            "disabled": false,
+            "description": "(Required) 项目名, 指定请求所属项目",
+            "key": "sensorsdata-project",
+            "value": "<string>"
+          },
+          {
+            "disabled": false,
+            "description": "(Required) 租户 ID, 用于请求所属租户",
+            "key": "X-Organization-Id",
+            "value": "<string>"
+          },
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          },
+          {
+            "key": "Accept",
+            "value": "application/json"
+          }
+        ],
+        "method": "POST",
+        "auth": null,
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"audience_biz_id\": \"<string>\",\n  \"audience_entity_ids\": [\n    {\n      \"entity_name\": \"<string>\",\n      \"identity_id_map\": {\n        \"key_0\": \"<string>\",\n        \"key_1\": \"<string>\"\n      },\n      \"entity_id\": {\n        \"data_type\": \"<string>\",\n        \"int_value\": \"<long>\",\n        \"string_value\": \"<string>\"\n      }\n    },\n    {\n      \"entity_name\": \"<string>\",\n      \"identity_id_map\": {\n        \"key_0\": \"<string>\"\n      },\n      \"entity_id\": {\n        \"data_type\": \"<string>\",\n        \"int_value\": \"<long>\",\n        \"string_value\": \"<string>\"\n      }\n    }\n  ]\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        }
+      },
+      "response": [
+        {
+          "id": "3f6c2a63-24ed-4768-a58f-e9362c602672",
+          "name": "sensorsdata.focus.v1.DeleteBatchAudienceEntityResponse",
+          "originalRequest": {
+            "url": {
+              "path": [
+                "express-audience-online",
+                "audience-entity",
+                "delete"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "disabled": false,
+                "description": "(Required) 全局唯一的密钥，用于验证和授权访问 API 接口",
+                "key": "api-key",
+                "value": "<string>"
+              },
+              {
+                "disabled": false,
+                "description": "(Required) 项目名, 指定请求所属项目",
+                "key": "sensorsdata-project",
+                "value": "<string>"
+              },
+              {
+                "disabled": false,
+                "description": "(Required) 租户 ID, 用于请求所属租户",
+                "key": "X-Organization-Id",
+                "value": "<string>"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"audience_biz_id\": \"2\",\n  \"audience_entity_ids\": [\n    {\n      \"entity_name\": \"user\",\n      \"identity_id_map\": {\n        \"key_0\": \"<string>\",\n        \"key_1\": \"<string>\",\n        \"key_2\": \"<string>\"\n      },\n      \"entity_id\": {\n        \"data_type\": \"<string>\",\n        \"int_value\": \"<long>\",\n        \"string_value\": \"<string>\"\n      }\n    },\n    {\n      \"entity_name\": \"user\",\n      \"identity_id_map\": {\n        \"key_0\": \"<string>\",\n        \"key_1\": \"<string>\"\n      },\n      \"entity_id\": {\n        \"data_type\": \"<string>\",\n        \"int_value\": \"<long>\",\n        \"string_value\": \"<string>\"\n      }\n    }\n  ]\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "status": "Internal Server Error",
+          "code": 500,
+          "header": [
+            {
+              "key": "Content-Type",
+              "value": "application/json"
+            }
+          ],
+          "body": "{\n  \"code\": \"SUCCESS\",\n  \"data\": {\n    \"results\": {\n      \"2\": true\n    }\n  },\n  \"request_id\": \"1\"\n}",
+          "cookie": [],
+          "_postman_previewlanguage": "json"
+        }
+      ],
+      "event": [],
+      "protocolProfileBehavior": {
+        "disableBodyPruning": true
+      }
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "/api/v3/focus/v1",
+      "key": "baseUrl"
+    }
+  ],
+  "info": {
+    "_postman_id": "59e332df-29ca-4df0-a969-873ee12826a3",
+    "name": "神策智能运营",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "受众引擎在线数据服务",
+      "type": "text/plain"
+    }
+  }
+}

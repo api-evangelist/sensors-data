@@ -1,0 +1,452 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "神策智能运营"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "查询插件信息",
+        "type": "http"
+      },
+      "http": {
+        "method": "GET",
+        "url": "/api/v3/focus/v1/express-action-channel/plugin/get",
+        "headers": [
+          {
+            "name": "api-key",
+            "value": ""
+          },
+          {
+            "name": "sensorsdata-project",
+            "value": ""
+          },
+          {
+            "name": "X-Organization-Id",
+            "value": ""
+          }
+        ],
+        "params": [
+          {
+            "name": "plugin_id",
+            "value": "",
+            "type": "query",
+            "description": "plugin_id 和 plugin_route 必传其一"
+          },
+          {
+            "name": "plugin_route",
+            "value": "",
+            "type": "query"
+          }
+        ]
+      },
+      "docs": "支持单个插件查询，仅能查询生效的插件信息. 查询结果会根据当前的组织 ID / project_id 过滤"
+    },
+    {
+      "info": {
+        "name": "查询通道信息",
+        "type": "http"
+      },
+      "http": {
+        "method": "GET",
+        "url": "/api/v3/focus/v1/express-action-channel/channel/query",
+        "headers": [
+          {
+            "name": "api-key",
+            "value": ""
+          },
+          {
+            "name": "sensorsdata-project",
+            "value": ""
+          },
+          {
+            "name": "X-Organization-Id",
+            "value": ""
+          }
+        ],
+        "params": [
+          {
+            "name": "plugin_id",
+            "value": "",
+            "type": "query",
+            "description": "只能通过插件 ID 查询"
+          }
+        ]
+      },
+      "docs": "查询通道信息，仅能按照插件 ID 查询"
+    },
+    {
+      "info": {
+        "name": "查询通道实例信息",
+        "type": "http"
+      },
+      "http": {
+        "method": "GET",
+        "url": "/api/v3/focus/v1/express-action-channel/channel/instance/query",
+        "headers": [
+          {
+            "name": "api-key",
+            "value": ""
+          },
+          {
+            "name": "sensorsdata-project",
+            "value": ""
+          },
+          {
+            "name": "X-Organization-Id",
+            "value": ""
+          }
+        ],
+        "params": [
+          {
+            "name": "plugin_id",
+            "value": "",
+            "type": "query",
+            "description": "plugin_id/channel_id/channel_instance_id 都是筛选器，可以都不传\n 不传则默认查出来该 project 的所有 channel instance"
+          },
+          {
+            "name": "channel_id",
+            "value": "",
+            "type": "query"
+          },
+          {
+            "name": "channel_instance_id",
+            "value": "",
+            "type": "query"
+          }
+        ]
+      },
+      "docs": "查询通道实例信息"
+    },
+    {
+      "info": {
+        "name": "创建通道实例",
+        "type": "http"
+      },
+      "http": {
+        "method": "POST",
+        "url": "/api/v3/focus/v1/express-action-channel/channel/instance/create",
+        "headers": [
+          {
+            "name": "api-key",
+            "value": ""
+          },
+          {
+            "name": "sensorsdata-project",
+            "value": ""
+          },
+          {
+            "name": "X-Organization-Id",
+            "value": ""
+          }
+        ],
+        "body": {
+          "type": "json",
+          "data": "{}"
+        }
+      },
+      "docs": "创建通道实例"
+    },
+    {
+      "info": {
+        "name": "修改通道实例",
+        "type": "http"
+      },
+      "http": {
+        "method": "POST",
+        "url": "/api/v3/focus/v1/express-action-channel/channel/instance/update",
+        "headers": [
+          {
+            "name": "api-key",
+            "value": ""
+          },
+          {
+            "name": "sensorsdata-project",
+            "value": ""
+          },
+          {
+            "name": "X-Organization-Id",
+            "value": ""
+          }
+        ],
+        "body": {
+          "type": "json",
+          "data": "{}"
+        }
+      },
+      "docs": "修改通道实例，包括通道实例的开关等"
+    },
+    {
+      "info": {
+        "name": "删除通道实例",
+        "type": "http"
+      },
+      "http": {
+        "method": "POST",
+        "url": "/api/v3/focus/v1/express-action-channel/channel/instance/delete",
+        "headers": [
+          {
+            "name": "api-key",
+            "value": ""
+          },
+          {
+            "name": "sensorsdata-project",
+            "value": ""
+          },
+          {
+            "name": "X-Organization-Id",
+            "value": ""
+          }
+        ],
+        "body": {
+          "type": "json",
+          "data": "{}"
+        }
+      },
+      "docs": "删除通道实例"
+    },
+    {
+      "info": {
+        "name": "获取插件资源文件",
+        "type": "http"
+      },
+      "http": {
+        "method": "GET",
+        "url": "/api/v3/focus/v1/express-action-channel/plugin/resource/get",
+        "headers": [
+          {
+            "name": "api-key",
+            "value": ""
+          },
+          {
+            "name": "sensorsdata-project",
+            "value": ""
+          },
+          {
+            "name": "X-Organization-Id",
+            "value": ""
+          }
+        ],
+        "params": [
+          {
+            "name": "plugin_route",
+            "value": "",
+            "type": "query",
+            "description": "插件 pluginRoute"
+          },
+          {
+            "name": "file_path",
+            "value": "/dist/index.css",
+            "type": "query",
+            "description": "获取资源文件的路径，一般是插件前端资源文件路径"
+          }
+        ]
+      },
+      "docs": "获取插件资源文件，加载插件前端可以使用"
+    },
+    {
+      "info": {
+        "name": "通道实例测试发送",
+        "type": "http"
+      },
+      "http": {
+        "method": "POST",
+        "url": "/api/v3/focus/v1/express-action-channel/channel/instance/test-send/execute",
+        "headers": [
+          {
+            "name": "api-key",
+            "value": ""
+          },
+          {
+            "name": "sensorsdata-project",
+            "value": ""
+          },
+          {
+            "name": "X-Organization-Id",
+            "value": ""
+          }
+        ],
+        "body": {
+          "type": "json",
+          "data": "{}"
+        }
+      },
+      "docs": "通道实例测试发送"
+    },
+    {
+      "info": {
+        "name": "通道实例配置发送内容校验",
+        "type": "http"
+      },
+      "http": {
+        "method": "POST",
+        "url": "/api/v3/focus/v1/express-action-channel/channel/instance/send-content/check",
+        "headers": [
+          {
+            "name": "api-key",
+            "value": ""
+          },
+          {
+            "name": "sensorsdata-project",
+            "value": ""
+          },
+          {
+            "name": "X-Organization-Id",
+            "value": ""
+          }
+        ],
+        "body": {
+          "type": "json",
+          "data": "{}"
+        }
+      },
+      "docs": "通道实例配置发送内容校验，用于校验通道实例上配置的发送内容是否合法"
+    },
+    {
+      "info": {
+        "name": "通道实例其他扩展请求",
+        "type": "http"
+      },
+      "http": {
+        "method": "POST",
+        "url": "/api/v3/focus/v1/express-action-channel/channel/instance/extension/execute",
+        "headers": [
+          {
+            "name": "api-key",
+            "value": ""
+          },
+          {
+            "name": "sensorsdata-project",
+            "value": ""
+          },
+          {
+            "name": "X-Organization-Id",
+            "value": ""
+          }
+        ],
+        "body": {
+          "type": "json",
+          "data": "{}"
+        }
+      },
+      "docs": "通道实例其他扩展请求，对于需要更多通道前后端交互的逻辑可以走该接口"
+    },
+    {
+      "info": {
+        "name": "通道实例指标定义获取",
+        "type": "http"
+      },
+      "http": {
+        "method": "GET",
+        "url": "/api/v3/focus/v1/express-action-channel/channel/instance/metrics-define/get",
+        "headers": [
+          {
+            "name": "api-key",
+            "value": ""
+          },
+          {
+            "name": "sensorsdata-project",
+            "value": ""
+          },
+          {
+            "name": "X-Organization-Id",
+            "value": ""
+          }
+        ],
+        "params": [
+          {
+            "name": "channel_instance_id",
+            "value": "",
+            "type": "query",
+            "description": "请求的通道实例 ID"
+          }
+        ]
+      },
+      "docs": "通道实例指标定义获取"
+    },
+    {
+      "info": {
+        "name": "获取有可用通道实例的通道大类",
+        "type": "http"
+      },
+      "http": {
+        "method": "GET",
+        "url": "/api/v3/focus/v1/express-action-channel/channel/ai/category/get",
+        "headers": [
+          {
+            "name": "api-key",
+            "value": ""
+          },
+          {
+            "name": "sensorsdata-project",
+            "value": ""
+          },
+          {
+            "name": "X-Organization-Id",
+            "value": ""
+          }
+        ]
+      },
+      "docs": "获取有可用通道实例的通道大类"
+    },
+    {
+      "info": {
+        "name": "获取某个通道大类下的通道实例信息",
+        "type": "http"
+      },
+      "http": {
+        "method": "GET",
+        "url": "/api/v3/focus/v1/express-action-channel/channel/ai/category/instance/get",
+        "headers": [
+          {
+            "name": "api-key",
+            "value": ""
+          },
+          {
+            "name": "sensorsdata-project",
+            "value": ""
+          },
+          {
+            "name": "X-Organization-Id",
+            "value": ""
+          }
+        ],
+        "params": [
+          {
+            "name": "channel_category",
+            "value": "",
+            "type": "query",
+            "description": "通道大类名称"
+          }
+        ]
+      },
+      "docs": "获取某个通道大类下的通道实例信息"
+    },
+    {
+      "info": {
+        "name": "获取某个项目下所有可用的通道实例",
+        "type": "http"
+      },
+      "http": {
+        "method": "GET",
+        "url": "/api/v3/focus/v1/express-action-channel/channel/ai/instance/get",
+        "headers": [
+          {
+            "name": "api-key",
+            "value": ""
+          },
+          {
+            "name": "sensorsdata-project",
+            "value": ""
+          },
+          {
+            "name": "X-Organization-Id",
+            "value": ""
+          }
+        ]
+      },
+      "docs": "获取某个项目下所有可用的通道实例"
+    }
+  ],
+  "bundled": true
+}

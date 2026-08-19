@@ -1,0 +1,1226 @@
+{
+  "item": [
+    {
+      "id": "4beabe0e-d988-4704-8001-9e3d5c3e931d",
+      "name": "创建触发策略",
+      "request": {
+        "name": "创建触发策略",
+        "description": {
+          "content": "创建触发策略",
+          "type": "text/plain"
+        },
+        "url": {
+          "path": [
+            "trigger-strategy",
+            "create"
+          ],
+          "host": [
+            "{{baseUrl}}"
+          ],
+          "query": [],
+          "variable": []
+        },
+        "header": [
+          {
+            "disabled": false,
+            "description": "(Required) 全局唯一的密钥，用于验证和授权访问 API 接口",
+            "key": "api-key",
+            "value": "<string>"
+          },
+          {
+            "disabled": false,
+            "description": "(Required) 项目名, 指定请求所属项目",
+            "key": "sensorsdata-project",
+            "value": "<string>"
+          },
+          {
+            "disabled": false,
+            "description": "(Required) 租户 ID, 用于请求所属租户",
+            "key": "X-Organization-Id",
+            "value": "<string>"
+          },
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          },
+          {
+            "key": "Accept",
+            "value": "application/json"
+          }
+        ],
+        "method": "POST",
+        "auth": null,
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"trigger_strategy\": {\n    \"canvas_id\": \"<integer>\",\n    \"biz_id\": \"<string>\",\n    \"cname\": \"<string>\",\n    \"entry_type\": \"<string>\",\n    \"event_entry_config\": {\n      \"process_event_type\": \"<string>\",\n      \"start_entry_time\": \"<long>\",\n      \"end_entry_time\": \"<long>\",\n      \"stream_event_do_entry_rule\": {\n        \"time_range\": {\n          \"start_time\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"end_time\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          }\n        },\n        \"logical_operator\": \"<string>\",\n        \"event_measure_user_groups\": [\n          {\n            \"events\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"aggregator\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"aggregate_field\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"function\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"params\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          },\n          {\n            \"events\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"aggregator\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"aggregate_field\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"function\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"params\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          }\n        ],\n        \"condition_time_range\": {\n          \"start_time\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"end_time\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          }\n        },\n        \"event_component_group_rule\": {\n          \"logical_operator\": \"<string>\",\n          \"event_component_params\": [\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          ],\n          \"other_data_params\": [\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          ]\n        },\n        \"event_properties_component_params\": [\n          {\n            \"id\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"event_index\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"event_name\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"event_property_field\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"aggregator_type\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          },\n          {\n            \"id\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"event_index\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"event_name\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"event_property_field\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"aggregator_type\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          }\n        ]\n      },\n      \"stream_event_not_do_entry_rule\": {\n        \"time_range\": {\n          \"start_time\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"end_time\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          }\n        },\n        \"logical_operator\": \"<string>\",\n        \"event_measure_user_groups\": [\n          {\n            \"events\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"aggregator\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"aggregate_field\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"function\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"params\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          },\n          {\n            \"events\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"aggregator\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"aggregate_field\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"function\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"params\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          }\n        ],\n        \"condition_time_range\": {\n          \"start_time\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"end_time\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          }\n        },\n        \"event_component_group_rule\": {\n          \"logical_operator\": \"<string>\",\n          \"event_component_params\": [\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          ],\n          \"other_data_params\": [\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          ]\n        },\n        \"event_properties_component_params\": [\n          {\n            \"id\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"event_index\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"event_name\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"event_property_field\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"aggregator_type\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          },\n          {\n            \"id\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"event_index\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"event_name\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"event_property_field\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"aggregator_type\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          }\n        ]\n      },\n      \"origin_event_do_rule\": \"<string>\",\n      \"origin_event_not_do_rule\": \"<string>\"\n    },\n    \"audience_entry_config\": {\n      \"audience_type\": \"<string>\",\n      \"fixed_time\": \"<long>\",\n      \"start_date\": \"<long>\",\n      \"end_date\": \"<long>\",\n      \"cron\": \"<string>\",\n      \"user_group_rule\": {\n        \"operator\": \"<string>\",\n        \"groups\": [\n          {\n            \"type\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"event_measure_user_group\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"profile_user_group\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"event_sequence_user_group\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"sql_user_group\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"external_profile_user_group\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"external_measure_user_group\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"event_compound_measure_user_group\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"profile_dimension_user_group\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"group_expression_user_group\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"pql_user_group\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          },\n          {\n            \"type\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"event_measure_user_group\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"profile_user_group\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"event_sequence_user_group\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"sql_user_group\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"external_profile_user_group\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"external_measure_user_group\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"event_compound_measure_user_group\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"profile_dimension_user_group\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"group_expression_user_group\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"pql_user_group\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          }\n        ],\n        \"compound_groups\": [\n          {\n            \"value\": \"<Circular reference to #/components/schemas/sensorsdata.personas.v1.UserGroupRule detected>\"\n          },\n          {\n            \"value\": \"<Circular reference to #/components/schemas/sensorsdata.personas.v1.UserGroupRule detected>\"\n          }\n        ],\n        \"sort_info\": {\n          \"fields\": [\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          ],\n          \"is_asc_order\": [\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          ]\n        },\n        \"limit\": \"<integer>\",\n        \"shuffle\": \"<boolean>\",\n        \"tailor\": {\n          \"rank_field\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"function\": \"<string>\",\n          \"params\": [\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          ]\n        }\n      },\n      \"audience_template_id\": \"<integer>\",\n      \"audience_template_type\": \"<string>\",\n      \"audience_biz_id\": \"<string>\",\n      \"estimate_count\": \"<integer>\",\n      \"origin_audience_rule\": \"<string>\",\n      \"audience_rule_detail_param\": {\n        \"segment_rule_expression\": {\n          \"type\": \"<string>\",\n          \"sql_segment_rule\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"eql_segment_rule\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"loading_segment_rule\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"custom_rule\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"event_sequence_rule\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"group_expression_rule\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"virtual\": \"<boolean>\",\n          \"tailor\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"entity_set_rules\": [\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          ],\n          \"time_zone\": \"<string>\",\n          \"version\": \"<integer>\",\n          \"used_fields\": [\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          ]\n        },\n        \"with_today\": \"<boolean>\"\n      }\n    },\n    \"msg_send_config\": {\n      \"channel_category\": \"<string>\",\n      \"channel_instance_id\": \"<integer>\",\n      \"msg_content\": \"<string>\"\n    },\n    \"re_entry_config\": {\n      \"reentry_strategy\": \"<string>\",\n      \"reentry_limit\": {\n        \"sliding_window\": {\n          \"size\": \"<integer>\",\n          \"unit\": \"<string>\"\n        },\n        \"limit\": \"<integer>\"\n      },\n      \"unlimited\": \"<boolean>\"\n    },\n    \"finish_time\": \"<long>\",\n    \"creator_id\": \"<integer>\",\n    \"time_zone\": \"<string>\",\n    \"create_time\": \"<string>\",\n    \"status\": \"<string>\",\n    \"status_desc\": \"<string>\",\n    \"create_source\": \"<string>\"\n  }\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        }
+      },
+      "response": [
+        {
+          "id": "214cc0e9-7ff4-495e-9a26-0e9d3a4ac0ba",
+          "name": "sensorsdata.focus.v1.CreateTriggerStrategyResponse",
+          "originalRequest": {
+            "url": {
+              "path": [
+                "trigger-strategy",
+                "create"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "disabled": false,
+                "description": "(Required) 全局唯一的密钥，用于验证和授权访问 API 接口",
+                "key": "api-key",
+                "value": "<string>"
+              },
+              {
+                "disabled": false,
+                "description": "(Required) 项目名, 指定请求所属项目",
+                "key": "sensorsdata-project",
+                "value": "<string>"
+              },
+              {
+                "disabled": false,
+                "description": "(Required) 租户 ID, 用于请求所属租户",
+                "key": "X-Organization-Id",
+                "value": "<string>"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"trigger_strategy\": {\n    \"canvas_id\": \"<integer>\",\n    \"biz_id\": \"<string>\",\n    \"cname\": \"<string>\",\n    \"entry_type\": \"<string>\",\n    \"event_entry_config\": {\n      \"process_event_type\": \"<string>\",\n      \"start_entry_time\": \"<long>\",\n      \"end_entry_time\": \"<long>\",\n      \"stream_event_do_entry_rule\": {\n        \"time_range\": {\n          \"start_time\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"end_time\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          }\n        },\n        \"logical_operator\": \"<string>\",\n        \"event_measure_user_groups\": [\n          {\n            \"events\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"aggregator\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"aggregate_field\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"function\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"params\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          },\n          {\n            \"events\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"aggregator\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"aggregate_field\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"function\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"params\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          }\n        ],\n        \"condition_time_range\": {\n          \"start_time\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"end_time\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          }\n        },\n        \"event_component_group_rule\": {\n          \"logical_operator\": \"<string>\",\n          \"event_component_params\": [\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          ],\n          \"other_data_params\": [\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          ]\n        },\n        \"event_properties_component_params\": [\n          {\n            \"id\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"event_index\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"event_name\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"event_property_field\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"aggregator_type\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          },\n          {\n            \"id\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"event_index\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"event_name\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"event_property_field\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"aggregator_type\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          }\n        ]\n      },\n      \"stream_event_not_do_entry_rule\": {\n        \"time_range\": {\n          \"start_time\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"end_time\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          }\n        },\n        \"logical_operator\": \"<string>\",\n        \"event_measure_user_groups\": [\n          {\n            \"events\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"aggregator\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"aggregate_field\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"function\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"params\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          },\n          {\n            \"events\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"aggregator\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"aggregate_field\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"function\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"params\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          }\n        ],\n        \"condition_time_range\": {\n          \"start_time\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"end_time\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          }\n        },\n        \"event_component_group_rule\": {\n          \"logical_operator\": \"<string>\",\n          \"event_component_params\": [\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          ],\n          \"other_data_params\": [\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          ]\n        },\n        \"event_properties_component_params\": [\n          {\n            \"id\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"event_index\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"event_name\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"event_property_field\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"aggregator_type\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          },\n          {\n            \"id\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"event_index\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"event_name\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"event_property_field\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"aggregator_type\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          }\n        ]\n      },\n      \"origin_event_do_rule\": \"<string>\",\n      \"origin_event_not_do_rule\": \"<string>\"\n    },\n    \"audience_entry_config\": {\n      \"audience_type\": \"<string>\",\n      \"fixed_time\": \"<long>\",\n      \"start_date\": \"<long>\",\n      \"end_date\": \"<long>\",\n      \"cron\": \"<string>\",\n      \"user_group_rule\": {\n        \"operator\": \"<string>\",\n        \"groups\": [\n          {\n            \"type\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"event_measure_user_group\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"profile_user_group\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"event_sequence_user_group\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"sql_user_group\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"external_profile_user_group\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"external_measure_user_group\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"event_compound_measure_user_group\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"profile_dimension_user_group\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"group_expression_user_group\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"pql_user_group\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          },\n          {\n            \"type\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"event_measure_user_group\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"profile_user_group\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"event_sequence_user_group\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"sql_user_group\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"external_profile_user_group\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"external_measure_user_group\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"event_compound_measure_user_group\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"profile_dimension_user_group\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"group_expression_user_group\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"pql_user_group\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          }\n        ],\n        \"compound_groups\": [\n          {\n            \"value\": \"<Circular reference to #/components/schemas/sensorsdata.personas.v1.UserGroupRule detected>\"\n          },\n          {\n            \"value\": \"<Circular reference to #/components/schemas/sensorsdata.personas.v1.UserGroupRule detected>\"\n          }\n        ],\n        \"sort_info\": {\n          \"fields\": [\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          ],\n          \"is_asc_order\": [\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          ]\n        },\n        \"limit\": \"<integer>\",\n        \"shuffle\": \"<boolean>\",\n        \"tailor\": {\n          \"rank_field\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"function\": \"<string>\",\n          \"params\": [\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          ]\n        }\n      },\n      \"audience_template_id\": \"<integer>\",\n      \"audience_template_type\": \"<string>\",\n      \"audience_biz_id\": \"<string>\",\n      \"estimate_count\": \"<integer>\",\n      \"origin_audience_rule\": \"<string>\",\n      \"audience_rule_detail_param\": {\n        \"segment_rule_expression\": {\n          \"type\": \"SQL_BASED\",\n          \"sql_segment_rule\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"eql_segment_rule\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"loading_segment_rule\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"custom_rule\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"event_sequence_rule\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"group_expression_rule\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"virtual\": \"<boolean>\",\n          \"tailor\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"entity_set_rules\": [\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          ],\n          \"time_zone\": \"<string>\",\n          \"version\": 2,\n          \"used_fields\": [\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          ]\n        },\n        \"with_today\": \"<boolean>\"\n      }\n    },\n    \"msg_send_config\": {\n      \"channel_category\": \"<string>\",\n      \"channel_instance_id\": \"<integer>\",\n      \"msg_content\": \"<string>\"\n    },\n    \"re_entry_config\": {\n      \"reentry_strategy\": \"<string>\",\n      \"reentry_limit\": {\n        \"sliding_window\": {\n          \"size\": \"<integer>\",\n          \"unit\": \"<string>\"\n        },\n        \"limit\": \"<integer>\"\n      },\n      \"unlimited\": \"<boolean>\"\n    },\n    \"finish_time\": \"<long>\",\n    \"creator_id\": \"<integer>\",\n    \"time_zone\": \"<string>\",\n    \"create_time\": \"<string>\",\n    \"status\": \"<string>\",\n    \"status_desc\": \"<string>\",\n    \"create_source\": \"<string>\"\n  }\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "status": "Internal Server Error",
+          "code": 500,
+          "header": [
+            {
+              "key": "Content-Type",
+              "value": "application/json"
+            }
+          ],
+          "body": "{\n  \"code\": \"SUCCESS\",\n  \"data\": {},\n  \"request_id\": \"1\"\n}",
+          "cookie": [],
+          "_postman_previewlanguage": "json"
+        }
+      ],
+      "event": [],
+      "protocolProfileBehavior": {
+        "disableBodyPruning": true
+      }
+    },
+    {
+      "id": "d24b9bb9-895f-4706-b16f-2efd1f588800",
+      "name": "启动触发策略",
+      "request": {
+        "name": "启动触发策略",
+        "description": {
+          "content": "启动触发策略",
+          "type": "text/plain"
+        },
+        "url": {
+          "path": [
+            "trigger-strategy",
+            "start"
+          ],
+          "host": [
+            "{{baseUrl}}"
+          ],
+          "query": [],
+          "variable": []
+        },
+        "header": [
+          {
+            "disabled": false,
+            "description": "(Required) 全局唯一的密钥，用于验证和授权访问 API 接口",
+            "key": "api-key",
+            "value": "<string>"
+          },
+          {
+            "disabled": false,
+            "description": "(Required) 项目名, 指定请求所属项目",
+            "key": "sensorsdata-project",
+            "value": "<string>"
+          },
+          {
+            "disabled": false,
+            "description": "(Required) 租户 ID, 用于请求所属租户",
+            "key": "X-Organization-Id",
+            "value": "<string>"
+          },
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          },
+          {
+            "key": "Accept",
+            "value": "application/json"
+          }
+        ],
+        "method": "POST",
+        "auth": null,
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"biz_id\": \"<string>\"\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        }
+      },
+      "response": [
+        {
+          "id": "b059a6eb-562d-4fd5-aa40-778079726fde",
+          "name": "sensorsdata.focus.v1.StartTriggerStrategyResponse",
+          "originalRequest": {
+            "url": {
+              "path": [
+                "trigger-strategy",
+                "start"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "disabled": false,
+                "description": "(Required) 全局唯一的密钥，用于验证和授权访问 API 接口",
+                "key": "api-key",
+                "value": "<string>"
+              },
+              {
+                "disabled": false,
+                "description": "(Required) 项目名, 指定请求所属项目",
+                "key": "sensorsdata-project",
+                "value": "<string>"
+              },
+              {
+                "disabled": false,
+                "description": "(Required) 租户 ID, 用于请求所属租户",
+                "key": "X-Organization-Id",
+                "value": "<string>"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"biz_id\": \"<string>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "status": "Internal Server Error",
+          "code": 500,
+          "header": [
+            {
+              "key": "Content-Type",
+              "value": "application/json"
+            }
+          ],
+          "body": "{\n  \"code\": \"SUCCESS\",\n  \"data\": {},\n  \"request_id\": \"1\"\n}",
+          "cookie": [],
+          "_postman_previewlanguage": "json"
+        }
+      ],
+      "event": [],
+      "protocolProfileBehavior": {
+        "disableBodyPruning": true
+      }
+    },
+    {
+      "id": "25789400-c224-4c12-9190-f5b750aff07b",
+      "name": "停止触发策略",
+      "request": {
+        "name": "停止触发策略",
+        "description": {
+          "content": "停止触发策略",
+          "type": "text/plain"
+        },
+        "url": {
+          "path": [
+            "trigger-strategy",
+            "stop"
+          ],
+          "host": [
+            "{{baseUrl}}"
+          ],
+          "query": [],
+          "variable": []
+        },
+        "header": [
+          {
+            "disabled": false,
+            "description": "(Required) 全局唯一的密钥，用于验证和授权访问 API 接口",
+            "key": "api-key",
+            "value": "<string>"
+          },
+          {
+            "disabled": false,
+            "description": "(Required) 项目名, 指定请求所属项目",
+            "key": "sensorsdata-project",
+            "value": "<string>"
+          },
+          {
+            "disabled": false,
+            "description": "(Required) 租户 ID, 用于请求所属租户",
+            "key": "X-Organization-Id",
+            "value": "<string>"
+          },
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          },
+          {
+            "key": "Accept",
+            "value": "application/json"
+          }
+        ],
+        "method": "POST",
+        "auth": null,
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"biz_id\": \"<string>\"\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        }
+      },
+      "response": [
+        {
+          "id": "ef095bcc-eb81-4806-a4ba-a01175baa072",
+          "name": "sensorsdata.focus.v1.StopTriggerStrategyResponse",
+          "originalRequest": {
+            "url": {
+              "path": [
+                "trigger-strategy",
+                "stop"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "disabled": false,
+                "description": "(Required) 全局唯一的密钥，用于验证和授权访问 API 接口",
+                "key": "api-key",
+                "value": "<string>"
+              },
+              {
+                "disabled": false,
+                "description": "(Required) 项目名, 指定请求所属项目",
+                "key": "sensorsdata-project",
+                "value": "<string>"
+              },
+              {
+                "disabled": false,
+                "description": "(Required) 租户 ID, 用于请求所属租户",
+                "key": "X-Organization-Id",
+                "value": "<string>"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"biz_id\": \"<string>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "status": "Internal Server Error",
+          "code": 500,
+          "header": [
+            {
+              "key": "Content-Type",
+              "value": "application/json"
+            }
+          ],
+          "body": "{\n  \"code\": \"SUCCESS\",\n  \"data\": {},\n  \"request_id\": \"1\"\n}",
+          "cookie": [],
+          "_postman_previewlanguage": "json"
+        }
+      ],
+      "event": [],
+      "protocolProfileBehavior": {
+        "disableBodyPruning": true
+      }
+    },
+    {
+      "id": "34a7f87c-3542-4fcd-b8a8-e05a2949af2b",
+      "name": "删除触发策略",
+      "request": {
+        "name": "删除触发策略",
+        "description": {
+          "content": "删除触发策略",
+          "type": "text/plain"
+        },
+        "url": {
+          "path": [
+            "trigger-strategy",
+            "delete"
+          ],
+          "host": [
+            "{{baseUrl}}"
+          ],
+          "query": [],
+          "variable": []
+        },
+        "header": [
+          {
+            "disabled": false,
+            "description": "(Required) 全局唯一的密钥，用于验证和授权访问 API 接口",
+            "key": "api-key",
+            "value": "<string>"
+          },
+          {
+            "disabled": false,
+            "description": "(Required) 项目名, 指定请求所属项目",
+            "key": "sensorsdata-project",
+            "value": "<string>"
+          },
+          {
+            "disabled": false,
+            "description": "(Required) 租户 ID, 用于请求所属租户",
+            "key": "X-Organization-Id",
+            "value": "<string>"
+          },
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          },
+          {
+            "key": "Accept",
+            "value": "application/json"
+          }
+        ],
+        "method": "POST",
+        "auth": null,
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"biz_id\": \"<string>\"\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        }
+      },
+      "response": [
+        {
+          "id": "55a03660-f949-405d-9673-9656aa634d33",
+          "name": "sensorsdata.focus.v1.DeleteTriggerStrategyResponse",
+          "originalRequest": {
+            "url": {
+              "path": [
+                "trigger-strategy",
+                "delete"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "disabled": false,
+                "description": "(Required) 全局唯一的密钥，用于验证和授权访问 API 接口",
+                "key": "api-key",
+                "value": "<string>"
+              },
+              {
+                "disabled": false,
+                "description": "(Required) 项目名, 指定请求所属项目",
+                "key": "sensorsdata-project",
+                "value": "<string>"
+              },
+              {
+                "disabled": false,
+                "description": "(Required) 租户 ID, 用于请求所属租户",
+                "key": "X-Organization-Id",
+                "value": "<string>"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"biz_id\": \"<string>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "status": "Internal Server Error",
+          "code": 500,
+          "header": [
+            {
+              "key": "Content-Type",
+              "value": "application/json"
+            }
+          ],
+          "body": "{\n  \"code\": \"SUCCESS\",\n  \"data\": {},\n  \"request_id\": \"1\"\n}",
+          "cookie": [],
+          "_postman_previewlanguage": "json"
+        }
+      ],
+      "event": [],
+      "protocolProfileBehavior": {
+        "disableBodyPruning": true
+      }
+    },
+    {
+      "id": "3795b03e-3f43-471a-b777-1ef94bad78af",
+      "name": "获取触发策略详情",
+      "request": {
+        "name": "获取触发策略详情",
+        "description": {
+          "content": "获取触发策略详情",
+          "type": "text/plain"
+        },
+        "url": {
+          "path": [
+            "trigger-strategy",
+            "get"
+          ],
+          "host": [
+            "{{baseUrl}}"
+          ],
+          "query": [
+            {
+              "disabled": false,
+              "key": "biz_id",
+              "value": "<string>",
+              "description": "(Required) 触发策略 业务 ID"
+            }
+          ],
+          "variable": []
+        },
+        "header": [
+          {
+            "disabled": false,
+            "description": "(Required) 全局唯一的密钥，用于验证和授权访问 API 接口",
+            "key": "api-key",
+            "value": "<string>"
+          },
+          {
+            "disabled": false,
+            "description": "(Required) 项目名, 指定请求所属项目",
+            "key": "sensorsdata-project",
+            "value": "<string>"
+          },
+          {
+            "disabled": false,
+            "description": "(Required) 租户 ID, 用于请求所属租户",
+            "key": "X-Organization-Id",
+            "value": "<string>"
+          },
+          {
+            "key": "Accept",
+            "value": "application/json"
+          }
+        ],
+        "method": "GET",
+        "auth": null
+      },
+      "response": [
+        {
+          "id": "1a35b12b-8cb8-4dba-997c-789e28ddf66d",
+          "name": "sensorsdata.focus.v1.GetTriggerStrategyResponse",
+          "originalRequest": {
+            "url": {
+              "path": [
+                "trigger-strategy",
+                "get"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "key": "biz_id",
+                  "value": "<string>"
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "disabled": false,
+                "description": "(Required) 全局唯一的密钥，用于验证和授权访问 API 接口",
+                "key": "api-key",
+                "value": "<string>"
+              },
+              {
+                "disabled": false,
+                "description": "(Required) 项目名, 指定请求所属项目",
+                "key": "sensorsdata-project",
+                "value": "<string>"
+              },
+              {
+                "disabled": false,
+                "description": "(Required) 租户 ID, 用于请求所属租户",
+                "key": "X-Organization-Id",
+                "value": "<string>"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "body": {}
+          },
+          "status": "Internal Server Error",
+          "code": 500,
+          "header": [
+            {
+              "key": "Content-Type",
+              "value": "application/json"
+            }
+          ],
+          "body": "{\n  \"code\": \"SUCCESS\",\n  \"data\": {\n    \"trigger_strategy\": {\n      \"event_entry_config\": {\n        \"stream_event_do_entry_rule\": {\n          \"event_component_group_rule\": {\n            \"event_component_params\": [\n              {}\n            ]\n          },\n          \"time_range\": {\n            \"start_time\": {\n              \"relative_time\": {\n                \"time_interval\": {}\n              }\n            }\n          },\n          \"event_measure_user_groups\": [\n            {\n              \"events\": {\n                \"condition\": {\n                  \"index\": 10,\n                  \"conditions\": [\n                    {\n                      \"function\": \"EQUAL\",\n                      \"index\": 10,\n                      \"params\": [\n                        {\n                          \"expression\": \"user.p1/user.p2+user.p3\",\n                          \"field\": \"#ResourceId\",\n                          \"variable\": \"$ENTRY_TIME\",\n                          \"value\": {},\n                          \"param_type\": \"FIELD\"\n                        }\n                      ]\n                    }\n                  ],\n                  \"operator\": \"AND\"\n                }\n              }\n            }\n          ]\n        }\n      },\n      \"re_entry_config\": {\n        \"reentry_limit\": {}\n      },\n      \"audience_entry_config\": {\n        \"user_group_rule\": {\n          \"groups\": [\n            {\n              \"profile_dimension_user_group\": {\n                \"dimension_table\": {\n                  \"predicates\": {\n                    \"simple_predicates\": [\n                      {\n                        \"measures\": [\n                          {\n                            \"sub_dimension_measure\": {}\n                          }\n                        ]\n                      }\n                    ]\n                  }\n                }\n              },\n              \"group_expression_user_group\": {},\n              \"external_measure_user_group\": {\n                \"rows\": {}\n              },\n              \"pql_user_group\": {},\n              \"external_profile_user_group\": {},\n              \"event_compound_measure_user_group\": {\n                \"measure\": {\n                  \"measures\": [\n                    {}\n                  ]\n                }\n              },\n              \"event_sequence_user_group\": {\n                \"event_steps\": [\n                  {}\n                ]\n              },\n              \"sql_user_group\": {\n                \"query_options\": [\n                  {}\n                ]\n              },\n              \"profile_user_group\": {}\n            }\n          ],\n          \"tailor\": {\n            \"rank_field\": {\n              \"orders\": [\n                {\n                  \"measure\": {\n                    \"aggregator_field\": {}\n                  }\n                }\n              ]\n            }\n          },\n          \"sort_info\": {}\n        },\n        \"audience_rule_detail_param\": {\n          \"segment_rule_expression\": {\n            \"eql_segment_rule\": {\n              \"eql\": \"user.$SegmentMembership.user_segment_t111111.is_not_null()\\nand\\nuser.user_tag_c4 == '标签值1'\\nand\\nuser.vip_level in ['高级VIP','普通用户']\"\n            },\n            \"entity_set_rules\": [\n              {}\n            ],\n            \"used_fields\": [\n              \"user.id\"\n            ],\n            \"sql_segment_rule\": {\n              \"query_options\": {\n                \"option\": \"TIMEOUT\",\n                \"value\": \"120\"\n              },\n              \"sql\": \"select user_id as id from user where user_id > 100\"\n            },\n            \"loading_segment_rule\": {\n              \"matched_field\": \"user.$identity_login_id\",\n              \"sync_flag\": false,\n              \"loading_type\": \"TAG_LOADING_TYPE_OVERWRITE\"\n            },\n            \"custom_rule\": {},\n            \"event_sequence_rule\": {\n              \"simple_event_sequences\": [\n                {\n                  \"time_window\": {\n                    \"unit\": \"DAY\"\n                  },\n                  \"time_range\": {\n                    \"start_time\": {\n                      \"type\": \"RELATIVE\",\n                      \"trunc_unit\": \"DAY\",\n                      \"base_time\": \"$TASK_TIME\",\n                      \"time_interval\": -7\n                    },\n                    \"end_time\": {\n                      \"type\": \"RELATIVE\",\n                      \"trunc_unit\": \"DAY\",\n                      \"base_time\": \"$TASK_TIME\",\n                      \"time_interval\": -1\n                    }\n                  },\n                  \"event_steps\": [\n                    {\n                      \"condition\": {\n                        \"operator\": \"AND\",\n                        \"conditions\": [\n                          {\n                            \"function\": \"IS_TRUE\",\n                            \"params\": [\n                              {\n                                \"param_type\": \"FIELD\",\n                                \"field\": \"user.$Events.$AppStart.$is_login_id\"\n                              }\n                            ]\n                          }\n                        ]\n                      },\n                      \"event_name\": \"user.$Events.AppStart\"\n                    }\n                  ]\n                }\n              ],\n              \"operator\": \"UNION\"\n            },\n            \"tailor\": {\n              \"function\": \"LESS_EQUAL\",\n              \"rank_field\": {\n                \"type\": \"PERCENT_ORDER_RANK\",\n                \"orders\": [\n                  {\n                    \"measure\": {\n                      \"type\": \"EQL_MEASURE_FIELD\",\n                      \"eql_measure\": \"user.$Events.virtual_event_for_tag.filter_event(\\n  datetime_add(${var:base_time}, -1, 'DAY'),\\n  datetime_add(${var:base_time}, -1, 'DAY')\\n).count()\"\n                    },\n                    \"is_asc\": false\n                  }\n                ]\n              },\n              \"params\": [\n                {\n                  \"param_type\": \"VALUE\",\n                  \"value\": {\n                    \"data_type\": \"NUMBER\",\n                    \"number_value\": 0.1\n                  }\n                }\n              ]\n            },\n            \"type\": \"SQL_BASED\",\n            \"version\": 2,\n            \"group_expression_rule\": {\n              \"group_expression\": \"$1-$2\"\n            }\n          }\n        }\n      },\n      \"msg_send_config\": {}\n    },\n    \"events\": [\n      {}\n    ]\n  },\n  \"request_id\": \"1\"\n}",
+          "cookie": [],
+          "_postman_previewlanguage": "json"
+        }
+      ],
+      "event": [],
+      "protocolProfileBehavior": {
+        "disableBodyPruning": true
+      }
+    },
+    {
+      "id": "a935c6fa-433c-4567-9db0-e3be8ae8f0cb",
+      "name": "查询触发策略",
+      "request": {
+        "name": "查询触发策略",
+        "description": {
+          "content": "查询触发策略",
+          "type": "text/plain"
+        },
+        "url": {
+          "path": [
+            "trigger-strategy",
+            "query"
+          ],
+          "host": [
+            "{{baseUrl}}"
+          ],
+          "query": [
+            {
+              "disabled": false,
+              "key": "biz_key",
+              "value": "<string>",
+              "description": "触发策略业务 ID 或者触发策略业务名称"
+            },
+            {
+              "disabled": false,
+              "key": "status",
+              "value": "<string>",
+              "description": "触发策略状态"
+            },
+            {
+              "disabled": false,
+              "key": "type",
+              "value": "<string>",
+              "description": "触发策略类型"
+            },
+            {
+              "disabled": false,
+              "key": "create_time_start",
+              "value": "<string>",
+              "description": "触发策略创建开始时间"
+            },
+            {
+              "disabled": false,
+              "key": "create_time_end",
+              "value": "<string>",
+              "description": "触发策略创建结束时间"
+            },
+            {
+              "disabled": false,
+              "key": "page_num",
+              "value": "<integer>",
+              "description": "(Required) 页码"
+            },
+            {
+              "disabled": false,
+              "key": "page_size",
+              "value": "<integer>",
+              "description": "(Required) 页大小"
+            }
+          ],
+          "variable": []
+        },
+        "header": [
+          {
+            "disabled": false,
+            "description": "(Required) 全局唯一的密钥，用于验证和授权访问 API 接口",
+            "key": "api-key",
+            "value": "<string>"
+          },
+          {
+            "disabled": false,
+            "description": "(Required) 项目名, 指定请求所属项目",
+            "key": "sensorsdata-project",
+            "value": "<string>"
+          },
+          {
+            "disabled": false,
+            "description": "(Required) 租户 ID, 用于请求所属租户",
+            "key": "X-Organization-Id",
+            "value": "<string>"
+          },
+          {
+            "key": "Accept",
+            "value": "application/json"
+          }
+        ],
+        "method": "GET",
+        "auth": null
+      },
+      "response": [
+        {
+          "id": "42b9f61a-aedd-44dd-bdae-a4ab36bb0c02",
+          "name": "sensorsdata.focus.v1.QueryTriggerStrategyResponse",
+          "originalRequest": {
+            "url": {
+              "path": [
+                "trigger-strategy",
+                "query"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "key": "biz_key",
+                  "value": "<string>"
+                },
+                {
+                  "key": "status",
+                  "value": "<string>"
+                },
+                {
+                  "key": "type",
+                  "value": "<string>"
+                },
+                {
+                  "key": "create_time_start",
+                  "value": "<string>"
+                },
+                {
+                  "key": "create_time_end",
+                  "value": "<string>"
+                },
+                {
+                  "key": "page_num",
+                  "value": "<integer>"
+                },
+                {
+                  "key": "page_size",
+                  "value": "<integer>"
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "disabled": false,
+                "description": "(Required) 全局唯一的密钥，用于验证和授权访问 API 接口",
+                "key": "api-key",
+                "value": "<string>"
+              },
+              {
+                "disabled": false,
+                "description": "(Required) 项目名, 指定请求所属项目",
+                "key": "sensorsdata-project",
+                "value": "<string>"
+              },
+              {
+                "disabled": false,
+                "description": "(Required) 租户 ID, 用于请求所属租户",
+                "key": "X-Organization-Id",
+                "value": "<string>"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "body": {}
+          },
+          "status": "Internal Server Error",
+          "code": 500,
+          "header": [
+            {
+              "key": "Content-Type",
+              "value": "application/json"
+            }
+          ],
+          "body": "{\n  \"code\": \"SUCCESS\",\n  \"data\": {\n    \"strategies\": [\n      {\n        \"event_entry_config\": {\n          \"stream_event_do_entry_rule\": {\n            \"event_component_group_rule\": {\n              \"event_component_params\": [\n                {}\n              ]\n            },\n            \"time_range\": {\n              \"start_time\": {\n                \"relative_time\": {\n                  \"time_interval\": {}\n                }\n              }\n            },\n            \"event_measure_user_groups\": [\n              {\n                \"events\": {\n                  \"condition\": {\n                    \"index\": 10,\n                    \"conditions\": [\n                      {\n                        \"function\": \"EQUAL\",\n                        \"index\": 10,\n                        \"params\": [\n                          {\n                            \"expression\": \"user.p1/user.p2+user.p3\",\n                            \"field\": \"#ResourceId\",\n                            \"variable\": \"$ENTRY_TIME\",\n                            \"value\": {},\n                            \"param_type\": \"FIELD\"\n                          }\n                        ]\n                      }\n                    ],\n                    \"operator\": \"AND\"\n                  }\n                }\n              }\n            ]\n          }\n        },\n        \"re_entry_config\": {\n          \"reentry_limit\": {}\n        },\n        \"audience_entry_config\": {\n          \"user_group_rule\": {\n            \"groups\": [\n              {\n                \"profile_dimension_user_group\": {\n                  \"dimension_table\": {\n                    \"predicates\": {\n                      \"simple_predicates\": [\n                        {\n                          \"measures\": [\n                            {\n                              \"sub_dimension_measure\": {}\n                            }\n                          ]\n                        }\n                      ]\n                    }\n                  }\n                },\n                \"group_expression_user_group\": {},\n                \"external_measure_user_group\": {\n                  \"rows\": {}\n                },\n                \"pql_user_group\": {},\n                \"external_profile_user_group\": {},\n                \"event_compound_measure_user_group\": {\n                  \"measure\": {\n                    \"measures\": [\n                      {}\n                    ]\n                  }\n                },\n                \"event_sequence_user_group\": {\n                  \"event_steps\": [\n                    {}\n                  ]\n                },\n                \"sql_user_group\": {\n                  \"query_options\": [\n                    {}\n                  ]\n                },\n                \"profile_user_group\": {}\n              }\n            ],\n            \"tailor\": {\n              \"rank_field\": {\n                \"orders\": [\n                  {\n                    \"measure\": {\n                      \"aggregator_field\": {}\n                    }\n                  }\n                ]\n              }\n            },\n            \"sort_info\": {}\n          },\n          \"audience_rule_detail_param\": {\n            \"segment_rule_expression\": {\n              \"eql_segment_rule\": {\n                \"eql\": \"user.$SegmentMembership.user_segment_t111111.is_not_null()\\nand\\nuser.user_tag_c4 == '标签值1'\\nand\\nuser.vip_level in ['高级VIP','普通用户']\"\n              },\n              \"entity_set_rules\": [\n                {}\n              ],\n              \"used_fields\": [\n                \"user.id\"\n              ],\n              \"sql_segment_rule\": {\n                \"query_options\": {\n                  \"option\": \"TIMEOUT\",\n                  \"value\": \"120\"\n                },\n                \"sql\": \"select user_id as id from user where user_id > 100\"\n              },\n              \"loading_segment_rule\": {\n                \"matched_field\": \"user.$identity_login_id\",\n                \"sync_flag\": false,\n                \"loading_type\": \"TAG_LOADING_TYPE_OVERWRITE\"\n              },\n              \"custom_rule\": {},\n              \"event_sequence_rule\": {\n                \"simple_event_sequences\": [\n                  {\n                    \"time_window\": {\n                      \"unit\": \"DAY\"\n                    },\n                    \"time_range\": {\n                      \"start_time\": {\n                        \"type\": \"RELATIVE\",\n                        \"trunc_unit\": \"DAY\",\n                        \"base_time\": \"$TASK_TIME\",\n                        \"time_interval\": -7\n                      },\n                      \"end_time\": {\n                        \"type\": \"RELATIVE\",\n                        \"trunc_unit\": \"DAY\",\n                        \"base_time\": \"$TASK_TIME\",\n                        \"time_interval\": -1\n                      }\n                    },\n                    \"event_steps\": [\n                      {\n                        \"condition\": {\n                          \"operator\": \"AND\",\n                          \"conditions\": [\n                            {\n                              \"function\": \"IS_TRUE\",\n                              \"params\": [\n                                {\n                                  \"param_type\": \"FIELD\",\n                                  \"field\": \"user.$Events.$AppStart.$is_login_id\"\n                                }\n                              ]\n                            }\n                          ]\n                        },\n                        \"event_name\": \"user.$Events.AppStart\"\n                      }\n                    ]\n                  }\n                ],\n                \"operator\": \"UNION\"\n              },\n              \"tailor\": {\n                \"function\": \"LESS_EQUAL\",\n                \"rank_field\": {\n                  \"type\": \"PERCENT_ORDER_RANK\",\n                  \"orders\": [\n                    {\n                      \"measure\": {\n                        \"type\": \"EQL_MEASURE_FIELD\",\n                        \"eql_measure\": \"user.$Events.virtual_event_for_tag.filter_event(\\n  datetime_add(${var:base_time}, -1, 'DAY'),\\n  datetime_add(${var:base_time}, -1, 'DAY')\\n).count()\"\n                      },\n                      \"is_asc\": false\n                    }\n                  ]\n                },\n                \"params\": [\n                  {\n                    \"param_type\": \"VALUE\",\n                    \"value\": {\n                      \"data_type\": \"NUMBER\",\n                      \"number_value\": 0.1\n                    }\n                  }\n                ]\n              },\n              \"type\": \"SQL_BASED\",\n              \"version\": 2,\n              \"group_expression_rule\": {\n                \"group_expression\": \"$1-$2\"\n              }\n            }\n          }\n        },\n        \"msg_send_config\": {}\n      }\n    ]\n  },\n  \"request_id\": \"1\"\n}",
+          "cookie": [],
+          "_postman_previewlanguage": "json"
+        }
+      ],
+      "event": [],
+      "protocolProfileBehavior": {
+        "disableBodyPruning": true
+      }
+    },
+    {
+      "id": "7dab3723-ec0f-4fff-96ab-4e0a1d132262",
+      "name": "修改触发策略",
+      "request": {
+        "name": "修改触发策略",
+        "description": {
+          "content": "修改触发策略",
+          "type": "text/plain"
+        },
+        "url": {
+          "path": [
+            "trigger-strategy",
+            "modify"
+          ],
+          "host": [
+            "{{baseUrl}}"
+          ],
+          "query": [],
+          "variable": []
+        },
+        "header": [
+          {
+            "disabled": false,
+            "description": "(Required) 全局唯一的密钥，用于验证和授权访问 API 接口",
+            "key": "api-key",
+            "value": "<string>"
+          },
+          {
+            "disabled": false,
+            "description": "(Required) 项目名, 指定请求所属项目",
+            "key": "sensorsdata-project",
+            "value": "<string>"
+          },
+          {
+            "disabled": false,
+            "description": "(Required) 租户 ID, 用于请求所属租户",
+            "key": "X-Organization-Id",
+            "value": "<string>"
+          },
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          },
+          {
+            "key": "Accept",
+            "value": "application/json"
+          }
+        ],
+        "method": "POST",
+        "auth": null,
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"biz_id\": \"<string>\",\n  \"biz_name\": \"<string>\",\n  \"schedule_start_time\": \"<string>\",\n  \"schedule_end_time\": \"<string>\",\n  \"schedule_cron\": \"<string>\"\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        }
+      },
+      "response": [
+        {
+          "id": "97ca2601-017d-45b5-be0e-2e3e3e82f95d",
+          "name": "sensorsdata.focus.v1.ModifyTriggerStrategyResponse",
+          "originalRequest": {
+            "url": {
+              "path": [
+                "trigger-strategy",
+                "modify"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "disabled": false,
+                "description": "(Required) 全局唯一的密钥，用于验证和授权访问 API 接口",
+                "key": "api-key",
+                "value": "<string>"
+              },
+              {
+                "disabled": false,
+                "description": "(Required) 项目名, 指定请求所属项目",
+                "key": "sensorsdata-project",
+                "value": "<string>"
+              },
+              {
+                "disabled": false,
+                "description": "(Required) 租户 ID, 用于请求所属租户",
+                "key": "X-Organization-Id",
+                "value": "<string>"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"biz_id\": \"<string>\",\n  \"biz_name\": \"<string>\",\n  \"schedule_start_time\": \"<string>\",\n  \"schedule_end_time\": \"<string>\",\n  \"schedule_cron\": \"<string>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "status": "Internal Server Error",
+          "code": 500,
+          "header": [
+            {
+              "key": "Content-Type",
+              "value": "application/json"
+            }
+          ],
+          "body": "{\n  \"code\": \"SUCCESS\",\n  \"data\": {},\n  \"request_id\": \"1\"\n}",
+          "cookie": [],
+          "_postman_previewlanguage": "json"
+        }
+      ],
+      "event": [],
+      "protocolProfileBehavior": {
+        "disableBodyPruning": true
+      }
+    },
+    {
+      "id": "4f6cb78d-f895-4de4-93cb-6ce5aae982b3",
+      "name": "校验触发策略 ID",
+      "request": {
+        "name": "校验触发策略 ID",
+        "description": {
+          "content": "校验触发策略ID是否唯一;格式是否合法(大写字母（A-Z）、小写字母（a-z）、数字（0-9）和下划线（_）组成);字符串长度上限：64",
+          "type": "text/plain"
+        },
+        "url": {
+          "path": [
+            "trigger-strategy",
+            "check"
+          ],
+          "host": [
+            "{{baseUrl}}"
+          ],
+          "query": [],
+          "variable": []
+        },
+        "header": [
+          {
+            "disabled": false,
+            "description": "(Required) 全局唯一的密钥，用于验证和授权访问 API 接口",
+            "key": "api-key",
+            "value": "<string>"
+          },
+          {
+            "disabled": false,
+            "description": "(Required) 项目名, 指定请求所属项目",
+            "key": "sensorsdata-project",
+            "value": "<string>"
+          },
+          {
+            "disabled": false,
+            "description": "(Required) 租户 ID, 用于请求所属租户",
+            "key": "X-Organization-Id",
+            "value": "<string>"
+          },
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          },
+          {
+            "key": "Accept",
+            "value": "application/json"
+          }
+        ],
+        "method": "POST",
+        "auth": null,
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"biz_id\": \"<string>\"\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        }
+      },
+      "response": [
+        {
+          "id": "07858fd5-90d9-4ca1-a252-4b3b1881a3ef",
+          "name": "sensorsdata.focus.v1.CheckTriggerStrategyBizIdResponse",
+          "originalRequest": {
+            "url": {
+              "path": [
+                "trigger-strategy",
+                "check"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "disabled": false,
+                "description": "(Required) 全局唯一的密钥，用于验证和授权访问 API 接口",
+                "key": "api-key",
+                "value": "<string>"
+              },
+              {
+                "disabled": false,
+                "description": "(Required) 项目名, 指定请求所属项目",
+                "key": "sensorsdata-project",
+                "value": "<string>"
+              },
+              {
+                "disabled": false,
+                "description": "(Required) 租户 ID, 用于请求所属租户",
+                "key": "X-Organization-Id",
+                "value": "<string>"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"biz_id\": \"<string>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "status": "Internal Server Error",
+          "code": 500,
+          "header": [
+            {
+              "key": "Content-Type",
+              "value": "application/json"
+            }
+          ],
+          "body": "{\n  \"code\": \"SUCCESS\",\n  \"data\": {},\n  \"request_id\": \"1\"\n}",
+          "cookie": [],
+          "_postman_previewlanguage": "json"
+        }
+      ],
+      "event": [],
+      "protocolProfileBehavior": {
+        "disableBodyPruning": true
+      }
+    },
+    {
+      "id": "151a2764-865a-4332-9b82-efd028be76a9",
+      "name": "查询触发策略 Quota",
+      "request": {
+        "name": "查询触发策略 Quota",
+        "description": {
+          "content": "查询触发策略 Quota",
+          "type": "text/plain"
+        },
+        "url": {
+          "path": [
+            "trigger-strategy",
+            "quota",
+            "query"
+          ],
+          "host": [
+            "{{baseUrl}}"
+          ],
+          "query": [],
+          "variable": []
+        },
+        "header": [
+          {
+            "disabled": false,
+            "description": "(Required) 全局唯一的密钥，用于验证和授权访问 API 接口",
+            "key": "api-key",
+            "value": "<string>"
+          },
+          {
+            "disabled": false,
+            "description": "(Required) 项目名, 指定请求所属项目",
+            "key": "sensorsdata-project",
+            "value": "<string>"
+          },
+          {
+            "disabled": false,
+            "description": "(Required) 租户 ID, 用于请求所属租户",
+            "key": "X-Organization-Id",
+            "value": "<string>"
+          },
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          },
+          {
+            "key": "Accept",
+            "value": "application/json"
+          }
+        ],
+        "method": "POST",
+        "auth": null,
+        "body": {
+          "mode": "raw",
+          "raw": "<object>",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        }
+      },
+      "response": [
+        {
+          "id": "bec62d3e-9c7b-4a46-a092-450f9786d45c",
+          "name": "sensorsdata.focus.v1.QueryTriggerStrategyQuotaResponse",
+          "originalRequest": {
+            "url": {
+              "path": [
+                "trigger-strategy",
+                "quota",
+                "query"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "disabled": false,
+                "description": "(Required) 全局唯一的密钥，用于验证和授权访问 API 接口",
+                "key": "api-key",
+                "value": "<string>"
+              },
+              {
+                "disabled": false,
+                "description": "(Required) 项目名, 指定请求所属项目",
+                "key": "sensorsdata-project",
+                "value": "<string>"
+              },
+              {
+                "disabled": false,
+                "description": "(Required) 租户 ID, 用于请求所属租户",
+                "key": "X-Organization-Id",
+                "value": "<string>"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "body": {
+              "mode": "raw",
+              "raw": "<object>",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "status": "Internal Server Error",
+          "code": 500,
+          "header": [
+            {
+              "key": "Content-Type",
+              "value": "application/json"
+            }
+          ],
+          "body": "{\n  \"code\": \"SUCCESS\",\n  \"data\": {},\n  \"request_id\": \"1\"\n}",
+          "cookie": [],
+          "_postman_previewlanguage": "json"
+        }
+      ],
+      "event": [],
+      "protocolProfileBehavior": {
+        "disableBodyPruning": true
+      }
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "/api/v3/focus/v1",
+      "key": "baseUrl"
+    }
+  ],
+  "info": {
+    "_postman_id": "17b5f8a5-ab68-4702-88a8-b62cf533ae9c",
+    "name": "神策智能运营",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "触发策略相关接口",
+      "type": "text/plain"
+    }
+  }
+}

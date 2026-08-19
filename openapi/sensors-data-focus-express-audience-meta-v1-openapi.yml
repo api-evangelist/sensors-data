@@ -1,0 +1,2837 @@
+openapi: 3.0.1
+info:
+  description: 受众引擎元数据服务OpenAPI服务
+  title: 神策智能运营
+  version: ''
+servers:
+- url: /api/v3/focus/v1
+paths:
+  /express-audience-meta/rule/user-group-ref/create:
+    post:
+      description: 创建一个分群引用受众
+      operationId: CreateAudienceFilterRuleFromUserGroup
+      parameters:
+      - description: 全局唯一的密钥，用于验证和授权访问 API 接口
+        in: header
+        name: api-key
+        required: true
+        schema:
+          type: string
+      - description: 项目名, 指定请求所属项目
+        in: header
+        name: sensorsdata-project
+        required: true
+        schema:
+          type: string
+      - description: 租户 ID, 用于请求所属租户
+        in: header
+        name: X-Organization-Id
+        required: true
+        schema:
+          type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/sensorsdata.focus.v1.CreateAudienceFilterRuleFromUserGroupRequest'
+        required: false
+      responses:
+        default:
+          content:
+            application/json:
+              example:
+                code: SUCCESS
+                data:
+                  audience_filter_rule:
+                    rule_detail:
+                      definition_v1:
+                        user_group_reference_rule_v1: {}
+                        batch_rule_v1:
+                          groups:
+                          - profile_dimension_user_group:
+                              dimension_table:
+                                predicates:
+                                  simple_predicates:
+                                  - measures:
+                                    - sub_dimension_measure: {}
+                            event_measure_user_group:
+                              events:
+                                condition:
+                                  index: 10
+                                  conditions:
+                                  - function: EQUAL
+                                    index: 10
+                                    params:
+                                    - expression: user.p1/user.p2+user.p3
+                                      field: '#ResourceId'
+                                      variable: $ENTRY_TIME
+                                      value: {}
+                                      param_type: FIELD
+                                  operator: AND
+                                time_range:
+                                  start_time:
+                                    relative_time:
+                                      time_interval: {}
+                            group_expression_user_group: {}
+                            external_measure_user_group:
+                              rows: {}
+                            pql_user_group: {}
+                            external_profile_user_group: {}
+                            event_compound_measure_user_group:
+                              measure:
+                                measures:
+                                - {}
+                            event_sequence_user_group:
+                              event_steps:
+                              - {}
+                            sql_user_group:
+                              query_options:
+                              - {}
+                            profile_user_group: {}
+                          tailor:
+                            rank_field:
+                              orders:
+                              - measure:
+                                  aggregator_field: {}
+                          sort_info: {}
+                        realtime_mark_rule_v1: {}
+                        audience_rule_detail_param:
+                          segment_rule_expression:
+                            eql_segment_rule:
+                              eql: 'user.$SegmentMembership.user_segment_t111111.is_not_null()
+
+                                and
+
+                                user.user_tag_c4 == ''标签值1''
+
+                                and
+
+                                user.vip_level in [''高级VIP'',''普通用户'']'
+                            entity_set_rules:
+                            - {}
+                            used_fields:
+                            - user.id
+                            sql_segment_rule:
+                              query_options:
+                                option: TIMEOUT
+                                value: '120'
+                              sql: select user_id as id from user where user_id > 100
+                            loading_segment_rule:
+                              matched_field: user.$identity_login_id
+                              sync_flag: false
+                              loading_type: TAG_LOADING_TYPE_OVERWRITE
+                            custom_rule: {}
+                            event_sequence_rule:
+                              simple_event_sequences:
+                              - time_window:
+                                  unit: DAY
+                                time_range:
+                                  start_time:
+                                    type: RELATIVE
+                                    trunc_unit: DAY
+                                    base_time: $TASK_TIME
+                                    time_interval: -7
+                                  end_time:
+                                    type: RELATIVE
+                                    trunc_unit: DAY
+                                    base_time: $TASK_TIME
+                                    time_interval: -1
+                                event_steps:
+                                - condition:
+                                    operator: AND
+                                    conditions:
+                                    - function: IS_TRUE
+                                      params:
+                                      - param_type: FIELD
+                                        field: user.$Events.$AppStart.$is_login_id
+                                  event_name: user.$Events.AppStart
+                              operator: UNION
+                            tailor:
+                              function: LESS_EQUAL
+                              rank_field:
+                                type: PERCENT_ORDER_RANK
+                                orders:
+                                - measure:
+                                    type: EQL_MEASURE_FIELD
+                                    eql_measure: "user.$Events.virtual_event_for_tag.filter_event(\n \
+                                      \ datetime_add(${var:base_time}, -1, 'DAY'),\n  datetime_add(${var:base_time},\
+                                      \ -1, 'DAY')\n).count()"
+                                  is_asc: false
+                              params:
+                              - param_type: VALUE
+                                value:
+                                  data_type: NUMBER
+                                  number_value: 0.1
+                            type: SQL_BASED
+                            version: 2
+                            group_expression_rule:
+                              group_expression: $1-$2
+                    schedule_conf:
+                      other_trigger:
+                        cron_trigger: {}
+                      first_trigger: {}
+                request_id: '1'
+              schema:
+                $ref: '#/components/schemas/sensorsdata.focus.v1.CreateAudienceFilterRuleResponseHttpApiResult'
+          description: sensorsdata.focus.v1.CreateAudienceFilterRuleResponse
+      summary: 创建一个分群引用受众
+      x-sd-openapi:
+        responseClass: com.sensorsdata.focus.v1.express.audience.open.CreateAudienceFilterRuleResponse
+        isServerStreaming: false
+        requestClass: com.sensorsdata.focus.v1.express.audience.open.CreateAudienceFilterRuleFromUserGroupRequest
+        grpcServiceBase: com.sensorsdata.focus.v1.express.audience.open.ExpressAudienceOpenServiceGrpc.ExpressAudienceOpenServiceImplBase
+        internalDesc: classes in template for grpc service dynamic invoking
+        isClientStreaming: false
+      x-codegen-request-body-name: CreateAudienceFilterRuleFromUserGroupRequest
+  /express-audience-meta/rule/realtime-mark/create:
+    post:
+      description: 创建一个实时标记受众
+      operationId: CreateRealtimeMarkAudienceFilterRule
+      parameters:
+      - description: 全局唯一的密钥，用于验证和授权访问 API 接口
+        in: header
+        name: api-key
+        required: true
+        schema:
+          type: string
+      - description: 项目名, 指定请求所属项目
+        in: header
+        name: sensorsdata-project
+        required: true
+        schema:
+          type: string
+      - description: 租户 ID, 用于请求所属租户
+        in: header
+        name: X-Organization-Id
+        required: true
+        schema:
+          type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/sensorsdata.focus.v1.CreateRealtimeMarkAudienceFilterRuleRequest'
+        required: false
+      responses:
+        default:
+          content:
+            application/json:
+              example:
+                code: SUCCESS
+                data:
+                  audience_filter_rule:
+                    rule_detail:
+                      definition_v1:
+                        user_group_reference_rule_v1: {}
+                        batch_rule_v1:
+                          groups:
+                          - profile_dimension_user_group:
+                              dimension_table:
+                                predicates:
+                                  simple_predicates:
+                                  - measures:
+                                    - sub_dimension_measure: {}
+                            event_measure_user_group:
+                              events:
+                                condition:
+                                  index: 10
+                                  conditions:
+                                  - function: EQUAL
+                                    index: 10
+                                    params:
+                                    - expression: user.p1/user.p2+user.p3
+                                      field: '#ResourceId'
+                                      variable: $ENTRY_TIME
+                                      value: {}
+                                      param_type: FIELD
+                                  operator: AND
+                                time_range:
+                                  start_time:
+                                    relative_time:
+                                      time_interval: {}
+                            group_expression_user_group: {}
+                            external_measure_user_group:
+                              rows: {}
+                            pql_user_group: {}
+                            external_profile_user_group: {}
+                            event_compound_measure_user_group:
+                              measure:
+                                measures:
+                                - {}
+                            event_sequence_user_group:
+                              event_steps:
+                              - {}
+                            sql_user_group:
+                              query_options:
+                              - {}
+                            profile_user_group: {}
+                          tailor:
+                            rank_field:
+                              orders:
+                              - measure:
+                                  aggregator_field: {}
+                          sort_info: {}
+                        realtime_mark_rule_v1: {}
+                        audience_rule_detail_param:
+                          segment_rule_expression:
+                            eql_segment_rule:
+                              eql: 'user.$SegmentMembership.user_segment_t111111.is_not_null()
+
+                                and
+
+                                user.user_tag_c4 == ''标签值1''
+
+                                and
+
+                                user.vip_level in [''高级VIP'',''普通用户'']'
+                            entity_set_rules:
+                            - {}
+                            used_fields:
+                            - user.id
+                            sql_segment_rule:
+                              query_options:
+                                option: TIMEOUT
+                                value: '120'
+                              sql: select user_id as id from user where user_id > 100
+                            loading_segment_rule:
+                              matched_field: user.$identity_login_id
+                              sync_flag: false
+                              loading_type: TAG_LOADING_TYPE_OVERWRITE
+                            custom_rule: {}
+                            event_sequence_rule:
+                              simple_event_sequences:
+                              - time_window:
+                                  unit: DAY
+                                time_range:
+                                  start_time:
+                                    type: RELATIVE
+                                    trunc_unit: DAY
+                                    base_time: $TASK_TIME
+                                    time_interval: -7
+                                  end_time:
+                                    type: RELATIVE
+                                    trunc_unit: DAY
+                                    base_time: $TASK_TIME
+                                    time_interval: -1
+                                event_steps:
+                                - condition:
+                                    operator: AND
+                                    conditions:
+                                    - function: IS_TRUE
+                                      params:
+                                      - param_type: FIELD
+                                        field: user.$Events.$AppStart.$is_login_id
+                                  event_name: user.$Events.AppStart
+                              operator: UNION
+                            tailor:
+                              function: LESS_EQUAL
+                              rank_field:
+                                type: PERCENT_ORDER_RANK
+                                orders:
+                                - measure:
+                                    type: EQL_MEASURE_FIELD
+                                    eql_measure: "user.$Events.virtual_event_for_tag.filter_event(\n \
+                                      \ datetime_add(${var:base_time}, -1, 'DAY'),\n  datetime_add(${var:base_time},\
+                                      \ -1, 'DAY')\n).count()"
+                                  is_asc: false
+                              params:
+                              - param_type: VALUE
+                                value:
+                                  data_type: NUMBER
+                                  number_value: 0.1
+                            type: SQL_BASED
+                            version: 2
+                            group_expression_rule:
+                              group_expression: $1-$2
+                    schedule_conf:
+                      other_trigger:
+                        cron_trigger: {}
+                      first_trigger: {}
+                request_id: '1'
+              schema:
+                $ref: '#/components/schemas/sensorsdata.focus.v1.CreateAudienceFilterRuleResponseHttpApiResult'
+          description: sensorsdata.focus.v1.CreateAudienceFilterRuleResponse
+      summary: 创建一个实时标记受众
+      x-sd-openapi:
+        responseClass: com.sensorsdata.focus.v1.express.audience.open.CreateAudienceFilterRuleResponse
+        isServerStreaming: false
+        requestClass: com.sensorsdata.focus.v1.express.audience.open.CreateRealtimeMarkAudienceFilterRuleRequest
+        grpcServiceBase: com.sensorsdata.focus.v1.express.audience.open.ExpressAudienceOpenServiceGrpc.ExpressAudienceOpenServiceImplBase
+        internalDesc: classes in template for grpc service dynamic invoking
+        isClientStreaming: false
+      x-codegen-request-body-name: CreateRealtimeMarkAudienceFilterRuleRequest
+  /express-audience-meta/rule/terminate:
+    post:
+      description: 关闭一条受众服务
+      operationId: TerminateAudienceFilterRule
+      parameters:
+      - description: 全局唯一的密钥，用于验证和授权访问 API 接口
+        in: header
+        name: api-key
+        required: true
+        schema:
+          type: string
+      - description: 项目名, 指定请求所属项目
+        in: header
+        name: sensorsdata-project
+        required: true
+        schema:
+          type: string
+      - description: 租户 ID, 用于请求所属租户
+        in: header
+        name: X-Organization-Id
+        required: true
+        schema:
+          type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/sensorsdata.focus.v1.TerminateAudienceFilterRuleRequest'
+        required: false
+      responses:
+        default:
+          content:
+            application/json:
+              example:
+                code: SUCCESS
+                data: {}
+                request_id: '1'
+              schema:
+                $ref: '#/components/schemas/sensorsdata.focus.v1.TerminateAudienceFilterRuleResponseHttpApiResult'
+          description: sensorsdata.focus.v1.TerminateAudienceFilterRuleResponse
+      summary: 关闭一条受众服务
+      x-sd-openapi:
+        responseClass: com.sensorsdata.focus.v1.express.audience.open.TerminateAudienceFilterRuleResponse
+        isServerStreaming: false
+        requestClass: com.sensorsdata.focus.v1.express.audience.open.TerminateAudienceFilterRuleRequest
+        grpcServiceBase: com.sensorsdata.focus.v1.express.audience.open.ExpressAudienceOpenServiceGrpc.ExpressAudienceOpenServiceImplBase
+        internalDesc: classes in template for grpc service dynamic invoking
+        isClientStreaming: false
+      x-codegen-request-body-name: TerminateAudienceFilterRuleRequest
+  /express-audience-meta/rule/query:
+    post:
+      description: 查看受众信息
+      operationId: QueryAudienceFilterRule
+      parameters:
+      - description: 全局唯一的密钥，用于验证和授权访问 API 接口
+        in: header
+        name: api-key
+        required: true
+        schema:
+          type: string
+      - description: 项目名, 指定请求所属项目
+        in: header
+        name: sensorsdata-project
+        required: true
+        schema:
+          type: string
+      - description: 租户 ID, 用于请求所属租户
+        in: header
+        name: X-Organization-Id
+        required: true
+        schema:
+          type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/sensorsdata.focus.v1.QueryAudienceFilterRuleRequest'
+        required: false
+      responses:
+        default:
+          content:
+            application/json:
+              example:
+                code: SUCCESS
+                data:
+                  rules:
+                  - audience_batch_rule: {}
+                    audience_realtime_rule: {}
+                    audience_instant_rule: {}
+                    relations:
+                    - {}
+                    audience_user_group_reference_rule: {}
+                request_id: '1'
+              schema:
+                $ref: '#/components/schemas/sensorsdata.focus.v1.QueryAudienceFilterRuleResponseHttpApiResult'
+          description: sensorsdata.focus.v1.QueryAudienceFilterRuleResponse
+      summary: 查看受众信息
+      x-sd-openapi:
+        responseClass: com.sensorsdata.focus.v1.express.audience.open.QueryAudienceFilterRuleResponse
+        isServerStreaming: false
+        requestClass: com.sensorsdata.focus.v1.express.audience.open.QueryAudienceFilterRuleRequest
+        grpcServiceBase: com.sensorsdata.focus.v1.express.audience.open.ExpressAudienceOpenServiceGrpc.ExpressAudienceOpenServiceImplBase
+        internalDesc: classes in template for grpc service dynamic invoking
+        isClientStreaming: false
+      x-codegen-request-body-name: QueryAudienceFilterRuleRequest
+  /express-audience-meta/quota/query:
+    get:
+      description: 查询Quota
+      operationId: QueryQuota
+      parameters:
+      - description: 全局唯一的密钥，用于验证和授权访问 API 接口
+        in: header
+        name: api-key
+        required: true
+        schema:
+          type: string
+      - description: 项目名, 指定请求所属项目
+        in: header
+        name: sensorsdata-project
+        required: true
+        schema:
+          type: string
+      - description: 租户 ID, 用于请求所属租户
+        in: header
+        name: X-Organization-Id
+        required: true
+        schema:
+          type: string
+      - description: "AudienceQuotaType枚举定义\n - BATCH_QUOTA   批受众的额度\n - REALTIME_QUOTA   实时受众的额度\n -\
+          \ INSTANT_QUOTA   即时受众的额度"
+        in: query
+        name: quota_type
+        schema:
+          enum:
+          - AUDIENCE_QUOTA_TYPE_UNSPECIFIED
+          - BATCH_QUOTA
+          - REALTIME_QUOTA
+          - INSTANT_QUOTA
+          - REALTIME_MARK_QUOTA
+          - BATCH_USER_GROUP_REFERENCE_QUOTA
+          type: string
+          x-sd-openapi-enum-type: com.sensorsdata.focus.v1.express.audience.open.QueryQuotaRequest.AudienceQuotaType
+        x-sd-openapi-enum-type: com.sensorsdata.focus.v1.express.audience.open.QueryQuotaRequest.AudienceQuotaType
+      - description: 产品线：SF或ACTIVATION. 默认为ACTIVATION, 即openapi的quota
+        in: query
+        name: product
+        schema:
+          enum:
+          - PRODUCT_UNSPECIFIED
+          - SF
+          - ACTIVATION
+          type: string
+          x-sd-openapi-enum-type: com.sensorsdata.focus.v1.express.audience.AudienceProduct
+        x-sd-openapi-enum-type: com.sensorsdata.focus.v1.express.audience.AudienceProduct
+      responses:
+        default:
+          content:
+            application/json:
+              example:
+                code: SUCCESS
+                data:
+                  used_count: 2
+                  remained_count: 8
+                request_id: '1'
+              schema:
+                $ref: '#/components/schemas/sensorsdata.focus.v1.QueryQuotaResponseHttpApiResult'
+          description: sensorsdata.focus.v1.QueryQuotaResponse
+      summary: 查询Quota
+      x-sd-openapi:
+        responseClass: com.sensorsdata.focus.v1.express.audience.open.QueryQuotaResponse
+        isServerStreaming: false
+        requestClass: com.sensorsdata.focus.v1.express.audience.open.QueryQuotaRequest
+        grpcServiceBase: com.sensorsdata.focus.v1.express.audience.open.ExpressAudienceOpenServiceGrpc.ExpressAudienceOpenServiceImplBase
+        internalDesc: classes in template for grpc service dynamic invoking
+        isClientStreaming: false
+  /express-audience-meta/rule/modify:
+    post:
+      description: 修改受众调度时间
+      operationId: ModifyAudience
+      parameters:
+      - description: 全局唯一的密钥，用于验证和授权访问 API 接口
+        in: header
+        name: api-key
+        required: true
+        schema:
+          type: string
+      - description: 项目名, 指定请求所属项目
+        in: header
+        name: sensorsdata-project
+        required: true
+        schema:
+          type: string
+      - description: 租户 ID, 用于请求所属租户
+        in: header
+        name: X-Organization-Id
+        required: true
+        schema:
+          type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/sensorsdata.focus.v1.ModifyAudienceRuleRequest'
+        required: false
+      responses:
+        default:
+          content:
+            application/json:
+              example:
+                code: SUCCESS
+                data:
+                  success: true
+                request_id: '1'
+              schema:
+                $ref: '#/components/schemas/sensorsdata.focus.v1.ModifyAudienceRuleResponceHttpApiResult'
+          description: sensorsdata.focus.v1.ModifyAudienceRuleResponce
+      summary: 修改受众调度时间
+      x-sd-openapi:
+        responseClass: com.sensorsdata.focus.v1.express.audience.open.ModifyAudienceRuleResponce
+        isServerStreaming: false
+        requestClass: com.sensorsdata.focus.v1.express.audience.open.ModifyAudienceRuleRequest
+        grpcServiceBase: com.sensorsdata.focus.v1.express.audience.open.ExpressAudienceOpenServiceGrpc.ExpressAudienceOpenServiceImplBase
+        internalDesc: classes in template for grpc service dynamic invoking
+        isClientStreaming: false
+      x-codegen-request-body-name: ModifyAudienceRuleRequest
+components:
+  schemas:
+    sensorsdata.focus.v1.express.audience.open.AudienceFilterRuleDetail:
+      description: ''
+      properties:
+        version:
+          description: ''
+          enum:
+          - V1
+          type: string
+        definition_v1:
+          $ref: '#/components/schemas/sensorsdata.focus.v1.express.audience.open.AudienceRuleDefinitionV1'
+      title: AudienceFilterRuleDetail
+      type: object
+    sensorsdata.personas.v1.DimensionTable:
+      description: ''
+      properties:
+        table_name:
+          description: ''
+          type: string
+        key_fields:
+          description: ''
+          items:
+            type: string
+          type: array
+        predicates:
+          $ref: '#/components/schemas/sensorsdata.personas.v1.DimensionPredicate'
+      title: DimensionTable
+      type: object
+    sensorsdata.focus.v1.SingleQueryAudienceFilterRule:
+      description: ''
+      properties:
+        audience_biz_id:
+          description: 受众业务ID
+          type: string
+        rule_status:
+          description: 规则的状态
+          enum:
+          - ENABLE
+          - UNABLE
+          type: string
+        audience_data_ready:
+          description: '规则相关的数据是否已经可用(只要规则处理成功过就可以使用, eg: 每天1点计算的受众只要成功过一次就算做 data ready)'
+          type: boolean
+        create_time:
+          description: 规则的创建时间
+          format: date-time
+          type: string
+        update_time:
+          description: 规则更新时间
+          format: date-time
+          type: string
+        support_abilities:
+          description: 该受众到底支持什么能力
+          items:
+            enum:
+            - CHECK_ENTITY_EXIST_IN_AUDIENCE
+            - PULL_AUDIENCE
+            type: string
+          type: array
+        audience_biz_name:
+          description: 受众业务名字
+          type: string
+        audience_rule_type:
+          description: 受众规则类型
+          enum:
+          - BATCH_RULE
+          - REALTIME_RULE
+          - INSTANT_RULE
+          - BATCH_USER_GROUP_REFERENCE_RULE
+          - REALTIME_MARK_RULE
+          type: string
+        audience_batch_rule:
+          $ref: '#/components/schemas/sensorsdata.focus.v1.QueryAudienceBatchRule'
+        audience_realtime_rule:
+          $ref: '#/components/schemas/sensorsdata.focus.v1.QueryAudienceRealtimeRule'
+        audience_instant_rule:
+          $ref: '#/components/schemas/sensorsdata.focus.v1.QueryAudienceInstantRule'
+        audience_user_group_reference_rule:
+          $ref: '#/components/schemas/sensorsdata.focus.v1.QueryAudienceUserGroupReferenceRule'
+        relations:
+          description: 引用关系
+          items:
+            $ref: '#/components/schemas/sensorsdata.focus.v1.AudienceRelation'
+          type: array
+        create_from:
+          description: 创建来源： SF、OPENAPI
+          enum:
+          - AUDIENCE_CREATE_RESOURCE_UNSPECIFIED
+          - SFN
+          - OPEN_API
+          - OPEN_IFRAME
+          - USER_GROUP_REF
+          type: string
+      title: SingleQueryAudienceFilterRule
+      type: object
+    sensorsdata.focus.v1.ModifyAudienceRuleResponce:
+      description: ''
+      properties:
+        success:
+          description: 是否成功修改
+          example: true
+          type: boolean
+        error_message:
+          description: ''
+          type: string
+      title: ModifyAudienceRuleResponce
+      type: object
+    sensorsdata.horizon.v1.CustomSegmentRuleExpression:
+      description: ''
+      properties:
+        component_name:
+          description: "组件的 name， 用来唯一标识一个组件\n 如 USER_GROUP_RULE"
+          type: string
+        rule:
+          description: ''
+          properties: {}
+          type: object
+        rule_str:
+          description: ''
+          type: string
+      title: CustomSegmentRuleExpression
+      type: object
+    sensorsdata.horizon.v1.GroupExpressionSegmentRuleExpression:
+      description: 规则组
+      properties:
+        groups:
+          description: 规则组，与 expression 配合使用
+          items:
+            $ref: '#/components/schemas/sensorsdata.horizon.v1.SegmentRuleExpression'
+          type: array
+        group_expression:
+          description: "集合的交并差运算\n 如: ($1-$2)*($3-$4)+$5\n 其中, '*' => 交, '+' => 并, '-' => 差\n 在算式中, 以\
+            \ $1、$2 代表第一个群组、第二个群组"
+          example: $1-$2
+          type: string
+      title: GroupExpressionSegmentRuleExpression
+      type: object
+    sensorsdata.horizon.v1.Order:
+      description: ''
+      properties:
+        measure:
+          $ref: '#/components/schemas/sensorsdata.horizon.v1.OrderMeasure'
+        is_asc:
+          description: 排序方向, true 表示升序，false 表示降序
+          example: false
+          type: boolean
+      title: Order
+      type: object
+    sensorsdata.focus.v1.express.audience.open.AudienceScheduleConf:
+      description: ''
+      properties:
+        first_trigger:
+          $ref: '#/components/schemas/sensorsdata.focus.v1.express.audience.open.AudienceFirstTrigger'
+        other_trigger:
+          $ref: '#/components/schemas/sensorsdata.focus.v1.express.audience.open.AudienceOtherTrigger'
+      title: AudienceScheduleConf
+      type: object
+    sensorsdata.personas.v1.DimensionSimplePredicate:
+      description: ''
+      properties:
+        measures:
+          description: ''
+          items:
+            $ref: '#/components/schemas/sensorsdata.personas.v1.DimensionMeasure'
+          type: array
+        function:
+          description: ''
+          enum:
+          - PREDICATE_FUNCTION_TYPE_UNSPECIFIED
+          - IS_SET
+          - IS_NOT_SET
+          - EQUAL
+          - NOT_EQUAL
+          - IN
+          - NOT_IN
+          - LESS
+          - LESS_EQUAL
+          - GREATER
+          - GREATER_EQUAL
+          - BETWEEN
+          - RIGHT_OPEN_BETWEEN
+          - HASH_BETWEEN
+          - LEFT_OPEN_BETWEEN
+          - OPEN_BETWEEN
+          - IS_TRUE
+          - IS_FALSE
+          - CONTAIN
+          - NOT_CONTAIN
+          - IS_EMPTY
+          - IS_NOT_EMPTY
+          - RLIKE
+          - NOT_RLIKE
+          - INCLUDE
+          - NOT_INCLUDE
+          - ABSOLUTE_BETWEEN
+          - RELATIVE_WITHIN
+          - RELATIVE_BETWEEN
+          - RELATIVE_EVENT_TIME
+          - RELATIVE_BEFORE
+          - INTERSECTS
+          - NOT_INTERSECTS
+          - SUBSET_OF
+          - NOT_SUBSET_OF
+          - SUPERSET_OF
+          - NOT_SUPERSET_OF
+          type: string
+        params:
+          description: ''
+          items:
+            $ref: '#/components/schemas/sensorsdata.common.PredicateFunctionParam'
+          type: array
+      title: DimensionSimplePredicate
+      type: object
+    sensorsdata.horizon.v1.EventSequenceSegmentRuleExpression.SimpleEventSequenceSegmentRuleExpression:
+      description: ''
+      properties:
+        event_steps:
+          description: 行为序列规则信息
+          items:
+            $ref: '#/components/schemas/sensorsdata.horizon.v1.EventSequenceSegmentRuleExpression.SimpleEventSequenceSegmentRuleExpression.EventStep'
+          type: array
+        time_range:
+          $ref: '#/components/schemas/sensorsdata.common.TimeRange'
+        time_window:
+          $ref: '#/components/schemas/sensorsdata.horizon.v1.EventSequenceSegmentRuleExpression.SimpleEventSequenceSegmentRuleExpression.TimeWindow'
+      title: SimpleEventSequenceSegmentRuleExpression
+      type: object
+    sensorsdata.personas.v1.Order:
+      description: ''
+      properties:
+        measure:
+          $ref: '#/components/schemas/sensorsdata.personas.v1.OrderMeasure'
+        is_asc:
+          description: ''
+          type: boolean
+      title: Order
+      type: object
+    sensorsdata.personas.v1.EventStep:
+      description: ''
+      properties:
+        event_name:
+          description: ''
+          type: string
+        condition:
+          $ref: '#/components/schemas/sensorsdata.common.CompoundFilterCondition'
+      title: EventStep
+      type: object
+    sensorsdata.focus.v1.ModifyAudienceRuleResponceHttpApiResult:
+      properties:
+        code:
+          type: string
+        message:
+          type: string
+        request_id:
+          type: string
+        data:
+          $ref: '#/components/schemas/sensorsdata.focus.v1.ModifyAudienceRuleResponce'
+        error_info:
+          $ref: '#/components/schemas/sensorsdata.common.ErrorInfo'
+      title: sensorsdata.focus.v1.ModifyAudienceRuleResponceHttpApiResult
+      type: object
+    sensorsdata.focus.v1.TerminateAudienceFilterRuleRequest:
+      description: ''
+      properties:
+        audience_biz_id:
+          description: 受众业务ID
+          type: string
+      title: TerminateAudienceFilterRuleRequest
+      type: object
+    sensorsdata.focus.v1.QueryAudienceRealtimeRule:
+      description: realtime 规则返回的细节内容,暂时为空
+      title: QueryAudienceRealtimeRule
+      type: object
+    sensorsdata.common.ErrorContext:
+      description: 发生错误时，系统快照信息
+      properties:
+        origin_stack:
+          description: 上游异常的 stack，由系统截获
+          type: string
+        origin_cause:
+          description: 上游异常的 cause by，由系统截获
+          type: string
+        origin_code:
+          description: 上游异常的错误简码
+          type: string
+        origin_complete_code:
+          description: 上游异常的完整错误码
+          type: string
+        error_extend_desc:
+          description: 本次异常的辅助说明，可传入
+          type: string
+      title: ErrorContext
+      type: object
+    sensorsdata.horizon.v1.EventSequenceSegmentRuleExpression:
+      description: ''
+      properties:
+        operator:
+          description: "用于描述多个 simple_event_sequence 之间的关系\n ```\n  UNION: 多个 simple_event_sequence 之间的并集\n\
+            \  INTERSECT: 多个 simple_event_sequence 之间的交集\n```"
+          enum:
+          - SET_OPERATOR_UNSPECIFIED
+          - UNION
+          - INTERSECT
+          example: UNION
+          type: string
+        simple_event_sequences:
+          description: 多个单一的行为序列的
+          items:
+            $ref: '#/components/schemas/sensorsdata.horizon.v1.EventSequenceSegmentRuleExpression.SimpleEventSequenceSegmentRuleExpression'
+          type: array
+      title: EventSequenceSegmentRuleExpression
+      type: object
+    sensorsdata.horizon.v1.SqlSegmentRuleExpression.QueryOption:
+      description: ''
+      properties:
+        option:
+          description: ''
+          type: string
+        value:
+          description: ''
+          type: string
+      title: QueryOption
+      type: object
+    sensorsdata.focus.v1.express.audience.open.UserGroupReferenceRule:
+      description: ''
+      properties:
+        user_group_name:
+          description: 私有端分群名
+          type: string
+      title: UserGroupReferenceRule
+      type: object
+    sensorsdata.personas.v1.GroupExpressionUserGroupRule:
+      description: ''
+      properties:
+        groups:
+          description: ''
+          items:
+            $ref: '#/components/schemas/sensorsdata.personas.v1.UserGroupRule'
+          type: array
+        group_expression:
+          description: ''
+          type: string
+      title: GroupExpressionUserGroupRule
+      type: object
+    sensorsdata.focus.v1.express.audience.open.AudienceFilterRule:
+      description: ''
+      properties:
+        audience_biz_id:
+          description: ''
+          type: string
+        audience_biz_name:
+          description: ''
+          type: string
+        rule_detail:
+          $ref: '#/components/schemas/sensorsdata.focus.v1.express.audience.open.AudienceFilterRuleDetail'
+        schedule_conf:
+          $ref: '#/components/schemas/sensorsdata.focus.v1.express.audience.open.AudienceScheduleConf'
+        rule_type:
+          description: ''
+          enum:
+          - BATCH_RULE
+          - REALTIME_RULE
+          - INSTANT_RULE
+          - BATCH_USER_GROUP_REFERENCE_RULE
+          - REALTIME_MARK_RULE
+          type: string
+        timezone:
+          description: 多时区参数，格式为 UTC+偏移量，例如：UTC+10:00，如果不设置则默认服务器所在时区
+          type: string
+      title: AudienceFilterRule
+      type: object
+    sensorsdata.focus.v1.express.audience.open.AudienceOtherTrigger:
+      description: ''
+      properties:
+        other_trigger_type:
+          description: ''
+          enum:
+          - CRON
+          type: string
+        cron_trigger:
+          $ref: '#/components/schemas/sensorsdata.focus.v1.express.audience.open.AudienceCronTrigger'
+      title: AudienceOtherTrigger
+      type: object
+    sensorsdata.focus.v1.QueryQuotaRequest:
+      description: ''
+      properties:
+        quota_type:
+          description: "AudienceQuotaType枚举定义\n - BATCH_QUOTA   批受众的额度\n - REALTIME_QUOTA   实时受众的额度\n\
+            \ - INSTANT_QUOTA   即时受众的额度"
+          enum:
+          - AUDIENCE_QUOTA_TYPE_UNSPECIFIED
+          - BATCH_QUOTA
+          - REALTIME_QUOTA
+          - INSTANT_QUOTA
+          - REALTIME_MARK_QUOTA
+          - BATCH_USER_GROUP_REFERENCE_QUOTA
+          type: string
+        product:
+          description: 产品线：SF或ACTIVATION. 默认为ACTIVATION, 即openapi的quota
+          enum:
+          - PRODUCT_UNSPECIFIED
+          - SF
+          - ACTIVATION
+          type: string
+      title: QueryQuotaRequest
+      type: object
+    sensorsdata.focus.v1.express.audience.open.RealtimeMarkRule:
+      description: ''
+      properties:
+        rule_name:
+          description: 实时标记受众名称
+          type: string
+      title: RealtimeMarkRule
+      type: object
+    sensorsdata.personas.v1.EventMeasure:
+      description: ''
+      properties:
+        events:
+          $ref: '#/components/schemas/sensorsdata.common.EventSeries'
+        aggregator:
+          description: ''
+          enum:
+          - AGGREGATOR_TYPE_UNSPECIFIED
+          - COUNT
+          - AVG
+          - MAX
+          - MIN
+          - SUM
+          - UNIQUE_COUNT
+          - UNIQUE_AVG
+          - BOUNCE_RATE
+          - EXIT_RATE
+          - UNIQUE_COUNT_APPROX
+          - COUNT_PERCENT
+          - RANK_ASC
+          - RANK_DESC
+          - PERCENT_RANK_ASC
+          - PERCENT_RANK_DESC
+          - SESSION_COUNT
+          - FIRST_TIME
+          - LAST_TIME
+          - FIRST_TIME_INTERVAL
+          - LAST_TIME_INTERVAL
+          - GROUP_CONCAT
+          - UNIQUE_COUNT_BITMAP
+          - UNIQUE_COUNT_APPROX_ORDINARY
+          - COUNT_DISTINCT
+          - LTV
+          - LTV_AVG
+          - COUNT_RANK
+          - AVG_RANK
+          - MAX_RANK
+          - MIN_RANK
+          - SUM_RANK
+          - COUNT_RANK_ASC
+          - COUNT_RANK_DESC
+          - COUNT_PERCENT_RANK_ASC
+          - COUNT_PERCENT_RANK_DESC
+          - AVG_RANK_ASC
+          - AVG_RANK_DESC
+          - AVG_PERCENT_RANK_ASC
+          - AVG_PERCENT_RANK_DESC
+          - MAX_RANK_ASC
+          - MAX_RANK_DESC
+          - MAX_PERCENT_RANK_ASC
+          - MAX_PERCENT_RANK_DESC
+          - MIN_RANK_ASC
+          - MIN_RANK_DESC
+          - MIN_PERCENT_RANK_ASC
+          - MIN_PERCENT_RANK_DESC
+          - SUM_RANK_ASC
+          - SUM_RANK_DESC
+          - SUM_PERCENT_RANK_ASC
+          - SUM_PERCENT_RANK_DESC
+          type: string
+        aggregate_field:
+          description: ''
+          type: string
+      title: EventMeasure
+      type: object
+    sensorsdata.focus.v1.EstimateAudienceCalculationEffortResponseHttpApiResult:
+      properties:
+        code:
+          type: string
+        message:
+          type: string
+        request_id:
+          type: string
+        data:
+          $ref: '#/components/schemas/sensorsdata.focus.v1.EstimateAudienceCalculationEffortResponse'
+        error_info:
+          $ref: '#/components/schemas/sensorsdata.common.ErrorInfo'
+      title: sensorsdata.focus.v1.EstimateAudienceCalculationEffortResponseHttpApiResult
+      type: object
+    sensorsdata.focus.v1.express.audience.AudienceRuleDetailParam:
+      description: ''
+      properties:
+        segment_rule_expression:
+          $ref: '#/components/schemas/sensorsdata.horizon.v1.SegmentRuleExpression'
+        with_today:
+          description: ''
+          type: boolean
+      title: AudienceRuleDetailParam
+      type: object
+    sensorsdata.common.TimePoint:
+      description: ''
+      properties:
+        type:
+          description: ''
+          enum:
+          - TIME_POINT_TYPE_UNSPECIFIED
+          - STATIC
+          - RELATIVE
+          - EXPRESSION
+          type: string
+        trunc_unit:
+          description: ''
+          enum:
+          - TRUNC_UNIT_UNSPECIFIED
+          - TRUNC_HOUR
+          - TRUNC_DAY
+          - TRUNC_WEEK
+          - TRUNC_MONTH
+          - TRUNC_YEAR
+          - TRUNC_BIGBANG
+          type: string
+        static_time:
+          description: ''
+          format: date-time
+          type: string
+        relative_time:
+          $ref: '#/components/schemas/sensorsdata.common.TimePoint.RelativeTimePoint'
+        expression:
+          description: ''
+          type: string
+      title: TimePoint
+      type: object
+    sensorsdata.personas.v1.EventCompoundMeasure:
+      description: ''
+      properties:
+        time_range:
+          $ref: '#/components/schemas/sensorsdata.common.TimeRange'
+        measures:
+          description: ''
+          items:
+            $ref: '#/components/schemas/sensorsdata.personas.v1.EventMeasure'
+          type: array
+        condition:
+          $ref: '#/components/schemas/sensorsdata.common.CompoundFilterCondition'
+        measure_expression:
+          description: ''
+          type: string
+      title: EventCompoundMeasure
+      type: object
+    sensorsdata.focus.v1.CheckUniqueAudienceBizResponseHttpApiResult:
+      properties:
+        code:
+          type: string
+        message:
+          type: string
+        request_id:
+          type: string
+        data:
+          $ref: '#/components/schemas/sensorsdata.focus.v1.CheckUniqueAudienceBizResponse'
+        error_info:
+          $ref: '#/components/schemas/sensorsdata.common.ErrorInfo'
+      title: sensorsdata.focus.v1.CheckUniqueAudienceBizResponseHttpApiResult
+      type: object
+    sensorsdata.common.FilterCondition:
+      description: 单个过滤条件
+      properties:
+        function:
+          description: 过滤条件的判断函数
+          enum:
+          - PREDICATE_FUNCTION_TYPE_UNSPECIFIED
+          - IS_SET
+          - IS_NOT_SET
+          - EQUAL
+          - NOT_EQUAL
+          - IN
+          - NOT_IN
+          - LESS
+          - LESS_EQUAL
+          - GREATER
+          - GREATER_EQUAL
+          - BETWEEN
+          - RIGHT_OPEN_BETWEEN
+          - HASH_BETWEEN
+          - LEFT_OPEN_BETWEEN
+          - OPEN_BETWEEN
+          - IS_TRUE
+          - IS_FALSE
+          - CONTAIN
+          - NOT_CONTAIN
+          - IS_EMPTY
+          - IS_NOT_EMPTY
+          - RLIKE
+          - NOT_RLIKE
+          - INCLUDE
+          - NOT_INCLUDE
+          - ABSOLUTE_BETWEEN
+          - RELATIVE_WITHIN
+          - RELATIVE_BETWEEN
+          - RELATIVE_EVENT_TIME
+          - RELATIVE_BEFORE
+          - INTERSECTS
+          - NOT_INTERSECTS
+          - SUBSET_OF
+          - NOT_SUBSET_OF
+          - SUPERSET_OF
+          - NOT_SUPERSET_OF
+          example: EQUAL
+          type: string
+        params:
+          description: 函数的参数
+          items:
+            $ref: '#/components/schemas/sensorsdata.common.PredicateFunctionParam'
+          type: array
+        index:
+          description: 当前筛选条件所处的位置下标，主要为了保证前端展示顺序的稳定
+          example: 10
+          format: int32
+          type: integer
+      title: FilterCondition
+      type: object
+    sensorsdata.focus.v1.QueryAudienceFilterRuleRequest:
+      description: ''
+      properties:
+        query_type:
+          description: "先根据query_type来判断筛选条件是什么\n 当 query_type 为 QUERY_ALL时， 下面的条件不用传"
+          enum:
+          - QUERY_BY_BIZ_ID_LIST
+          - QUERY_ALL
+          type: string
+        audience_biz_ids:
+          description: 当 query_type 为 QUERY_BY_BIZ_ID_LIST 时，这个生效
+          items:
+            type: string
+          type: array
+      title: QueryAudienceFilterRuleRequest
+      type: object
+    sensorsdata.horizon.v1.EventSequenceSegmentRuleExpression.SimpleEventSequenceSegmentRuleExpression.EventStep:
+      description: ''
+      properties:
+        event_name:
+          description: 事件名称
+          example: user.$Events.AppStart
+          type: string
+        condition:
+          $ref: '#/components/schemas/sensorsdata.common.CompoundFilterCondition'
+      title: EventStep
+      type: object
+    sensorsdata.focus.v1.CreateAudienceFilterRuleResponse:
+      description: ''
+      properties:
+        audience_filter_rule:
+          $ref: '#/components/schemas/sensorsdata.focus.v1.express.audience.open.AudienceFilterRule'
+        support_abilities:
+          description: ''
+          items:
+            enum:
+            - CHECK_ENTITY_EXIST_IN_AUDIENCE
+            - PULL_AUDIENCE
+            type: string
+          type: array
+        create_time:
+          description: ''
+          format: date-time
+          type: string
+      title: CreateAudienceFilterRuleResponse
+      type: object
+    sensorsdata.horizon.v1.SqlSegmentRuleExpression:
+      description: ''
+      properties:
+        sql:
+          description: SQL 的结果只取一列 user_id
+          example: select user_id as id from user where user_id > 100
+          type: string
+        query_options:
+          description: SQL 执行的选项
+          example: '{"option":"TIMEOUT","value":"120"}'
+          items:
+            $ref: '#/components/schemas/sensorsdata.horizon.v1.SqlSegmentRuleExpression.QueryOption'
+          type: array
+      title: SqlSegmentRuleExpression
+      type: object
+    sensorsdata.personas.v1.SortInfo:
+      description: ''
+      properties:
+        fields:
+          description: ''
+          items:
+            type: string
+          type: array
+        is_asc_order:
+          description: ''
+          items:
+            type: boolean
+          type: array
+      title: SortInfo
+      type: object
+    sensorsdata.personas.v1.UserGroupRule:
+      description: ''
+      properties:
+        operator:
+          description: ''
+          enum:
+          - SET_OPERATOR_UNSPECIFIED
+          - UNION
+          - INTERSECT
+          - SUBTRACT
+          type: string
+        groups:
+          description: ''
+          items:
+            $ref: '#/components/schemas/sensorsdata.personas.v1.SimpleUserGroupRule'
+          type: array
+        compound_groups:
+          description: ''
+          items:
+            $ref: '#/components/schemas/sensorsdata.personas.v1.UserGroupRule'
+          type: array
+        sort_info:
+          $ref: '#/components/schemas/sensorsdata.personas.v1.SortInfo'
+        limit:
+          description: ''
+          format: int32
+          type: integer
+        shuffle:
+          description: ''
+          type: boolean
+        tailor:
+          $ref: '#/components/schemas/sensorsdata.personas.v1.Tailor'
+      title: UserGroupRule
+      type: object
+    sensorsdata.common.PredicateFunctionParam:
+      description: "```\n 函数的参数，有几种可能\n 1. 一个 field, 如 events.$Anything.$city\n 2. 一个 Literal 的常量\n 3.\
+        \ 一个变量, 如 $ENTRY_TIME, 需要在执行上下文里进行替换\n 4. 一个 TimePoint, 代表一个相对或绝对的时间点, 用于时间类型的条件\n 5. 一个 expression\
+        \ user.p1/user.p2+user.p3\n ```"
+      properties:
+        param_type:
+          description: 函数的参数类型
+          enum:
+          - FUNCTION_PARAM_TYPE_UNSPECIFIED
+          - FIELD
+          - VALUE
+          - VARIABLE
+          - TIME_POINT
+          - EXPRESSION
+          example: FIELD
+          type: string
+        field:
+          description: 字段名
+          example: '#ResourceId'
+          type: string
+        value:
+          $ref: '#/components/schemas/sensorsdata.common.Literal'
+        variable:
+          description: 变量，需要在执行上下文里进行替换
+          example: $ENTRY_TIME
+          type: string
+        time_point:
+          $ref: '#/components/schemas/sensorsdata.common.TimePoint'
+        expression:
+          description: 自定义表达式
+          example: user.p1/user.p2+user.p3
+          type: string
+      title: PredicateFunctionParam
+      type: object
+    sensorsdata.horizon.v1.SegmentRuleExpression:
+      description: ''
+      properties:
+        type:
+          description: "分群规则类型\n```\n  SQL_BASED: 基于 SQL 的分群规则\n  EQL_BASED: 基于 EQL 的分群规则\n  LOADING_BASED:\
+            \ 基于文件加载的分群规则\n  CUSTOM_BASED: 基于自定义组件的分群规则\n  EVENT_SEQUENCE_BASED: 基于行为序列的分群规则\n  GROUP_EXPRESSION_BASED:\
+            \ 基于规则组的分群规则\n  ALL: 表示全部实体, 该类型比较特殊, 无实际的规则信息。\n```"
+          enum:
+          - SIMPLE_USER_GROUP_TYPE_UNSPECIFIED
+          - SQL_BASED
+          - EQL_BASED
+          - LOADING_BASED
+          - CUSTOM_BASED
+          - EVENT_SEQUENCE_BASED
+          - GROUP_EXPRESSION_BASED
+          - ALL
+          example: SQL_BASED
+          type: string
+        sql_segment_rule:
+          $ref: '#/components/schemas/sensorsdata.horizon.v1.SqlSegmentRuleExpression'
+        eql_segment_rule:
+          $ref: '#/components/schemas/sensorsdata.horizon.v1.EqlSegmentRuleExpression'
+        loading_segment_rule:
+          $ref: '#/components/schemas/sensorsdata.horizon.v1.LoadingSegmentRuleExpression'
+        custom_rule:
+          $ref: '#/components/schemas/sensorsdata.horizon.v1.CustomSegmentRuleExpression'
+        event_sequence_rule:
+          $ref: '#/components/schemas/sensorsdata.horizon.v1.EventSequenceSegmentRuleExpression'
+        group_expression_rule:
+          $ref: '#/components/schemas/sensorsdata.horizon.v1.GroupExpressionSegmentRuleExpression'
+        virtual:
+          description: "是否是虚拟分群, 如果是虚拟分群则不会执行 SQL 存储分群结果\n LoadingSegmentRuleExpression 不能为虚拟分群"
+          type: boolean
+        tailor:
+          $ref: '#/components/schemas/sensorsdata.horizon.v1.Tailor'
+        entity_set_rules:
+          description: "实体范围数组, 实体范围之间的关系为 \"OR/或\" 关系\n 保存规则的时候, SegmentRule 只需要填充 id\n 查询返回的时候, gRPC\
+            \ 会返回 id、display_name、expression、version、rule_available、delete_flag"
+          items:
+            $ref: '#/components/schemas/sensorsdata.horizon.v1.SegmentRule'
+          type: array
+        time_zone:
+          description: 规则时区, 设置之后事件规则中 time 及 时间类型事件属性计算时会相对服务器时区发生偏移, 数据样例：UTC+11:00
+          type: string
+        version:
+          description: 分群规则版本, 从 sps 升级带上来的规则为 1 (QE 和 老PB), 在 horizon 新组件创建出来的为 2， openApi创建的时候，固定传2
+          example: 2
+          format: int32
+          type: integer
+        used_fields:
+          description: 规则引用到的字段
+          example: '["user.id"]'
+          items:
+            type: string
+          type: array
+      title: SegmentRuleExpression
+      type: object
+    sensorsdata.personas.v1.DimensionMeasure:
+      description: ''
+      properties:
+        type:
+          description: ''
+          enum:
+          - DIMENSION_MEASURE_TYPE_UNSPECIFIED
+          - SIMPLE_FIELD
+          - FILED_EXPRESSION
+          - SUB_DIMENSION_MEASURE
+          type: string
+        field:
+          description: ''
+          type: string
+        field_expression:
+          description: ''
+          type: string
+        sub_dimension_measure:
+          $ref: '#/components/schemas/sensorsdata.personas.v1.SubDimensionMeasure'
+      title: DimensionMeasure
+      type: object
+    sensorsdata.focus.v1.QueryQuotaResponseHttpApiResult:
+      properties:
+        code:
+          type: string
+        message:
+          type: string
+        request_id:
+          type: string
+        data:
+          $ref: '#/components/schemas/sensorsdata.focus.v1.QueryQuotaResponse'
+        error_info:
+          $ref: '#/components/schemas/sensorsdata.common.ErrorInfo'
+      title: sensorsdata.focus.v1.QueryQuotaResponseHttpApiResult
+      type: object
+    sensorsdata.common.EventSeries:
+      description: ''
+      properties:
+        event_name:
+          description: ''
+          type: string
+        time_range:
+          $ref: '#/components/schemas/sensorsdata.common.TimeRange'
+        condition:
+          $ref: '#/components/schemas/sensorsdata.common.CompoundFilterCondition'
+      title: EventSeries
+      type: object
+    sensorsdata.personas.v1.EventSequenceUserGroupRule:
+      description: ''
+      properties:
+        event_steps:
+          description: ''
+          items:
+            $ref: '#/components/schemas/sensorsdata.personas.v1.EventStep'
+          type: array
+        time_range:
+          $ref: '#/components/schemas/sensorsdata.common.TimeRange'
+      title: EventSequenceUserGroupRule
+      type: object
+    sensorsdata.personas.v1.ExternalDataSeries:
+      description: ''
+      properties:
+        external_table_name:
+          description: ''
+          type: string
+        time_field:
+          description: ''
+          type: string
+        time_range:
+          $ref: '#/components/schemas/sensorsdata.common.TimeRange'
+        condition:
+          $ref: '#/components/schemas/sensorsdata.common.CompoundFilterCondition'
+      title: ExternalDataSeries
+      type: object
+    sensorsdata.common.CompoundFilterCondition:
+      description: 复合过滤条件，用于描述 condition 或 compound_filter 之间的关系
+      properties:
+        operator:
+          description: 逻辑运算法
+          enum:
+          - LOGICAL_OPERATOR_UNSPECIFIED
+          - AND
+          - OR
+          example: AND
+          type: string
+        conditions:
+          description: 过滤条件列表，只有最后一级才有
+          items:
+            $ref: '#/components/schemas/sensorsdata.common.FilterCondition'
+          type: array
+        compound_conditions:
+          description: 嵌套的下一级复合过滤条件
+          items:
+            $ref: '#/components/schemas/sensorsdata.common.CompoundFilterCondition'
+          type: array
+        index:
+          description: 当前筛选条件所处的位置下标，主要为了保证前端展示顺序的稳定
+          example: 10
+          format: int32
+          type: integer
+      title: CompoundFilterCondition
+      type: object
+    sensorsdata.horizon.v1.SegmentRule:
+      description: ''
+      properties:
+        entity_name:
+          description: ''
+          type: string
+        name:
+          description: ''
+          type: string
+        display_name:
+          description: ''
+          type: string
+        comment:
+          description: ''
+          type: string
+        id:
+          description: ''
+          format: int32
+          type: integer
+        status:
+          description: ''
+          enum:
+          - STATUS_UNSPECIFIED
+          - ACTIVE
+          - INACTIVE
+          - DELETE_REQUESTED
+          type: string
+        expression:
+          $ref: '#/components/schemas/sensorsdata.horizon.v1.SegmentRuleExpression'
+        version:
+          description: ''
+          type: string
+        rule_available:
+          description: ''
+          type: boolean
+        created_by:
+          description: ''
+          type: string
+        custom_params:
+          additionalProperties:
+            $ref: '#/components/schemas/sensorsdata.common.Literal'
+          description: ''
+          type: object
+        creator_id:
+          description: ''
+          type: string
+        modifier_id:
+          description: ''
+          type: string
+        create_time:
+          description: ''
+          format: date-time
+          type: string
+        update_time:
+          description: ''
+          format: date-time
+          type: string
+        type:
+          description: ''
+          enum:
+          - TYPE_UNSPECIFIED
+          - SEGMENT_DEFINITION_RULE
+          - ENTITY_SET_RULE
+          type: string
+        read_only:
+          description: ''
+          type: boolean
+        delete_flag:
+          description: ''
+          format: int64
+          type: integer
+      required:
+      - entity_name
+      - expression
+      title: SegmentRule
+      type: object
+    sensorsdata.focus.v1.QueryAudienceFilterRuleResponseHttpApiResult:
+      properties:
+        code:
+          type: string
+        message:
+          type: string
+        request_id:
+          type: string
+        data:
+          $ref: '#/components/schemas/sensorsdata.focus.v1.QueryAudienceFilterRuleResponse'
+        error_info:
+          $ref: '#/components/schemas/sensorsdata.common.ErrorInfo'
+      title: sensorsdata.focus.v1.QueryAudienceFilterRuleResponseHttpApiResult
+      type: object
+    sensorsdata.focus.v1.QueryAudienceFilterRuleWithRuleResponseHttpApiResult:
+      properties:
+        code:
+          type: string
+        message:
+          type: string
+        request_id:
+          type: string
+        data:
+          $ref: '#/components/schemas/sensorsdata.focus.v1.QueryAudienceFilterRuleWithRuleResponse'
+        error_info:
+          $ref: '#/components/schemas/sensorsdata.common.ErrorInfo'
+      title: sensorsdata.focus.v1.QueryAudienceFilterRuleWithRuleResponseHttpApiResult
+      type: object
+    sensorsdata.focus.v1.CreateAudienceFilterRuleResponseHttpApiResult:
+      properties:
+        code:
+          type: string
+        message:
+          type: string
+        request_id:
+          type: string
+        data:
+          $ref: '#/components/schemas/sensorsdata.focus.v1.CreateAudienceFilterRuleResponse'
+        error_info:
+          $ref: '#/components/schemas/sensorsdata.common.ErrorInfo'
+      title: sensorsdata.focus.v1.CreateAudienceFilterRuleResponseHttpApiResult
+      type: object
+    sensorsdata.horizon.v1.Tailor:
+      description: ''
+      properties:
+        rank_field:
+          $ref: '#/components/schemas/sensorsdata.horizon.v1.RankField'
+        function:
+          description: ''
+          enum:
+          - PREDICATE_FUNCTION_TYPE_UNSPECIFIED
+          - IS_SET
+          - IS_NOT_SET
+          - EQUAL
+          - NOT_EQUAL
+          - IN
+          - NOT_IN
+          - LESS
+          - LESS_EQUAL
+          - GREATER
+          - GREATER_EQUAL
+          - BETWEEN
+          - RIGHT_OPEN_BETWEEN
+          - HASH_BETWEEN
+          - LEFT_OPEN_BETWEEN
+          - OPEN_BETWEEN
+          - IS_TRUE
+          - IS_FALSE
+          - CONTAIN
+          - NOT_CONTAIN
+          - IS_EMPTY
+          - IS_NOT_EMPTY
+          - RLIKE
+          - NOT_RLIKE
+          - INCLUDE
+          - NOT_INCLUDE
+          - ABSOLUTE_BETWEEN
+          - RELATIVE_WITHIN
+          - RELATIVE_BETWEEN
+          - RELATIVE_EVENT_TIME
+          - RELATIVE_BEFORE
+          - INTERSECTS
+          - NOT_INTERSECTS
+          - SUBSET_OF
+          - NOT_SUBSET_OF
+          - SUPERSET_OF
+          - NOT_SUPERSET_OF
+          type: string
+        params:
+          description: ''
+          items:
+            $ref: '#/components/schemas/sensorsdata.common.PredicateFunctionParam'
+          type: array
+      title: Tailor
+      type: object
+    sensorsdata.focus.v1.ModifyAudienceRuleRequest:
+      description: ''
+      properties:
+        project_ref_id:
+          description: ''
+          format: int32
+          type: integer
+        audience_biz_id:
+          description: 受众业务ID, 必填
+          example: biz_2
+          type: string
+        schedule_start_date:
+          description: 仅支持修改非实时受众-规则受众的调度开始时间，选填
+          example: '2023-11-09T16:00:00Z'
+          type: string
+        schedule_end_date:
+          description: 仅支持修改非实时受众-规则受众的调度结束时间，选填
+          example: '2023-11-09T16:00:00Z'
+          type: string
+      title: ModifyAudienceRuleRequest
+      type: object
+    sensorsdata.focus.v1.express.audience.open.AudienceCronTrigger:
+      description: ''
+      properties:
+        crontab_exp:
+          description: ''
+          type: string
+        start_time:
+          description: ''
+          format: date-time
+          type: string
+        end_time:
+          description: ''
+          format: date-time
+          type: string
+      title: AudienceCronTrigger
+      type: object
+    sensorsdata.horizon.v1.EventSequenceSegmentRuleExpression.SimpleEventSequenceSegmentRuleExpression.TimeWindow:
+      description: 通过 数值 + 时间单位 描述一个时间窗口
+      properties:
+        size:
+          description: 时间窗口大小
+          format: int32
+          type: integer
+        unit:
+          description: "时间窗口单位\n```\n  DAY: 天\n  HOUR: 小时\n  MINUTE: 分钟\n```"
+          enum:
+          - TIME_UNIT_UNSPECIFIED
+          - DAY
+          - HOUR
+          - MINUTE
+          example: DAY
+          type: string
+      title: TimeWindow
+      type: object
+    sensorsdata.common.HttpApiResult:
+      properties:
+        code:
+          type: string
+        message:
+          type: string
+        request_id:
+          type: string
+        data:
+          properties: {}
+          type: object
+        error_info:
+          $ref: '#/components/schemas/sensorsdata.common.ErrorInfo'
+      title: HttpApiResult
+      type: object
+    sensorsdata.personas.v1.OrderMeasure:
+      description: ''
+      properties:
+        type:
+          description: ''
+          enum:
+          - FIELD_TYPE_UNSPECIFIED
+          - PLAIN_FIELD
+          - AGGREGATOR_FIELD
+          type: string
+        plain_field:
+          description: ''
+          type: string
+        aggregator_field:
+          $ref: '#/components/schemas/sensorsdata.personas.v1.AggregatorField'
+        condition:
+          $ref: '#/components/schemas/sensorsdata.common.CompoundFilterCondition'
+      title: OrderMeasure
+      type: object
+    sensorsdata.focus.v1.TerminateAudienceFilterRuleResponseHttpApiResult:
+      properties:
+        code:
+          type: string
+        message:
+          type: string
+        request_id:
+          type: string
+        data:
+          $ref: '#/components/schemas/sensorsdata.focus.v1.TerminateAudienceFilterRuleResponse'
+        error_info:
+          $ref: '#/components/schemas/sensorsdata.common.ErrorInfo'
+      title: sensorsdata.focus.v1.TerminateAudienceFilterRuleResponseHttpApiResult
+      type: object
+    sensorsdata.personas.v1.SqlUserGroupRule:
+      description: ''
+      properties:
+        sql:
+          description: ''
+          type: string
+        query_options:
+          description: ''
+          items:
+            $ref: '#/components/schemas/sensorsdata.personas.v1.QueryOption'
+          type: array
+        virtual:
+          description: ''
+          type: boolean
+        desc:
+          description: ''
+          type: string
+      title: SqlUserGroupRule
+      type: object
+    sensorsdata.focus.v1.QueryAudienceUserGroupReferenceRule:
+      description: userGroupReference 规则返回的细节内容
+      properties:
+        user_group_name:
+          description: 分群名
+          type: string
+      title: QueryAudienceUserGroupReferenceRule
+      type: object
+    sensorsdata.focus.v1.CreateAudienceFilterRuleFromUserGroupRequest:
+      description: ''
+      properties:
+        user_group_name:
+          description: 私有端分群名
+          type: string
+        audience_biz_id:
+          description: ''
+          type: string
+        audience_biz_name:
+          description: ''
+          type: string
+      title: CreateAudienceFilterRuleFromUserGroupRequest
+      type: object
+    sensorsdata.horizon.v1.RankField:
+      description: ''
+      properties:
+        type:
+          description: "排序类型\n```\n  SHUFFLE_RANK: 随机值的排序值为序列号\n  PERCENT_SHUFFLE_RANK: 随机值的排序百分比为序列号，如：0.1\
+            \ 表示该随机值在所有值中的位次为前百分之十\n  ORDER_RANK: orders 排序值为序列号\n  PERCENT_ORDER_RANK: orders 排序值的排序百分比为序列号，如：0.1\
+            \ 表示根据 order 排序的序号值在所有值中的位次为前百分之十\n```"
+          enum:
+          - RANK_TYPE_UNSPECIFIED
+          - SHUFFLE_RANK
+          - PERCENT_SHUFFLE_RANK
+          - ORDER_RANK
+          - PERCENT_ORDER_RANK
+          example: SHUFFLE_RANK
+          type: string
+        orders:
+          description: 排序字段信息
+          items:
+            $ref: '#/components/schemas/sensorsdata.horizon.v1.Order'
+          type: array
+      title: RankField
+      type: object
+    sensorsdata.focus.v1.QueryAudienceInstantRule:
+      description: instant 规则返回的细节内容,暂时为空
+      title: QueryAudienceInstantRule
+      type: object
+    sensorsdata.personas.v1.ProfileUserGroupRule:
+      description: ''
+      properties:
+        condition:
+          $ref: '#/components/schemas/sensorsdata.common.CompoundFilterCondition'
+      title: ProfileUserGroupRule
+      type: object
+    sensorsdata.focus.v1.GenerateBizIdResponseHttpApiResult:
+      properties:
+        code:
+          type: string
+        message:
+          type: string
+        request_id:
+          type: string
+        data:
+          $ref: '#/components/schemas/sensorsdata.focus.v1.GenerateBizIdResponse'
+        error_info:
+          $ref: '#/components/schemas/sensorsdata.common.ErrorInfo'
+      title: sensorsdata.focus.v1.GenerateBizIdResponseHttpApiResult
+      type: object
+    sensorsdata.personas.v1.ProfileDimensionUserGroupRule:
+      description: ''
+      properties:
+        dimension_table:
+          $ref: '#/components/schemas/sensorsdata.personas.v1.DimensionTable'
+      title: ProfileDimensionUserGroupRule
+      type: object
+    sensorsdata.focus.v1.express.audience.open.AudienceRuleDefinitionV1:
+      description: ''
+      properties:
+        batch_rule_v1:
+          $ref: '#/components/schemas/sensorsdata.personas.v1.UserGroupRule'
+        realtime_rule_v1:
+          $ref: '#/components/schemas/sensorsdata.personas.v1.UserGroupRule'
+        instant_rule_v1:
+          $ref: '#/components/schemas/sensorsdata.personas.v1.UserGroupRule'
+        user_group_reference_rule_v1:
+          $ref: '#/components/schemas/sensorsdata.focus.v1.express.audience.open.UserGroupReferenceRule'
+        realtime_mark_rule_v1:
+          $ref: '#/components/schemas/sensorsdata.focus.v1.express.audience.open.RealtimeMarkRule'
+        audience_rule_detail_param:
+          $ref: '#/components/schemas/sensorsdata.focus.v1.express.audience.AudienceRuleDetailParam'
+      title: AudienceRuleDefinitionV1
+      type: object
+    sensorsdata.personas.v1.DimensionPredicate:
+      description: ''
+      properties:
+        operator:
+          description: ''
+          enum:
+          - LOGICAL_OPERATOR_UNSPECIFIED
+          - AND
+          - OR
+          type: string
+        simple_predicates:
+          description: ''
+          items:
+            $ref: '#/components/schemas/sensorsdata.personas.v1.DimensionSimplePredicate'
+          type: array
+        predicates:
+          description: ''
+          items:
+            $ref: '#/components/schemas/sensorsdata.personas.v1.DimensionPredicate'
+          type: array
+      title: DimensionPredicate
+      type: object
+    sensorsdata.horizon.v1.OrderMeasure:
+      description: 数据目标的原生属性或计算得到的属性
+      properties:
+        type:
+          description: "排序字段类型\n```\n  PLAIN_FIELD: 属性裁剪, 后续废弃不再迭代\n  AGGREGATOR_FIELD: 明细属性指标裁剪，后续废弃不再迭代\n\
+            \  EQL_MEASURE_FIELD: eql 指标裁剪\n```"
+          enum:
+          - FIELD_TYPE_UNSPECIFIED
+          - PLAIN_FIELD
+          - AGGREGATOR_FIELD
+          - EQL_MEASURE_FIELD
+          example: EQL_MEASURE_FIELD
+          type: string
+        plain_field:
+          description: 当 type = PLAIN_FIELD 时取此值
+          example: user.$identity_login_id
+          type: string
+        aggregator_field:
+          $ref: '#/components/schemas/sensorsdata.horizon.v1.AggregatorField'
+        condition:
+          $ref: '#/components/schemas/sensorsdata.common.CompoundFilterCondition'
+        eql_measure:
+          description: 当 type = EQL_MEASURE_FIELD
+          example: user.$Events.virtual_event_for_tag.filter_event(\n  datetime_add(${var:base_time},
+            -1, 'DAY'),\n  datetime_add(${var:base_time}, -1, 'DAY')\n).count()
+          type: string
+      title: OrderMeasure
+      type: object
+    sensorsdata.horizon.v1.SegmentRule.CustomParamsEntry:
+      description: ''
+      properties:
+        key:
+          description: ''
+          type: string
+        value:
+          $ref: '#/components/schemas/sensorsdata.common.Literal'
+      title: CustomParamsEntry
+      type: object
+    sensorsdata.focus.v1.TerminateAudienceFilterRuleResponse:
+      description: ''
+      title: TerminateAudienceFilterRuleResponse
+      type: object
+    sensorsdata.common.TimePoint.RelativeTimePoint:
+      description: ''
+      properties:
+        base_time:
+          description: ''
+          type: string
+        time_interval:
+          $ref: '#/components/schemas/sensorsdata.common.TimeInterval'
+      title: RelativeTimePoint
+      type: object
+    sensorsdata.personas.v1.PqlUserGroupRule:
+      description: ''
+      properties:
+        pql:
+          description: ''
+          type: string
+      title: PqlUserGroupRule
+      type: object
+    sensorsdata.horizon.v1.LoadingSegmentRuleExpression:
+      description: ''
+      properties:
+        matched_field:
+          description: 匹配字段, 文件放在任务中，规则中没有文件信息
+          example: user.$identity_login_id
+          type: string
+        sync_flag:
+          description: 导入的用户不在实体中，是否通过到实体表。如导入列表中有个 用户标识=【新增用户1】不在用户表， 这个参数可以控制是否将【新增用户1】 通过到用户表
+          example: false
+          type: boolean
+        loading_type:
+          description: "导入类型，\n ```\n TAG_LOADING_TYPE_OVERWRITE: 覆盖模式\n TAG_LOADING_TYPE_INCREMENT: 增量模式\n\
+            \ ```"
+          enum:
+          - LOADING_TYPE_UNSPECIFIED
+          - LOADING_TYPE_OVERWRITE
+          - LOADING_TYPE_INCREMENT
+          example: TAG_LOADING_TYPE_OVERWRITE
+          type: string
+      title: LoadingSegmentRuleExpression
+      type: object
+    sensorsdata.common.Literal:
+      description: ''
+      properties:
+        data_type:
+          description: ''
+          enum:
+          - DATA_TYPE_UNSPECIFIED
+          - BOOL
+          - INT
+          - NUMBER
+          - STRING
+          - LIST
+          - DATETIME
+          - DATE
+          - BIGINT
+          - DECIMAL
+          type: string
+        bool_value:
+          description: ''
+          type: boolean
+        int_value:
+          description: ''
+          format: int64
+          type: integer
+        number_value:
+          description: ''
+          format: double
+          type: number
+        string_value:
+          description: ''
+          type: string
+        list_value:
+          description: ''
+          items:
+            type: string
+          type: array
+        datetime_value:
+          description: ''
+          format: date-time
+          type: string
+        date_value:
+          description: ''
+          type: string
+        bigint_value:
+          description: ''
+          format: int64
+          type: integer
+        decimal_value:
+          description: ''
+          type: string
+      title: Literal
+      type: object
+    sensorsdata.focus.v1.QueryAudienceBatchRule:
+      description: batch 规则返回的细节内容
+      properties:
+        user_group_name:
+          description: 分群名，用于去impala中使用sql查询受众数据
+          type: string
+      title: QueryAudienceBatchRule
+      type: object
+    sensorsdata.focus.v1.QueryAudienceFilterRuleResponse:
+      description: ''
+      properties:
+        rules:
+          description: 单个受众规则
+          items:
+            $ref: '#/components/schemas/sensorsdata.focus.v1.SingleQueryAudienceFilterRule'
+          type: array
+      title: QueryAudienceFilterRuleResponse
+      type: object
+    sensorsdata.personas.v1.ExternalProfileUserGroupRule:
+      description: ''
+      properties:
+        condition:
+          $ref: '#/components/schemas/sensorsdata.common.CompoundFilterCondition'
+      title: ExternalProfileUserGroupRule
+      type: object
+    sensorsdata.personas.v1.AggregatorField:
+      description: ''
+      properties:
+        aggregator:
+          description: ''
+          enum:
+          - AGGREGATOR_TYPE_UNSPECIFIED
+          - COUNT
+          - AVG
+          - MAX
+          - MIN
+          - SUM
+          - UNIQUE_COUNT
+          - UNIQUE_AVG
+          - BOUNCE_RATE
+          - EXIT_RATE
+          - UNIQUE_COUNT_APPROX
+          - COUNT_PERCENT
+          - RANK_ASC
+          - RANK_DESC
+          - PERCENT_RANK_ASC
+          - PERCENT_RANK_DESC
+          - SESSION_COUNT
+          - FIRST_TIME
+          - LAST_TIME
+          - FIRST_TIME_INTERVAL
+          - LAST_TIME_INTERVAL
+          - GROUP_CONCAT
+          - UNIQUE_COUNT_BITMAP
+          - UNIQUE_COUNT_APPROX_ORDINARY
+          - COUNT_DISTINCT
+          - LTV
+          - LTV_AVG
+          - COUNT_RANK
+          - AVG_RANK
+          - MAX_RANK
+          - MIN_RANK
+          - SUM_RANK
+          - COUNT_RANK_ASC
+          - COUNT_RANK_DESC
+          - COUNT_PERCENT_RANK_ASC
+          - COUNT_PERCENT_RANK_DESC
+          - AVG_RANK_ASC
+          - AVG_RANK_DESC
+          - AVG_PERCENT_RANK_ASC
+          - AVG_PERCENT_RANK_DESC
+          - MAX_RANK_ASC
+          - MAX_RANK_DESC
+          - MAX_PERCENT_RANK_ASC
+          - MAX_PERCENT_RANK_DESC
+          - MIN_RANK_ASC
+          - MIN_RANK_DESC
+          - MIN_PERCENT_RANK_ASC
+          - MIN_PERCENT_RANK_DESC
+          - SUM_RANK_ASC
+          - SUM_RANK_DESC
+          - SUM_PERCENT_RANK_ASC
+          - SUM_PERCENT_RANK_DESC
+          type: string
+        field:
+          description: ''
+          type: string
+      title: AggregatorField
+      type: object
+    sensorsdata.personas.v1.Tailor:
+      description: ''
+      properties:
+        rank_field:
+          $ref: '#/components/schemas/sensorsdata.personas.v1.RankField'
+        function:
+          description: ''
+          enum:
+          - PREDICATE_FUNCTION_TYPE_UNSPECIFIED
+          - IS_SET
+          - IS_NOT_SET
+          - EQUAL
+          - NOT_EQUAL
+          - IN
+          - NOT_IN
+          - LESS
+          - LESS_EQUAL
+          - GREATER
+          - GREATER_EQUAL
+          - BETWEEN
+          - RIGHT_OPEN_BETWEEN
+          - HASH_BETWEEN
+          - LEFT_OPEN_BETWEEN
+          - OPEN_BETWEEN
+          - IS_TRUE
+          - IS_FALSE
+          - CONTAIN
+          - NOT_CONTAIN
+          - IS_EMPTY
+          - IS_NOT_EMPTY
+          - RLIKE
+          - NOT_RLIKE
+          - INCLUDE
+          - NOT_INCLUDE
+          - ABSOLUTE_BETWEEN
+          - RELATIVE_WITHIN
+          - RELATIVE_BETWEEN
+          - RELATIVE_EVENT_TIME
+          - RELATIVE_BEFORE
+          - INTERSECTS
+          - NOT_INTERSECTS
+          - SUBSET_OF
+          - NOT_SUBSET_OF
+          - SUPERSET_OF
+          - NOT_SUPERSET_OF
+          type: string
+        params:
+          description: ''
+          items:
+            $ref: '#/components/schemas/sensorsdata.common.PredicateFunctionParam'
+          type: array
+      title: Tailor
+      type: object
+    sensorsdata.personas.v1.SubDimensionMeasure:
+      description: ''
+      properties:
+        dimension_table:
+          $ref: '#/components/schemas/sensorsdata.personas.v1.DimensionTable'
+        join_clause:
+          $ref: '#/components/schemas/sensorsdata.common.CompoundFilterCondition'
+        aggregator:
+          description: ''
+          enum:
+          - AGGREGATOR_TYPE_UNSPECIFIED
+          - COUNT
+          - AVG
+          - MAX
+          - MIN
+          - SUM
+          - UNIQUE_COUNT
+          - UNIQUE_AVG
+          - BOUNCE_RATE
+          - EXIT_RATE
+          - UNIQUE_COUNT_APPROX
+          - COUNT_PERCENT
+          - RANK_ASC
+          - RANK_DESC
+          - PERCENT_RANK_ASC
+          - PERCENT_RANK_DESC
+          - SESSION_COUNT
+          - FIRST_TIME
+          - LAST_TIME
+          - FIRST_TIME_INTERVAL
+          - LAST_TIME_INTERVAL
+          - GROUP_CONCAT
+          - UNIQUE_COUNT_BITMAP
+          - UNIQUE_COUNT_APPROX_ORDINARY
+          - COUNT_DISTINCT
+          - LTV
+          - LTV_AVG
+          - COUNT_RANK
+          - AVG_RANK
+          - MAX_RANK
+          - MIN_RANK
+          - SUM_RANK
+          - COUNT_RANK_ASC
+          - COUNT_RANK_DESC
+          - COUNT_PERCENT_RANK_ASC
+          - COUNT_PERCENT_RANK_DESC
+          - AVG_RANK_ASC
+          - AVG_RANK_DESC
+          - AVG_PERCENT_RANK_ASC
+          - AVG_PERCENT_RANK_DESC
+          - MAX_RANK_ASC
+          - MAX_RANK_DESC
+          - MAX_PERCENT_RANK_ASC
+          - MAX_PERCENT_RANK_DESC
+          - MIN_RANK_ASC
+          - MIN_RANK_DESC
+          - MIN_PERCENT_RANK_ASC
+          - MIN_PERCENT_RANK_DESC
+          - SUM_RANK_ASC
+          - SUM_RANK_DESC
+          - SUM_PERCENT_RANK_ASC
+          - SUM_PERCENT_RANK_DESC
+          type: string
+        aggregate_field:
+          description: ''
+          type: string
+      title: SubDimensionMeasure
+      type: object
+    sensorsdata.focus.v1.ListSubscriberResponseHttpApiResult:
+      properties:
+        code:
+          type: string
+        message:
+          type: string
+        request_id:
+          type: string
+        data:
+          $ref: '#/components/schemas/sensorsdata.focus.v1.ListSubscriberResponse'
+        error_info:
+          $ref: '#/components/schemas/sensorsdata.common.ErrorInfo'
+      title: sensorsdata.focus.v1.ListSubscriberResponseHttpApiResult
+      type: object
+    sensorsdata.common.ErrorCause:
+      properties:
+        error_cause:
+          description: 致错原因1
+          example: 参数异常1
+          type: string
+        action_suggestion:
+          description: 操作建议，针对该原因，建议的解决方式
+          example: 检测入参的数据类型1
+          type: string
+      title: ErrorCause
+      type: object
+    sensorsdata.common.ErrorInfo:
+      properties:
+        code:
+          description: 具体的错误码
+          example: XX-D-F-2-1
+          type: string
+        description:
+          description: 错误描述
+          example: 前端参数校验异常,PARAMETER_FORMAT_ERROR(quantiles=[10, -90] is not include [0, 100])
+          type: string
+        system_response:
+          description: 致错的可能原因列表
+          example: 系统终止了查询处理
+          type: string
+        error_causes:
+          items:
+            $ref: '#/components/schemas/sensorsdata.common.ErrorCause'
+          type: array
+        context:
+          $ref: '#/components/schemas/sensorsdata.common.ErrorContext'
+      title: ErrorInfo
+      type: object
+    sensorsdata.personas.v1.SimpleUserGroupRule:
+      description: ''
+      properties:
+        type:
+          description: ''
+          enum:
+          - SIMPLE_USER_GROUP_TYPE_UNSPECIFIED
+          - EVENT_MEASURE_BASED
+          - PROFILE_FILTER_BASED
+          - EVENT_SEQUENCE_BASED
+          - SQL_BASED
+          - LOADING_BASED
+          - EXTERNAL_PROFILE_FILTER_BASED
+          - EXTERNAL_MEASURE_BASED
+          - EVENT_COMPOUND_MEASURE_BASED
+          - PROFILE_DIMENSION_MEASURE_BASED
+          - GROUP_EXPRESSION
+          - PQL_BASED
+          type: string
+        event_measure_user_group:
+          $ref: '#/components/schemas/sensorsdata.personas.v1.EventMeasureUserGroupRule'
+        profile_user_group:
+          $ref: '#/components/schemas/sensorsdata.personas.v1.ProfileUserGroupRule'
+        event_sequence_user_group:
+          $ref: '#/components/schemas/sensorsdata.personas.v1.EventSequenceUserGroupRule'
+        sql_user_group:
+          $ref: '#/components/schemas/sensorsdata.personas.v1.SqlUserGroupRule'
+        external_profile_user_group:
+          $ref: '#/components/schemas/sensorsdata.personas.v1.ExternalProfileUserGroupRule'
+        external_measure_user_group:
+          $ref: '#/components/schemas/sensorsdata.personas.v1.ExternalMeasureUserGroupRule'
+        event_compound_measure_user_group:
+          $ref: '#/components/schemas/sensorsdata.personas.v1.EventCompoundMeasureUserGroupRule'
+        profile_dimension_user_group:
+          $ref: '#/components/schemas/sensorsdata.personas.v1.ProfileDimensionUserGroupRule'
+        group_expression_user_group:
+          $ref: '#/components/schemas/sensorsdata.personas.v1.GroupExpressionUserGroupRule'
+        pql_user_group:
+          $ref: '#/components/schemas/sensorsdata.personas.v1.PqlUserGroupRule'
+      title: SimpleUserGroupRule
+      type: object
+    sensorsdata.personas.v1.EventMeasureUserGroupRule:
+      description: ''
+      properties:
+        events:
+          $ref: '#/components/schemas/sensorsdata.common.EventSeries'
+        aggregator:
+          description: ''
+          enum:
+          - AGGREGATOR_TYPE_UNSPECIFIED
+          - COUNT
+          - AVG
+          - MAX
+          - MIN
+          - SUM
+          - UNIQUE_COUNT
+          - UNIQUE_AVG
+          - BOUNCE_RATE
+          - EXIT_RATE
+          - UNIQUE_COUNT_APPROX
+          - COUNT_PERCENT
+          - RANK_ASC
+          - RANK_DESC
+          - PERCENT_RANK_ASC
+          - PERCENT_RANK_DESC
+          - SESSION_COUNT
+          - FIRST_TIME
+          - LAST_TIME
+          - FIRST_TIME_INTERVAL
+          - LAST_TIME_INTERVAL
+          - GROUP_CONCAT
+          - UNIQUE_COUNT_BITMAP
+          - UNIQUE_COUNT_APPROX_ORDINARY
+          - COUNT_DISTINCT
+          - LTV
+          - LTV_AVG
+          - COUNT_RANK
+          - AVG_RANK
+          - MAX_RANK
+          - MIN_RANK
+          - SUM_RANK
+          - COUNT_RANK_ASC
+          - COUNT_RANK_DESC
+          - COUNT_PERCENT_RANK_ASC
+          - COUNT_PERCENT_RANK_DESC
+          - AVG_RANK_ASC
+          - AVG_RANK_DESC
+          - AVG_PERCENT_RANK_ASC
+          - AVG_PERCENT_RANK_DESC
+          - MAX_RANK_ASC
+          - MAX_RANK_DESC
+          - MAX_PERCENT_RANK_ASC
+          - MAX_PERCENT_RANK_DESC
+          - MIN_RANK_ASC
+          - MIN_RANK_DESC
+          - MIN_PERCENT_RANK_ASC
+          - MIN_PERCENT_RANK_DESC
+          - SUM_RANK_ASC
+          - SUM_RANK_DESC
+          - SUM_PERCENT_RANK_ASC
+          - SUM_PERCENT_RANK_DESC
+          type: string
+        aggregate_field:
+          description: ''
+          type: string
+        function:
+          description: ''
+          enum:
+          - PREDICATE_FUNCTION_TYPE_UNSPECIFIED
+          - IS_SET
+          - IS_NOT_SET
+          - EQUAL
+          - NOT_EQUAL
+          - IN
+          - NOT_IN
+          - LESS
+          - LESS_EQUAL
+          - GREATER
+          - GREATER_EQUAL
+          - BETWEEN
+          - RIGHT_OPEN_BETWEEN
+          - HASH_BETWEEN
+          - LEFT_OPEN_BETWEEN
+          - OPEN_BETWEEN
+          - IS_TRUE
+          - IS_FALSE
+          - CONTAIN
+          - NOT_CONTAIN
+          - IS_EMPTY
+          - IS_NOT_EMPTY
+          - RLIKE
+          - NOT_RLIKE
+          - INCLUDE
+          - NOT_INCLUDE
+          - ABSOLUTE_BETWEEN
+          - RELATIVE_WITHIN
+          - RELATIVE_BETWEEN
+          - RELATIVE_EVENT_TIME
+          - RELATIVE_BEFORE
+          - INTERSECTS
+          - NOT_INTERSECTS
+          - SUBSET_OF
+          - NOT_SUBSET_OF
+          - SUPERSET_OF
+          - NOT_SUPERSET_OF
+          type: string
+        params:
+          description: ''
+          items:
+            $ref: '#/components/schemas/sensorsdata.common.PredicateFunctionParam'
+          type: array
+      title: EventMeasureUserGroupRule
+      type: object
+    sensorsdata.common.TimeInterval:
+      description: ''
+      properties:
+        size:
+          description: ''
+          format: int32
+          type: integer
+        unit:
+          description: ''
+          enum:
+          - DATE_TIME_UNIT_UNSPECIFIED
+          - MILLISECOND
+          - SECOND
+          - MINUTE
+          - HOUR
+          - DAY
+          - WEEK
+          - MONTH
+          - YEAR
+          type: string
+      title: TimeInterval
+      type: object
+    sensorsdata.horizon.v1.AggregatorField:
+      description: ''
+      properties:
+        aggregator:
+          description: "聚合类型\n```\n  COUNT: 计数\n  SUM: 求和\n  AVG: 平均值\n  MIN: 最小值\n  MAX: 最大值\n```"
+          enum:
+          - AGGREGATOR_TYPE_UNSPECIFIED
+          - COUNT
+          - AVG
+          - MAX
+          - MIN
+          - SUM
+          - UNIQUE_COUNT
+          - UNIQUE_AVG
+          - BOUNCE_RATE
+          - EXIT_RATE
+          - UNIQUE_COUNT_APPROX
+          - COUNT_PERCENT
+          - RANK_ASC
+          - RANK_DESC
+          - PERCENT_RANK_ASC
+          - PERCENT_RANK_DESC
+          - SESSION_COUNT
+          - FIRST_TIME
+          - LAST_TIME
+          - FIRST_TIME_INTERVAL
+          - LAST_TIME_INTERVAL
+          - GROUP_CONCAT
+          - UNIQUE_COUNT_BITMAP
+          - UNIQUE_COUNT_APPROX_ORDINARY
+          - COUNT_DISTINCT
+          - LTV
+          - LTV_AVG
+          - COUNT_RANK
+          - AVG_RANK
+          - MAX_RANK
+          - MIN_RANK
+          - SUM_RANK
+          - COUNT_RANK_ASC
+          - COUNT_RANK_DESC
+          - COUNT_PERCENT_RANK_ASC
+          - COUNT_PERCENT_RANK_DESC
+          - AVG_RANK_ASC
+          - AVG_RANK_DESC
+          - AVG_PERCENT_RANK_ASC
+          - AVG_PERCENT_RANK_DESC
+          - MAX_RANK_ASC
+          - MAX_RANK_DESC
+          - MAX_PERCENT_RANK_ASC
+          - MAX_PERCENT_RANK_DESC
+          - MIN_RANK_ASC
+          - MIN_RANK_DESC
+          - MIN_PERCENT_RANK_ASC
+          - MIN_PERCENT_RANK_DESC
+          - SUM_RANK_ASC
+          - SUM_RANK_DESC
+          - SUM_PERCENT_RANK_ASC
+          - SUM_PERCENT_RANK_DESC
+          example: SUM
+          type: string
+        field:
+          description: 聚合字段
+          example: user.$Events.$AppStart.$duration
+          type: string
+      title: AggregatorField
+      type: object
+    sensorsdata.personas.v1.ExternalMeasureUserGroupRule:
+      description: ''
+      properties:
+        rows:
+          $ref: '#/components/schemas/sensorsdata.personas.v1.ExternalDataSeries'
+        aggregator:
+          description: ''
+          enum:
+          - AGGREGATOR_TYPE_UNSPECIFIED
+          - COUNT
+          - AVG
+          - MAX
+          - MIN
+          - SUM
+          - UNIQUE_COUNT
+          - UNIQUE_AVG
+          - BOUNCE_RATE
+          - EXIT_RATE
+          - UNIQUE_COUNT_APPROX
+          - COUNT_PERCENT
+          - RANK_ASC
+          - RANK_DESC
+          - PERCENT_RANK_ASC
+          - PERCENT_RANK_DESC
+          - SESSION_COUNT
+          - FIRST_TIME
+          - LAST_TIME
+          - FIRST_TIME_INTERVAL
+          - LAST_TIME_INTERVAL
+          - GROUP_CONCAT
+          - UNIQUE_COUNT_BITMAP
+          - UNIQUE_COUNT_APPROX_ORDINARY
+          - COUNT_DISTINCT
+          - LTV
+          - LTV_AVG
+          - COUNT_RANK
+          - AVG_RANK
+          - MAX_RANK
+          - MIN_RANK
+          - SUM_RANK
+          - COUNT_RANK_ASC
+          - COUNT_RANK_DESC
+          - COUNT_PERCENT_RANK_ASC
+          - COUNT_PERCENT_RANK_DESC
+          - AVG_RANK_ASC
+          - AVG_RANK_DESC
+          - AVG_PERCENT_RANK_ASC
+          - AVG_PERCENT_RANK_DESC
+          - MAX_RANK_ASC
+          - MAX_RANK_DESC
+          - MAX_PERCENT_RANK_ASC
+          - MAX_PERCENT_RANK_DESC
+          - MIN_RANK_ASC
+          - MIN_RANK_DESC
+          - MIN_PERCENT_RANK_ASC
+          - MIN_PERCENT_RANK_DESC
+          - SUM_RANK_ASC
+          - SUM_RANK_DESC
+          - SUM_PERCENT_RANK_ASC
+          - SUM_PERCENT_RANK_DESC
+          type: string
+        aggregate_field:
+          description: ''
+          type: string
+        function:
+          description: ''
+          enum:
+          - PREDICATE_FUNCTION_TYPE_UNSPECIFIED
+          - IS_SET
+          - IS_NOT_SET
+          - EQUAL
+          - NOT_EQUAL
+          - IN
+          - NOT_IN
+          - LESS
+          - LESS_EQUAL
+          - GREATER
+          - GREATER_EQUAL
+          - BETWEEN
+          - RIGHT_OPEN_BETWEEN
+          - HASH_BETWEEN
+          - LEFT_OPEN_BETWEEN
+          - OPEN_BETWEEN
+          - IS_TRUE
+          - IS_FALSE
+          - CONTAIN
+          - NOT_CONTAIN
+          - IS_EMPTY
+          - IS_NOT_EMPTY
+          - RLIKE
+          - NOT_RLIKE
+          - INCLUDE
+          - NOT_INCLUDE
+          - ABSOLUTE_BETWEEN
+          - RELATIVE_WITHIN
+          - RELATIVE_BETWEEN
+          - RELATIVE_EVENT_TIME
+          - RELATIVE_BEFORE
+          - INTERSECTS
+          - NOT_INTERSECTS
+          - SUBSET_OF
+          - NOT_SUBSET_OF
+          - SUPERSET_OF
+          - NOT_SUPERSET_OF
+          type: string
+        params:
+          description: ''
+          items:
+            $ref: '#/components/schemas/sensorsdata.common.PredicateFunctionParam'
+          type: array
+      title: ExternalMeasureUserGroupRule
+      type: object
+    sensorsdata.personas.v1.RankField:
+      description: ''
+      properties:
+        type:
+          description: ''
+          enum:
+          - RANK_TYPE_UNSPECIFIED
+          - SHUFFLE_RANK
+          - PERCENT_SHUFFLE_RANK
+          - ORDER_RANK
+          - PERCENT_ORDER_RANK
+          type: string
+        orders:
+          description: ''
+          items:
+            $ref: '#/components/schemas/sensorsdata.personas.v1.Order'
+          type: array
+      title: RankField
+      type: object
+    sensorsdata.personas.v1.QueryOption:
+      description: ''
+      properties:
+        option:
+          description: ''
+          type: string
+        value:
+          description: ''
+          type: string
+      title: QueryOption
+      type: object
+    sensorsdata.focus.v1.express.audience.open.AudienceFirstTrigger:
+      description: ''
+      properties:
+        first_trigger_type:
+          description: ''
+          enum:
+          - NOW
+          - STATIC
+          type: string
+        static_trigger:
+          description: ''
+          format: date-time
+          type: string
+      title: AudienceFirstTrigger
+      type: object
+    sensorsdata.common.TimeRange:
+      description: ''
+      properties:
+        start_time:
+          $ref: '#/components/schemas/sensorsdata.common.TimePoint'
+        end_time:
+          $ref: '#/components/schemas/sensorsdata.common.TimePoint'
+      title: TimeRange
+      type: object
+    sensorsdata.horizon.v1.EqlSegmentRuleExpression:
+      description: ''
+      properties:
+        eql:
+          description: EQL 表达式
+          example: 'user.$SegmentMembership.user_segment_t111111.is_not_null()
+
+            and
+
+            user.user_tag_c4 == ''标签值1''
+
+            and
+
+            user.vip_level in [''高级VIP'',''普通用户'']'
+          type: string
+      title: EqlSegmentRuleExpression
+      type: object
+    sensorsdata.focus.v1.AudienceRelation:
+      description: 实时标记受众需要返回引用的计划画布等血缘关系
+      properties:
+        scenario_name:
+          description: 场景归属
+          type: string
+        service_ids:
+          description: 血缘id (业务方定义的参数，如计划ID)
+          items:
+            type: string
+          type: array
+      title: AudienceRelation
+      type: object
+    sensorsdata.focus.v1.QueryQuotaResponse:
+      description: ''
+      properties:
+        used_count:
+          description: 已经使用的额度
+          example: 2
+          format: int32
+          type: integer
+        remained_count:
+          description: 剩余的额度
+          example: 8
+          format: int32
+          type: integer
+      title: QueryQuotaResponse
+      type: object
+    sensorsdata.personas.v1.EventCompoundMeasureUserGroupRule:
+      description: ''
+      properties:
+        measure:
+          $ref: '#/components/schemas/sensorsdata.personas.v1.EventCompoundMeasure'
+        function:
+          description: ''
+          enum:
+          - PREDICATE_FUNCTION_TYPE_UNSPECIFIED
+          - IS_SET
+          - IS_NOT_SET
+          - EQUAL
+          - NOT_EQUAL
+          - IN
+          - NOT_IN
+          - LESS
+          - LESS_EQUAL
+          - GREATER
+          - GREATER_EQUAL
+          - BETWEEN
+          - RIGHT_OPEN_BETWEEN
+          - HASH_BETWEEN
+          - LEFT_OPEN_BETWEEN
+          - OPEN_BETWEEN
+          - IS_TRUE
+          - IS_FALSE
+          - CONTAIN
+          - NOT_CONTAIN
+          - IS_EMPTY
+          - IS_NOT_EMPTY
+          - RLIKE
+          - NOT_RLIKE
+          - INCLUDE
+          - NOT_INCLUDE
+          - ABSOLUTE_BETWEEN
+          - RELATIVE_WITHIN
+          - RELATIVE_BETWEEN
+          - RELATIVE_EVENT_TIME
+          - RELATIVE_BEFORE
+          - INTERSECTS
+          - NOT_INTERSECTS
+          - SUBSET_OF
+          - NOT_SUBSET_OF
+          - SUPERSET_OF
+          - NOT_SUPERSET_OF
+          type: string
+        params:
+          description: ''
+          items:
+            $ref: '#/components/schemas/sensorsdata.common.PredicateFunctionParam'
+          type: array
+      title: EventCompoundMeasureUserGroupRule
+      type: object
+    sensorsdata.focus.v1.CreateRealtimeMarkAudienceFilterRuleRequest:
+      description: ''
+      properties:
+        rule_name:
+          description: 实时标记受众名称，与业务名称同值
+          type: string
+        audience_biz_id:
+          description: ''
+          type: string
+      title: CreateRealtimeMarkAudienceFilterRuleRequest
+      type: object
+x-sd-openapi-service-name: ExpressAudienceMeta
+x-sd-openapi-service-name-hyphen: express-audience-meta
+x-sd-openapi-app-name: focus
+x-sd-openapi-service-name-zh_cn: 受众-元数据
+x-original-swagger-version: '2.0'

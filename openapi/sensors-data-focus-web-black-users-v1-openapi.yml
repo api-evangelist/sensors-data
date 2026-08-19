@@ -1,0 +1,188 @@
+openapi: 3.0.1
+info:
+  description: 黑名单中的用户，在运营计划、(新)流程画布中均不会被实际触达，在资源位中不会请求到结果
+  title: 神策智能运营
+  version: ''
+servers:
+- url: /api/v3/focus/v1
+paths:
+  /web-black-users/import:
+    post:
+      description: 黑名单导入
+      operationId: WebBlackUserImport
+      parameters:
+      - description: 全局唯一的密钥，用于验证和授权访问 API 接口
+        in: header
+        name: api-key
+        required: true
+        schema:
+          type: string
+      - description: 项目名, 指定请求所属项目
+        in: header
+        name: sensorsdata-project
+        required: true
+        schema:
+          type: string
+      - description: 租户 ID, 用于请求所属租户
+        in: header
+        name: X-Organization-Id
+        required: true
+        schema:
+          type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/sensorsdata.focus.v1.WebBlackUserImportRequest'
+        description: 黑名单导入请求参数
+        required: false
+      responses:
+        default:
+          content:
+            application/json:
+              example:
+                code: SUCCESS
+                data: {}
+                request_id: '1'
+              schema:
+                $ref: '#/components/schemas/sensorsdata.focus.v1.WebBlackUserImportResponseHttpApiResult'
+          description: sensorsdata.focus.v1.WebBlackUserImportResponse
+      summary: 黑名单导入
+      x-sd-openapi:
+        responseClass: com.sensorsdata.focus.v1.WebBlackUserImportResponse
+        isServerStreaming: false
+        requestClass: com.sensorsdata.focus.v1.WebBlackUserImportRequest
+        grpcServiceBase: com.sensorsdata.focus.v1.WebBlackUsersServiceGrpc.WebBlackUsersServiceImplBase
+        internalDesc: classes in template for grpc service dynamic invoking
+        isClientStreaming: false
+      x-codegen-request-body-name: WebBlackUserImportRequest
+components:
+  schemas:
+    sensorsdata.focus.v1.WebBlackUserImportResponse:
+      description: 黑名单导入响应参数
+      properties:
+        success_ids:
+          description: 成功 id
+          items:
+            type: string
+          type: array
+        duplicate_ids:
+          description: 重复 id
+          items:
+            type: string
+          type: array
+        nonexistent_ids:
+          description: 不存在 id
+          items:
+            type: string
+          type: array
+        invalid_ids:
+          description: 非法 id
+          items:
+            type: string
+          type: array
+        failed_ids:
+          description: 其他失败
+          items:
+            type: string
+          type: array
+      title: WebBlackUserImportResponse
+      type: object
+    sensorsdata.focus.v1.WebBlackUserImportRequest:
+      description: 黑名单导入请求参数
+      properties:
+        distinct_ids:
+          description: 用户distinct id
+          items:
+            type: string
+          type: array
+      title: WebBlackUserImportRequest
+      type: object
+    sensorsdata.common.HttpApiResult:
+      properties:
+        code:
+          type: string
+        message:
+          type: string
+        request_id:
+          type: string
+        data:
+          properties: {}
+          type: object
+        error_info:
+          $ref: '#/components/schemas/sensorsdata.common.ErrorInfo'
+      title: HttpApiResult
+      type: object
+    sensorsdata.focus.v1.WebBlackUserImportResponseHttpApiResult:
+      properties:
+        code:
+          type: string
+        message:
+          type: string
+        request_id:
+          type: string
+        data:
+          $ref: '#/components/schemas/sensorsdata.focus.v1.WebBlackUserImportResponse'
+        error_info:
+          $ref: '#/components/schemas/sensorsdata.common.ErrorInfo'
+      title: sensorsdata.focus.v1.WebBlackUserImportResponseHttpApiResult
+      type: object
+    sensorsdata.common.ErrorCause:
+      properties:
+        error_cause:
+          description: 致错原因1
+          example: 参数异常1
+          type: string
+        action_suggestion:
+          description: 操作建议，针对该原因，建议的解决方式
+          example: 检测入参的数据类型1
+          type: string
+      title: ErrorCause
+      type: object
+    sensorsdata.common.ErrorContext:
+      description: 发生错误时，系统快照信息
+      properties:
+        origin_stack:
+          description: 上游异常的 stack，由系统截获
+          type: string
+        origin_cause:
+          description: 上游异常的 cause by，由系统截获
+          type: string
+        origin_code:
+          description: 上游异常的错误简码
+          type: string
+        origin_complete_code:
+          description: 上游异常的完整错误码
+          type: string
+        error_extend_desc:
+          description: 本次异常的辅助说明，可传入
+          type: string
+      title: ErrorContext
+      type: object
+    sensorsdata.common.ErrorInfo:
+      properties:
+        code:
+          description: 具体的错误码
+          example: XX-D-F-2-1
+          type: string
+        description:
+          description: 错误描述
+          example: 前端参数校验异常,PARAMETER_FORMAT_ERROR(quantiles=[10, -90] is not include [0, 100])
+          type: string
+        system_response:
+          description: 致错的可能原因列表
+          example: 系统终止了查询处理
+          type: string
+        error_causes:
+          items:
+            $ref: '#/components/schemas/sensorsdata.common.ErrorCause'
+          type: array
+        context:
+          $ref: '#/components/schemas/sensorsdata.common.ErrorContext'
+      title: ErrorInfo
+      type: object
+x-sd-openapi-service-name: WebBlackUsers
+x-sd-openapi-service-name-hyphen: web-black-users
+x-sd-openapi-app-name: focus
+x-sd-openapi-service-name-zh_cn: 基础服务-用户黑名单
+x-original-swagger-version: '2.0'

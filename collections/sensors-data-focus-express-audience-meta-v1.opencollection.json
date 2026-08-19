@@ -1,0 +1,193 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "神策智能运营"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "创建一个分群引用受众",
+        "type": "http"
+      },
+      "http": {
+        "method": "POST",
+        "url": "/api/v3/focus/v1/express-audience-meta/rule/user-group-ref/create",
+        "headers": [
+          {
+            "name": "api-key",
+            "value": ""
+          },
+          {
+            "name": "sensorsdata-project",
+            "value": ""
+          },
+          {
+            "name": "X-Organization-Id",
+            "value": ""
+          }
+        ],
+        "body": {
+          "type": "json",
+          "data": "{}"
+        }
+      },
+      "docs": "创建一个分群引用受众"
+    },
+    {
+      "info": {
+        "name": "创建一个实时标记受众",
+        "type": "http"
+      },
+      "http": {
+        "method": "POST",
+        "url": "/api/v3/focus/v1/express-audience-meta/rule/realtime-mark/create",
+        "headers": [
+          {
+            "name": "api-key",
+            "value": ""
+          },
+          {
+            "name": "sensorsdata-project",
+            "value": ""
+          },
+          {
+            "name": "X-Organization-Id",
+            "value": ""
+          }
+        ],
+        "body": {
+          "type": "json",
+          "data": "{}"
+        }
+      },
+      "docs": "创建一个实时标记受众"
+    },
+    {
+      "info": {
+        "name": "关闭一条受众服务",
+        "type": "http"
+      },
+      "http": {
+        "method": "POST",
+        "url": "/api/v3/focus/v1/express-audience-meta/rule/terminate",
+        "headers": [
+          {
+            "name": "api-key",
+            "value": ""
+          },
+          {
+            "name": "sensorsdata-project",
+            "value": ""
+          },
+          {
+            "name": "X-Organization-Id",
+            "value": ""
+          }
+        ],
+        "body": {
+          "type": "json",
+          "data": "{}"
+        }
+      },
+      "docs": "关闭一条受众服务"
+    },
+    {
+      "info": {
+        "name": "查看受众信息",
+        "type": "http"
+      },
+      "http": {
+        "method": "POST",
+        "url": "/api/v3/focus/v1/express-audience-meta/rule/query",
+        "headers": [
+          {
+            "name": "api-key",
+            "value": ""
+          },
+          {
+            "name": "sensorsdata-project",
+            "value": ""
+          },
+          {
+            "name": "X-Organization-Id",
+            "value": ""
+          }
+        ],
+        "body": {
+          "type": "json",
+          "data": "{}"
+        }
+      },
+      "docs": "查看受众信息"
+    },
+    {
+      "info": {
+        "name": "查询Quota",
+        "type": "http"
+      },
+      "http": {
+        "method": "GET",
+        "url": "/api/v3/focus/v1/express-audience-meta/quota/query",
+        "headers": [
+          {
+            "name": "api-key",
+            "value": ""
+          },
+          {
+            "name": "sensorsdata-project",
+            "value": ""
+          },
+          {
+            "name": "X-Organization-Id",
+            "value": ""
+          }
+        ],
+        "params": [
+          {
+            "name": "quota_type",
+            "value": "",
+            "type": "query",
+            "description": "AudienceQuotaType枚举定义\n - BATCH_QUOTA   批受众的额度\n - REALTIME_QUOTA   实时受众的额度\n - INSTANT_QUOTA   即时受众的额度"
+          },
+          {
+            "name": "product",
+            "value": "",
+            "type": "query",
+            "description": "产品线：SF或ACTIVATION. 默认为ACTIVATION, 即openapi的quota"
+          }
+        ]
+      },
+      "docs": "查询Quota"
+    },
+    {
+      "info": {
+        "name": "修改受众调度时间",
+        "type": "http"
+      },
+      "http": {
+        "method": "POST",
+        "url": "/api/v3/focus/v1/express-audience-meta/rule/modify",
+        "headers": [
+          {
+            "name": "api-key",
+            "value": ""
+          },
+          {
+            "name": "sensorsdata-project",
+            "value": ""
+          },
+          {
+            "name": "X-Organization-Id",
+            "value": ""
+          }
+        ],
+        "body": {
+          "type": "json",
+          "data": "{}"
+        }
+      },
+      "docs": "修改受众调度时间"
+    }
+  ],
+  "bundled": true
+}

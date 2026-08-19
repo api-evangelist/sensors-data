@@ -1,0 +1,726 @@
+{
+  "openapi" : "3.0.1",
+  "info" : {
+    "description" : "实时标签相关接口",
+    "title" : "神策智能运营",
+    "version" : ""
+  },
+  "servers" : [ {
+    "url" : "/api/v3/focus/v1"
+  } ],
+  "paths" : {
+    "/real-time-tag/start" : {
+      "post" : {
+        "description" : "启动实时标签",
+        "operationId" : "StartRealTimeTag",
+        "parameters" : [ {
+          "description" : "全局唯一的密钥，用于验证和授权访问 API 接口",
+          "in" : "header",
+          "name" : "api-key",
+          "required" : true,
+          "schema" : {
+            "type" : "string"
+          }
+        }, {
+          "description" : "项目名, 指定请求所属项目",
+          "in" : "header",
+          "name" : "sensorsdata-project",
+          "required" : true,
+          "schema" : {
+            "type" : "string"
+          }
+        }, {
+          "description" : "租户 ID, 用于请求所属租户",
+          "in" : "header",
+          "name" : "X-Organization-Id",
+          "required" : true,
+          "schema" : {
+            "type" : "string"
+          }
+        } ],
+        "requestBody" : {
+          "content" : {
+            "application/json" : {
+              "schema" : {
+                "$ref" : "#/components/schemas/sensorsdata.focus.v1.StartRealTimeTagRequest"
+              }
+            }
+          },
+          "description" : "启动实时标签的请求体",
+          "required" : false
+        },
+        "responses" : {
+          "default" : {
+            "content" : {
+              "application/json" : {
+                "example" : {
+                  "code" : "SUCCESS",
+                  "data" : { },
+                  "request_id" : "1"
+                },
+                "schema" : {
+                  "$ref" : "#/components/schemas/sensorsdata.focus.v1.StartRealTimeTagResponseHttpApiResult"
+                }
+              }
+            },
+            "description" : "sensorsdata.focus.v1.StartRealTimeTagResponse"
+          }
+        },
+        "summary" : "启动实时标签",
+        "x-sd-openapi" : {
+          "responseClass" : "com.sensorsdata.focus.v1.StartRealTimeTagResponse",
+          "isServerStreaming" : false,
+          "requestClass" : "com.sensorsdata.focus.v1.StartRealTimeTagRequest",
+          "grpcServiceBase" : "com.sensorsdata.focus.v1.WebRealTimeTagServiceGrpc.WebRealTimeTagServiceImplBase",
+          "internalDesc" : "classes in template for grpc service dynamic invoking",
+          "isClientStreaming" : false
+        },
+        "x-codegen-request-body-name" : "StartRealTimeTagRequest"
+      }
+    },
+    "/real-time-tag/stop" : {
+      "post" : {
+        "description" : "停用实时标签",
+        "operationId" : "StopRealTimeTag",
+        "parameters" : [ {
+          "description" : "全局唯一的密钥，用于验证和授权访问 API 接口",
+          "in" : "header",
+          "name" : "api-key",
+          "required" : true,
+          "schema" : {
+            "type" : "string"
+          }
+        }, {
+          "description" : "项目名, 指定请求所属项目",
+          "in" : "header",
+          "name" : "sensorsdata-project",
+          "required" : true,
+          "schema" : {
+            "type" : "string"
+          }
+        }, {
+          "description" : "租户 ID, 用于请求所属租户",
+          "in" : "header",
+          "name" : "X-Organization-Id",
+          "required" : true,
+          "schema" : {
+            "type" : "string"
+          }
+        } ],
+        "requestBody" : {
+          "content" : {
+            "application/json" : {
+              "schema" : {
+                "$ref" : "#/components/schemas/sensorsdata.focus.v1.StopRealTimeTagRequest"
+              }
+            }
+          },
+          "description" : "停用实时标签的请求体",
+          "required" : false
+        },
+        "responses" : {
+          "default" : {
+            "content" : {
+              "application/json" : {
+                "example" : {
+                  "code" : "SUCCESS",
+                  "data" : { },
+                  "request_id" : "1"
+                },
+                "schema" : {
+                  "$ref" : "#/components/schemas/sensorsdata.focus.v1.StopRealTimeTagResponseHttpApiResult"
+                }
+              }
+            },
+            "description" : "sensorsdata.focus.v1.StopRealTimeTagResponse"
+          }
+        },
+        "summary" : "停用实时标签",
+        "x-sd-openapi" : {
+          "responseClass" : "com.sensorsdata.focus.v1.StopRealTimeTagResponse",
+          "isServerStreaming" : false,
+          "requestClass" : "com.sensorsdata.focus.v1.StopRealTimeTagRequest",
+          "grpcServiceBase" : "com.sensorsdata.focus.v1.WebRealTimeTagServiceGrpc.WebRealTimeTagServiceImplBase",
+          "internalDesc" : "classes in template for grpc service dynamic invoking",
+          "isClientStreaming" : false
+        },
+        "x-codegen-request-body-name" : "StopRealTimeTagRequest"
+      }
+    },
+    "/real-time-tag/delete" : {
+      "post" : {
+        "description" : "删除实时标签",
+        "operationId" : "DeleteRealTimeTag",
+        "parameters" : [ {
+          "description" : "全局唯一的密钥，用于验证和授权访问 API 接口",
+          "in" : "header",
+          "name" : "api-key",
+          "required" : true,
+          "schema" : {
+            "type" : "string"
+          }
+        }, {
+          "description" : "项目名, 指定请求所属项目",
+          "in" : "header",
+          "name" : "sensorsdata-project",
+          "required" : true,
+          "schema" : {
+            "type" : "string"
+          }
+        }, {
+          "description" : "租户 ID, 用于请求所属租户",
+          "in" : "header",
+          "name" : "X-Organization-Id",
+          "required" : true,
+          "schema" : {
+            "type" : "string"
+          }
+        } ],
+        "requestBody" : {
+          "content" : {
+            "application/json" : {
+              "schema" : {
+                "$ref" : "#/components/schemas/sensorsdata.focus.v1.DeleteRealTimeTagRequest"
+              }
+            }
+          },
+          "description" : "删除实时标签的请求体",
+          "required" : false
+        },
+        "responses" : {
+          "default" : {
+            "content" : {
+              "application/json" : {
+                "example" : {
+                  "code" : "SUCCESS",
+                  "data" : { },
+                  "request_id" : "1"
+                },
+                "schema" : {
+                  "$ref" : "#/components/schemas/sensorsdata.focus.v1.DeleteRealTimeTagResponseHttpApiResult"
+                }
+              }
+            },
+            "description" : "sensorsdata.focus.v1.DeleteRealTimeTagResponse"
+          }
+        },
+        "summary" : "删除实时标签",
+        "x-sd-openapi" : {
+          "responseClass" : "com.sensorsdata.focus.v1.DeleteRealTimeTagResponse",
+          "isServerStreaming" : false,
+          "requestClass" : "com.sensorsdata.focus.v1.DeleteRealTimeTagRequest",
+          "grpcServiceBase" : "com.sensorsdata.focus.v1.WebRealTimeTagServiceGrpc.WebRealTimeTagServiceImplBase",
+          "internalDesc" : "classes in template for grpc service dynamic invoking",
+          "isClientStreaming" : false
+        },
+        "x-codegen-request-body-name" : "DeleteRealTimeTagRequest"
+      }
+    },
+    "/real-time-tag/get" : {
+      "get" : {
+        "description" : "获取实时标签详情",
+        "operationId" : "GetRealTimeTag",
+        "parameters" : [ {
+          "description" : "全局唯一的密钥，用于验证和授权访问 API 接口",
+          "in" : "header",
+          "name" : "api-key",
+          "required" : true,
+          "schema" : {
+            "type" : "string"
+          }
+        }, {
+          "description" : "项目名, 指定请求所属项目",
+          "in" : "header",
+          "name" : "sensorsdata-project",
+          "required" : true,
+          "schema" : {
+            "type" : "string"
+          }
+        }, {
+          "description" : "租户 ID, 用于请求所属租户",
+          "in" : "header",
+          "name" : "X-Organization-Id",
+          "required" : true,
+          "schema" : {
+            "type" : "string"
+          }
+        }, {
+          "description" : "实时标签 名称",
+          "in" : "query",
+          "name" : "name",
+          "required" : true,
+          "schema" : {
+            "type" : "string"
+          }
+        } ],
+        "responses" : {
+          "default" : {
+            "content" : {
+              "application/json" : {
+                "example" : {
+                  "code" : "SUCCESS",
+                  "data" : {
+                    "realtime_tag" : { }
+                  },
+                  "request_id" : "1"
+                },
+                "schema" : {
+                  "$ref" : "#/components/schemas/sensorsdata.focus.v1.GetRealTimeTagResponseHttpApiResult"
+                }
+              }
+            },
+            "description" : "sensorsdata.focus.v1.GetRealTimeTagResponse"
+          }
+        },
+        "summary" : "获取实时标签详情",
+        "x-sd-openapi" : {
+          "responseClass" : "com.sensorsdata.focus.v1.GetRealTimeTagResponse",
+          "isServerStreaming" : false,
+          "requestClass" : "com.sensorsdata.focus.v1.GetRealTimeTagRequest",
+          "grpcServiceBase" : "com.sensorsdata.focus.v1.WebRealTimeTagServiceGrpc.WebRealTimeTagServiceImplBase",
+          "internalDesc" : "classes in template for grpc service dynamic invoking",
+          "isClientStreaming" : false
+        }
+      }
+    },
+    "/real-time-tag/quota/query" : {
+      "post" : {
+        "description" : "查询触发策略 Quota",
+        "operationId" : "QueryRealTimeTagQuota",
+        "parameters" : [ {
+          "description" : "全局唯一的密钥，用于验证和授权访问 API 接口",
+          "in" : "header",
+          "name" : "api-key",
+          "required" : true,
+          "schema" : {
+            "type" : "string"
+          }
+        }, {
+          "description" : "项目名, 指定请求所属项目",
+          "in" : "header",
+          "name" : "sensorsdata-project",
+          "required" : true,
+          "schema" : {
+            "type" : "string"
+          }
+        }, {
+          "description" : "租户 ID, 用于请求所属租户",
+          "in" : "header",
+          "name" : "X-Organization-Id",
+          "required" : true,
+          "schema" : {
+            "type" : "string"
+          }
+        } ],
+        "requestBody" : {
+          "content" : {
+            "application/json" : {
+              "schema" : {
+                "$ref" : "#/components/schemas/sensorsdata.focus.v1.QueryRealTimeTagQuotaRequest"
+              }
+            }
+          },
+          "description" : "查询实时标签请求",
+          "required" : false
+        },
+        "responses" : {
+          "default" : {
+            "content" : {
+              "application/json" : {
+                "example" : {
+                  "code" : "SUCCESS",
+                  "data" : { },
+                  "request_id" : "1"
+                },
+                "schema" : {
+                  "$ref" : "#/components/schemas/sensorsdata.focus.v1.QueryRealTimeTagQuotaResponseHttpApiResult"
+                }
+              }
+            },
+            "description" : "sensorsdata.focus.v1.QueryRealTimeTagQuotaResponse"
+          }
+        },
+        "summary" : "查询触发策略 Quota",
+        "x-sd-openapi" : {
+          "responseClass" : "com.sensorsdata.focus.v1.QueryRealTimeTagQuotaResponse",
+          "isServerStreaming" : false,
+          "requestClass" : "com.sensorsdata.focus.v1.QueryRealTimeTagQuotaRequest",
+          "grpcServiceBase" : "com.sensorsdata.focus.v1.WebRealTimeTagServiceGrpc.WebRealTimeTagServiceImplBase",
+          "internalDesc" : "classes in template for grpc service dynamic invoking",
+          "isClientStreaming" : false
+        },
+        "x-codegen-request-body-name" : "QueryRealTimeTagQuotaRequest"
+      }
+    }
+  },
+  "components" : {
+    "schemas" : {
+      "sensorsdata.focus.v1.QueryRealTimeTagQuotaResponseHttpApiResult" : {
+        "properties" : {
+          "code" : {
+            "type" : "string"
+          },
+          "message" : {
+            "type" : "string"
+          },
+          "request_id" : {
+            "type" : "string"
+          },
+          "data" : {
+            "$ref" : "#/components/schemas/sensorsdata.focus.v1.QueryRealTimeTagQuotaResponse"
+          },
+          "error_info" : {
+            "$ref" : "#/components/schemas/sensorsdata.common.ErrorInfo"
+          }
+        },
+        "title" : "sensorsdata.focus.v1.QueryRealTimeTagQuotaResponseHttpApiResult",
+        "type" : "object"
+      },
+      "sensorsdata.common.HttpApiResult" : {
+        "properties" : {
+          "code" : {
+            "type" : "string"
+          },
+          "message" : {
+            "type" : "string"
+          },
+          "request_id" : {
+            "type" : "string"
+          },
+          "data" : {
+            "properties" : { },
+            "type" : "object"
+          },
+          "error_info" : {
+            "$ref" : "#/components/schemas/sensorsdata.common.ErrorInfo"
+          }
+        },
+        "title" : "HttpApiResult",
+        "type" : "object"
+      },
+      "sensorsdata.focus.v1.QueryRealTimeTagQuotaRequest" : {
+        "description" : "查询实时标签请求",
+        "title" : "QueryRealTimeTagQuotaRequest",
+        "type" : "object"
+      },
+      "sensorsdata.focus.v1.StopRealTimeTagResponseHttpApiResult" : {
+        "properties" : {
+          "code" : {
+            "type" : "string"
+          },
+          "message" : {
+            "type" : "string"
+          },
+          "request_id" : {
+            "type" : "string"
+          },
+          "data" : {
+            "$ref" : "#/components/schemas/sensorsdata.focus.v1.StopRealTimeTagResponse"
+          },
+          "error_info" : {
+            "$ref" : "#/components/schemas/sensorsdata.common.ErrorInfo"
+          }
+        },
+        "title" : "sensorsdata.focus.v1.StopRealTimeTagResponseHttpApiResult",
+        "type" : "object"
+      },
+      "sensorsdata.focus.v1.GetRealTimeTagResponse" : {
+        "description" : "获取实时标签详情响应",
+        "properties" : {
+          "realtime_tag" : {
+            "$ref" : "#/components/schemas/sensorsdata.focus.v1.RealTimeTag"
+          }
+        },
+        "title" : "GetRealTimeTagResponse",
+        "type" : "object"
+      },
+      "sensorsdata.focus.v1.DeleteRealTimeTagResponse" : {
+        "description" : "删除实时标签的响应体",
+        "title" : "DeleteRealTimeTagResponse",
+        "type" : "object"
+      },
+      "sensorsdata.focus.v1.DeleteRealTimeTagResponseHttpApiResult" : {
+        "properties" : {
+          "code" : {
+            "type" : "string"
+          },
+          "message" : {
+            "type" : "string"
+          },
+          "request_id" : {
+            "type" : "string"
+          },
+          "data" : {
+            "$ref" : "#/components/schemas/sensorsdata.focus.v1.DeleteRealTimeTagResponse"
+          },
+          "error_info" : {
+            "$ref" : "#/components/schemas/sensorsdata.common.ErrorInfo"
+          }
+        },
+        "title" : "sensorsdata.focus.v1.DeleteRealTimeTagResponseHttpApiResult",
+        "type" : "object"
+      },
+      "sensorsdata.common.ErrorCause" : {
+        "properties" : {
+          "error_cause" : {
+            "description" : "致错原因1",
+            "example" : "参数异常1",
+            "type" : "string"
+          },
+          "action_suggestion" : {
+            "description" : "操作建议，针对该原因，建议的解决方式",
+            "example" : "检测入参的数据类型1",
+            "type" : "string"
+          }
+        },
+        "title" : "ErrorCause",
+        "type" : "object"
+      },
+      "sensorsdata.common.ErrorContext" : {
+        "description" : "发生错误时，系统快照信息",
+        "properties" : {
+          "origin_stack" : {
+            "description" : "上游异常的 stack，由系统截获",
+            "type" : "string"
+          },
+          "origin_cause" : {
+            "description" : "上游异常的 cause by，由系统截获",
+            "type" : "string"
+          },
+          "origin_code" : {
+            "description" : "上游异常的错误简码",
+            "type" : "string"
+          },
+          "origin_complete_code" : {
+            "description" : "上游异常的完整错误码",
+            "type" : "string"
+          },
+          "error_extend_desc" : {
+            "description" : "本次异常的辅助说明，可传入",
+            "type" : "string"
+          }
+        },
+        "title" : "ErrorContext",
+        "type" : "object"
+      },
+      "sensorsdata.common.ErrorInfo" : {
+        "properties" : {
+          "code" : {
+            "description" : "具体的错误码",
+            "example" : "XX-D-F-2-1",
+            "type" : "string"
+          },
+          "description" : {
+            "description" : "错误描述",
+            "example" : "前端参数校验异常,PARAMETER_FORMAT_ERROR(quantiles=[10, -90] is not include [0, 100])",
+            "type" : "string"
+          },
+          "system_response" : {
+            "description" : "致错的可能原因列表",
+            "example" : "系统终止了查询处理",
+            "type" : "string"
+          },
+          "error_causes" : {
+            "items" : {
+              "$ref" : "#/components/schemas/sensorsdata.common.ErrorCause"
+            },
+            "type" : "array"
+          },
+          "context" : {
+            "$ref" : "#/components/schemas/sensorsdata.common.ErrorContext"
+          }
+        },
+        "title" : "ErrorInfo",
+        "type" : "object"
+      },
+      "sensorsdata.focus.v1.GetRealTimeTagResponseHttpApiResult" : {
+        "properties" : {
+          "code" : {
+            "type" : "string"
+          },
+          "message" : {
+            "type" : "string"
+          },
+          "request_id" : {
+            "type" : "string"
+          },
+          "data" : {
+            "$ref" : "#/components/schemas/sensorsdata.focus.v1.GetRealTimeTagResponse"
+          },
+          "error_info" : {
+            "$ref" : "#/components/schemas/sensorsdata.common.ErrorInfo"
+          }
+        },
+        "title" : "sensorsdata.focus.v1.GetRealTimeTagResponseHttpApiResult",
+        "type" : "object"
+      },
+      "sensorsdata.focus.v1.DeleteRealTimeTagRequest" : {
+        "description" : "删除实时标签的请求体",
+        "properties" : {
+          "name" : {
+            "description" : "实时标签 名称",
+            "type" : "string"
+          }
+        },
+        "required" : [ "name" ],
+        "title" : "DeleteRealTimeTagRequest",
+        "type" : "object"
+      },
+      "sensorsdata.focus.v1.RealTimeTag" : {
+        "description" : "实时标签元数据信息，仅用于查询返回查看",
+        "properties" : {
+          "id" : {
+            "description" : "",
+            "format" : "int32",
+            "type" : "integer"
+          },
+          "name" : {
+            "description" : "",
+            "type" : "string"
+          },
+          "cname" : {
+            "description" : "",
+            "type" : "string"
+          },
+          "project_id" : {
+            "description" : "",
+            "format" : "int32",
+            "type" : "integer"
+          },
+          "group_id" : {
+            "description" : "",
+            "format" : "int32",
+            "type" : "integer"
+          },
+          "comment" : {
+            "description" : "",
+            "type" : "string"
+          },
+          "type" : {
+            "description" : "",
+            "type" : "string"
+          },
+          "use_instant_event" : {
+            "description" : "",
+            "type" : "boolean"
+          },
+          "data_type" : {
+            "description" : "",
+            "type" : "string"
+          },
+          "status" : {
+            "description" : "",
+            "type" : "string"
+          },
+          "time_zone" : {
+            "description" : "",
+            "type" : "string"
+          },
+          "rule" : {
+            "description" : "",
+            "type" : "string"
+          },
+          "create_time" : {
+            "description" : "",
+            "type" : "string"
+          },
+          "update_time" : {
+            "description" : "",
+            "type" : "string"
+          }
+        },
+        "title" : "RealTimeTag",
+        "type" : "object"
+      },
+      "sensorsdata.focus.v1.StartRealTimeTagRequest" : {
+        "description" : "启动实时标签的请求体",
+        "properties" : {
+          "name" : {
+            "description" : "实时标签 名称",
+            "type" : "string"
+          }
+        },
+        "required" : [ "name" ],
+        "title" : "StartRealTimeTagRequest",
+        "type" : "object"
+      },
+      "sensorsdata.focus.v1.GetRealTimeTagRequest" : {
+        "description" : "获取实时标签详情请求",
+        "properties" : {
+          "name" : {
+            "description" : "实时标签 名称",
+            "type" : "string"
+          }
+        },
+        "required" : [ "name" ],
+        "title" : "GetRealTimeTagRequest",
+        "type" : "object"
+      },
+      "sensorsdata.focus.v1.StartRealTimeTagResponseHttpApiResult" : {
+        "properties" : {
+          "code" : {
+            "type" : "string"
+          },
+          "message" : {
+            "type" : "string"
+          },
+          "request_id" : {
+            "type" : "string"
+          },
+          "data" : {
+            "$ref" : "#/components/schemas/sensorsdata.focus.v1.StartRealTimeTagResponse"
+          },
+          "error_info" : {
+            "$ref" : "#/components/schemas/sensorsdata.common.ErrorInfo"
+          }
+        },
+        "title" : "sensorsdata.focus.v1.StartRealTimeTagResponseHttpApiResult",
+        "type" : "object"
+      },
+      "sensorsdata.focus.v1.StartRealTimeTagResponse" : {
+        "description" : "启动实时标签的响应体",
+        "title" : "StartRealTimeTagResponse",
+        "type" : "object"
+      },
+      "sensorsdata.focus.v1.QueryRealTimeTagQuotaResponse" : {
+        "description" : "查询实时标签响应",
+        "properties" : {
+          "remain" : {
+            "description" : "实时标签剩余额度",
+            "format" : "int32",
+            "type" : "integer"
+          },
+          "use" : {
+            "description" : "实时标签已使用额度",
+            "format" : "int32",
+            "type" : "integer"
+          }
+        },
+        "title" : "QueryRealTimeTagQuotaResponse",
+        "type" : "object"
+      },
+      "sensorsdata.focus.v1.StopRealTimeTagRequest" : {
+        "description" : "停用实时标签的请求体",
+        "properties" : {
+          "name" : {
+            "description" : "实时标签 名称",
+            "type" : "string"
+          }
+        },
+        "required" : [ "name" ],
+        "title" : "StopRealTimeTagRequest",
+        "type" : "object"
+      },
+      "sensorsdata.focus.v1.StopRealTimeTagResponse" : {
+        "description" : "停用实时标签的响应体",
+        "title" : "StopRealTimeTagResponse",
+        "type" : "object"
+      }
+    }
+  },
+  "x-sd-openapi-service-name" : "RealTimeTag",
+  "x-sd-openapi-service-name-hyphen" : "real-time-tag",
+  "x-sd-openapi-app-name" : "focus",
+  "x-sd-openapi-service-name-zh_cn" : "实时标签",
+  "x-original-swagger-version" : "2.0"
+}

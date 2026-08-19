@@ -1,0 +1,387 @@
+{
+  "item": [
+    {
+      "id": "8e1ca283-aad9-43e8-8c49-c323adfe7213",
+      "name": "增加一个通知配置",
+      "request": {
+        "name": "增加一个通知配置",
+        "description": {
+          "content": "增加一个通知配置",
+          "type": "text/plain"
+        },
+        "url": {
+          "path": [
+            "express-notify",
+            "set"
+          ],
+          "host": [
+            "{{baseUrl}}"
+          ],
+          "query": [],
+          "variable": []
+        },
+        "header": [
+          {
+            "disabled": false,
+            "description": "(Required) 全局唯一的密钥，用于验证和授权访问 API 接口",
+            "key": "api-key",
+            "value": "<string>"
+          },
+          {
+            "disabled": false,
+            "description": "(Required) 项目名, 指定请求所属项目",
+            "key": "sensorsdata-project",
+            "value": "<string>"
+          },
+          {
+            "disabled": false,
+            "description": "(Required) 租户 ID, 用于请求所属租户",
+            "key": "X-Organization-Id",
+            "value": "<string>"
+          },
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          },
+          {
+            "key": "Accept",
+            "value": "application/json"
+          }
+        ],
+        "method": "POST",
+        "auth": null,
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"notify_config\": {\n    \"notify_id\": \"<string>\",\n    \"notify_address\": \"<string>\",\n    \"auth_type\": \"<string>\",\n    \"auth_configs\": [\n      {\n        \"key\": \"<string>\",\n        \"value\": \"<string>\"\n      },\n      {\n        \"key\": \"<string>\",\n        \"value\": \"<string>\"\n      }\n    ],\n    \"send_mode\": \"<string>\"\n  }\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        }
+      },
+      "response": [
+        {
+          "id": "498c4cf1-f6fc-41d0-b7d3-f3baf687f5a1",
+          "name": "sensorsdata.focus.v1.express.audience.SetNotifyConfigResponse",
+          "originalRequest": {
+            "url": {
+              "path": [
+                "express-notify",
+                "set"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "disabled": false,
+                "description": "(Required) 全局唯一的密钥，用于验证和授权访问 API 接口",
+                "key": "api-key",
+                "value": "<string>"
+              },
+              {
+                "disabled": false,
+                "description": "(Required) 项目名, 指定请求所属项目",
+                "key": "sensorsdata-project",
+                "value": "<string>"
+              },
+              {
+                "disabled": false,
+                "description": "(Required) 租户 ID, 用于请求所属租户",
+                "key": "X-Organization-Id",
+                "value": "<string>"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"notify_config\": {\n    \"notify_id\": \"<string>\",\n    \"notify_address\": \"<string>\",\n    \"auth_type\": \"<string>\",\n    \"auth_configs\": [\n      {\n        \"key\": \"<string>\",\n        \"value\": \"<string>\"\n      },\n      {\n        \"key\": \"<string>\",\n        \"value\": \"<string>\"\n      }\n    ],\n    \"send_mode\": \"<string>\"\n  }\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "status": "Internal Server Error",
+          "code": 500,
+          "header": [
+            {
+              "key": "Content-Type",
+              "value": "application/json"
+            }
+          ],
+          "body": "{\n  \"code\": \"SUCCESS\",\n  \"data\": {},\n  \"request_id\": \"1\"\n}",
+          "cookie": [],
+          "_postman_previewlanguage": "json"
+        }
+      ],
+      "event": [],
+      "protocolProfileBehavior": {
+        "disableBodyPruning": true
+      }
+    },
+    {
+      "id": "14fc89e7-34f2-41d9-9d42-18ef4b0382d9",
+      "name": "获取通知配置的相关列表，通过传入条件筛选查询",
+      "request": {
+        "name": "获取通知配置的相关列表，通过传入条件筛选查询",
+        "description": {
+          "content": "获取通知配置的相关列表，通过传入条件筛选查询",
+          "type": "text/plain"
+        },
+        "url": {
+          "path": [
+            "express-notify",
+            "get"
+          ],
+          "host": [
+            "{{baseUrl}}"
+          ],
+          "query": [],
+          "variable": []
+        },
+        "header": [
+          {
+            "disabled": false,
+            "description": "(Required) 全局唯一的密钥，用于验证和授权访问 API 接口",
+            "key": "api-key",
+            "value": "<string>"
+          },
+          {
+            "disabled": false,
+            "description": "(Required) 项目名, 指定请求所属项目",
+            "key": "sensorsdata-project",
+            "value": "<string>"
+          },
+          {
+            "disabled": false,
+            "description": "(Required) 租户 ID, 用于请求所属租户",
+            "key": "X-Organization-Id",
+            "value": "<string>"
+          },
+          {
+            "key": "Accept",
+            "value": "application/json"
+          }
+        ],
+        "method": "GET",
+        "auth": null
+      },
+      "response": [
+        {
+          "id": "2a14df18-e24b-429b-ba1f-b8a9ada21b5a",
+          "name": "sensorsdata.focus.v1.express.audience.GetNotifyConfigResponse",
+          "originalRequest": {
+            "url": {
+              "path": [
+                "express-notify",
+                "get"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "disabled": false,
+                "description": "(Required) 全局唯一的密钥，用于验证和授权访问 API 接口",
+                "key": "api-key",
+                "value": "<string>"
+              },
+              {
+                "disabled": false,
+                "description": "(Required) 项目名, 指定请求所属项目",
+                "key": "sensorsdata-project",
+                "value": "<string>"
+              },
+              {
+                "disabled": false,
+                "description": "(Required) 租户 ID, 用于请求所属租户",
+                "key": "X-Organization-Id",
+                "value": "<string>"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "body": {}
+          },
+          "status": "Internal Server Error",
+          "code": 500,
+          "header": [
+            {
+              "key": "Content-Type",
+              "value": "application/json"
+            }
+          ],
+          "body": "{\n  \"code\": \"SUCCESS\",\n  \"data\": {\n    \"notify_config\": {\n      \"auth_configs\": [\n        {}\n      ]\n    }\n  },\n  \"request_id\": \"1\"\n}",
+          "cookie": [],
+          "_postman_previewlanguage": "json"
+        }
+      ],
+      "event": [],
+      "protocolProfileBehavior": {
+        "disableBodyPruning": true
+      }
+    },
+    {
+      "id": "18c971e3-4e1d-4b51-b0ae-6197bea716b9",
+      "name": "删除一个通知配置",
+      "request": {
+        "name": "删除一个通知配置",
+        "description": {
+          "content": "删除一个通知配置",
+          "type": "text/plain"
+        },
+        "url": {
+          "path": [
+            "express-notify",
+            "delete"
+          ],
+          "host": [
+            "{{baseUrl}}"
+          ],
+          "query": [],
+          "variable": []
+        },
+        "header": [
+          {
+            "disabled": false,
+            "description": "(Required) 全局唯一的密钥，用于验证和授权访问 API 接口",
+            "key": "api-key",
+            "value": "<string>"
+          },
+          {
+            "disabled": false,
+            "description": "(Required) 项目名, 指定请求所属项目",
+            "key": "sensorsdata-project",
+            "value": "<string>"
+          },
+          {
+            "disabled": false,
+            "description": "(Required) 租户 ID, 用于请求所属租户",
+            "key": "X-Organization-Id",
+            "value": "<string>"
+          },
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          },
+          {
+            "key": "Accept",
+            "value": "application/json"
+          }
+        ],
+        "method": "POST",
+        "auth": null,
+        "body": {
+          "mode": "raw",
+          "raw": "<object>",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        }
+      },
+      "response": [
+        {
+          "id": "630af818-7ce1-48a0-afb3-193b74f70493",
+          "name": "sensorsdata.focus.v1.express.audience.DeleteNotifyConfigResponse",
+          "originalRequest": {
+            "url": {
+              "path": [
+                "express-notify",
+                "delete"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "disabled": false,
+                "description": "(Required) 全局唯一的密钥，用于验证和授权访问 API 接口",
+                "key": "api-key",
+                "value": "<string>"
+              },
+              {
+                "disabled": false,
+                "description": "(Required) 项目名, 指定请求所属项目",
+                "key": "sensorsdata-project",
+                "value": "<string>"
+              },
+              {
+                "disabled": false,
+                "description": "(Required) 租户 ID, 用于请求所属租户",
+                "key": "X-Organization-Id",
+                "value": "<string>"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "body": {
+              "mode": "raw",
+              "raw": "<object>",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "status": "Internal Server Error",
+          "code": 500,
+          "header": [
+            {
+              "key": "Content-Type",
+              "value": "application/json"
+            }
+          ],
+          "body": "{\n  \"code\": \"SUCCESS\",\n  \"data\": {},\n  \"request_id\": \"1\"\n}",
+          "cookie": [],
+          "_postman_previewlanguage": "json"
+        }
+      ],
+      "event": [],
+      "protocolProfileBehavior": {
+        "disableBodyPruning": true
+      }
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "/api/v3/focus/v1",
+      "key": "baseUrl"
+    }
+  ],
+  "info": {
+    "_postman_id": "a7964879-3d00-46bd-ac6d-f3f8ca097b82",
+    "name": "神策智能运营",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "通知相关控制流 Open Api 定义",
+      "type": "text/plain"
+    }
+  }
+}

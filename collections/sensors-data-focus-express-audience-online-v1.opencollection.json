@@ -1,0 +1,125 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "神策智能运营"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "判断一个用户是否在一批受众内",
+        "type": "http"
+      },
+      "http": {
+        "method": "POST",
+        "url": "/api/v3/focus/v1/express-audience-online/audience-entity/exists",
+        "headers": [
+          {
+            "name": "api-key",
+            "value": ""
+          },
+          {
+            "name": "sensorsdata-project",
+            "value": ""
+          },
+          {
+            "name": "X-Organization-Id",
+            "value": ""
+          }
+        ],
+        "body": {
+          "type": "json",
+          "data": "{}"
+        }
+      },
+      "docs": "判断一个用户是否在一批受众内, 需要确保受众处于ready状态"
+    },
+    {
+      "info": {
+        "name": "查看一批用户是否在一个受众内",
+        "type": "http"
+      },
+      "http": {
+        "method": "POST",
+        "url": "/api/v3/focus/v1/express-audience-online/audience-entities/exists",
+        "headers": [
+          {
+            "name": "api-key",
+            "value": ""
+          },
+          {
+            "name": "sensorsdata-project",
+            "value": ""
+          },
+          {
+            "name": "X-Organization-Id",
+            "value": ""
+          }
+        ],
+        "body": {
+          "type": "json",
+          "data": "{}"
+        }
+      },
+      "docs": "查看一批用户是否在一个受众内"
+    },
+    {
+      "info": {
+        "name": "将一批用户写入一个受众规则",
+        "type": "http"
+      },
+      "http": {
+        "method": "POST",
+        "url": "/api/v3/focus/v1/express-audience-online/audience-entity/put",
+        "headers": [
+          {
+            "name": "api-key",
+            "value": ""
+          },
+          {
+            "name": "sensorsdata-project",
+            "value": ""
+          },
+          {
+            "name": "X-Organization-Id",
+            "value": ""
+          }
+        ],
+        "body": {
+          "type": "json",
+          "data": "{}"
+        }
+      },
+      "docs": "将一批用户写入一个受众规则"
+    },
+    {
+      "info": {
+        "name": "将一批用户移出一个受众规则",
+        "type": "http"
+      },
+      "http": {
+        "method": "POST",
+        "url": "/api/v3/focus/v1/express-audience-online/audience-entity/delete",
+        "headers": [
+          {
+            "name": "api-key",
+            "value": ""
+          },
+          {
+            "name": "sensorsdata-project",
+            "value": ""
+          },
+          {
+            "name": "X-Organization-Id",
+            "value": ""
+          }
+        ],
+        "body": {
+          "type": "json",
+          "data": "{}"
+        }
+      },
+      "docs": "将一批用户移出一个受众规则"
+    }
+  ],
+  "bundled": true
+}

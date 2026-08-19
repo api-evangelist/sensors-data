@@ -1,0 +1,1826 @@
+{
+  "openapi" : "3.0.1",
+  "info" : {
+    "description" : "概览书签开放接口",
+    "title" : "神策分析",
+    "version" : ""
+  },
+  "servers" : [ {
+    "url" : "/api/v3/analytics/v1"
+  } ],
+  "paths" : {
+    "/dashboard/navigation" : {
+      "get" : {
+        "description" : "获取所有的概览分组信息",
+        "operationId" : "QueryDashboardNavigation",
+        "parameters" : [ {
+          "description" : "全局唯一的密钥，用于验证和授权访问 API 接口",
+          "in" : "header",
+          "name" : "api-key",
+          "required" : true,
+          "schema" : {
+            "type" : "string"
+          }
+        }, {
+          "description" : "项目名, 指定请求所属项目",
+          "in" : "header",
+          "name" : "sensorsdata-project",
+          "required" : true,
+          "schema" : {
+            "type" : "string"
+          }
+        }, {
+          "description" : "概览类型",
+          "example" : "PRIVATE",
+          "in" : "query",
+          "name" : "type",
+          "schema" : {
+            "enum" : [ "DASHBOARD_TYPE_UNSPECIFIED", "PRIVATE", "PUBLIC" ],
+            "type" : "string",
+            "x-sd-openapi-enum-type" : "com.sensorsdata.analytics.v1.DashboardType"
+          },
+          "x-sd-openapi-enum-type" : "com.sensorsdata.analytics.v1.DashboardType"
+        }, {
+          "description" : "本次请求 ID, 方便后续追踪问题",
+          "example" : "12345696321548954",
+          "in" : "query",
+          "name" : "request_id",
+          "schema" : {
+            "type" : "string"
+          }
+        } ],
+        "responses" : {
+          "default" : {
+            "content" : {
+              "application/json" : {
+                "example" : {
+                  "code" : "SUCCESS",
+                  "data" : {
+                    "dashboard_navigation_items" : [ {
+                      "edit_permission" : true,
+                      "create_time" : "2022-10-08 14:53:09",
+                      "user_id" : 205,
+                      "project_id" : 1,
+                      "user_name" : "平台管理员",
+                      "name" : "数据概览",
+                      "is_public" : true,
+                      "id" : 101,
+                      "type" : 1,
+                      "user_canme" : "平台管理员"
+                    } ],
+                    "groups" : [ {
+                      "id" : "666666",
+                      "title" : "数据概览",
+                      "dashboards" : [ 101, 102 ]
+                    } ],
+                    "type" : "PRIVATE"
+                  },
+                  "request_id" : "1"
+                },
+                "schema" : {
+                  "$ref" : "#/components/schemas/sensorsdata.analytics.v1.DashboardNavigationResponseHttpApiResult"
+                }
+              }
+            },
+            "description" : "sensorsdata.analytics.v1.DashboardNavigationResponse"
+          }
+        },
+        "summary" : "获取所有的概览分组信息",
+        "x-sd-openapi" : {
+          "responseClass" : "com.sensorsdata.analytics.v1.DashboardNavigationResponse",
+          "isServerStreaming" : false,
+          "requestClass" : "com.sensorsdata.analytics.v1.DashboardsRequest",
+          "grpcServiceBase" : "com.sensorsdata.analytics.v1.DashboardServiceGrpc.DashboardServiceImplBase",
+          "internalDesc" : "classes in template for grpc service dynamic invoking",
+          "isClientStreaming" : false
+        }
+      }
+    },
+    "/dashboard/lego" : {
+      "get" : {
+        "description" : "获取所有基础数据概览数据",
+        "operationId" : "QueryLegoDashboard",
+        "parameters" : [ {
+          "description" : "全局唯一的密钥，用于验证和授权访问 API 接口",
+          "in" : "header",
+          "name" : "api-key",
+          "required" : true,
+          "schema" : {
+            "type" : "string"
+          }
+        }, {
+          "description" : "项目名, 指定请求所属项目",
+          "in" : "header",
+          "name" : "sensorsdata-project",
+          "required" : true,
+          "schema" : {
+            "type" : "string"
+          }
+        } ],
+        "responses" : {
+          "default" : {
+            "content" : {
+              "application/json" : {
+                "example" : {
+                  "code" : "SUCCESS",
+                  "data" : {
+                    "lego_dashboard_items" : [ {
+                      "name" : "\"实时统计\"",
+                      "navigation_name" : "\"整体概览\"",
+                      "source_type" : "\"WEB\"",
+                      "id" : 1
+                    } ]
+                  },
+                  "request_id" : "1"
+                },
+                "schema" : {
+                  "$ref" : "#/components/schemas/sensorsdata.analytics.v1.LegoDashboardResponseHttpApiResult"
+                }
+              }
+            },
+            "description" : "sensorsdata.analytics.v1.LegoDashboardResponse"
+          }
+        },
+        "summary" : "获取所有基础数据概览数据",
+        "x-sd-openapi" : {
+          "responseClass" : "com.sensorsdata.analytics.v1.LegoDashboardResponse",
+          "isServerStreaming" : false,
+          "grpcServiceBase" : "com.sensorsdata.analytics.v1.DashboardServiceGrpc.DashboardServiceImplBase",
+          "internalDesc" : "classes in template for grpc service dynamic invoking",
+          "isClientStreaming" : false
+        }
+      }
+    },
+    "/dashboard/detail" : {
+      "get" : {
+        "description" : "获取单个概览详情",
+        "operationId" : "QueryDashboard",
+        "parameters" : [ {
+          "description" : "全局唯一的密钥，用于验证和授权访问 API 接口",
+          "in" : "header",
+          "name" : "api-key",
+          "required" : true,
+          "schema" : {
+            "type" : "string"
+          }
+        }, {
+          "description" : "项目名, 指定请求所属项目",
+          "in" : "header",
+          "name" : "sensorsdata-project",
+          "required" : true,
+          "schema" : {
+            "type" : "string"
+          }
+        }, {
+          "description" : "概览 ID",
+          "example" : 1,
+          "in" : "query",
+          "name" : "id",
+          "schema" : {
+            "format" : "int32",
+            "type" : "integer"
+          }
+        }, {
+          "description" : "本次请求 ID, 方便后续追踪问题",
+          "example" : "12345696321548954",
+          "in" : "query",
+          "name" : "request_id",
+          "schema" : {
+            "type" : "string"
+          }
+        } ],
+        "responses" : {
+          "default" : {
+            "content" : {
+              "application/json" : {
+                "example" : {
+                  "code" : "SUCCESS",
+                  "data" : {
+                    "create_time" : "2022-10-08 14:53:09",
+                    "user_id" : 205,
+                    "project_id" : 1,
+                    "contain_bookmark_items" : [ {
+                      "mode" : 0,
+                      "data" : "\"{\\\"measures\\\":[{\\\"event_name\\\":\\\"$MPShow\\\",\\\"aggregator\\\":\\\"general\\\",\\\"name\\\":\\\"iOS 小程序显示的总次数\\\",\\\"filter\\\":{\\\"conditions\\\":[{\\\"field\\\":\\\"event.$Anything.$lib\\\",\\\"function\\\":\\\"equal\\\",\\\"params\\\":[\\\"iOS\\\"],\\\"$$render_index\\\":0}]},\\\"editName\\\":\\\"iOS 小程序显示的总次数\\\"},{\\\"event_name\\\":\\\"$MPShow\\\",\\\"aggregator\\\":\\\"general\\\",\\\"name\\\":\\\"Android 小程序显示的总次数\\\",\\\"filter\\\":{\\\"conditions\\\":[{\\\"field\\\":\\\"event.$Anything.$lib\\\",\\\"function\\\":\\\"equal\\\",\\\"params\\\":[\\\"Android\\\"],\\\"$$render_index\\\":0}]},\\\"editName\\\":\\\"Android 小程序显示的总次数\\\"},{\\\"event_name\\\":\\\"$MPShow\\\",\\\"aggregator\\\":\\\"general\\\",\\\"name\\\":\\\"python 小程序显示的总次数\\\",\\\"filter\\\":{\\\"conditions\\\":[{\\\"field\\\":\\\"event.$Anything.$lib\\\",\\\"function\\\":\\\"equal\\\",\\\"params\\\":[\\\"python\\\"],\\\"$$render_index\\\":0}]},\\\"editName\\\":\\\"python 小程序显示的总次数\\\"},{\\\"event_name\\\":\\\"$MPShow\\\",\\\"aggregator\\\":\\\"general\\\",\\\"name\\\":\\\"小程序显示的总次数\\\"}],\\\"from_date\\\":\\\"2022-10-01\\\",\\\"to_date\\\":\\\"2022-10-07\\\",\\\"unit\\\":\\\"day\\\",\\\"by_fields\\\":[],\\\"detail_and_rollup\\\":true,\\\"enable_detail_follow_rollup_by_values_rank\\\":true,\\\"sub_task_type\\\":\\\"SEGMENTATION\\\",\\\"time_zone_mode\\\":\\\"\\\",\\\"server_time_zone\\\":\\\"\\\",\\\"compareKey\\\":\\\"\\\"}\"",
+                      "create_time" : "2022-10-08 14:53:09",
+                      "user_id" : 1,
+                      "project_id" : 1,
+                      "name" : "\"事件分析\"",
+                      "id" : 1,
+                      "type" : "\"/segmentation/\"",
+                      "config" : "\"{\\\"chartsType\\\":\\\"line\\\",\\\"byFieldsCname\\\":[],\\\"byFieldsDataType\\\":[],\\\"byValuesFilter\\\":[],\\\"byFields\\\":null,\\\"measureIndexs\\\":[0,1,2,3],\\\"comment\\\":\\\"\\\",\\\"topN\\\":0,\\\"valueTypes\\\":\\\"number\\\"}\"",
+                      "dashboards" : [ 11, 23, 44 ],
+                      "is_lego" : false
+                    } ],
+                    "user_name" : "平台管理员",
+                    "name" : "数据概览",
+                    "is_public" : true,
+                    "id" : 101,
+                    "type" : "PRIVATE"
+                  },
+                  "request_id" : "1"
+                },
+                "schema" : {
+                  "$ref" : "#/components/schemas/sensorsdata.analytics.v1.DashboardDetailResponseHttpApiResult"
+                }
+              }
+            },
+            "description" : "sensorsdata.analytics.v1.DashboardDetailResponse"
+          }
+        },
+        "summary" : "获取单个概览详情",
+        "x-sd-openapi" : {
+          "responseClass" : "com.sensorsdata.analytics.v1.DashboardDetailResponse",
+          "isServerStreaming" : false,
+          "requestClass" : "com.sensorsdata.analytics.v1.DashboardRequest",
+          "grpcServiceBase" : "com.sensorsdata.analytics.v1.DashboardServiceGrpc.DashboardServiceImplBase",
+          "internalDesc" : "classes in template for grpc service dynamic invoking",
+          "isClientStreaming" : false
+        }
+      }
+    },
+    "/dashboard/navigation/create" : {
+      "post" : {
+        "description" : "添加概览分组信息",
+        "operationId" : "AddDashboardNavigation",
+        "parameters" : [ {
+          "description" : "全局唯一的密钥，用于验证和授权访问 API 接口",
+          "in" : "header",
+          "name" : "api-key",
+          "required" : true,
+          "schema" : {
+            "type" : "string"
+          }
+        }, {
+          "description" : "项目名, 指定请求所属项目",
+          "in" : "header",
+          "name" : "sensorsdata-project",
+          "required" : true,
+          "schema" : {
+            "type" : "string"
+          }
+        } ],
+        "requestBody" : {
+          "content" : {
+            "application/json" : {
+              "schema" : {
+                "$ref" : "#/components/schemas/sensorsdata.analytics.v1.AddDashboardRequest"
+              }
+            }
+          },
+          "description" : "添加概览分组信息接口请求参数描述",
+          "required" : false
+        },
+        "responses" : {
+          "default" : {
+            "content" : {
+              "application/json" : {
+                "example" : {
+                  "code" : "SUCCESS",
+                  "data" : {
+                    "flag" : true
+                  },
+                  "request_id" : "1"
+                },
+                "schema" : {
+                  "$ref" : "#/components/schemas/sensorsdata.analytics.v1.CommonResponseHttpApiResult"
+                }
+              }
+            },
+            "description" : "sensorsdata.analytics.v1.CommonResponse"
+          }
+        },
+        "summary" : "添加概览分组信息",
+        "x-sd-openapi" : {
+          "responseClass" : "com.sensorsdata.analytics.v1.CommonResponse",
+          "isServerStreaming" : false,
+          "requestClass" : "com.sensorsdata.analytics.v1.AddDashboardRequest",
+          "grpcServiceBase" : "com.sensorsdata.analytics.v1.DashboardServiceGrpc.DashboardServiceImplBase",
+          "internalDesc" : "classes in template for grpc service dynamic invoking",
+          "isClientStreaming" : false
+        },
+        "x-codegen-request-body-name" : "AddDashboardRequest"
+      }
+    },
+    "/dashboard/share" : {
+      "post" : {
+        "description" : "概览分享接口，可以实现分享和取消概览分享的能力",
+        "operationId" : "ShareDashboard",
+        "parameters" : [ {
+          "description" : "全局唯一的密钥，用于验证和授权访问 API 接口",
+          "in" : "header",
+          "name" : "api-key",
+          "required" : true,
+          "schema" : {
+            "type" : "string"
+          }
+        }, {
+          "description" : "项目名, 指定请求所属项目",
+          "in" : "header",
+          "name" : "sensorsdata-project",
+          "required" : true,
+          "schema" : {
+            "type" : "string"
+          }
+        } ],
+        "requestBody" : {
+          "content" : {
+            "application/json" : {
+              "schema" : {
+                "$ref" : "#/components/schemas/sensorsdata.analytics.v1.ShareDashboardRequest"
+              }
+            }
+          },
+          "description" : "概览分享（取消分享）接口请求参数描述",
+          "required" : false
+        },
+        "responses" : {
+          "default" : {
+            "content" : {
+              "application/json" : {
+                "example" : {
+                  "code" : "SUCCESS",
+                  "data" : {
+                    "flag" : true
+                  },
+                  "request_id" : "1"
+                },
+                "schema" : {
+                  "$ref" : "#/components/schemas/sensorsdata.analytics.v1.CommonResponseHttpApiResult"
+                }
+              }
+            },
+            "description" : "sensorsdata.analytics.v1.CommonResponse"
+          }
+        },
+        "summary" : "概览分享接口",
+        "x-sd-openapi" : {
+          "responseClass" : "com.sensorsdata.analytics.v1.CommonResponse",
+          "isServerStreaming" : false,
+          "requestClass" : "com.sensorsdata.analytics.v1.ShareDashboardRequest",
+          "grpcServiceBase" : "com.sensorsdata.analytics.v1.DashboardServiceGrpc.DashboardServiceImplBase",
+          "internalDesc" : "classes in template for grpc service dynamic invoking",
+          "isClientStreaming" : false
+        },
+        "x-codegen-request-body-name" : "ShareDashboardRequest"
+      }
+    },
+    "/dashboard/bookmarks" : {
+      "get" : {
+        "description" : "获取所有的书签信息",
+        "operationId" : "QueryAllBookmarks",
+        "parameters" : [ {
+          "description" : "全局唯一的密钥，用于验证和授权访问 API 接口",
+          "in" : "header",
+          "name" : "api-key",
+          "required" : true,
+          "schema" : {
+            "type" : "string"
+          }
+        }, {
+          "description" : "项目名, 指定请求所属项目",
+          "in" : "header",
+          "name" : "sensorsdata-project",
+          "required" : true,
+          "schema" : {
+            "type" : "string"
+          }
+        }, {
+          "description" : "书签类型，0 私有书签，1 公共书签",
+          "example" : 1,
+          "in" : "query",
+          "name" : "type",
+          "schema" : {
+            "format" : "int32",
+            "type" : "integer"
+          }
+        }, {
+          "description" : "是否包含组件类型的书签",
+          "example" : "true",
+          "in" : "query",
+          "name" : "has_widget",
+          "schema" : {
+            "type" : "string"
+          }
+        }, {
+          "description" : "是否包含 lego 类型的书签",
+          "example" : "true",
+          "in" : "query",
+          "name" : "has_lego",
+          "schema" : {
+            "type" : "string"
+          }
+        }, {
+          "description" : "本次请求 ID, 方便后续追踪问题",
+          "example" : "12345696321548954",
+          "in" : "query",
+          "name" : "request_id",
+          "schema" : {
+            "type" : "string"
+          }
+        } ],
+        "responses" : {
+          "default" : {
+            "content" : {
+              "application/json" : {
+                "example" : {
+                  "code" : "SUCCESS",
+                  "data" : {
+                    "bookmarks" : [ {
+                      "id" : 1,
+                      "user_id" : 2,
+                      "type" : "/segmentation/",
+                      "name" : "事件分析",
+                      "user_cname" : "平台管理员",
+                      "data" : "{\"measures\":[{\"event_name\":\"$MPShow\",\"aggregator\":\"general\",\"name\":\"iOS 小程序显示的总次数\",\"filter\":{\"conditions\":[{\"field\":\"event.$Anything.$lib\",\"function\":\"equal\",\"params\":[\"iOS\"],\"$$render_index\":0}]},\"editName\":\"iOS 小程序显示的总次数\"},{\"event_name\":\"$MPShow\",\"aggregator\":\"general\",\"name\":\"Android 小程序显示的总次数\",\"filter\":{\"conditions\":[{\"field\":\"event.$Anything.$lib\",\"function\":\"equal\",\"params\":[\"Android\"],\"$$render_index\":0}]},\"editName\":\"Android 小程序显示的总次数\"},{\"event_name\":\"$MPShow\",\"aggregator\":\"general\",\"name\":\"python 小程序显示的总次数\",\"filter\":{\"conditions\":[{\"field\":\"event.$Anything.$lib\",\"function\":\"equal\",\"params\":[\"python\"],\"$$render_index\":0}]},\"editName\":\"python 小程序显示的总次数\"},{\"event_name\":\"$MPShow\",\"aggregator\":\"general\",\"name\":\"小程序显示的总次数\"}],\"from_date\":\"2022-10-01\",\"to_date\":\"2022-10-07\",\"unit\":\"day\",\"by_fields\":[],\"detail_and_rollup\":true,\"enable_detail_follow_rollup_by_values_rank\":true,\"sub_task_type\":\"SEGMENTATION\",\"time_zone_mode\":\"\",\"server_time_zone\":\"\",\"compareKey\":\"\"}",
+                      "time" : "",
+                      "create_time" : "2022-10-08 14:53:09",
+                      "related_events" : [ ],
+                      "project_id" : 2,
+                      "config" : "{\"chartsType\":\"line\",\"byFieldsCname\":[],\"byFieldsDataType\":[],\"byValuesFilter\":[],\"byFields\":null,\"measureIndexs\":[0,1,2,3],\"comment\":\"\",\"topN\":0,\"valueTypes\":\"number\"}",
+                      "lego_type" : 0,
+                      "mode" : 0,
+                      "dashboards" : [ {
+                        "id" : 1,
+                        "name" : "事件分析概览"
+                      } ]
+                    } ],
+                    "total" : 1
+                  },
+                  "request_id" : "1"
+                },
+                "schema" : {
+                  "$ref" : "#/components/schemas/sensorsdata.analytics.v1.BookmarksResponseHttpApiResult"
+                }
+              }
+            },
+            "description" : "sensorsdata.analytics.v1.BookmarksResponse"
+          }
+        },
+        "summary" : "获取所有的书签信息",
+        "x-sd-openapi" : {
+          "responseClass" : "com.sensorsdata.analytics.v1.BookmarksResponse",
+          "isServerStreaming" : false,
+          "requestClass" : "com.sensorsdata.analytics.v1.AllBookmarksRequest",
+          "grpcServiceBase" : "com.sensorsdata.analytics.v1.DashboardServiceGrpc.DashboardServiceImplBase",
+          "internalDesc" : "classes in template for grpc service dynamic invoking",
+          "isClientStreaming" : false
+        }
+      }
+    },
+    "/dashboard/create" : {
+      "post" : {
+        "description" : "创建概览",
+        "operationId" : "CreateDashboard",
+        "parameters" : [ {
+          "description" : "全局唯一的密钥，用于验证和授权访问 API 接口",
+          "in" : "header",
+          "name" : "api-key",
+          "required" : true,
+          "schema" : {
+            "type" : "string"
+          }
+        }, {
+          "description" : "项目名, 指定请求所属项目",
+          "in" : "header",
+          "name" : "sensorsdata-project",
+          "required" : true,
+          "schema" : {
+            "type" : "string"
+          }
+        } ],
+        "requestBody" : {
+          "content" : {
+            "application/json" : {
+              "schema" : {
+                "$ref" : "#/components/schemas/sensorsdata.analytics.v1.CreateDashboardRequest"
+              }
+            }
+          },
+          "required" : false
+        },
+        "responses" : {
+          "default" : {
+            "content" : {
+              "application/json" : {
+                "example" : {
+                  "code" : "SUCCESS",
+                  "data" : {
+                    "group_id" : 666666,
+                    "bookmark_count" : 5,
+                    "id" : 101,
+                    "dashboard" : {
+                      "create_time" : "2022-10-08 14:53:09",
+                      "user_id" : 205,
+                      "project_id" : 1,
+                      "contain_bookmark_items" : [ {
+                        "mode" : 0,
+                        "data" : "\"{\\\"measures\\\":[{\\\"event_name\\\":\\\"$MPShow\\\",\\\"aggregator\\\":\\\"general\\\",\\\"name\\\":\\\"iOS 小程序显示的总次数\\\",\\\"filter\\\":{\\\"conditions\\\":[{\\\"field\\\":\\\"event.$Anything.$lib\\\",\\\"function\\\":\\\"equal\\\",\\\"params\\\":[\\\"iOS\\\"],\\\"$$render_index\\\":0}]},\\\"editName\\\":\\\"iOS 小程序显示的总次数\\\"},{\\\"event_name\\\":\\\"$MPShow\\\",\\\"aggregator\\\":\\\"general\\\",\\\"name\\\":\\\"Android 小程序显示的总次数\\\",\\\"filter\\\":{\\\"conditions\\\":[{\\\"field\\\":\\\"event.$Anything.$lib\\\",\\\"function\\\":\\\"equal\\\",\\\"params\\\":[\\\"Android\\\"],\\\"$$render_index\\\":0}]},\\\"editName\\\":\\\"Android 小程序显示的总次数\\\"},{\\\"event_name\\\":\\\"$MPShow\\\",\\\"aggregator\\\":\\\"general\\\",\\\"name\\\":\\\"python 小程序显示的总次数\\\",\\\"filter\\\":{\\\"conditions\\\":[{\\\"field\\\":\\\"event.$Anything.$lib\\\",\\\"function\\\":\\\"equal\\\",\\\"params\\\":[\\\"python\\\"],\\\"$$render_index\\\":0}]},\\\"editName\\\":\\\"python 小程序显示的总次数\\\"},{\\\"event_name\\\":\\\"$MPShow\\\",\\\"aggregator\\\":\\\"general\\\",\\\"name\\\":\\\"小程序显示的总次数\\\"}],\\\"from_date\\\":\\\"2022-10-01\\\",\\\"to_date\\\":\\\"2022-10-07\\\",\\\"unit\\\":\\\"day\\\",\\\"by_fields\\\":[],\\\"detail_and_rollup\\\":true,\\\"enable_detail_follow_rollup_by_values_rank\\\":true,\\\"sub_task_type\\\":\\\"SEGMENTATION\\\",\\\"time_zone_mode\\\":\\\"\\\",\\\"server_time_zone\\\":\\\"\\\",\\\"compareKey\\\":\\\"\\\"}\"",
+                        "create_time" : "2022-10-08 14:53:09",
+                        "user_id" : 1,
+                        "project_id" : 1,
+                        "name" : "\"事件分析\"",
+                        "id" : 1,
+                        "type" : "\"/segmentation/\"",
+                        "config" : "\"{\\\"chartsType\\\":\\\"line\\\",\\\"byFieldsCname\\\":[],\\\"byFieldsDataType\\\":[],\\\"byValuesFilter\\\":[],\\\"byFields\\\":null,\\\"measureIndexs\\\":[0,1,2,3],\\\"comment\\\":\\\"\\\",\\\"topN\\\":0,\\\"valueTypes\\\":\\\"number\\\"}\"",
+                        "dashboards" : [ 11, 23, 44 ],
+                        "is_lego" : false
+                      } ],
+                      "user_name" : "平台管理员",
+                      "name" : "数据概览",
+                      "is_public" : true,
+                      "id" : 101,
+                      "type" : "PRIVATE"
+                    }
+                  },
+                  "request_id" : "1"
+                },
+                "schema" : {
+                  "$ref" : "#/components/schemas/sensorsdata.analytics.v1.CreateDashboardResponseHttpApiResult"
+                }
+              }
+            },
+            "description" : "sensorsdata.analytics.v1.CreateDashboardResponse"
+          }
+        },
+        "summary" : "创建概览",
+        "x-sd-openapi" : {
+          "responseClass" : "com.sensorsdata.analytics.v1.CreateDashboardResponse",
+          "isServerStreaming" : false,
+          "requestClass" : "com.sensorsdata.analytics.v1.CreateDashboardRequest",
+          "grpcServiceBase" : "com.sensorsdata.analytics.v1.DashboardServiceGrpc.DashboardServiceImplBase",
+          "internalDesc" : "classes in template for grpc service dynamic invoking",
+          "isClientStreaming" : false
+        },
+        "x-codegen-request-body-name" : "CreateDashboardRequest"
+      }
+    },
+    "/dashboard/bookmarks/add" : {
+      "post" : {
+        "description" : "向已有概览批量追加书签草稿",
+        "operationId" : "AddBookmarksToDashboard",
+        "parameters" : [ {
+          "description" : "全局唯一的密钥，用于验证和授权访问 API 接口",
+          "in" : "header",
+          "name" : "api-key",
+          "required" : true,
+          "schema" : {
+            "type" : "string"
+          }
+        }, {
+          "description" : "项目名, 指定请求所属项目",
+          "in" : "header",
+          "name" : "sensorsdata-project",
+          "required" : true,
+          "schema" : {
+            "type" : "string"
+          }
+        } ],
+        "requestBody" : {
+          "content" : {
+            "application/json" : {
+              "schema" : {
+                "$ref" : "#/components/schemas/sensorsdata.analytics.v1.AddBookmarksToDashboardRequest"
+              }
+            }
+          },
+          "required" : false
+        },
+        "responses" : {
+          "default" : {
+            "content" : {
+              "application/json" : {
+                "example" : {
+                  "code" : "SUCCESS",
+                  "data" : {
+                    "bookmark_count" : 5,
+                    "dashboard" : {
+                      "create_time" : "2022-10-08 14:53:09",
+                      "user_id" : 205,
+                      "project_id" : 1,
+                      "contain_bookmark_items" : [ {
+                        "mode" : 0,
+                        "data" : "\"{\\\"measures\\\":[{\\\"event_name\\\":\\\"$MPShow\\\",\\\"aggregator\\\":\\\"general\\\",\\\"name\\\":\\\"iOS 小程序显示的总次数\\\",\\\"filter\\\":{\\\"conditions\\\":[{\\\"field\\\":\\\"event.$Anything.$lib\\\",\\\"function\\\":\\\"equal\\\",\\\"params\\\":[\\\"iOS\\\"],\\\"$$render_index\\\":0}]},\\\"editName\\\":\\\"iOS 小程序显示的总次数\\\"},{\\\"event_name\\\":\\\"$MPShow\\\",\\\"aggregator\\\":\\\"general\\\",\\\"name\\\":\\\"Android 小程序显示的总次数\\\",\\\"filter\\\":{\\\"conditions\\\":[{\\\"field\\\":\\\"event.$Anything.$lib\\\",\\\"function\\\":\\\"equal\\\",\\\"params\\\":[\\\"Android\\\"],\\\"$$render_index\\\":0}]},\\\"editName\\\":\\\"Android 小程序显示的总次数\\\"},{\\\"event_name\\\":\\\"$MPShow\\\",\\\"aggregator\\\":\\\"general\\\",\\\"name\\\":\\\"python 小程序显示的总次数\\\",\\\"filter\\\":{\\\"conditions\\\":[{\\\"field\\\":\\\"event.$Anything.$lib\\\",\\\"function\\\":\\\"equal\\\",\\\"params\\\":[\\\"python\\\"],\\\"$$render_index\\\":0}]},\\\"editName\\\":\\\"python 小程序显示的总次数\\\"},{\\\"event_name\\\":\\\"$MPShow\\\",\\\"aggregator\\\":\\\"general\\\",\\\"name\\\":\\\"小程序显示的总次数\\\"}],\\\"from_date\\\":\\\"2022-10-01\\\",\\\"to_date\\\":\\\"2022-10-07\\\",\\\"unit\\\":\\\"day\\\",\\\"by_fields\\\":[],\\\"detail_and_rollup\\\":true,\\\"enable_detail_follow_rollup_by_values_rank\\\":true,\\\"sub_task_type\\\":\\\"SEGMENTATION\\\",\\\"time_zone_mode\\\":\\\"\\\",\\\"server_time_zone\\\":\\\"\\\",\\\"compareKey\\\":\\\"\\\"}\"",
+                        "create_time" : "2022-10-08 14:53:09",
+                        "user_id" : 1,
+                        "project_id" : 1,
+                        "name" : "\"事件分析\"",
+                        "id" : 1,
+                        "type" : "\"/segmentation/\"",
+                        "config" : "\"{\\\"chartsType\\\":\\\"line\\\",\\\"byFieldsCname\\\":[],\\\"byFieldsDataType\\\":[],\\\"byValuesFilter\\\":[],\\\"byFields\\\":null,\\\"measureIndexs\\\":[0,1,2,3],\\\"comment\\\":\\\"\\\",\\\"topN\\\":0,\\\"valueTypes\\\":\\\"number\\\"}\"",
+                        "dashboards" : [ 11, 23, 44 ],
+                        "is_lego" : false
+                      } ],
+                      "user_name" : "平台管理员",
+                      "name" : "数据概览",
+                      "is_public" : true,
+                      "id" : 101,
+                      "type" : "PRIVATE"
+                    },
+                    "dashboard_id" : 101
+                  },
+                  "request_id" : "1"
+                },
+                "schema" : {
+                  "$ref" : "#/components/schemas/sensorsdata.analytics.v1.AddBookmarksToDashboardResponseHttpApiResult"
+                }
+              }
+            },
+            "description" : "sensorsdata.analytics.v1.AddBookmarksToDashboardResponse"
+          }
+        },
+        "summary" : "向已有概览批量追加书签草稿",
+        "x-sd-openapi" : {
+          "responseClass" : "com.sensorsdata.analytics.v1.AddBookmarksToDashboardResponse",
+          "isServerStreaming" : false,
+          "requestClass" : "com.sensorsdata.analytics.v1.AddBookmarksToDashboardRequest",
+          "grpcServiceBase" : "com.sensorsdata.analytics.v1.DashboardServiceGrpc.DashboardServiceImplBase",
+          "internalDesc" : "classes in template for grpc service dynamic invoking",
+          "isClientStreaming" : false
+        },
+        "x-codegen-request-body-name" : "AddBookmarksToDashboardRequest"
+      }
+    },
+    "/dashboard/update" : {
+      "post" : {
+        "description" : "全量更新概览及其包含的书签",
+        "operationId" : "UpdateDashboard",
+        "parameters" : [ {
+          "description" : "全局唯一的密钥，用于验证和授权访问 API 接口",
+          "in" : "header",
+          "name" : "api-key",
+          "required" : true,
+          "schema" : {
+            "type" : "string"
+          }
+        }, {
+          "description" : "项目名, 指定请求所属项目",
+          "in" : "header",
+          "name" : "sensorsdata-project",
+          "required" : true,
+          "schema" : {
+            "type" : "string"
+          }
+        } ],
+        "requestBody" : {
+          "content" : {
+            "application/json" : {
+              "schema" : {
+                "$ref" : "#/components/schemas/sensorsdata.analytics.v1.UpdateDashboardRequest"
+              }
+            }
+          },
+          "required" : false
+        },
+        "responses" : {
+          "default" : {
+            "content" : {
+              "application/json" : {
+                "example" : {
+                  "code" : "SUCCESS",
+                  "data" : { },
+                  "request_id" : "1"
+                },
+                "schema" : {
+                  "$ref" : "#/components/schemas/sensorsdata.common.HttpApiResult"
+                }
+              }
+            },
+            "description" : ""
+          }
+        },
+        "summary" : "全量更新概览及其包含的书签",
+        "x-sd-openapi" : {
+          "responseClass" : "com.google.protobuf.Empty",
+          "isServerStreaming" : false,
+          "requestClass" : "com.sensorsdata.analytics.v1.UpdateDashboardRequest",
+          "grpcServiceBase" : "com.sensorsdata.analytics.v1.DashboardServiceGrpc.DashboardServiceImplBase",
+          "internalDesc" : "classes in template for grpc service dynamic invoking",
+          "isClientStreaming" : false
+        },
+        "x-codegen-request-body-name" : "UpdateDashboardRequest"
+      }
+    }
+  },
+  "components" : {
+    "schemas" : {
+      "sensorsdata.analytics.v1.BookmarksResponse" : {
+        "description" : "获取所有的书签信息接口返回结构描述",
+        "properties" : {
+          "bookmarks" : {
+            "description" : "书签列表",
+            "example" : "[{\"id\":1,\"user_id\":2,\"type\":\"/segmentation/\",\"name\":\"事件分析\",\"user_cname\":\"平台管理员\",\"data\":\"{\\\"measures\\\":[{\\\"event_name\\\":\\\"$MPShow\\\",\\\"aggregator\\\":\\\"general\\\",\\\"name\\\":\\\"iOS 小程序显示的总次数\\\",\\\"filter\\\":{\\\"conditions\\\":[{\\\"field\\\":\\\"event.$Anything.$lib\\\",\\\"function\\\":\\\"equal\\\",\\\"params\\\":[\\\"iOS\\\"],\\\"$$render_index\\\":0}]},\\\"editName\\\":\\\"iOS 小程序显示的总次数\\\"},{\\\"event_name\\\":\\\"$MPShow\\\",\\\"aggregator\\\":\\\"general\\\",\\\"name\\\":\\\"Android 小程序显示的总次数\\\",\\\"filter\\\":{\\\"conditions\\\":[{\\\"field\\\":\\\"event.$Anything.$lib\\\",\\\"function\\\":\\\"equal\\\",\\\"params\\\":[\\\"Android\\\"],\\\"$$render_index\\\":0}]},\\\"editName\\\":\\\"Android 小程序显示的总次数\\\"},{\\\"event_name\\\":\\\"$MPShow\\\",\\\"aggregator\\\":\\\"general\\\",\\\"name\\\":\\\"python 小程序显示的总次数\\\",\\\"filter\\\":{\\\"conditions\\\":[{\\\"field\\\":\\\"event.$Anything.$lib\\\",\\\"function\\\":\\\"equal\\\",\\\"params\\\":[\\\"python\\\"],\\\"$$render_index\\\":0}]},\\\"editName\\\":\\\"python 小程序显示的总次数\\\"},{\\\"event_name\\\":\\\"$MPShow\\\",\\\"aggregator\\\":\\\"general\\\",\\\"name\\\":\\\"小程序显示的总次数\\\"}],\\\"from_date\\\":\\\"2022-10-01\\\",\\\"to_date\\\":\\\"2022-10-07\\\",\\\"unit\\\":\\\"day\\\",\\\"by_fields\\\":[],\\\"detail_and_rollup\\\":true,\\\"enable_detail_follow_rollup_by_values_rank\\\":true,\\\"sub_task_type\\\":\\\"SEGMENTATION\\\",\\\"time_zone_mode\\\":\\\"\\\",\\\"server_time_zone\\\":\\\"\\\",\\\"compareKey\\\":\\\"\\\"}\",\"time\":\"\",\"create_time\":\"2022-10-08 14:53:09\",\"related_events\":[],\"project_id\":2,\"config\":\"{\\\"chartsType\\\":\\\"line\\\",\\\"byFieldsCname\\\":[],\\\"byFieldsDataType\\\":[],\\\"byValuesFilter\\\":[],\\\"byFields\\\":null,\\\"measureIndexs\\\":[0,1,2,3],\\\"comment\\\":\\\"\\\",\\\"topN\\\":0,\\\"valueTypes\\\":\\\"number\\\"}\",\"lego_type\":0,\"mode\":0,\"dashboards\":[    {        \"id\":1,        \"name\":\"事件分析概览\"    }]}]",
+            "items" : {
+              "$ref" : "#/components/schemas/sensorsdata.analytics.v1.BookmarkItem"
+            },
+            "type" : "array"
+          },
+          "total" : {
+            "description" : "书签总数",
+            "example" : 1,
+            "format" : "int32",
+            "type" : "integer"
+          }
+        },
+        "title" : "BookmarksResponse",
+        "type" : "object"
+      },
+      "sensorsdata.analytics.v1.DashboardDetailResponse" : {
+        "description" : "单个概览详细数据实体",
+        "properties" : {
+          "id" : {
+            "description" : "概览 id",
+            "example" : 101,
+            "format" : "int32",
+            "type" : "integer"
+          },
+          "name" : {
+            "description" : "概览名称",
+            "example" : "数据概览",
+            "type" : "string"
+          },
+          "user_id" : {
+            "description" : "创建者 userId",
+            "example" : 205,
+            "format" : "int32",
+            "type" : "integer"
+          },
+          "create_time" : {
+            "description" : "创建时间",
+            "example" : "2022-10-08 14:53:09",
+            "type" : "string"
+          },
+          "project_id" : {
+            "description" : "项目 id",
+            "example" : 1,
+            "format" : "int32",
+            "type" : "integer"
+          },
+          "config" : {
+            "description" : "概览配置",
+            "type" : "string"
+          },
+          "type" : {
+            "description" : "概览类型",
+            "enum" : [ "DASHBOARD_TYPE_UNSPECIFIED", "PRIVATE", "PUBLIC" ],
+            "example" : "PRIVATE",
+            "type" : "string"
+          },
+          "user_name" : {
+            "description" : "用户名",
+            "example" : "平台管理员",
+            "type" : "string"
+          },
+          "is_public" : {
+            "description" : "是否对所有人可见",
+            "example" : true,
+            "type" : "boolean"
+          },
+          "contain_bookmark_items" : {
+            "description" : "包含的书签",
+            "items" : {
+              "$ref" : "#/components/schemas/sensorsdata.analytics.v1.DashboardContainBookmarkItem"
+            },
+            "type" : "array"
+          }
+        },
+        "title" : "DashboardDetailResponse",
+        "type" : "object"
+      },
+      "sensorsdata.analytics.v1.AllBookmarksRequest" : {
+        "description" : "获取所有的书签信息接口请求参数描述",
+        "properties" : {
+          "type" : {
+            "description" : "书签类型，0 私有书签，1 公共书签",
+            "example" : 1,
+            "format" : "int32",
+            "type" : "integer"
+          },
+          "has_widget" : {
+            "description" : "是否包含组件类型的书签",
+            "example" : "true",
+            "type" : "string"
+          },
+          "has_lego" : {
+            "description" : "是否包含 lego 类型的书签",
+            "example" : "true",
+            "type" : "string"
+          },
+          "request_id" : {
+            "description" : "本次请求 ID, 方便后续追踪问题",
+            "example" : "12345696321548954",
+            "type" : "string"
+          }
+        },
+        "title" : "AllBookmarksRequest",
+        "type" : "object"
+      },
+      "sensorsdata.analytics.v1.DashboardNavigationResponse" : {
+        "description" : "获取所有的概览分组信息接口返回结构描述",
+        "properties" : {
+          "groups" : {
+            "description" : "概览分组明细",
+            "example" : "[{\"id\": \"666666\",\"title\": \"数据概览\",\"dashboards\":[101,102]}]",
+            "items" : {
+              "$ref" : "#/components/schemas/sensorsdata.analytics.v1.DashboardGroup"
+            },
+            "type" : "array"
+          },
+          "type" : {
+            "description" : "概览类型",
+            "enum" : [ "DASHBOARD_TYPE_UNSPECIFIED", "PRIVATE", "PUBLIC" ],
+            "example" : "PRIVATE",
+            "type" : "string"
+          },
+          "dashboard_navigation_items" : {
+            "description" : "概览集合",
+            "items" : {
+              "$ref" : "#/components/schemas/sensorsdata.analytics.v1.DashboardNavigationItem"
+            },
+            "type" : "array"
+          }
+        },
+        "title" : "DashboardNavigationResponse",
+        "type" : "object"
+      },
+      "sensorsdata.analytics.v1.LegoDashboardItem" : {
+        "description" : "",
+        "properties" : {
+          "id" : {
+            "description" : "lego id",
+            "example" : 1,
+            "format" : "int32",
+            "type" : "integer"
+          },
+          "name" : {
+            "description" : "名称",
+            "example" : "\"实时统计\"",
+            "type" : "string"
+          },
+          "navigation_name" : {
+            "description" : "分组名",
+            "example" : "\"整体概览\"",
+            "type" : "string"
+          },
+          "source_type" : {
+            "description" : "所属类型",
+            "example" : "\"WEB\"",
+            "type" : "string"
+          }
+        },
+        "title" : "LegoDashboardItem",
+        "type" : "object"
+      },
+      "sensorsdata.common.HttpApiResult" : {
+        "properties" : {
+          "code" : {
+            "type" : "string"
+          },
+          "message" : {
+            "type" : "string"
+          },
+          "request_id" : {
+            "type" : "string"
+          },
+          "data" : {
+            "properties" : { },
+            "type" : "object"
+          },
+          "error_info" : {
+            "$ref" : "#/components/schemas/sensorsdata.common.ErrorInfo"
+          }
+        },
+        "title" : "HttpApiResult",
+        "type" : "object"
+      },
+      "sensorsdata.analytics.v1.UpdateDashboardRequest" : {
+        "description" : "",
+        "properties" : {
+          "id" : {
+            "description" : "概览 ID",
+            "example" : 101,
+            "format" : "int32",
+            "type" : "integer"
+          },
+          "name" : {
+            "description" : "概览名称",
+            "example" : "事件分析概览",
+            "type" : "string"
+          },
+          "config" : {
+            "description" : "概览配置",
+            "type" : "string"
+          },
+          "bookmarks" : {
+            "description" : "书签列表，全量替换当前概览项，顺序即最终顺序",
+            "items" : {
+              "$ref" : "#/components/schemas/sensorsdata.analytics.v1.SaveBookmarkPayload"
+            },
+            "type" : "array"
+          },
+          "request_id" : {
+            "description" : "本次请求 ID, 方便后续追踪问题",
+            "example" : "12345696321548954",
+            "type" : "string"
+          }
+        },
+        "title" : "UpdateDashboardRequest",
+        "type" : "object"
+      },
+      "sensorsdata.analytics.v1.DashboardDetailResponseHttpApiResult" : {
+        "properties" : {
+          "code" : {
+            "type" : "string"
+          },
+          "message" : {
+            "type" : "string"
+          },
+          "request_id" : {
+            "type" : "string"
+          },
+          "data" : {
+            "$ref" : "#/components/schemas/sensorsdata.analytics.v1.DashboardDetailResponse"
+          },
+          "error_info" : {
+            "$ref" : "#/components/schemas/sensorsdata.common.ErrorInfo"
+          }
+        },
+        "title" : "sensorsdata.analytics.v1.DashboardDetailResponseHttpApiResult",
+        "type" : "object"
+      },
+      "sensorsdata.analytics.v1.PagingQueryBookmarkResponseHttpApiResult" : {
+        "properties" : {
+          "code" : {
+            "type" : "string"
+          },
+          "message" : {
+            "type" : "string"
+          },
+          "request_id" : {
+            "type" : "string"
+          },
+          "data" : {
+            "$ref" : "#/components/schemas/sensorsdata.analytics.v1.PagingQueryBookmarkResponse"
+          },
+          "error_info" : {
+            "$ref" : "#/components/schemas/sensorsdata.common.ErrorInfo"
+          }
+        },
+        "title" : "sensorsdata.analytics.v1.PagingQueryBookmarkResponseHttpApiResult",
+        "type" : "object"
+      },
+      "sensorsdata.analytics.v1.BookmarkItem" : {
+        "description" : "",
+        "properties" : {
+          "id" : {
+            "description" : "书签 ID",
+            "example" : 1,
+            "format" : "int32",
+            "type" : "integer"
+          },
+          "user_id" : {
+            "description" : "创建人 ID",
+            "example" : 1,
+            "format" : "int32",
+            "type" : "integer"
+          },
+          "type" : {
+            "description" : "书签所属业务模型",
+            "example" : "\"/segmentation/\"",
+            "type" : "string"
+          },
+          "name" : {
+            "description" : "书签名称",
+            "example" : "\"事件分析\"",
+            "type" : "string"
+          },
+          "user_cname" : {
+            "description" : "创建人",
+            "example" : "测试人1",
+            "type" : "string"
+          },
+          "data" : {
+            "description" : "书签配置",
+            "example" : "\"{\\\"measures\\\":[{\\\"event_name\\\":\\\"$MPShow\\\",\\\"aggregator\\\":\\\"general\\\",\\\"name\\\":\\\"iOS 小程序显示的总次数\\\",\\\"filter\\\":{\\\"conditions\\\":[{\\\"field\\\":\\\"event.$Anything.$lib\\\",\\\"function\\\":\\\"equal\\\",\\\"params\\\":[\\\"iOS\\\"],\\\"$$render_index\\\":0}]},\\\"editName\\\":\\\"iOS 小程序显示的总次数\\\"},{\\\"event_name\\\":\\\"$MPShow\\\",\\\"aggregator\\\":\\\"general\\\",\\\"name\\\":\\\"Android 小程序显示的总次数\\\",\\\"filter\\\":{\\\"conditions\\\":[{\\\"field\\\":\\\"event.$Anything.$lib\\\",\\\"function\\\":\\\"equal\\\",\\\"params\\\":[\\\"Android\\\"],\\\"$$render_index\\\":0}]},\\\"editName\\\":\\\"Android 小程序显示的总次数\\\"},{\\\"event_name\\\":\\\"$MPShow\\\",\\\"aggregator\\\":\\\"general\\\",\\\"name\\\":\\\"python 小程序显示的总次数\\\",\\\"filter\\\":{\\\"conditions\\\":[{\\\"field\\\":\\\"event.$Anything.$lib\\\",\\\"function\\\":\\\"equal\\\",\\\"params\\\":[\\\"python\\\"],\\\"$$render_index\\\":0}]},\\\"editName\\\":\\\"python 小程序显示的总次数\\\"},{\\\"event_name\\\":\\\"$MPShow\\\",\\\"aggregator\\\":\\\"general\\\",\\\"name\\\":\\\"小程序显示的总次数\\\"}],\\\"from_date\\\":\\\"2022-10-01\\\",\\\"to_date\\\":\\\"2022-10-07\\\",\\\"unit\\\":\\\"day\\\",\\\"by_fields\\\":[],\\\"detail_and_rollup\\\":true,\\\"enable_detail_follow_rollup_by_values_rank\\\":true,\\\"sub_task_type\\\":\\\"SEGMENTATION\\\",\\\"time_zone_mode\\\":\\\"\\\",\\\"server_time_zone\\\":\\\"\\\",\\\"compareKey\\\":\\\"\\\"}\"",
+            "type" : "string"
+          },
+          "time" : {
+            "description" : "",
+            "type" : "string"
+          },
+          "create_time" : {
+            "description" : "书签创建时间",
+            "example" : "2022-10-08 14:53:09",
+            "type" : "string"
+          },
+          "related_events" : {
+            "description" : "关联事件",
+            "example" : "[]",
+            "items" : {
+              "type" : "string"
+            },
+            "type" : "array"
+          },
+          "project_id" : {
+            "description" : "所属项目 ID",
+            "example" : 1,
+            "format" : "int32",
+            "type" : "integer"
+          },
+          "config" : {
+            "description" : "书签可视化配置",
+            "example" : "\"{\\\"chartsType\\\":\\\"line\\\",\\\"byFieldsCname\\\":[],\\\"byFieldsDataType\\\":[],\\\"byValuesFilter\\\":[],\\\"byFields\\\":null,\\\"measureIndexs\\\":[0,1,2,3],\\\"comment\\\":\\\"\\\",\\\"topN\\\":0,\\\"valueTypes\\\":\\\"number\\\"}\"",
+            "type" : "string"
+          },
+          "lego_type" : {
+            "description" : "预置类型",
+            "example" : 0,
+            "format" : "int32",
+            "type" : "integer"
+          },
+          "mode" : {
+            "description" : "书签模式, 0 为个人书签，1 为公共书签",
+            "example" : 0,
+            "format" : "int32",
+            "type" : "integer"
+          },
+          "dashboards" : {
+            "description" : "已关联的概览",
+            "example" : "[{\"id\":1,\"name\":\"事件分析概览\"}]",
+            "items" : {
+              "$ref" : "#/components/schemas/sensorsdata.analytics.v1.BookmarkRelateDashboard"
+            },
+            "type" : "array"
+          }
+        },
+        "title" : "BookmarkItem",
+        "type" : "object"
+      },
+      "sensorsdata.common.ErrorContext" : {
+        "description" : "发生错误时，系统快照信息",
+        "properties" : {
+          "origin_stack" : {
+            "description" : "上游异常的 stack，由系统截获",
+            "type" : "string"
+          },
+          "origin_cause" : {
+            "description" : "上游异常的 cause by，由系统截获",
+            "type" : "string"
+          },
+          "origin_code" : {
+            "description" : "上游异常的错误简码",
+            "type" : "string"
+          },
+          "origin_complete_code" : {
+            "description" : "上游异常的完整错误码",
+            "type" : "string"
+          },
+          "error_extend_desc" : {
+            "description" : "本次异常的辅助说明，可传入",
+            "type" : "string"
+          }
+        },
+        "title" : "ErrorContext",
+        "type" : "object"
+      },
+      "sensorsdata.analytics.v1.BookmarkRelateDashboard" : {
+        "description" : "",
+        "properties" : {
+          "id" : {
+            "description" : "概览 ID",
+            "example" : 1,
+            "format" : "int32",
+            "type" : "integer"
+          },
+          "name" : {
+            "description" : "概览名称",
+            "example" : "事件分析概览",
+            "type" : "string"
+          }
+        },
+        "title" : "BookmarkRelateDashboard",
+        "type" : "object"
+      },
+      "sensorsdata.analytics.v1.CreateDashboardResponseHttpApiResult" : {
+        "properties" : {
+          "code" : {
+            "type" : "string"
+          },
+          "message" : {
+            "type" : "string"
+          },
+          "request_id" : {
+            "type" : "string"
+          },
+          "data" : {
+            "$ref" : "#/components/schemas/sensorsdata.analytics.v1.CreateDashboardResponse"
+          },
+          "error_info" : {
+            "$ref" : "#/components/schemas/sensorsdata.common.ErrorInfo"
+          }
+        },
+        "title" : "sensorsdata.analytics.v1.CreateDashboardResponseHttpApiResult",
+        "type" : "object"
+      },
+      "sensorsdata.analytics.v1.LegoDashboardResponse" : {
+        "description" : "",
+        "properties" : {
+          "lego_dashboard_items" : {
+            "description" : "",
+            "items" : {
+              "$ref" : "#/components/schemas/sensorsdata.analytics.v1.LegoDashboardItem"
+            },
+            "type" : "array"
+          }
+        },
+        "title" : "LegoDashboardResponse",
+        "type" : "object"
+      },
+      "sensorsdata.analytics.v1.SaveBookmarkPayload" : {
+        "description" : "",
+        "properties" : {
+          "id" : {
+            "description" : "书签 ID。更新已有书签时传入；创建新书签时不传或为 0",
+            "example" : 5,
+            "format" : "int32",
+            "type" : "integer"
+          },
+          "type" : {
+            "description" : "书签所属业务模型",
+            "example" : "\"/segmentation/\"",
+            "type" : "string"
+          },
+          "name" : {
+            "description" : "书签名称",
+            "example" : "\"事件分析\"",
+            "type" : "string"
+          },
+          "data" : {
+            "description" : "书签配置",
+            "type" : "string"
+          },
+          "config" : {
+            "description" : "书签可视化配置",
+            "type" : "string"
+          },
+          "mode" : {
+            "description" : "书签模式，0 私有，1 公共",
+            "example" : 0,
+            "format" : "int32",
+            "type" : "integer"
+          }
+        },
+        "title" : "SaveBookmarkPayload",
+        "type" : "object"
+      },
+      "sensorsdata.analytics.v1.PagingQueryDashboardResponseHttpApiResult" : {
+        "properties" : {
+          "code" : {
+            "type" : "string"
+          },
+          "message" : {
+            "type" : "string"
+          },
+          "request_id" : {
+            "type" : "string"
+          },
+          "data" : {
+            "$ref" : "#/components/schemas/sensorsdata.analytics.v1.PagingQueryDashboardResponse"
+          },
+          "error_info" : {
+            "$ref" : "#/components/schemas/sensorsdata.common.ErrorInfo"
+          }
+        },
+        "title" : "sensorsdata.analytics.v1.PagingQueryDashboardResponseHttpApiResult",
+        "type" : "object"
+      },
+      "sensorsdata.analytics.v1.CreateDashboardRequest" : {
+        "description" : "",
+        "properties" : {
+          "type" : {
+            "description" : "概览类型",
+            "enum" : [ "DASHBOARD_TYPE_UNSPECIFIED", "PRIVATE", "PUBLIC" ],
+            "example" : "PRIVATE",
+            "type" : "string"
+          },
+          "name" : {
+            "description" : "概览名称",
+            "example" : "事件分析概览",
+            "type" : "string"
+          },
+          "config" : {
+            "description" : "概览配置",
+            "type" : "string"
+          },
+          "bookmarks" : {
+            "description" : "书签列表，全量替换当前概览项，顺序即最终顺序",
+            "items" : {
+              "$ref" : "#/components/schemas/sensorsdata.analytics.v1.SaveBookmarkPayload"
+            },
+            "type" : "array"
+          },
+          "request_id" : {
+            "description" : "本次请求 ID, 方便后续追踪问题",
+            "example" : "93bcf68b74e6498aae888d794e776717",
+            "type" : "string"
+          },
+          "group_id" : {
+            "description" : "目标概览分组 ID；不传时默认加入数据概览分组 666666",
+            "example" : 666666,
+            "format" : "int64",
+            "type" : "integer"
+          }
+        },
+        "title" : "CreateDashboardRequest",
+        "type" : "object"
+      },
+      "sensorsdata.analytics.v1.DependencyResourceEntryResponseHttpApiResult" : {
+        "properties" : {
+          "code" : {
+            "type" : "string"
+          },
+          "message" : {
+            "type" : "string"
+          },
+          "request_id" : {
+            "type" : "string"
+          },
+          "data" : {
+            "$ref" : "#/components/schemas/sensorsdata.analytics.v1.DependencyResourceEntryResponse"
+          },
+          "error_info" : {
+            "$ref" : "#/components/schemas/sensorsdata.common.ErrorInfo"
+          }
+        },
+        "title" : "sensorsdata.analytics.v1.DependencyResourceEntryResponseHttpApiResult",
+        "type" : "object"
+      },
+      "sensorsdata.analytics.v1.DashboardOwner" : {
+        "description" : "",
+        "properties" : {
+          "id" : {
+            "description" : "分享给的用户/角色/职位 ID",
+            "example" : 5,
+            "format" : "int32",
+            "type" : "integer"
+          },
+          "type" : {
+            "description" : "分享的主体类, 按账号：ACCOUNT，按角色：ROLE，按职务： DUTY",
+            "enum" : [ "DASHBOARD_SHARE_TYPE_UNSPECIFIED", "ACCOUNT", "ROLE", "DUTY" ],
+            "example" : "ACCOUNT",
+            "type" : "string"
+          }
+        },
+        "title" : "DashboardOwner",
+        "type" : "object"
+      },
+      "sensorsdata.analytics.v1.AddBookmarksToDashboardResponseHttpApiResult" : {
+        "properties" : {
+          "code" : {
+            "type" : "string"
+          },
+          "message" : {
+            "type" : "string"
+          },
+          "request_id" : {
+            "type" : "string"
+          },
+          "data" : {
+            "$ref" : "#/components/schemas/sensorsdata.analytics.v1.AddBookmarksToDashboardResponse"
+          },
+          "error_info" : {
+            "$ref" : "#/components/schemas/sensorsdata.common.ErrorInfo"
+          }
+        },
+        "title" : "sensorsdata.analytics.v1.AddBookmarksToDashboardResponseHttpApiResult",
+        "type" : "object"
+      },
+      "sensorsdata.analytics.v1.GetDeletedResourceResponseHttpApiResult" : {
+        "properties" : {
+          "code" : {
+            "type" : "string"
+          },
+          "message" : {
+            "type" : "string"
+          },
+          "request_id" : {
+            "type" : "string"
+          },
+          "data" : {
+            "$ref" : "#/components/schemas/sensorsdata.analytics.v1.GetDeletedResourceResponse"
+          },
+          "error_info" : {
+            "$ref" : "#/components/schemas/sensorsdata.common.ErrorInfo"
+          }
+        },
+        "title" : "sensorsdata.analytics.v1.GetDeletedResourceResponseHttpApiResult",
+        "type" : "object"
+      },
+      "sensorsdata.analytics.v1.AddBookmarksToDashboardResponse" : {
+        "description" : "",
+        "properties" : {
+          "dashboard_id" : {
+            "description" : "目标概览 ID",
+            "example" : 101,
+            "format" : "int32",
+            "type" : "integer"
+          },
+          "dashboard" : {
+            "$ref" : "#/components/schemas/sensorsdata.analytics.v1.DashboardDetailResponse"
+          },
+          "bookmark_count" : {
+            "description" : "当前概览书签总数",
+            "example" : 5,
+            "format" : "int32",
+            "type" : "integer"
+          }
+        },
+        "title" : "AddBookmarksToDashboardResponse",
+        "type" : "object"
+      },
+      "sensorsdata.analytics.v1.DashboardGroup" : {
+        "description" : "",
+        "properties" : {
+          "id" : {
+            "description" : "概览分组ID",
+            "example" : 5,
+            "format" : "int64",
+            "type" : "integer"
+          },
+          "title" : {
+            "description" : "概览分组标题",
+            "example" : "数据概览",
+            "type" : "string"
+          },
+          "dashboards" : {
+            "description" : "概览集合",
+            "example" : "[101,102]",
+            "items" : {
+              "format" : "int32",
+              "type" : "integer"
+            },
+            "type" : "array"
+          }
+        },
+        "title" : "DashboardGroup",
+        "type" : "object"
+      },
+      "sensorsdata.analytics.v1.LegoDashboardResponseHttpApiResult" : {
+        "properties" : {
+          "code" : {
+            "type" : "string"
+          },
+          "message" : {
+            "type" : "string"
+          },
+          "request_id" : {
+            "type" : "string"
+          },
+          "data" : {
+            "$ref" : "#/components/schemas/sensorsdata.analytics.v1.LegoDashboardResponse"
+          },
+          "error_info" : {
+            "$ref" : "#/components/schemas/sensorsdata.common.ErrorInfo"
+          }
+        },
+        "title" : "sensorsdata.analytics.v1.LegoDashboardResponseHttpApiResult",
+        "type" : "object"
+      },
+      "sensorsdata.common.ErrorCause" : {
+        "properties" : {
+          "error_cause" : {
+            "description" : "致错原因1",
+            "example" : "参数异常1",
+            "type" : "string"
+          },
+          "action_suggestion" : {
+            "description" : "操作建议，针对该原因，建议的解决方式",
+            "example" : "检测入参的数据类型1",
+            "type" : "string"
+          }
+        },
+        "title" : "ErrorCause",
+        "type" : "object"
+      },
+      "sensorsdata.analytics.v1.DashboardContainBookmarkItem" : {
+        "description" : "",
+        "properties" : {
+          "id" : {
+            "description" : "书签 ID",
+            "example" : 1,
+            "format" : "int32",
+            "type" : "integer"
+          },
+          "user_id" : {
+            "description" : "创建人 ID",
+            "example" : 1,
+            "format" : "int32",
+            "type" : "integer"
+          },
+          "type" : {
+            "description" : "书签所属业务模型",
+            "enum" : [ "BOOKMARK_MODEL_TYPE_UNSPECIFIED", "SEGMENTATION_MODEL", "RETENTION_MODEL", "FUNNEL_MODEL", "LTV_MODEL", "USER_ANALYTICS_MODEL", "ADDICTION_MODEL", "INTERVAL_MODEL", "ATTRIBUTION_MODEL", "SESSION_MODEL", "FANCY_METRIC_MODEL", "BEHAVIOR_PATH_MODEL", "CUSTOM_SQL_MODEL", "DATATABLE_MODEL" ],
+            "example" : "\"/segmentation/\"",
+            "type" : "string"
+          },
+          "name" : {
+            "description" : "书签名称",
+            "example" : "\"事件分析\"",
+            "type" : "string"
+          },
+          "data" : {
+            "description" : "书签配置",
+            "example" : "\"{\\\"measures\\\":[{\\\"event_name\\\":\\\"$MPShow\\\",\\\"aggregator\\\":\\\"general\\\",\\\"name\\\":\\\"iOS 小程序显示的总次数\\\",\\\"filter\\\":{\\\"conditions\\\":[{\\\"field\\\":\\\"event.$Anything.$lib\\\",\\\"function\\\":\\\"equal\\\",\\\"params\\\":[\\\"iOS\\\"],\\\"$$render_index\\\":0}]},\\\"editName\\\":\\\"iOS 小程序显示的总次数\\\"},{\\\"event_name\\\":\\\"$MPShow\\\",\\\"aggregator\\\":\\\"general\\\",\\\"name\\\":\\\"Android 小程序显示的总次数\\\",\\\"filter\\\":{\\\"conditions\\\":[{\\\"field\\\":\\\"event.$Anything.$lib\\\",\\\"function\\\":\\\"equal\\\",\\\"params\\\":[\\\"Android\\\"],\\\"$$render_index\\\":0}]},\\\"editName\\\":\\\"Android 小程序显示的总次数\\\"},{\\\"event_name\\\":\\\"$MPShow\\\",\\\"aggregator\\\":\\\"general\\\",\\\"name\\\":\\\"python 小程序显示的总次数\\\",\\\"filter\\\":{\\\"conditions\\\":[{\\\"field\\\":\\\"event.$Anything.$lib\\\",\\\"function\\\":\\\"equal\\\",\\\"params\\\":[\\\"python\\\"],\\\"$$render_index\\\":0}]},\\\"editName\\\":\\\"python 小程序显示的总次数\\\"},{\\\"event_name\\\":\\\"$MPShow\\\",\\\"aggregator\\\":\\\"general\\\",\\\"name\\\":\\\"小程序显示的总次数\\\"}],\\\"from_date\\\":\\\"2022-10-01\\\",\\\"to_date\\\":\\\"2022-10-07\\\",\\\"unit\\\":\\\"day\\\",\\\"by_fields\\\":[],\\\"detail_and_rollup\\\":true,\\\"enable_detail_follow_rollup_by_values_rank\\\":true,\\\"sub_task_type\\\":\\\"SEGMENTATION\\\",\\\"time_zone_mode\\\":\\\"\\\",\\\"server_time_zone\\\":\\\"\\\",\\\"compareKey\\\":\\\"\\\"}\"",
+            "type" : "string"
+          },
+          "create_time" : {
+            "description" : "书签创建时间",
+            "example" : "2022-10-08 14:53:09",
+            "type" : "string"
+          },
+          "project_id" : {
+            "description" : "所属项目 ID",
+            "example" : 1,
+            "format" : "int32",
+            "type" : "integer"
+          },
+          "config" : {
+            "description" : "书签可视化配置",
+            "example" : "\"{\\\"chartsType\\\":\\\"line\\\",\\\"byFieldsCname\\\":[],\\\"byFieldsDataType\\\":[],\\\"byValuesFilter\\\":[],\\\"byFields\\\":null,\\\"measureIndexs\\\":[0,1,2,3],\\\"comment\\\":\\\"\\\",\\\"topN\\\":0,\\\"valueTypes\\\":\\\"number\\\"}\"",
+            "type" : "string"
+          },
+          "is_lego" : {
+            "description" : "预置类型",
+            "example" : false,
+            "type" : "boolean"
+          },
+          "mode" : {
+            "description" : "书签模式, 0 为个人书签，1 为公共书签",
+            "example" : 0,
+            "format" : "int32",
+            "type" : "integer"
+          },
+          "dashboards" : {
+            "description" : "已关联的概览",
+            "example" : "[11,23,44]",
+            "items" : {
+              "format" : "int32",
+              "type" : "integer"
+            },
+            "type" : "array"
+          }
+        },
+        "title" : "DashboardContainBookmarkItem",
+        "type" : "object"
+      },
+      "sensorsdata.common.ErrorInfo" : {
+        "properties" : {
+          "code" : {
+            "description" : "具体的错误码",
+            "example" : "XX-D-F-2-1",
+            "type" : "string"
+          },
+          "description" : {
+            "description" : "错误描述",
+            "example" : "前端参数校验异常,PARAMETER_FORMAT_ERROR(quantiles=[10, -90] is not include [0, 100])",
+            "type" : "string"
+          },
+          "system_response" : {
+            "description" : "致错的可能原因列表",
+            "example" : "系统终止了查询处理",
+            "type" : "string"
+          },
+          "error_causes" : {
+            "items" : {
+              "$ref" : "#/components/schemas/sensorsdata.common.ErrorCause"
+            },
+            "type" : "array"
+          },
+          "context" : {
+            "$ref" : "#/components/schemas/sensorsdata.common.ErrorContext"
+          }
+        },
+        "title" : "ErrorInfo",
+        "type" : "object"
+      },
+      "sensorsdata.analytics.v1.AddDashboardRequest" : {
+        "description" : "添加概览分组信息接口请求参数描述",
+        "properties" : {
+          "groups" : {
+            "description" : "概览分组明细",
+            "example" : "[{\"id\": \"666666\",\"title\": \"数据概览2\",\"dashboards\":[201,202]}]",
+            "items" : {
+              "$ref" : "#/components/schemas/sensorsdata.analytics.v1.DashboardGroup"
+            },
+            "type" : "array"
+          },
+          "default_group" : {
+            "$ref" : "#/components/schemas/sensorsdata.analytics.v1.DashboardGroup"
+          },
+          "type" : {
+            "description" : "概览类型",
+            "enum" : [ "DASHBOARD_TYPE_UNSPECIFIED", "PRIVATE", "PUBLIC" ],
+            "example" : "PRIVATE",
+            "type" : "string"
+          },
+          "request_id" : {
+            "description" : "本次请求 ID, 方便后续追踪问题",
+            "example" : "12345696321548954",
+            "type" : "string"
+          }
+        },
+        "title" : "AddDashboardRequest",
+        "type" : "object"
+      },
+      "sensorsdata.analytics.v1.DashboardNavigationItem" : {
+        "description" : "概览分组内的概览数据实体",
+        "properties" : {
+          "id" : {
+            "description" : "概览 id",
+            "example" : 101,
+            "format" : "int32",
+            "type" : "integer"
+          },
+          "name" : {
+            "description" : "概览名称",
+            "example" : "数据概览",
+            "type" : "string"
+          },
+          "type" : {
+            "description" : "所属类别",
+            "example" : 1,
+            "format" : "int32",
+            "type" : "integer"
+          },
+          "user_id" : {
+            "description" : "创建者 userId",
+            "example" : 205,
+            "format" : "int32",
+            "type" : "integer"
+          },
+          "create_time" : {
+            "description" : "创建时间",
+            "example" : "2022-10-08 14:53:09",
+            "type" : "string"
+          },
+          "project_id" : {
+            "description" : "项目 id",
+            "example" : 1,
+            "format" : "int32",
+            "type" : "integer"
+          },
+          "user_name" : {
+            "description" : "用户名",
+            "example" : "平台管理员",
+            "type" : "string"
+          },
+          "user_canme" : {
+            "description" : "用户别名",
+            "example" : "平台管理员",
+            "type" : "string"
+          },
+          "is_public" : {
+            "description" : "是否对所有人可见",
+            "example" : true,
+            "type" : "boolean"
+          },
+          "config" : {
+            "description" : "概览配置",
+            "type" : "string"
+          },
+          "edit_permission" : {
+            "description" : "当前用户是否具备该概览的操作权限",
+            "example" : true,
+            "type" : "boolean"
+          }
+        },
+        "title" : "DashboardNavigationItem",
+        "type" : "object"
+      },
+      "sensorsdata.analytics.v1.DashboardNavigationResponseHttpApiResult" : {
+        "properties" : {
+          "code" : {
+            "type" : "string"
+          },
+          "message" : {
+            "type" : "string"
+          },
+          "request_id" : {
+            "type" : "string"
+          },
+          "data" : {
+            "$ref" : "#/components/schemas/sensorsdata.analytics.v1.DashboardNavigationResponse"
+          },
+          "error_info" : {
+            "$ref" : "#/components/schemas/sensorsdata.common.ErrorInfo"
+          }
+        },
+        "title" : "sensorsdata.analytics.v1.DashboardNavigationResponseHttpApiResult",
+        "type" : "object"
+      },
+      "sensorsdata.analytics.v1.AddBookmarksToDashboardRequest" : {
+        "description" : "",
+        "properties" : {
+          "dashboard_id" : {
+            "description" : "目标概览 ID",
+            "example" : 101,
+            "format" : "int32",
+            "type" : "integer"
+          },
+          "bookmarks" : {
+            "description" : "要创建并追加到概览的书签草稿列表，顺序即最终追加顺序",
+            "items" : {
+              "$ref" : "#/components/schemas/sensorsdata.analytics.v1.SaveBookmarkPayload"
+            },
+            "type" : "array"
+          },
+          "request_id" : {
+            "description" : "本次请求 ID, 方便后续追踪问题",
+            "example" : "12345696321548954",
+            "type" : "string"
+          }
+        },
+        "title" : "AddBookmarksToDashboardRequest",
+        "type" : "object"
+      },
+      "sensorsdata.analytics.v1.BookmarksResponseHttpApiResult" : {
+        "properties" : {
+          "code" : {
+            "type" : "string"
+          },
+          "message" : {
+            "type" : "string"
+          },
+          "request_id" : {
+            "type" : "string"
+          },
+          "data" : {
+            "$ref" : "#/components/schemas/sensorsdata.analytics.v1.BookmarksResponse"
+          },
+          "error_info" : {
+            "$ref" : "#/components/schemas/sensorsdata.common.ErrorInfo"
+          }
+        },
+        "title" : "sensorsdata.analytics.v1.BookmarksResponseHttpApiResult",
+        "type" : "object"
+      },
+      "sensorsdata.analytics.v1.CommonResponse" : {
+        "description" : "",
+        "properties" : {
+          "flag" : {
+            "description" : "操作成功标识",
+            "example" : true,
+            "type" : "boolean"
+          }
+        },
+        "title" : "CommonResponse",
+        "type" : "object"
+      },
+      "sensorsdata.analytics.v1.ShareDashboardRequest" : {
+        "description" : "概览分享（取消分享）接口请求参数描述",
+        "properties" : {
+          "dashboard_ids" : {
+            "description" : "概览集合",
+            "example" : "[101,102]",
+            "items" : {
+              "format" : "int32",
+              "type" : "integer"
+            },
+            "type" : "array"
+          },
+          "owners" : {
+            "description" : "分享人列表",
+            "example" : "[{\"id\":5,\"type\":\"ROLE\"},{\"id\":32,\"type\":\"ROLE\"}]",
+            "items" : {
+              "$ref" : "#/components/schemas/sensorsdata.analytics.v1.DashboardOwner"
+            },
+            "type" : "array"
+          },
+          "publish" : {
+            "description" : "是否分享",
+            "example" : true,
+            "type" : "boolean"
+          },
+          "request_id" : {
+            "description" : "本次请求 ID, 方便后续追踪问题",
+            "example" : "12345696321548954",
+            "type" : "string"
+          }
+        },
+        "title" : "ShareDashboardRequest",
+        "type" : "object"
+      },
+      "sensorsdata.analytics.v1.ResourcePvResponseHttpApiResult" : {
+        "properties" : {
+          "code" : {
+            "type" : "string"
+          },
+          "message" : {
+            "type" : "string"
+          },
+          "request_id" : {
+            "type" : "string"
+          },
+          "data" : {
+            "$ref" : "#/components/schemas/sensorsdata.analytics.v1.ResourcePvResponse"
+          },
+          "error_info" : {
+            "$ref" : "#/components/schemas/sensorsdata.common.ErrorInfo"
+          }
+        },
+        "title" : "sensorsdata.analytics.v1.ResourcePvResponseHttpApiResult",
+        "type" : "object"
+      },
+      "sensorsdata.analytics.v1.DashboardRequest" : {
+        "description" : "",
+        "properties" : {
+          "id" : {
+            "description" : "概览 ID",
+            "example" : 1,
+            "format" : "int32",
+            "type" : "integer"
+          },
+          "request_id" : {
+            "description" : "本次请求 ID, 方便后续追踪问题",
+            "example" : "12345696321548954",
+            "type" : "string"
+          }
+        },
+        "title" : "DashboardRequest",
+        "type" : "object"
+      },
+      "sensorsdata.analytics.v1.CreateDashboardResponse" : {
+        "description" : "",
+        "properties" : {
+          "id" : {
+            "description" : "新创建的概览 ID",
+            "example" : 101,
+            "format" : "int32",
+            "type" : "integer"
+          },
+          "dashboard" : {
+            "$ref" : "#/components/schemas/sensorsdata.analytics.v1.DashboardDetailResponse"
+          },
+          "group_id" : {
+            "description" : "最终所属概览分组 ID",
+            "example" : 666666,
+            "format" : "int64",
+            "type" : "integer"
+          },
+          "bookmark_count" : {
+            "description" : "当前概览书签总数",
+            "example" : 5,
+            "format" : "int32",
+            "type" : "integer"
+          }
+        },
+        "title" : "CreateDashboardResponse",
+        "type" : "object"
+      },
+      "sensorsdata.analytics.v1.CommonResponseHttpApiResult" : {
+        "properties" : {
+          "code" : {
+            "type" : "string"
+          },
+          "message" : {
+            "type" : "string"
+          },
+          "request_id" : {
+            "type" : "string"
+          },
+          "data" : {
+            "$ref" : "#/components/schemas/sensorsdata.analytics.v1.CommonResponse"
+          },
+          "error_info" : {
+            "$ref" : "#/components/schemas/sensorsdata.common.ErrorInfo"
+          }
+        },
+        "title" : "sensorsdata.analytics.v1.CommonResponseHttpApiResult",
+        "type" : "object"
+      },
+      "sensorsdata.analytics.v1.DashboardsRequest" : {
+        "description" : "获取所有的概览分组信息接口请求参数描述",
+        "properties" : {
+          "type" : {
+            "description" : "概览类型",
+            "enum" : [ "DASHBOARD_TYPE_UNSPECIFIED", "PRIVATE", "PUBLIC" ],
+            "example" : "PRIVATE",
+            "type" : "string"
+          },
+          "request_id" : {
+            "description" : "本次请求 ID, 方便后续追踪问题",
+            "example" : "12345696321548954",
+            "type" : "string"
+          }
+        },
+        "title" : "DashboardsRequest",
+        "type" : "object"
+      }
+    }
+  },
+  "x-sd-openapi-service-name" : "Dashboard",
+  "x-sd-openapi-service-name-hyphen" : "dashboard",
+  "x-sd-openapi-app-name" : "analytics",
+  "x-sd-openapi-service-name-zh_cn" : "概览",
+  "x-original-swagger-version" : "2.0"
+}

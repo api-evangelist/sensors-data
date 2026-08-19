@@ -1,0 +1,3155 @@
+{
+  "openapi" : "3.0.1",
+  "info" : {
+    "description" : "触发策略相关接口",
+    "title" : "神策智能运营",
+    "version" : ""
+  },
+  "servers" : [ {
+    "url" : "/api/v3/focus/v1"
+  } ],
+  "paths" : {
+    "/trigger-strategy/create" : {
+      "post" : {
+        "description" : "创建触发策略",
+        "operationId" : "CreateTriggerStrategy",
+        "parameters" : [ {
+          "description" : "全局唯一的密钥，用于验证和授权访问 API 接口",
+          "in" : "header",
+          "name" : "api-key",
+          "required" : true,
+          "schema" : {
+            "type" : "string"
+          }
+        }, {
+          "description" : "项目名, 指定请求所属项目",
+          "in" : "header",
+          "name" : "sensorsdata-project",
+          "required" : true,
+          "schema" : {
+            "type" : "string"
+          }
+        }, {
+          "description" : "租户 ID, 用于请求所属租户",
+          "in" : "header",
+          "name" : "X-Organization-Id",
+          "required" : true,
+          "schema" : {
+            "type" : "string"
+          }
+        } ],
+        "requestBody" : {
+          "content" : {
+            "application/json" : {
+              "schema" : {
+                "$ref" : "#/components/schemas/sensorsdata.focus.v1.CreateTriggerStrategyRequest"
+              }
+            }
+          },
+          "description" : "创建触发策略的请求体",
+          "required" : false
+        },
+        "responses" : {
+          "default" : {
+            "content" : {
+              "application/json" : {
+                "example" : {
+                  "code" : "SUCCESS",
+                  "data" : { },
+                  "request_id" : "1"
+                },
+                "schema" : {
+                  "$ref" : "#/components/schemas/sensorsdata.focus.v1.CreateTriggerStrategyResponseHttpApiResult"
+                }
+              }
+            },
+            "description" : "sensorsdata.focus.v1.CreateTriggerStrategyResponse"
+          }
+        },
+        "summary" : "创建触发策略",
+        "x-sd-openapi" : {
+          "responseClass" : "com.sensorsdata.focus.v1.CreateTriggerStrategyResponse",
+          "isServerStreaming" : false,
+          "requestClass" : "com.sensorsdata.focus.v1.CreateTriggerStrategyRequest",
+          "grpcServiceBase" : "com.sensorsdata.focus.v1.WebStrategyServiceGrpc.WebStrategyServiceImplBase",
+          "internalDesc" : "classes in template for grpc service dynamic invoking",
+          "isClientStreaming" : false
+        },
+        "x-codegen-request-body-name" : "CreateTriggerStrategyRequest"
+      }
+    },
+    "/trigger-strategy/start" : {
+      "post" : {
+        "description" : "启动触发策略",
+        "operationId" : "StartTriggerStrategy",
+        "parameters" : [ {
+          "description" : "全局唯一的密钥，用于验证和授权访问 API 接口",
+          "in" : "header",
+          "name" : "api-key",
+          "required" : true,
+          "schema" : {
+            "type" : "string"
+          }
+        }, {
+          "description" : "项目名, 指定请求所属项目",
+          "in" : "header",
+          "name" : "sensorsdata-project",
+          "required" : true,
+          "schema" : {
+            "type" : "string"
+          }
+        }, {
+          "description" : "租户 ID, 用于请求所属租户",
+          "in" : "header",
+          "name" : "X-Organization-Id",
+          "required" : true,
+          "schema" : {
+            "type" : "string"
+          }
+        } ],
+        "requestBody" : {
+          "content" : {
+            "application/json" : {
+              "schema" : {
+                "$ref" : "#/components/schemas/sensorsdata.focus.v1.StartTriggerStrategyRequest"
+              }
+            }
+          },
+          "description" : "启动触发策略的请求体",
+          "required" : false
+        },
+        "responses" : {
+          "default" : {
+            "content" : {
+              "application/json" : {
+                "example" : {
+                  "code" : "SUCCESS",
+                  "data" : { },
+                  "request_id" : "1"
+                },
+                "schema" : {
+                  "$ref" : "#/components/schemas/sensorsdata.focus.v1.StartTriggerStrategyResponseHttpApiResult"
+                }
+              }
+            },
+            "description" : "sensorsdata.focus.v1.StartTriggerStrategyResponse"
+          }
+        },
+        "summary" : "启动触发策略",
+        "x-sd-openapi" : {
+          "responseClass" : "com.sensorsdata.focus.v1.StartTriggerStrategyResponse",
+          "isServerStreaming" : false,
+          "requestClass" : "com.sensorsdata.focus.v1.StartTriggerStrategyRequest",
+          "grpcServiceBase" : "com.sensorsdata.focus.v1.WebStrategyServiceGrpc.WebStrategyServiceImplBase",
+          "internalDesc" : "classes in template for grpc service dynamic invoking",
+          "isClientStreaming" : false
+        },
+        "x-codegen-request-body-name" : "StartTriggerStrategyRequest"
+      }
+    },
+    "/trigger-strategy/stop" : {
+      "post" : {
+        "description" : "停止触发策略",
+        "operationId" : "StopTriggerStrategy",
+        "parameters" : [ {
+          "description" : "全局唯一的密钥，用于验证和授权访问 API 接口",
+          "in" : "header",
+          "name" : "api-key",
+          "required" : true,
+          "schema" : {
+            "type" : "string"
+          }
+        }, {
+          "description" : "项目名, 指定请求所属项目",
+          "in" : "header",
+          "name" : "sensorsdata-project",
+          "required" : true,
+          "schema" : {
+            "type" : "string"
+          }
+        }, {
+          "description" : "租户 ID, 用于请求所属租户",
+          "in" : "header",
+          "name" : "X-Organization-Id",
+          "required" : true,
+          "schema" : {
+            "type" : "string"
+          }
+        } ],
+        "requestBody" : {
+          "content" : {
+            "application/json" : {
+              "schema" : {
+                "$ref" : "#/components/schemas/sensorsdata.focus.v1.StopTriggerStrategyRequest"
+              }
+            }
+          },
+          "description" : "停止触发策略的请求体",
+          "required" : false
+        },
+        "responses" : {
+          "default" : {
+            "content" : {
+              "application/json" : {
+                "example" : {
+                  "code" : "SUCCESS",
+                  "data" : { },
+                  "request_id" : "1"
+                },
+                "schema" : {
+                  "$ref" : "#/components/schemas/sensorsdata.focus.v1.StopTriggerStrategyResponseHttpApiResult"
+                }
+              }
+            },
+            "description" : "sensorsdata.focus.v1.StopTriggerStrategyResponse"
+          }
+        },
+        "summary" : "停止触发策略",
+        "x-sd-openapi" : {
+          "responseClass" : "com.sensorsdata.focus.v1.StopTriggerStrategyResponse",
+          "isServerStreaming" : false,
+          "requestClass" : "com.sensorsdata.focus.v1.StopTriggerStrategyRequest",
+          "grpcServiceBase" : "com.sensorsdata.focus.v1.WebStrategyServiceGrpc.WebStrategyServiceImplBase",
+          "internalDesc" : "classes in template for grpc service dynamic invoking",
+          "isClientStreaming" : false
+        },
+        "x-codegen-request-body-name" : "StopTriggerStrategyRequest"
+      }
+    },
+    "/trigger-strategy/delete" : {
+      "post" : {
+        "description" : "删除触发策略",
+        "operationId" : "DeleteTriggerStrategy",
+        "parameters" : [ {
+          "description" : "全局唯一的密钥，用于验证和授权访问 API 接口",
+          "in" : "header",
+          "name" : "api-key",
+          "required" : true,
+          "schema" : {
+            "type" : "string"
+          }
+        }, {
+          "description" : "项目名, 指定请求所属项目",
+          "in" : "header",
+          "name" : "sensorsdata-project",
+          "required" : true,
+          "schema" : {
+            "type" : "string"
+          }
+        }, {
+          "description" : "租户 ID, 用于请求所属租户",
+          "in" : "header",
+          "name" : "X-Organization-Id",
+          "required" : true,
+          "schema" : {
+            "type" : "string"
+          }
+        } ],
+        "requestBody" : {
+          "content" : {
+            "application/json" : {
+              "schema" : {
+                "$ref" : "#/components/schemas/sensorsdata.focus.v1.DeleteTriggerStrategyRequest"
+              }
+            }
+          },
+          "description" : "删除触发策略的请求体",
+          "required" : false
+        },
+        "responses" : {
+          "default" : {
+            "content" : {
+              "application/json" : {
+                "example" : {
+                  "code" : "SUCCESS",
+                  "data" : { },
+                  "request_id" : "1"
+                },
+                "schema" : {
+                  "$ref" : "#/components/schemas/sensorsdata.focus.v1.DeleteTriggerStrategyResponseHttpApiResult"
+                }
+              }
+            },
+            "description" : "sensorsdata.focus.v1.DeleteTriggerStrategyResponse"
+          }
+        },
+        "summary" : "删除触发策略",
+        "x-sd-openapi" : {
+          "responseClass" : "com.sensorsdata.focus.v1.DeleteTriggerStrategyResponse",
+          "isServerStreaming" : false,
+          "requestClass" : "com.sensorsdata.focus.v1.DeleteTriggerStrategyRequest",
+          "grpcServiceBase" : "com.sensorsdata.focus.v1.WebStrategyServiceGrpc.WebStrategyServiceImplBase",
+          "internalDesc" : "classes in template for grpc service dynamic invoking",
+          "isClientStreaming" : false
+        },
+        "x-codegen-request-body-name" : "DeleteTriggerStrategyRequest"
+      }
+    },
+    "/trigger-strategy/get" : {
+      "get" : {
+        "description" : "获取触发策略详情",
+        "operationId" : "GetTriggerStrategy",
+        "parameters" : [ {
+          "description" : "全局唯一的密钥，用于验证和授权访问 API 接口",
+          "in" : "header",
+          "name" : "api-key",
+          "required" : true,
+          "schema" : {
+            "type" : "string"
+          }
+        }, {
+          "description" : "项目名, 指定请求所属项目",
+          "in" : "header",
+          "name" : "sensorsdata-project",
+          "required" : true,
+          "schema" : {
+            "type" : "string"
+          }
+        }, {
+          "description" : "租户 ID, 用于请求所属租户",
+          "in" : "header",
+          "name" : "X-Organization-Id",
+          "required" : true,
+          "schema" : {
+            "type" : "string"
+          }
+        }, {
+          "description" : "触发策略 业务 ID",
+          "in" : "query",
+          "name" : "biz_id",
+          "required" : true,
+          "schema" : {
+            "type" : "string"
+          }
+        } ],
+        "responses" : {
+          "default" : {
+            "content" : {
+              "application/json" : {
+                "example" : {
+                  "code" : "SUCCESS",
+                  "data" : {
+                    "trigger_strategy" : {
+                      "event_entry_config" : {
+                        "stream_event_do_entry_rule" : {
+                          "event_component_group_rule" : {
+                            "event_component_params" : [ { } ]
+                          },
+                          "time_range" : {
+                            "start_time" : {
+                              "relative_time" : {
+                                "time_interval" : { }
+                              }
+                            }
+                          },
+                          "event_measure_user_groups" : [ {
+                            "events" : {
+                              "condition" : {
+                                "index" : 10,
+                                "conditions" : [ {
+                                  "function" : "EQUAL",
+                                  "index" : 10,
+                                  "params" : [ {
+                                    "expression" : "user.p1/user.p2+user.p3",
+                                    "field" : "#ResourceId",
+                                    "variable" : "$ENTRY_TIME",
+                                    "value" : { },
+                                    "param_type" : "FIELD"
+                                  } ]
+                                } ],
+                                "operator" : "AND"
+                              }
+                            }
+                          } ]
+                        }
+                      },
+                      "re_entry_config" : {
+                        "reentry_limit" : { }
+                      },
+                      "audience_entry_config" : {
+                        "user_group_rule" : {
+                          "groups" : [ {
+                            "profile_dimension_user_group" : {
+                              "dimension_table" : {
+                                "predicates" : {
+                                  "simple_predicates" : [ {
+                                    "measures" : [ {
+                                      "sub_dimension_measure" : { }
+                                    } ]
+                                  } ]
+                                }
+                              }
+                            },
+                            "group_expression_user_group" : { },
+                            "external_measure_user_group" : {
+                              "rows" : { }
+                            },
+                            "pql_user_group" : { },
+                            "external_profile_user_group" : { },
+                            "event_compound_measure_user_group" : {
+                              "measure" : {
+                                "measures" : [ { } ]
+                              }
+                            },
+                            "event_sequence_user_group" : {
+                              "event_steps" : [ { } ]
+                            },
+                            "sql_user_group" : {
+                              "query_options" : [ { } ]
+                            },
+                            "profile_user_group" : { }
+                          } ],
+                          "tailor" : {
+                            "rank_field" : {
+                              "orders" : [ {
+                                "measure" : {
+                                  "aggregator_field" : { }
+                                }
+                              } ]
+                            }
+                          },
+                          "sort_info" : { }
+                        },
+                        "audience_rule_detail_param" : {
+                          "segment_rule_expression" : {
+                            "eql_segment_rule" : {
+                              "eql" : "user.$SegmentMembership.user_segment_t111111.is_not_null()\nand\nuser.user_tag_c4 == '标签值1'\nand\nuser.vip_level in ['高级VIP','普通用户']"
+                            },
+                            "entity_set_rules" : [ { } ],
+                            "used_fields" : [ "user.id" ],
+                            "sql_segment_rule" : {
+                              "query_options" : {
+                                "option" : "TIMEOUT",
+                                "value" : "120"
+                              },
+                              "sql" : "select user_id as id from user where user_id > 100"
+                            },
+                            "loading_segment_rule" : {
+                              "matched_field" : "user.$identity_login_id",
+                              "sync_flag" : false,
+                              "loading_type" : "TAG_LOADING_TYPE_OVERWRITE"
+                            },
+                            "custom_rule" : { },
+                            "event_sequence_rule" : {
+                              "simple_event_sequences" : [ {
+                                "time_window" : {
+                                  "unit" : "DAY"
+                                },
+                                "time_range" : {
+                                  "start_time" : {
+                                    "type" : "RELATIVE",
+                                    "trunc_unit" : "DAY",
+                                    "base_time" : "$TASK_TIME",
+                                    "time_interval" : -7
+                                  },
+                                  "end_time" : {
+                                    "type" : "RELATIVE",
+                                    "trunc_unit" : "DAY",
+                                    "base_time" : "$TASK_TIME",
+                                    "time_interval" : -1
+                                  }
+                                },
+                                "event_steps" : [ {
+                                  "condition" : {
+                                    "operator" : "AND",
+                                    "conditions" : [ {
+                                      "function" : "IS_TRUE",
+                                      "params" : [ {
+                                        "param_type" : "FIELD",
+                                        "field" : "user.$Events.$AppStart.$is_login_id"
+                                      } ]
+                                    } ]
+                                  },
+                                  "event_name" : "user.$Events.AppStart"
+                                } ]
+                              } ],
+                              "operator" : "UNION"
+                            },
+                            "tailor" : {
+                              "function" : "LESS_EQUAL",
+                              "rank_field" : {
+                                "type" : "PERCENT_ORDER_RANK",
+                                "orders" : [ {
+                                  "measure" : {
+                                    "type" : "EQL_MEASURE_FIELD",
+                                    "eql_measure" : "user.$Events.virtual_event_for_tag.filter_event(\n  datetime_add(${var:base_time}, -1, 'DAY'),\n  datetime_add(${var:base_time}, -1, 'DAY')\n).count()"
+                                  },
+                                  "is_asc" : false
+                                } ]
+                              },
+                              "params" : [ {
+                                "param_type" : "VALUE",
+                                "value" : {
+                                  "data_type" : "NUMBER",
+                                  "number_value" : 0.1
+                                }
+                              } ]
+                            },
+                            "type" : "SQL_BASED",
+                            "version" : 2,
+                            "group_expression_rule" : {
+                              "group_expression" : "$1-$2"
+                            }
+                          }
+                        }
+                      },
+                      "msg_send_config" : { }
+                    },
+                    "events" : [ { } ]
+                  },
+                  "request_id" : "1"
+                },
+                "schema" : {
+                  "$ref" : "#/components/schemas/sensorsdata.focus.v1.GetTriggerStrategyResponseHttpApiResult"
+                }
+              }
+            },
+            "description" : "sensorsdata.focus.v1.GetTriggerStrategyResponse"
+          }
+        },
+        "summary" : "获取触发策略详情",
+        "x-sd-openapi" : {
+          "responseClass" : "com.sensorsdata.focus.v1.GetTriggerStrategyResponse",
+          "isServerStreaming" : false,
+          "requestClass" : "com.sensorsdata.focus.v1.GetTriggerStrategyRequest",
+          "grpcServiceBase" : "com.sensorsdata.focus.v1.WebStrategyServiceGrpc.WebStrategyServiceImplBase",
+          "internalDesc" : "classes in template for grpc service dynamic invoking",
+          "isClientStreaming" : false
+        }
+      }
+    },
+    "/trigger-strategy/query" : {
+      "get" : {
+        "description" : "查询触发策略",
+        "operationId" : "QueryTriggerStrategy",
+        "parameters" : [ {
+          "description" : "全局唯一的密钥，用于验证和授权访问 API 接口",
+          "in" : "header",
+          "name" : "api-key",
+          "required" : true,
+          "schema" : {
+            "type" : "string"
+          }
+        }, {
+          "description" : "项目名, 指定请求所属项目",
+          "in" : "header",
+          "name" : "sensorsdata-project",
+          "required" : true,
+          "schema" : {
+            "type" : "string"
+          }
+        }, {
+          "description" : "租户 ID, 用于请求所属租户",
+          "in" : "header",
+          "name" : "X-Organization-Id",
+          "required" : true,
+          "schema" : {
+            "type" : "string"
+          }
+        }, {
+          "description" : "触发策略业务 ID 或者触发策略业务名称",
+          "in" : "query",
+          "name" : "biz_key",
+          "schema" : {
+            "type" : "string"
+          }
+        }, {
+          "description" : "触发策略状态",
+          "in" : "query",
+          "name" : "status",
+          "schema" : {
+            "type" : "string"
+          }
+        }, {
+          "description" : "触发策略类型",
+          "in" : "query",
+          "name" : "type",
+          "schema" : {
+            "type" : "string"
+          }
+        }, {
+          "description" : "触发策略创建开始时间",
+          "in" : "query",
+          "name" : "create_time_start",
+          "schema" : {
+            "type" : "string"
+          }
+        }, {
+          "description" : "触发策略创建结束时间",
+          "in" : "query",
+          "name" : "create_time_end",
+          "schema" : {
+            "type" : "string"
+          }
+        }, {
+          "description" : "页码",
+          "in" : "query",
+          "name" : "page_num",
+          "required" : true,
+          "schema" : {
+            "format" : "int32",
+            "type" : "integer"
+          }
+        }, {
+          "description" : "页大小",
+          "in" : "query",
+          "name" : "page_size",
+          "required" : true,
+          "schema" : {
+            "format" : "int32",
+            "type" : "integer"
+          }
+        } ],
+        "responses" : {
+          "default" : {
+            "content" : {
+              "application/json" : {
+                "example" : {
+                  "code" : "SUCCESS",
+                  "data" : {
+                    "strategies" : [ {
+                      "event_entry_config" : {
+                        "stream_event_do_entry_rule" : {
+                          "event_component_group_rule" : {
+                            "event_component_params" : [ { } ]
+                          },
+                          "time_range" : {
+                            "start_time" : {
+                              "relative_time" : {
+                                "time_interval" : { }
+                              }
+                            }
+                          },
+                          "event_measure_user_groups" : [ {
+                            "events" : {
+                              "condition" : {
+                                "index" : 10,
+                                "conditions" : [ {
+                                  "function" : "EQUAL",
+                                  "index" : 10,
+                                  "params" : [ {
+                                    "expression" : "user.p1/user.p2+user.p3",
+                                    "field" : "#ResourceId",
+                                    "variable" : "$ENTRY_TIME",
+                                    "value" : { },
+                                    "param_type" : "FIELD"
+                                  } ]
+                                } ],
+                                "operator" : "AND"
+                              }
+                            }
+                          } ]
+                        }
+                      },
+                      "re_entry_config" : {
+                        "reentry_limit" : { }
+                      },
+                      "audience_entry_config" : {
+                        "user_group_rule" : {
+                          "groups" : [ {
+                            "profile_dimension_user_group" : {
+                              "dimension_table" : {
+                                "predicates" : {
+                                  "simple_predicates" : [ {
+                                    "measures" : [ {
+                                      "sub_dimension_measure" : { }
+                                    } ]
+                                  } ]
+                                }
+                              }
+                            },
+                            "group_expression_user_group" : { },
+                            "external_measure_user_group" : {
+                              "rows" : { }
+                            },
+                            "pql_user_group" : { },
+                            "external_profile_user_group" : { },
+                            "event_compound_measure_user_group" : {
+                              "measure" : {
+                                "measures" : [ { } ]
+                              }
+                            },
+                            "event_sequence_user_group" : {
+                              "event_steps" : [ { } ]
+                            },
+                            "sql_user_group" : {
+                              "query_options" : [ { } ]
+                            },
+                            "profile_user_group" : { }
+                          } ],
+                          "tailor" : {
+                            "rank_field" : {
+                              "orders" : [ {
+                                "measure" : {
+                                  "aggregator_field" : { }
+                                }
+                              } ]
+                            }
+                          },
+                          "sort_info" : { }
+                        },
+                        "audience_rule_detail_param" : {
+                          "segment_rule_expression" : {
+                            "eql_segment_rule" : {
+                              "eql" : "user.$SegmentMembership.user_segment_t111111.is_not_null()\nand\nuser.user_tag_c4 == '标签值1'\nand\nuser.vip_level in ['高级VIP','普通用户']"
+                            },
+                            "entity_set_rules" : [ { } ],
+                            "used_fields" : [ "user.id" ],
+                            "sql_segment_rule" : {
+                              "query_options" : {
+                                "option" : "TIMEOUT",
+                                "value" : "120"
+                              },
+                              "sql" : "select user_id as id from user where user_id > 100"
+                            },
+                            "loading_segment_rule" : {
+                              "matched_field" : "user.$identity_login_id",
+                              "sync_flag" : false,
+                              "loading_type" : "TAG_LOADING_TYPE_OVERWRITE"
+                            },
+                            "custom_rule" : { },
+                            "event_sequence_rule" : {
+                              "simple_event_sequences" : [ {
+                                "time_window" : {
+                                  "unit" : "DAY"
+                                },
+                                "time_range" : {
+                                  "start_time" : {
+                                    "type" : "RELATIVE",
+                                    "trunc_unit" : "DAY",
+                                    "base_time" : "$TASK_TIME",
+                                    "time_interval" : -7
+                                  },
+                                  "end_time" : {
+                                    "type" : "RELATIVE",
+                                    "trunc_unit" : "DAY",
+                                    "base_time" : "$TASK_TIME",
+                                    "time_interval" : -1
+                                  }
+                                },
+                                "event_steps" : [ {
+                                  "condition" : {
+                                    "operator" : "AND",
+                                    "conditions" : [ {
+                                      "function" : "IS_TRUE",
+                                      "params" : [ {
+                                        "param_type" : "FIELD",
+                                        "field" : "user.$Events.$AppStart.$is_login_id"
+                                      } ]
+                                    } ]
+                                  },
+                                  "event_name" : "user.$Events.AppStart"
+                                } ]
+                              } ],
+                              "operator" : "UNION"
+                            },
+                            "tailor" : {
+                              "function" : "LESS_EQUAL",
+                              "rank_field" : {
+                                "type" : "PERCENT_ORDER_RANK",
+                                "orders" : [ {
+                                  "measure" : {
+                                    "type" : "EQL_MEASURE_FIELD",
+                                    "eql_measure" : "user.$Events.virtual_event_for_tag.filter_event(\n  datetime_add(${var:base_time}, -1, 'DAY'),\n  datetime_add(${var:base_time}, -1, 'DAY')\n).count()"
+                                  },
+                                  "is_asc" : false
+                                } ]
+                              },
+                              "params" : [ {
+                                "param_type" : "VALUE",
+                                "value" : {
+                                  "data_type" : "NUMBER",
+                                  "number_value" : 0.1
+                                }
+                              } ]
+                            },
+                            "type" : "SQL_BASED",
+                            "version" : 2,
+                            "group_expression_rule" : {
+                              "group_expression" : "$1-$2"
+                            }
+                          }
+                        }
+                      },
+                      "msg_send_config" : { }
+                    } ]
+                  },
+                  "request_id" : "1"
+                },
+                "schema" : {
+                  "$ref" : "#/components/schemas/sensorsdata.focus.v1.QueryTriggerStrategyResponseHttpApiResult"
+                }
+              }
+            },
+            "description" : "sensorsdata.focus.v1.QueryTriggerStrategyResponse"
+          }
+        },
+        "summary" : "查询触发策略",
+        "x-sd-openapi" : {
+          "responseClass" : "com.sensorsdata.focus.v1.QueryTriggerStrategyResponse",
+          "isServerStreaming" : false,
+          "requestClass" : "com.sensorsdata.focus.v1.QueryTriggerStrategyRequest",
+          "grpcServiceBase" : "com.sensorsdata.focus.v1.WebStrategyServiceGrpc.WebStrategyServiceImplBase",
+          "internalDesc" : "classes in template for grpc service dynamic invoking",
+          "isClientStreaming" : false
+        }
+      }
+    },
+    "/trigger-strategy/modify" : {
+      "post" : {
+        "description" : "修改触发策略",
+        "operationId" : "ModifyTriggerStrategy",
+        "parameters" : [ {
+          "description" : "全局唯一的密钥，用于验证和授权访问 API 接口",
+          "in" : "header",
+          "name" : "api-key",
+          "required" : true,
+          "schema" : {
+            "type" : "string"
+          }
+        }, {
+          "description" : "项目名, 指定请求所属项目",
+          "in" : "header",
+          "name" : "sensorsdata-project",
+          "required" : true,
+          "schema" : {
+            "type" : "string"
+          }
+        }, {
+          "description" : "租户 ID, 用于请求所属租户",
+          "in" : "header",
+          "name" : "X-Organization-Id",
+          "required" : true,
+          "schema" : {
+            "type" : "string"
+          }
+        } ],
+        "requestBody" : {
+          "content" : {
+            "application/json" : {
+              "schema" : {
+                "$ref" : "#/components/schemas/sensorsdata.focus.v1.ModifyTriggerStrategyRequest"
+              }
+            }
+          },
+          "description" : "修改触发策略请求",
+          "required" : false
+        },
+        "responses" : {
+          "default" : {
+            "content" : {
+              "application/json" : {
+                "example" : {
+                  "code" : "SUCCESS",
+                  "data" : { },
+                  "request_id" : "1"
+                },
+                "schema" : {
+                  "$ref" : "#/components/schemas/sensorsdata.focus.v1.ModifyTriggerStrategyResponseHttpApiResult"
+                }
+              }
+            },
+            "description" : "sensorsdata.focus.v1.ModifyTriggerStrategyResponse"
+          }
+        },
+        "summary" : "修改触发策略",
+        "x-sd-openapi" : {
+          "responseClass" : "com.sensorsdata.focus.v1.ModifyTriggerStrategyResponse",
+          "isServerStreaming" : false,
+          "requestClass" : "com.sensorsdata.focus.v1.ModifyTriggerStrategyRequest",
+          "grpcServiceBase" : "com.sensorsdata.focus.v1.WebStrategyServiceGrpc.WebStrategyServiceImplBase",
+          "internalDesc" : "classes in template for grpc service dynamic invoking",
+          "isClientStreaming" : false
+        },
+        "x-codegen-request-body-name" : "ModifyTriggerStrategyRequest"
+      }
+    },
+    "/trigger-strategy/check" : {
+      "post" : {
+        "description" : "校验触发策略ID是否唯一;格式是否合法(大写字母（A-Z）、小写字母（a-z）、数字（0-9）和下划线（_）组成);字符串长度上限：64",
+        "operationId" : "CheckTriggerStrategyBizId",
+        "parameters" : [ {
+          "description" : "全局唯一的密钥，用于验证和授权访问 API 接口",
+          "in" : "header",
+          "name" : "api-key",
+          "required" : true,
+          "schema" : {
+            "type" : "string"
+          }
+        }, {
+          "description" : "项目名, 指定请求所属项目",
+          "in" : "header",
+          "name" : "sensorsdata-project",
+          "required" : true,
+          "schema" : {
+            "type" : "string"
+          }
+        }, {
+          "description" : "租户 ID, 用于请求所属租户",
+          "in" : "header",
+          "name" : "X-Organization-Id",
+          "required" : true,
+          "schema" : {
+            "type" : "string"
+          }
+        } ],
+        "requestBody" : {
+          "content" : {
+            "application/json" : {
+              "schema" : {
+                "$ref" : "#/components/schemas/sensorsdata.focus.v1.CheckTriggerStrategyBizIdRequest"
+              }
+            }
+          },
+          "description" : "检查触发策略业务 ID 是否合规请求",
+          "required" : false
+        },
+        "responses" : {
+          "default" : {
+            "content" : {
+              "application/json" : {
+                "example" : {
+                  "code" : "SUCCESS",
+                  "data" : { },
+                  "request_id" : "1"
+                },
+                "schema" : {
+                  "$ref" : "#/components/schemas/sensorsdata.focus.v1.CheckTriggerStrategyBizIdResponseHttpApiResult"
+                }
+              }
+            },
+            "description" : "sensorsdata.focus.v1.CheckTriggerStrategyBizIdResponse"
+          }
+        },
+        "summary" : "校验触发策略 ID",
+        "x-sd-openapi" : {
+          "responseClass" : "com.sensorsdata.focus.v1.CheckTriggerStrategyBizIdResponse",
+          "isServerStreaming" : false,
+          "requestClass" : "com.sensorsdata.focus.v1.CheckTriggerStrategyBizIdRequest",
+          "grpcServiceBase" : "com.sensorsdata.focus.v1.WebStrategyServiceGrpc.WebStrategyServiceImplBase",
+          "internalDesc" : "classes in template for grpc service dynamic invoking",
+          "isClientStreaming" : false
+        },
+        "x-codegen-request-body-name" : "CheckTriggerStrategyBizIdRequest"
+      }
+    },
+    "/trigger-strategy/quota/query" : {
+      "post" : {
+        "description" : "查询触发策略 Quota",
+        "operationId" : "QueryTriggerStrategyQuota",
+        "parameters" : [ {
+          "description" : "全局唯一的密钥，用于验证和授权访问 API 接口",
+          "in" : "header",
+          "name" : "api-key",
+          "required" : true,
+          "schema" : {
+            "type" : "string"
+          }
+        }, {
+          "description" : "项目名, 指定请求所属项目",
+          "in" : "header",
+          "name" : "sensorsdata-project",
+          "required" : true,
+          "schema" : {
+            "type" : "string"
+          }
+        }, {
+          "description" : "租户 ID, 用于请求所属租户",
+          "in" : "header",
+          "name" : "X-Organization-Id",
+          "required" : true,
+          "schema" : {
+            "type" : "string"
+          }
+        } ],
+        "requestBody" : {
+          "content" : {
+            "application/json" : {
+              "schema" : {
+                "$ref" : "#/components/schemas/sensorsdata.focus.v1.QueryTriggerStrategyQuotaRequest"
+              }
+            }
+          },
+          "description" : "查询触发策略请求",
+          "required" : false
+        },
+        "responses" : {
+          "default" : {
+            "content" : {
+              "application/json" : {
+                "example" : {
+                  "code" : "SUCCESS",
+                  "data" : { },
+                  "request_id" : "1"
+                },
+                "schema" : {
+                  "$ref" : "#/components/schemas/sensorsdata.focus.v1.QueryTriggerStrategyQuotaResponseHttpApiResult"
+                }
+              }
+            },
+            "description" : "sensorsdata.focus.v1.QueryTriggerStrategyQuotaResponse"
+          }
+        },
+        "summary" : "查询触发策略 Quota",
+        "x-sd-openapi" : {
+          "responseClass" : "com.sensorsdata.focus.v1.QueryTriggerStrategyQuotaResponse",
+          "isServerStreaming" : false,
+          "requestClass" : "com.sensorsdata.focus.v1.QueryTriggerStrategyQuotaRequest",
+          "grpcServiceBase" : "com.sensorsdata.focus.v1.WebStrategyServiceGrpc.WebStrategyServiceImplBase",
+          "internalDesc" : "classes in template for grpc service dynamic invoking",
+          "isClientStreaming" : false
+        },
+        "x-codegen-request-body-name" : "QueryTriggerStrategyQuotaRequest"
+      }
+    }
+  },
+  "components" : {
+    "schemas" : {
+      "sensorsdata.personas.v1.DimensionTable" : {
+        "description" : "",
+        "properties" : {
+          "table_name" : {
+            "description" : "",
+            "type" : "string"
+          },
+          "key_fields" : {
+            "description" : "",
+            "items" : {
+              "type" : "string"
+            },
+            "type" : "array"
+          },
+          "predicates" : {
+            "$ref" : "#/components/schemas/sensorsdata.personas.v1.DimensionPredicate"
+          }
+        },
+        "title" : "DimensionTable",
+        "type" : "object"
+      },
+      "sensorsdata.focus.v1.DeleteTriggerStrategyResponseHttpApiResult" : {
+        "properties" : {
+          "code" : {
+            "type" : "string"
+          },
+          "message" : {
+            "type" : "string"
+          },
+          "request_id" : {
+            "type" : "string"
+          },
+          "data" : {
+            "$ref" : "#/components/schemas/sensorsdata.focus.v1.DeleteTriggerStrategyResponse"
+          },
+          "error_info" : {
+            "$ref" : "#/components/schemas/sensorsdata.common.ErrorInfo"
+          }
+        },
+        "title" : "sensorsdata.focus.v1.DeleteTriggerStrategyResponseHttpApiResult",
+        "type" : "object"
+      },
+      "sensorsdata.horizon.v1.CustomSegmentRuleExpression" : {
+        "description" : "",
+        "properties" : {
+          "component_name" : {
+            "description" : "组件的 name， 用来唯一标识一个组件\n 如 USER_GROUP_RULE",
+            "type" : "string"
+          },
+          "rule" : {
+            "description" : "",
+            "properties" : { },
+            "type" : "object"
+          },
+          "rule_str" : {
+            "description" : "",
+            "type" : "string"
+          }
+        },
+        "title" : "CustomSegmentRuleExpression",
+        "type" : "object"
+      },
+      "sensorsdata.horizon.v1.GroupExpressionSegmentRuleExpression" : {
+        "description" : "规则组",
+        "properties" : {
+          "groups" : {
+            "description" : "规则组，与 expression 配合使用",
+            "items" : {
+              "$ref" : "#/components/schemas/sensorsdata.horizon.v1.SegmentRuleExpression"
+            },
+            "type" : "array"
+          },
+          "group_expression" : {
+            "description" : "集合的交并差运算\n 如: ($1-$2)*($3-$4)+$5\n 其中, '*' => 交, '+' => 并, '-' => 差\n 在算式中, 以 $1、$2 代表第一个群组、第二个群组",
+            "example" : "$1-$2",
+            "type" : "string"
+          }
+        },
+        "title" : "GroupExpressionSegmentRuleExpression",
+        "type" : "object"
+      },
+      "sensorsdata.horizon.v1.Order" : {
+        "description" : "",
+        "properties" : {
+          "measure" : {
+            "$ref" : "#/components/schemas/sensorsdata.horizon.v1.OrderMeasure"
+          },
+          "is_asc" : {
+            "description" : "排序方向, true 表示升序，false 表示降序",
+            "example" : false,
+            "type" : "boolean"
+          }
+        },
+        "title" : "Order",
+        "type" : "object"
+      },
+      "sensorsdata.personas.v1.DimensionSimplePredicate" : {
+        "description" : "",
+        "properties" : {
+          "measures" : {
+            "description" : "",
+            "items" : {
+              "$ref" : "#/components/schemas/sensorsdata.personas.v1.DimensionMeasure"
+            },
+            "type" : "array"
+          },
+          "function" : {
+            "description" : "",
+            "enum" : [ "PREDICATE_FUNCTION_TYPE_UNSPECIFIED", "IS_SET", "IS_NOT_SET", "EQUAL", "NOT_EQUAL", "IN", "NOT_IN", "LESS", "LESS_EQUAL", "GREATER", "GREATER_EQUAL", "BETWEEN", "RIGHT_OPEN_BETWEEN", "HASH_BETWEEN", "LEFT_OPEN_BETWEEN", "OPEN_BETWEEN", "IS_TRUE", "IS_FALSE", "CONTAIN", "NOT_CONTAIN", "IS_EMPTY", "IS_NOT_EMPTY", "RLIKE", "NOT_RLIKE", "INCLUDE", "NOT_INCLUDE", "ABSOLUTE_BETWEEN", "RELATIVE_WITHIN", "RELATIVE_BETWEEN", "RELATIVE_EVENT_TIME", "RELATIVE_BEFORE", "INTERSECTS", "NOT_INTERSECTS", "SUBSET_OF", "NOT_SUBSET_OF", "SUPERSET_OF", "NOT_SUPERSET_OF" ],
+            "type" : "string"
+          },
+          "params" : {
+            "description" : "",
+            "items" : {
+              "$ref" : "#/components/schemas/sensorsdata.common.PredicateFunctionParam"
+            },
+            "type" : "array"
+          }
+        },
+        "title" : "DimensionSimplePredicate",
+        "type" : "object"
+      },
+      "sensorsdata.personas.v1.EventStep" : {
+        "description" : "",
+        "properties" : {
+          "event_name" : {
+            "description" : "",
+            "type" : "string"
+          },
+          "condition" : {
+            "$ref" : "#/components/schemas/sensorsdata.common.CompoundFilterCondition"
+          }
+        },
+        "title" : "EventStep",
+        "type" : "object"
+      },
+      "sensorsdata.common.ErrorContext" : {
+        "description" : "发生错误时，系统快照信息",
+        "properties" : {
+          "origin_stack" : {
+            "description" : "上游异常的 stack，由系统截获",
+            "type" : "string"
+          },
+          "origin_cause" : {
+            "description" : "上游异常的 cause by，由系统截获",
+            "type" : "string"
+          },
+          "origin_code" : {
+            "description" : "上游异常的错误简码",
+            "type" : "string"
+          },
+          "origin_complete_code" : {
+            "description" : "上游异常的完整错误码",
+            "type" : "string"
+          },
+          "error_extend_desc" : {
+            "description" : "本次异常的辅助说明，可传入",
+            "type" : "string"
+          }
+        },
+        "title" : "ErrorContext",
+        "type" : "object"
+      },
+      "sensorsdata.horizon.v1.EventSequenceSegmentRuleExpression" : {
+        "description" : "",
+        "properties" : {
+          "operator" : {
+            "description" : "用于描述多个 simple_event_sequence 之间的关系\n ```\n  UNION: 多个 simple_event_sequence 之间的并集\n  INTERSECT: 多个 simple_event_sequence 之间的交集\n```",
+            "enum" : [ "SET_OPERATOR_UNSPECIFIED", "UNION", "INTERSECT" ],
+            "example" : "UNION",
+            "type" : "string"
+          },
+          "simple_event_sequences" : {
+            "description" : "多个单一的行为序列的",
+            "items" : {
+              "$ref" : "#/components/schemas/sensorsdata.horizon.v1.EventSequenceSegmentRuleExpression.SimpleEventSequenceSegmentRuleExpression"
+            },
+            "type" : "array"
+          }
+        },
+        "title" : "EventSequenceSegmentRuleExpression",
+        "type" : "object"
+      },
+      "sensorsdata.horizon.v1.SqlSegmentRuleExpression.QueryOption" : {
+        "description" : "",
+        "properties" : {
+          "option" : {
+            "description" : "",
+            "type" : "string"
+          },
+          "value" : {
+            "description" : "",
+            "type" : "string"
+          }
+        },
+        "title" : "QueryOption",
+        "type" : "object"
+      },
+      "sensorsdata.focus.v1.express.canvas.EventComponentParam" : {
+        "description" : "",
+        "properties" : {
+          "id" : {
+            "description" : "",
+            "format" : "int32",
+            "type" : "integer"
+          },
+          "event_index" : {
+            "description" : "",
+            "format" : "int32",
+            "type" : "integer"
+          },
+          "event_name" : {
+            "description" : "",
+            "type" : "string"
+          },
+          "event_property_field" : {
+            "description" : "",
+            "type" : "string"
+          },
+          "aggregator_type" : {
+            "description" : "",
+            "enum" : [ "AGGREGATOR_TYPE_UNSPECIFIED", "COUNT", "AVG", "MAX", "MIN", "SUM", "UNIQUE_COUNT", "UNIQUE_AVG", "BOUNCE_RATE", "EXIT_RATE", "UNIQUE_COUNT_APPROX", "COUNT_PERCENT", "RANK_ASC", "RANK_DESC", "PERCENT_RANK_ASC", "PERCENT_RANK_DESC", "SESSION_COUNT", "FIRST_TIME", "LAST_TIME", "FIRST_TIME_INTERVAL", "LAST_TIME_INTERVAL", "GROUP_CONCAT", "UNIQUE_COUNT_BITMAP", "UNIQUE_COUNT_APPROX_ORDINARY", "COUNT_DISTINCT", "LTV", "LTV_AVG", "COUNT_RANK", "AVG_RANK", "MAX_RANK", "MIN_RANK", "SUM_RANK", "COUNT_RANK_ASC", "COUNT_RANK_DESC", "COUNT_PERCENT_RANK_ASC", "COUNT_PERCENT_RANK_DESC", "AVG_RANK_ASC", "AVG_RANK_DESC", "AVG_PERCENT_RANK_ASC", "AVG_PERCENT_RANK_DESC", "MAX_RANK_ASC", "MAX_RANK_DESC", "MAX_PERCENT_RANK_ASC", "MAX_PERCENT_RANK_DESC", "MIN_RANK_ASC", "MIN_RANK_DESC", "MIN_PERCENT_RANK_ASC", "MIN_PERCENT_RANK_DESC", "SUM_RANK_ASC", "SUM_RANK_DESC", "SUM_PERCENT_RANK_ASC", "SUM_PERCENT_RANK_DESC" ],
+            "type" : "string"
+          }
+        },
+        "title" : "EventComponentParam",
+        "type" : "object"
+      },
+      "sensorsdata.focus.v1.GetTriggerStrategyRequest" : {
+        "description" : "获取触发策略详情请求",
+        "properties" : {
+          "biz_id" : {
+            "description" : "触发策略 业务 ID",
+            "type" : "string"
+          }
+        },
+        "required" : [ "biz_id" ],
+        "title" : "GetTriggerStrategyRequest",
+        "type" : "object"
+      },
+      "sensorsdata.focus.v1.express.canvas.PresetCanvasInfo" : {
+        "description" : "",
+        "properties" : {
+          "canvas_id" : {
+            "description" : "画布 ID",
+            "format" : "int32",
+            "type" : "integer"
+          },
+          "biz_id" : {
+            "description" : "客户自定义业务 ID",
+            "type" : "string"
+          },
+          "cname" : {
+            "description" : "画布中文名称",
+            "type" : "string"
+          },
+          "entry_type" : {
+            "description" : "定时单次 / 定时重复 / 事件进入触发 A / 事件进入 触发 A 未触发 B",
+            "enum" : [ "ENTRY_TYPE_UNSPECIFIED", "BATCH_AUDIENCE_ONETIME", "BATCH_AUDIENCE_ROUTINE", "STREAM_EVENT_DO", "STREAM_EVENT_NOT_DO" ],
+            "type" : "string"
+          },
+          "event_entry_config" : {
+            "$ref" : "#/components/schemas/sensorsdata.focus.v1.express.canvas.EventEntryConfig"
+          },
+          "audience_entry_config" : {
+            "$ref" : "#/components/schemas/sensorsdata.focus.v1.express.canvas.AudienceEntryConfig"
+          },
+          "msg_send_config" : {
+            "$ref" : "#/components/schemas/sensorsdata.focus.v1.express.canvas.MsgSendConfig"
+          },
+          "re_entry_config" : {
+            "$ref" : "#/components/schemas/sensorsdata.focus.v1.express.canvas.ReEnterConfig"
+          },
+          "finish_time" : {
+            "description" : "画布结束时间，单位ms",
+            "format" : "int64",
+            "type" : "integer"
+          },
+          "creator_id" : {
+            "description" : "创建人账号",
+            "format" : "int32",
+            "type" : "integer"
+          },
+          "time_zone" : {
+            "description" : "时区信息",
+            "type" : "string"
+          },
+          "create_time" : {
+            "description" : "创建时间",
+            "type" : "string"
+          },
+          "status" : {
+            "description" : "状态",
+            "type" : "string"
+          },
+          "status_desc" : {
+            "description" : "状态描述",
+            "type" : "string"
+          },
+          "create_source" : {
+            "description" : "创建来源",
+            "enum" : [ "STRATEGY_CREATE_SOURCE_UNSPECIFIED", "SFN", "OPEN_API", "OPEN_IFRAME" ],
+            "type" : "string"
+          }
+        },
+        "title" : "PresetCanvasInfo",
+        "type" : "object"
+      },
+      "sensorsdata.focus.v1.StopTriggerStrategyResponseHttpApiResult" : {
+        "properties" : {
+          "code" : {
+            "type" : "string"
+          },
+          "message" : {
+            "type" : "string"
+          },
+          "request_id" : {
+            "type" : "string"
+          },
+          "data" : {
+            "$ref" : "#/components/schemas/sensorsdata.focus.v1.StopTriggerStrategyResponse"
+          },
+          "error_info" : {
+            "$ref" : "#/components/schemas/sensorsdata.common.ErrorInfo"
+          }
+        },
+        "title" : "sensorsdata.focus.v1.StopTriggerStrategyResponseHttpApiResult",
+        "type" : "object"
+      },
+      "sensorsdata.common.TimePoint" : {
+        "description" : "",
+        "properties" : {
+          "type" : {
+            "description" : "",
+            "enum" : [ "TIME_POINT_TYPE_UNSPECIFIED", "STATIC", "RELATIVE", "EXPRESSION" ],
+            "type" : "string"
+          },
+          "trunc_unit" : {
+            "description" : "",
+            "enum" : [ "TRUNC_UNIT_UNSPECIFIED", "TRUNC_HOUR", "TRUNC_DAY", "TRUNC_WEEK", "TRUNC_MONTH", "TRUNC_YEAR", "TRUNC_BIGBANG" ],
+            "type" : "string"
+          },
+          "static_time" : {
+            "description" : "",
+            "format" : "date-time",
+            "type" : "string"
+          },
+          "relative_time" : {
+            "$ref" : "#/components/schemas/sensorsdata.common.TimePoint.RelativeTimePoint"
+          },
+          "expression" : {
+            "description" : "",
+            "type" : "string"
+          }
+        },
+        "title" : "TimePoint",
+        "type" : "object"
+      },
+      "sensorsdata.focus.v1.express.canvas.MsgSendConfig" : {
+        "description" : "发送配置",
+        "properties" : {
+          "channel_category" : {
+            "description" : "通道类型(暂时只支持WEBHOOK，后期可扩展)",
+            "type" : "string"
+          },
+          "channel_instance_id" : {
+            "description" : "通道ID",
+            "format" : "int32",
+            "type" : "integer"
+          },
+          "msg_content" : {
+            "description" : "推送的消息内容",
+            "type" : "string"
+          }
+        },
+        "title" : "MsgSendConfig",
+        "type" : "object"
+      },
+      "sensorsdata.focus.v1.StopTriggerStrategyResponse" : {
+        "description" : "停止触发策略的响应体",
+        "title" : "StopTriggerStrategyResponse",
+        "type" : "object"
+      },
+      "sensorsdata.focus.v1.ModifyTriggerStrategyRequest" : {
+        "description" : "修改触发策略请求",
+        "properties" : {
+          "biz_id" : {
+            "description" : "触发策略 业务 ID",
+            "type" : "string"
+          },
+          "biz_name" : {
+            "description" : "触发策略 业务名称",
+            "type" : "string"
+          },
+          "schedule_start_time" : {
+            "description" : "触发策略 开始时间",
+            "type" : "string"
+          },
+          "schedule_end_time" : {
+            "description" : "触发策略 结束时间",
+            "type" : "string"
+          },
+          "schedule_cron" : {
+            "description" : "触发策略 定时调度表达式规则",
+            "type" : "string"
+          }
+        },
+        "required" : [ "biz_id" ],
+        "title" : "ModifyTriggerStrategyRequest",
+        "type" : "object"
+      },
+      "sensorsdata.personas.v1.SortInfo" : {
+        "description" : "",
+        "properties" : {
+          "fields" : {
+            "description" : "",
+            "items" : {
+              "type" : "string"
+            },
+            "type" : "array"
+          },
+          "is_asc_order" : {
+            "description" : "",
+            "items" : {
+              "type" : "boolean"
+            },
+            "type" : "array"
+          }
+        },
+        "title" : "SortInfo",
+        "type" : "object"
+      },
+      "sensorsdata.common.PredicateFunctionParam" : {
+        "description" : "```\n 函数的参数，有几种可能\n 1. 一个 field, 如 events.$Anything.$city\n 2. 一个 Literal 的常量\n 3. 一个变量, 如 $ENTRY_TIME, 需要在执行上下文里进行替换\n 4. 一个 TimePoint, 代表一个相对或绝对的时间点, 用于时间类型的条件\n 5. 一个 expression user.p1/user.p2+user.p3\n ```",
+        "properties" : {
+          "param_type" : {
+            "description" : "函数的参数类型",
+            "enum" : [ "FUNCTION_PARAM_TYPE_UNSPECIFIED", "FIELD", "VALUE", "VARIABLE", "TIME_POINT", "EXPRESSION" ],
+            "example" : "FIELD",
+            "type" : "string"
+          },
+          "field" : {
+            "description" : "字段名",
+            "example" : "#ResourceId",
+            "type" : "string"
+          },
+          "value" : {
+            "$ref" : "#/components/schemas/sensorsdata.common.Literal"
+          },
+          "variable" : {
+            "description" : "变量，需要在执行上下文里进行替换",
+            "example" : "$ENTRY_TIME",
+            "type" : "string"
+          },
+          "time_point" : {
+            "$ref" : "#/components/schemas/sensorsdata.common.TimePoint"
+          },
+          "expression" : {
+            "description" : "自定义表达式",
+            "example" : "user.p1/user.p2+user.p3",
+            "type" : "string"
+          }
+        },
+        "title" : "PredicateFunctionParam",
+        "type" : "object"
+      },
+      "sensorsdata.horizon.v1.SegmentRuleExpression" : {
+        "description" : "",
+        "properties" : {
+          "type" : {
+            "description" : "分群规则类型\n```\n  SQL_BASED: 基于 SQL 的分群规则\n  EQL_BASED: 基于 EQL 的分群规则\n  LOADING_BASED: 基于文件加载的分群规则\n  CUSTOM_BASED: 基于自定义组件的分群规则\n  EVENT_SEQUENCE_BASED: 基于行为序列的分群规则\n  GROUP_EXPRESSION_BASED: 基于规则组的分群规则\n  ALL: 表示全部实体, 该类型比较特殊, 无实际的规则信息。\n```",
+            "enum" : [ "SIMPLE_USER_GROUP_TYPE_UNSPECIFIED", "SQL_BASED", "EQL_BASED", "LOADING_BASED", "CUSTOM_BASED", "EVENT_SEQUENCE_BASED", "GROUP_EXPRESSION_BASED", "ALL" ],
+            "example" : "SQL_BASED",
+            "type" : "string"
+          },
+          "sql_segment_rule" : {
+            "$ref" : "#/components/schemas/sensorsdata.horizon.v1.SqlSegmentRuleExpression"
+          },
+          "eql_segment_rule" : {
+            "$ref" : "#/components/schemas/sensorsdata.horizon.v1.EqlSegmentRuleExpression"
+          },
+          "loading_segment_rule" : {
+            "$ref" : "#/components/schemas/sensorsdata.horizon.v1.LoadingSegmentRuleExpression"
+          },
+          "custom_rule" : {
+            "$ref" : "#/components/schemas/sensorsdata.horizon.v1.CustomSegmentRuleExpression"
+          },
+          "event_sequence_rule" : {
+            "$ref" : "#/components/schemas/sensorsdata.horizon.v1.EventSequenceSegmentRuleExpression"
+          },
+          "group_expression_rule" : {
+            "$ref" : "#/components/schemas/sensorsdata.horizon.v1.GroupExpressionSegmentRuleExpression"
+          },
+          "virtual" : {
+            "description" : "是否是虚拟分群, 如果是虚拟分群则不会执行 SQL 存储分群结果\n LoadingSegmentRuleExpression 不能为虚拟分群",
+            "type" : "boolean"
+          },
+          "tailor" : {
+            "$ref" : "#/components/schemas/sensorsdata.horizon.v1.Tailor"
+          },
+          "entity_set_rules" : {
+            "description" : "实体范围数组, 实体范围之间的关系为 \"OR/或\" 关系\n 保存规则的时候, SegmentRule 只需要填充 id\n 查询返回的时候, gRPC 会返回 id、display_name、expression、version、rule_available、delete_flag",
+            "items" : {
+              "$ref" : "#/components/schemas/sensorsdata.horizon.v1.SegmentRule"
+            },
+            "type" : "array"
+          },
+          "time_zone" : {
+            "description" : "规则时区, 设置之后事件规则中 time 及 时间类型事件属性计算时会相对服务器时区发生偏移, 数据样例：UTC+11:00",
+            "type" : "string"
+          },
+          "version" : {
+            "description" : "分群规则版本, 从 sps 升级带上来的规则为 1 (QE 和 老PB), 在 horizon 新组件创建出来的为 2， openApi创建的时候，固定传2",
+            "example" : 2,
+            "format" : "int32",
+            "type" : "integer"
+          },
+          "used_fields" : {
+            "description" : "规则引用到的字段",
+            "example" : "[\"user.id\"]",
+            "items" : {
+              "type" : "string"
+            },
+            "type" : "array"
+          }
+        },
+        "title" : "SegmentRuleExpression",
+        "type" : "object"
+      },
+      "sensorsdata.focus.v1.CreateTriggerStrategyResponseHttpApiResult" : {
+        "properties" : {
+          "code" : {
+            "type" : "string"
+          },
+          "message" : {
+            "type" : "string"
+          },
+          "request_id" : {
+            "type" : "string"
+          },
+          "data" : {
+            "$ref" : "#/components/schemas/sensorsdata.focus.v1.CreateTriggerStrategyResponse"
+          },
+          "error_info" : {
+            "$ref" : "#/components/schemas/sensorsdata.common.ErrorInfo"
+          }
+        },
+        "title" : "sensorsdata.focus.v1.CreateTriggerStrategyResponseHttpApiResult",
+        "type" : "object"
+      },
+      "sensorsdata.horizon.v1.Tailor" : {
+        "description" : "",
+        "properties" : {
+          "rank_field" : {
+            "$ref" : "#/components/schemas/sensorsdata.horizon.v1.RankField"
+          },
+          "function" : {
+            "description" : "",
+            "enum" : [ "PREDICATE_FUNCTION_TYPE_UNSPECIFIED", "IS_SET", "IS_NOT_SET", "EQUAL", "NOT_EQUAL", "IN", "NOT_IN", "LESS", "LESS_EQUAL", "GREATER", "GREATER_EQUAL", "BETWEEN", "RIGHT_OPEN_BETWEEN", "HASH_BETWEEN", "LEFT_OPEN_BETWEEN", "OPEN_BETWEEN", "IS_TRUE", "IS_FALSE", "CONTAIN", "NOT_CONTAIN", "IS_EMPTY", "IS_NOT_EMPTY", "RLIKE", "NOT_RLIKE", "INCLUDE", "NOT_INCLUDE", "ABSOLUTE_BETWEEN", "RELATIVE_WITHIN", "RELATIVE_BETWEEN", "RELATIVE_EVENT_TIME", "RELATIVE_BEFORE", "INTERSECTS", "NOT_INTERSECTS", "SUBSET_OF", "NOT_SUBSET_OF", "SUPERSET_OF", "NOT_SUPERSET_OF" ],
+            "type" : "string"
+          },
+          "params" : {
+            "description" : "",
+            "items" : {
+              "$ref" : "#/components/schemas/sensorsdata.common.PredicateFunctionParam"
+            },
+            "type" : "array"
+          }
+        },
+        "title" : "Tailor",
+        "type" : "object"
+      },
+      "sensorsdata.focus.v1.express.canvas.EventComponentRule" : {
+        "description" : "",
+        "properties" : {
+          "time_range" : {
+            "$ref" : "#/components/schemas/sensorsdata.common.TimeRange"
+          },
+          "logical_operator" : {
+            "description" : "",
+            "enum" : [ "LOGICAL_OPERATOR_UNSPECIFIED", "AND", "OR" ],
+            "type" : "string"
+          },
+          "event_measure_user_groups" : {
+            "description" : "",
+            "items" : {
+              "$ref" : "#/components/schemas/sensorsdata.personas.v1.EventMeasureUserGroupRule"
+            },
+            "type" : "array"
+          },
+          "condition_time_range" : {
+            "$ref" : "#/components/schemas/sensorsdata.common.TimeRange"
+          },
+          "event_component_group_rule" : {
+            "$ref" : "#/components/schemas/sensorsdata.focus.v1.express.canvas.EventComponentGroupRule"
+          },
+          "event_properties_component_params" : {
+            "description" : "",
+            "items" : {
+              "$ref" : "#/components/schemas/sensorsdata.focus.v1.express.canvas.EventComponentParam"
+            },
+            "type" : "array"
+          }
+        },
+        "title" : "EventComponentRule",
+        "type" : "object"
+      },
+      "sensorsdata.horizon.v1.EventSequenceSegmentRuleExpression.SimpleEventSequenceSegmentRuleExpression.TimeWindow" : {
+        "description" : "通过 数值 + 时间单位 描述一个时间窗口",
+        "properties" : {
+          "size" : {
+            "description" : "时间窗口大小",
+            "format" : "int32",
+            "type" : "integer"
+          },
+          "unit" : {
+            "description" : "时间窗口单位\n```\n  DAY: 天\n  HOUR: 小时\n  MINUTE: 分钟\n```",
+            "enum" : [ "TIME_UNIT_UNSPECIFIED", "DAY", "HOUR", "MINUTE" ],
+            "example" : "DAY",
+            "type" : "string"
+          }
+        },
+        "title" : "TimeWindow",
+        "type" : "object"
+      },
+      "sensorsdata.common.HttpApiResult" : {
+        "properties" : {
+          "code" : {
+            "type" : "string"
+          },
+          "message" : {
+            "type" : "string"
+          },
+          "request_id" : {
+            "type" : "string"
+          },
+          "data" : {
+            "properties" : { },
+            "type" : "object"
+          },
+          "error_info" : {
+            "$ref" : "#/components/schemas/sensorsdata.common.ErrorInfo"
+          }
+        },
+        "title" : "HttpApiResult",
+        "type" : "object"
+      },
+      "sensorsdata.personas.v1.SqlUserGroupRule" : {
+        "description" : "",
+        "properties" : {
+          "sql" : {
+            "description" : "",
+            "type" : "string"
+          },
+          "query_options" : {
+            "description" : "",
+            "items" : {
+              "$ref" : "#/components/schemas/sensorsdata.personas.v1.QueryOption"
+            },
+            "type" : "array"
+          },
+          "virtual" : {
+            "description" : "",
+            "type" : "boolean"
+          },
+          "desc" : {
+            "description" : "",
+            "type" : "string"
+          }
+        },
+        "title" : "SqlUserGroupRule",
+        "type" : "object"
+      },
+      "sensorsdata.focus.v1.DeleteTriggerStrategyResponse" : {
+        "description" : "删除触发策略的响应体",
+        "title" : "DeleteTriggerStrategyResponse",
+        "type" : "object"
+      },
+      "sensorsdata.focus.v1.express.canvas.ReEnterConfig" : {
+        "description" : "",
+        "properties" : {
+          "reentry_strategy" : {
+            "description" : "",
+            "enum" : [ "ENTRY_STRATEGY_UNSPECIFIED", "REENTRY_NO", "REENTRY_ANY_TIME", "REENTRY_AFTER_EXITING" ],
+            "type" : "string"
+          },
+          "reentry_limit" : {
+            "$ref" : "#/components/schemas/sensorsdata.focus.v1.express.canvas.SlidingWindowWithLimit"
+          },
+          "unlimited" : {
+            "description" : "",
+            "type" : "boolean"
+          }
+        },
+        "title" : "ReEnterConfig",
+        "type" : "object"
+      },
+      "sensorsdata.personas.v1.ProfileUserGroupRule" : {
+        "description" : "",
+        "properties" : {
+          "condition" : {
+            "$ref" : "#/components/schemas/sensorsdata.common.CompoundFilterCondition"
+          }
+        },
+        "title" : "ProfileUserGroupRule",
+        "type" : "object"
+      },
+      "sensorsdata.personas.v1.ProfileDimensionUserGroupRule" : {
+        "description" : "",
+        "properties" : {
+          "dimension_table" : {
+            "$ref" : "#/components/schemas/sensorsdata.personas.v1.DimensionTable"
+          }
+        },
+        "title" : "ProfileDimensionUserGroupRule",
+        "type" : "object"
+      },
+      "sensorsdata.horizon.v1.OrderMeasure" : {
+        "description" : "数据目标的原生属性或计算得到的属性",
+        "properties" : {
+          "type" : {
+            "description" : "排序字段类型\n```\n  PLAIN_FIELD: 属性裁剪, 后续废弃不再迭代\n  AGGREGATOR_FIELD: 明细属性指标裁剪，后续废弃不再迭代\n  EQL_MEASURE_FIELD: eql 指标裁剪\n```",
+            "enum" : [ "FIELD_TYPE_UNSPECIFIED", "PLAIN_FIELD", "AGGREGATOR_FIELD", "EQL_MEASURE_FIELD" ],
+            "example" : "EQL_MEASURE_FIELD",
+            "type" : "string"
+          },
+          "plain_field" : {
+            "description" : "当 type = PLAIN_FIELD 时取此值",
+            "example" : "user.$identity_login_id",
+            "type" : "string"
+          },
+          "aggregator_field" : {
+            "$ref" : "#/components/schemas/sensorsdata.horizon.v1.AggregatorField"
+          },
+          "condition" : {
+            "$ref" : "#/components/schemas/sensorsdata.common.CompoundFilterCondition"
+          },
+          "eql_measure" : {
+            "description" : "当 type = EQL_MEASURE_FIELD",
+            "example" : "user.$Events.virtual_event_for_tag.filter_event(\\n  datetime_add(${var:base_time}, -1, 'DAY'),\\n  datetime_add(${var:base_time}, -1, 'DAY')\\n).count()",
+            "type" : "string"
+          }
+        },
+        "title" : "OrderMeasure",
+        "type" : "object"
+      },
+      "sensorsdata.horizon.v1.SegmentRule.CustomParamsEntry" : {
+        "description" : "",
+        "properties" : {
+          "key" : {
+            "description" : "",
+            "type" : "string"
+          },
+          "value" : {
+            "$ref" : "#/components/schemas/sensorsdata.common.Literal"
+          }
+        },
+        "title" : "CustomParamsEntry",
+        "type" : "object"
+      },
+      "sensorsdata.common.TimePoint.RelativeTimePoint" : {
+        "description" : "",
+        "properties" : {
+          "base_time" : {
+            "description" : "",
+            "type" : "string"
+          },
+          "time_interval" : {
+            "$ref" : "#/components/schemas/sensorsdata.common.TimeInterval"
+          }
+        },
+        "title" : "RelativeTimePoint",
+        "type" : "object"
+      },
+      "sensorsdata.personas.v1.ExternalProfileUserGroupRule" : {
+        "description" : "",
+        "properties" : {
+          "condition" : {
+            "$ref" : "#/components/schemas/sensorsdata.common.CompoundFilterCondition"
+          }
+        },
+        "title" : "ExternalProfileUserGroupRule",
+        "type" : "object"
+      },
+      "sensorsdata.personas.v1.SubDimensionMeasure" : {
+        "description" : "",
+        "properties" : {
+          "dimension_table" : {
+            "$ref" : "#/components/schemas/sensorsdata.personas.v1.DimensionTable"
+          },
+          "join_clause" : {
+            "$ref" : "#/components/schemas/sensorsdata.common.CompoundFilterCondition"
+          },
+          "aggregator" : {
+            "description" : "",
+            "enum" : [ "AGGREGATOR_TYPE_UNSPECIFIED", "COUNT", "AVG", "MAX", "MIN", "SUM", "UNIQUE_COUNT", "UNIQUE_AVG", "BOUNCE_RATE", "EXIT_RATE", "UNIQUE_COUNT_APPROX", "COUNT_PERCENT", "RANK_ASC", "RANK_DESC", "PERCENT_RANK_ASC", "PERCENT_RANK_DESC", "SESSION_COUNT", "FIRST_TIME", "LAST_TIME", "FIRST_TIME_INTERVAL", "LAST_TIME_INTERVAL", "GROUP_CONCAT", "UNIQUE_COUNT_BITMAP", "UNIQUE_COUNT_APPROX_ORDINARY", "COUNT_DISTINCT", "LTV", "LTV_AVG", "COUNT_RANK", "AVG_RANK", "MAX_RANK", "MIN_RANK", "SUM_RANK", "COUNT_RANK_ASC", "COUNT_RANK_DESC", "COUNT_PERCENT_RANK_ASC", "COUNT_PERCENT_RANK_DESC", "AVG_RANK_ASC", "AVG_RANK_DESC", "AVG_PERCENT_RANK_ASC", "AVG_PERCENT_RANK_DESC", "MAX_RANK_ASC", "MAX_RANK_DESC", "MAX_PERCENT_RANK_ASC", "MAX_PERCENT_RANK_DESC", "MIN_RANK_ASC", "MIN_RANK_DESC", "MIN_PERCENT_RANK_ASC", "MIN_PERCENT_RANK_DESC", "SUM_RANK_ASC", "SUM_RANK_DESC", "SUM_PERCENT_RANK_ASC", "SUM_PERCENT_RANK_DESC" ],
+            "type" : "string"
+          },
+          "aggregate_field" : {
+            "description" : "",
+            "type" : "string"
+          }
+        },
+        "title" : "SubDimensionMeasure",
+        "type" : "object"
+      },
+      "sensorsdata.focus.v1.CheckTriggerStrategyBizIdResponseHttpApiResult" : {
+        "properties" : {
+          "code" : {
+            "type" : "string"
+          },
+          "message" : {
+            "type" : "string"
+          },
+          "request_id" : {
+            "type" : "string"
+          },
+          "data" : {
+            "$ref" : "#/components/schemas/sensorsdata.focus.v1.CheckTriggerStrategyBizIdResponse"
+          },
+          "error_info" : {
+            "$ref" : "#/components/schemas/sensorsdata.common.ErrorInfo"
+          }
+        },
+        "title" : "sensorsdata.focus.v1.CheckTriggerStrategyBizIdResponseHttpApiResult",
+        "type" : "object"
+      },
+      "sensorsdata.focus.v1.ModifyTriggerStrategyResponseHttpApiResult" : {
+        "properties" : {
+          "code" : {
+            "type" : "string"
+          },
+          "message" : {
+            "type" : "string"
+          },
+          "request_id" : {
+            "type" : "string"
+          },
+          "data" : {
+            "$ref" : "#/components/schemas/sensorsdata.focus.v1.ModifyTriggerStrategyResponse"
+          },
+          "error_info" : {
+            "$ref" : "#/components/schemas/sensorsdata.common.ErrorInfo"
+          }
+        },
+        "title" : "sensorsdata.focus.v1.ModifyTriggerStrategyResponseHttpApiResult",
+        "type" : "object"
+      },
+      "sensorsdata.focus.v1.express.canvas.EventEntryConfig" : {
+        "description" : "事件进入配置",
+        "properties" : {
+          "process_event_type" : {
+            "description" : "事件类型，普通事件还是即时事件(普通事件-STANDARD,即时画布-INSTANT)",
+            "type" : "string"
+          },
+          "start_entry_time" : {
+            "description" : "事件开始进入时间，单位ms",
+            "format" : "int64",
+            "type" : "integer"
+          },
+          "end_entry_time" : {
+            "description" : "事件结束进入时间，单位ms",
+            "format" : "int64",
+            "type" : "integer"
+          },
+          "stream_event_do_entry_rule" : {
+            "$ref" : "#/components/schemas/sensorsdata.focus.v1.express.canvas.EventComponentRule"
+          },
+          "stream_event_not_do_entry_rule" : {
+            "$ref" : "#/components/schemas/sensorsdata.focus.v1.express.canvas.EventComponentRule"
+          },
+          "origin_event_do_rule" : {
+            "description" : "原始事件配置: 完成事件进入，用于 web 回显",
+            "type" : "string"
+          },
+          "origin_event_not_do_rule" : {
+            "description" : "原始事件配置: 未完成事件进入，用于 web 回显",
+            "type" : "string"
+          }
+        },
+        "title" : "EventEntryConfig",
+        "type" : "object"
+      },
+      "sensorsdata.common.TimeRange" : {
+        "description" : "",
+        "properties" : {
+          "start_time" : {
+            "$ref" : "#/components/schemas/sensorsdata.common.TimePoint"
+          },
+          "end_time" : {
+            "$ref" : "#/components/schemas/sensorsdata.common.TimePoint"
+          }
+        },
+        "title" : "TimeRange",
+        "type" : "object"
+      },
+      "sensorsdata.horizon.v1.EqlSegmentRuleExpression" : {
+        "description" : "",
+        "properties" : {
+          "eql" : {
+            "description" : "EQL 表达式",
+            "example" : "user.$SegmentMembership.user_segment_t111111.is_not_null()\nand\nuser.user_tag_c4 == '标签值1'\nand\nuser.vip_level in ['高级VIP','普通用户']",
+            "type" : "string"
+          }
+        },
+        "title" : "EqlSegmentRuleExpression",
+        "type" : "object"
+      },
+      "sensorsdata.personas.v1.EventCompoundMeasureUserGroupRule" : {
+        "description" : "",
+        "properties" : {
+          "measure" : {
+            "$ref" : "#/components/schemas/sensorsdata.personas.v1.EventCompoundMeasure"
+          },
+          "function" : {
+            "description" : "",
+            "enum" : [ "PREDICATE_FUNCTION_TYPE_UNSPECIFIED", "IS_SET", "IS_NOT_SET", "EQUAL", "NOT_EQUAL", "IN", "NOT_IN", "LESS", "LESS_EQUAL", "GREATER", "GREATER_EQUAL", "BETWEEN", "RIGHT_OPEN_BETWEEN", "HASH_BETWEEN", "LEFT_OPEN_BETWEEN", "OPEN_BETWEEN", "IS_TRUE", "IS_FALSE", "CONTAIN", "NOT_CONTAIN", "IS_EMPTY", "IS_NOT_EMPTY", "RLIKE", "NOT_RLIKE", "INCLUDE", "NOT_INCLUDE", "ABSOLUTE_BETWEEN", "RELATIVE_WITHIN", "RELATIVE_BETWEEN", "RELATIVE_EVENT_TIME", "RELATIVE_BEFORE", "INTERSECTS", "NOT_INTERSECTS", "SUBSET_OF", "NOT_SUBSET_OF", "SUPERSET_OF", "NOT_SUPERSET_OF" ],
+            "type" : "string"
+          },
+          "params" : {
+            "description" : "",
+            "items" : {
+              "$ref" : "#/components/schemas/sensorsdata.common.PredicateFunctionParam"
+            },
+            "type" : "array"
+          }
+        },
+        "title" : "EventCompoundMeasureUserGroupRule",
+        "type" : "object"
+      },
+      "sensorsdata.focus.v1.StopTriggerStrategyRequest" : {
+        "description" : "停止触发策略的请求体",
+        "properties" : {
+          "biz_id" : {
+            "description" : "触发策略 业务 ID",
+            "type" : "string"
+          }
+        },
+        "required" : [ "biz_id" ],
+        "title" : "StopTriggerStrategyRequest",
+        "type" : "object"
+      },
+      "sensorsdata.focus.v1.GetTriggerStrategyResponse" : {
+        "description" : "获取触发策略详情响应",
+        "properties" : {
+          "trigger_strategy" : {
+            "$ref" : "#/components/schemas/sensorsdata.focus.v1.express.canvas.PresetCanvasInfo"
+          },
+          "events" : {
+            "description" : "触发策略配置中用到的触发事件列表",
+            "items" : {
+              "$ref" : "#/components/schemas/sensorsdata.focus.v1.UsedEvent"
+            },
+            "type" : "array"
+          }
+        },
+        "title" : "GetTriggerStrategyResponse",
+        "type" : "object"
+      },
+      "sensorsdata.focus.v1.QueryTriggerStrategyRequest" : {
+        "description" : "查询触发策略请求",
+        "properties" : {
+          "biz_key" : {
+            "description" : "触发策略业务 ID 或者触发策略业务名称",
+            "type" : "string"
+          },
+          "status" : {
+            "description" : "触发策略状态",
+            "type" : "string"
+          },
+          "type" : {
+            "description" : "触发策略类型",
+            "type" : "string"
+          },
+          "create_time_start" : {
+            "description" : "触发策略创建开始时间",
+            "type" : "string"
+          },
+          "create_time_end" : {
+            "description" : "触发策略创建结束时间",
+            "type" : "string"
+          },
+          "page_num" : {
+            "description" : "页码",
+            "format" : "int32",
+            "type" : "integer"
+          },
+          "page_size" : {
+            "description" : "页大小",
+            "format" : "int32",
+            "type" : "integer"
+          }
+        },
+        "required" : [ "page_num", "page_size" ],
+        "title" : "QueryTriggerStrategyRequest",
+        "type" : "object"
+      },
+      "sensorsdata.horizon.v1.EventSequenceSegmentRuleExpression.SimpleEventSequenceSegmentRuleExpression" : {
+        "description" : "",
+        "properties" : {
+          "event_steps" : {
+            "description" : "行为序列规则信息",
+            "items" : {
+              "$ref" : "#/components/schemas/sensorsdata.horizon.v1.EventSequenceSegmentRuleExpression.SimpleEventSequenceSegmentRuleExpression.EventStep"
+            },
+            "type" : "array"
+          },
+          "time_range" : {
+            "$ref" : "#/components/schemas/sensorsdata.common.TimeRange"
+          },
+          "time_window" : {
+            "$ref" : "#/components/schemas/sensorsdata.horizon.v1.EventSequenceSegmentRuleExpression.SimpleEventSequenceSegmentRuleExpression.TimeWindow"
+          }
+        },
+        "title" : "SimpleEventSequenceSegmentRuleExpression",
+        "type" : "object"
+      },
+      "sensorsdata.focus.v1.express.canvas.AudienceEntryConfig" : {
+        "description" : "受众进入配置",
+        "properties" : {
+          "audience_type" : {
+            "description" : "受众调度类型，支持AUDIENCE_ONETIME(定时单次)/AUDIENCE_ROUTINE(定时重复)",
+            "enum" : [ "AUDIENCE_TYPE_UNSPECIFIED", "AUDIENCE_ONETIME", "AUDIENCE_ROUTINE", "AUDIENCE_REALTIME" ],
+            "type" : "string"
+          },
+          "fixed_time" : {
+            "description" : "定时单次-触达时间，精确到分钟",
+            "format" : "int64",
+            "type" : "integer"
+          },
+          "start_date" : {
+            "description" : "定时重复-开始时间，精确到天",
+            "format" : "int64",
+            "type" : "integer"
+          },
+          "end_date" : {
+            "description" : "定时重复-结束时间，精确到天",
+            "format" : "int64",
+            "type" : "integer"
+          },
+          "cron" : {
+            "description" : "定时重复：计划触达开始周期的 cron 表达式, 如：0 0 3 2,3,4 * ? *",
+            "type" : "string"
+          },
+          "user_group_rule" : {
+            "$ref" : "#/components/schemas/sensorsdata.personas.v1.UserGroupRule"
+          },
+          "audience_template_id" : {
+            "description" : "受众模板ID，实时规则受众传入",
+            "format" : "int32",
+            "type" : "integer"
+          },
+          "audience_template_type" : {
+            "description" : "受众模板类型，实时规则受众传入",
+            "enum" : [ "AUDIENCE_TEMPLATE_TYPE_UNSPECIFIED", "AUDIENCE_TEMPLATE_REALTIME_RULE", "AUDIENCE_TEMPLATE_REALTIME_MARK" ],
+            "type" : "string"
+          },
+          "audience_biz_id" : {
+            "description" : "audience openapi定义的分群唯一标识",
+            "type" : "string"
+          },
+          "estimate_count" : {
+            "description" : "受众预估的数量",
+            "format" : "int32",
+            "type" : "integer"
+          },
+          "origin_audience_rule" : {
+            "description" : "原始受众规则配置，用于 web 回显",
+            "type" : "string"
+          },
+          "audience_rule_detail_param" : {
+            "$ref" : "#/components/schemas/sensorsdata.focus.v1.express.audience.AudienceRuleDetailParam"
+          }
+        },
+        "title" : "AudienceEntryConfig",
+        "type" : "object"
+      },
+      "sensorsdata.personas.v1.Order" : {
+        "description" : "",
+        "properties" : {
+          "measure" : {
+            "$ref" : "#/components/schemas/sensorsdata.personas.v1.OrderMeasure"
+          },
+          "is_asc" : {
+            "description" : "",
+            "type" : "boolean"
+          }
+        },
+        "title" : "Order",
+        "type" : "object"
+      },
+      "sensorsdata.focus.v1.ModifyTriggerStrategyResponse" : {
+        "description" : "修改触发策略响应",
+        "title" : "ModifyTriggerStrategyResponse",
+        "type" : "object"
+      },
+      "sensorsdata.focus.v1.CreateTriggerStrategyResponse" : {
+        "description" : "创建触发策略的响应体",
+        "properties" : {
+          "canvas_id" : {
+            "description" : "触发策略对应的画布 ID",
+            "format" : "int32",
+            "type" : "integer"
+          },
+          "strategy_biz_id" : {
+            "description" : "触发策略业务 ID",
+            "type" : "string"
+          }
+        },
+        "title" : "CreateTriggerStrategyResponse",
+        "type" : "object"
+      },
+      "sensorsdata.personas.v1.GroupExpressionUserGroupRule" : {
+        "description" : "",
+        "properties" : {
+          "groups" : {
+            "description" : "",
+            "items" : {
+              "$ref" : "#/components/schemas/sensorsdata.personas.v1.UserGroupRule"
+            },
+            "type" : "array"
+          },
+          "group_expression" : {
+            "description" : "",
+            "type" : "string"
+          }
+        },
+        "title" : "GroupExpressionUserGroupRule",
+        "type" : "object"
+      },
+      "sensorsdata.focus.v1.CheckTriggerStrategyBizIdRequest" : {
+        "description" : "检查触发策略业务 ID 是否合规请求",
+        "properties" : {
+          "biz_id" : {
+            "description" : "触发策略 业务 ID",
+            "type" : "string"
+          }
+        },
+        "required" : [ "biz_id" ],
+        "title" : "CheckTriggerStrategyBizIdRequest",
+        "type" : "object"
+      },
+      "sensorsdata.focus.v1.CheckTriggerStrategyBizIdResponse" : {
+        "description" : "检查触发策略响应",
+        "title" : "CheckTriggerStrategyBizIdResponse",
+        "type" : "object"
+      },
+      "sensorsdata.focus.v1.StartTriggerStrategyResponseHttpApiResult" : {
+        "properties" : {
+          "code" : {
+            "type" : "string"
+          },
+          "message" : {
+            "type" : "string"
+          },
+          "request_id" : {
+            "type" : "string"
+          },
+          "data" : {
+            "$ref" : "#/components/schemas/sensorsdata.focus.v1.StartTriggerStrategyResponse"
+          },
+          "error_info" : {
+            "$ref" : "#/components/schemas/sensorsdata.common.ErrorInfo"
+          }
+        },
+        "title" : "sensorsdata.focus.v1.StartTriggerStrategyResponseHttpApiResult",
+        "type" : "object"
+      },
+      "sensorsdata.focus.v1.StartTriggerStrategyRequest" : {
+        "description" : "启动触发策略的请求体",
+        "properties" : {
+          "biz_id" : {
+            "description" : "触发策略 业务 ID",
+            "type" : "string"
+          }
+        },
+        "required" : [ "biz_id" ],
+        "title" : "StartTriggerStrategyRequest",
+        "type" : "object"
+      },
+      "sensorsdata.focus.v1.express.canvas.EventComponentGroupRule" : {
+        "description" : "",
+        "properties" : {
+          "logical_operator" : {
+            "description" : "",
+            "enum" : [ "LOGICAL_OPERATOR_UNSPECIFIED", "AND", "OR" ],
+            "type" : "string"
+          },
+          "event_component_params" : {
+            "description" : "",
+            "items" : {
+              "$ref" : "#/components/schemas/sensorsdata.focus.v1.express.canvas.EventComponentParam"
+            },
+            "type" : "array"
+          },
+          "other_data_params" : {
+            "description" : "",
+            "items" : {
+              "$ref" : "#/components/schemas/sensorsdata.focus.v1.express.canvas.EventComponentParam"
+            },
+            "type" : "array"
+          }
+        },
+        "title" : "EventComponentGroupRule",
+        "type" : "object"
+      },
+      "sensorsdata.personas.v1.EventMeasure" : {
+        "description" : "",
+        "properties" : {
+          "events" : {
+            "$ref" : "#/components/schemas/sensorsdata.common.EventSeries"
+          },
+          "aggregator" : {
+            "description" : "",
+            "enum" : [ "AGGREGATOR_TYPE_UNSPECIFIED", "COUNT", "AVG", "MAX", "MIN", "SUM", "UNIQUE_COUNT", "UNIQUE_AVG", "BOUNCE_RATE", "EXIT_RATE", "UNIQUE_COUNT_APPROX", "COUNT_PERCENT", "RANK_ASC", "RANK_DESC", "PERCENT_RANK_ASC", "PERCENT_RANK_DESC", "SESSION_COUNT", "FIRST_TIME", "LAST_TIME", "FIRST_TIME_INTERVAL", "LAST_TIME_INTERVAL", "GROUP_CONCAT", "UNIQUE_COUNT_BITMAP", "UNIQUE_COUNT_APPROX_ORDINARY", "COUNT_DISTINCT", "LTV", "LTV_AVG", "COUNT_RANK", "AVG_RANK", "MAX_RANK", "MIN_RANK", "SUM_RANK", "COUNT_RANK_ASC", "COUNT_RANK_DESC", "COUNT_PERCENT_RANK_ASC", "COUNT_PERCENT_RANK_DESC", "AVG_RANK_ASC", "AVG_RANK_DESC", "AVG_PERCENT_RANK_ASC", "AVG_PERCENT_RANK_DESC", "MAX_RANK_ASC", "MAX_RANK_DESC", "MAX_PERCENT_RANK_ASC", "MAX_PERCENT_RANK_DESC", "MIN_RANK_ASC", "MIN_RANK_DESC", "MIN_PERCENT_RANK_ASC", "MIN_PERCENT_RANK_DESC", "SUM_RANK_ASC", "SUM_RANK_DESC", "SUM_PERCENT_RANK_ASC", "SUM_PERCENT_RANK_DESC" ],
+            "type" : "string"
+          },
+          "aggregate_field" : {
+            "description" : "",
+            "type" : "string"
+          }
+        },
+        "title" : "EventMeasure",
+        "type" : "object"
+      },
+      "sensorsdata.focus.v1.CreateTriggerStrategyRequest" : {
+        "description" : "创建触发策略的请求体",
+        "properties" : {
+          "trigger_strategy" : {
+            "$ref" : "#/components/schemas/sensorsdata.focus.v1.express.canvas.PresetCanvasInfo"
+          }
+        },
+        "required" : [ "trigger_strategy" ],
+        "title" : "CreateTriggerStrategyRequest",
+        "type" : "object"
+      },
+      "sensorsdata.focus.v1.express.audience.AudienceRuleDetailParam" : {
+        "description" : "",
+        "properties" : {
+          "segment_rule_expression" : {
+            "$ref" : "#/components/schemas/sensorsdata.horizon.v1.SegmentRuleExpression"
+          },
+          "with_today" : {
+            "description" : "",
+            "type" : "boolean"
+          }
+        },
+        "title" : "AudienceRuleDetailParam",
+        "type" : "object"
+      },
+      "sensorsdata.personas.v1.EventCompoundMeasure" : {
+        "description" : "",
+        "properties" : {
+          "time_range" : {
+            "$ref" : "#/components/schemas/sensorsdata.common.TimeRange"
+          },
+          "measures" : {
+            "description" : "",
+            "items" : {
+              "$ref" : "#/components/schemas/sensorsdata.personas.v1.EventMeasure"
+            },
+            "type" : "array"
+          },
+          "condition" : {
+            "$ref" : "#/components/schemas/sensorsdata.common.CompoundFilterCondition"
+          },
+          "measure_expression" : {
+            "description" : "",
+            "type" : "string"
+          }
+        },
+        "title" : "EventCompoundMeasure",
+        "type" : "object"
+      },
+      "sensorsdata.common.FilterCondition" : {
+        "description" : "单个过滤条件",
+        "properties" : {
+          "function" : {
+            "description" : "过滤条件的判断函数",
+            "enum" : [ "PREDICATE_FUNCTION_TYPE_UNSPECIFIED", "IS_SET", "IS_NOT_SET", "EQUAL", "NOT_EQUAL", "IN", "NOT_IN", "LESS", "LESS_EQUAL", "GREATER", "GREATER_EQUAL", "BETWEEN", "RIGHT_OPEN_BETWEEN", "HASH_BETWEEN", "LEFT_OPEN_BETWEEN", "OPEN_BETWEEN", "IS_TRUE", "IS_FALSE", "CONTAIN", "NOT_CONTAIN", "IS_EMPTY", "IS_NOT_EMPTY", "RLIKE", "NOT_RLIKE", "INCLUDE", "NOT_INCLUDE", "ABSOLUTE_BETWEEN", "RELATIVE_WITHIN", "RELATIVE_BETWEEN", "RELATIVE_EVENT_TIME", "RELATIVE_BEFORE", "INTERSECTS", "NOT_INTERSECTS", "SUBSET_OF", "NOT_SUBSET_OF", "SUPERSET_OF", "NOT_SUPERSET_OF" ],
+            "example" : "EQUAL",
+            "type" : "string"
+          },
+          "params" : {
+            "description" : "函数的参数",
+            "items" : {
+              "$ref" : "#/components/schemas/sensorsdata.common.PredicateFunctionParam"
+            },
+            "type" : "array"
+          },
+          "index" : {
+            "description" : "当前筛选条件所处的位置下标，主要为了保证前端展示顺序的稳定",
+            "example" : 10,
+            "format" : "int32",
+            "type" : "integer"
+          }
+        },
+        "title" : "FilterCondition",
+        "type" : "object"
+      },
+      "sensorsdata.horizon.v1.EventSequenceSegmentRuleExpression.SimpleEventSequenceSegmentRuleExpression.EventStep" : {
+        "description" : "",
+        "properties" : {
+          "event_name" : {
+            "description" : "事件名称",
+            "example" : "user.$Events.AppStart",
+            "type" : "string"
+          },
+          "condition" : {
+            "$ref" : "#/components/schemas/sensorsdata.common.CompoundFilterCondition"
+          }
+        },
+        "title" : "EventStep",
+        "type" : "object"
+      },
+      "sensorsdata.horizon.v1.SqlSegmentRuleExpression" : {
+        "description" : "",
+        "properties" : {
+          "sql" : {
+            "description" : "SQL 的结果只取一列 user_id",
+            "example" : "select user_id as id from user where user_id > 100",
+            "type" : "string"
+          },
+          "query_options" : {
+            "description" : "SQL 执行的选项",
+            "example" : "{\"option\":\"TIMEOUT\",\"value\":\"120\"}",
+            "items" : {
+              "$ref" : "#/components/schemas/sensorsdata.horizon.v1.SqlSegmentRuleExpression.QueryOption"
+            },
+            "type" : "array"
+          }
+        },
+        "title" : "SqlSegmentRuleExpression",
+        "type" : "object"
+      },
+      "sensorsdata.personas.v1.UserGroupRule" : {
+        "description" : "",
+        "properties" : {
+          "operator" : {
+            "description" : "",
+            "enum" : [ "SET_OPERATOR_UNSPECIFIED", "UNION", "INTERSECT", "SUBTRACT" ],
+            "type" : "string"
+          },
+          "groups" : {
+            "description" : "",
+            "items" : {
+              "$ref" : "#/components/schemas/sensorsdata.personas.v1.SimpleUserGroupRule"
+            },
+            "type" : "array"
+          },
+          "compound_groups" : {
+            "description" : "",
+            "items" : {
+              "$ref" : "#/components/schemas/sensorsdata.personas.v1.UserGroupRule"
+            },
+            "type" : "array"
+          },
+          "sort_info" : {
+            "$ref" : "#/components/schemas/sensorsdata.personas.v1.SortInfo"
+          },
+          "limit" : {
+            "description" : "",
+            "format" : "int32",
+            "type" : "integer"
+          },
+          "shuffle" : {
+            "description" : "",
+            "type" : "boolean"
+          },
+          "tailor" : {
+            "$ref" : "#/components/schemas/sensorsdata.personas.v1.Tailor"
+          }
+        },
+        "title" : "UserGroupRule",
+        "type" : "object"
+      },
+      "sensorsdata.personas.v1.DimensionMeasure" : {
+        "description" : "",
+        "properties" : {
+          "type" : {
+            "description" : "",
+            "enum" : [ "DIMENSION_MEASURE_TYPE_UNSPECIFIED", "SIMPLE_FIELD", "FILED_EXPRESSION", "SUB_DIMENSION_MEASURE" ],
+            "type" : "string"
+          },
+          "field" : {
+            "description" : "",
+            "type" : "string"
+          },
+          "field_expression" : {
+            "description" : "",
+            "type" : "string"
+          },
+          "sub_dimension_measure" : {
+            "$ref" : "#/components/schemas/sensorsdata.personas.v1.SubDimensionMeasure"
+          }
+        },
+        "title" : "DimensionMeasure",
+        "type" : "object"
+      },
+      "sensorsdata.common.EventSeries" : {
+        "description" : "",
+        "properties" : {
+          "event_name" : {
+            "description" : "",
+            "type" : "string"
+          },
+          "time_range" : {
+            "$ref" : "#/components/schemas/sensorsdata.common.TimeRange"
+          },
+          "condition" : {
+            "$ref" : "#/components/schemas/sensorsdata.common.CompoundFilterCondition"
+          }
+        },
+        "title" : "EventSeries",
+        "type" : "object"
+      },
+      "sensorsdata.personas.v1.EventSequenceUserGroupRule" : {
+        "description" : "",
+        "properties" : {
+          "event_steps" : {
+            "description" : "",
+            "items" : {
+              "$ref" : "#/components/schemas/sensorsdata.personas.v1.EventStep"
+            },
+            "type" : "array"
+          },
+          "time_range" : {
+            "$ref" : "#/components/schemas/sensorsdata.common.TimeRange"
+          }
+        },
+        "title" : "EventSequenceUserGroupRule",
+        "type" : "object"
+      },
+      "sensorsdata.personas.v1.ExternalDataSeries" : {
+        "description" : "",
+        "properties" : {
+          "external_table_name" : {
+            "description" : "",
+            "type" : "string"
+          },
+          "time_field" : {
+            "description" : "",
+            "type" : "string"
+          },
+          "time_range" : {
+            "$ref" : "#/components/schemas/sensorsdata.common.TimeRange"
+          },
+          "condition" : {
+            "$ref" : "#/components/schemas/sensorsdata.common.CompoundFilterCondition"
+          }
+        },
+        "title" : "ExternalDataSeries",
+        "type" : "object"
+      },
+      "sensorsdata.common.CompoundFilterCondition" : {
+        "description" : "复合过滤条件，用于描述 condition 或 compound_filter 之间的关系",
+        "properties" : {
+          "operator" : {
+            "description" : "逻辑运算法",
+            "enum" : [ "LOGICAL_OPERATOR_UNSPECIFIED", "AND", "OR" ],
+            "example" : "AND",
+            "type" : "string"
+          },
+          "conditions" : {
+            "description" : "过滤条件列表，只有最后一级才有",
+            "items" : {
+              "$ref" : "#/components/schemas/sensorsdata.common.FilterCondition"
+            },
+            "type" : "array"
+          },
+          "compound_conditions" : {
+            "description" : "嵌套的下一级复合过滤条件",
+            "items" : {
+              "$ref" : "#/components/schemas/sensorsdata.common.CompoundFilterCondition"
+            },
+            "type" : "array"
+          },
+          "index" : {
+            "description" : "当前筛选条件所处的位置下标，主要为了保证前端展示顺序的稳定",
+            "example" : 10,
+            "format" : "int32",
+            "type" : "integer"
+          }
+        },
+        "title" : "CompoundFilterCondition",
+        "type" : "object"
+      },
+      "sensorsdata.horizon.v1.SegmentRule" : {
+        "description" : "",
+        "properties" : {
+          "entity_name" : {
+            "description" : "",
+            "type" : "string"
+          },
+          "name" : {
+            "description" : "",
+            "type" : "string"
+          },
+          "display_name" : {
+            "description" : "",
+            "type" : "string"
+          },
+          "comment" : {
+            "description" : "",
+            "type" : "string"
+          },
+          "id" : {
+            "description" : "",
+            "format" : "int32",
+            "type" : "integer"
+          },
+          "status" : {
+            "description" : "",
+            "enum" : [ "STATUS_UNSPECIFIED", "ACTIVE", "INACTIVE", "DELETE_REQUESTED" ],
+            "type" : "string"
+          },
+          "expression" : {
+            "$ref" : "#/components/schemas/sensorsdata.horizon.v1.SegmentRuleExpression"
+          },
+          "version" : {
+            "description" : "",
+            "type" : "string"
+          },
+          "rule_available" : {
+            "description" : "",
+            "type" : "boolean"
+          },
+          "created_by" : {
+            "description" : "",
+            "type" : "string"
+          },
+          "custom_params" : {
+            "additionalProperties" : {
+              "$ref" : "#/components/schemas/sensorsdata.common.Literal"
+            },
+            "description" : "",
+            "type" : "object"
+          },
+          "creator_id" : {
+            "description" : "",
+            "type" : "string"
+          },
+          "modifier_id" : {
+            "description" : "",
+            "type" : "string"
+          },
+          "create_time" : {
+            "description" : "",
+            "format" : "date-time",
+            "type" : "string"
+          },
+          "update_time" : {
+            "description" : "",
+            "format" : "date-time",
+            "type" : "string"
+          },
+          "type" : {
+            "description" : "",
+            "enum" : [ "TYPE_UNSPECIFIED", "SEGMENT_DEFINITION_RULE", "ENTITY_SET_RULE" ],
+            "type" : "string"
+          },
+          "read_only" : {
+            "description" : "",
+            "type" : "boolean"
+          },
+          "delete_flag" : {
+            "description" : "",
+            "format" : "int64",
+            "type" : "integer"
+          }
+        },
+        "required" : [ "entity_name", "expression" ],
+        "title" : "SegmentRule",
+        "type" : "object"
+      },
+      "sensorsdata.personas.v1.OrderMeasure" : {
+        "description" : "",
+        "properties" : {
+          "type" : {
+            "description" : "",
+            "enum" : [ "FIELD_TYPE_UNSPECIFIED", "PLAIN_FIELD", "AGGREGATOR_FIELD" ],
+            "type" : "string"
+          },
+          "plain_field" : {
+            "description" : "",
+            "type" : "string"
+          },
+          "aggregator_field" : {
+            "$ref" : "#/components/schemas/sensorsdata.personas.v1.AggregatorField"
+          },
+          "condition" : {
+            "$ref" : "#/components/schemas/sensorsdata.common.CompoundFilterCondition"
+          }
+        },
+        "title" : "OrderMeasure",
+        "type" : "object"
+      },
+      "sensorsdata.focus.v1.QueryTriggerStrategyQuotaRequest" : {
+        "description" : "查询触发策略请求",
+        "title" : "QueryTriggerStrategyQuotaRequest",
+        "type" : "object"
+      },
+      "sensorsdata.horizon.v1.RankField" : {
+        "description" : "",
+        "properties" : {
+          "type" : {
+            "description" : "排序类型\n```\n  SHUFFLE_RANK: 随机值的排序值为序列号\n  PERCENT_SHUFFLE_RANK: 随机值的排序百分比为序列号，如：0.1 表示该随机值在所有值中的位次为前百分之十\n  ORDER_RANK: orders 排序值为序列号\n  PERCENT_ORDER_RANK: orders 排序值的排序百分比为序列号，如：0.1 表示根据 order 排序的序号值在所有值中的位次为前百分之十\n```",
+            "enum" : [ "RANK_TYPE_UNSPECIFIED", "SHUFFLE_RANK", "PERCENT_SHUFFLE_RANK", "ORDER_RANK", "PERCENT_ORDER_RANK" ],
+            "example" : "SHUFFLE_RANK",
+            "type" : "string"
+          },
+          "orders" : {
+            "description" : "排序字段信息",
+            "items" : {
+              "$ref" : "#/components/schemas/sensorsdata.horizon.v1.Order"
+            },
+            "type" : "array"
+          }
+        },
+        "title" : "RankField",
+        "type" : "object"
+      },
+      "sensorsdata.focus.v1.QueryTriggerStrategyResponseHttpApiResult" : {
+        "properties" : {
+          "code" : {
+            "type" : "string"
+          },
+          "message" : {
+            "type" : "string"
+          },
+          "request_id" : {
+            "type" : "string"
+          },
+          "data" : {
+            "$ref" : "#/components/schemas/sensorsdata.focus.v1.QueryTriggerStrategyResponse"
+          },
+          "error_info" : {
+            "$ref" : "#/components/schemas/sensorsdata.common.ErrorInfo"
+          }
+        },
+        "title" : "sensorsdata.focus.v1.QueryTriggerStrategyResponseHttpApiResult",
+        "type" : "object"
+      },
+      "sensorsdata.personas.v1.DimensionPredicate" : {
+        "description" : "",
+        "properties" : {
+          "operator" : {
+            "description" : "",
+            "enum" : [ "LOGICAL_OPERATOR_UNSPECIFIED", "AND", "OR" ],
+            "type" : "string"
+          },
+          "simple_predicates" : {
+            "description" : "",
+            "items" : {
+              "$ref" : "#/components/schemas/sensorsdata.personas.v1.DimensionSimplePredicate"
+            },
+            "type" : "array"
+          },
+          "predicates" : {
+            "description" : "",
+            "items" : {
+              "$ref" : "#/components/schemas/sensorsdata.personas.v1.DimensionPredicate"
+            },
+            "type" : "array"
+          }
+        },
+        "title" : "DimensionPredicate",
+        "type" : "object"
+      },
+      "sensorsdata.focus.v1.DeleteTriggerStrategyRequest" : {
+        "description" : "删除触发策略的请求体",
+        "properties" : {
+          "biz_id" : {
+            "description" : "触发策略 业务 ID",
+            "type" : "string"
+          }
+        },
+        "required" : [ "biz_id" ],
+        "title" : "DeleteTriggerStrategyRequest",
+        "type" : "object"
+      },
+      "sensorsdata.personas.v1.PqlUserGroupRule" : {
+        "description" : "",
+        "properties" : {
+          "pql" : {
+            "description" : "",
+            "type" : "string"
+          }
+        },
+        "title" : "PqlUserGroupRule",
+        "type" : "object"
+      },
+      "sensorsdata.horizon.v1.LoadingSegmentRuleExpression" : {
+        "description" : "",
+        "properties" : {
+          "matched_field" : {
+            "description" : "匹配字段, 文件放在任务中，规则中没有文件信息",
+            "example" : "user.$identity_login_id",
+            "type" : "string"
+          },
+          "sync_flag" : {
+            "description" : "导入的用户不在实体中，是否通过到实体表。如导入列表中有个 用户标识=【新增用户1】不在用户表， 这个参数可以控制是否将【新增用户1】 通过到用户表",
+            "example" : false,
+            "type" : "boolean"
+          },
+          "loading_type" : {
+            "description" : "导入类型，\n ```\n TAG_LOADING_TYPE_OVERWRITE: 覆盖模式\n TAG_LOADING_TYPE_INCREMENT: 增量模式\n ```",
+            "enum" : [ "LOADING_TYPE_UNSPECIFIED", "LOADING_TYPE_OVERWRITE", "LOADING_TYPE_INCREMENT" ],
+            "example" : "TAG_LOADING_TYPE_OVERWRITE",
+            "type" : "string"
+          }
+        },
+        "title" : "LoadingSegmentRuleExpression",
+        "type" : "object"
+      },
+      "sensorsdata.focus.v1.UsedEvent" : {
+        "description" : "触发策略配置中用到的触发事件信息",
+        "properties" : {
+          "event_name" : {
+            "description" : "事件名称",
+            "type" : "string"
+          },
+          "event_cname" : {
+            "description" : "事件中文名",
+            "type" : "string"
+          }
+        },
+        "title" : "UsedEvent",
+        "type" : "object"
+      },
+      "sensorsdata.common.Literal" : {
+        "description" : "",
+        "properties" : {
+          "data_type" : {
+            "description" : "",
+            "enum" : [ "DATA_TYPE_UNSPECIFIED", "BOOL", "INT", "NUMBER", "STRING", "LIST", "DATETIME", "DATE", "BIGINT", "DECIMAL" ],
+            "type" : "string"
+          },
+          "bool_value" : {
+            "description" : "",
+            "type" : "boolean"
+          },
+          "int_value" : {
+            "description" : "",
+            "format" : "int64",
+            "type" : "integer"
+          },
+          "number_value" : {
+            "description" : "",
+            "format" : "double",
+            "type" : "number"
+          },
+          "string_value" : {
+            "description" : "",
+            "type" : "string"
+          },
+          "list_value" : {
+            "description" : "",
+            "items" : {
+              "type" : "string"
+            },
+            "type" : "array"
+          },
+          "datetime_value" : {
+            "description" : "",
+            "format" : "date-time",
+            "type" : "string"
+          },
+          "date_value" : {
+            "description" : "",
+            "type" : "string"
+          },
+          "bigint_value" : {
+            "description" : "",
+            "format" : "int64",
+            "type" : "integer"
+          },
+          "decimal_value" : {
+            "description" : "",
+            "type" : "string"
+          }
+        },
+        "title" : "Literal",
+        "type" : "object"
+      },
+      "sensorsdata.personas.v1.AggregatorField" : {
+        "description" : "",
+        "properties" : {
+          "aggregator" : {
+            "description" : "",
+            "enum" : [ "AGGREGATOR_TYPE_UNSPECIFIED", "COUNT", "AVG", "MAX", "MIN", "SUM", "UNIQUE_COUNT", "UNIQUE_AVG", "BOUNCE_RATE", "EXIT_RATE", "UNIQUE_COUNT_APPROX", "COUNT_PERCENT", "RANK_ASC", "RANK_DESC", "PERCENT_RANK_ASC", "PERCENT_RANK_DESC", "SESSION_COUNT", "FIRST_TIME", "LAST_TIME", "FIRST_TIME_INTERVAL", "LAST_TIME_INTERVAL", "GROUP_CONCAT", "UNIQUE_COUNT_BITMAP", "UNIQUE_COUNT_APPROX_ORDINARY", "COUNT_DISTINCT", "LTV", "LTV_AVG", "COUNT_RANK", "AVG_RANK", "MAX_RANK", "MIN_RANK", "SUM_RANK", "COUNT_RANK_ASC", "COUNT_RANK_DESC", "COUNT_PERCENT_RANK_ASC", "COUNT_PERCENT_RANK_DESC", "AVG_RANK_ASC", "AVG_RANK_DESC", "AVG_PERCENT_RANK_ASC", "AVG_PERCENT_RANK_DESC", "MAX_RANK_ASC", "MAX_RANK_DESC", "MAX_PERCENT_RANK_ASC", "MAX_PERCENT_RANK_DESC", "MIN_RANK_ASC", "MIN_RANK_DESC", "MIN_PERCENT_RANK_ASC", "MIN_PERCENT_RANK_DESC", "SUM_RANK_ASC", "SUM_RANK_DESC", "SUM_PERCENT_RANK_ASC", "SUM_PERCENT_RANK_DESC" ],
+            "type" : "string"
+          },
+          "field" : {
+            "description" : "",
+            "type" : "string"
+          }
+        },
+        "title" : "AggregatorField",
+        "type" : "object"
+      },
+      "sensorsdata.personas.v1.Tailor" : {
+        "description" : "",
+        "properties" : {
+          "rank_field" : {
+            "$ref" : "#/components/schemas/sensorsdata.personas.v1.RankField"
+          },
+          "function" : {
+            "description" : "",
+            "enum" : [ "PREDICATE_FUNCTION_TYPE_UNSPECIFIED", "IS_SET", "IS_NOT_SET", "EQUAL", "NOT_EQUAL", "IN", "NOT_IN", "LESS", "LESS_EQUAL", "GREATER", "GREATER_EQUAL", "BETWEEN", "RIGHT_OPEN_BETWEEN", "HASH_BETWEEN", "LEFT_OPEN_BETWEEN", "OPEN_BETWEEN", "IS_TRUE", "IS_FALSE", "CONTAIN", "NOT_CONTAIN", "IS_EMPTY", "IS_NOT_EMPTY", "RLIKE", "NOT_RLIKE", "INCLUDE", "NOT_INCLUDE", "ABSOLUTE_BETWEEN", "RELATIVE_WITHIN", "RELATIVE_BETWEEN", "RELATIVE_EVENT_TIME", "RELATIVE_BEFORE", "INTERSECTS", "NOT_INTERSECTS", "SUBSET_OF", "NOT_SUBSET_OF", "SUPERSET_OF", "NOT_SUPERSET_OF" ],
+            "type" : "string"
+          },
+          "params" : {
+            "description" : "",
+            "items" : {
+              "$ref" : "#/components/schemas/sensorsdata.common.PredicateFunctionParam"
+            },
+            "type" : "array"
+          }
+        },
+        "title" : "Tailor",
+        "type" : "object"
+      },
+      "sensorsdata.focus.v1.QueryTriggerStrategyQuotaResponseHttpApiResult" : {
+        "properties" : {
+          "code" : {
+            "type" : "string"
+          },
+          "message" : {
+            "type" : "string"
+          },
+          "request_id" : {
+            "type" : "string"
+          },
+          "data" : {
+            "$ref" : "#/components/schemas/sensorsdata.focus.v1.QueryTriggerStrategyQuotaResponse"
+          },
+          "error_info" : {
+            "$ref" : "#/components/schemas/sensorsdata.common.ErrorInfo"
+          }
+        },
+        "title" : "sensorsdata.focus.v1.QueryTriggerStrategyQuotaResponseHttpApiResult",
+        "type" : "object"
+      },
+      "sensorsdata.common.ErrorCause" : {
+        "properties" : {
+          "error_cause" : {
+            "description" : "致错原因1",
+            "example" : "参数异常1",
+            "type" : "string"
+          },
+          "action_suggestion" : {
+            "description" : "操作建议，针对该原因，建议的解决方式",
+            "example" : "检测入参的数据类型1",
+            "type" : "string"
+          }
+        },
+        "title" : "ErrorCause",
+        "type" : "object"
+      },
+      "sensorsdata.common.ErrorInfo" : {
+        "properties" : {
+          "code" : {
+            "description" : "具体的错误码",
+            "example" : "XX-D-F-2-1",
+            "type" : "string"
+          },
+          "description" : {
+            "description" : "错误描述",
+            "example" : "前端参数校验异常,PARAMETER_FORMAT_ERROR(quantiles=[10, -90] is not include [0, 100])",
+            "type" : "string"
+          },
+          "system_response" : {
+            "description" : "致错的可能原因列表",
+            "example" : "系统终止了查询处理",
+            "type" : "string"
+          },
+          "error_causes" : {
+            "items" : {
+              "$ref" : "#/components/schemas/sensorsdata.common.ErrorCause"
+            },
+            "type" : "array"
+          },
+          "context" : {
+            "$ref" : "#/components/schemas/sensorsdata.common.ErrorContext"
+          }
+        },
+        "title" : "ErrorInfo",
+        "type" : "object"
+      },
+      "sensorsdata.personas.v1.SimpleUserGroupRule" : {
+        "description" : "",
+        "properties" : {
+          "type" : {
+            "description" : "",
+            "enum" : [ "SIMPLE_USER_GROUP_TYPE_UNSPECIFIED", "EVENT_MEASURE_BASED", "PROFILE_FILTER_BASED", "EVENT_SEQUENCE_BASED", "SQL_BASED", "LOADING_BASED", "EXTERNAL_PROFILE_FILTER_BASED", "EXTERNAL_MEASURE_BASED", "EVENT_COMPOUND_MEASURE_BASED", "PROFILE_DIMENSION_MEASURE_BASED", "GROUP_EXPRESSION", "PQL_BASED" ],
+            "type" : "string"
+          },
+          "event_measure_user_group" : {
+            "$ref" : "#/components/schemas/sensorsdata.personas.v1.EventMeasureUserGroupRule"
+          },
+          "profile_user_group" : {
+            "$ref" : "#/components/schemas/sensorsdata.personas.v1.ProfileUserGroupRule"
+          },
+          "event_sequence_user_group" : {
+            "$ref" : "#/components/schemas/sensorsdata.personas.v1.EventSequenceUserGroupRule"
+          },
+          "sql_user_group" : {
+            "$ref" : "#/components/schemas/sensorsdata.personas.v1.SqlUserGroupRule"
+          },
+          "external_profile_user_group" : {
+            "$ref" : "#/components/schemas/sensorsdata.personas.v1.ExternalProfileUserGroupRule"
+          },
+          "external_measure_user_group" : {
+            "$ref" : "#/components/schemas/sensorsdata.personas.v1.ExternalMeasureUserGroupRule"
+          },
+          "event_compound_measure_user_group" : {
+            "$ref" : "#/components/schemas/sensorsdata.personas.v1.EventCompoundMeasureUserGroupRule"
+          },
+          "profile_dimension_user_group" : {
+            "$ref" : "#/components/schemas/sensorsdata.personas.v1.ProfileDimensionUserGroupRule"
+          },
+          "group_expression_user_group" : {
+            "$ref" : "#/components/schemas/sensorsdata.personas.v1.GroupExpressionUserGroupRule"
+          },
+          "pql_user_group" : {
+            "$ref" : "#/components/schemas/sensorsdata.personas.v1.PqlUserGroupRule"
+          }
+        },
+        "title" : "SimpleUserGroupRule",
+        "type" : "object"
+      },
+      "sensorsdata.common.TimeInterval" : {
+        "description" : "",
+        "properties" : {
+          "size" : {
+            "description" : "",
+            "format" : "int32",
+            "type" : "integer"
+          },
+          "unit" : {
+            "description" : "",
+            "enum" : [ "DATE_TIME_UNIT_UNSPECIFIED", "MILLISECOND", "SECOND", "MINUTE", "HOUR", "DAY", "WEEK", "MONTH", "YEAR" ],
+            "type" : "string"
+          }
+        },
+        "title" : "TimeInterval",
+        "type" : "object"
+      },
+      "sensorsdata.personas.v1.EventMeasureUserGroupRule" : {
+        "description" : "",
+        "properties" : {
+          "events" : {
+            "$ref" : "#/components/schemas/sensorsdata.common.EventSeries"
+          },
+          "aggregator" : {
+            "description" : "",
+            "enum" : [ "AGGREGATOR_TYPE_UNSPECIFIED", "COUNT", "AVG", "MAX", "MIN", "SUM", "UNIQUE_COUNT", "UNIQUE_AVG", "BOUNCE_RATE", "EXIT_RATE", "UNIQUE_COUNT_APPROX", "COUNT_PERCENT", "RANK_ASC", "RANK_DESC", "PERCENT_RANK_ASC", "PERCENT_RANK_DESC", "SESSION_COUNT", "FIRST_TIME", "LAST_TIME", "FIRST_TIME_INTERVAL", "LAST_TIME_INTERVAL", "GROUP_CONCAT", "UNIQUE_COUNT_BITMAP", "UNIQUE_COUNT_APPROX_ORDINARY", "COUNT_DISTINCT", "LTV", "LTV_AVG", "COUNT_RANK", "AVG_RANK", "MAX_RANK", "MIN_RANK", "SUM_RANK", "COUNT_RANK_ASC", "COUNT_RANK_DESC", "COUNT_PERCENT_RANK_ASC", "COUNT_PERCENT_RANK_DESC", "AVG_RANK_ASC", "AVG_RANK_DESC", "AVG_PERCENT_RANK_ASC", "AVG_PERCENT_RANK_DESC", "MAX_RANK_ASC", "MAX_RANK_DESC", "MAX_PERCENT_RANK_ASC", "MAX_PERCENT_RANK_DESC", "MIN_RANK_ASC", "MIN_RANK_DESC", "MIN_PERCENT_RANK_ASC", "MIN_PERCENT_RANK_DESC", "SUM_RANK_ASC", "SUM_RANK_DESC", "SUM_PERCENT_RANK_ASC", "SUM_PERCENT_RANK_DESC" ],
+            "type" : "string"
+          },
+          "aggregate_field" : {
+            "description" : "",
+            "type" : "string"
+          },
+          "function" : {
+            "description" : "",
+            "enum" : [ "PREDICATE_FUNCTION_TYPE_UNSPECIFIED", "IS_SET", "IS_NOT_SET", "EQUAL", "NOT_EQUAL", "IN", "NOT_IN", "LESS", "LESS_EQUAL", "GREATER", "GREATER_EQUAL", "BETWEEN", "RIGHT_OPEN_BETWEEN", "HASH_BETWEEN", "LEFT_OPEN_BETWEEN", "OPEN_BETWEEN", "IS_TRUE", "IS_FALSE", "CONTAIN", "NOT_CONTAIN", "IS_EMPTY", "IS_NOT_EMPTY", "RLIKE", "NOT_RLIKE", "INCLUDE", "NOT_INCLUDE", "ABSOLUTE_BETWEEN", "RELATIVE_WITHIN", "RELATIVE_BETWEEN", "RELATIVE_EVENT_TIME", "RELATIVE_BEFORE", "INTERSECTS", "NOT_INTERSECTS", "SUBSET_OF", "NOT_SUBSET_OF", "SUPERSET_OF", "NOT_SUPERSET_OF" ],
+            "type" : "string"
+          },
+          "params" : {
+            "description" : "",
+            "items" : {
+              "$ref" : "#/components/schemas/sensorsdata.common.PredicateFunctionParam"
+            },
+            "type" : "array"
+          }
+        },
+        "title" : "EventMeasureUserGroupRule",
+        "type" : "object"
+      },
+      "sensorsdata.focus.v1.GetTriggerStrategyResponseHttpApiResult" : {
+        "properties" : {
+          "code" : {
+            "type" : "string"
+          },
+          "message" : {
+            "type" : "string"
+          },
+          "request_id" : {
+            "type" : "string"
+          },
+          "data" : {
+            "$ref" : "#/components/schemas/sensorsdata.focus.v1.GetTriggerStrategyResponse"
+          },
+          "error_info" : {
+            "$ref" : "#/components/schemas/sensorsdata.common.ErrorInfo"
+          }
+        },
+        "title" : "sensorsdata.focus.v1.GetTriggerStrategyResponseHttpApiResult",
+        "type" : "object"
+      },
+      "sensorsdata.focus.v1.express.canvas.SlidingWindowWithLimit" : {
+        "description" : "",
+        "properties" : {
+          "sliding_window" : {
+            "$ref" : "#/components/schemas/sensorsdata.common.TimeInterval"
+          },
+          "limit" : {
+            "description" : "",
+            "format" : "int32",
+            "type" : "integer"
+          }
+        },
+        "title" : "SlidingWindowWithLimit",
+        "type" : "object"
+      },
+      "sensorsdata.horizon.v1.AggregatorField" : {
+        "description" : "",
+        "properties" : {
+          "aggregator" : {
+            "description" : "聚合类型\n```\n  COUNT: 计数\n  SUM: 求和\n  AVG: 平均值\n  MIN: 最小值\n  MAX: 最大值\n```",
+            "enum" : [ "AGGREGATOR_TYPE_UNSPECIFIED", "COUNT", "AVG", "MAX", "MIN", "SUM", "UNIQUE_COUNT", "UNIQUE_AVG", "BOUNCE_RATE", "EXIT_RATE", "UNIQUE_COUNT_APPROX", "COUNT_PERCENT", "RANK_ASC", "RANK_DESC", "PERCENT_RANK_ASC", "PERCENT_RANK_DESC", "SESSION_COUNT", "FIRST_TIME", "LAST_TIME", "FIRST_TIME_INTERVAL", "LAST_TIME_INTERVAL", "GROUP_CONCAT", "UNIQUE_COUNT_BITMAP", "UNIQUE_COUNT_APPROX_ORDINARY", "COUNT_DISTINCT", "LTV", "LTV_AVG", "COUNT_RANK", "AVG_RANK", "MAX_RANK", "MIN_RANK", "SUM_RANK", "COUNT_RANK_ASC", "COUNT_RANK_DESC", "COUNT_PERCENT_RANK_ASC", "COUNT_PERCENT_RANK_DESC", "AVG_RANK_ASC", "AVG_RANK_DESC", "AVG_PERCENT_RANK_ASC", "AVG_PERCENT_RANK_DESC", "MAX_RANK_ASC", "MAX_RANK_DESC", "MAX_PERCENT_RANK_ASC", "MAX_PERCENT_RANK_DESC", "MIN_RANK_ASC", "MIN_RANK_DESC", "MIN_PERCENT_RANK_ASC", "MIN_PERCENT_RANK_DESC", "SUM_RANK_ASC", "SUM_RANK_DESC", "SUM_PERCENT_RANK_ASC", "SUM_PERCENT_RANK_DESC" ],
+            "example" : "SUM",
+            "type" : "string"
+          },
+          "field" : {
+            "description" : "聚合字段",
+            "example" : "user.$Events.$AppStart.$duration",
+            "type" : "string"
+          }
+        },
+        "title" : "AggregatorField",
+        "type" : "object"
+      },
+      "sensorsdata.focus.v1.QueryTriggerStrategyResponse" : {
+        "description" : "查询触发策略响应",
+        "properties" : {
+          "strategies" : {
+            "description" : "触发策略信息列表",
+            "items" : {
+              "$ref" : "#/components/schemas/sensorsdata.focus.v1.express.canvas.PresetCanvasInfo"
+            },
+            "type" : "array"
+          },
+          "count" : {
+            "description" : "触发策略查询结果总数",
+            "format" : "int32",
+            "type" : "integer"
+          }
+        },
+        "title" : "QueryTriggerStrategyResponse",
+        "type" : "object"
+      },
+      "sensorsdata.focus.v1.StartTriggerStrategyResponse" : {
+        "description" : "启动触发策略的响应体",
+        "title" : "StartTriggerStrategyResponse",
+        "type" : "object"
+      },
+      "sensorsdata.personas.v1.ExternalMeasureUserGroupRule" : {
+        "description" : "",
+        "properties" : {
+          "rows" : {
+            "$ref" : "#/components/schemas/sensorsdata.personas.v1.ExternalDataSeries"
+          },
+          "aggregator" : {
+            "description" : "",
+            "enum" : [ "AGGREGATOR_TYPE_UNSPECIFIED", "COUNT", "AVG", "MAX", "MIN", "SUM", "UNIQUE_COUNT", "UNIQUE_AVG", "BOUNCE_RATE", "EXIT_RATE", "UNIQUE_COUNT_APPROX", "COUNT_PERCENT", "RANK_ASC", "RANK_DESC", "PERCENT_RANK_ASC", "PERCENT_RANK_DESC", "SESSION_COUNT", "FIRST_TIME", "LAST_TIME", "FIRST_TIME_INTERVAL", "LAST_TIME_INTERVAL", "GROUP_CONCAT", "UNIQUE_COUNT_BITMAP", "UNIQUE_COUNT_APPROX_ORDINARY", "COUNT_DISTINCT", "LTV", "LTV_AVG", "COUNT_RANK", "AVG_RANK", "MAX_RANK", "MIN_RANK", "SUM_RANK", "COUNT_RANK_ASC", "COUNT_RANK_DESC", "COUNT_PERCENT_RANK_ASC", "COUNT_PERCENT_RANK_DESC", "AVG_RANK_ASC", "AVG_RANK_DESC", "AVG_PERCENT_RANK_ASC", "AVG_PERCENT_RANK_DESC", "MAX_RANK_ASC", "MAX_RANK_DESC", "MAX_PERCENT_RANK_ASC", "MAX_PERCENT_RANK_DESC", "MIN_RANK_ASC", "MIN_RANK_DESC", "MIN_PERCENT_RANK_ASC", "MIN_PERCENT_RANK_DESC", "SUM_RANK_ASC", "SUM_RANK_DESC", "SUM_PERCENT_RANK_ASC", "SUM_PERCENT_RANK_DESC" ],
+            "type" : "string"
+          },
+          "aggregate_field" : {
+            "description" : "",
+            "type" : "string"
+          },
+          "function" : {
+            "description" : "",
+            "enum" : [ "PREDICATE_FUNCTION_TYPE_UNSPECIFIED", "IS_SET", "IS_NOT_SET", "EQUAL", "NOT_EQUAL", "IN", "NOT_IN", "LESS", "LESS_EQUAL", "GREATER", "GREATER_EQUAL", "BETWEEN", "RIGHT_OPEN_BETWEEN", "HASH_BETWEEN", "LEFT_OPEN_BETWEEN", "OPEN_BETWEEN", "IS_TRUE", "IS_FALSE", "CONTAIN", "NOT_CONTAIN", "IS_EMPTY", "IS_NOT_EMPTY", "RLIKE", "NOT_RLIKE", "INCLUDE", "NOT_INCLUDE", "ABSOLUTE_BETWEEN", "RELATIVE_WITHIN", "RELATIVE_BETWEEN", "RELATIVE_EVENT_TIME", "RELATIVE_BEFORE", "INTERSECTS", "NOT_INTERSECTS", "SUBSET_OF", "NOT_SUBSET_OF", "SUPERSET_OF", "NOT_SUPERSET_OF" ],
+            "type" : "string"
+          },
+          "params" : {
+            "description" : "",
+            "items" : {
+              "$ref" : "#/components/schemas/sensorsdata.common.PredicateFunctionParam"
+            },
+            "type" : "array"
+          }
+        },
+        "title" : "ExternalMeasureUserGroupRule",
+        "type" : "object"
+      },
+      "sensorsdata.personas.v1.RankField" : {
+        "description" : "",
+        "properties" : {
+          "type" : {
+            "description" : "",
+            "enum" : [ "RANK_TYPE_UNSPECIFIED", "SHUFFLE_RANK", "PERCENT_SHUFFLE_RANK", "ORDER_RANK", "PERCENT_ORDER_RANK" ],
+            "type" : "string"
+          },
+          "orders" : {
+            "description" : "",
+            "items" : {
+              "$ref" : "#/components/schemas/sensorsdata.personas.v1.Order"
+            },
+            "type" : "array"
+          }
+        },
+        "title" : "RankField",
+        "type" : "object"
+      },
+      "sensorsdata.personas.v1.QueryOption" : {
+        "description" : "",
+        "properties" : {
+          "option" : {
+            "description" : "",
+            "type" : "string"
+          },
+          "value" : {
+            "description" : "",
+            "type" : "string"
+          }
+        },
+        "title" : "QueryOption",
+        "type" : "object"
+      },
+      "sensorsdata.focus.v1.QueryTriggerStrategyQuotaResponse" : {
+        "description" : "查询触发策略响应",
+        "properties" : {
+          "remain" : {
+            "description" : "触发策略剩余额度",
+            "format" : "int32",
+            "type" : "integer"
+          },
+          "use" : {
+            "description" : "触发策略已使用额度",
+            "format" : "int32",
+            "type" : "integer"
+          }
+        },
+        "title" : "QueryTriggerStrategyQuotaResponse",
+        "type" : "object"
+      }
+    }
+  },
+  "x-sd-openapi-service-name" : "TriggerStrategy",
+  "x-sd-openapi-service-name-hyphen" : "trigger-strategy",
+  "x-sd-openapi-app-name" : "focus",
+  "x-sd-openapi-service-name-zh_cn" : "触发策略",
+  "x-original-swagger-version" : "2.0"
+}

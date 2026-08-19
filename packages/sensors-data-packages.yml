@@ -1,6 +1,13 @@
-generated: '2026-07-21'
+generated: '2026-08-13'
 method: searched
-source: public package registries (npm, PyPI, Maven Central, RubyGems, Packagist, pub.dev, CocoaPods) + github.com/sensorsdata
+source: npm, PyPI, Maven Central, RubyGems, Packagist, pub.dev, CocoaPods trunk, proxy.golang.org and github.com/sensorsdata
+note: >-
+  Sensors Data ships one of the largest first-party SDK estates in the catalog — 96 public
+  repositories in the GitHub org, spanning every mobile, web, mini-program, game-engine and
+  server runtime a Chinese consumer product is likely to use. Currency is uneven: the web,
+  Android, iOS, Flutter and .NET clients shipped in 2026, while the Ruby, C and Node
+  clients have not been released since 2021-2023. Versions and dates below are read from
+  each registry's metadata endpoint on 2026-08-13.
 packages:
   - language: javascript
     registry: npm
@@ -8,6 +15,7 @@ packages:
     url: https://www.npmjs.com/package/sa-sdk-javascript
     install: npm install sa-sdk-javascript
     version: 1.27.13
+    published: '2026-06-11'
     repo: https://github.com/sensorsdata/sa-sdk-javascript
     official: true
     description: Official Sensors Data web / H5 data-collection SDK.
@@ -16,23 +24,41 @@ packages:
     name: sa-sdk-miniprogram
     url: https://www.npmjs.com/package/sa-sdk-miniprogram
     install: npm install sa-sdk-miniprogram
+    version: 1.22.7
+    published: '2026-03-18'
     repo: https://github.com/sensorsdata/sa-sdk-miniprogram
     official: true
     description: Official Sensors Data SDK for WeChat and other mini-programs.
+  - language: javascript
+    registry: npm
+    name: sa-sdk-node
+    url: https://www.npmjs.com/package/sa-sdk-node
+    install: npm install sa-sdk-node
+    version: 1.2.6
+    published: '2023-08-16'
+    repo: https://github.com/sensorsdata/sa-sdk-node
+    official: true
+    description: Official Node.js server-side SDK for Sensors Analytics.
+    note: >-
+      npm is a release behind the repository, which is tagged v1.2.7. Last publish was
+      nearly three years ago.
   - language: python
     registry: pypi
     name: SensorsAnalyticsSDK
     url: https://pypi.org/project/SensorsAnalyticsSDK/
     install: pip install SensorsAnalyticsSDK
     version: 1.11.0
+    published: '2023-06-12'
     repo: https://github.com/sensorsdata/sa-sdk-python
     official: true
     description: Official Python SDK for Sensors Analytics (server-side event tracking).
+    note: PyPI is a patch behind the repository tag v1.11.1; no release in three years.
   - language: java
     registry: maven
     name: com.sensorsdata.analytics.javasdk:SensorsAnalyticsSDK
     url: https://central.sonatype.com/artifact/com.sensorsdata.analytics.javasdk/SensorsAnalyticsSDK
     version: 3.6.9
+    published: '2025-06-09'
     repo: https://github.com/sensorsdata/sa-sdk-java
     official: true
     description: Official server-side Java SDK for Sensors Analytics event tracking.
@@ -41,6 +67,8 @@ packages:
     name: com.sensorsdata.analytics.javasdk:SensorsABTesting
     url: https://central.sonatype.com/artifact/com.sensorsdata.analytics.javasdk/SensorsABTesting
     version: 1.0.2
+    published: '2024-07-04'
+    repo: https://github.com/sensorsdata/abtesting-sdk-java
     official: true
     description: Official Java SDK for Sensors A/B Testing.
   - language: php
@@ -48,6 +76,9 @@ packages:
     name: sensorsdata/sa-sdk-php
     url: https://packagist.org/packages/sensorsdata/sa-sdk-php
     install: composer require sensorsdata/sa-sdk-php
+    version: v2.0.4
+    published: '2025-04-01'
+    repo: https://github.com/sensorsdata/sa-sdk-php
     official: true
     description: Official PHP SDK for Sensors Analytics.
   - language: ruby
@@ -55,34 +86,131 @@ packages:
     name: sensors_analytics_sdk
     url: https://rubygems.org/gems/sensors_analytics_sdk
     install: gem install sensors_analytics_sdk
+    version: 1.6.3
+    published: '2021-02-23'
+    repo: https://github.com/sensorsdata/sa-sdk-ruby
     official: true
     description: Official Ruby SDK for Sensors Analytics.
+    note: >-
+      Five years since the last gem release, and the repository tag matches, so this is not
+      a publishing lag — the Ruby client is dormant. The strongest abandonment signal in
+      this estate.
+  - language: go
+    registry: proxy.golang.org
+    name: github.com/sensorsdata/sa-sdk-go
+    url: https://pkg.go.dev/github.com/sensorsdata/sa-sdk-go
+    install: go get github.com/sensorsdata/sa-sdk-go
+    version: v2.1.6+incompatible
+    published: '2026-01-20'
+    repo: https://github.com/sensorsdata/sa-sdk-go
+    official: true
+    description: Official Go server-side SDK for Sensors Analytics.
+    note: >-
+      Tagged v2 but without a /v2 module path, so the proxy resolves it as
+      "+incompatible" — Go consumers get v2 code under v1 module semantics.
   - language: dart
     registry: pub.dev
     name: sensors_analytics_flutter_plugin
     url: https://pub.dev/packages/sensors_analytics_flutter_plugin
     install: flutter pub add sensors_analytics_flutter_plugin
     version: 4.2.3
+    published: '2026-07-08'
     repo: https://github.com/sensorsdata/sensors_analytics_flutter_plugin
     official: true
     description: Official Flutter plugin (iOS, Android, Web, HarmonyOS).
+  - language: dart
+    registry: pub.dev
+    name: abtesting_sdk_flutter
+    url: https://pub.dev/packages/abtesting_sdk_flutter
+    install: flutter pub add abtesting_sdk_flutter
+    version: 1.0.0
+    published: '2025-12-12'
+    repo: https://github.com/sensorsdata/abtesting_sdk_flutter
+    official: true
+    description: Official Flutter plugin for Sensors A/B Testing.
   - language: swift
     registry: cocoapods
     name: SensorsAnalyticsSDK
     url: https://cocoapods.org/pods/SensorsAnalyticsSDK
     install: pod 'SensorsAnalyticsSDK'
+    version: 5.0.9
+    published: '2026-03-30'
     repo: https://github.com/sensorsdata/sa-sdk-ios
     official: true
-    description: Official iOS data-collection SDK (auto-tracking via runtime).
+    description: >-
+      Official iOS data-collection SDK (auto-tracking via runtime). 285 published versions
+      on CocoaPods trunk — the most actively released client in the estate.
+    note: repository is tagged v5.0.10, one ahead of the published pod
   - language: java
     registry: github
     name: sa-sdk-android
     url: https://github.com/sensorsdata/sa-sdk-android
+    version: v6.9.5
+    published: '2025-07-18'
     official: true
-    description: Official Android data-collection SDK with code instrumentation and auto-tracking.
+    description: Official Android data-collection SDK with bytecode instrumentation, auto-tracking, click maps and visual tracking.
+    note: >-
+      Not published to Maven Central under a discoverable coordinate; distribution is via
+      the repository and the Chinese docs. `published` is the tag commit date, not a
+      registry publish date. The repo itself was pushed 2026-08-13.
   - language: csharp
     registry: github
     name: sa-sdk-dotnet
     url: https://github.com/sensorsdata/sa-sdk-dotnet
+    version: v2.1.2
+    published: '2026-07-16'
     official: true
     description: Official .NET SDK for Sensors Analytics data collection.
+    note: no NuGet package found under a sensorsdata coordinate; `published` is the tag commit date
+  - language: cpp
+    registry: github
+    name: sa-sdk-cpp
+    url: https://github.com/sensorsdata/sa-sdk-cpp
+    version: v1.1.1
+    published: '2025-06-11'
+    official: true
+    description: Official C++ SDK for Sensors Analytics.
+    note: source distribution only; `published` is the tag commit date
+  - language: c
+    registry: github
+    name: sa-sdk-c
+    url: https://github.com/sensorsdata/sa-sdk-c
+    version: v0.2.1
+    published: '2023-06-01'
+    official: true
+    description: Official C SDK for Sensors Analytics.
+    note: source distribution only; three years since the last tag
+  - language: csharp
+    registry: github
+    name: sa-sdk-unity
+    url: https://github.com/sensorsdata/sa-sdk-unity
+    version: v2.1.0
+    published: '2025-08-08'
+    official: true
+    description: Official Unity SDK (Android, iOS, Windows, macOS).
+    note: distributed as a Unity package from the repository; `published` is the tag commit date
+  - language: objective-c
+    registry: github
+    name: react-native-sensors-analytics
+    url: https://github.com/sensorsdata/react-native-sensors-analytics
+    version: null
+    published: null
+    official: true
+    description: Official React Native component (iOS, Android, HarmonyOS).
+    note: >-
+      No registry entry and no tag retrieved — checked npm and the repository, nothing to
+      record. Repository last pushed 2025-10-20.
+  - language: java
+    registry: github
+    name: sf-webhook-helper
+    url: https://github.com/sensorsdata/sf-webhook-helper
+    version: null
+    published: null
+    official: true
+    description: >-
+      Official Java helper for receiving Sensors Focus webhook callbacks — embedded Jetty
+      bootstrap, batch processor interface, async middle-man forwarder and secret-token
+      signature verification.
+    note: >-
+      No Maven coordinate found; the docs reference webhook-helper 0.2.4 in prose but no
+      registry answers for it, so no version is recorded. Repository last pushed 2025-04-22.

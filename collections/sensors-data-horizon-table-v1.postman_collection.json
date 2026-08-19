@@ -1,0 +1,610 @@
+{
+  "item": [
+    {
+      "id": "4102d390-bad6-4d31-a465-7b4ae35435d3",
+      "name": "批量查询数据表信息",
+      "request": {
+        "name": "批量查询数据表信息",
+        "description": {
+          "content": "批量查询数据表信息\n```\n  curl -X POST 'http://{host}:{port}/api/v3/horizon/v1/table/list' \\\n    -H 'Content-Type: application/json' \\\n    -H 'api-key: api_key' \\\n    -H 'sensorsdata-project: default' \\\n    -d '{\n    \"project_id\": 1,\n    \"db_name\": \"horizon_default_db\",\n    \"page_size\": -1\n  }'\n  返回值示例：\n  {\n    \"code\": \"SUCCESS\",\n    \"request_id\": \"12152403a440365312df1603995514f4\",\n    \"data\": {\n        \"tables\": [\n            {\n                \"project_id\": 1,\n                \"db_name\": \"horizon_default_1\",\n                \"name\": \"events\",\n                \"display_name\": \"事件表\",\n                \"type\": \"VIEW\",\n                \"engine\": \"ENGINE_UNSPECIFIED\",\n                \"primary_keys\": [],\n                \"partition_keys\": [],\n                \"view_select_statement\": \"select field1, field2 from table ...\"\n                \"workspace\": \"PUBLIC\",\n                \"view_select_statement_db\": \"\",\n                \"external\": false,\n                \"direct_access_enabled\": false,\n                \"custom_params\": {},\n                \"columns\": [],\n                \"business_scopes\": [],\n                \"unique_keys\": [],\n                \"table_properties\": {\n                    \"enable_pre_join_elimination_view\": false\n                }\n            }, ...\n        ],\n        \"total_size\": 3,\n        \"has_next\": false\n    }\n  }\n```",
+          "type": "text/plain"
+        },
+        "url": {
+          "path": [
+            "table",
+            "list"
+          ],
+          "host": [
+            "{{baseUrl}}"
+          ],
+          "query": [],
+          "variable": []
+        },
+        "header": [
+          {
+            "disabled": false,
+            "description": "(Required) 全局唯一的密钥，用于验证和授权访问 API 接口",
+            "key": "api-key",
+            "value": "<string>"
+          },
+          {
+            "disabled": false,
+            "description": "(Required) 项目名, 指定请求所属项目",
+            "key": "sensorsdata-project",
+            "value": "<string>"
+          },
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          },
+          {
+            "key": "Accept",
+            "value": "application/json"
+          }
+        ],
+        "method": "POST",
+        "auth": null,
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"db_name\": \"<string>\",\n  \"project_id\": \"<integer>\",\n  \"table_names\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"table_sources\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"expand\": \"<string>\",\n  \"page\": \"<integer>\",\n  \"page_size\": \"<integer>\"\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        }
+      },
+      "response": [
+        {
+          "id": "0efeb630-c8e6-4612-b7fa-5188911a31d3",
+          "name": "sensorsdata.horizon.v1.ListTablesResponse",
+          "originalRequest": {
+            "url": {
+              "path": [
+                "table",
+                "list"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "disabled": false,
+                "description": "(Required) 全局唯一的密钥，用于验证和授权访问 API 接口",
+                "key": "api-key",
+                "value": "<string>"
+              },
+              {
+                "disabled": false,
+                "description": "(Required) 项目名, 指定请求所属项目",
+                "key": "sensorsdata-project",
+                "value": "<string>"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"db_name\": \"test_db\",\n  \"project_id\": 1,\n  \"table_names\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"table_sources\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"expand\": \"custom_params,source\",\n  \"page\": 0,\n  \"page_size\": 10\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "status": "Internal Server Error",
+          "code": 500,
+          "header": [
+            {
+              "key": "Content-Type",
+              "value": "application/json"
+            }
+          ],
+          "body": "{\n  \"code\": \"SUCCESS\",\n  \"data\": {\n    \"tables\": [\n      {\n        \"workspace\": \"PUBLIC\",\n        \"primary_keys\": [\n          \"id\"\n        ],\n        \"columns\": [\n          {\n            \"custom_params\": {},\n            \"name\": \"id\",\n            \"data_type\": {\n              \"type\": \"STRING\"\n            },\n            \"access_info\": {},\n            \"dw_data_type\": \"STRING\"\n          }\n        ],\n        \"unique_keys\": [\n          {}\n        ],\n        \"source\": {\n          \"name\": \"sensorsdata.horizon.custom_table\",\n          \"display_name\": \"自定义表\",\n          \"created_by\": \"sensorsdata.horizon\"\n        },\n        \"display_name\": \"test_table\",\n        \"type\": \"TABLE\",\n        \"table_properties\": {},\n        \"external\": false,\n        \"custom_params\": {\n          \"meta_desc\": \"description\"\n        },\n        \"business_scopes\": [\n          {\n            \"name\": \"sensorsdata.analytics.dataset\",\n            \"display_name\": \"指标平台\",\n            \"created_by\": \"sensorsdata.analytics\"\n          }\n        ],\n        \"db_name\": \"test_db\",\n        \"project_id\": 1,\n        \"engine\": \"MUTABLE\",\n        \"name\": \"test_table\",\n        \"authorization_policy\": {\n          \"access_policy_description\": {\n            \"conditions\": [\n              {\n                \"roles\": [\n                  {}\n                ],\n                \"accounts\": [\n                  {}\n                ],\n                \"duties\": [\n                  {}\n                ]\n              }\n            ]\n          }\n        }\n      }\n    ],\n    \"total_size\": 1,\n    \"has_next\": false\n  },\n  \"request_id\": \"1\"\n}",
+          "cookie": [],
+          "_postman_previewlanguage": "json"
+        }
+      ],
+      "event": [],
+      "protocolProfileBehavior": {
+        "disableBodyPruning": true
+      }
+    },
+    {
+      "id": "e65c24d7-c8cb-437d-96ee-0bf814ffdaff",
+      "name": "查询数据表信息",
+      "request": {
+        "name": "查询数据表信息",
+        "description": {
+          "content": "查询数据表信息\n```\n  curl -X POST 'http://{host}:{port}/api/v3/horizon/v1/table/get' \\\n    -H 'Content-Type: application/json' \\\n    -H 'api-key: api_key' \\\n    -H 'sensorsdata-project: default' \\\n    -d '{\n    \"project_id\": 1,\n    \"db_name\": \"horizon_default_db\",\n    \"table_name\": \"users\"\n  }'\n  返回值示例：\n  {\n    \"code\": \"SUCCESS\",\n    \"request_id\": \"12154350afbda336505d9385a72985b9\",\n    \"data\": {\n        \"workspace\": \"PUBLIC\",\n        \"primary_keys\": [],\n        \"columns\": [],\n        \"unique_keys\": [],\n        \"display_name\": \"用户表\",\n        \"type\": \"VIEW\",\n        \"table_properties\": {\n            \"enable_pre_join_elimination_view\": false\n        },\n        \"external\": false,\n        \"custom_params\": {},\n        \"business_scopes\": [],\n        \"db_name\": \"horizon_default_1\",\n        \"partition_keys\": [],\n        \"project_id\": 1,\n        \"engine\": \"ENGINE_UNSPECIFIED\",\n        \"view_select_statement_db\": \"\",\n        \"name\": \"users\",\n        \"view_select_statement\": \"select field1, field2 from table ...\"\n        \"direct_access_enabled\": false,\n        \"authorization_policy\": {\n            \"id\": \"_policy_#1#horizon_default_1#users\",\n            \"type\": \"ACCESS\",\n            \"access_policy_description\": {\n                \"database\": \"horizon_default_1\",\n                \"table\": \"users\",\n                \"columns\": [\n                    \"*\"\n                ],\n                \"conditions\": [\n                    ...\n                ]\n            }\n        }\n    }\n  }\n```",
+          "type": "text/plain"
+        },
+        "url": {
+          "path": [
+            "table",
+            "get"
+          ],
+          "host": [
+            "{{baseUrl}}"
+          ],
+          "query": [],
+          "variable": []
+        },
+        "header": [
+          {
+            "disabled": false,
+            "description": "(Required) 全局唯一的密钥，用于验证和授权访问 API 接口",
+            "key": "api-key",
+            "value": "<string>"
+          },
+          {
+            "disabled": false,
+            "description": "(Required) 项目名, 指定请求所属项目",
+            "key": "sensorsdata-project",
+            "value": "<string>"
+          },
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          },
+          {
+            "key": "Accept",
+            "value": "application/json"
+          }
+        ],
+        "method": "POST",
+        "auth": null,
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"db_name\": \"<string>\",\n  \"project_id\": \"<integer>\",\n  \"table_name\": \"<string>\",\n  \"expand\": \"<string>\"\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        }
+      },
+      "response": [
+        {
+          "id": "194859f0-0a23-4124-90ef-9b9a6c3f6d2b",
+          "name": "sensorsdata.horizon.v1.Table",
+          "originalRequest": {
+            "url": {
+              "path": [
+                "table",
+                "get"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "disabled": false,
+                "description": "(Required) 全局唯一的密钥，用于验证和授权访问 API 接口",
+                "key": "api-key",
+                "value": "<string>"
+              },
+              {
+                "disabled": false,
+                "description": "(Required) 项目名, 指定请求所属项目",
+                "key": "sensorsdata-project",
+                "value": "<string>"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"db_name\": \"test_db\",\n  \"project_id\": 1,\n  \"table_name\": \"test_table\",\n  \"expand\": \"<string>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "status": "Internal Server Error",
+          "code": 500,
+          "header": [
+            {
+              "key": "Content-Type",
+              "value": "application/json"
+            }
+          ],
+          "body": "{\n  \"code\": \"SUCCESS\",\n  \"data\": {\n    \"workspace\": \"PUBLIC\",\n    \"primary_keys\": [\n      \"id\"\n    ],\n    \"columns\": [\n      {\n        \"custom_params\": {},\n        \"name\": \"id\",\n        \"data_type\": {\n          \"type\": \"STRING\"\n        },\n        \"access_info\": {},\n        \"dw_data_type\": \"STRING\"\n      }\n    ],\n    \"unique_keys\": [\n      {}\n    ],\n    \"source\": {\n      \"name\": \"sensorsdata.horizon.custom_table\",\n      \"display_name\": \"自定义表\",\n      \"created_by\": \"sensorsdata.horizon\"\n    },\n    \"display_name\": \"test_table\",\n    \"type\": \"TABLE\",\n    \"table_properties\": {},\n    \"external\": false,\n    \"custom_params\": {\n      \"meta_desc\": \"description\"\n    },\n    \"business_scopes\": [\n      {\n        \"name\": \"sensorsdata.analytics.dataset\",\n        \"display_name\": \"指标平台\",\n        \"created_by\": \"sensorsdata.analytics\"\n      }\n    ],\n    \"db_name\": \"test_db\",\n    \"project_id\": 1,\n    \"engine\": \"MUTABLE\",\n    \"name\": \"test_table\",\n    \"authorization_policy\": {\n      \"access_policy_description\": {\n        \"conditions\": [\n          {\n            \"roles\": [\n              {}\n            ],\n            \"accounts\": [\n              {}\n            ],\n            \"duties\": [\n              {}\n            ]\n          }\n        ]\n      }\n    }\n  },\n  \"request_id\": \"1\"\n}",
+          "cookie": [],
+          "_postman_previewlanguage": "json"
+        }
+      ],
+      "event": [],
+      "protocolProfileBehavior": {
+        "disableBodyPruning": true
+      }
+    },
+    {
+      "id": "c50a520b-6ec8-4e1d-98c8-11cbb7a3f997",
+      "name": "创建数据表",
+      "request": {
+        "name": "创建数据表",
+        "description": {
+          "content": "创建数据表\n```\n  curl -X POST 'http://{host}:{port}/api/v3/horizon/v1/table/create' \\\n    -H 'Content-Type: application/json' \\\n    -H 'api-key: api_key' \\\n    -H 'sensorsdata-project: default' \\\n    -d '{\n    \"project_id\": 1,\n    \"table\": {\n      \"db_name\": \"test_db\",\n      \"name\": \"test_table\",\n      \"type\": \"TABLE\",\n      \"engine\": \"MUTABLE\",\n      \"primary_keys\": [\"id\"],\n      \"columns\": [\n        {\n          \"name\": \"id\",\n          \"dw_data_type\": \"STRING\"\n        }\n      ]\n    }\n  }'\n  返回值示例：\n  {\n    \"code\": \"SUCCESS\",\n    \"request_id\": \"121605448c7cb6e07b463cb8c78a00d8\",\n    \"data\": {\n        \"workspace\": \"PUBLIC\",\n        \"primary_keys\": [\n            \"id\"\n        ],\n        \"columns\": [],\n        \"unique_keys\": [\n            {\n                \"name\": \"pk_test_table\",\n                \"columns\": [\n                    \"id\"\n                ]\n            }\n        ],\n        \"type\": \"TABLE\",\n        \"external\": false,\n        \"custom_params\": {},\n        \"business_scopes\": [],\n        \"db_name\": \"test_db\",\n        \"partition_keys\": [],\n        \"project_id\": 1,\n        \"engine\": \"MUTABLE\",\n        \"name\": \"test_table\",\n        \"direct_access_enabled\": false,\n        \"authorization_policy\": {\n            \"id\": \"_policy_#1#test_db#test_table\",\n            \"type\": \"ACCESS\",\n            \"access_policy_description\": {\n                \"database\": \"test_db\",\n                \"table\": \"test_table\",\n                \"columns\": [\n                    \"*\"\n                ],\n                \"conditions\": [\n                    {\n                        \"accounts\": [\n                            {\n                                \"id\": \"2\",\n                                \"name\": \"admin\",\n                                \"cname\": \"平台管理员\",\n                                \"tokens\": [],\n                                \"available\": false\n                            }\n                        ],\n                        \"roles\": [],\n                        \"duties\": [],\n                        \"allow_permission_types\": [\n                            \"SELECT\"\n                        ]\n                    }\n                ]\n            }\n        }\n    }\n  }\n```",
+          "type": "text/plain"
+        },
+        "url": {
+          "path": [
+            "table",
+            "create"
+          ],
+          "host": [
+            "{{baseUrl}}"
+          ],
+          "query": [],
+          "variable": []
+        },
+        "header": [
+          {
+            "disabled": false,
+            "description": "(Required) 全局唯一的密钥，用于验证和授权访问 API 接口",
+            "key": "api-key",
+            "value": "<string>"
+          },
+          {
+            "disabled": false,
+            "description": "(Required) 项目名, 指定请求所属项目",
+            "key": "sensorsdata-project",
+            "value": "<string>"
+          },
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          },
+          {
+            "key": "Accept",
+            "value": "application/json"
+          }
+        ],
+        "method": "POST",
+        "auth": null,
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"project_id\": \"<integer>\",\n  \"table\": {\n    \"columns\": [\n      {\n        \"dw_data_type\": \"<string>\",\n        \"name\": \"<string>\",\n        \"display_name\": \"<string>\",\n        \"custom_params\": {\n          \"key_0\": \"<string>\",\n          \"key_1\": \"<string>\",\n          \"key_2\": \"<string>\",\n          \"key_3\": \"<string>\",\n          \"key_4\": \"<string>\"\n        }\n      },\n      {\n        \"dw_data_type\": \"<string>\",\n        \"name\": \"<string>\",\n        \"display_name\": \"<string>\",\n        \"custom_params\": {\n          \"key_0\": \"<string>\",\n          \"key_1\": \"<string>\"\n        }\n      }\n    ],\n    \"db_name\": \"<string>\",\n    \"name\": \"<string>\",\n    \"type\": \"<string>\",\n    \"project_id\": \"<integer>\",\n    \"display_name\": \"<string>\",\n    \"engine\": \"<string>\",\n    \"primary_keys\": [\n      \"<string>\",\n      \"<string>\"\n    ],\n    \"partition_keys\": [\n      \"<string>\",\n      \"<string>\"\n    ],\n    \"view_select_statement_db\": \"<string>\",\n    \"view_select_statement\": \"<string>\",\n    \"external\": \"<boolean>\",\n    \"direct_access_enabled\": \"<boolean>\",\n    \"custom_params\": {\n      \"key_0\": \"<string>\",\n      \"key_1\": \"<string>\"\n    },\n    \"source\": {\n      \"created_by\": \"<string>\",\n      \"display_name\": \"<string>\",\n      \"name\": \"<string>\"\n    },\n    \"business_scopes\": [\n      {\n        \"created_by\": \"<string>\",\n        \"display_name\": \"<string>\",\n        \"name\": \"<string>\"\n      },\n      {\n        \"created_by\": \"<string>\",\n        \"display_name\": \"<string>\",\n        \"name\": \"<string>\"\n      }\n    ],\n    \"unique_keys\": [\n      {\n        \"columns\": [\n          \"<string>\",\n          \"<string>\"\n        ],\n        \"name\": \"<string>\"\n      },\n      {\n        \"columns\": [\n          \"<string>\",\n          \"<string>\"\n        ],\n        \"name\": \"<string>\"\n      }\n    ],\n    \"authorization_policy\": {\n      \"id\": \"<string>\",\n      \"type\": \"<string>\",\n      \"access_policy_description\": {\n        \"database\": \"<string>\",\n        \"table\": \"<string>\",\n        \"columns\": [\n          \"<string>\",\n          \"<string>\"\n        ],\n        \"conditions\": [\n          {\n            \"accounts\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"roles\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"duties\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"allow_permission_types\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          },\n          {\n            \"accounts\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"roles\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"duties\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"allow_permission_types\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          }\n        ]\n      }\n    },\n    \"table_properties\": {\n      \"enable_pre_join_elimination_view\": \"<boolean>\",\n      \"enable_pre_prune_unused_cols\": \"<boolean>\",\n      \"is_session_view\": \"<boolean>\"\n    }\n  }\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        }
+      },
+      "response": [
+        {
+          "id": "69357ac1-04fe-4792-9630-8fdc28648f60",
+          "name": "sensorsdata.horizon.v1.Table",
+          "originalRequest": {
+            "url": {
+              "path": [
+                "table",
+                "create"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "disabled": false,
+                "description": "(Required) 全局唯一的密钥，用于验证和授权访问 API 接口",
+                "key": "api-key",
+                "value": "<string>"
+              },
+              {
+                "disabled": false,
+                "description": "(Required) 项目名, 指定请求所属项目",
+                "key": "sensorsdata-project",
+                "value": "<string>"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"project_id\": 1,\n  \"table\": {\n    \"columns\": [\n      {\n        \"dw_data_type\": \"STRING\",\n        \"name\": \"id\",\n        \"display_name\": \"<string>\",\n        \"custom_params\": {}\n      },\n      {\n        \"dw_data_type\": \"STRING\",\n        \"name\": \"id\",\n        \"display_name\": \"<string>\",\n        \"custom_params\": {}\n      }\n    ],\n    \"db_name\": \"test_db\",\n    \"name\": \"test_table\",\n    \"type\": \"TABLE\",\n    \"project_id\": 1,\n    \"display_name\": \"test_table\",\n    \"engine\": \"MUTABLE\",\n    \"primary_keys\": [\n      \"<string>\",\n      \"<string>\"\n    ],\n    \"partition_keys\": [\n      \"<string>\",\n      \"<string>\"\n    ],\n    \"view_select_statement_db\": \"<string>\",\n    \"view_select_statement\": \"<string>\",\n    \"external\": false,\n    \"direct_access_enabled\": \"<boolean>\",\n    \"custom_params\": {\n      \"meta_desc\": \"description\"\n    },\n    \"source\": {\n      \"created_by\": \"sensorsdata.horizon\",\n      \"display_name\": \"自定义表\",\n      \"name\": \"sensorsdata.horizon.custom_table\"\n    },\n    \"business_scopes\": [\n      {\n        \"created_by\": \"sensorsdata.analytics\",\n        \"display_name\": \"指标平台\",\n        \"name\": \"sensorsdata.analytics.dataset\"\n      },\n      {\n        \"created_by\": \"sensorsdata.analytics\",\n        \"display_name\": \"指标平台\",\n        \"name\": \"sensorsdata.analytics.dataset\"\n      }\n    ],\n    \"unique_keys\": [\n      {\n        \"columns\": [\n          \"<string>\",\n          \"<string>\"\n        ],\n        \"name\": \"<string>\"\n      },\n      {\n        \"columns\": [\n          \"<string>\",\n          \"<string>\"\n        ],\n        \"name\": \"<string>\"\n      }\n    ],\n    \"authorization_policy\": {\n      \"id\": \"<string>\",\n      \"type\": \"<string>\",\n      \"access_policy_description\": {\n        \"database\": \"<string>\",\n        \"table\": \"<string>\",\n        \"columns\": [\n          \"<string>\",\n          \"<string>\"\n        ],\n        \"conditions\": [\n          {\n            \"accounts\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"roles\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"duties\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"allow_permission_types\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          },\n          {\n            \"accounts\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"roles\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"duties\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"allow_permission_types\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          }\n        ]\n      }\n    },\n    \"table_properties\": {\n      \"enable_pre_join_elimination_view\": \"<boolean>\",\n      \"enable_pre_prune_unused_cols\": \"<boolean>\",\n      \"is_session_view\": \"<boolean>\"\n    }\n  }\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "status": "Internal Server Error",
+          "code": 500,
+          "header": [
+            {
+              "key": "Content-Type",
+              "value": "application/json"
+            }
+          ],
+          "body": "{\n  \"code\": \"SUCCESS\",\n  \"data\": {\n    \"workspace\": \"PUBLIC\",\n    \"primary_keys\": [\n      \"id\"\n    ],\n    \"columns\": [\n      {\n        \"custom_params\": {},\n        \"name\": \"id\",\n        \"data_type\": {\n          \"type\": \"STRING\"\n        },\n        \"access_info\": {},\n        \"dw_data_type\": \"STRING\"\n      }\n    ],\n    \"unique_keys\": [\n      {}\n    ],\n    \"source\": {\n      \"name\": \"sensorsdata.horizon.custom_table\",\n      \"display_name\": \"自定义表\",\n      \"created_by\": \"sensorsdata.horizon\"\n    },\n    \"display_name\": \"test_table\",\n    \"type\": \"TABLE\",\n    \"table_properties\": {},\n    \"external\": false,\n    \"custom_params\": {\n      \"meta_desc\": \"description\"\n    },\n    \"business_scopes\": [\n      {\n        \"name\": \"sensorsdata.analytics.dataset\",\n        \"display_name\": \"指标平台\",\n        \"created_by\": \"sensorsdata.analytics\"\n      }\n    ],\n    \"db_name\": \"test_db\",\n    \"project_id\": 1,\n    \"engine\": \"MUTABLE\",\n    \"name\": \"test_table\",\n    \"authorization_policy\": {\n      \"access_policy_description\": {\n        \"conditions\": [\n          {\n            \"roles\": [\n              {}\n            ],\n            \"accounts\": [\n              {}\n            ],\n            \"duties\": [\n              {}\n            ]\n          }\n        ]\n      }\n    }\n  },\n  \"request_id\": \"1\"\n}",
+          "cookie": [],
+          "_postman_previewlanguage": "json"
+        }
+      ],
+      "event": [],
+      "protocolProfileBehavior": {
+        "disableBodyPruning": true
+      }
+    },
+    {
+      "id": "4d42156c-8a2d-4622-8067-9e37fdb3204f",
+      "name": "批量查询数据库信息",
+      "request": {
+        "name": "批量查询数据库信息",
+        "description": {
+          "content": "批量查询数据库信息\n```\n  curl -X POST 'http://{host}:{port}/api/v3/horizon/v1/table/public-database/list' \\\n    -H 'Content-Type: application/json' \\\n    -H 'api-key: api_key' \\\n    -H 'sensorsdata-project: default' \\\n    -d '{\n    \"project_id\": 1\n  }'\n  返回值示例：\n  {\n    \"code\": \"SUCCESS\",\n    \"request_id\": \"121616536838406dccc1bec7f5e18495\",\n    \"data\": {\n        \"databases\": [\n            {\n                \"project_id\": 1,\n                \"name\": \"horizon_default_1\",\n                \"created_by\": \"sensorsdata.horizon\",\n                \"workspace\": \"PUBLIC\"\n            },\n            {\n                \"project_id\": 1,\n                \"name\": \"hue_medium_table_default\",\n                \"created_by\": \"sensorsdata.analytics\",\n                \"workspace\": \"PUBLIC\"\n            },\n            {\n                \"project_id\": 1,\n                \"name\": \"horizon_workspace_default_1\",\n                \"created_by\": \"sensorsdata.horizon.web\",\n                \"workspace\": \"PUBLIC\"\n            },\n            {\n                \"project_id\": 1,\n                \"name\": \"test_db\",\n                \"created_by\": \"test\",\n                \"workspace\": \"PUBLIC\"\n            }\n        ]\n    }\n  }\n```",
+          "type": "text/plain"
+        },
+        "url": {
+          "path": [
+            "table",
+            "public-database",
+            "list"
+          ],
+          "host": [
+            "{{baseUrl}}"
+          ],
+          "query": [],
+          "variable": []
+        },
+        "header": [
+          {
+            "disabled": false,
+            "description": "(Required) 全局唯一的密钥，用于验证和授权访问 API 接口",
+            "key": "api-key",
+            "value": "<string>"
+          },
+          {
+            "disabled": false,
+            "description": "(Required) 项目名, 指定请求所属项目",
+            "key": "sensorsdata-project",
+            "value": "<string>"
+          },
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          },
+          {
+            "key": "Accept",
+            "value": "application/json"
+          }
+        ],
+        "method": "POST",
+        "auth": null,
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"project_id\": \"<integer>\",\n  \"db_names\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"created_bies\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"expand\": \"<string>\"\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        }
+      },
+      "response": [
+        {
+          "id": "5523b9a4-393b-4a9b-b9bc-40e013673159",
+          "name": "sensorsdata.horizon.v1.ListPublicDatabasesResponse",
+          "originalRequest": {
+            "url": {
+              "path": [
+                "table",
+                "public-database",
+                "list"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "disabled": false,
+                "description": "(Required) 全局唯一的密钥，用于验证和授权访问 API 接口",
+                "key": "api-key",
+                "value": "<string>"
+              },
+              {
+                "disabled": false,
+                "description": "(Required) 项目名, 指定请求所属项目",
+                "key": "sensorsdata-project",
+                "value": "<string>"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"project_id\": 1,\n  \"db_names\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"created_bies\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"expand\": \"access_info\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "status": "Internal Server Error",
+          "code": 500,
+          "header": [
+            {
+              "key": "Content-Type",
+              "value": "application/json"
+            }
+          ],
+          "body": "{\n  \"code\": \"SUCCESS\",\n  \"data\": {\n    \"databases\": [\n      {\n        \"workspace\": \"PUBLIC\",\n        \"project_id\": 1,\n        \"name\": \"test_db\",\n        \"access_info\": {},\n        \"created_by\": \"sensorsdata.integrator\"\n      }\n    ]\n  },\n  \"request_id\": \"1\"\n}",
+          "cookie": [],
+          "_postman_previewlanguage": "json"
+        }
+      ],
+      "event": [],
+      "protocolProfileBehavior": {
+        "disableBodyPruning": true
+      }
+    },
+    {
+      "id": "fd65c1c3-e3b8-4e27-ae12-4eddae9a40e7",
+      "name": "创建数据库",
+      "request": {
+        "name": "创建数据库",
+        "description": {
+          "content": "创建数据库\n```\n  curl -X POST 'http://{host}:{port}/api/v3/horizon/v1/table/public-database/create' \\\n    -H 'Content-Type: application/json' \\\n    -H 'api-key: api_key' \\\n    -H 'sensorsdata-project: default' \\\n    -d '{\n    \"project_id\": 1,\n    \"database\": {\n      \"name\": \"test_db\",\n      \"created_by\": \"test\"\n    }\n  }'\n  返回值示例：\n  {\n    \"code\": \"SUCCESS\",\n    \"request_id\": \"121604079d9834d9a4011cb2b1fe588d\",\n    \"data\": {\n        \"workspace\": \"PUBLIC\",\n        \"project_id\": 1,\n        \"name\": \"test_db\",\n        \"created_by\": \"test\"\n    }\n  }\n```",
+          "type": "text/plain"
+        },
+        "url": {
+          "path": [
+            "table",
+            "public-database",
+            "create"
+          ],
+          "host": [
+            "{{baseUrl}}"
+          ],
+          "query": [],
+          "variable": []
+        },
+        "header": [
+          {
+            "disabled": false,
+            "description": "(Required) 全局唯一的密钥，用于验证和授权访问 API 接口",
+            "key": "api-key",
+            "value": "<string>"
+          },
+          {
+            "disabled": false,
+            "description": "(Required) 项目名, 指定请求所属项目",
+            "key": "sensorsdata-project",
+            "value": "<string>"
+          },
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          },
+          {
+            "key": "Accept",
+            "value": "application/json"
+          }
+        ],
+        "method": "POST",
+        "auth": null,
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"database\": {\n    \"created_by\": \"<string>\",\n    \"name\": \"<string>\",\n    \"project_id\": \"<integer>\",\n    \"access_info\": {\n      \"creator_id\": \"<string>\",\n      \"modifier_id\": \"<string>\",\n      \"create_time\": \"<dateTime>\",\n      \"update_time\": \"<dateTime>\"\n    }\n  },\n  \"project_id\": \"<integer>\"\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        }
+      },
+      "response": [
+        {
+          "id": "1b9b2df8-a55e-43e7-83c8-f6adc33eb5b1",
+          "name": "sensorsdata.horizon.v1.Database",
+          "originalRequest": {
+            "url": {
+              "path": [
+                "table",
+                "public-database",
+                "create"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "disabled": false,
+                "description": "(Required) 全局唯一的密钥，用于验证和授权访问 API 接口",
+                "key": "api-key",
+                "value": "<string>"
+              },
+              {
+                "disabled": false,
+                "description": "(Required) 项目名, 指定请求所属项目",
+                "key": "sensorsdata-project",
+                "value": "<string>"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"database\": {\n    \"created_by\": \"sensorsdata.integrator\",\n    \"name\": \"test_db\",\n    \"project_id\": 1,\n    \"access_info\": {\n      \"creator_id\": \"<string>\",\n      \"modifier_id\": \"<string>\",\n      \"create_time\": \"<dateTime>\",\n      \"update_time\": \"<dateTime>\"\n    }\n  },\n  \"project_id\": 1\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "status": "Internal Server Error",
+          "code": 500,
+          "header": [
+            {
+              "key": "Content-Type",
+              "value": "application/json"
+            }
+          ],
+          "body": "{\n  \"code\": \"SUCCESS\",\n  \"data\": {\n    \"workspace\": \"PUBLIC\",\n    \"project_id\": 1,\n    \"name\": \"test_db\",\n    \"access_info\": {},\n    \"created_by\": \"sensorsdata.integrator\"\n  },\n  \"request_id\": \"1\"\n}",
+          "cookie": [],
+          "_postman_previewlanguage": "json"
+        }
+      ],
+      "event": [],
+      "protocolProfileBehavior": {
+        "disableBodyPruning": true
+      }
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "/api/v3/horizon/v1",
+      "key": "baseUrl"
+    }
+  ],
+  "info": {
+    "_postman_id": "b77ae350-c152-4330-b68a-437f4ea317d4",
+    "name": "神策数界",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "数据表服务",
+      "type": "text/plain"
+    }
+  }
+}

@@ -1,0 +1,239 @@
+generated: '2026-08-13'
+method: derived
+source: openapi/_original/ (29 specs, 1471 component schemas, 252 operations)
+summary: >-
+  The entity graph the Sensors Data OpenAPI actually exposes, derived from schema
+  definitions and id-reference fields across the four product contracts. Sensors Data does
+  not publish an object reference, so entity identity is read from id-typed properties
+  (83 `id`, 63 `project_id`, and the resource-specific ids below) rather than from
+  documented id prefixes — there are none.
+
+root_scope:
+  entity: Project
+  field: project_id
+  detail: >-
+    project_id appears on 63 schemas and the sensorsdata-project header is required on all
+    252 operations. Project is the tenancy boundary for every other entity in the graph;
+    nothing is addressable outside one. On multi-organization deployments an Organization
+    sits above Project, selected by the X-Organization-Id header on 70 operations.
+
+identity_of_a_person:
+  note: >-
+    A single human is addressed by three different identifiers depending on which product
+    you are talking to, and reconciling them is the platform's core value proposition
+    (ID Mapping).
+  identifiers:
+    - field: user_id
+      type: int64
+      meaning: the Sensors Analytics internal unique user id
+    - field: first_id
+      type: string
+      meaning: usually the device id (anonymous)
+    - field: second_id
+      type: string
+      meaning: usually the login id (identified)
+    - field: distinct_id
+      type: string
+      meaning: the collected identifier on inbound events
+    - field: entity_id
+      type: string
+      meaning: the Sensors Focus addressing key for an audience/attribute subject
+    - field: send_id
+      type: string
+      meaning: the channel-specific delivery handle (phone number, push token)
+
+entities:
+  - name: Project
+    product: portal
+    id: project_id
+    operations: [UpsertProjectAttribute, GetProjectAttribute, DeleteProjectAttribute]
+  - name: Account
+    product: portal
+    id: account_id
+    spec: openapi/sensors-data-portal-identity-v2-openapi.yml
+    operations: [ListAccounts, GetAccount, AddAccount, UpdateAccount, DeleteAccount, DisableAccount, EnableAccount, GetAccountByApiKey]
+  - name: GlobalAccount
+    product: portal
+    id: id
+    note: an account that spans projects rather than living inside one
+    operations: [AddGlobalAccount, ListGlobalAccount, BatchListGlobalAccount]
+  - name: Role
+    product: portal
+    id: role_id
+    operations: [ListRoles, GetRole, AddRole, UpdateRole, DeleteRole]
+  - name: Resource
+    product: portal
+    id: resource_id
+    operations: [RegisterResource, DeleteResource, RegisterCategory, BindCategoryAndResource]
+  - name: EventSchema
+    product: horizon
+    id: id
+    spec: openapi/sensors-data-horizon-schema-v1-openapi.yml
+    operations: [ListEventSchemas, GetEvent, CreateEvent, UpdateEvent, ListEventFields]
+  - name: SchemaField
+    product: horizon
+    id: id
+    operations: [ListSchemaFields, GetSchemaField, BatchCreateSchemaFields, UpdateSchemaField]
+  - name: ExtendedTable
+    product: horizon
+    id: extended_table_id
+    operations: [ListSchemaExtendedTables, BatchCreateSchemaExtendedTables, UpdateSchemaExtendedTable]
+  - name: SegmentDefinition
+    product: horizon
+    id: id
+    spec: openapi/sensors-data-horizon-segment-v1-openapi.yml
+    operations: [ListSegmentDefinitions, GetSegmentDefinition, CreateSegmentDefinitionWithRule, UpdateSegmentDefinitionWithRule, DeleteSegmentDefinition, RecoverSegmentDefinition, UpdateSegmentSchedulerStatus, EvaluateSegment]
+  - name: SegmentItem
+    product: horizon
+    operations: [ListSegmentItems, GetLastedSegmentItem]
+  - name: SegmentTask
+    product: horizon
+    id: task_ids
+    operations: [GetSegmentTask, CancelSegmentTask]
+  - name: Tag
+    product: horizon
+    spec: openapi/sensors-data-horizon-tag-v1-openapi.yml
+  - name: Table
+    product: horizon
+    operations: [ListTables, GetTable, CreateTable, ListPublicDatabases, CreatePublicDatabase]
+  - name: DataSubscription
+    product: horizon
+    id: application_id
+    operations: [CreateDataSubscription, ListDataSubscriptions, BatchDeleteDataSubscriptions, AddSubscriptionApplication, GetSubscriptionApplication, DeleteSubscriptionApplication]
+  - name: Catalog
+    product: horizon
+    operations: [ListCatalogTrees, BindCatalogResource, UnbindCatalogResource]
+  - name: Dashboard
+    product: analytics
+    id: dashboard_id
+    operations: [QueryDashboard, CreateDashboard, UpdateDashboard, ShareDashboard, QueryDashboardNavigation, AddDashboardNavigation]
+  - name: Bookmark
+    product: analytics
+    id: bookmark_id
+    operations: [QueryAllBookmarks, AddBookmarksToDashboard]
+  - name: Dataset
+    product: analytics
+    id: dataset_id
+    operations: [DatasetDetail, DatasetDataList, DatasetGroupList, DatasetTableSqlQuery, DatasetModelQuery, DatasetRefresh, DatasetSyncTaskDetail]
+  - name: EventMeta
+    product: analytics
+    operations: [ListEventsAll, ListEventTags]
+  - name: ChannelLink
+    product: analytics
+    operations: [CreateChannelUrl, UpdateChannelUrl, GetChannelUrl, DeleteChannleUrl, GetCampaignList]
+    note: operationId DeleteChannleUrl is misspelled in the published contract; it is quoted here verbatim because that is the string a client must send.
+  - name: ChannelInstance
+    product: focus
+    id: channel_instance_id
+    spec: openapi/sensors-data-focus-express-action-channel-v1-openapi.yml
+    operations: [QueryChannel, QueryChannelInstance, CreateChannelInstance, UpdateChannelInstance, DeleteChannelInstance, ExecuteTestSend]
+  - name: AudienceFilterRule
+    product: focus
+    id: audience_biz_id
+    operations: [CreateAudienceFilterRuleFromUserGroup, CreateRealtimeMarkAudienceFilterRule, QueryAudienceFilterRule, ModifyAudience, TerminateAudienceFilterRule]
+  - name: AudienceEntity
+    product: focus
+    id: audience_entity_id
+    operations: [IsAudienceEntityExistsInRules, IsBatchAudienceEntityExists, PutBatchAudienceEntity, DeleteBatchAudienceEntity]
+  - name: EntityAttribute
+    product: focus
+    operations: [SubscribeEntityAttribute, UnSubscribeEntityAttribute, ListAttributes, GetEntityAttributesByEntityId, GetEntityAttributesByEntityIdList]
+  - name: RealTimeTag
+    product: focus
+    operations: [StartRealTimeTag, StopRealTimeTag, DeleteRealTimeTag, GetRealTimeTag]
+  - name: TriggerStrategy
+    product: focus
+    id: strategy_id
+    operations: [CreateTriggerStrategy]
+  - name: MarketingPlan
+    product: focus
+    id: canvas_id
+    spec: openapi/sensors-data-focus-web-v1-openapi.yml
+  - name: Section
+    product: focus
+    id: section_id
+    spec: openapi/sensors-data-focus-web-sections-v1-openapi.yml
+
+relationships:
+  - from: Project
+    to: Account
+    type: has_many
+    via: project_id
+  - from: Account
+    to: Role
+    type: has_many
+    via: related_role_ids
+    operations: [AddAccountRole, DeleteAccountRole]
+  - from: Account
+    to: Project
+    type: belongs_to
+    via: project_id
+    note: InviteAccountToProject binds an existing account into another project
+  - from: Role
+    to: Resource
+    type: has_many
+    via: resource_id
+  - from: EventSchema
+    to: SchemaField
+    type: has_many
+    via: ListEventFields
+  - from: SegmentDefinition
+    to: SegmentRule
+    type: has_one
+    via: CreateSegmentDefinitionWithRule
+  - from: SegmentDefinition
+    to: SegmentItem
+    type: has_many
+    via: ListSegmentItems
+  - from: SegmentDefinition
+    to: SegmentTask
+    type: has_many
+    via: GetSegmentTask
+  - from: AudienceFilterRule
+    to: SegmentDefinition
+    type: belongs_to
+    via: CreateAudienceFilterRuleFromUserGroup
+    note: the bridge between the CDP (Horizon) and marketing execution (Focus)
+  - from: AudienceFilterRule
+    to: AudienceEntity
+    type: has_many
+    via: audience_entity_ids
+  - from: ChannelInstance
+    to: TriggerStrategy
+    type: has_many
+    via: channel_instance_id
+  - from: MarketingPlan
+    to: ChannelInstance
+    type: has_one
+    via: channel_instance_id
+  - from: Dashboard
+    to: Bookmark
+    type: has_many
+    via: bookmark_id
+  - from: Dataset
+    to: Table
+    type: belongs_to
+  - from: DataSubscription
+    to: SegmentDefinition
+    type: references
+    note: subscriptions stream computed segment/tag results downstream
+
+polymorphic_rule_types:
+  note: >-
+    Segment rules are the richest polymorphic structure in the contract — six alternative
+    expression shapes share one SegmentRuleExpression union.
+  variants:
+    - CustomSegmentRuleExpression
+    - GroupExpressionSegmentRuleExpression
+    - EventSequenceSegmentRuleExpression
+    - SimpleEventSequenceSegmentRuleExpression
+    - EqlSegmentRuleExpression
+    - SqlSegmentRuleExpression
+    - LoadingSegmentRuleExpression
+
+shared_envelope_types:
+  - HttpApiResult — the {code,data,request_id} wrapper on every response
+  - PageInfo — total / current_page / page_count
+  - ErrorInfo, ErrorCause, ErrorContext — error detail carried inside the envelope
+  - FilterCondition, CompoundFilterCondition, TimeRange, TimeWindow, TimePoint, RelativeTimePoint — the shared query language across analytics and segmentation
+render: null

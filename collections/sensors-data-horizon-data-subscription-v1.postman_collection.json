@@ -1,0 +1,850 @@
+{
+  "item": [
+    {
+      "id": "4e0fbb7f-23b0-42d1-ae70-a7e7e86d82e0",
+      "name": "创建订阅方",
+      "request": {
+        "name": "创建订阅方",
+        "description": {
+          "content": "创建订阅方\n ```\n curl -X POST 'http://{host}:8107/api/v3/horizon/v1/data-subscription/application/add' \\\n -H 'api-key: {api-key}' \\\n -H 'Content-Type: application/json;charset=UTF-8' \\\n -H 'sensorsdata-project: {project_name}' \\\n -d '{\n    \"application\":{\n        \"application_name\": \"{application_name}\",\n        \"application_type\": \"KAFKA_BASED_APP\",\n        \"kafka_based_app_config\": {\n            \"data_format_type\": \"NESTED_JSON\",\n            \"profile_kafka_descriptor\":{\n                \"type\": \"CUSTOMIZED_KAFKA\",\n                \"customized_kafka_descriptor\": {\n                    \"bootstrap_servers\": \"{broker_list}\",\n                    \"topic_name\": \"{profile_data_topic_name}\"\n                }\n            },\n            \"event_kafka_descriptor\":{\n                \"type\": \"CUSTOMIZED_KAFKA\",\n                \"customized_kafka_descriptor\": {\n                    \"bootstrap_servers\": \"{broker_list}\",\n                    \"topic_name\": \"{event_data_topic_name}\"\n                }\n            }\n        }\n    }\n }'\n ```",
+          "type": "text/plain"
+        },
+        "url": {
+          "path": [
+            "data-subscription",
+            "application",
+            "add"
+          ],
+          "host": [
+            "{{baseUrl}}"
+          ],
+          "query": [],
+          "variable": []
+        },
+        "header": [
+          {
+            "disabled": false,
+            "description": "(Required) 全局唯一的密钥，用于验证和授权访问 API 接口",
+            "key": "api-key",
+            "value": "<string>"
+          },
+          {
+            "disabled": false,
+            "description": "(Required) 项目名, 指定请求所属项目",
+            "key": "sensorsdata-project",
+            "value": "<string>"
+          },
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          },
+          {
+            "key": "Accept",
+            "value": "application/json"
+          }
+        ],
+        "method": "POST",
+        "auth": null,
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"application\": {\n    \"application_type\": \"<string>\",\n    \"application_name\": \"<string>\",\n    \"kafka_based_app_config\": {\n      \"event_kafka_descriptor\": {\n        \"type\": \"<string>\",\n        \"customized_kafka_descriptor\": {\n          \"bootstrap_servers\": \"<string>\",\n          \"topic_name\": \"<string>\",\n          \"kafka_properties\": {\n            \"key_0\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"key_1\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"key_2\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          },\n          \"cert_file_token\": \"<string>\"\n        }\n      },\n      \"profile_kafka_descriptor\": {\n        \"type\": \"<string>\",\n        \"customized_kafka_descriptor\": {\n          \"bootstrap_servers\": \"<string>\",\n          \"topic_name\": \"<string>\",\n          \"kafka_properties\": {\n            \"key_0\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"key_1\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"key_2\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          },\n          \"cert_file_token\": \"<string>\"\n        }\n      },\n      \"detail_kafka_descriptor\": {\n        \"type\": \"<string>\",\n        \"customized_kafka_descriptor\": {\n          \"bootstrap_servers\": \"<string>\",\n          \"topic_name\": \"<string>\",\n          \"kafka_properties\": {\n            \"key_0\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          },\n          \"cert_file_token\": \"<string>\"\n        }\n      },\n      \"data_format_type\": \"<string>\"\n    }\n  }\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        }
+      },
+      "response": [
+        {
+          "id": "dadccc76-97cf-4bd6-88fe-6f5384996ccf",
+          "name": "sensorsdata.horizon.v1.AddSubscriptionApplicationResponse",
+          "originalRequest": {
+            "url": {
+              "path": [
+                "data-subscription",
+                "application",
+                "add"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "disabled": false,
+                "description": "(Required) 全局唯一的密钥，用于验证和授权访问 API 接口",
+                "key": "api-key",
+                "value": "<string>"
+              },
+              {
+                "disabled": false,
+                "description": "(Required) 项目名, 指定请求所属项目",
+                "key": "sensorsdata-project",
+                "value": "<string>"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"application\": {\n    \"application_type\": \"KAFKA_BASED_APP\",\n    \"application_name\": \"shence\",\n    \"kafka_based_app_config\": {\n      \"event_kafka_descriptor\": {\n        \"type\": \"CUSTOMIZED_KAFKA\",\n        \"customized_kafka_descriptor\": {\n          \"bootstrap_servers\": \"broker1:9092,broker2:9092\",\n          \"topic_name\": \"shence_data_topic\",\n          \"kafka_properties\": {\n            \"security.protocol\": \"SASL_SSL\",\n            \"sasl.username\": \"admin\",\n            \"sasl.mechanism\": \"SCRAM-SHA-256\",\n            \"sasl.password\": \"pwd123\"\n          },\n          \"cert_file_token\": \"84e1f867bf4942ca9b7e985d197facc2\"\n        }\n      },\n      \"profile_kafka_descriptor\": {\n        \"type\": \"CUSTOMIZED_KAFKA\",\n        \"customized_kafka_descriptor\": {\n          \"bootstrap_servers\": \"broker1:9092,broker2:9092\",\n          \"topic_name\": \"shence_data_topic\",\n          \"kafka_properties\": {\n            \"security.protocol\": \"SASL_SSL\",\n            \"sasl.username\": \"admin\",\n            \"sasl.mechanism\": \"SCRAM-SHA-256\",\n            \"sasl.password\": \"pwd123\"\n          },\n          \"cert_file_token\": \"84e1f867bf4942ca9b7e985d197facc2\"\n        }\n      },\n      \"detail_kafka_descriptor\": {\n        \"type\": \"CUSTOMIZED_KAFKA\",\n        \"customized_kafka_descriptor\": {\n          \"bootstrap_servers\": \"broker1:9092,broker2:9092\",\n          \"topic_name\": \"shence_data_topic\",\n          \"kafka_properties\": {\n            \"security.protocol\": \"SASL_SSL\",\n            \"sasl.username\": \"admin\",\n            \"sasl.mechanism\": \"SCRAM-SHA-256\",\n            \"sasl.password\": \"pwd123\"\n          },\n          \"cert_file_token\": \"84e1f867bf4942ca9b7e985d197facc2\"\n        }\n      },\n      \"data_format_type\": \"NESTED_JSON\"\n    }\n  }\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "status": "Internal Server Error",
+          "code": 500,
+          "header": [
+            {
+              "key": "Content-Type",
+              "value": "application/json"
+            }
+          ],
+          "body": "{\n  \"code\": \"SUCCESS\",\n  \"data\": {\n    \"application\": {\n      \"kafka_based_app_config\": {\n        \"data_format_type\": \"NESTED_JSON\",\n        \"event_kafka_descriptor\": {\n          \"customized_kafka_descriptor\": {\n            \"bootstrap_servers\": \"broker1:9092,broker2:9092\",\n            \"topic_name\": \"shence_data_topic\"\n          },\n          \"type\": \"CUSTOMIZED_KAFKA\"\n        }\n      },\n      \"application_name\": \"shence\",\n      \"application_type\": \"KAFKA_BASED_APP\"\n    }\n  },\n  \"request_id\": \"1\"\n}",
+          "cookie": [],
+          "_postman_previewlanguage": "json"
+        }
+      ],
+      "event": [],
+      "protocolProfileBehavior": {
+        "disableBodyPruning": true
+      }
+    },
+    {
+      "id": "9b3e1e02-f137-4586-ab80-623c0982c97a",
+      "name": "补充订阅方配置信息",
+      "request": {
+        "name": "补充订阅方配置信息",
+        "description": {
+          "content": "补充订阅方的配置信息, 例如绑定一个接收新类型数据的 kafka\n ```\n curl -L -X POST 'http://{host}:8107/api/v3/horizon/v1/data-subscription/application/config/append' \\\n -H 'api-key: {api-key}' \\\n -H 'Content-Type: application/json;charset=UTF-8' \\\n -H 'sensorsdata-project: {project_name}' \\\n -d '{\n     \"application_name\": \"{application_name}\",\n     \"kafka_based_app_config\": {\n         \"detail_kafka_descriptor\": {\n             \"type\": \"CUSTOMIZED_KAFKA\",\n             \"customized_kafka_descriptor\": {\n                 \"bootstrap_servers\": \"{broker_list}\",\n                 \"topic_name\": \"{detail_data_topic_name}\"\n             }\n         }\n     }\n }'\n ```",
+          "type": "text/plain"
+        },
+        "url": {
+          "path": [
+            "data-subscription",
+            "application",
+            "config",
+            "append"
+          ],
+          "host": [
+            "{{baseUrl}}"
+          ],
+          "query": [],
+          "variable": []
+        },
+        "header": [
+          {
+            "disabled": false,
+            "description": "(Required) 全局唯一的密钥，用于验证和授权访问 API 接口",
+            "key": "api-key",
+            "value": "<string>"
+          },
+          {
+            "disabled": false,
+            "description": "(Required) 项目名, 指定请求所属项目",
+            "key": "sensorsdata-project",
+            "value": "<string>"
+          },
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          },
+          {
+            "key": "Accept",
+            "value": "application/json"
+          }
+        ],
+        "method": "POST",
+        "auth": null,
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"application_id\": \"<string>\",\n  \"application_name\": \"<string>\",\n  \"kafka_based_app_config\": {\n    \"event_kafka_descriptor\": {\n      \"type\": \"<string>\",\n      \"customized_kafka_descriptor\": {\n        \"bootstrap_servers\": \"<string>\",\n        \"topic_name\": \"<string>\",\n        \"kafka_properties\": {\n          \"key_0\": \"<string>\"\n        },\n        \"cert_file_token\": \"<string>\"\n      }\n    },\n    \"profile_kafka_descriptor\": {\n      \"type\": \"<string>\",\n      \"customized_kafka_descriptor\": {\n        \"bootstrap_servers\": \"<string>\",\n        \"topic_name\": \"<string>\",\n        \"kafka_properties\": {\n          \"key_0\": \"<string>\",\n          \"key_1\": \"<string>\",\n          \"key_2\": \"<string>\"\n        },\n        \"cert_file_token\": \"<string>\"\n      }\n    },\n    \"detail_kafka_descriptor\": {\n      \"type\": \"<string>\",\n      \"customized_kafka_descriptor\": {\n        \"bootstrap_servers\": \"<string>\",\n        \"topic_name\": \"<string>\",\n        \"kafka_properties\": {\n          \"key_0\": \"<string>\",\n          \"key_1\": \"<string>\",\n          \"key_2\": \"<string>\"\n        },\n        \"cert_file_token\": \"<string>\"\n      }\n    },\n    \"data_format_type\": \"<string>\"\n  }\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        }
+      },
+      "response": [
+        {
+          "id": "3c5459b1-883e-4442-bb4b-ad55bcdc2105",
+          "name": "sensorsdata.horizon.v1.AppendSubscriptionApplicationConfigResponse",
+          "originalRequest": {
+            "url": {
+              "path": [
+                "data-subscription",
+                "application",
+                "config",
+                "append"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "disabled": false,
+                "description": "(Required) 全局唯一的密钥，用于验证和授权访问 API 接口",
+                "key": "api-key",
+                "value": "<string>"
+              },
+              {
+                "disabled": false,
+                "description": "(Required) 项目名, 指定请求所属项目",
+                "key": "sensorsdata-project",
+                "value": "<string>"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"application_id\": \"shence.sep-org-111.app.sensorsdata.cloud\",\n  \"application_name\": \"shence\",\n  \"kafka_based_app_config\": {\n    \"event_kafka_descriptor\": {\n      \"type\": \"CUSTOMIZED_KAFKA\",\n      \"customized_kafka_descriptor\": {\n        \"bootstrap_servers\": \"broker1:9092,broker2:9092\",\n        \"topic_name\": \"shence_data_topic\",\n        \"kafka_properties\": {\n          \"security.protocol\": \"SASL_SSL\",\n          \"sasl.username\": \"admin\",\n          \"sasl.mechanism\": \"SCRAM-SHA-256\",\n          \"sasl.password\": \"pwd123\"\n        },\n        \"cert_file_token\": \"84e1f867bf4942ca9b7e985d197facc2\"\n      }\n    },\n    \"profile_kafka_descriptor\": {\n      \"type\": \"CUSTOMIZED_KAFKA\",\n      \"customized_kafka_descriptor\": {\n        \"bootstrap_servers\": \"broker1:9092,broker2:9092\",\n        \"topic_name\": \"shence_data_topic\",\n        \"kafka_properties\": {\n          \"security.protocol\": \"SASL_SSL\",\n          \"sasl.username\": \"admin\",\n          \"sasl.mechanism\": \"SCRAM-SHA-256\",\n          \"sasl.password\": \"pwd123\"\n        },\n        \"cert_file_token\": \"84e1f867bf4942ca9b7e985d197facc2\"\n      }\n    },\n    \"detail_kafka_descriptor\": {\n      \"type\": \"CUSTOMIZED_KAFKA\",\n      \"customized_kafka_descriptor\": {\n        \"bootstrap_servers\": \"broker1:9092,broker2:9092\",\n        \"topic_name\": \"shence_data_topic\",\n        \"kafka_properties\": {\n          \"security.protocol\": \"SASL_SSL\",\n          \"sasl.username\": \"admin\",\n          \"sasl.mechanism\": \"SCRAM-SHA-256\",\n          \"sasl.password\": \"pwd123\"\n        },\n        \"cert_file_token\": \"84e1f867bf4942ca9b7e985d197facc2\"\n      }\n    },\n    \"data_format_type\": \"NESTED_JSON\"\n  }\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "status": "Internal Server Error",
+          "code": 500,
+          "header": [
+            {
+              "key": "Content-Type",
+              "value": "application/json"
+            }
+          ],
+          "body": "{\n  \"code\": \"SUCCESS\",\n  \"data\": {\n    \"application\": {\n      \"kafka_based_app_config\": {\n        \"data_format_type\": \"NESTED_JSON\",\n        \"event_kafka_descriptor\": {\n          \"customized_kafka_descriptor\": {\n            \"bootstrap_servers\": \"broker1:9092,broker2:9092\",\n            \"topic_name\": \"shence_data_topic\"\n          },\n          \"type\": \"CUSTOMIZED_KAFKA\"\n        }\n      },\n      \"application_name\": \"shence\",\n      \"application_type\": \"KAFKA_BASED_APP\"\n    }\n  },\n  \"request_id\": \"1\"\n}",
+          "cookie": [],
+          "_postman_previewlanguage": "json"
+        }
+      ],
+      "event": [],
+      "protocolProfileBehavior": {
+        "disableBodyPruning": true
+      }
+    },
+    {
+      "id": "99bf1c23-fa88-444f-a1b3-694b54be6a66",
+      "name": "查询订阅方信息",
+      "request": {
+        "name": "查询订阅方信息",
+        "description": {
+          "content": "查询订阅方信息\n ```\n curl -X POST 'http://{host}:8107/api/v3/horizon/v1/data-subscription/application/get \\\n -H 'api-key: {api-key}' \\\n -H 'Content-Type: application/json;charset=UTF-8' \\\n -H 'sensorsdata-project: {project_name}' \\\n -d '{\"application_name\": \"{application_name}\"}'\n ```",
+          "type": "text/plain"
+        },
+        "url": {
+          "path": [
+            "data-subscription",
+            "application",
+            "get"
+          ],
+          "host": [
+            "{{baseUrl}}"
+          ],
+          "query": [],
+          "variable": []
+        },
+        "header": [
+          {
+            "disabled": false,
+            "description": "(Required) 全局唯一的密钥，用于验证和授权访问 API 接口",
+            "key": "api-key",
+            "value": "<string>"
+          },
+          {
+            "disabled": false,
+            "description": "(Required) 项目名, 指定请求所属项目",
+            "key": "sensorsdata-project",
+            "value": "<string>"
+          },
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          },
+          {
+            "key": "Accept",
+            "value": "application/json"
+          }
+        ],
+        "method": "POST",
+        "auth": null,
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"application_id\": \"<string>\",\n  \"application_name\": \"<string>\"\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        }
+      },
+      "response": [
+        {
+          "id": "28a51617-2e12-44b0-ad82-86453e3f842c",
+          "name": "sensorsdata.horizon.v1.GetSubscriptionApplicationResponse",
+          "originalRequest": {
+            "url": {
+              "path": [
+                "data-subscription",
+                "application",
+                "get"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "disabled": false,
+                "description": "(Required) 全局唯一的密钥，用于验证和授权访问 API 接口",
+                "key": "api-key",
+                "value": "<string>"
+              },
+              {
+                "disabled": false,
+                "description": "(Required) 项目名, 指定请求所属项目",
+                "key": "sensorsdata-project",
+                "value": "<string>"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"application_id\": \"shence.sep-org-111.app.sensorsdata.cloud\",\n  \"application_name\": \"shence\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "status": "Internal Server Error",
+          "code": 500,
+          "header": [
+            {
+              "key": "Content-Type",
+              "value": "application/json"
+            }
+          ],
+          "body": "{\n  \"code\": \"SUCCESS\",\n  \"data\": {\n    \"application\": {\n      \"kafka_based_app_config\": {\n        \"data_format_type\": \"NESTED_JSON\",\n        \"event_kafka_descriptor\": {\n          \"customized_kafka_descriptor\": {\n            \"bootstrap_servers\": \"broker1:9092,broker2:9092\",\n            \"topic_name\": \"shence_data_topic\"\n          },\n          \"type\": \"CUSTOMIZED_KAFKA\"\n        }\n      },\n      \"application_name\": \"shence\",\n      \"application_type\": \"KAFKA_BASED_APP\"\n    }\n  },\n  \"request_id\": \"1\"\n}",
+          "cookie": [],
+          "_postman_previewlanguage": "json"
+        }
+      ],
+      "event": [],
+      "protocolProfileBehavior": {
+        "disableBodyPruning": true
+      }
+    },
+    {
+      "id": "36dd1ed6-97bf-4623-a1d0-569e87f402c2",
+      "name": "删除订阅方",
+      "request": {
+        "name": "删除订阅方",
+        "description": {
+          "content": "删除订阅方，删除之前需先取消该订阅方发起的所有订阅\n ```\n curl -X POST 'http://{host}:8107/api/v3/horizon/v1/data-subscription/application/delete' \\\n -H 'api-key: {api-key}' \\\n -H 'Content-Type: application/json;charset=UTF-8' \\\n -H 'sensorsdata-project: {project_name}' \\\n -d '{\n     \"application_name\":\"{application_name}\"\n }'\n ```",
+          "type": "text/plain"
+        },
+        "url": {
+          "path": [
+            "data-subscription",
+            "application",
+            "delete"
+          ],
+          "host": [
+            "{{baseUrl}}"
+          ],
+          "query": [],
+          "variable": []
+        },
+        "header": [
+          {
+            "disabled": false,
+            "description": "(Required) 全局唯一的密钥，用于验证和授权访问 API 接口",
+            "key": "api-key",
+            "value": "<string>"
+          },
+          {
+            "disabled": false,
+            "description": "(Required) 项目名, 指定请求所属项目",
+            "key": "sensorsdata-project",
+            "value": "<string>"
+          },
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          },
+          {
+            "key": "Accept",
+            "value": "application/json"
+          }
+        ],
+        "method": "POST",
+        "auth": null,
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"application_id\": \"<string>\",\n  \"application_name\": \"<string>\"\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        }
+      },
+      "response": [
+        {
+          "id": "19163a71-1ba2-4499-9a70-cca6b37af456",
+          "name": "sensorsdata.horizon.v1.DeleteSubscriptionApplicationResponse",
+          "originalRequest": {
+            "url": {
+              "path": [
+                "data-subscription",
+                "application",
+                "delete"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "disabled": false,
+                "description": "(Required) 全局唯一的密钥，用于验证和授权访问 API 接口",
+                "key": "api-key",
+                "value": "<string>"
+              },
+              {
+                "disabled": false,
+                "description": "(Required) 项目名, 指定请求所属项目",
+                "key": "sensorsdata-project",
+                "value": "<string>"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"application_id\": \"shence.sep-org-111.app.sensorsdata.cloud\",\n  \"application_name\": \"shence\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "status": "Internal Server Error",
+          "code": 500,
+          "header": [
+            {
+              "key": "Content-Type",
+              "value": "application/json"
+            }
+          ],
+          "body": "{\n  \"code\": \"SUCCESS\",\n  \"data\": {},\n  \"request_id\": \"1\"\n}",
+          "cookie": [],
+          "_postman_previewlanguage": "json"
+        }
+      ],
+      "event": [],
+      "protocolProfileBehavior": {
+        "disableBodyPruning": true
+      }
+    },
+    {
+      "id": "3e319588-02aa-4eb8-ac40-6e1d6115ddba",
+      "name": "创建数据订阅",
+      "request": {
+        "name": "创建数据订阅",
+        "description": {
+          "content": "创建数据订阅\n ```\n curl -X POST 'http://{host}:8107/api/v3/horizon/v1/data-subscription/create' \\\n -H 'sensorsdata-project: {project_name}' \\\n -H 'Content-Type: application/json;charset=UTF-8' \\\n -H 'api-key: {api-key}' \\\n -d '{\n     \"subscription\": {\n         \"application\": \"{application_id}\",\n         \"subscriber\": \"{subscriber}\",\n         \"target_type\": \"ENTITY_DATA\",\n         \"entity_data_subscription_config\": {\n             \"entity_name\": \"user\",\n             \"attribute_type\": \"SIMPLE\",\n             \"simple_attribute_config\": {\n                 \"attribute_names\": [\n                     \"name\",\n                     \"gender\",\n                     \"age\"\n                 ]\n             }\n         }\n     }\n }'\n ```",
+          "type": "text/plain"
+        },
+        "url": {
+          "path": [
+            "data-subscription",
+            "create"
+          ],
+          "host": [
+            "{{baseUrl}}"
+          ],
+          "query": [],
+          "variable": []
+        },
+        "header": [
+          {
+            "disabled": false,
+            "description": "(Required) 全局唯一的密钥，用于验证和授权访问 API 接口",
+            "key": "api-key",
+            "value": "<string>"
+          },
+          {
+            "disabled": false,
+            "description": "(Required) 项目名, 指定请求所属项目",
+            "key": "sensorsdata-project",
+            "value": "<string>"
+          },
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          },
+          {
+            "key": "Accept",
+            "value": "application/json"
+          }
+        ],
+        "method": "POST",
+        "auth": null,
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"subscription\": {\n    \"application\": \"<string>\",\n    \"subscriber\": \"<string>\",\n    \"target_type\": \"<string>\",\n    \"subscription_id\": \"<integer>\",\n    \"entity_data_subscription_config\": {\n      \"entity_name\": \"<string>\",\n      \"attribute_type\": \"<string>\",\n      \"simple_attribute_config\": {\n        \"attribute_names\": [\n          \"<string>\",\n          \"<string>\"\n        ]\n      },\n      \"events_attribute_config\": {\n        \"event_name\": \"<string>\",\n        \"attribute_names\": [\n          \"<string>\",\n          \"<string>\"\n        ],\n        \"filter\": {\n          \"operator\": \"<string>\",\n          \"conditions\": [\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          ],\n          \"compound_conditions\": [\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          ],\n          \"index\": \"<integer>\"\n        }\n      },\n      \"details_attribute_config\": {\n        \"detail_name\": \"<string>\",\n        \"attribute_names\": [\n          \"<string>\",\n          \"<string>\"\n        ]\n      }\n    }\n  }\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        }
+      },
+      "response": [
+        {
+          "id": "81f061c8-535c-48a6-ac2c-a7431a02898f",
+          "name": "sensorsdata.horizon.v1.DataSubscription",
+          "originalRequest": {
+            "url": {
+              "path": [
+                "data-subscription",
+                "create"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "disabled": false,
+                "description": "(Required) 全局唯一的密钥，用于验证和授权访问 API 接口",
+                "key": "api-key",
+                "value": "<string>"
+              },
+              {
+                "disabled": false,
+                "description": "(Required) 项目名, 指定请求所属项目",
+                "key": "sensorsdata-project",
+                "value": "<string>"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"subscription\": {\n    \"application\": \"shence.org-sep-111.app.sensorsdata.cloud\",\n    \"subscriber\": \"sa\",\n    \"target_type\": \"ENTITY_DATA\",\n    \"subscription_id\": \"<integer>\",\n    \"entity_data_subscription_config\": {\n      \"entity_name\": \"user\",\n      \"attribute_type\": \"EVENTS\",\n      \"simple_attribute_config\": {\n        \"attribute_names\": [\n          \"<string>\",\n          \"<string>\"\n        ]\n      },\n      \"events_attribute_config\": {\n        \"event_name\": \"payOrder\",\n        \"attribute_names\": [\n          \"<string>\",\n          \"<string>\"\n        ],\n        \"filter\": {\n          \"operator\": \"AND\",\n          \"conditions\": [\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          ],\n          \"compound_conditions\": [\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          ],\n          \"index\": 10\n        }\n      },\n      \"details_attribute_config\": {\n        \"detail_name\": \"cart\",\n        \"attribute_names\": [\n          \"<string>\",\n          \"<string>\"\n        ]\n      }\n    }\n  }\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "status": "Internal Server Error",
+          "code": 500,
+          "header": [
+            {
+              "key": "Content-Type",
+              "value": "application/json"
+            }
+          ],
+          "body": "{\n  \"code\": \"SUCCESS\",\n  \"data\": {\n    \"subscriber\": \"sa\",\n    \"segment_subscription_config\": {},\n    \"application\": \"shence.org-sep-111.app.sensorsdata.cloud\",\n    \"target_type\": \"ENTITY_DATA\",\n    \"entity_data_subscription_config\": {\n      \"events_attribute_config\": {\n        \"filter\": {\n          \"index\": 10,\n          \"conditions\": [\n            {\n              \"function\": \"EQUAL\",\n              \"index\": 10,\n              \"params\": [\n                {\n                  \"expression\": \"user.p1/user.p2+user.p3\",\n                  \"field\": \"#ResourceId\",\n                  \"time_point\": {\n                    \"relative_time\": {\n                      \"time_interval\": {}\n                    }\n                  },\n                  \"variable\": \"$ENTRY_TIME\",\n                  \"value\": {},\n                  \"param_type\": \"FIELD\"\n                }\n              ]\n            }\n          ],\n          \"operator\": \"AND\"\n        },\n        \"attribute_names\": [\n          \"time\",\n          \"order_id\",\n          \"amount\"\n        ],\n        \"event_name\": \"payOrder\"\n      },\n      \"entity_name\": \"user\",\n      \"simple_attribute_config\": {\n        \"attribute_names\": [\n          \"name\",\n          \"age\",\n          \"gender\"\n        ]\n      },\n      \"details_attribute_config\": {\n        \"attribute_names\": [\n          \"product_id\",\n          \"price\"\n        ],\n        \"detail_name\": \"cart\"\n      },\n      \"attribute_type\": \"EVENTS\"\n    },\n    \"access_info\": {}\n  },\n  \"request_id\": \"1\"\n}",
+          "cookie": [],
+          "_postman_previewlanguage": "json"
+        }
+      ],
+      "event": [],
+      "protocolProfileBehavior": {
+        "disableBodyPruning": true
+      }
+    },
+    {
+      "id": "c12bf617-9ee4-4622-987d-547e80230d4c",
+      "name": "批量查询订阅记录列表",
+      "request": {
+        "name": "批量查询订阅记录列表",
+        "description": {
+          "content": "批量查询订阅记录\n 发起请求例子:\n ```\n curl -L -X GET 'http://{host}:8107/api/v3/horizon/v1/data-subscription/list?application={application_id}&subscriber={subscriber}' \\\n -H 'api-key: {api-key}' \\\n -H 'Content-Type: application/json;charset=UTF-8' \\\n -H 'sensorsdata-project: {project_name}'\n ```",
+          "type": "text/plain"
+        },
+        "url": {
+          "path": [
+            "data-subscription",
+            "list"
+          ],
+          "host": [
+            "{{baseUrl}}"
+          ],
+          "query": [
+            {
+              "disabled": false,
+              "key": "application",
+              "value": "<string>",
+              "description": "(Required) 订阅方的唯一标识, 即 application_id"
+            },
+            {
+              "disabled": false,
+              "key": "subscriber",
+              "value": "<string>",
+              "description": "订阅方业务标识, 一个 application_id 下可以有多个 subscriber，用户可通过 subscriber 确认订阅记录属于哪个业务方"
+            }
+          ],
+          "variable": []
+        },
+        "header": [
+          {
+            "disabled": false,
+            "description": "(Required) 全局唯一的密钥，用于验证和授权访问 API 接口",
+            "key": "api-key",
+            "value": "<string>"
+          },
+          {
+            "disabled": false,
+            "description": "(Required) 项目名, 指定请求所属项目",
+            "key": "sensorsdata-project",
+            "value": "<string>"
+          },
+          {
+            "key": "Accept",
+            "value": "application/json"
+          }
+        ],
+        "method": "GET",
+        "auth": null
+      },
+      "response": [
+        {
+          "id": "8160c98d-029c-491a-b616-c857d69943ef",
+          "name": "sensorsdata.horizon.v1.ListDataSubscriptionsResponse",
+          "originalRequest": {
+            "url": {
+              "path": [
+                "data-subscription",
+                "list"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "key": "application",
+                  "value": "shence.sep-org-111.app.sensorsdata.cloud"
+                },
+                {
+                  "key": "subscriber",
+                  "value": "sa"
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "disabled": false,
+                "description": "(Required) 全局唯一的密钥，用于验证和授权访问 API 接口",
+                "key": "api-key",
+                "value": "<string>"
+              },
+              {
+                "disabled": false,
+                "description": "(Required) 项目名, 指定请求所属项目",
+                "key": "sensorsdata-project",
+                "value": "<string>"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "body": {}
+          },
+          "status": "Internal Server Error",
+          "code": 500,
+          "header": [
+            {
+              "key": "Content-Type",
+              "value": "application/json"
+            }
+          ],
+          "body": "{\n  \"code\": \"SUCCESS\",\n  \"data\": {\n    \"subscriptions\": [\n      {\n        \"subscriber\": \"sa\",\n        \"segment_subscription_config\": {},\n        \"application\": \"shence.org-sep-111.app.sensorsdata.cloud\",\n        \"target_type\": \"ENTITY_DATA\",\n        \"entity_data_subscription_config\": {\n          \"events_attribute_config\": {\n            \"filter\": {\n              \"index\": 10,\n              \"conditions\": [\n                {\n                  \"function\": \"EQUAL\",\n                  \"index\": 10,\n                  \"params\": [\n                    {\n                      \"expression\": \"user.p1/user.p2+user.p3\",\n                      \"field\": \"#ResourceId\",\n                      \"time_point\": {\n                        \"relative_time\": {\n                          \"time_interval\": {}\n                        }\n                      },\n                      \"variable\": \"$ENTRY_TIME\",\n                      \"value\": {},\n                      \"param_type\": \"FIELD\"\n                    }\n                  ]\n                }\n              ],\n              \"operator\": \"AND\"\n            },\n            \"attribute_names\": [\n              \"time\",\n              \"order_id\",\n              \"amount\"\n            ],\n            \"event_name\": \"payOrder\"\n          },\n          \"entity_name\": \"user\",\n          \"simple_attribute_config\": {\n            \"attribute_names\": [\n              \"name\",\n              \"age\",\n              \"gender\"\n            ]\n          },\n          \"details_attribute_config\": {\n            \"attribute_names\": [\n              \"product_id\",\n              \"price\"\n            ],\n            \"detail_name\": \"cart\"\n          },\n          \"attribute_type\": \"EVENTS\"\n        },\n        \"access_info\": {}\n      }\n    ]\n  },\n  \"request_id\": \"1\"\n}",
+          "cookie": [],
+          "_postman_previewlanguage": "json"
+        }
+      ],
+      "event": [],
+      "protocolProfileBehavior": {
+        "disableBodyPruning": true
+      }
+    },
+    {
+      "id": "050de973-9b00-49a1-9225-cd390538c73f",
+      "name": "批量取消订阅",
+      "request": {
+        "name": "批量取消订阅",
+        "description": {
+          "content": "批量取消订阅\n ```\n curl -X POST 'http://{host}:8107/api/v3/horizon/v1/data-subscription/batch-delete' \\\n -H 'api-key: {api-key}' \\\n -H 'Content-Type: application/json;charset=UTF-8' \\\n -H 'sensorsdata-project: {project_name}' \\\n -d '{\n    \"application\":\"{application_id}\",\n    \"subscriber\":\"{subscriber}\",\n    \"subscription_ids\":[{subscription_id}]\n }'\n ```",
+          "type": "text/plain"
+        },
+        "url": {
+          "path": [
+            "data-subscription",
+            "batch-delete"
+          ],
+          "host": [
+            "{{baseUrl}}"
+          ],
+          "query": [],
+          "variable": []
+        },
+        "header": [
+          {
+            "disabled": false,
+            "description": "(Required) 全局唯一的密钥，用于验证和授权访问 API 接口",
+            "key": "api-key",
+            "value": "<string>"
+          },
+          {
+            "disabled": false,
+            "description": "(Required) 项目名, 指定请求所属项目",
+            "key": "sensorsdata-project",
+            "value": "<string>"
+          },
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          },
+          {
+            "key": "Accept",
+            "value": "application/json"
+          }
+        ],
+        "method": "POST",
+        "auth": null,
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"application\": \"<string>\",\n  \"subscriber\": \"<string>\",\n  \"subscription_ids\": [\n    \"<integer>\",\n    \"<integer>\"\n  ]\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        }
+      },
+      "response": [
+        {
+          "id": "fd3d45a5-8c7a-4550-a2b8-152d42e806df",
+          "originalRequest": {
+            "url": {
+              "path": [
+                "data-subscription",
+                "batch-delete"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "disabled": false,
+                "description": "(Required) 全局唯一的密钥，用于验证和授权访问 API 接口",
+                "key": "api-key",
+                "value": "<string>"
+              },
+              {
+                "disabled": false,
+                "description": "(Required) 项目名, 指定请求所属项目",
+                "key": "sensorsdata-project",
+                "value": "<string>"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"application\": \"shence.sep-org-111.app.sensorsdata.cloud\",\n  \"subscriber\": \"sa\",\n  \"subscription_ids\": [\n    \"<integer>\",\n    \"<integer>\"\n  ]\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "status": "Internal Server Error",
+          "code": 500,
+          "header": [
+            {
+              "key": "Content-Type",
+              "value": "application/json"
+            }
+          ],
+          "body": "{\n  \"code\": \"SUCCESS\",\n  \"data\": {},\n  \"request_id\": \"1\"\n}",
+          "cookie": [],
+          "_postman_previewlanguage": "json"
+        }
+      ],
+      "event": [],
+      "protocolProfileBehavior": {
+        "disableBodyPruning": true
+      }
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "/api/v3/horizon/v1",
+      "key": "baseUrl"
+    }
+  ],
+  "info": {
+    "_postman_id": "2a8da1de-1f90-40ef-8e57-c320a69e3aa5",
+    "name": "神策数界",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "订阅管理服务",
+      "type": "text/plain"
+    }
+  }
+}

@@ -1,0 +1,1834 @@
+{
+  "item": [
+    {
+      "id": "ec86001e-7643-4993-9932-6fd73a28d1d5",
+      "name": "查询插件信息",
+      "request": {
+        "name": "查询插件信息",
+        "description": {
+          "content": "支持单个插件查询，仅能查询生效的插件信息. 查询结果会根据当前的组织 ID / project_id 过滤",
+          "type": "text/plain"
+        },
+        "url": {
+          "path": [
+            "express-action-channel",
+            "plugin",
+            "get"
+          ],
+          "host": [
+            "{{baseUrl}}"
+          ],
+          "query": [
+            {
+              "disabled": false,
+              "key": "plugin_id",
+              "value": "<integer>",
+              "description": "plugin_id 和 plugin_route 必传其一"
+            },
+            {
+              "disabled": false,
+              "key": "plugin_route",
+              "value": "<string>"
+            }
+          ],
+          "variable": []
+        },
+        "header": [
+          {
+            "disabled": false,
+            "description": "(Required) 全局唯一的密钥，用于验证和授权访问 API 接口",
+            "key": "api-key",
+            "value": "<string>"
+          },
+          {
+            "disabled": false,
+            "description": "(Required) 项目名, 指定请求所属项目",
+            "key": "sensorsdata-project",
+            "value": "<string>"
+          },
+          {
+            "disabled": false,
+            "description": "(Required) 租户 ID, 用于请求所属租户",
+            "key": "X-Organization-Id",
+            "value": "<string>"
+          },
+          {
+            "key": "Accept",
+            "value": "application/json"
+          }
+        ],
+        "method": "GET",
+        "auth": null
+      },
+      "response": [
+        {
+          "id": "46d13a19-c71c-406c-9d04-6c2ab28e5337",
+          "name": "sensorsdata.focus.v1.GetPluginOpenApiResponse",
+          "originalRequest": {
+            "url": {
+              "path": [
+                "express-action-channel",
+                "plugin",
+                "get"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "key": "plugin_id",
+                  "value": "<integer>"
+                },
+                {
+                  "key": "plugin_route",
+                  "value": "<string>"
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "disabled": false,
+                "description": "(Required) 全局唯一的密钥，用于验证和授权访问 API 接口",
+                "key": "api-key",
+                "value": "<string>"
+              },
+              {
+                "disabled": false,
+                "description": "(Required) 项目名, 指定请求所属项目",
+                "key": "sensorsdata-project",
+                "value": "<string>"
+              },
+              {
+                "disabled": false,
+                "description": "(Required) 租户 ID, 用于请求所属租户",
+                "key": "X-Organization-Id",
+                "value": "<string>"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "body": {}
+          },
+          "status": "Internal Server Error",
+          "code": 500,
+          "header": [
+            {
+              "key": "Content-Type",
+              "value": "application/json"
+            }
+          ],
+          "body": "{\n  \"code\": \"SUCCESS\",\n  \"data\": {\n    \"plugin_information\": {\n      \"biz_type\": \"SFN\"\n    }\n  },\n  \"request_id\": \"1\"\n}",
+          "cookie": [],
+          "_postman_previewlanguage": "json"
+        }
+      ],
+      "event": [],
+      "protocolProfileBehavior": {
+        "disableBodyPruning": true
+      }
+    },
+    {
+      "id": "50a0d2af-a57e-4483-9350-f6683e1c34f4",
+      "name": "查询通道信息",
+      "request": {
+        "name": "查询通道信息",
+        "description": {
+          "content": "查询通道信息，仅能按照插件 ID 查询",
+          "type": "text/plain"
+        },
+        "url": {
+          "path": [
+            "express-action-channel",
+            "channel",
+            "query"
+          ],
+          "host": [
+            "{{baseUrl}}"
+          ],
+          "query": [
+            {
+              "disabled": false,
+              "key": "plugin_id",
+              "value": "<integer>",
+              "description": "只能通过插件 ID 查询"
+            }
+          ],
+          "variable": []
+        },
+        "header": [
+          {
+            "disabled": false,
+            "description": "(Required) 全局唯一的密钥，用于验证和授权访问 API 接口",
+            "key": "api-key",
+            "value": "<string>"
+          },
+          {
+            "disabled": false,
+            "description": "(Required) 项目名, 指定请求所属项目",
+            "key": "sensorsdata-project",
+            "value": "<string>"
+          },
+          {
+            "disabled": false,
+            "description": "(Required) 租户 ID, 用于请求所属租户",
+            "key": "X-Organization-Id",
+            "value": "<string>"
+          },
+          {
+            "key": "Accept",
+            "value": "application/json"
+          }
+        ],
+        "method": "GET",
+        "auth": null
+      },
+      "response": [
+        {
+          "id": "3c0175e5-d35f-4a78-9fad-74a3fbb42600",
+          "name": "sensorsdata.focus.v1.QueryChannelOpenApiResponse",
+          "originalRequest": {
+            "url": {
+              "path": [
+                "express-action-channel",
+                "channel",
+                "query"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "key": "plugin_id",
+                  "value": "<integer>"
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "disabled": false,
+                "description": "(Required) 全局唯一的密钥，用于验证和授权访问 API 接口",
+                "key": "api-key",
+                "value": "<string>"
+              },
+              {
+                "disabled": false,
+                "description": "(Required) 项目名, 指定请求所属项目",
+                "key": "sensorsdata-project",
+                "value": "<string>"
+              },
+              {
+                "disabled": false,
+                "description": "(Required) 租户 ID, 用于请求所属租户",
+                "key": "X-Organization-Id",
+                "value": "<string>"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "body": {}
+          },
+          "status": "Internal Server Error",
+          "code": 500,
+          "header": [
+            {
+              "key": "Content-Type",
+              "value": "application/json"
+            }
+          ],
+          "body": "{\n  \"code\": \"SUCCESS\",\n  \"data\": {\n    \"plugin_channel_informations\": [\n      {\n        \"channel_category\": \"PUSH\"\n      }\n    ]\n  },\n  \"request_id\": \"1\"\n}",
+          "cookie": [],
+          "_postman_previewlanguage": "json"
+        }
+      ],
+      "event": [],
+      "protocolProfileBehavior": {
+        "disableBodyPruning": true
+      }
+    },
+    {
+      "id": "80e79da1-8a1b-47a5-9df6-1721f9522fab",
+      "name": "查询通道实例信息",
+      "request": {
+        "name": "查询通道实例信息",
+        "description": {
+          "content": "查询通道实例信息",
+          "type": "text/plain"
+        },
+        "url": {
+          "path": [
+            "express-action-channel",
+            "channel",
+            "instance",
+            "query"
+          ],
+          "host": [
+            "{{baseUrl}}"
+          ],
+          "query": [
+            {
+              "disabled": false,
+              "key": "plugin_id",
+              "value": "<integer>",
+              "description": "plugin_id/channel_id/channel_instance_id 都是筛选器，可以都不传\n 不传则默认查出来该 project 的所有 channel instance"
+            },
+            {
+              "disabled": false,
+              "key": "channel_id",
+              "value": "<integer>"
+            },
+            {
+              "disabled": false,
+              "key": "channel_instance_id",
+              "value": "<integer>"
+            }
+          ],
+          "variable": []
+        },
+        "header": [
+          {
+            "disabled": false,
+            "description": "(Required) 全局唯一的密钥，用于验证和授权访问 API 接口",
+            "key": "api-key",
+            "value": "<string>"
+          },
+          {
+            "disabled": false,
+            "description": "(Required) 项目名, 指定请求所属项目",
+            "key": "sensorsdata-project",
+            "value": "<string>"
+          },
+          {
+            "disabled": false,
+            "description": "(Required) 租户 ID, 用于请求所属租户",
+            "key": "X-Organization-Id",
+            "value": "<string>"
+          },
+          {
+            "key": "Accept",
+            "value": "application/json"
+          }
+        ],
+        "method": "GET",
+        "auth": null
+      },
+      "response": [
+        {
+          "id": "29469416-9f0f-4441-becb-180ebae1f086",
+          "name": "sensorsdata.focus.v1.QueryChannelInstanceOpenApiResponse",
+          "originalRequest": {
+            "url": {
+              "path": [
+                "express-action-channel",
+                "channel",
+                "instance",
+                "query"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "key": "plugin_id",
+                  "value": "<integer>"
+                },
+                {
+                  "key": "channel_id",
+                  "value": "<integer>"
+                },
+                {
+                  "key": "channel_instance_id",
+                  "value": "<integer>"
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "disabled": false,
+                "description": "(Required) 全局唯一的密钥，用于验证和授权访问 API 接口",
+                "key": "api-key",
+                "value": "<string>"
+              },
+              {
+                "disabled": false,
+                "description": "(Required) 项目名, 指定请求所属项目",
+                "key": "sensorsdata-project",
+                "value": "<string>"
+              },
+              {
+                "disabled": false,
+                "description": "(Required) 租户 ID, 用于请求所属租户",
+                "key": "X-Organization-Id",
+                "value": "<string>"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "body": {}
+          },
+          "status": "Internal Server Error",
+          "code": 500,
+          "header": [
+            {
+              "key": "Content-Type",
+              "value": "application/json"
+            }
+          ],
+          "body": "{\n  \"code\": \"SUCCESS\",\n  \"data\": {\n    \"channel_instance_informations\": [\n      {\n        \"rate_limit\": {},\n        \"configuration\": {\n          \"send_id\": \"${user.$id}\",\n          \"send_id_cname\": \"用户ID\"\n        }\n      }\n    ]\n  },\n  \"request_id\": \"1\"\n}",
+          "cookie": [],
+          "_postman_previewlanguage": "json"
+        }
+      ],
+      "event": [],
+      "protocolProfileBehavior": {
+        "disableBodyPruning": true
+      }
+    },
+    {
+      "id": "0675fba3-6ed7-4b9d-bb13-43e3a3d2d1a0",
+      "name": "创建通道实例",
+      "request": {
+        "name": "创建通道实例",
+        "description": {
+          "content": "创建通道实例",
+          "type": "text/plain"
+        },
+        "url": {
+          "path": [
+            "express-action-channel",
+            "channel",
+            "instance",
+            "create"
+          ],
+          "host": [
+            "{{baseUrl}}"
+          ],
+          "query": [],
+          "variable": []
+        },
+        "header": [
+          {
+            "disabled": false,
+            "description": "(Required) 全局唯一的密钥，用于验证和授权访问 API 接口",
+            "key": "api-key",
+            "value": "<string>"
+          },
+          {
+            "disabled": false,
+            "description": "(Required) 项目名, 指定请求所属项目",
+            "key": "sensorsdata-project",
+            "value": "<string>"
+          },
+          {
+            "disabled": false,
+            "description": "(Required) 租户 ID, 用于请求所属租户",
+            "key": "X-Organization-Id",
+            "value": "<string>"
+          },
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          },
+          {
+            "key": "Accept",
+            "value": "application/json"
+          }
+        ],
+        "method": "POST",
+        "auth": null,
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"id\": \"<integer>\",\n  \"channel_id\": \"<integer>\",\n  \"project_id\": \"<integer>\",\n  \"cname\": \"<string>\",\n  \"state\": \"<string>\",\n  \"rate_limit\": {\n    \"tokens\": \"<integer>\",\n    \"seconds\": \"<integer>\"\n  },\n  \"configuration\": {\n    \"send_id\": \"<string>\",\n    \"send_id_cname\": \"<string>\",\n    \"send_mode\": \"<string>\",\n    \"extra_config\": \"<string>\",\n    \"used_in_openapi\": \"<boolean>\"\n  },\n  \"version\": \"<integer>\",\n  \"create_user_id\": \"<integer>\",\n  \"update_user_id\": \"<integer>\",\n  \"create_timestamp\": \"<long>\",\n  \"last_update_timestamp\": \"<long>\"\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        }
+      },
+      "response": [
+        {
+          "id": "3b3f7eb6-47dc-40b6-bec5-bded9dc8f541",
+          "name": "sensorsdata.focus.v1.CreateChannelInstanceOpenApiResponse",
+          "originalRequest": {
+            "url": {
+              "path": [
+                "express-action-channel",
+                "channel",
+                "instance",
+                "create"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "disabled": false,
+                "description": "(Required) 全局唯一的密钥，用于验证和授权访问 API 接口",
+                "key": "api-key",
+                "value": "<string>"
+              },
+              {
+                "disabled": false,
+                "description": "(Required) 项目名, 指定请求所属项目",
+                "key": "sensorsdata-project",
+                "value": "<string>"
+              },
+              {
+                "disabled": false,
+                "description": "(Required) 租户 ID, 用于请求所属租户",
+                "key": "X-Organization-Id",
+                "value": "<string>"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"id\": \"<integer>\",\n  \"channel_id\": \"<integer>\",\n  \"project_id\": \"<integer>\",\n  \"cname\": \"<string>\",\n  \"state\": \"<string>\",\n  \"rate_limit\": {\n    \"tokens\": \"<integer>\",\n    \"seconds\": \"<integer>\"\n  },\n  \"configuration\": {\n    \"send_id\": \"${user.$id}\",\n    \"send_id_cname\": \"用户ID\",\n    \"send_mode\": \"<string>\",\n    \"extra_config\": \"<string>\",\n    \"used_in_openapi\": \"<boolean>\"\n  },\n  \"version\": \"<integer>\",\n  \"create_user_id\": \"<integer>\",\n  \"update_user_id\": \"<integer>\",\n  \"create_timestamp\": \"<long>\",\n  \"last_update_timestamp\": \"<long>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "status": "Internal Server Error",
+          "code": 500,
+          "header": [
+            {
+              "key": "Content-Type",
+              "value": "application/json"
+            }
+          ],
+          "body": "{\n  \"code\": \"SUCCESS\",\n  \"data\": {\n    \"channel_instance_information\": {\n      \"rate_limit\": {},\n      \"configuration\": {\n        \"send_id\": \"${user.$id}\",\n        \"send_id_cname\": \"用户ID\"\n      }\n    }\n  },\n  \"request_id\": \"1\"\n}",
+          "cookie": [],
+          "_postman_previewlanguage": "json"
+        }
+      ],
+      "event": [],
+      "protocolProfileBehavior": {
+        "disableBodyPruning": true
+      }
+    },
+    {
+      "id": "a921ba21-a7f0-4ec0-bd61-49572dca42f3",
+      "name": "修改通道实例",
+      "request": {
+        "name": "修改通道实例",
+        "description": {
+          "content": "修改通道实例，包括通道实例的开关等",
+          "type": "text/plain"
+        },
+        "url": {
+          "path": [
+            "express-action-channel",
+            "channel",
+            "instance",
+            "update"
+          ],
+          "host": [
+            "{{baseUrl}}"
+          ],
+          "query": [],
+          "variable": []
+        },
+        "header": [
+          {
+            "disabled": false,
+            "description": "(Required) 全局唯一的密钥，用于验证和授权访问 API 接口",
+            "key": "api-key",
+            "value": "<string>"
+          },
+          {
+            "disabled": false,
+            "description": "(Required) 项目名, 指定请求所属项目",
+            "key": "sensorsdata-project",
+            "value": "<string>"
+          },
+          {
+            "disabled": false,
+            "description": "(Required) 租户 ID, 用于请求所属租户",
+            "key": "X-Organization-Id",
+            "value": "<string>"
+          },
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          },
+          {
+            "key": "Accept",
+            "value": "application/json"
+          }
+        ],
+        "method": "POST",
+        "auth": null,
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"id\": \"<integer>\",\n  \"channel_id\": \"<integer>\",\n  \"project_id\": \"<integer>\",\n  \"cname\": \"<string>\",\n  \"state\": \"<string>\",\n  \"rate_limit\": {\n    \"tokens\": \"<integer>\",\n    \"seconds\": \"<integer>\"\n  },\n  \"configuration\": {\n    \"send_id\": \"<string>\",\n    \"send_id_cname\": \"<string>\",\n    \"send_mode\": \"<string>\",\n    \"extra_config\": \"<string>\",\n    \"used_in_openapi\": \"<boolean>\"\n  },\n  \"version\": \"<integer>\",\n  \"create_user_id\": \"<integer>\",\n  \"update_user_id\": \"<integer>\",\n  \"create_timestamp\": \"<long>\",\n  \"last_update_timestamp\": \"<long>\"\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        }
+      },
+      "response": [
+        {
+          "id": "8768360d-ae54-4664-85e1-5a0b865af800",
+          "name": "sensorsdata.focus.v1.UpdateChannelInstanceOpenApiResponse",
+          "originalRequest": {
+            "url": {
+              "path": [
+                "express-action-channel",
+                "channel",
+                "instance",
+                "update"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "disabled": false,
+                "description": "(Required) 全局唯一的密钥，用于验证和授权访问 API 接口",
+                "key": "api-key",
+                "value": "<string>"
+              },
+              {
+                "disabled": false,
+                "description": "(Required) 项目名, 指定请求所属项目",
+                "key": "sensorsdata-project",
+                "value": "<string>"
+              },
+              {
+                "disabled": false,
+                "description": "(Required) 租户 ID, 用于请求所属租户",
+                "key": "X-Organization-Id",
+                "value": "<string>"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"id\": \"<integer>\",\n  \"channel_id\": \"<integer>\",\n  \"project_id\": \"<integer>\",\n  \"cname\": \"<string>\",\n  \"state\": \"<string>\",\n  \"rate_limit\": {\n    \"tokens\": \"<integer>\",\n    \"seconds\": \"<integer>\"\n  },\n  \"configuration\": {\n    \"send_id\": \"${user.$id}\",\n    \"send_id_cname\": \"用户ID\",\n    \"send_mode\": \"<string>\",\n    \"extra_config\": \"<string>\",\n    \"used_in_openapi\": \"<boolean>\"\n  },\n  \"version\": \"<integer>\",\n  \"create_user_id\": \"<integer>\",\n  \"update_user_id\": \"<integer>\",\n  \"create_timestamp\": \"<long>\",\n  \"last_update_timestamp\": \"<long>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "status": "Internal Server Error",
+          "code": 500,
+          "header": [
+            {
+              "key": "Content-Type",
+              "value": "application/json"
+            }
+          ],
+          "body": "{\n  \"code\": \"SUCCESS\",\n  \"data\": {\n    \"channel_instance_information\": {\n      \"rate_limit\": {},\n      \"configuration\": {\n        \"send_id\": \"${user.$id}\",\n        \"send_id_cname\": \"用户ID\"\n      }\n    }\n  },\n  \"request_id\": \"1\"\n}",
+          "cookie": [],
+          "_postman_previewlanguage": "json"
+        }
+      ],
+      "event": [],
+      "protocolProfileBehavior": {
+        "disableBodyPruning": true
+      }
+    },
+    {
+      "id": "ab314534-ae91-4749-a5e9-6da2edda1b87",
+      "name": "删除通道实例",
+      "request": {
+        "name": "删除通道实例",
+        "description": {
+          "content": "删除通道实例",
+          "type": "text/plain"
+        },
+        "url": {
+          "path": [
+            "express-action-channel",
+            "channel",
+            "instance",
+            "delete"
+          ],
+          "host": [
+            "{{baseUrl}}"
+          ],
+          "query": [],
+          "variable": []
+        },
+        "header": [
+          {
+            "disabled": false,
+            "description": "(Required) 全局唯一的密钥，用于验证和授权访问 API 接口",
+            "key": "api-key",
+            "value": "<string>"
+          },
+          {
+            "disabled": false,
+            "description": "(Required) 项目名, 指定请求所属项目",
+            "key": "sensorsdata-project",
+            "value": "<string>"
+          },
+          {
+            "disabled": false,
+            "description": "(Required) 租户 ID, 用于请求所属租户",
+            "key": "X-Organization-Id",
+            "value": "<string>"
+          },
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          },
+          {
+            "key": "Accept",
+            "value": "application/json"
+          }
+        ],
+        "method": "POST",
+        "auth": null,
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"id\": \"<integer>\"\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        }
+      },
+      "response": [
+        {
+          "id": "779a0cdd-7809-4619-be5a-d158ece81b4e",
+          "originalRequest": {
+            "url": {
+              "path": [
+                "express-action-channel",
+                "channel",
+                "instance",
+                "delete"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "disabled": false,
+                "description": "(Required) 全局唯一的密钥，用于验证和授权访问 API 接口",
+                "key": "api-key",
+                "value": "<string>"
+              },
+              {
+                "disabled": false,
+                "description": "(Required) 项目名, 指定请求所属项目",
+                "key": "sensorsdata-project",
+                "value": "<string>"
+              },
+              {
+                "disabled": false,
+                "description": "(Required) 租户 ID, 用于请求所属租户",
+                "key": "X-Organization-Id",
+                "value": "<string>"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"id\": \"<integer>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "status": "Internal Server Error",
+          "code": 500,
+          "header": [
+            {
+              "key": "Content-Type",
+              "value": "application/json"
+            }
+          ],
+          "body": "{\n  \"code\": \"SUCCESS\",\n  \"data\": {},\n  \"request_id\": \"1\"\n}",
+          "cookie": [],
+          "_postman_previewlanguage": "json"
+        }
+      ],
+      "event": [],
+      "protocolProfileBehavior": {
+        "disableBodyPruning": true
+      }
+    },
+    {
+      "id": "bc10b328-6aa5-43ec-9d0e-a204974e07c3",
+      "name": "获取插件资源文件",
+      "request": {
+        "name": "获取插件资源文件",
+        "description": {
+          "content": "获取插件资源文件，加载插件前端可以使用",
+          "type": "text/plain"
+        },
+        "url": {
+          "path": [
+            "express-action-channel",
+            "plugin",
+            "resource",
+            "get"
+          ],
+          "host": [
+            "{{baseUrl}}"
+          ],
+          "query": [
+            {
+              "disabled": false,
+              "key": "plugin_route",
+              "value": "<string>",
+              "description": "插件 pluginRoute"
+            },
+            {
+              "disabled": false,
+              "key": "file_path",
+              "value": "<string>",
+              "description": "获取资源文件的路径，一般是插件前端资源文件路径"
+            }
+          ],
+          "variable": []
+        },
+        "header": [
+          {
+            "disabled": false,
+            "description": "(Required) 全局唯一的密钥，用于验证和授权访问 API 接口",
+            "key": "api-key",
+            "value": "<string>"
+          },
+          {
+            "disabled": false,
+            "description": "(Required) 项目名, 指定请求所属项目",
+            "key": "sensorsdata-project",
+            "value": "<string>"
+          },
+          {
+            "disabled": false,
+            "description": "(Required) 租户 ID, 用于请求所属租户",
+            "key": "X-Organization-Id",
+            "value": "<string>"
+          },
+          {
+            "key": "Accept",
+            "value": "application/json"
+          }
+        ],
+        "method": "GET",
+        "auth": null
+      },
+      "response": [
+        {
+          "id": "5da91e92-639d-4815-a8c9-61193cdfdd7e",
+          "name": "sensorsdata.focus.v1.GetPluginResourceOpenApiResponse",
+          "originalRequest": {
+            "url": {
+              "path": [
+                "express-action-channel",
+                "plugin",
+                "resource",
+                "get"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "key": "plugin_route",
+                  "value": "<string>"
+                },
+                {
+                  "key": "file_path",
+                  "value": "/dist/index.css"
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "disabled": false,
+                "description": "(Required) 全局唯一的密钥，用于验证和授权访问 API 接口",
+                "key": "api-key",
+                "value": "<string>"
+              },
+              {
+                "disabled": false,
+                "description": "(Required) 项目名, 指定请求所属项目",
+                "key": "sensorsdata-project",
+                "value": "<string>"
+              },
+              {
+                "disabled": false,
+                "description": "(Required) 租户 ID, 用于请求所属租户",
+                "key": "X-Organization-Id",
+                "value": "<string>"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "body": {}
+          },
+          "status": "Internal Server Error",
+          "code": 500,
+          "header": [
+            {
+              "key": "Content-Type",
+              "value": "application/json"
+            }
+          ],
+          "body": "{\n  \"code\": \"SUCCESS\",\n  \"data\": {},\n  \"request_id\": \"1\"\n}",
+          "cookie": [],
+          "_postman_previewlanguage": "json"
+        }
+      ],
+      "event": [],
+      "protocolProfileBehavior": {
+        "disableBodyPruning": true
+      }
+    },
+    {
+      "id": "7560405b-a964-48bc-a6be-19bc6fac5cf5",
+      "name": "通道实例测试发送",
+      "request": {
+        "name": "通道实例测试发送",
+        "description": {
+          "content": "通道实例测试发送",
+          "type": "text/plain"
+        },
+        "url": {
+          "path": [
+            "express-action-channel",
+            "channel",
+            "instance",
+            "test-send",
+            "execute"
+          ],
+          "host": [
+            "{{baseUrl}}"
+          ],
+          "query": [],
+          "variable": []
+        },
+        "header": [
+          {
+            "disabled": false,
+            "description": "(Required) 全局唯一的密钥，用于验证和授权访问 API 接口",
+            "key": "api-key",
+            "value": "<string>"
+          },
+          {
+            "disabled": false,
+            "description": "(Required) 项目名, 指定请求所属项目",
+            "key": "sensorsdata-project",
+            "value": "<string>"
+          },
+          {
+            "disabled": false,
+            "description": "(Required) 租户 ID, 用于请求所属租户",
+            "key": "X-Organization-Id",
+            "value": "<string>"
+          },
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          },
+          {
+            "key": "Accept",
+            "value": "application/json"
+          }
+        ],
+        "method": "POST",
+        "auth": null,
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"channel_instance_id\": \"<integer>\",\n  \"message_context\": {\n    \"user_id\": \"<long>\",\n    \"send_id\": \"<string>\"\n  },\n  \"message_body\": \"<string>\",\n  \"required_properties\": [\n    {\n      \"key\": \"<string>\",\n      \"value\": {\n        \"data_type\": \"<string>\",\n        \"bool_value\": \"<boolean>\",\n        \"int_value\": \"<long>\",\n        \"number_value\": \"<double>\",\n        \"string_value\": \"<string>\",\n        \"list_value\": [\n          \"<string>\",\n          \"<string>\"\n        ],\n        \"datetime_value\": \"<dateTime>\",\n        \"date_value\": \"<string>\",\n        \"bigint_value\": \"<long>\",\n        \"decimal_value\": \"<string>\"\n      }\n    },\n    {\n      \"key\": \"<string>\",\n      \"value\": {\n        \"data_type\": \"<string>\",\n        \"bool_value\": \"<boolean>\",\n        \"int_value\": \"<long>\",\n        \"number_value\": \"<double>\",\n        \"string_value\": \"<string>\",\n        \"list_value\": [\n          \"<string>\",\n          \"<string>\"\n        ],\n        \"datetime_value\": \"<dateTime>\",\n        \"date_value\": \"<string>\",\n        \"bigint_value\": \"<long>\",\n        \"decimal_value\": \"<string>\"\n      }\n    }\n  ]\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        }
+      },
+      "response": [
+        {
+          "id": "c84c2c13-4912-4cf7-9237-afdf044c3bce",
+          "name": "sensorsdata.focus.v1.ExecuteTestSendOpenApiResponse",
+          "originalRequest": {
+            "url": {
+              "path": [
+                "express-action-channel",
+                "channel",
+                "instance",
+                "test-send",
+                "execute"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "disabled": false,
+                "description": "(Required) 全局唯一的密钥，用于验证和授权访问 API 接口",
+                "key": "api-key",
+                "value": "<string>"
+              },
+              {
+                "disabled": false,
+                "description": "(Required) 项目名, 指定请求所属项目",
+                "key": "sensorsdata-project",
+                "value": "<string>"
+              },
+              {
+                "disabled": false,
+                "description": "(Required) 租户 ID, 用于请求所属租户",
+                "key": "X-Organization-Id",
+                "value": "<string>"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"channel_instance_id\": \"<integer>\",\n  \"message_context\": {\n    \"user_id\": \"<long>\",\n    \"send_id\": \"-9765623679283982735625323\"\n  },\n  \"message_body\": \"{\\\"msg_content\\\":\\\"这是一条消息示例，我的 jiguang_id=${user.jiguang_id}\\\"}\",\n  \"required_properties\": [\n    {\n      \"key\": \"<string>\",\n      \"value\": {\n        \"data_type\": \"<string>\",\n        \"bool_value\": \"<boolean>\",\n        \"int_value\": \"<long>\",\n        \"number_value\": \"<double>\",\n        \"string_value\": \"<string>\",\n        \"list_value\": [\n          \"<string>\",\n          \"<string>\"\n        ],\n        \"datetime_value\": \"<dateTime>\",\n        \"date_value\": \"<string>\",\n        \"bigint_value\": \"<long>\",\n        \"decimal_value\": \"<string>\"\n      }\n    },\n    {\n      \"key\": \"<string>\",\n      \"value\": {\n        \"data_type\": \"<string>\",\n        \"bool_value\": \"<boolean>\",\n        \"int_value\": \"<long>\",\n        \"number_value\": \"<double>\",\n        \"string_value\": \"<string>\",\n        \"list_value\": [\n          \"<string>\",\n          \"<string>\"\n        ],\n        \"datetime_value\": \"<dateTime>\",\n        \"date_value\": \"<string>\",\n        \"bigint_value\": \"<long>\",\n        \"decimal_value\": \"<string>\"\n      }\n    }\n  ]\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "status": "Internal Server Error",
+          "code": 500,
+          "header": [
+            {
+              "key": "Content-Type",
+              "value": "application/json"
+            }
+          ],
+          "body": "{\n  \"code\": \"SUCCESS\",\n  \"data\": {\n    \"response\": {\n      \"receipt_message_context\": {\n        \"event_properties\": [\n          {}\n        ]\n      }\n    }\n  },\n  \"request_id\": \"1\"\n}",
+          "cookie": [],
+          "_postman_previewlanguage": "json"
+        }
+      ],
+      "event": [],
+      "protocolProfileBehavior": {
+        "disableBodyPruning": true
+      }
+    },
+    {
+      "id": "8aca0542-924e-4e19-8def-ff88acbb2b39",
+      "name": "通道实例配置发送内容校验",
+      "request": {
+        "name": "通道实例配置发送内容校验",
+        "description": {
+          "content": "通道实例配置发送内容校验，用于校验通道实例上配置的发送内容是否合法",
+          "type": "text/plain"
+        },
+        "url": {
+          "path": [
+            "express-action-channel",
+            "channel",
+            "instance",
+            "send-content",
+            "check"
+          ],
+          "host": [
+            "{{baseUrl}}"
+          ],
+          "query": [],
+          "variable": []
+        },
+        "header": [
+          {
+            "disabled": false,
+            "description": "(Required) 全局唯一的密钥，用于验证和授权访问 API 接口",
+            "key": "api-key",
+            "value": "<string>"
+          },
+          {
+            "disabled": false,
+            "description": "(Required) 项目名, 指定请求所属项目",
+            "key": "sensorsdata-project",
+            "value": "<string>"
+          },
+          {
+            "disabled": false,
+            "description": "(Required) 租户 ID, 用于请求所属租户",
+            "key": "X-Organization-Id",
+            "value": "<string>"
+          },
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          },
+          {
+            "key": "Accept",
+            "value": "application/json"
+          }
+        ],
+        "method": "POST",
+        "auth": null,
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"channel_instance_id\": \"<integer>\",\n  \"message_body\": \"<string>\"\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        }
+      },
+      "response": [
+        {
+          "id": "c0b53ff8-a6f1-4f26-8a9a-ca1cce4c08c1",
+          "originalRequest": {
+            "url": {
+              "path": [
+                "express-action-channel",
+                "channel",
+                "instance",
+                "send-content",
+                "check"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "disabled": false,
+                "description": "(Required) 全局唯一的密钥，用于验证和授权访问 API 接口",
+                "key": "api-key",
+                "value": "<string>"
+              },
+              {
+                "disabled": false,
+                "description": "(Required) 项目名, 指定请求所属项目",
+                "key": "sensorsdata-project",
+                "value": "<string>"
+              },
+              {
+                "disabled": false,
+                "description": "(Required) 租户 ID, 用于请求所属租户",
+                "key": "X-Organization-Id",
+                "value": "<string>"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"channel_instance_id\": \"<integer>\",\n  \"message_body\": \"{\\\"msg_content\\\":\\\"这是一条消息示例，我的 jiguang_id=${user.jiguang_id}\\\"}\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "status": "Internal Server Error",
+          "code": 500,
+          "header": [
+            {
+              "key": "Content-Type",
+              "value": "application/json"
+            }
+          ],
+          "body": "{\n  \"code\": \"SUCCESS\",\n  \"data\": {},\n  \"request_id\": \"1\"\n}",
+          "cookie": [],
+          "_postman_previewlanguage": "json"
+        }
+      ],
+      "event": [],
+      "protocolProfileBehavior": {
+        "disableBodyPruning": true
+      }
+    },
+    {
+      "id": "5a8b4ded-45c6-4291-aa39-46c3f6c7cd1d",
+      "name": "通道实例其他扩展请求",
+      "request": {
+        "name": "通道实例其他扩展请求",
+        "description": {
+          "content": "通道实例其他扩展请求，对于需要更多通道前后端交互的逻辑可以走该接口",
+          "type": "text/plain"
+        },
+        "url": {
+          "path": [
+            "express-action-channel",
+            "channel",
+            "instance",
+            "extension",
+            "execute"
+          ],
+          "host": [
+            "{{baseUrl}}"
+          ],
+          "query": [],
+          "variable": []
+        },
+        "header": [
+          {
+            "disabled": false,
+            "description": "(Required) 全局唯一的密钥，用于验证和授权访问 API 接口",
+            "key": "api-key",
+            "value": "<string>"
+          },
+          {
+            "disabled": false,
+            "description": "(Required) 项目名, 指定请求所属项目",
+            "key": "sensorsdata-project",
+            "value": "<string>"
+          },
+          {
+            "disabled": false,
+            "description": "(Required) 租户 ID, 用于请求所属租户",
+            "key": "X-Organization-Id",
+            "value": "<string>"
+          },
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          },
+          {
+            "key": "Accept",
+            "value": "application/json"
+          }
+        ],
+        "method": "POST",
+        "auth": null,
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"channel_instance_id\": \"<integer>\",\n  \"request_route\": \"<string>\",\n  \"request_body\": \"<string>\"\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        }
+      },
+      "response": [
+        {
+          "id": "0c0e2ba4-2f31-46fd-941d-518fbcc338d8",
+          "name": "sensorsdata.focus.v1.ExecuteChannelInstanceExtensionRestOpenApiResponse",
+          "originalRequest": {
+            "url": {
+              "path": [
+                "express-action-channel",
+                "channel",
+                "instance",
+                "extension",
+                "execute"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "disabled": false,
+                "description": "(Required) 全局唯一的密钥，用于验证和授权访问 API 接口",
+                "key": "api-key",
+                "value": "<string>"
+              },
+              {
+                "disabled": false,
+                "description": "(Required) 项目名, 指定请求所属项目",
+                "key": "sensorsdata-project",
+                "value": "<string>"
+              },
+              {
+                "disabled": false,
+                "description": "(Required) 租户 ID, 用于请求所属租户",
+                "key": "X-Organization-Id",
+                "value": "<string>"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"channel_instance_id\": \"<integer>\",\n  \"request_route\": \"/my_test/test1\",\n  \"request_body\": \"<string>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "status": "Internal Server Error",
+          "code": 500,
+          "header": [
+            {
+              "key": "Content-Type",
+              "value": "application/json"
+            }
+          ],
+          "body": "{\n  \"code\": \"SUCCESS\",\n  \"data\": {},\n  \"request_id\": \"1\"\n}",
+          "cookie": [],
+          "_postman_previewlanguage": "json"
+        }
+      ],
+      "event": [],
+      "protocolProfileBehavior": {
+        "disableBodyPruning": true
+      }
+    },
+    {
+      "id": "4abb7f19-d76e-4bdb-8fed-55706fa8a0c6",
+      "name": "通道实例指标定义获取",
+      "request": {
+        "name": "通道实例指标定义获取",
+        "description": {
+          "content": "通道实例指标定义获取",
+          "type": "text/plain"
+        },
+        "url": {
+          "path": [
+            "express-action-channel",
+            "channel",
+            "instance",
+            "metrics-define",
+            "get"
+          ],
+          "host": [
+            "{{baseUrl}}"
+          ],
+          "query": [
+            {
+              "disabled": false,
+              "key": "channel_instance_id",
+              "value": "<integer>",
+              "description": "请求的通道实例 ID"
+            }
+          ],
+          "variable": []
+        },
+        "header": [
+          {
+            "disabled": false,
+            "description": "(Required) 全局唯一的密钥，用于验证和授权访问 API 接口",
+            "key": "api-key",
+            "value": "<string>"
+          },
+          {
+            "disabled": false,
+            "description": "(Required) 项目名, 指定请求所属项目",
+            "key": "sensorsdata-project",
+            "value": "<string>"
+          },
+          {
+            "disabled": false,
+            "description": "(Required) 租户 ID, 用于请求所属租户",
+            "key": "X-Organization-Id",
+            "value": "<string>"
+          },
+          {
+            "key": "Accept",
+            "value": "application/json"
+          }
+        ],
+        "method": "GET",
+        "auth": null
+      },
+      "response": [
+        {
+          "id": "a4b25471-1859-4a66-a6c6-9fdfb20bcf89",
+          "name": "sensorsdata.focus.v1.GetChannelInstanceMetricsDefineOpenApiResponse",
+          "originalRequest": {
+            "url": {
+              "path": [
+                "express-action-channel",
+                "channel",
+                "instance",
+                "metrics-define",
+                "get"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "key": "channel_instance_id",
+                  "value": "<integer>"
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "disabled": false,
+                "description": "(Required) 全局唯一的密钥，用于验证和授权访问 API 接口",
+                "key": "api-key",
+                "value": "<string>"
+              },
+              {
+                "disabled": false,
+                "description": "(Required) 项目名, 指定请求所属项目",
+                "key": "sensorsdata-project",
+                "value": "<string>"
+              },
+              {
+                "disabled": false,
+                "description": "(Required) 租户 ID, 用于请求所属租户",
+                "key": "X-Organization-Id",
+                "value": "<string>"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "body": {}
+          },
+          "status": "Internal Server Error",
+          "code": 500,
+          "header": [
+            {
+              "key": "Content-Type",
+              "value": "application/json"
+            }
+          ],
+          "body": "{\n  \"code\": \"SUCCESS\",\n  \"data\": {\n    \"metrics_defines\": [\n      {\n        \"event_series\": {\n          \"condition\": {\n            \"index\": 10,\n            \"conditions\": [\n              {\n                \"function\": \"EQUAL\",\n                \"index\": 10,\n                \"params\": [\n                  {\n                    \"expression\": \"user.p1/user.p2+user.p3\",\n                    \"field\": \"#ResourceId\",\n                    \"variable\": \"$ENTRY_TIME\",\n                    \"value\": {},\n                    \"param_type\": \"FIELD\"\n                  }\n                ]\n              }\n            ],\n            \"operator\": \"AND\"\n          },\n          \"time_range\": {\n            \"start_time\": {\n              \"relative_time\": {\n                \"time_interval\": {}\n              }\n            }\n          }\n        },\n        \"phase_names\": {},\n        \"display_positions\": [\n          \"PLAN_TOTAL_CONVERT_CARD\"\n        ],\n        \"detail_event_property_name\": \"$sf_fail_reason\"\n      }\n    ]\n  },\n  \"request_id\": \"1\"\n}",
+          "cookie": [],
+          "_postman_previewlanguage": "json"
+        }
+      ],
+      "event": [],
+      "protocolProfileBehavior": {
+        "disableBodyPruning": true
+      }
+    },
+    {
+      "id": "e8fe60c9-981c-48ba-ab75-f484b63a74da",
+      "name": "获取有可用通道实例的通道大类",
+      "request": {
+        "name": "获取有可用通道实例的通道大类",
+        "description": {
+          "content": "获取有可用通道实例的通道大类",
+          "type": "text/plain"
+        },
+        "url": {
+          "path": [
+            "express-action-channel",
+            "channel",
+            "ai",
+            "category",
+            "get"
+          ],
+          "host": [
+            "{{baseUrl}}"
+          ],
+          "query": [],
+          "variable": []
+        },
+        "header": [
+          {
+            "disabled": false,
+            "description": "(Required) 全局唯一的密钥，用于验证和授权访问 API 接口",
+            "key": "api-key",
+            "value": "<string>"
+          },
+          {
+            "disabled": false,
+            "description": "(Required) 项目名, 指定请求所属项目",
+            "key": "sensorsdata-project",
+            "value": "<string>"
+          },
+          {
+            "disabled": false,
+            "description": "(Required) 租户 ID, 用于请求所属租户",
+            "key": "X-Organization-Id",
+            "value": "<string>"
+          },
+          {
+            "key": "Accept",
+            "value": "application/json"
+          }
+        ],
+        "method": "GET",
+        "auth": null
+      },
+      "response": [
+        {
+          "id": "989978c2-409a-41ca-9dd4-834cdd893835",
+          "name": "sensorsdata.focus.v1.GetChannelCategoryOpenApiResponse",
+          "originalRequest": {
+            "url": {
+              "path": [
+                "express-action-channel",
+                "channel",
+                "ai",
+                "category",
+                "get"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "disabled": false,
+                "description": "(Required) 全局唯一的密钥，用于验证和授权访问 API 接口",
+                "key": "api-key",
+                "value": "<string>"
+              },
+              {
+                "disabled": false,
+                "description": "(Required) 项目名, 指定请求所属项目",
+                "key": "sensorsdata-project",
+                "value": "<string>"
+              },
+              {
+                "disabled": false,
+                "description": "(Required) 租户 ID, 用于请求所属租户",
+                "key": "X-Organization-Id",
+                "value": "<string>"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "body": {}
+          },
+          "status": "Internal Server Error",
+          "code": 500,
+          "header": [
+            {
+              "key": "Content-Type",
+              "value": "application/json"
+            }
+          ],
+          "body": "{\n  \"code\": \"SUCCESS\",\n  \"data\": {\n    \"categories\": [\n      {}\n    ]\n  },\n  \"request_id\": \"1\"\n}",
+          "cookie": [],
+          "_postman_previewlanguage": "json"
+        }
+      ],
+      "event": [],
+      "protocolProfileBehavior": {
+        "disableBodyPruning": true
+      }
+    },
+    {
+      "id": "5c23b97a-b2a2-43a7-bd3f-1e17c7ca21b4",
+      "name": "获取某个通道大类下的通道实例信息",
+      "request": {
+        "name": "获取某个通道大类下的通道实例信息",
+        "description": {
+          "content": "获取某个通道大类下的通道实例信息",
+          "type": "text/plain"
+        },
+        "url": {
+          "path": [
+            "express-action-channel",
+            "channel",
+            "ai",
+            "category",
+            "instance",
+            "get"
+          ],
+          "host": [
+            "{{baseUrl}}"
+          ],
+          "query": [
+            {
+              "disabled": false,
+              "key": "channel_category",
+              "value": "<string>",
+              "description": "通道大类名称"
+            }
+          ],
+          "variable": []
+        },
+        "header": [
+          {
+            "disabled": false,
+            "description": "(Required) 全局唯一的密钥，用于验证和授权访问 API 接口",
+            "key": "api-key",
+            "value": "<string>"
+          },
+          {
+            "disabled": false,
+            "description": "(Required) 项目名, 指定请求所属项目",
+            "key": "sensorsdata-project",
+            "value": "<string>"
+          },
+          {
+            "disabled": false,
+            "description": "(Required) 租户 ID, 用于请求所属租户",
+            "key": "X-Organization-Id",
+            "value": "<string>"
+          },
+          {
+            "key": "Accept",
+            "value": "application/json"
+          }
+        ],
+        "method": "GET",
+        "auth": null
+      },
+      "response": [
+        {
+          "id": "858eb385-fae7-4975-be4e-0fa73a4388cf",
+          "name": "sensorsdata.focus.v1.ChannelInstanceWithDescOpenApiResponse",
+          "originalRequest": {
+            "url": {
+              "path": [
+                "express-action-channel",
+                "channel",
+                "ai",
+                "category",
+                "instance",
+                "get"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "key": "channel_category",
+                  "value": "<string>"
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "disabled": false,
+                "description": "(Required) 全局唯一的密钥，用于验证和授权访问 API 接口",
+                "key": "api-key",
+                "value": "<string>"
+              },
+              {
+                "disabled": false,
+                "description": "(Required) 项目名, 指定请求所属项目",
+                "key": "sensorsdata-project",
+                "value": "<string>"
+              },
+              {
+                "disabled": false,
+                "description": "(Required) 租户 ID, 用于请求所属租户",
+                "key": "X-Organization-Id",
+                "value": "<string>"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "body": {}
+          },
+          "status": "Internal Server Error",
+          "code": 500,
+          "header": [
+            {
+              "key": "Content-Type",
+              "value": "application/json"
+            }
+          ],
+          "body": "{\n  \"code\": \"SUCCESS\",\n  \"data\": {\n    \"channel_instances\": [\n      {\n        \"fields\": [\n          {}\n        ]\n      }\n    ]\n  },\n  \"request_id\": \"1\"\n}",
+          "cookie": [],
+          "_postman_previewlanguage": "json"
+        }
+      ],
+      "event": [],
+      "protocolProfileBehavior": {
+        "disableBodyPruning": true
+      }
+    },
+    {
+      "id": "93c699c6-a95a-4830-aa34-948739d2d789",
+      "name": "获取某个项目下所有可用的通道实例",
+      "request": {
+        "name": "获取某个项目下所有可用的通道实例",
+        "description": {
+          "content": "获取某个项目下所有可用的通道实例",
+          "type": "text/plain"
+        },
+        "url": {
+          "path": [
+            "express-action-channel",
+            "channel",
+            "ai",
+            "instance",
+            "get"
+          ],
+          "host": [
+            "{{baseUrl}}"
+          ],
+          "query": [],
+          "variable": []
+        },
+        "header": [
+          {
+            "disabled": false,
+            "description": "(Required) 全局唯一的密钥，用于验证和授权访问 API 接口",
+            "key": "api-key",
+            "value": "<string>"
+          },
+          {
+            "disabled": false,
+            "description": "(Required) 项目名, 指定请求所属项目",
+            "key": "sensorsdata-project",
+            "value": "<string>"
+          },
+          {
+            "disabled": false,
+            "description": "(Required) 租户 ID, 用于请求所属租户",
+            "key": "X-Organization-Id",
+            "value": "<string>"
+          },
+          {
+            "key": "Accept",
+            "value": "application/json"
+          }
+        ],
+        "method": "GET",
+        "auth": null
+      },
+      "response": [
+        {
+          "id": "be229902-3ae3-4cdf-87c5-7b907438803d",
+          "name": "sensorsdata.focus.v1.ChannelInstanceWithDescOpenApiResponse",
+          "originalRequest": {
+            "url": {
+              "path": [
+                "express-action-channel",
+                "channel",
+                "ai",
+                "instance",
+                "get"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "disabled": false,
+                "description": "(Required) 全局唯一的密钥，用于验证和授权访问 API 接口",
+                "key": "api-key",
+                "value": "<string>"
+              },
+              {
+                "disabled": false,
+                "description": "(Required) 项目名, 指定请求所属项目",
+                "key": "sensorsdata-project",
+                "value": "<string>"
+              },
+              {
+                "disabled": false,
+                "description": "(Required) 租户 ID, 用于请求所属租户",
+                "key": "X-Organization-Id",
+                "value": "<string>"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "body": {}
+          },
+          "status": "Internal Server Error",
+          "code": 500,
+          "header": [
+            {
+              "key": "Content-Type",
+              "value": "application/json"
+            }
+          ],
+          "body": "{\n  \"code\": \"SUCCESS\",\n  \"data\": {\n    \"channel_instances\": [\n      {\n        \"fields\": [\n          {}\n        ]\n      }\n    ]\n  },\n  \"request_id\": \"1\"\n}",
+          "cookie": [],
+          "_postman_previewlanguage": "json"
+        }
+      ],
+      "event": [],
+      "protocolProfileBehavior": {
+        "disableBodyPruning": true
+      }
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "/api/v3/focus/v1",
+      "key": "baseUrl"
+    }
+  ],
+  "info": {
+    "_postman_id": "18cb1fa3-6a81-4db9-9bf8-1fdf842db8de",
+    "name": "神策智能运营",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "通道相关控制流 Open Api 定义",
+      "type": "text/plain"
+    }
+  }
+}

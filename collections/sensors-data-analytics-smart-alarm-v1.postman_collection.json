@@ -1,0 +1,396 @@
+{
+  "item": [
+    {
+      "id": "bcb12159-0bcd-42a7-8db0-58a5a5cfef68",
+      "name": "获取一个预警配置的详细信息",
+      "request": {
+        "name": "获取一个预警配置的详细信息",
+        "description": {
+          "content": "获取一个预警配置的详细信息",
+          "type": "text/plain"
+        },
+        "url": {
+          "path": [
+            "smart-alarm",
+            "detail"
+          ],
+          "host": [
+            "{{baseUrl}}"
+          ],
+          "query": [
+            {
+              "disabled": false,
+              "key": "config_id",
+              "value": "<integer>",
+              "description": "配置 ID"
+            },
+            {
+              "disabled": false,
+              "key": "request_id",
+              "value": "<string>",
+              "description": "本次请求 ID, 方便后续追踪问题"
+            }
+          ],
+          "variable": []
+        },
+        "header": [
+          {
+            "disabled": false,
+            "description": "(Required) 全局唯一的密钥，用于验证和授权访问 API 接口",
+            "key": "api-key",
+            "value": "<string>"
+          },
+          {
+            "disabled": false,
+            "description": "(Required) 项目名, 指定请求所属项目",
+            "key": "sensorsdata-project",
+            "value": "<string>"
+          },
+          {
+            "key": "Accept",
+            "value": "application/json"
+          }
+        ],
+        "method": "GET",
+        "auth": null
+      },
+      "response": [
+        {
+          "id": "ee44b9f8-42c2-4b60-8ac1-8b98a6c9886c",
+          "name": "sensorsdata.analytics.v1.SmartAlarmConfigResponse",
+          "originalRequest": {
+            "url": {
+              "path": [
+                "smart-alarm",
+                "detail"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "key": "config_id",
+                  "value": "1"
+                },
+                {
+                  "key": "request_id",
+                  "value": "12345696321548954"
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "disabled": false,
+                "description": "(Required) 全局唯一的密钥，用于验证和授权访问 API 接口",
+                "key": "api-key",
+                "value": "<string>"
+              },
+              {
+                "disabled": false,
+                "description": "(Required) 项目名, 指定请求所属项目",
+                "key": "sensorsdata-project",
+                "value": "<string>"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "body": {}
+          },
+          "status": "Internal Server Error",
+          "code": 500,
+          "header": [
+            {
+              "key": "Content-Type",
+              "value": "application/json"
+            }
+          ],
+          "body": "{\n  \"code\": \"SUCCESS\",\n  \"data\": {\n    \"emails\": [\n      \"test1@test.cn\",\n      \"test2@test.cn\"\n    ],\n    \"unit\": \"HOUR\",\n    \"send_alarm\": true,\n    \"id\": 1,\n    \"history\": {\n      \"execute_time\": \"2023-01-08 23:00:00\",\n      \"alarm_time\": \"2023-01-08 23:00:00\",\n      \"alarm_value\": \"0\",\n      \"alarm_last_value\": \"1\",\n      \"alarm_field\": \"event.$Anything.customer_id\",\n      \"alarm_group\": \"landz-cluster\",\n      \"alarm_function\": \"general\",\n      \"alarm_reference\": \"测试\",\n      \"alarm_unit\": \"day\",\n      \"receivers\": [\n        \"test1@test.cn\",\n        \"test2@test.cn\"\n      ]\n    },\n    \"title\": \"测试预警\"\n  },\n  \"request_id\": \"1\"\n}",
+          "cookie": [],
+          "_postman_previewlanguage": "json"
+        }
+      ],
+      "event": [],
+      "protocolProfileBehavior": {
+        "disableBodyPruning": true
+      }
+    },
+    {
+      "id": "73c6bf80-ef23-4832-a5c3-d485ec43bbca",
+      "name": "获取所有的预警列表",
+      "request": {
+        "name": "获取所有的预警列表",
+        "description": {
+          "content": "获取所有的预警列表",
+          "type": "text/plain"
+        },
+        "url": {
+          "path": [
+            "smart-alarm",
+            "all"
+          ],
+          "host": [
+            "{{baseUrl}}"
+          ],
+          "query": [],
+          "variable": []
+        },
+        "header": [
+          {
+            "disabled": false,
+            "description": "(Required) 全局唯一的密钥，用于验证和授权访问 API 接口",
+            "key": "api-key",
+            "value": "<string>"
+          },
+          {
+            "disabled": false,
+            "description": "(Required) 项目名, 指定请求所属项目",
+            "key": "sensorsdata-project",
+            "value": "<string>"
+          },
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          },
+          {
+            "key": "Accept",
+            "value": "application/json"
+          }
+        ],
+        "method": "POST",
+        "auth": null,
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"title\": \"<string>\",\n  \"units\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"create_user_ids\": [\n    \"<integer>\",\n    \"<integer>\"\n  ],\n  \"disables\": [\n    \"<boolean>\",\n    \"<boolean>\"\n  ],\n  \"request_id\": \"<string>\"\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        }
+      },
+      "response": [
+        {
+          "id": "4d492ed9-c673-4e4a-9056-5320387be2ae",
+          "name": "sensorsdata.analytics.v1.SmartAlarmConfigListResponse",
+          "originalRequest": {
+            "url": {
+              "path": [
+                "smart-alarm",
+                "all"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "disabled": false,
+                "description": "(Required) 全局唯一的密钥，用于验证和授权访问 API 接口",
+                "key": "api-key",
+                "value": "<string>"
+              },
+              {
+                "disabled": false,
+                "description": "(Required) 项目名, 指定请求所属项目",
+                "key": "sensorsdata-project",
+                "value": "<string>"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"title\": \"测试预警信息\",\n  \"units\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"create_user_ids\": [\n    \"<integer>\",\n    \"<integer>\"\n  ],\n  \"disables\": [\n    \"<boolean>\",\n    \"<boolean>\"\n  ],\n  \"request_id\": \"12345696321548954\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "status": "Internal Server Error",
+          "code": 500,
+          "header": [
+            {
+              "key": "Content-Type",
+              "value": "application/json"
+            }
+          ],
+          "body": "{\n  \"code\": \"SUCCESS\",\n  \"data\": {\n    \"total\": 10,\n    \"ids\": [\n      1,\n      2,\n      3\n    ]\n  },\n  \"request_id\": \"1\"\n}",
+          "cookie": [],
+          "_postman_previewlanguage": "json"
+        }
+      ],
+      "event": [],
+      "protocolProfileBehavior": {
+        "disableBodyPruning": true
+      }
+    },
+    {
+      "id": "bc9a1915-5a3d-4c82-b3f8-da6859461550",
+      "name": "获取轮询模式某次 execution 的预警结果",
+      "request": {
+        "name": "获取轮询模式某次 execution 的预警结果",
+        "description": {
+          "content": "获取轮询模式某次 execution 的预警结果",
+          "type": "text/plain"
+        },
+        "url": {
+          "path": [
+            "smart-alarm",
+            "polling-execution",
+            "detail"
+          ],
+          "host": [
+            "{{baseUrl}}"
+          ],
+          "query": [
+            {
+              "disabled": false,
+              "key": "config_id",
+              "value": "<integer>",
+              "description": "预警配置 ID"
+            },
+            {
+              "disabled": false,
+              "key": "execution_id",
+              "value": "<long>",
+              "description": "execution ID"
+            },
+            {
+              "disabled": false,
+              "key": "include_non_triggered_results",
+              "value": "<boolean>",
+              "description": "是否返回未触发预警的结果，默认 false"
+            },
+            {
+              "disabled": false,
+              "key": "request_id",
+              "value": "<string>",
+              "description": "本次请求 ID, 方便后续追踪问题"
+            }
+          ],
+          "variable": []
+        },
+        "header": [
+          {
+            "disabled": false,
+            "description": "(Required) 全局唯一的密钥，用于验证和授权访问 API 接口",
+            "key": "api-key",
+            "value": "<string>"
+          },
+          {
+            "disabled": false,
+            "description": "(Required) 项目名, 指定请求所属项目",
+            "key": "sensorsdata-project",
+            "value": "<string>"
+          },
+          {
+            "key": "Accept",
+            "value": "application/json"
+          }
+        ],
+        "method": "GET",
+        "auth": null
+      },
+      "response": [
+        {
+          "id": "8599bc0e-e80d-4b40-9de9-5e547b08f7b3",
+          "name": "sensorsdata.analytics.v1.SmartAlarmPollingExecutionResultResponse",
+          "originalRequest": {
+            "url": {
+              "path": [
+                "smart-alarm",
+                "polling-execution",
+                "detail"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "key": "config_id",
+                  "value": "1"
+                },
+                {
+                  "key": "execution_id",
+                  "value": "456"
+                },
+                {
+                  "key": "include_non_triggered_results",
+                  "value": "false"
+                },
+                {
+                  "key": "request_id",
+                  "value": "12345696321548954"
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "disabled": false,
+                "description": "(Required) 全局唯一的密钥，用于验证和授权访问 API 接口",
+                "key": "api-key",
+                "value": "<string>"
+              },
+              {
+                "disabled": false,
+                "description": "(Required) 项目名, 指定请求所属项目",
+                "key": "sensorsdata-project",
+                "value": "<string>"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "body": {}
+          },
+          "status": "Internal Server Error",
+          "code": 500,
+          "header": [
+            {
+              "key": "Content-Type",
+              "value": "application/json"
+            }
+          ],
+          "body": "{\n  \"code\": \"SUCCESS\",\n  \"data\": {\n    \"non_triggered_results\": [\n      {\n        \"group_value\": \"US\",\n        \"current_value\": \"85\"\n      }\n    ],\n    \"truncated\": true,\n    \"title\": \"测试预警\",\n    \"project_name\": \"production\",\n    \"candidate_group_count\": 100,\n    \"group_by_fields\": \"country\",\n    \"execution_id\": 456,\n    \"unit\": \"HOUR\",\n    \"triggered_group_count\": 2,\n    \"triggered_results\": [\n      {\n        \"group_value\": \"CN\",\n        \"rules\": [\n          \"低于昨天同期 20\",\n          \"高于上一小时 30%\"\n        ],\n        \"current_value\": \"120\"\n      }\n    ],\n    \"config_id\": 1,\n    \"project_id\": 1,\n    \"execute_time\": \"2026-03-23 15:05:00\"\n  },\n  \"request_id\": \"1\"\n}",
+          "cookie": [],
+          "_postman_previewlanguage": "json"
+        }
+      ],
+      "event": [],
+      "protocolProfileBehavior": {
+        "disableBodyPruning": true
+      }
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "/api/v3/analytics/v1",
+      "key": "baseUrl"
+    }
+  ],
+  "info": {
+    "_postman_id": "6bee5b49-71a6-4f17-9635-bf61bebc8099",
+    "name": "神策分析",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "智能预警开放接口",
+      "type": "text/plain"
+    }
+  }
+}

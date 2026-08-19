@@ -1,0 +1,72 @@
+generated: '2026-08-13'
+method: searched
+source: https://docs.sensorsdata.com/sa/docs/open_api_authentication
+docs: https://docs.sensorsdata.com/sa/docs/open_api_authentication
+summary: >-
+  Every Sensors Data OpenAPI operation is authenticated with a project-scoped API key
+  carried in the api-key request header, alongside a sensorsdata-project header that
+  selects the tenant project. The published specs do not declare a securitySchemes block;
+  the credentials appear as required header parameters on all 252 operations, which is
+  why this profile is written from the authentication documentation rather than derived.
+schemes:
+  - id: api-key
+    type: apiKey
+    in: header
+    name: api-key
+    required: true
+    description: >-
+      Global API key used to verify and authorize access to the OpenAPI. Documented as a
+      35-character string, created under Project Settings -> Basic Settings -> API Key
+      Management. The key is bound to BOTH an account and a project, and inherits exactly
+      the permissions of the account it was issued to.
+    lifecycle: >-
+      Keys are created, listed and revoked in the console; an expired key can no longer be
+      copied. No published rotation interval.
+    coverage: 252 of 252 operations declare this header as required
+  - id: sensorsdata-project
+    type: apiKey
+    in: header
+    name: sensorsdata-project
+    required: true
+    description: >-
+      Project (tenant) selector. Not a credential on its own, but required on every call
+      and enforced together with the api-key, which is itself project-bound. Example value
+      "default".
+    coverage: 252 of 252 operations declare this header as required
+  - id: account-id
+    type: apiKey
+    in: header
+    name: account-id
+    required: false
+    description: >-
+      Impersonation header. When present, the call executes as the named account —
+      permissions and audit-log attribution follow that account. Documented as usable ONLY
+      with an administrator API key.
+    note: documented in the authentication guide; not present as a parameter in the specs
+  - id: X-Organization-Id
+    type: apiKey
+    in: header
+    name: X-Organization-Id
+    required: false
+    description: Organization selector on multi-organization deployments.
+    coverage: 70 of 252 operations declare this header
+oauth2: false
+openid_connect: false
+mutual_tls: false
+notes:
+  - >-
+    OAuth 2.0 at Sensors Data is console SSO for human operators (third-party login,
+    documented at /sa/docs/tech_super_three_oauth), not an OpenAPI authorization grant.
+    There are no API OAuth scopes to catalog, so no scopes artifact is published.
+  - >-
+    Legacy pre-v3 query interfaces additionally accept an API_SECRET or a simulated
+    username/password login; the v3 OpenAPI surface documented here is api-key only.
+  - >-
+    Transport is whatever the customer's cluster ingress terminates — the docs state
+    "HTTP or HTTPS depends on the load balancing configuration at the cluster entrance",
+    so TLS is a deployment choice, not a platform guarantee.
+examples:
+  - >-
+    curl -XGET "http://{host}:8107/api/v3/analytics/v1/project/list"
+    -H "Accept: application/json" -H "Content-Type: application/json"
+    -H "sensorsdata-project: default" -H "api-key: {api-key}"

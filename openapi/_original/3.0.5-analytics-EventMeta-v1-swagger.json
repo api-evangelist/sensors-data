@@ -1,0 +1,369 @@
+{
+  "openapi" : "3.0.1",
+  "info" : {
+    "description" : "事件相关基础元数据",
+    "title" : "神策分析",
+    "version" : ""
+  },
+  "servers" : [ {
+    "url" : "/api/v3/analytics/v1"
+  } ],
+  "paths" : {
+    "/event-meta/events/all" : {
+      "get" : {
+        "description" : "获取事件列表",
+        "operationId" : "ListEventsAll",
+        "parameters" : [ {
+          "description" : "全局唯一的密钥，用于验证和授权访问 API 接口",
+          "in" : "header",
+          "name" : "api-key",
+          "required" : true,
+          "schema" : {
+            "type" : "string"
+          }
+        }, {
+          "description" : "项目名, 指定请求所属项目",
+          "in" : "header",
+          "name" : "sensorsdata-project",
+          "required" : true,
+          "schema" : {
+            "type" : "string"
+          }
+        } ],
+        "responses" : {
+          "default" : {
+            "content" : {
+              "application/json" : {
+                "example" : {
+                  "code" : "SUCCESS",
+                  "data" : {
+                    "events" : [ { } ]
+                  },
+                  "request_id" : "1"
+                },
+                "schema" : {
+                  "$ref" : "#/components/schemas/sensorsdata.analytics.v1.ListEventAllResponseHttpApiResult"
+                }
+              }
+            },
+            "description" : "sensorsdata.analytics.v1.ListEventAllResponse"
+          }
+        },
+        "summary" : "获取事件列表",
+        "x-sd-openapi" : {
+          "responseClass" : "com.sensorsdata.analytics.v1.ListEventAllResponse",
+          "isServerStreaming" : false,
+          "grpcServiceBase" : "com.sensorsdata.analytics.v1.EventMetaServiceGrpc.EventMetaServiceImplBase",
+          "internalDesc" : "classes in template for grpc service dynamic invoking",
+          "isClientStreaming" : false
+        }
+      }
+    },
+    "/event-meta/events/tags" : {
+      "get" : {
+        "description" : "获取事件标签列表",
+        "operationId" : "ListEventTags",
+        "parameters" : [ {
+          "description" : "全局唯一的密钥，用于验证和授权访问 API 接口",
+          "in" : "header",
+          "name" : "api-key",
+          "required" : true,
+          "schema" : {
+            "type" : "string"
+          }
+        }, {
+          "description" : "项目名, 指定请求所属项目",
+          "in" : "header",
+          "name" : "sensorsdata-project",
+          "required" : true,
+          "schema" : {
+            "type" : "string"
+          }
+        } ],
+        "responses" : {
+          "default" : {
+            "content" : {
+              "application/json" : {
+                "example" : {
+                  "code" : "SUCCESS",
+                  "data" : {
+                    "tag_infos" : [ { } ]
+                  },
+                  "request_id" : "1"
+                },
+                "schema" : {
+                  "$ref" : "#/components/schemas/sensorsdata.analytics.v1.ListEventTagsResponseHttpApiResult"
+                }
+              }
+            },
+            "description" : "sensorsdata.analytics.v1.ListEventTagsResponse"
+          }
+        },
+        "summary" : "获取事件标签列表",
+        "x-sd-openapi" : {
+          "responseClass" : "com.sensorsdata.analytics.v1.ListEventTagsResponse",
+          "isServerStreaming" : false,
+          "grpcServiceBase" : "com.sensorsdata.analytics.v1.EventMetaServiceGrpc.EventMetaServiceImplBase",
+          "internalDesc" : "classes in template for grpc service dynamic invoking",
+          "isClientStreaming" : false
+        }
+      }
+    }
+  },
+  "components" : {
+    "schemas" : {
+      "sensorsdata.analytics.v1.ListEventTagsResponseHttpApiResult" : {
+        "properties" : {
+          "code" : {
+            "type" : "string"
+          },
+          "message" : {
+            "type" : "string"
+          },
+          "request_id" : {
+            "type" : "string"
+          },
+          "data" : {
+            "$ref" : "#/components/schemas/sensorsdata.analytics.v1.ListEventTagsResponse"
+          },
+          "error_info" : {
+            "$ref" : "#/components/schemas/sensorsdata.common.ErrorInfo"
+          }
+        },
+        "title" : "sensorsdata.analytics.v1.ListEventTagsResponseHttpApiResult",
+        "type" : "object"
+      },
+      "sensorsdata.analytics.v1.EventDefine" : {
+        "description" : "",
+        "properties" : {
+          "id" : {
+            "description" : "",
+            "format" : "int32",
+            "type" : "integer"
+          },
+          "name" : {
+            "description" : "",
+            "type" : "string"
+          },
+          "cname" : {
+            "description" : "",
+            "type" : "string"
+          },
+          "is_virtual" : {
+            "description" : "",
+            "type" : "boolean"
+          },
+          "tags" : {
+            "description" : "",
+            "items" : {
+              "format" : "int32",
+              "type" : "integer"
+            },
+            "type" : "array"
+          },
+          "comment" : {
+            "description" : "",
+            "type" : "string"
+          },
+          "total_count" : {
+            "description" : "",
+            "format" : "int64",
+            "type" : "integer"
+          },
+          "platforms" : {
+            "description" : "",
+            "items" : {
+              "type" : "string"
+            },
+            "type" : "array"
+          },
+          "trigger_opportunity" : {
+            "description" : "",
+            "type" : "string"
+          },
+          "create_time" : {
+            "description" : "",
+            "format" : "date-time",
+            "type" : "string"
+          },
+          "update_time" : {
+            "description" : "",
+            "format" : "date-time",
+            "type" : "string"
+          }
+        },
+        "title" : "EventDefine",
+        "type" : "object"
+      },
+      "sensorsdata.common.HttpApiResult" : {
+        "properties" : {
+          "code" : {
+            "type" : "string"
+          },
+          "message" : {
+            "type" : "string"
+          },
+          "request_id" : {
+            "type" : "string"
+          },
+          "data" : {
+            "properties" : { },
+            "type" : "object"
+          },
+          "error_info" : {
+            "$ref" : "#/components/schemas/sensorsdata.common.ErrorInfo"
+          }
+        },
+        "title" : "HttpApiResult",
+        "type" : "object"
+      },
+      "sensorsdata.analytics.v1.ListEventAllResponse" : {
+        "description" : "",
+        "properties" : {
+          "events" : {
+            "description" : "事件列表",
+            "items" : {
+              "$ref" : "#/components/schemas/sensorsdata.analytics.v1.EventDefine"
+            },
+            "type" : "array"
+          }
+        },
+        "title" : "ListEventAllResponse",
+        "type" : "object"
+      },
+      "sensorsdata.analytics.v1.ListEventAllResponseHttpApiResult" : {
+        "properties" : {
+          "code" : {
+            "type" : "string"
+          },
+          "message" : {
+            "type" : "string"
+          },
+          "request_id" : {
+            "type" : "string"
+          },
+          "data" : {
+            "$ref" : "#/components/schemas/sensorsdata.analytics.v1.ListEventAllResponse"
+          },
+          "error_info" : {
+            "$ref" : "#/components/schemas/sensorsdata.common.ErrorInfo"
+          }
+        },
+        "title" : "sensorsdata.analytics.v1.ListEventAllResponseHttpApiResult",
+        "type" : "object"
+      },
+      "sensorsdata.analytics.v1.ListEventTagsResponse" : {
+        "description" : "",
+        "properties" : {
+          "tag_infos" : {
+            "description" : "事件列表",
+            "items" : {
+              "$ref" : "#/components/schemas/sensorsdata.analytics.v1.TagInfo"
+            },
+            "type" : "array"
+          }
+        },
+        "title" : "ListEventTagsResponse",
+        "type" : "object"
+      },
+      "sensorsdata.analytics.v1.TagInfo" : {
+        "description" : "",
+        "properties" : {
+          "id" : {
+            "description" : "",
+            "format" : "int32",
+            "type" : "integer"
+          },
+          "name" : {
+            "description" : "",
+            "type" : "string"
+          },
+          "color" : {
+            "description" : "",
+            "type" : "string"
+          }
+        },
+        "title" : "TagInfo",
+        "type" : "object"
+      },
+      "sensorsdata.common.ErrorCause" : {
+        "properties" : {
+          "error_cause" : {
+            "description" : "致错原因1",
+            "example" : "参数异常1",
+            "type" : "string"
+          },
+          "action_suggestion" : {
+            "description" : "操作建议，针对该原因，建议的解决方式",
+            "example" : "检测入参的数据类型1",
+            "type" : "string"
+          }
+        },
+        "title" : "ErrorCause",
+        "type" : "object"
+      },
+      "sensorsdata.common.ErrorContext" : {
+        "description" : "发生错误时，系统快照信息",
+        "properties" : {
+          "origin_stack" : {
+            "description" : "上游异常的 stack，由系统截获",
+            "type" : "string"
+          },
+          "origin_cause" : {
+            "description" : "上游异常的 cause by，由系统截获",
+            "type" : "string"
+          },
+          "origin_code" : {
+            "description" : "上游异常的错误简码",
+            "type" : "string"
+          },
+          "origin_complete_code" : {
+            "description" : "上游异常的完整错误码",
+            "type" : "string"
+          },
+          "error_extend_desc" : {
+            "description" : "本次异常的辅助说明，可传入",
+            "type" : "string"
+          }
+        },
+        "title" : "ErrorContext",
+        "type" : "object"
+      },
+      "sensorsdata.common.ErrorInfo" : {
+        "properties" : {
+          "code" : {
+            "description" : "具体的错误码",
+            "example" : "XX-D-F-2-1",
+            "type" : "string"
+          },
+          "description" : {
+            "description" : "错误描述",
+            "example" : "前端参数校验异常,PARAMETER_FORMAT_ERROR(quantiles=[10, -90] is not include [0, 100])",
+            "type" : "string"
+          },
+          "system_response" : {
+            "description" : "致错的可能原因列表",
+            "example" : "系统终止了查询处理",
+            "type" : "string"
+          },
+          "error_causes" : {
+            "items" : {
+              "$ref" : "#/components/schemas/sensorsdata.common.ErrorCause"
+            },
+            "type" : "array"
+          },
+          "context" : {
+            "$ref" : "#/components/schemas/sensorsdata.common.ErrorContext"
+          }
+        },
+        "title" : "ErrorInfo",
+        "type" : "object"
+      }
+    }
+  },
+  "x-sd-openapi-service-name" : "EventMeta",
+  "x-sd-openapi-service-name-hyphen" : "event-meta",
+  "x-sd-openapi-app-name" : "analytics",
+  "x-sd-openapi-service-name-zh_cn" : "事件元数据",
+  "x-original-swagger-version" : "2.0"
+}

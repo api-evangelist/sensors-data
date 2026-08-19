@@ -1,0 +1,1433 @@
+{
+  "openapi" : "3.0.1",
+  "info" : {
+    "description" : "渠道追踪开放接口",
+    "title" : "神策分析",
+    "version" : ""
+  },
+  "servers" : [ {
+    "url" : "/api/v3/analytics/v1"
+  } ],
+  "paths" : {
+    "/channel/links/create" : {
+      "post" : {
+        "description" : "渠道链接 - 新建渠道链接",
+        "operationId" : "CreateChannelUrl",
+        "parameters" : [ {
+          "description" : "全局唯一的密钥，用于验证和授权访问 API 接口",
+          "in" : "header",
+          "name" : "api-key",
+          "required" : true,
+          "schema" : {
+            "type" : "string"
+          }
+        }, {
+          "description" : "项目名, 指定请求所属项目",
+          "in" : "header",
+          "name" : "sensorsdata-project",
+          "required" : true,
+          "schema" : {
+            "type" : "string"
+          }
+        } ],
+        "requestBody" : {
+          "content" : {
+            "application/json" : {
+              "schema" : {
+                "$ref" : "#/components/schemas/sensorsdata.analytics.v1.CreateChannelUrlGrpcRequest"
+              }
+            }
+          },
+          "description" : "请求创建渠道链接接口的参数描述",
+          "required" : false
+        },
+        "responses" : {
+          "default" : {
+            "content" : {
+              "application/json" : {
+                "example" : {
+                  "code" : "SUCCESS",
+                  "data" : {
+                    "duplicated" : 2,
+                    "created" : 5,
+                    "channel_urls" : {
+                      "duplicated" : 0,
+                      "image_base64" : "",
+                      "created" : 1,
+                      "channel_urls" : [ {
+                        "id" : 1,
+                        "name" : "APP 通用渠道_活动_20230213_6758",
+                        "app_address" : "推广页面地址",
+                        "short_url" : "短链地址",
+                        "whole_url" : "",
+                        "is_duplicate" : false,
+                        "error_msg" : "",
+                        "resource_base64" : "",
+                        "application_name" : "",
+                        "web_landing_page" : ""
+                      } ],
+                      "failed" : 0,
+                      "status" : "success"
+                    },
+                    "failed" : 2,
+                    "error" : {
+                      "error_msg" : "报错信息",
+                      "error_code" : "12345"
+                    },
+                    "status" : "success"
+                  },
+                  "request_id" : "1"
+                },
+                "schema" : {
+                  "$ref" : "#/components/schemas/sensorsdata.analytics.v1.CreateChannelUrlGrpcResponseHttpApiResult"
+                }
+              }
+            },
+            "description" : "sensorsdata.analytics.v1.CreateChannelUrlGrpcResponse"
+          }
+        },
+        "summary" : "新建渠道链接",
+        "x-sd-openapi" : {
+          "responseClass" : "com.sensorsdata.analytics.v1.CreateChannelUrlGrpcResponse",
+          "isServerStreaming" : false,
+          "requestClass" : "com.sensorsdata.analytics.v1.CreateChannelUrlGrpcRequest",
+          "grpcServiceBase" : "com.sensorsdata.analytics.v1.ChannelServiceGrpc.ChannelServiceImplBase",
+          "internalDesc" : "classes in template for grpc service dynamic invoking",
+          "isClientStreaming" : false
+        },
+        "x-codegen-request-body-name" : "CreateChannelUrlGrpcRequest"
+      }
+    },
+    "/channel/links/update" : {
+      "post" : {
+        "description" : "渠道链接 - 更新渠道链接",
+        "operationId" : "UpdateChannelUrl",
+        "parameters" : [ {
+          "description" : "全局唯一的密钥，用于验证和授权访问 API 接口",
+          "in" : "header",
+          "name" : "api-key",
+          "required" : true,
+          "schema" : {
+            "type" : "string"
+          }
+        }, {
+          "description" : "项目名, 指定请求所属项目",
+          "in" : "header",
+          "name" : "sensorsdata-project",
+          "required" : true,
+          "schema" : {
+            "type" : "string"
+          }
+        } ],
+        "requestBody" : {
+          "content" : {
+            "application/json" : {
+              "schema" : {
+                "$ref" : "#/components/schemas/sensorsdata.analytics.v1.UpdateChannelUrlGrpcRequest"
+              }
+            }
+          },
+          "description" : "请求修改渠道链接接口的参数描述",
+          "required" : false
+        },
+        "responses" : {
+          "default" : {
+            "content" : {
+              "application/json" : {
+                "example" : {
+                  "code" : "SUCCESS",
+                  "data" : {
+                    "update_data_results" : [ {
+                      "id" : 1,
+                      "name" : "修改后渠道名称",
+                      "before_name" : "修改前渠道名称"
+                    } ]
+                  },
+                  "request_id" : "1"
+                },
+                "schema" : {
+                  "$ref" : "#/components/schemas/sensorsdata.analytics.v1.UpdateChannelUrlGrpcResponseHttpApiResult"
+                }
+              }
+            },
+            "description" : "sensorsdata.analytics.v1.UpdateChannelUrlGrpcResponse"
+          }
+        },
+        "summary" : "更新渠道链接",
+        "x-sd-openapi" : {
+          "responseClass" : "com.sensorsdata.analytics.v1.UpdateChannelUrlGrpcResponse",
+          "isServerStreaming" : false,
+          "requestClass" : "com.sensorsdata.analytics.v1.UpdateChannelUrlGrpcRequest",
+          "grpcServiceBase" : "com.sensorsdata.analytics.v1.ChannelServiceGrpc.ChannelServiceImplBase",
+          "internalDesc" : "classes in template for grpc service dynamic invoking",
+          "isClientStreaming" : false
+        },
+        "x-codegen-request-body-name" : "UpdateChannelUrlGrpcRequest"
+      }
+    },
+    "/channel/links/list" : {
+      "post" : {
+        "description" : "渠道链接 - 获取渠道链接列表",
+        "operationId" : "GetChannelUrl",
+        "parameters" : [ {
+          "description" : "全局唯一的密钥，用于验证和授权访问 API 接口",
+          "in" : "header",
+          "name" : "api-key",
+          "required" : true,
+          "schema" : {
+            "type" : "string"
+          }
+        }, {
+          "description" : "项目名, 指定请求所属项目",
+          "in" : "header",
+          "name" : "sensorsdata-project",
+          "required" : true,
+          "schema" : {
+            "type" : "string"
+          }
+        } ],
+        "requestBody" : {
+          "content" : {
+            "application/json" : {
+              "schema" : {
+                "$ref" : "#/components/schemas/sensorsdata.analytics.v1.GetChannelUrlGrpcRequest"
+              }
+            }
+          },
+          "description" : "请求获取渠道列表接口的参数描述",
+          "required" : false
+        },
+        "responses" : {
+          "default" : {
+            "content" : {
+              "application/json" : {
+                "example" : {
+                  "code" : "SUCCESS",
+                  "data" : {
+                    "total_rows" : 200,
+                    "total_page" : 10,
+                    "page_num" : 0,
+                    "detail_results" : [ {
+                      "id" : 1,
+                      "name" : "APP 通用渠道_测试活动_20230203_4996",
+                      "channel_type" : "app_normal",
+                      "device_type" : "通用",
+                      "short_url" : "http://{hostname}:{port}/r/U",
+                      "app_address" : "http://{hostname}:{post}/sa/channel_sa/link_manage?project=default&utm_source=%E6%B5%8B%E8%AF%95%E6%9D%A5%E6%BA%90&utm_campaign=%E6%B5%8B%E8%AF%95%E7%9A%84%E6%B4%BB%E5%8A%A8%25%25&test=%E8%87%AA%E5%AE%9A%E4%B9%89%E5%B1%9E%E6%80%A7&_channel_track_key=U9itljXH",
+                      "parameters" : {
+                        "utm_campaign" : "测试活动"
+                      },
+                      "project_id" : 1,
+                      "create_time" : "2023-02-03 16:19:57",
+                      "update_time" : "2023-02-03 16:19:57",
+                      "short_url_id" : 0,
+                      "channel_track_key" : "U9itljXH",
+                      "is_show_whole_url" : 1
+                    }, {
+                      "id" : 2,
+                      "name" : "App Deeplink 通用渠道_测试应用_20230112_5511",
+                      "channel_type" : "app_deeplink",
+                      "device_type" : "通用",
+                      "short_url" : "https://{hostname}:{port}/sd/xfA/A/W1uy30",
+                      "app_address" : "",
+                      "parameters" : {
+                        "utm_campaign" : "测试活动"
+                      },
+                      "project_id" : 1,
+                      "create_time" : "2023-01-12 18:11:40",
+                      "update_time" : "2023-01-12 18:11:40",
+                      "short_url_id" : 0,
+                      "channel_track_key" : "9jTlm9Gh",
+                      "is_show_whole_url" : 1,
+                      "web_landing_page" : "http://www.test.com",
+                      "application_name" : "测试应用"
+                    }, {
+                      "id" : 3,
+                      "name" : "网页通用渠道_测试的活动%%_20230203_4983",
+                      "channel_type" : "web_normal",
+                      "device_type" : "通用",
+                      "short_url" : "http://{hostname}:{port}/t/E",
+                      "app_address" : "",
+                      "parameters" : {
+                        "utm_campaign" : "测试活动"
+                      },
+                      "project_id" : 1,
+                      "create_time" : "2023-02-03 17:04:09",
+                      "update_time" : "2023-02-03 17:04:09",
+                      "short_url_id" : 0,
+                      "channel_track_key" : "BlCeGScT",
+                      "is_show_whole_url" : 1,
+                      "whole_url" : "http://www.test.com?utm_campaign=%E6%B5%8B%E8%AF%95%E7%9A%84%E6%B4%BB%E5%8A%A8%25%25&_channel_track_key=BlCeGScT"
+                    }, {
+                      "id" : 4,
+                      "name" : "微信小程序通用渠道_测试活动_20230209_2179",
+                      "channel_type" : "mina_normal",
+                      "device_type" : "通用",
+                      "parameters" : {
+                        "utm_campaign" : "测试活动"
+                      },
+                      "project_id" : 1,
+                      "create_time" : "2023-02-09 15:44:08",
+                      "update_time" : "2023-02-09 15:44:08",
+                      "short_url_id" : 0,
+                      "channel_track_key" : "FlnXUZQe",
+                      "is_show_whole_url" : 1,
+                      "whole_url" : "pages/details/index?id=2323323&sa_utm=j"
+                    }, {
+                      "id" : 5,
+                      "name" : "支付宝小程序通用渠道_测试活动_20230203_3007",
+                      "channel_type" : "alipay_mini_track",
+                      "device_type" : "通用",
+                      "app_address" : "",
+                      "parameters" : {
+                        "utm_campaign" : "测试活动"
+                      },
+                      "project_id" : 1,
+                      "create_time" : "2023-02-03 17:05:09",
+                      "update_time" : "2023-02-03 17:05:09",
+                      "short_url_id" : 0,
+                      "channel_track_key" : "l7dkBwWi",
+                      "is_show_whole_url" : 1,
+                      "whole_url" : "https://ds.alipay.com/?scheme=alipays%3A%2F%2Fplatformapi%2Fstartapp%3FappId%3D907%26page%3Dpage%2Fcommon%2Fsrch%2Fsech%26qry%3Dsa_utm%253Ds"
+                    } ],
+                    "page_size" : 20
+                  },
+                  "request_id" : "1"
+                },
+                "schema" : {
+                  "$ref" : "#/components/schemas/sensorsdata.analytics.v1.GetChannelUrlGrpcResponseHttpApiResult"
+                }
+              }
+            },
+            "description" : "sensorsdata.analytics.v1.GetChannelUrlGrpcResponse"
+          }
+        },
+        "summary" : "获取渠道链接列表",
+        "x-sd-openapi" : {
+          "responseClass" : "com.sensorsdata.analytics.v1.GetChannelUrlGrpcResponse",
+          "isServerStreaming" : false,
+          "requestClass" : "com.sensorsdata.analytics.v1.GetChannelUrlGrpcRequest",
+          "grpcServiceBase" : "com.sensorsdata.analytics.v1.ChannelServiceGrpc.ChannelServiceImplBase",
+          "internalDesc" : "classes in template for grpc service dynamic invoking",
+          "isClientStreaming" : false
+        },
+        "x-codegen-request-body-name" : "GetChannelUrlGrpcRequest"
+      }
+    },
+    "/channel/links/delete" : {
+      "post" : {
+        "description" : "渠道链接 - 删除渠道链接",
+        "operationId" : "DeleteChannleUrl",
+        "parameters" : [ {
+          "description" : "全局唯一的密钥，用于验证和授权访问 API 接口",
+          "in" : "header",
+          "name" : "api-key",
+          "required" : true,
+          "schema" : {
+            "type" : "string"
+          }
+        }, {
+          "description" : "项目名, 指定请求所属项目",
+          "in" : "header",
+          "name" : "sensorsdata-project",
+          "required" : true,
+          "schema" : {
+            "type" : "string"
+          }
+        } ],
+        "requestBody" : {
+          "content" : {
+            "application/json" : {
+              "schema" : {
+                "$ref" : "#/components/schemas/sensorsdata.analytics.v1.DeleteChannelUrlGrpcRequest"
+              }
+            }
+          },
+          "description" : "请求删除渠道链接参数描述",
+          "required" : false
+        },
+        "responses" : {
+          "default" : {
+            "content" : {
+              "application/json" : {
+                "example" : {
+                  "code" : "SUCCESS",
+                  "data" : {
+                    "success_channel_link_ids" : [ 1, 5, 7 ]
+                  },
+                  "request_id" : "1"
+                },
+                "schema" : {
+                  "$ref" : "#/components/schemas/sensorsdata.analytics.v1.DeleteChannelUrlGrpcResponseHttpApiResult"
+                }
+              }
+            },
+            "description" : "sensorsdata.analytics.v1.DeleteChannelUrlGrpcResponse"
+          }
+        },
+        "summary" : "删除渠道链接",
+        "x-sd-openapi" : {
+          "responseClass" : "com.sensorsdata.analytics.v1.DeleteChannelUrlGrpcResponse",
+          "isServerStreaming" : false,
+          "requestClass" : "com.sensorsdata.analytics.v1.DeleteChannelUrlGrpcRequest",
+          "grpcServiceBase" : "com.sensorsdata.analytics.v1.ChannelServiceGrpc.ChannelServiceImplBase",
+          "internalDesc" : "classes in template for grpc service dynamic invoking",
+          "isClientStreaming" : false
+        },
+        "x-codegen-request-body-name" : "DeleteChannelUrlGrpcRequest"
+      }
+    },
+    "/channel/campaigns/list" : {
+      "post" : {
+        "description" : "活动管理 - 获取活动列表",
+        "operationId" : "GetCampaignList",
+        "parameters" : [ {
+          "description" : "全局唯一的密钥，用于验证和授权访问 API 接口",
+          "in" : "header",
+          "name" : "api-key",
+          "required" : true,
+          "schema" : {
+            "type" : "string"
+          }
+        }, {
+          "description" : "项目名, 指定请求所属项目",
+          "in" : "header",
+          "name" : "sensorsdata-project",
+          "required" : true,
+          "schema" : {
+            "type" : "string"
+          }
+        } ],
+        "requestBody" : {
+          "content" : {
+            "application/json" : {
+              "schema" : {
+                "$ref" : "#/components/schemas/sensorsdata.analytics.v1.CampaignListGrpcRequest"
+              }
+            }
+          },
+          "description" : "请求获取活动列表参数描述",
+          "required" : false
+        },
+        "responses" : {
+          "default" : {
+            "content" : {
+              "application/json" : {
+                "example" : {
+                  "code" : "SUCCESS",
+                  "data" : {
+                    "campaign_details" : [ {
+                      "campaign_name" : "推广活动",
+                      "branch_num" : 10,
+                      "latest_use_time" : "2023-02-09 19:19:50"
+                    } ],
+                    "total_rows" : 200,
+                    "total_page" : 10,
+                    "page_num" : 0,
+                    "page_size" : 20
+                  },
+                  "request_id" : "1"
+                },
+                "schema" : {
+                  "$ref" : "#/components/schemas/sensorsdata.analytics.v1.CampaignListGrpcResponseHttpApiResult"
+                }
+              }
+            },
+            "description" : "sensorsdata.analytics.v1.CampaignListGrpcResponse"
+          }
+        },
+        "summary" : "获取活动列表",
+        "x-sd-openapi" : {
+          "responseClass" : "com.sensorsdata.analytics.v1.CampaignListGrpcResponse",
+          "isServerStreaming" : false,
+          "requestClass" : "com.sensorsdata.analytics.v1.CampaignListGrpcRequest",
+          "grpcServiceBase" : "com.sensorsdata.analytics.v1.ChannelServiceGrpc.ChannelServiceImplBase",
+          "internalDesc" : "classes in template for grpc service dynamic invoking",
+          "isClientStreaming" : false
+        },
+        "x-codegen-request-body-name" : "CampaignListGrpcRequest"
+      }
+    }
+  },
+  "components" : {
+    "schemas" : {
+      "sensorsdata.analytics.v1.GrpcCampaignData" : {
+        "description" : "活动管理明细信息参数描述",
+        "properties" : {
+          "campaign_name" : {
+            "description" : "活动名称",
+            "example" : "推广活动",
+            "type" : "string"
+          },
+          "branch_num" : {
+            "description" : "链接数量",
+            "example" : 10,
+            "format" : "int32",
+            "type" : "integer"
+          },
+          "latest_use_time" : {
+            "description" : "最后创建时间",
+            "example" : "2023-02-09 19:19:50",
+            "type" : "string"
+          }
+        },
+        "title" : "GrpcCampaignData",
+        "type" : "object"
+      },
+      "sensorsdata.analytics.v1.GrpcChannelUrlDetail.ParametersEntry" : {
+        "description" : "",
+        "properties" : {
+          "key" : {
+            "description" : "",
+            "type" : "string"
+          },
+          "value" : {
+            "description" : "",
+            "type" : "string"
+          }
+        },
+        "title" : "ParametersEntry",
+        "type" : "object"
+      },
+      "sensorsdata.analytics.v1.AbroadCallbackEffectivePlanListGrpcResponseHttpApiResult" : {
+        "properties" : {
+          "code" : {
+            "type" : "string"
+          },
+          "message" : {
+            "type" : "string"
+          },
+          "request_id" : {
+            "type" : "string"
+          },
+          "data" : {
+            "$ref" : "#/components/schemas/sensorsdata.analytics.v1.AbroadCallbackEffectivePlanListGrpcResponse"
+          },
+          "error_info" : {
+            "$ref" : "#/components/schemas/sensorsdata.common.ErrorInfo"
+          }
+        },
+        "title" : "sensorsdata.analytics.v1.AbroadCallbackEffectivePlanListGrpcResponseHttpApiResult",
+        "type" : "object"
+      },
+      "sensorsdata.common.HttpApiResult" : {
+        "properties" : {
+          "code" : {
+            "type" : "string"
+          },
+          "message" : {
+            "type" : "string"
+          },
+          "request_id" : {
+            "type" : "string"
+          },
+          "data" : {
+            "properties" : { },
+            "type" : "object"
+          },
+          "error_info" : {
+            "$ref" : "#/components/schemas/sensorsdata.common.ErrorInfo"
+          }
+        },
+        "title" : "HttpApiResult",
+        "type" : "object"
+      },
+      "sensorsdata.analytics.v1.DeleteChannelUrlGrpcRequest" : {
+        "description" : "请求删除渠道链接参数描述",
+        "properties" : {
+          "channel_link_ids" : {
+            "description" : "删除渠道 id 列表",
+            "example" : "[1,3,5,7]",
+            "items" : {
+              "format" : "int32",
+              "type" : "integer"
+            },
+            "type" : "array"
+          }
+        },
+        "title" : "DeleteChannelUrlGrpcRequest",
+        "type" : "object"
+      },
+      "sensorsdata.analytics.v1.GrpcChannelSortInfo" : {
+        "description" : "排序信息参数描述",
+        "properties" : {
+          "sort_field" : {
+            "description" : "排序字段，支持链接数量(branch_num)、最后创建时间(latest_use_time)字段排序，默认按照最后创建时间，降序排序",
+            "example" : "latest_use_time",
+            "type" : "string"
+          },
+          "sort_strategy" : {
+            "description" : "排序策略，DESC 降序、ASC",
+            "example" : "DESC",
+            "type" : "string"
+          }
+        },
+        "title" : "GrpcChannelSortInfo",
+        "type" : "object"
+      },
+      "sensorsdata.analytics.v1.CampaignListGrpcRequest" : {
+        "description" : "请求获取活动列表参数描述",
+        "properties" : {
+          "page_num" : {
+            "description" : "分页页码，0 代表第一页",
+            "example" : 0,
+            "format" : "int32",
+            "type" : "integer"
+          },
+          "page_size" : {
+            "description" : "每页条数",
+            "example" : 20,
+            "format" : "int32",
+            "type" : "integer"
+          },
+          "sort_info" : {
+            "$ref" : "#/components/schemas/sensorsdata.analytics.v1.GrpcChannelSortInfo"
+          }
+        },
+        "title" : "CampaignListGrpcRequest",
+        "type" : "object"
+      },
+      "sensorsdata.common.ErrorContext" : {
+        "description" : "发生错误时，系统快照信息",
+        "properties" : {
+          "origin_stack" : {
+            "description" : "上游异常的 stack，由系统截获",
+            "type" : "string"
+          },
+          "origin_cause" : {
+            "description" : "上游异常的 cause by，由系统截获",
+            "type" : "string"
+          },
+          "origin_code" : {
+            "description" : "上游异常的错误简码",
+            "type" : "string"
+          },
+          "origin_complete_code" : {
+            "description" : "上游异常的完整错误码",
+            "type" : "string"
+          },
+          "error_extend_desc" : {
+            "description" : "本次异常的辅助说明，可传入",
+            "type" : "string"
+          }
+        },
+        "title" : "ErrorContext",
+        "type" : "object"
+      },
+      "sensorsdata.analytics.v1.DeleteChannelUrlGrpcResponse" : {
+        "description" : "删除渠道链接返回结果参数描述",
+        "properties" : {
+          "success_channel_link_ids" : {
+            "description" : "删除成功渠道 id 列表",
+            "example" : "[1,5,7]",
+            "items" : {
+              "format" : "int32",
+              "type" : "integer"
+            },
+            "type" : "array"
+          }
+        },
+        "title" : "DeleteChannelUrlGrpcResponse",
+        "type" : "object"
+      },
+      "sensorsdata.analytics.v1.GetChannelUrlGrpcRequest" : {
+        "description" : "请求获取渠道列表接口的参数描述",
+        "properties" : {
+          "page_num" : {
+            "description" : "分页页码，0 代表第一页",
+            "example" : 0,
+            "format" : "int32",
+            "type" : "integer"
+          },
+          "page_size" : {
+            "description" : "每页条数，单页最大 1000 条",
+            "example" : 20,
+            "format" : "int32",
+            "type" : "integer"
+          },
+          "sort_type" : {
+            "description" : "排序类型，1 ：按照创建时间升序排序；-1：按照创建时间降序排序；2：按照更新时间升序排序；-2：按照更新时间降序排序",
+            "example" : 1,
+            "format" : "int32",
+            "type" : "integer"
+          },
+          "campaign_filters" : {
+            "description" : "所属活动筛选，广告系列活动 utm_campaign，一般用于标识推广活动名称，例如周末大促，双11活动",
+            "example" : "[\"周末大促\",\"双11活动\"]",
+            "items" : {
+              "type" : "string"
+            },
+            "type" : "array"
+          },
+          "device_type_filters" : {
+            "description" : "设备类型筛选，支持的枚举值【通用、iOS、Android】",
+            "example" : "[\"通用\",\"iOS\",\"Android\"]",
+            "items" : {
+              "type" : "string"
+            },
+            "type" : "array"
+          },
+          "channel_type_filters" : {
+            "description" : "渠道类型筛选，app_normal：APP 通用渠道；app_deeplink：APP 通用渠道(包含 Deeplink 能力)；web_normal：网页通用渠道；mina_normal：微信小程序通用渠道；alipay_mini_track：支付宝小程序通用渠道",
+            "example" : "[\"app_normal\",\"app_deeplink\",\"web_normal\",\"mina_normal\",\"alipay_mini_track\"]",
+            "items" : {
+              "type" : "string"
+            },
+            "type" : "array"
+          },
+          "global_filters" : {
+            "description" : "渠道全局筛选，支持按照【链接名称(name)、链接ID(channel_track_key)、推广地址(whole_url)】筛选",
+            "example" : "[\"tDH193ib\",\"小程序\",\"page/index\"]",
+            "items" : {
+              "type" : "string"
+            },
+            "type" : "array"
+          },
+          "application_info_filters" : {
+            "description" : "按照应用名称筛选",
+            "example" : "[\"推广应用\"]",
+            "items" : {
+              "type" : "string"
+            },
+            "type" : "array"
+          },
+          "channel_application_name_filters" : {
+            "description" : "按照 APP 通用渠道(包含 Deeplink 能力) 渠道对应推广应用信息名称筛选",
+            "example" : "[\"deeplink 推广应用\"]",
+            "items" : {
+              "type" : "string"
+            },
+            "type" : "array"
+          }
+        },
+        "title" : "GetChannelUrlGrpcRequest",
+        "type" : "object"
+      },
+      "sensorsdata.analytics.v1.AbroadCallbackEffectivePlanSecretListGrpcResponseHttpApiResult" : {
+        "properties" : {
+          "code" : {
+            "type" : "string"
+          },
+          "message" : {
+            "type" : "string"
+          },
+          "request_id" : {
+            "type" : "string"
+          },
+          "data" : {
+            "$ref" : "#/components/schemas/sensorsdata.analytics.v1.AbroadCallbackEffectivePlanSecretListGrpcResponse"
+          },
+          "error_info" : {
+            "$ref" : "#/components/schemas/sensorsdata.common.ErrorInfo"
+          }
+        },
+        "title" : "sensorsdata.analytics.v1.AbroadCallbackEffectivePlanSecretListGrpcResponseHttpApiResult",
+        "type" : "object"
+      },
+      "sensorsdata.analytics.v1.DeleteChannelUrlGrpcResponseHttpApiResult" : {
+        "properties" : {
+          "code" : {
+            "type" : "string"
+          },
+          "message" : {
+            "type" : "string"
+          },
+          "request_id" : {
+            "type" : "string"
+          },
+          "data" : {
+            "$ref" : "#/components/schemas/sensorsdata.analytics.v1.DeleteChannelUrlGrpcResponse"
+          },
+          "error_info" : {
+            "$ref" : "#/components/schemas/sensorsdata.common.ErrorInfo"
+          }
+        },
+        "title" : "sensorsdata.analytics.v1.DeleteChannelUrlGrpcResponseHttpApiResult",
+        "type" : "object"
+      },
+      "sensorsdata.analytics.v1.CreateChannelUrlGrpcResponse" : {
+        "description" : "创建渠道链接接口返回结果参数描述",
+        "properties" : {
+          "status" : {
+            "description" : "创建状态",
+            "example" : "success",
+            "type" : "string"
+          },
+          "created" : {
+            "description" : "总条数 包含：成功 + 失败 + 重复",
+            "example" : 5,
+            "format" : "int32",
+            "type" : "integer"
+          },
+          "duplicated" : {
+            "description" : "重复条数",
+            "example" : 2,
+            "format" : "int32",
+            "type" : "integer"
+          },
+          "failed" : {
+            "description" : "失败条数",
+            "example" : 2,
+            "format" : "int32",
+            "type" : "integer"
+          },
+          "channel_urls" : {
+            "description" : "渠道链接创建结果列表",
+            "example" : "{\"duplicated\":0,\"image_base64\":\"\",\"created\":1,\"channel_urls\":[{\"id\":1,\"name\":\"APP 通用渠道_活动_20230213_6758\",\"app_address\":\"推广页面地址\",\"short_url\":\"短链地址\",\"whole_url\":\"\",\"is_duplicate\":false,\"error_msg\":\"\",\"resource_base64\":\"\",\"application_name\":\"\",\"web_landing_page\":\"\"}],\"failed\":0,\"status\":\"success\"}",
+            "items" : {
+              "$ref" : "#/components/schemas/sensorsdata.analytics.v1.GrpcChannelUrlCreateResult"
+            },
+            "type" : "array"
+          },
+          "image_base64" : {
+            "description" : "批量创建微信小程序通用渠道，返回第一个图片 base64 编码",
+            "type" : "string"
+          },
+          "error" : {
+            "$ref" : "#/components/schemas/sensorsdata.analytics.v1.GrpcChannelErrorInfo"
+          }
+        },
+        "title" : "CreateChannelUrlGrpcResponse",
+        "type" : "object"
+      },
+      "sensorsdata.analytics.v1.GrpcUpdateChannelUrl" : {
+        "description" : "修改渠道信息",
+        "properties" : {
+          "name" : {
+            "description" : "修改渠道名称",
+            "example" : "修改后渠道名称",
+            "type" : "string"
+          },
+          "id" : {
+            "description" : "修改渠道的主键 id",
+            "example" : 1,
+            "format" : "int32",
+            "type" : "integer"
+          }
+        },
+        "title" : "GrpcUpdateChannelUrl",
+        "type" : "object"
+      },
+      "sensorsdata.analytics.v1.CreateChannelUrlGrpcRequest" : {
+        "description" : "请求创建渠道链接接口的参数描述",
+        "properties" : {
+          "channel_urls" : {
+            "description" : "批量创建渠道链接列表，同一批次渠道类型要相同，批量创建链接最多创建 800 个",
+            "example" : "[{\"channel_type\":\"app_normal\",\"app_address\":\"http://{hostname}:{post}/sa/channel_sa/link_manage?project=default\",\"parameters\":{\"utm_source\":\"广告来源\",\"utm_medium\":\"广告媒介\",\"utm_term\":\"关键词\",\"utm_content\":\"广告内容\",\"utm_campaign\":\"活动\"},\"custom_properties\":[],\"device_type\":\"通用\"},{\"channel_type\":\"app_deeplink\",\"parameters\":{\"utm_source\":\"广告来源\",\"utm_medium\":\"广告媒介\",\"utm_term\":\"关键词\",\"utm_content\":\"广告内容\",\"utm_campaign\":\"活动\"},\"custom_properties\":[],\"application_name\":\"测试应用\",\"web_landing_page\":\"http://www.test.com\",\"app_inner_info\":\"t=test\",\"device_type\":\"通用\"},{\"channel_name\":\"web_normal\",\"target_url\":\"http://www.test.com\",\"parameters\":{\"utm_source\":\"广告来源\",\"utm_medium\":\"广告媒介\",\"utm_term\":\"关键词\",\"utm_content\":\"广告内容\",\"utm_campaign\":\"活动\"},\"custom_properties\":[],\"device_type\":\"通用\"},{\"channel_type\":\"mina_normal\",\"target_url\":\"pages/index?id=asdfas\",\"mina_type\":\"EFFICIENCY\",\"app_id\":\"wx123423423\",\"app_secret\":\"123asdfasdfq12342314\",\"parameters\":{\"utm_source\":\"广告来源\",\"utm_medium\":\"广告媒介\",\"utm_term\":\"关键词\",\"utm_content\":\"广告内容\",\"utm_campaign\":\"活动\"},\"custom_properties\":[],\"device_type\":\"通用\"},{\"channel_type\":\"alipay_mini_track\",\"mina_type\":\"ALIPAY_PAGE\",\"target_url\":\"page/common/search/search\",\"app_id\":\"23234211234\",\"parameters\":{\"utm_source\":\"广告来源\",\"utm_medium\":\"广告媒介\",\"utm_term\":\"关键词\",\"utm_content\":\"广告内容\",\"utm_campaign\":\"活动\"},\"custom_properties\":[],\"device_type\":\"通用\"}]",
+            "items" : {
+              "$ref" : "#/components/schemas/sensorsdata.analytics.v1.GrpcChannelUrlData"
+            },
+            "type" : "array"
+          }
+        },
+        "title" : "CreateChannelUrlGrpcRequest",
+        "type" : "object"
+      },
+      "sensorsdata.analytics.v1.ChannelWindowListGrpcResponseHttpApiResult" : {
+        "properties" : {
+          "code" : {
+            "type" : "string"
+          },
+          "message" : {
+            "type" : "string"
+          },
+          "request_id" : {
+            "type" : "string"
+          },
+          "data" : {
+            "$ref" : "#/components/schemas/sensorsdata.analytics.v1.ChannelWindowListGrpcResponse"
+          },
+          "error_info" : {
+            "$ref" : "#/components/schemas/sensorsdata.common.ErrorInfo"
+          }
+        },
+        "title" : "sensorsdata.analytics.v1.ChannelWindowListGrpcResponseHttpApiResult",
+        "type" : "object"
+      },
+      "sensorsdata.analytics.v1.UpdateChannelUrlGrpcResponse" : {
+        "description" : "修改渠道信息返回结果的参数描述",
+        "properties" : {
+          "update_data_results" : {
+            "description" : "批量更新渠道信息返回结果",
+            "example" : "[{\"id\":1,\"name\":\"修改后渠道名称\",\"before_name\":\"修改前渠道名称\"}]",
+            "items" : {
+              "$ref" : "#/components/schemas/sensorsdata.analytics.v1.GrpcUpdateChannelUrlResult"
+            },
+            "type" : "array"
+          }
+        },
+        "title" : "UpdateChannelUrlGrpcResponse",
+        "type" : "object"
+      },
+      "sensorsdata.analytics.v1.UpdateChannelUrlGrpcResponseHttpApiResult" : {
+        "properties" : {
+          "code" : {
+            "type" : "string"
+          },
+          "message" : {
+            "type" : "string"
+          },
+          "request_id" : {
+            "type" : "string"
+          },
+          "data" : {
+            "$ref" : "#/components/schemas/sensorsdata.analytics.v1.UpdateChannelUrlGrpcResponse"
+          },
+          "error_info" : {
+            "$ref" : "#/components/schemas/sensorsdata.common.ErrorInfo"
+          }
+        },
+        "title" : "sensorsdata.analytics.v1.UpdateChannelUrlGrpcResponseHttpApiResult",
+        "type" : "object"
+      },
+      "sensorsdata.analytics.v1.CampaignListGrpcResponseHttpApiResult" : {
+        "properties" : {
+          "code" : {
+            "type" : "string"
+          },
+          "message" : {
+            "type" : "string"
+          },
+          "request_id" : {
+            "type" : "string"
+          },
+          "data" : {
+            "$ref" : "#/components/schemas/sensorsdata.analytics.v1.CampaignListGrpcResponse"
+          },
+          "error_info" : {
+            "$ref" : "#/components/schemas/sensorsdata.common.ErrorInfo"
+          }
+        },
+        "title" : "sensorsdata.analytics.v1.CampaignListGrpcResponseHttpApiResult",
+        "type" : "object"
+      },
+      "sensorsdata.analytics.v1.GrpcUpdateChannelUrlResult" : {
+        "description" : "更新渠道",
+        "properties" : {
+          "id" : {
+            "description" : "修改渠道的主键 id",
+            "example" : 1,
+            "format" : "int32",
+            "type" : "integer"
+          },
+          "name" : {
+            "description" : "修改后的名称",
+            "example" : "修改后渠道名称",
+            "type" : "string"
+          },
+          "before_name" : {
+            "description" : "修改前的名称",
+            "example" : "修改前渠道名称",
+            "type" : "string"
+          },
+          "fail_info" : {
+            "description" : "更新报错信息",
+            "type" : "string"
+          }
+        },
+        "title" : "GrpcUpdateChannelUrlResult",
+        "type" : "object"
+      },
+      "sensorsdata.analytics.v1.GetChannelUrlGrpcResponse" : {
+        "description" : "获取渠道列表接口返回结构描述",
+        "properties" : {
+          "total_rows" : {
+            "description" : "总条数",
+            "example" : 200,
+            "format" : "int64",
+            "type" : "integer"
+          },
+          "total_page" : {
+            "description" : "总页数",
+            "example" : 10,
+            "format" : "int32",
+            "type" : "integer"
+          },
+          "page_num" : {
+            "description" : "分页页码，0 代表第一页",
+            "example" : 0,
+            "format" : "int32",
+            "type" : "integer"
+          },
+          "page_size" : {
+            "description" : "每页条数",
+            "example" : 20,
+            "format" : "int32",
+            "type" : "integer"
+          },
+          "detail_results" : {
+            "description" : "链接明细列表",
+            "example" : "[{\"id\":1,\"name\":\"APP 通用渠道_测试活动_20230203_4996\",\"channel_type\":\"app_normal\",\"device_type\":\"通用\",\"short_url\":\"http://{hostname}:{port}/r/U\",\"app_address\":\"http://{hostname}:{post}/sa/channel_sa/link_manage?project=default&utm_source=%E6%B5%8B%E8%AF%95%E6%9D%A5%E6%BA%90&utm_campaign=%E6%B5%8B%E8%AF%95%E7%9A%84%E6%B4%BB%E5%8A%A8%25%25&test=%E8%87%AA%E5%AE%9A%E4%B9%89%E5%B1%9E%E6%80%A7&_channel_track_key=U9itljXH\",\"parameters\":{\"utm_campaign\":\"测试活动\"},\"project_id\":1,\"create_time\":\"2023-02-03 16:19:57\",\"update_time\":\"2023-02-03 16:19:57\",\"short_url_id\":0,\"channel_track_key\":\"U9itljXH\",\"is_show_whole_url\":1},{\"id\":2,\"name\":\"App Deeplink 通用渠道_测试应用_20230112_5511\",\"channel_type\":\"app_deeplink\",\"device_type\":\"通用\",\"short_url\":\"https://{hostname}:{port}/sd/xfA/A/W1uy30\",\"app_address\":\"\",\"parameters\":{\"utm_campaign\":\"测试活动\"},\"project_id\":1,\"create_time\":\"2023-01-12 18:11:40\",\"update_time\":\"2023-01-12 18:11:40\",\"short_url_id\":0,\"channel_track_key\":\"9jTlm9Gh\",\"is_show_whole_url\":1,\"web_landing_page\":\"http://www.test.com\",\"application_name\":\"测试应用\"},{\"id\":3,\"name\":\"网页通用渠道_测试的活动%%_20230203_4983\",\"channel_type\":\"web_normal\",\"device_type\":\"通用\",\"short_url\":\"http://{hostname}:{port}/t/E\",\"app_address\":\"\",\"parameters\":{\"utm_campaign\":\"测试活动\"},\"project_id\":1,\"create_time\":\"2023-02-03 17:04:09\",\"update_time\":\"2023-02-03 17:04:09\",\"short_url_id\":0,\"channel_track_key\":\"BlCeGScT\",\"is_show_whole_url\":1,\"whole_url\":\"http://www.test.com?utm_campaign=%E6%B5%8B%E8%AF%95%E7%9A%84%E6%B4%BB%E5%8A%A8%25%25&_channel_track_key=BlCeGScT\"},{\"id\":4,\"name\":\"微信小程序通用渠道_测试活动_20230209_2179\",\"channel_type\":\"mina_normal\",\"device_type\":\"通用\",\"parameters\":{\"utm_campaign\":\"测试活动\"},\"project_id\":1,\"create_time\":\"2023-02-09 15:44:08\",\"update_time\":\"2023-02-09 15:44:08\",\"short_url_id\":0,\"channel_track_key\":\"FlnXUZQe\",\"is_show_whole_url\":1,\"whole_url\":\"pages/details/index?id=2323323&sa_utm=j\"},{\"id\":5,\"name\":\"支付宝小程序通用渠道_测试活动_20230203_3007\",\"channel_type\":\"alipay_mini_track\",\"device_type\":\"通用\",\"app_address\":\"\",\"parameters\":{\"utm_campaign\":\"测试活动\"},\"project_id\":1,\"create_time\":\"2023-02-03 17:05:09\",\"update_time\":\"2023-02-03 17:05:09\",\"short_url_id\":0,\"channel_track_key\":\"l7dkBwWi\",\"is_show_whole_url\":1,\"whole_url\":\"https://ds.alipay.com/?scheme=alipays%3A%2F%2Fplatformapi%2Fstartapp%3FappId%3D907%26page%3Dpage%2Fcommon%2Fsrch%2Fsech%26qry%3Dsa_utm%253Ds\"}]",
+            "items" : {
+              "$ref" : "#/components/schemas/sensorsdata.analytics.v1.GrpcChannelUrlDetail"
+            },
+            "type" : "array"
+          }
+        },
+        "title" : "GetChannelUrlGrpcResponse",
+        "type" : "object"
+      },
+      "sensorsdata.analytics.v1.CampaignListGrpcResponse" : {
+        "description" : "获取活动列表接口返回结果参数描述",
+        "properties" : {
+          "total_rows" : {
+            "description" : "总条数",
+            "example" : 200,
+            "format" : "int64",
+            "type" : "integer"
+          },
+          "total_page" : {
+            "description" : "总页数",
+            "example" : 10,
+            "format" : "int32",
+            "type" : "integer"
+          },
+          "page_num" : {
+            "description" : "分页页码，0 代表第一页",
+            "example" : 0,
+            "format" : "int32",
+            "type" : "integer"
+          },
+          "page_size" : {
+            "description" : "每页条数",
+            "example" : 20,
+            "format" : "int32",
+            "type" : "integer"
+          },
+          "campaign_details" : {
+            "description" : "活动明细列表",
+            "example" : "[{\"campaign_name\":\"推广活动\",\"branch_num\":10,\"latest_use_time\":\"2023-02-09 19:19:50\"}]",
+            "items" : {
+              "$ref" : "#/components/schemas/sensorsdata.analytics.v1.GrpcCampaignData"
+            },
+            "type" : "array"
+          }
+        },
+        "title" : "CampaignListGrpcResponse",
+        "type" : "object"
+      },
+      "sensorsdata.analytics.v1.GrpcChannelUrlDetail" : {
+        "description" : "渠道链接详情",
+        "properties" : {
+          "id" : {
+            "description" : "链接主键 id",
+            "example" : 1,
+            "format" : "int32",
+            "type" : "integer"
+          },
+          "name" : {
+            "description" : "链接名称",
+            "example" : "通用渠道链接",
+            "type" : "string"
+          },
+          "channel_type" : {
+            "description" : "渠道类型",
+            "example" : "app_normal",
+            "type" : "string"
+          },
+          "device_type" : {
+            "description" : "设备类型",
+            "example" : "通用",
+            "type" : "string"
+          },
+          "short_url" : {
+            "description" : "短链地址",
+            "example" : "http://{hostname}:{port}/r/U",
+            "type" : "string"
+          },
+          "app_address" : {
+            "description" : "app 链接地址，比如 Android 或 iOS 的下载地址、应用宝微下载地址、中间跳转URL，这网址必须以 http:// 或 https:// 开头",
+            "example" : "http:// 或 https:// 开头",
+            "type" : "string"
+          },
+          "parameters" : {
+            "additionalProperties" : {
+              "description" : "",
+              "type" : "string"
+            },
+            "description" : "自定义渠道属性",
+            "example" : {
+              "utm_term" : "关键词",
+              "utm_campaign" : "活动",
+              "utm_medium" : "广告媒介",
+              "utm_source" : "广告来源",
+              "utm_content" : "广告内容"
+            },
+            "type" : "object"
+          },
+          "project_id" : {
+            "description" : "项目 id",
+            "example" : 1,
+            "format" : "int32",
+            "type" : "integer"
+          },
+          "create_time" : {
+            "description" : "创建时间",
+            "example" : "2023-02-09 19:19:50",
+            "type" : "string"
+          },
+          "update_time" : {
+            "description" : "更新时间",
+            "example" : "2023-02-09 19:19:50",
+            "type" : "string"
+          },
+          "short_url_id" : {
+            "description" : "短链 id",
+            "example" : 1,
+            "format" : "int32",
+            "type" : "integer"
+          },
+          "channel_track_key" : {
+            "description" : "渠道唯一标识 key",
+            "example" : "abcdefg",
+            "type" : "string"
+          },
+          "is_show_whole_url" : {
+            "description" : "是否展示 whole_url",
+            "example" : 1,
+            "format" : "int32",
+            "type" : "integer"
+          },
+          "whole_url" : {
+            "description" : "完整 url 地址",
+            "example" : "http:// 或 https:// 开头",
+            "type" : "string"
+          },
+          "web_landing_page" : {
+            "description" : "网页落地页，如果唤醒 App 失败，需要进入哪个网页，需要以 http:// 或者 https:// 为开头",
+            "example" : "http:// 或 https:// 开头",
+            "type" : "string"
+          },
+          "application_name" : {
+            "description" : "需要推广的应用名称",
+            "example" : "推广应用",
+            "type" : "string"
+          },
+          "application_info_id" : {
+            "description" : "应用 id",
+            "example" : 1,
+            "format" : "int32",
+            "type" : "integer"
+          }
+        },
+        "title" : "GrpcChannelUrlDetail",
+        "type" : "object"
+      },
+      "sensorsdata.analytics.v1.GrpcChannelCustomProperty" : {
+        "description" : "渠道自定义参数",
+        "properties" : {
+          "name" : {
+            "description" : "自定义属性英文名称",
+            "example" : "customize_field",
+            "type" : "string"
+          },
+          "cname" : {
+            "description" : "自定义属性显示名",
+            "example" : "自定义字段",
+            "type" : "string"
+          }
+        },
+        "title" : "GrpcChannelCustomProperty",
+        "type" : "object"
+      },
+      "sensorsdata.analytics.v1.ChannelCallbackSubscriptorGrpcResponseHttpApiResult" : {
+        "properties" : {
+          "code" : {
+            "type" : "string"
+          },
+          "message" : {
+            "type" : "string"
+          },
+          "request_id" : {
+            "type" : "string"
+          },
+          "data" : {
+            "$ref" : "#/components/schemas/sensorsdata.analytics.v1.ChannelCallbackSubscriptorGrpcResponse"
+          },
+          "error_info" : {
+            "$ref" : "#/components/schemas/sensorsdata.common.ErrorInfo"
+          }
+        },
+        "title" : "sensorsdata.analytics.v1.ChannelCallbackSubscriptorGrpcResponseHttpApiResult",
+        "type" : "object"
+      },
+      "sensorsdata.common.ErrorCause" : {
+        "properties" : {
+          "error_cause" : {
+            "description" : "致错原因1",
+            "example" : "参数异常1",
+            "type" : "string"
+          },
+          "action_suggestion" : {
+            "description" : "操作建议，针对该原因，建议的解决方式",
+            "example" : "检测入参的数据类型1",
+            "type" : "string"
+          }
+        },
+        "title" : "ErrorCause",
+        "type" : "object"
+      },
+      "sensorsdata.common.ErrorInfo" : {
+        "properties" : {
+          "code" : {
+            "description" : "具体的错误码",
+            "example" : "XX-D-F-2-1",
+            "type" : "string"
+          },
+          "description" : {
+            "description" : "错误描述",
+            "example" : "前端参数校验异常,PARAMETER_FORMAT_ERROR(quantiles=[10, -90] is not include [0, 100])",
+            "type" : "string"
+          },
+          "system_response" : {
+            "description" : "致错的可能原因列表",
+            "example" : "系统终止了查询处理",
+            "type" : "string"
+          },
+          "error_causes" : {
+            "items" : {
+              "$ref" : "#/components/schemas/sensorsdata.common.ErrorCause"
+            },
+            "type" : "array"
+          },
+          "context" : {
+            "$ref" : "#/components/schemas/sensorsdata.common.ErrorContext"
+          }
+        },
+        "title" : "ErrorInfo",
+        "type" : "object"
+      },
+      "sensorsdata.analytics.v1.GetChannelUrlGrpcResponseHttpApiResult" : {
+        "properties" : {
+          "code" : {
+            "type" : "string"
+          },
+          "message" : {
+            "type" : "string"
+          },
+          "request_id" : {
+            "type" : "string"
+          },
+          "data" : {
+            "$ref" : "#/components/schemas/sensorsdata.analytics.v1.GetChannelUrlGrpcResponse"
+          },
+          "error_info" : {
+            "$ref" : "#/components/schemas/sensorsdata.common.ErrorInfo"
+          }
+        },
+        "title" : "sensorsdata.analytics.v1.GetChannelUrlGrpcResponseHttpApiResult",
+        "type" : "object"
+      },
+      "sensorsdata.analytics.v1.GrpcChannelUrlCreateResult" : {
+        "description" : "渠道创建链接返回结果参数描述",
+        "properties" : {
+          "id" : {
+            "description" : "渠道链接主键 id",
+            "example" : 1,
+            "format" : "int32",
+            "type" : "integer"
+          },
+          "name" : {
+            "description" : "渠道名称",
+            "example" : "APP 通用渠道_活动_20230209_6253",
+            "type" : "string"
+          },
+          "app_address" : {
+            "description" : "推广页面地址",
+            "type" : "string"
+          },
+          "short_url" : {
+            "description" : "短链地址",
+            "type" : "string"
+          },
+          "whole_url" : {
+            "description" : "完整链接地址",
+            "type" : "string"
+          },
+          "is_duplicate" : {
+            "description" : "是否重复创建",
+            "example" : false,
+            "type" : "boolean"
+          },
+          "error_msg" : {
+            "description" : "错误信息",
+            "type" : "string"
+          },
+          "resource_base64" : {
+            "description" : "图片编码",
+            "type" : "string"
+          },
+          "application_name" : {
+            "description" : "应用名称",
+            "example" : "Deeplink 应用创建的应用",
+            "type" : "string"
+          },
+          "web_landing_page" : {
+            "description" : "网页落地页，需要以 http:// 或 https:// 开头",
+            "example" : "http://www.test.com",
+            "type" : "string"
+          }
+        },
+        "title" : "GrpcChannelUrlCreateResult",
+        "type" : "object"
+      },
+      "sensorsdata.analytics.v1.UpdateChannelUrlGrpcRequest" : {
+        "description" : "请求修改渠道链接接口的参数描述",
+        "properties" : {
+          "channel_urls" : {
+            "description" : "批量修改渠道链接列表，批量创建链接最多创建 800 个",
+            "example" : "[{\"id\":1,\"name\":\"修改渠道名称\"}]",
+            "items" : {
+              "$ref" : "#/components/schemas/sensorsdata.analytics.v1.GrpcUpdateChannelUrl"
+            },
+            "type" : "array"
+          }
+        },
+        "title" : "UpdateChannelUrlGrpcRequest",
+        "type" : "object"
+      },
+      "sensorsdata.analytics.v1.GrpcChannelErrorInfo" : {
+        "description" : "创建渠道报错信息",
+        "properties" : {
+          "error_code" : {
+            "description" : "报错码",
+            "example" : "12345",
+            "type" : "string"
+          },
+          "error_msg" : {
+            "description" : "报错描述",
+            "example" : "报错信息",
+            "type" : "string"
+          }
+        },
+        "title" : "GrpcChannelErrorInfo",
+        "type" : "object"
+      },
+      "sensorsdata.analytics.v1.CreateChannelUrlGrpcResponseHttpApiResult" : {
+        "properties" : {
+          "code" : {
+            "type" : "string"
+          },
+          "message" : {
+            "type" : "string"
+          },
+          "request_id" : {
+            "type" : "string"
+          },
+          "data" : {
+            "$ref" : "#/components/schemas/sensorsdata.analytics.v1.CreateChannelUrlGrpcResponse"
+          },
+          "error_info" : {
+            "$ref" : "#/components/schemas/sensorsdata.common.ErrorInfo"
+          }
+        },
+        "title" : "sensorsdata.analytics.v1.CreateChannelUrlGrpcResponseHttpApiResult",
+        "type" : "object"
+      },
+      "sensorsdata.analytics.v1.GrpcChannelUrlData.ParametersEntry" : {
+        "description" : "",
+        "properties" : {
+          "key" : {
+            "description" : "",
+            "type" : "string"
+          },
+          "value" : {
+            "description" : "",
+            "type" : "string"
+          }
+        },
+        "title" : "ParametersEntry",
+        "type" : "object"
+      },
+      "sensorsdata.analytics.v1.GrpcChannelUrlData" : {
+        "description" : "渠道链接",
+        "properties" : {
+          "channel_type" : {
+            "description" : "渠道类型：app_normal：APP 通用渠道；app_deeplink：APP 通用渠道(包含 Deeplink 能力)；web_normal：网页通用渠道；mina_normal：微信小程序通用渠道；alipay_mini_track：支付宝小程序通用渠道",
+            "example" : "app_normal",
+            "type" : "string"
+          },
+          "device_type" : {
+            "description" : "设备类型",
+            "example" : "通用",
+            "type" : "string"
+          },
+          "target_url" : {
+            "description" : "目标地址",
+            "example" : "网址必须以 http:// 或 https:// 开头",
+            "type" : "string"
+          },
+          "app_address" : {
+            "description" : "推广页面地址，比如 Android 或 iOS 的下载地址、应用宝微下载地址、中间跳转URL，这网址必须以 http:// 或 https:// 开头",
+            "example" : "下载网址必须以 http:// 或 https:// 开头",
+            "type" : "string"
+          },
+          "parameters" : {
+            "additionalProperties" : {
+              "description" : "",
+              "type" : "string"
+            },
+            "description" : "自定义渠道属性",
+            "example" : {
+              "utm_term" : "关键词",
+              "utm_campaign" : "活动",
+              "utm_medium" : "广告媒介",
+              "utm_source" : "广告来源",
+              "utm_content" : "广告内容"
+            },
+            "type" : "object"
+          },
+          "app_inner_info" : {
+            "description" : "应用内参数，APP 通用渠道 可以使用这个参数跳转至指定页面，或者展示相应的弹框等，需要和贵方客户端研发约定好",
+            "type" : "string"
+          },
+          "web_landing_page" : {
+            "description" : "网页落地页，需要以 http:// 或 https:// 开头",
+            "example" : "http://www.test.com",
+            "type" : "string"
+          },
+          "application_name" : {
+            "description" : "APP 通用渠道(包含 Deeplink 能力)，需要先在页面上创建 Deeplink 应用",
+            "example" : "Deeplink 应用名称",
+            "type" : "string"
+          },
+          "custom_properties" : {
+            "description" : "开启强校验后，自定义属性字字段，需要指定",
+            "example" : "[{\"id\":1,\"name\":\"自定义属性英文名称\",\"cname\":\"自定义属性显示名\"}]",
+            "items" : {
+              "$ref" : "#/components/schemas/sensorsdata.analytics.v1.GrpcChannelCustomProperty"
+            },
+            "type" : "array"
+          },
+          "app_id" : {
+            "description" : "小程序 appId",
+            "example" : "wx123456",
+            "type" : "string"
+          },
+          "app_secret" : {
+            "description" : "小程序 secret",
+            "example" : "123456789123456789123456789",
+            "type" : "string"
+          },
+          "mina_type" : {
+            "description" : "投放物料类型： 微信小程序通用渠道【页面路径(NONE)、永久有效链接(LINK_LONG)、常规码(GENERAL)、超长码(EFFICIENCY)】；支付宝小程序通用渠道【全局参数(ALIPAY_SCHEME)、页面参数(ALIPAY_PAGE)】",
+            "example" : "LINK_LONG",
+            "type" : "string"
+          },
+          "access_token" : {
+            "description" : "小程序 access_token , 通过 appId 和 secret 可以获取小程序 access_token",
+            "example" : "123456789123456789123456789",
+            "type" : "string"
+          }
+        },
+        "title" : "GrpcChannelUrlData",
+        "type" : "object"
+      }
+    }
+  },
+  "x-sd-openapi-service-name" : "Channel",
+  "x-sd-openapi-service-name-hyphen" : "channel",
+  "x-sd-openapi-app-name" : "analytics",
+  "x-sd-openapi-service-name-zh_cn" : "渠道追踪",
+  "x-original-swagger-version" : "2.0"
+}

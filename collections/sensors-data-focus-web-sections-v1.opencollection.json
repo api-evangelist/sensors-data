@@ -1,0 +1,133 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "神策智能运营"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "获取资源位列表",
+        "type": "http"
+      },
+      "http": {
+        "method": "POST",
+        "url": "/api/v3/focus/v1/web-sections/list",
+        "headers": [
+          {
+            "name": "api-key",
+            "value": ""
+          },
+          {
+            "name": "sensorsdata-project",
+            "value": ""
+          },
+          {
+            "name": "X-Organization-Id",
+            "value": ""
+          }
+        ],
+        "body": {
+          "type": "json",
+          "data": "{}"
+        }
+      },
+      "docs": "获取资源位列表, 不传分页参数时, 默认查前10条, 单次查询最大支持200条"
+    },
+    {
+      "info": {
+        "name": "获取单个资源位",
+        "type": "http"
+      },
+      "http": {
+        "method": "GET",
+        "url": "/api/v3/focus/v1/web-sections/get",
+        "headers": [
+          {
+            "name": "api-key",
+            "value": ""
+          },
+          {
+            "name": "sensorsdata-project",
+            "value": ""
+          },
+          {
+            "name": "X-Organization-Id",
+            "value": ""
+          }
+        ],
+        "params": [
+          {
+            "name": "section_id",
+            "value": "",
+            "type": "query",
+            "description": "资源位ID, 必填字段"
+          }
+        ]
+      },
+      "docs": "获取单个资源位"
+    },
+    {
+      "info": {
+        "name": "获取资源位运营策略版本列表",
+        "type": "http"
+      },
+      "http": {
+        "method": "POST",
+        "url": "/api/v3/focus/v1/web-sections/strategy-version/list",
+        "headers": [
+          {
+            "name": "api-key",
+            "value": ""
+          },
+          {
+            "name": "sensorsdata-project",
+            "value": ""
+          },
+          {
+            "name": "X-Organization-Id",
+            "value": ""
+          }
+        ],
+        "body": {
+          "type": "json",
+          "data": "{}"
+        }
+      },
+      "docs": "获取资源位运营策略版本列表, 不传分页参数时, 默认查前10条, 单次查询最大支持200条"
+    },
+    {
+      "info": {
+        "name": "获取单个资源位策略版本配置",
+        "type": "http"
+      },
+      "http": {
+        "method": "GET",
+        "url": "/api/v3/focus/v1/web-sections/strategy-version/get",
+        "headers": [
+          {
+            "name": "api-key",
+            "value": ""
+          },
+          {
+            "name": "sensorsdata-project",
+            "value": ""
+          },
+          {
+            "name": "X-Organization-Id",
+            "value": ""
+          }
+        ],
+        "params": [
+          {
+            "name": "version_id",
+            "value": "",
+            "type": "query",
+            "description": "资源位策略版本ID"
+          }
+        ]
+      },
+      "docs": "获取单个资源位策略版本配置"
+    }
+  ],
+  "bundled": true
+}

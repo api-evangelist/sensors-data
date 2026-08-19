@@ -1,0 +1,1442 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "神策业务门户"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "获取账号列表",
+        "type": "http"
+      },
+      "http": {
+        "method": "GET",
+        "url": "/api/v3/portal/v2/identity/account/list",
+        "headers": [
+          {
+            "name": "api-key",
+            "value": ""
+          },
+          {
+            "name": "sensorsdata-project",
+            "value": ""
+          }
+        ],
+        "params": [
+          {
+            "name": "page_index",
+            "value": "1",
+            "type": "query",
+            "description": "列表页号，默认值：1，取值范围：>=1"
+          },
+          {
+            "name": "page_size",
+            "value": "20",
+            "type": "query",
+            "description": "单页返回最大记录数， 默认值：20，取值范围：1-100"
+          },
+          {
+            "name": "query",
+            "value": "张三",
+            "type": "query",
+            "description": "模糊搜索关键字，模糊匹配账号的 username 或 cname"
+          },
+          {
+            "name": "expand_field",
+            "value": "last_access_time",
+            "type": "query",
+            "description": "扩展字段，多个字段使用英文逗号分隔，例如：last_access_time,xxx"
+          }
+        ]
+      },
+      "docs": "获取账号列表，包含账号的基本信息、角色的简要信息以及账号的扩展属性值；如需获取账号更多的详细信息，可使用「获取单个账号信息」接口获取；该接口支持翻页，每页最多返回 100 条记录"
+    },
+    {
+      "info": {
+        "name": "获取单个账号",
+        "type": "http"
+      },
+      "http": {
+        "method": "GET",
+        "url": "/api/v3/portal/v2/identity/account/get",
+        "headers": [
+          {
+            "name": "api-key",
+            "value": ""
+          },
+          {
+            "name": "sensorsdata-project",
+            "value": ""
+          }
+        ],
+        "params": [
+          {
+            "name": "id",
+            "value": "1",
+            "type": "query",
+            "description": "账号 id（id/uuid 任选一个，如果两个字段同时填充会报参数错误）"
+          },
+          {
+            "name": "uuid",
+            "value": "38135721-2938-4585-b19b-396ceb910d88",
+            "type": "query",
+            "description": "账号 uuid（id/uuid 任选一个，如果两个字段同时填充会报错）"
+          }
+        ]
+      },
+      "docs": "获取单个账号信息；包括账号基本信息、账号关联的角色信息、账号扩展属性等；如果通过 id/uuid 无法查询到相应的账号，接口会返回「账号不存在」的错误"
+    },
+    {
+      "info": {
+        "name": "查询通过account name查询账号信息",
+        "type": "http"
+      },
+      "http": {
+        "method": "GET",
+        "url": "/api/v3/portal/v2/identity/account/get-by-name",
+        "headers": [
+          {
+            "name": "api-key",
+            "value": ""
+          },
+          {
+            "name": "sensorsdata-project",
+            "value": ""
+          }
+        ],
+        "params": [
+          {
+            "name": "account_name",
+            "value": "lh@qq.com",
+            "type": "query",
+            "description": "账号名称 必填"
+          },
+          {
+            "name": "is_global",
+            "value": "true",
+            "type": "query",
+            "description": "是否平台账号"
+          }
+        ]
+      },
+      "docs": "获取单个账号信息；包括账号基本信息、账号关联的角色信息、账号扩展属性等；如果通过 name 无法查询到相应的账号，接口会返回「账号不存在」的错误"
+    },
+    {
+      "info": {
+        "name": "根据 api-key 获取对应的账号信息",
+        "type": "http"
+      },
+      "http": {
+        "method": "POST",
+        "url": "/api/v3/portal/v2/identity/account/get-by-api-key",
+        "headers": [
+          {
+            "name": "api-key",
+            "value": ""
+          },
+          {
+            "name": "sensorsdata-project",
+            "value": ""
+          }
+        ],
+        "body": {
+          "type": "json",
+          "data": "{}"
+        }
+      },
+      "docs": "根据 api-key 获取其绑定的账号基本信息；当请求体中 api_key 为空时，返回当前请求鉴权所用 api-key 对应的账号（whoami）。"
+    },
+    {
+      "info": {
+        "name": "邀请平台账号到项目中",
+        "type": "http"
+      },
+      "http": {
+        "method": "POST",
+        "url": "/api/v3/portal/v2/identity/account/project/invite",
+        "headers": [
+          {
+            "name": "api-key",
+            "value": ""
+          },
+          {
+            "name": "sensorsdata-project",
+            "value": ""
+          }
+        ],
+        "body": {
+          "type": "json",
+          "data": "{}"
+        }
+      },
+      "docs": "邀请账号到某个项目中，并绑定职务和角色"
+    },
+    {
+      "info": {
+        "name": "新增账号",
+        "type": "http"
+      },
+      "http": {
+        "method": "POST",
+        "url": "/api/v3/portal/v2/identity/account/add",
+        "headers": [
+          {
+            "name": "api-key",
+            "value": ""
+          },
+          {
+            "name": "sensorsdata-project",
+            "value": ""
+          }
+        ],
+        "body": {
+          "type": "json",
+          "data": "{}"
+        }
+      },
+      "docs": "新增账号，同时为账号绑定角色"
+    },
+    {
+      "info": {
+        "name": "修改账号",
+        "type": "http"
+      },
+      "http": {
+        "method": "POST",
+        "url": "/api/v3/portal/v2/identity/account/update",
+        "headers": [
+          {
+            "name": "api-key",
+            "value": ""
+          },
+          {
+            "name": "sensorsdata-project",
+            "value": ""
+          }
+        ],
+        "body": {
+          "type": "json",
+          "data": "{}"
+        }
+      },
+      "docs": "修改账号信息，同时可以修改账号绑定的角色；根据请求参数中携带的 id/uuid 进行更新；如果通过 id/uuid 无法查询到相应的账号，接口会返回「账号不存在」的错误"
+    },
+    {
+      "info": {
+        "name": "删除账号",
+        "type": "http"
+      },
+      "http": {
+        "method": "POST",
+        "url": "/api/v3/portal/v2/identity/account/delete",
+        "headers": [
+          {
+            "name": "api-key",
+            "value": ""
+          },
+          {
+            "name": "sensorsdata-project",
+            "value": ""
+          }
+        ],
+        "body": {
+          "type": "json",
+          "data": "{}"
+        }
+      },
+      "docs": "删除账号（软删除）；如果只是想要临时禁用账号，后续会恢复该账号，可以使用「禁用账号」接口；如果通过 id/uuid 无法查询到相应的账号，接口会返回「账号不存在」的错误"
+    },
+    {
+      "info": {
+        "name": "禁用账号",
+        "type": "http"
+      },
+      "http": {
+        "method": "POST",
+        "url": "/api/v3/portal/v2/identity/account/disable",
+        "headers": [
+          {
+            "name": "api-key",
+            "value": ""
+          },
+          {
+            "name": "sensorsdata-project",
+            "value": ""
+          }
+        ],
+        "body": {
+          "type": "json",
+          "data": "{}"
+        }
+      },
+      "docs": "禁用账号；账号被禁用后，该账号将无法使用，但该账号对应的数据仍然被保留；被禁用的账号可以通过「启用账号」接口进行恢复"
+    },
+    {
+      "info": {
+        "name": "启用账号",
+        "type": "http"
+      },
+      "http": {
+        "method": "POST",
+        "url": "/api/v3/portal/v2/identity/account/enable",
+        "headers": [
+          {
+            "name": "api-key",
+            "value": ""
+          },
+          {
+            "name": "sensorsdata-project",
+            "value": ""
+          }
+        ],
+        "body": {
+          "type": "json",
+          "data": "{}"
+        }
+      },
+      "docs": "启用账号；启用被禁用的账号，可以指定账号启用后的过期时间，到达该过期时间之后，账号会被自动禁用"
+    },
+    {
+      "info": {
+        "name": "新增账号关联的角色",
+        "type": "http"
+      },
+      "http": {
+        "method": "POST",
+        "url": "/api/v3/portal/v2/identity/account/role/add",
+        "headers": [
+          {
+            "name": "api-key",
+            "value": ""
+          },
+          {
+            "name": "sensorsdata-project",
+            "value": ""
+          }
+        ],
+        "body": {
+          "type": "json",
+          "data": "{}"
+        }
+      },
+      "docs": "新增账号关联的角色列表，接口幂等"
+    },
+    {
+      "info": {
+        "name": "删除账号关联的角色",
+        "type": "http"
+      },
+      "http": {
+        "method": "POST",
+        "url": "/api/v3/portal/v2/identity/account/role/delete",
+        "headers": [
+          {
+            "name": "api-key",
+            "value": ""
+          },
+          {
+            "name": "sensorsdata-project",
+            "value": ""
+          }
+        ],
+        "body": {
+          "type": "json",
+          "data": "{}"
+        }
+      },
+      "docs": "删除账号关联的角色列表，接口幂等"
+    },
+    {
+      "info": {
+        "name": "创建平台账号",
+        "type": "http"
+      },
+      "http": {
+        "method": "POST",
+        "url": "/api/v3/portal/v2/identity/global-account/add",
+        "headers": [
+          {
+            "name": "api-key",
+            "value": ""
+          },
+          {
+            "name": "sensorsdata-project",
+            "value": ""
+          }
+        ],
+        "body": {
+          "type": "json",
+          "data": "{}"
+        }
+      },
+      "docs": "创建平台账号；新建平台账号，同时为账号关联项目信息、角色信息、职位信息等；如果账号已经存在，接口会返回「账号已经存在」的错误"
+    },
+    {
+      "info": {
+        "name": "更新平台账号",
+        "type": "http"
+      },
+      "http": {
+        "method": "POST",
+        "url": "/api/v3/portal/v2/identity/global-account/update",
+        "headers": [
+          {
+            "name": "api-key",
+            "value": ""
+          },
+          {
+            "name": "sensorsdata-project",
+            "value": ""
+          }
+        ],
+        "body": {
+          "type": "json",
+          "data": "{}"
+        }
+      },
+      "docs": "全量更新平台账号；账号 id 和 uuid 二选一填入；全量更新平台账号的基本信息、平台账号关联的项目信息、角色信息、职位信息等"
+    },
+    {
+      "info": {
+        "name": "移除平台账号",
+        "type": "http"
+      },
+      "http": {
+        "method": "POST",
+        "url": "/api/v3/portal/v2/identity/global-account/delete",
+        "headers": [
+          {
+            "name": "api-key",
+            "value": ""
+          },
+          {
+            "name": "sensorsdata-project",
+            "value": ""
+          }
+        ],
+        "body": {
+          "type": "json",
+          "data": "{}"
+        }
+      },
+      "docs": "移除平台账号；如果被删除的账号不是平台账号，接口会返回「不允许删除改账号」的错误"
+    },
+    {
+      "info": {
+        "name": "获取平台账号列表",
+        "type": "http"
+      },
+      "http": {
+        "method": "GET",
+        "url": "/api/v3/portal/v2/identity/global-account/list",
+        "headers": [
+          {
+            "name": "api-key",
+            "value": ""
+          },
+          {
+            "name": "sensorsdata-project",
+            "value": ""
+          }
+        ],
+        "params": [
+          {
+            "name": "page_index",
+            "value": "1",
+            "type": "query",
+            "description": "列表页号，默认值：1，取值范围：>=1"
+          },
+          {
+            "name": "page_size",
+            "value": "20",
+            "type": "query",
+            "description": "单页返回最大记录数， 默认值：20，取值范围：1-100"
+          },
+          {
+            "name": "query",
+            "value": "张三",
+            "type": "query",
+            "description": "模糊搜索关键字，模糊匹配账号的 username 或 cname"
+          }
+        ]
+      },
+      "docs": "获取平台账号列表；包含平台账号的基本信息、平台账号关联的项目信息、角色信息、职位信息等；该接口支持翻页，每页最多返回 100 条记录"
+    },
+    {
+      "info": {
+        "name": "查询单个平台账号",
+        "type": "http"
+      },
+      "http": {
+        "method": "GET",
+        "url": "/api/v3/portal/v2/identity/global-account/get",
+        "headers": [
+          {
+            "name": "api-key",
+            "value": ""
+          },
+          {
+            "name": "sensorsdata-project",
+            "value": ""
+          }
+        ],
+        "params": [
+          {
+            "name": "id",
+            "value": "1",
+            "type": "query",
+            "description": "账号 id（id/uuid 任意选填一个即可。如果均填写，会以id进行查询查询）"
+          },
+          {
+            "name": "uuid",
+            "value": "38135721-2938-4585-b19b-396ceb910d88",
+            "type": "query",
+            "description": "账号 uuid（id/uuid 任意选填一个即可。如果均填写，会以id进行查询操作）"
+          }
+        ]
+      },
+      "docs": "查询单个平台账号；包括平台账号的基本信息、平台账号关联的项目信息、角色信息、职位信息等；如果通过 id/uuid 无法查询到相应的账号，接口会返回「账号不存在」的错误（注意：该接口需升级到 SBP1.5.1 才能使用）"
+    },
+    {
+      "info": {
+        "name": "批量查询平台账号基本信息",
+        "type": "http"
+      },
+      "http": {
+        "method": "POST",
+        "url": "/api/v3/portal/v2/identity/global-account/batch-list",
+        "headers": [
+          {
+            "name": "api-key",
+            "value": ""
+          },
+          {
+            "name": "sensorsdata-project",
+            "value": ""
+          }
+        ],
+        "body": {
+          "type": "json",
+          "data": "{}"
+        }
+      },
+      "docs": "根据指定筛选条件批量查询平台账号；每个平台账号仅包括账号基本信息；支持的筛选条件包括（四选一）「账号 ID」「登录账号」「登录名称」「账号 UUID」；仅支持精确匹配；筛选条件列表最大长度为 100，超过时仅保留前 100 个筛选条件"
+    },
+    {
+      "info": {
+        "name": "获取角色列表",
+        "type": "http"
+      },
+      "http": {
+        "method": "GET",
+        "url": "/api/v3/portal/v2/identity/role/list",
+        "headers": [
+          {
+            "name": "api-key",
+            "value": ""
+          },
+          {
+            "name": "sensorsdata-project",
+            "value": ""
+          }
+        ],
+        "params": [
+          {
+            "name": "page_index",
+            "value": "1",
+            "type": "query",
+            "description": "当前访问页号，默认值：1"
+          },
+          {
+            "name": "page_size",
+            "value": "20",
+            "type": "query",
+            "description": "单页返回最大记录数，默认值：20，取值范围：1-100"
+          },
+          {
+            "name": "query",
+            "value": "管理员",
+            "type": "query",
+            "description": "模糊搜索关键字，模糊匹配角色的 name 或 cname"
+          }
+        ]
+      },
+      "docs": "获取角色列表，仅包含角色的基本信息；该接口支持翻页，每页最多返回 100 条记录；如需获取角色权限数据，可使用「获取角色基本信息以及角色的权限信息」接口获取"
+    },
+    {
+      "info": {
+        "name": "获取角色基本信息和权限信息",
+        "type": "http"
+      },
+      "http": {
+        "method": "GET",
+        "url": "/api/v3/portal/v2/identity/role/get",
+        "headers": [
+          {
+            "name": "api-key",
+            "value": ""
+          },
+          {
+            "name": "sensorsdata-project",
+            "value": ""
+          }
+        ],
+        "params": [
+          {
+            "name": "id",
+            "value": "1",
+            "type": "query",
+            "description": "角色 id"
+          }
+        ]
+      },
+      "docs": "获取角色基本信息以及角色的权限信息；如果通过角色 id 无法查询到相应的账号，接口会返回「角色不存在」的错误"
+    },
+    {
+      "info": {
+        "name": "新增角色并分配权限",
+        "type": "http"
+      },
+      "http": {
+        "method": "POST",
+        "url": "/api/v3/portal/v2/identity/role/add",
+        "headers": [
+          {
+            "name": "api-key",
+            "value": ""
+          },
+          {
+            "name": "sensorsdata-project",
+            "value": ""
+          }
+        ],
+        "body": {
+          "type": "json",
+          "data": "{}"
+        }
+      },
+      "docs": "新增角色，同时设置角色的权限配置（注意：该接口需升级到 SBP1.4.1 才能使用）"
+    },
+    {
+      "info": {
+        "name": "修改角色和权限",
+        "type": "http"
+      },
+      "http": {
+        "method": "POST",
+        "url": "/api/v3/portal/v2/identity/role/update",
+        "headers": [
+          {
+            "name": "api-key",
+            "value": ""
+          },
+          {
+            "name": "sensorsdata-project",
+            "value": ""
+          }
+        ],
+        "body": {
+          "type": "json",
+          "data": "{}"
+        }
+      },
+      "docs": "修改角色基本信息以及角色的权限配置（注意：该接口需升级到 SBP1.4.1 才能使用）；如果通过角色 id 无法查询到相应的账号，接口会返回「角色不存在」的错误"
+    },
+    {
+      "info": {
+        "name": "删除角色",
+        "type": "http"
+      },
+      "http": {
+        "method": "POST",
+        "url": "/api/v3/portal/v2/identity/role/delete",
+        "headers": [
+          {
+            "name": "api-key",
+            "value": ""
+          },
+          {
+            "name": "sensorsdata-project",
+            "value": ""
+          }
+        ],
+        "body": {
+          "type": "json",
+          "data": "{}"
+        }
+      },
+      "docs": "删除角色；如果存在账号关联该角色，需要先取消账号关联之后才能进行角色删除操作；如果通过角色 id 无法查询到相应的账号，接口会返回「角色不存在」的错误"
+    },
+    {
+      "info": {
+        "name": "注册功能资源",
+        "type": "http"
+      },
+      "http": {
+        "method": "POST",
+        "url": "/api/v3/portal/v2/identity/resource/register",
+        "headers": [
+          {
+            "name": "api-key",
+            "value": ""
+          },
+          {
+            "name": "sensorsdata-project",
+            "value": ""
+          }
+        ],
+        "body": {
+          "type": "json",
+          "data": "{}"
+        }
+      },
+      "docs": "注册功能资源以及该功能资源下的操作；如果功能资源已经存在，可以调用该方法进行功能资源的更新"
+    },
+    {
+      "info": {
+        "name": "删除功能资源",
+        "type": "http"
+      },
+      "http": {
+        "method": "POST",
+        "url": "/api/v3/portal/v2/identity/resource/delete",
+        "headers": [
+          {
+            "name": "api-key",
+            "value": ""
+          },
+          {
+            "name": "sensorsdata-project",
+            "value": ""
+          }
+        ],
+        "body": {
+          "type": "json",
+          "data": "{}"
+        }
+      },
+      "docs": "删除功能资源以及该功能资源关联的操作；如果功能资源的 code 不存在，返回值中 flag 会标记为 false，否则会标记为 true"
+    },
+    {
+      "info": {
+        "name": "注册资源分类",
+        "type": "http"
+      },
+      "http": {
+        "method": "POST",
+        "url": "/api/v3/portal/v2/identity/resource/category/register",
+        "headers": [
+          {
+            "name": "api-key",
+            "value": ""
+          },
+          {
+            "name": "sensorsdata-project",
+            "value": ""
+          }
+        ],
+        "body": {
+          "type": "json",
+          "data": "{}"
+        }
+      },
+      "docs": "注册资源分类的操作；如果资源分类已经存在，可以调用该方法对资源分类进行更新操作"
+    },
+    {
+      "info": {
+        "name": "删除资源分类",
+        "type": "http"
+      },
+      "http": {
+        "method": "POST",
+        "url": "/api/v3/portal/v2/identity/resource/category/delete",
+        "headers": [
+          {
+            "name": "api-key",
+            "value": ""
+          },
+          {
+            "name": "sensorsdata-project",
+            "value": ""
+          }
+        ],
+        "body": {
+          "type": "json",
+          "data": "{}"
+        }
+      },
+      "docs": "删除资源分类的操作；如果资源分类和功能资源绑定，则此操作会解除和功能资源的绑定关系，并删除资源分类"
+    },
+    {
+      "info": {
+        "name": "资源分类关联具体的功能资源",
+        "type": "http"
+      },
+      "http": {
+        "method": "POST",
+        "url": "/api/v3/portal/v2/identity/resource/category/bind",
+        "headers": [
+          {
+            "name": "api-key",
+            "value": ""
+          },
+          {
+            "name": "sensorsdata-project",
+            "value": ""
+          }
+        ],
+        "body": {
+          "type": "json",
+          "data": "{}"
+        }
+      },
+      "docs": "资源分类关联具体的功能资源；功能资源只有和具体的资源分类关联后，该功能资源才能展示在前端页面"
+    },
+    {
+      "info": {
+        "name": "获取职务列表",
+        "type": "http"
+      },
+      "http": {
+        "method": "GET",
+        "url": "/api/v3/portal/v2/identity/duty/list",
+        "headers": [
+          {
+            "name": "api-key",
+            "value": ""
+          },
+          {
+            "name": "sensorsdata-project",
+            "value": ""
+          }
+        ],
+        "params": [
+          {
+            "name": "page_index",
+            "value": "1",
+            "type": "query",
+            "description": "列表页号，默认值：1，取值范围：>=1"
+          },
+          {
+            "name": "page_size",
+            "value": "20",
+            "type": "query",
+            "description": "单页返回最大记录数， 默认值：20，取值范围：1-100"
+          },
+          {
+            "name": "query",
+            "value": "普通员工",
+            "type": "query",
+            "description": "模糊搜索关键字，模糊匹配职务名称"
+          }
+        ]
+      },
+      "docs": "获取职务列表，该接口支持翻页，每页最多返回 100 条记录"
+    },
+    {
+      "info": {
+        "name": "添加/更新扩展属性",
+        "type": "http"
+      },
+      "http": {
+        "method": "POST",
+        "url": "/api/v3/portal/v2/identity/attr/upsert",
+        "headers": [
+          {
+            "name": "api-key",
+            "value": ""
+          },
+          {
+            "name": "sensorsdata-project",
+            "value": ""
+          }
+        ],
+        "body": {
+          "type": "json",
+          "data": "{}"
+        }
+      },
+      "docs": "添加/更新扩展属性，如果已经存在，则更新"
+    },
+    {
+      "info": {
+        "name": "获取扩展属性",
+        "type": "http"
+      },
+      "http": {
+        "method": "GET",
+        "url": "/api/v3/portal/v2/identity/attr/query",
+        "headers": [
+          {
+            "name": "api-key",
+            "value": ""
+          },
+          {
+            "name": "sensorsdata-project",
+            "value": ""
+          }
+        ],
+        "params": [
+          {
+            "name": "code",
+            "value": "JOB",
+            "type": "query",
+            "description": "属性编码"
+          }
+        ]
+      },
+      "docs": "获取扩展属性"
+    },
+    {
+      "info": {
+        "name": "删除扩展属性",
+        "type": "http"
+      },
+      "http": {
+        "method": "POST",
+        "url": "/api/v3/portal/v2/identity/attr/delete",
+        "headers": [
+          {
+            "name": "api-key",
+            "value": ""
+          },
+          {
+            "name": "sensorsdata-project",
+            "value": ""
+          }
+        ],
+        "body": {
+          "type": "json",
+          "data": "{}"
+        }
+      },
+      "docs": "删除扩展属性"
+    },
+    {
+      "info": {
+        "name": "新增/更新扩展属性节点信息",
+        "type": "http"
+      },
+      "http": {
+        "method": "POST",
+        "url": "/api/v3/portal/v2/identity/attr/node",
+        "headers": [
+          {
+            "name": "api-key",
+            "value": ""
+          },
+          {
+            "name": "sensorsdata-project",
+            "value": ""
+          }
+        ],
+        "body": {
+          "type": "json",
+          "data": "{}"
+        }
+      },
+      "docs": "不存在则新增，存在则更新"
+    },
+    {
+      "info": {
+        "name": "获取扩展属性节点信息",
+        "type": "http"
+      },
+      "http": {
+        "method": "GET",
+        "url": "/api/v3/portal/v2/identity/attr/node/query",
+        "headers": [
+          {
+            "name": "api-key",
+            "value": ""
+          },
+          {
+            "name": "sensorsdata-project",
+            "value": ""
+          }
+        ],
+        "params": [
+          {
+            "name": "attr_code",
+            "value": "JOB",
+            "type": "query",
+            "description": "所属属性"
+          },
+          {
+            "name": "page_index",
+            "value": "1",
+            "type": "query",
+            "description": "列表页号，默认值：1，取值范围：>=1"
+          },
+          {
+            "name": "page_size",
+            "value": "20",
+            "type": "query",
+            "description": "单页返回最大记录数， 默认值：20，取值范围：1-500"
+          }
+        ],
+        "body": {
+          "type": "json",
+          "data": "{}"
+        }
+      },
+      "docs": "获取节点信息"
+    },
+    {
+      "info": {
+        "name": "删除扩展属性的节点",
+        "type": "http"
+      },
+      "http": {
+        "method": "POST",
+        "url": "/api/v3/portal/v2/identity/attr/node/delete",
+        "headers": [
+          {
+            "name": "api-key",
+            "value": ""
+          },
+          {
+            "name": "sensorsdata-project",
+            "value": ""
+          }
+        ],
+        "body": {
+          "type": "json",
+          "data": "{}"
+        }
+      },
+      "docs": "删除节点"
+    },
+    {
+      "info": {
+        "name": "项目与扩展属性绑定",
+        "type": "http"
+      },
+      "http": {
+        "method": "POST",
+        "url": "/api/v3/portal/v2/identity/attr/project",
+        "headers": [
+          {
+            "name": "api-key",
+            "value": ""
+          },
+          {
+            "name": "sensorsdata-project",
+            "value": ""
+          }
+        ],
+        "body": {
+          "type": "json",
+          "data": "{}"
+        }
+      },
+      "docs": "将对应的项目和扩展属性绑定"
+    },
+    {
+      "info": {
+        "name": "获取项目与扩展属性绑定关系",
+        "type": "http"
+      },
+      "http": {
+        "method": "GET",
+        "url": "/api/v3/portal/v2/identity/attr/project/query",
+        "headers": [
+          {
+            "name": "api-key",
+            "value": ""
+          },
+          {
+            "name": "sensorsdata-project",
+            "value": ""
+          }
+        ],
+        "params": [
+          {
+            "name": "attr_code",
+            "value": "JOB",
+            "type": "query",
+            "description": "扩展属性"
+          },
+          {
+            "name": "project_id",
+            "value": "1",
+            "type": "query",
+            "description": "绑定的项目 id"
+          }
+        ]
+      },
+      "docs": "获取对应的绑定数据"
+    },
+    {
+      "info": {
+        "name": "删除项目与扩展属性绑定关系",
+        "type": "http"
+      },
+      "http": {
+        "method": "POST",
+        "url": "/api/v3/portal/v2/identity/attr/project/delete",
+        "headers": [
+          {
+            "name": "api-key",
+            "value": ""
+          },
+          {
+            "name": "sensorsdata-project",
+            "value": ""
+          }
+        ],
+        "body": {
+          "type": "json",
+          "data": "{}"
+        }
+      },
+      "docs": "删除对应的绑定数据"
+    },
+    {
+      "info": {
+        "name": "将人和扩展属性绑定",
+        "type": "http"
+      },
+      "http": {
+        "method": "POST",
+        "url": "/api/v3/portal/v2/identity/attr/account",
+        "headers": [
+          {
+            "name": "api-key",
+            "value": ""
+          },
+          {
+            "name": "sensorsdata-project",
+            "value": ""
+          }
+        ],
+        "body": {
+          "type": "json",
+          "data": "{}"
+        }
+      },
+      "docs": "将人和扩展属性绑定"
+    },
+    {
+      "info": {
+        "name": "获取人和扩展属性绑定关系",
+        "type": "http"
+      },
+      "http": {
+        "method": "GET",
+        "url": "/api/v3/portal/v2/identity/attr/account/query",
+        "headers": [
+          {
+            "name": "api-key",
+            "value": ""
+          },
+          {
+            "name": "sensorsdata-project",
+            "value": ""
+          }
+        ],
+        "params": [
+          {
+            "name": "user_id",
+            "value": "1",
+            "type": "query",
+            "description": "账号ID"
+          },
+          {
+            "name": "project_id",
+            "value": "1",
+            "type": "query",
+            "description": "项目id, 当扩展属性scope=GLOBAL时,project_id=NULL;scope=PROJECT时,project_id必填"
+          },
+          {
+            "name": "attr_code",
+            "value": "JOB",
+            "type": "query",
+            "description": "扩展属性维度"
+          }
+        ]
+      },
+      "docs": "获取人和扩展属性绑定关系"
+    },
+    {
+      "info": {
+        "name": "删除人和扩展属性节点的绑定关系",
+        "type": "http"
+      },
+      "http": {
+        "method": "POST",
+        "url": "/api/v3/portal/v2/identity/attr/account/delete",
+        "headers": [
+          {
+            "name": "api-key",
+            "value": ""
+          },
+          {
+            "name": "sensorsdata-project",
+            "value": ""
+          }
+        ],
+        "body": {
+          "type": "json",
+          "data": "{}"
+        }
+      },
+      "docs": "将人和扩展属性解绑"
+    },
+    {
+      "info": {
+        "name": "将角色和扩展属性绑定",
+        "type": "http"
+      },
+      "http": {
+        "method": "POST",
+        "url": "/api/v3/portal/v2/identity/attr/role",
+        "headers": [
+          {
+            "name": "api-key",
+            "value": ""
+          },
+          {
+            "name": "sensorsdata-project",
+            "value": ""
+          }
+        ],
+        "body": {
+          "type": "json",
+          "data": "{}"
+        }
+      },
+      "docs": "将角色和扩展属性绑定"
+    },
+    {
+      "info": {
+        "name": "获取角色和扩展属性绑定关系",
+        "type": "http"
+      },
+      "http": {
+        "method": "GET",
+        "url": "/api/v3/portal/v2/identity/attr/role/query",
+        "headers": [
+          {
+            "name": "api-key",
+            "value": ""
+          },
+          {
+            "name": "sensorsdata-project",
+            "value": ""
+          }
+        ],
+        "params": [
+          {
+            "name": "role_id",
+            "value": "1",
+            "type": "query",
+            "description": "角色ID"
+          }
+        ]
+      },
+      "docs": "获取角色和扩展属性绑定关系"
+    },
+    {
+      "info": {
+        "name": "删除角色和扩展属性节点的绑定关系",
+        "type": "http"
+      },
+      "http": {
+        "method": "POST",
+        "url": "/api/v3/portal/v2/identity/attr/role/delete",
+        "headers": [
+          {
+            "name": "api-key",
+            "value": ""
+          },
+          {
+            "name": "sensorsdata-project",
+            "value": ""
+          }
+        ],
+        "body": {
+          "type": "json",
+          "data": "{}"
+        }
+      },
+      "docs": "将角色和扩展属性解绑"
+    },
+    {
+      "info": {
+        "name": "保存业务线的数据资源授权信息",
+        "type": "http"
+      },
+      "http": {
+        "method": "POST",
+        "url": "/api/v3/portal/v2/identity/resource/permission/save",
+        "headers": [
+          {
+            "name": "api-key",
+            "value": ""
+          },
+          {
+            "name": "sensorsdata-project",
+            "value": ""
+          }
+        ],
+        "body": {
+          "type": "json",
+          "data": "{}"
+        }
+      },
+      "docs": "保存单个业务线数据资源的授权信息；一个资源可授权多个权限组。"
+    },
+    {
+      "info": {
+        "name": "批量新增资源的部分权限授权信息",
+        "type": "http"
+      },
+      "http": {
+        "method": "POST",
+        "url": "/api/v3/portal/v2/identity/resource/permission/batch-add",
+        "headers": [
+          {
+            "name": "api-key",
+            "value": ""
+          },
+          {
+            "name": "sensorsdata-project",
+            "value": ""
+          }
+        ],
+        "body": {
+          "type": "json",
+          "data": "{}"
+        }
+      },
+      "docs": "对同一个资源编码下的多个资源批量新增权限授权信息。"
+    },
+    {
+      "info": {
+        "name": "批量删除资源的部分权限授权信息",
+        "type": "http"
+      },
+      "http": {
+        "method": "POST",
+        "url": "/api/v3/portal/v2/identity/resource/permission/batch-delete",
+        "headers": [
+          {
+            "name": "api-key",
+            "value": ""
+          },
+          {
+            "name": "sensorsdata-project",
+            "value": ""
+          }
+        ],
+        "body": {
+          "type": "json",
+          "data": "{}"
+        }
+      },
+      "docs": "对同一个资源编码下的多个资源批量删除指定权限授权信息。"
+    },
+    {
+      "info": {
+        "name": "获取资源权限策略保存的授权信息及授权身份信息",
+        "type": "http"
+      },
+      "http": {
+        "method": "POST",
+        "url": "/api/v3/portal/v2/identity/resource/permission/policies/list",
+        "headers": [
+          {
+            "name": "api-key",
+            "value": ""
+          },
+          {
+            "name": "sensorsdata-project",
+            "value": ""
+          }
+        ],
+        "body": {
+          "type": "json",
+          "data": "{}"
+        }
+      },
+      "docs": "获取 BASE_RESOURCE 权限策略保存的授权信息及授权身份信息。"
+    },
+    {
+      "info": {
+        "name": "批量获取资源权限策略保存的授权信息及授权身份信息",
+        "type": "http"
+      },
+      "http": {
+        "method": "POST",
+        "url": "/api/v3/portal/v2/identity/resource/permission/policies/batch-list",
+        "headers": [
+          {
+            "name": "api-key",
+            "value": ""
+          },
+          {
+            "name": "sensorsdata-project",
+            "value": ""
+          }
+        ],
+        "body": {
+          "type": "json",
+          "data": "{}"
+        }
+      },
+      "docs": "批量获取 BASE_RESOURCE 权限策略保存的授权信息及授权身份信息。"
+    },
+    {
+      "info": {
+        "name": "获取当前人在某个资源下对应多个权限合并后的授权信息",
+        "type": "http"
+      },
+      "http": {
+        "method": "POST",
+        "url": "/api/v3/portal/v2/identity/resource/permission/operation-condition/list",
+        "headers": [
+          {
+            "name": "api-key",
+            "value": ""
+          },
+          {
+            "name": "sensorsdata-project",
+            "value": ""
+          }
+        ],
+        "body": {
+          "type": "json",
+          "data": "{}"
+        }
+      },
+      "docs": "获取当前人在某个资源下对应多个权限合并后的授权信息。"
+    },
+    {
+      "info": {
+        "name": "获取当前人在多个资源下对应多个权限合并后的授权信息",
+        "type": "http"
+      },
+      "http": {
+        "method": "POST",
+        "url": "/api/v3/portal/v2/identity/resource/permission/operation-condition/batch-list",
+        "headers": [
+          {
+            "name": "api-key",
+            "value": ""
+          },
+          {
+            "name": "sensorsdata-project",
+            "value": ""
+          }
+        ],
+        "body": {
+          "type": "json",
+          "data": "{}"
+        }
+      },
+      "docs": "获取当前人在多个资源下对应多个权限合并后的授权信息。"
+    }
+  ],
+  "bundled": true
+}

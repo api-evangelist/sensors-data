@@ -1,0 +1,1233 @@
+{
+  "item": [
+    {
+      "id": "113bb644-7735-45b0-abac-6efb82ea1d0a",
+      "name": "获取操作日志列表",
+      "request": {
+        "name": "获取操作日志列表",
+        "description": {
+          "content": "获取操作日志列表；为了方便于加载不同项目操作日志的数据，需要在请求参数中携带项目 ID，如果请求头携带了 sensorsdata-project 或者在请求参数中携带了 project 参数，会被忽略掉；该接口支持翻页，每页最多返回 100 条记录",
+          "type": "text/plain"
+        },
+        "url": {
+          "path": [
+            "management",
+            "behavior",
+            "list"
+          ],
+          "host": [
+            "{{baseUrl}}"
+          ],
+          "query": [
+            {
+              "disabled": false,
+              "key": "project_id",
+              "value": "<integer>",
+              "description": "(Required) 项目 id"
+            },
+            {
+              "disabled": false,
+              "key": "operation_start_time",
+              "value": "<string>",
+              "description": "日志开始时间，日期格式：yyyy-MM-dd HH:mm:ss"
+            },
+            {
+              "disabled": false,
+              "key": "operation_end_time",
+              "value": "<string>",
+              "description": "日志结束时间，日期格式：yyyy-MM-dd HH:mm:ss"
+            },
+            {
+              "disabled": false,
+              "key": "page_index",
+              "value": "<integer>",
+              "description": "当前访问页号，默认值：1"
+            },
+            {
+              "disabled": false,
+              "key": "page_size",
+              "value": "<integer>",
+              "description": "单页返回最大记录数，默认值：20，取值范围：1-100"
+            },
+            {
+              "disabled": false,
+              "key": "module",
+              "value": "<string>",
+              "description": "功能模块，该字段由 sbp_behavior_define.module 定义"
+            },
+            {
+              "disabled": false,
+              "key": "user_name",
+              "value": "<string>",
+              "description": "用户名，指定时查询当前用户名的操作日志，若没有指定 user_name，该字段会被忽略"
+            },
+            {
+              "disabled": false,
+              "key": "ip",
+              "value": "<string>",
+              "description": "ip地址，指定时查询该ip地址的操作记录，若没有指定 ip，该字段会被忽略"
+            },
+            {
+              "disabled": false,
+              "key": "sort_order",
+              "value": "<string>",
+              "description": "排序，升序还是降序，为空默认为降序，asc：升序，desc：降序"
+            }
+          ],
+          "variable": []
+        },
+        "header": [
+          {
+            "disabled": false,
+            "description": "(Required) 全局唯一的密钥，用于验证和授权访问 API 接口",
+            "key": "api-key",
+            "value": "<string>"
+          },
+          {
+            "disabled": false,
+            "description": "(Required) 项目名, 指定请求所属项目",
+            "key": "sensorsdata-project",
+            "value": "<string>"
+          },
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          },
+          {
+            "key": "Accept",
+            "value": "application/json"
+          }
+        ],
+        "method": "GET",
+        "auth": null,
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"operation_types\": [\n    \"<string>\",\n    \"<string>\"\n  ]\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        }
+      },
+      "response": [
+        {
+          "id": "b702b158-ab81-4e44-9e4c-74a8015ac58d",
+          "name": "sensorsdata.portal.v2.api.ListBehaviorResponse",
+          "originalRequest": {
+            "url": {
+              "path": [
+                "management",
+                "behavior",
+                "list"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "key": "project_id",
+                  "value": "1"
+                },
+                {
+                  "key": "operation_start_time",
+                  "value": "2022-01-01 00:00:00"
+                },
+                {
+                  "key": "operation_end_time",
+                  "value": "2022-01-01 00:00:00"
+                },
+                {
+                  "key": "page_index",
+                  "value": "1"
+                },
+                {
+                  "key": "page_size",
+                  "value": "20"
+                },
+                {
+                  "key": "module",
+                  "value": "passport"
+                },
+                {
+                  "key": "user_name",
+                  "value": "zhang_san"
+                },
+                {
+                  "key": "ip",
+                  "value": "182.150.28.141"
+                },
+                {
+                  "key": "sort_order",
+                  "value": "asc"
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "disabled": false,
+                "description": "(Required) 全局唯一的密钥，用于验证和授权访问 API 接口",
+                "key": "api-key",
+                "value": "<string>"
+              },
+              {
+                "disabled": false,
+                "description": "(Required) 项目名, 指定请求所属项目",
+                "key": "sensorsdata-project",
+                "value": "<string>"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"operation_types\": [\n    \"<string>\",\n    \"<string>\"\n  ]\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "status": "Internal Server Error",
+          "code": 500,
+          "header": [
+            {
+              "key": "Content-Type",
+              "value": "application/json"
+            }
+          ],
+          "body": "{\n  \"code\": \"SUCCESS\",\n  \"data\": {\n    \"page\": {\n      \"total\": 100,\n      \"current_page\": 1,\n      \"page_count\": 100\n    },\n    \"behavior_infos\": [\n      {\n        \"operation_type_name\": \"编辑\",\n        \"operation_time\": \"2022-01-01 00:00:00\",\n        \"project_id\": 1,\n        \"user_name\": \"平台管理员\",\n        \"ip\": \"127.0.0.1\",\n        \"resource_id\": \"1\",\n        \"description\": {\n          \"content\": \"角色「管理员」\"\n        },\n        \"duty\": \"销售\",\n        \"module_name\": \"角色管理\",\n        \"resource_name\": \"管理员\",\n        \"user_agent\": \"Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/108.0.0.0 Safari/537.36\"\n      }\n    ]\n  },\n  \"request_id\": \"1\"\n}",
+          "cookie": [],
+          "_postman_previewlanguage": "json"
+        }
+      ],
+      "event": [],
+      "protocolProfileBehavior": {
+        "disableBodyPruning": true
+      }
+    },
+    {
+      "id": "c82980ae-ffb0-4a6e-9b03-e4c353fc4197",
+      "name": "获取操作日志定义列表",
+      "request": {
+        "name": "获取操作日志定义列表",
+        "description": {
+          "content": "获取操作日志定义列表；该接口支持翻页，每页最多返回 100 条记录",
+          "type": "text/plain"
+        },
+        "url": {
+          "path": [
+            "management",
+            "behavior",
+            "define",
+            "list"
+          ],
+          "host": [
+            "{{baseUrl}}"
+          ],
+          "query": [
+            {
+              "disabled": false,
+              "key": "page_index",
+              "value": "<integer>",
+              "description": "当前访问页号，默认值：1"
+            },
+            {
+              "disabled": false,
+              "key": "page_size",
+              "value": "<integer>",
+              "description": "单页返回最大记录数，默认值：20，取值范围：1-100"
+            },
+            {
+              "disabled": false,
+              "key": "product",
+              "value": "<string>",
+              "description": "声明该「操作日志定义」的产品线"
+            }
+          ],
+          "variable": []
+        },
+        "header": [
+          {
+            "disabled": false,
+            "description": "(Required) 全局唯一的密钥，用于验证和授权访问 API 接口",
+            "key": "api-key",
+            "value": "<string>"
+          },
+          {
+            "disabled": false,
+            "description": "(Required) 项目名, 指定请求所属项目",
+            "key": "sensorsdata-project",
+            "value": "<string>"
+          },
+          {
+            "key": "Accept",
+            "value": "application/json"
+          }
+        ],
+        "method": "GET",
+        "auth": null
+      },
+      "response": [
+        {
+          "id": "f159f915-b909-4466-b296-7536873e20a9",
+          "name": "sensorsdata.portal.v2.api.ListBehaviorDefineResponse",
+          "originalRequest": {
+            "url": {
+              "path": [
+                "management",
+                "behavior",
+                "define",
+                "list"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "key": "page_index",
+                  "value": "1"
+                },
+                {
+                  "key": "page_size",
+                  "value": "20"
+                },
+                {
+                  "key": "product",
+                  "value": "SBP"
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "disabled": false,
+                "description": "(Required) 全局唯一的密钥，用于验证和授权访问 API 接口",
+                "key": "api-key",
+                "value": "<string>"
+              },
+              {
+                "disabled": false,
+                "description": "(Required) 项目名, 指定请求所属项目",
+                "key": "sensorsdata-project",
+                "value": "<string>"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "body": {}
+          },
+          "status": "Internal Server Error",
+          "code": 500,
+          "header": [
+            {
+              "key": "Content-Type",
+              "value": "application/json"
+            }
+          ],
+          "body": "{\n  \"code\": \"SUCCESS\",\n  \"data\": {\n    \"behavior_defines\": [\n      {\n        \"product\": \"SBP\",\n        \"operation_type_name\": \"登录\",\n        \"operation_type\": \"login\",\n        \"module\": \"passport\",\n        \"module_name\": \"系统\"\n      }\n    ],\n    \"page\": {\n      \"total\": 100,\n      \"current_page\": 1,\n      \"page_count\": 100\n    }\n  },\n  \"request_id\": \"1\"\n}",
+          "cookie": [],
+          "_postman_previewlanguage": "json"
+        }
+      ],
+      "event": [],
+      "protocolProfileBehavior": {
+        "disableBodyPruning": true
+      }
+    },
+    {
+      "id": "36d9e23c-a500-446f-aaa2-840e9c81c0de",
+      "name": "查询 OpenAPI 调用日志",
+      "request": {
+        "name": "查询 OpenAPI 调用日志",
+        "description": {
+          "content": "查询指定条件下的 OpenAPI 调用日志分页结果，仅支持管理员调用",
+          "type": "text/plain"
+        },
+        "url": {
+          "path": [
+            "management",
+            "openapi",
+            "log",
+            "list"
+          ],
+          "host": [
+            "{{baseUrl}}"
+          ],
+          "query": [
+            {
+              "disabled": false,
+              "key": "call_time_start",
+              "value": "<long>",
+              "description": "调用开始时间，Unix 时间戳，单位毫秒"
+            },
+            {
+              "disabled": false,
+              "key": "call_time_end",
+              "value": "<long>",
+              "description": "调用结束时间，Unix 时间戳，单位毫秒"
+            },
+            {
+              "disabled": false,
+              "key": "project_id",
+              "value": "<long>",
+              "description": "项目 id"
+            },
+            {
+              "disabled": false,
+              "key": "account_id",
+              "value": "<long>",
+              "description": "账号 id"
+            },
+            {
+              "disabled": false,
+              "key": "module",
+              "value": "<string>",
+              "description": "所属功能模块"
+            },
+            {
+              "disabled": false,
+              "key": "request_id",
+              "value": "<string>",
+              "description": "请求 id"
+            },
+            {
+              "disabled": false,
+              "key": "api_key_id",
+              "value": "<string>",
+              "description": "API Key ID"
+            },
+            {
+              "disabled": false,
+              "key": "api_key_name",
+              "value": "<string>",
+              "description": "API Key 名称"
+            },
+            {
+              "disabled": false,
+              "key": "page_num",
+              "value": "<integer>",
+              "description": "页码，从 1 开始"
+            },
+            {
+              "disabled": false,
+              "key": "page_size",
+              "value": "<integer>",
+              "description": "每页返回条数"
+            }
+          ],
+          "variable": []
+        },
+        "header": [
+          {
+            "disabled": false,
+            "description": "(Required) 全局唯一的密钥，用于验证和授权访问 API 接口",
+            "key": "api-key",
+            "value": "<string>"
+          },
+          {
+            "disabled": false,
+            "description": "(Required) 项目名, 指定请求所属项目",
+            "key": "sensorsdata-project",
+            "value": "<string>"
+          },
+          {
+            "key": "Accept",
+            "value": "application/json"
+          }
+        ],
+        "method": "GET",
+        "auth": null
+      },
+      "response": [
+        {
+          "id": "6a342018-99f9-4c95-bdda-b306f8d40d85",
+          "name": "sensorsdata.portal.v2.api.ListOpenApiLogsResponse",
+          "originalRequest": {
+            "url": {
+              "path": [
+                "management",
+                "openapi",
+                "log",
+                "list"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "key": "call_time_start",
+                  "value": "1711324800000"
+                },
+                {
+                  "key": "call_time_end",
+                  "value": "1711411200000"
+                },
+                {
+                  "key": "project_id",
+                  "value": "1"
+                },
+                {
+                  "key": "account_id",
+                  "value": "10001"
+                },
+                {
+                  "key": "module",
+                  "value": "event"
+                },
+                {
+                  "key": "request_id",
+                  "value": "req-20260325-0001"
+                },
+                {
+                  "key": "api_key_id",
+                  "value": "1"
+                },
+                {
+                  "key": "api_key_name",
+                  "value": "server-token"
+                },
+                {
+                  "key": "page_num",
+                  "value": "1"
+                },
+                {
+                  "key": "page_size",
+                  "value": "20"
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "disabled": false,
+                "description": "(Required) 全局唯一的密钥，用于验证和授权访问 API 接口",
+                "key": "api-key",
+                "value": "<string>"
+              },
+              {
+                "disabled": false,
+                "description": "(Required) 项目名, 指定请求所属项目",
+                "key": "sensorsdata-project",
+                "value": "<string>"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "body": {}
+          },
+          "status": "Internal Server Error",
+          "code": 500,
+          "header": [
+            {
+              "key": "Content-Type",
+              "value": "application/json"
+            }
+          ],
+          "body": "{\n  \"code\": \"SUCCESS\",\n  \"data\": {\n    \"total\": 100,\n    \"page_num\": 1,\n    \"logs\": [\n      {\n        \"module\": \"event\",\n        \"call_time\": 1711324800000,\n        \"project_name\": \"演示项目\",\n        \"api_path\": \"/sa?project=default\",\n        \"api_key_id\": \"1\",\n        \"api_key_name\": \"server-token\",\n        \"account_id\": 10001,\n        \"http_method\": \"POST\",\n        \"principal_uuid\": \"9f4d8f1a-8a65-4d3f-80fd-8f3d7d4baf01\",\n        \"project_id\": 1,\n        \"account_name\": \"admin\",\n        \"client_ip\": \"127.0.0.1\",\n        \"http_status\": 200,\n        \"response_time\": 123,\n        \"request_id\": \"req-20260325-0001\",\n        \"user_agent\": \"Mozilla/5.0\"\n      }\n    ],\n    \"page_size\": 20\n  },\n  \"request_id\": \"1\"\n}",
+          "cookie": [],
+          "_postman_previewlanguage": "json"
+        }
+      ],
+      "event": [],
+      "protocolProfileBehavior": {
+        "disableBodyPruning": true
+      }
+    },
+    {
+      "id": "87bbfe7c-1a65-4184-ada0-70284daa51cb",
+      "name": "获取项目列表",
+      "request": {
+        "name": "获取项目列表",
+        "description": {
+          "content": "获取当前账号已启用的项目信息和项目配置",
+          "type": "text/plain"
+        },
+        "url": {
+          "path": [
+            "management",
+            "project",
+            "list"
+          ],
+          "host": [
+            "{{baseUrl}}"
+          ],
+          "query": [
+            {
+              "disabled": false,
+              "key": "product_name",
+              "value": "<string>",
+              "description": "产品名称，指定该参数则获取的项目信息为该产品下能够访问的项目列表"
+            }
+          ],
+          "variable": []
+        },
+        "header": [
+          {
+            "disabled": false,
+            "description": "(Required) 全局唯一的密钥，用于验证和授权访问 API 接口",
+            "key": "api-key",
+            "value": "<string>"
+          },
+          {
+            "disabled": false,
+            "description": "(Required) 项目名, 指定请求所属项目",
+            "key": "sensorsdata-project",
+            "value": "<string>"
+          },
+          {
+            "key": "Accept",
+            "value": "application/json"
+          }
+        ],
+        "method": "GET",
+        "auth": null
+      },
+      "response": [
+        {
+          "id": "7909d7dc-f6b2-4513-9616-05f4d7e9ec8a",
+          "name": "sensorsdata.portal.v2.api.ListProjectResponse",
+          "originalRequest": {
+            "url": {
+              "path": [
+                "management",
+                "project",
+                "list"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "key": "product_name",
+                  "value": "SA"
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "disabled": false,
+                "description": "(Required) 全局唯一的密钥，用于验证和授权访问 API 接口",
+                "key": "api-key",
+                "value": "<string>"
+              },
+              {
+                "disabled": false,
+                "description": "(Required) 项目名, 指定请求所属项目",
+                "key": "sensorsdata-project",
+                "value": "<string>"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "body": {}
+          },
+          "status": "Internal Server Error",
+          "code": 500,
+          "header": [
+            {
+              "key": "Content-Type",
+              "value": "application/json"
+            }
+          ],
+          "body": "{\n  \"code\": \"SUCCESS\",\n  \"data\": {\n    \"total\": 10,\n    \"projects\": [\n      {\n        \"project\": {\n          \"create_time\": \"2022-01-01 00:00:00\",\n          \"name\": \"default\",\n          \"cname\": \"默认项目\",\n          \"project_status\": \"NORMAL\",\n          \"id\": 1\n        },\n        \"config\": {\n          \"is_schema_limited\": false,\n          \"is_csm\": false,\n          \"customize_default_roles\": \"admin\",\n          \"is_duty_required\": true,\n          \"is_new_sign_up\": false\n        }\n      }\n    ]\n  },\n  \"request_id\": \"1\"\n}",
+          "cookie": [],
+          "_postman_previewlanguage": "json"
+        }
+      ],
+      "event": [],
+      "protocolProfileBehavior": {
+        "disableBodyPruning": true
+      }
+    },
+    {
+      "id": "05dd3a9f-8440-4a5d-ab0a-211f9d34d0b1",
+      "name": "查询通过id或name查询项目信息",
+      "request": {
+        "name": "查询通过id或name查询项目信息",
+        "description": {
+          "content": "获取项目的详细信息",
+          "type": "text/plain"
+        },
+        "url": {
+          "path": [
+            "management",
+            "project",
+            "get"
+          ],
+          "host": [
+            "{{baseUrl}}"
+          ],
+          "query": [
+            {
+              "disabled": false,
+              "key": "project_id",
+              "value": "<integer>",
+              "description": "项目 id"
+            },
+            {
+              "disabled": false,
+              "key": "project_name",
+              "value": "<string>",
+              "description": "项目名称"
+            }
+          ],
+          "variable": []
+        },
+        "header": [
+          {
+            "disabled": false,
+            "description": "(Required) 全局唯一的密钥，用于验证和授权访问 API 接口",
+            "key": "api-key",
+            "value": "<string>"
+          },
+          {
+            "disabled": false,
+            "description": "(Required) 项目名, 指定请求所属项目",
+            "key": "sensorsdata-project",
+            "value": "<string>"
+          },
+          {
+            "key": "Accept",
+            "value": "application/json"
+          }
+        ],
+        "method": "GET",
+        "auth": null
+      },
+      "response": [
+        {
+          "id": "3641e3b2-e0d5-4b10-8f63-45f77f9a714b",
+          "name": "sensorsdata.portal.v2.api.ProjectWithConfig",
+          "originalRequest": {
+            "url": {
+              "path": [
+                "management",
+                "project",
+                "get"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "key": "project_id",
+                  "value": "2"
+                },
+                {
+                  "key": "project_name",
+                  "value": "default"
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "disabled": false,
+                "description": "(Required) 全局唯一的密钥，用于验证和授权访问 API 接口",
+                "key": "api-key",
+                "value": "<string>"
+              },
+              {
+                "disabled": false,
+                "description": "(Required) 项目名, 指定请求所属项目",
+                "key": "sensorsdata-project",
+                "value": "<string>"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "body": {}
+          },
+          "status": "Internal Server Error",
+          "code": 500,
+          "header": [
+            {
+              "key": "Content-Type",
+              "value": "application/json"
+            }
+          ],
+          "body": "{\n  \"code\": \"SUCCESS\",\n  \"data\": {\n    \"project\": {\n      \"create_time\": \"2022-01-01 00:00:00\",\n      \"name\": \"default\",\n      \"cname\": \"默认项目\",\n      \"project_status\": \"NORMAL\",\n      \"id\": 1\n    },\n    \"config\": {\n      \"is_schema_limited\": false,\n      \"is_csm\": false,\n      \"customize_default_roles\": \"admin\",\n      \"is_duty_required\": true,\n      \"is_new_sign_up\": false\n    }\n  },\n  \"request_id\": \"1\"\n}",
+          "cookie": [],
+          "_postman_previewlanguage": "json"
+        }
+      ],
+      "event": [],
+      "protocolProfileBehavior": {
+        "disableBodyPruning": true
+      }
+    },
+    {
+      "id": "f0392a45-9fa0-4e52-8bb2-1c22e75c142a",
+      "name": "查询通过id查询账号绑定的项目",
+      "request": {
+        "name": "查询通过id查询账号绑定的项目",
+        "description": {
+          "content": "获取账号绑定的项目",
+          "type": "text/plain"
+        },
+        "url": {
+          "path": [
+            "management",
+            "project",
+            "get-by-account-id"
+          ],
+          "host": [
+            "{{baseUrl}}"
+          ],
+          "query": [
+            {
+              "disabled": false,
+              "key": "account_id",
+              "value": "<integer>",
+              "description": "(Required) 账号 id"
+            }
+          ],
+          "variable": []
+        },
+        "header": [
+          {
+            "disabled": false,
+            "description": "(Required) 全局唯一的密钥，用于验证和授权访问 API 接口",
+            "key": "api-key",
+            "value": "<string>"
+          },
+          {
+            "disabled": false,
+            "description": "(Required) 项目名, 指定请求所属项目",
+            "key": "sensorsdata-project",
+            "value": "<string>"
+          },
+          {
+            "key": "Accept",
+            "value": "application/json"
+          }
+        ],
+        "method": "GET",
+        "auth": null
+      },
+      "response": [
+        {
+          "id": "6352b776-09c8-4afa-abc7-92cce137a310",
+          "name": "sensorsdata.portal.v2.api.GetProjectsByAccountIdResponse",
+          "originalRequest": {
+            "url": {
+              "path": [
+                "management",
+                "project",
+                "get-by-account-id"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "key": "account_id",
+                  "value": "1"
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "disabled": false,
+                "description": "(Required) 全局唯一的密钥，用于验证和授权访问 API 接口",
+                "key": "api-key",
+                "value": "<string>"
+              },
+              {
+                "disabled": false,
+                "description": "(Required) 项目名, 指定请求所属项目",
+                "key": "sensorsdata-project",
+                "value": "<string>"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "body": {}
+          },
+          "status": "Internal Server Error",
+          "code": 500,
+          "header": [
+            {
+              "key": "Content-Type",
+              "value": "application/json"
+            }
+          ],
+          "body": "{\n  \"code\": \"SUCCESS\",\n  \"data\": {\n    \"projects\": [\n      {\n        \"create_time\": \"2022-01-01 00:00:00\",\n        \"name\": \"default\",\n        \"cname\": \"默认项目\",\n        \"project_status\": \"NORMAL\",\n        \"id\": 1\n      }\n    ]\n  },\n  \"request_id\": \"1\"\n}",
+          "cookie": [],
+          "_postman_previewlanguage": "json"
+        }
+      ],
+      "event": [],
+      "protocolProfileBehavior": {
+        "disableBodyPruning": true
+      }
+    },
+    {
+      "id": "669d5732-f30d-44cb-a0a9-c4bc8f22ea5e",
+      "name": "发送站内消息",
+      "request": {
+        "name": "发送站内消息",
+        "description": {
+          "content": "发送站内消息，支持发送给项目下指定的用户列表或者发送给某一项目下的所有用户；使用该接口发送的消息可以在神策系统右上角的「消息通知」处查看",
+          "type": "text/plain"
+        },
+        "url": {
+          "path": [
+            "management",
+            "notice",
+            "send"
+          ],
+          "host": [
+            "{{baseUrl}}"
+          ],
+          "query": [],
+          "variable": []
+        },
+        "header": [
+          {
+            "disabled": false,
+            "description": "(Required) 全局唯一的密钥，用于验证和授权访问 API 接口",
+            "key": "api-key",
+            "value": "<string>"
+          },
+          {
+            "disabled": false,
+            "description": "(Required) 项目名, 指定请求所属项目",
+            "key": "sensorsdata-project",
+            "value": "<string>"
+          },
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          },
+          {
+            "key": "Accept",
+            "value": "application/json"
+          }
+        ],
+        "method": "POST",
+        "auth": null,
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"description\": \"<string>\",\n  \"operation_type\": \"<string>\",\n  \"uuid\": \"<string>\",\n  \"priority\": \"<string>\",\n  \"accounts\": [\n    \"<integer>\",\n    \"<integer>\"\n  ],\n  \"to_all_accounts\": \"<boolean>\"\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        }
+      },
+      "response": [
+        {
+          "id": "8ca742fe-6146-47c3-b13d-687bf62f565f",
+          "name": "sensorsdata.portal.v2.api.NoticeMessageResponse",
+          "originalRequest": {
+            "url": {
+              "path": [
+                "management",
+                "notice",
+                "send"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "disabled": false,
+                "description": "(Required) 全局唯一的密钥，用于验证和授权访问 API 接口",
+                "key": "api-key",
+                "value": "<string>"
+              },
+              {
+                "disabled": false,
+                "description": "(Required) 项目名, 指定请求所属项目",
+                "key": "sensorsdata-project",
+                "value": "<string>"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"description\": \"{\\\"jump_url\\\": \\\"https://www.sensorsdata.cn/\\\", \\\"content\\\": {\\\"line\\\": \\\"神策数据\\\", \\\"line2\\\": \\\"欢迎使用神策分析\\\", \\\"reservation_day\\\": 18924,\\\"is_success\\\": true}}\",\n  \"operation_type\": \"QUERY\",\n  \"uuid\": \"38135721-2938-4585-b19b-396ceb910d88\",\n  \"priority\": \"MEDDLE\",\n  \"accounts\": [\n    \"<integer>\",\n    \"<integer>\"\n  ],\n  \"to_all_accounts\": false\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "status": "Internal Server Error",
+          "code": 500,
+          "header": [
+            {
+              "key": "Content-Type",
+              "value": "application/json"
+            }
+          ],
+          "body": "{\n  \"code\": \"SUCCESS\",\n  \"data\": {\n    \"notice\": {\n      \"product_line\": \"SA\",\n      \"operation_time\": \"2022-01-01 00:00:00\",\n      \"operation_type\": \"DASHBOARD\",\n      \"id\": 1,\n      \"priority\": \"LOW\",\n      \"uuid\": \"38135721-2938-4585-b19b-396ceb910d88\"\n    }\n  },\n  \"request_id\": \"1\"\n}",
+          "cookie": [],
+          "_postman_previewlanguage": "json"
+        }
+      ],
+      "event": [],
+      "protocolProfileBehavior": {
+        "disableBodyPruning": true
+      }
+    },
+    {
+      "id": "7e8142c5-73ff-4cdb-a115-f73ee873e55f",
+      "name": "查询私有端的版本信息",
+      "request": {
+        "name": "查询私有端的版本信息",
+        "description": {
+          "content": "查询私有端的版本信息",
+          "type": "text/plain"
+        },
+        "url": {
+          "path": [
+            "management",
+            "product",
+            "versions"
+          ],
+          "host": [
+            "{{baseUrl}}"
+          ],
+          "query": [],
+          "variable": []
+        },
+        "header": [
+          {
+            "disabled": false,
+            "description": "(Required) 全局唯一的密钥，用于验证和授权访问 API 接口",
+            "key": "api-key",
+            "value": "<string>"
+          },
+          {
+            "disabled": false,
+            "description": "(Required) 项目名, 指定请求所属项目",
+            "key": "sensorsdata-project",
+            "value": "<string>"
+          },
+          {
+            "key": "Accept",
+            "value": "application/json"
+          }
+        ],
+        "method": "GET",
+        "auth": null
+      },
+      "response": [
+        {
+          "id": "e9784e16-553c-4eba-9cfc-bb79f2363694",
+          "name": "sensorsdata.portal.v2.api.AllProductVersionResponse",
+          "originalRequest": {
+            "url": {
+              "path": [
+                "management",
+                "product",
+                "versions"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "disabled": false,
+                "description": "(Required) 全局唯一的密钥，用于验证和授权访问 API 接口",
+                "key": "api-key",
+                "value": "<string>"
+              },
+              {
+                "disabled": false,
+                "description": "(Required) 项目名, 指定请求所属项目",
+                "key": "sensorsdata-project",
+                "value": "<string>"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "body": {}
+          },
+          "status": "Internal Server Error",
+          "code": 500,
+          "header": [
+            {
+              "key": "Content-Type",
+              "value": "application/json"
+            }
+          ],
+          "body": "{\n  \"code\": \"SUCCESS\",\n  \"data\": {\n    \"product_versions\": [\n      {\n        \"product_version\": \"1.5.1.224\",\n        \"product_name\": \"SBP\"\n      }\n    ]\n  },\n  \"request_id\": \"1\"\n}",
+          "cookie": [],
+          "_postman_previewlanguage": "json"
+        }
+      ],
+      "event": [],
+      "protocolProfileBehavior": {
+        "disableBodyPruning": true
+      }
+    },
+    {
+      "id": "6c5306f3-4108-4cd5-82cb-6988e3e8639a",
+      "name": "查询私有端的所有授权组件信息",
+      "request": {
+        "name": "查询私有端的所有授权组件信息",
+        "description": {
+          "content": "查询私有端的所有授权组件信息（主要包括版本信息和授权情况）",
+          "type": "text/plain"
+        },
+        "url": {
+          "path": [
+            "management",
+            "license",
+            "product"
+          ],
+          "host": [
+            "{{baseUrl}}"
+          ],
+          "query": [
+            {
+              "disabled": false,
+              "key": "product_name",
+              "value": "<string>",
+              "description": "产品线名称"
+            }
+          ],
+          "variable": []
+        },
+        "header": [
+          {
+            "disabled": false,
+            "description": "(Required) 全局唯一的密钥，用于验证和授权访问 API 接口",
+            "key": "api-key",
+            "value": "<string>"
+          },
+          {
+            "disabled": false,
+            "description": "(Required) 项目名, 指定请求所属项目",
+            "key": "sensorsdata-project",
+            "value": "<string>"
+          },
+          {
+            "key": "Accept",
+            "value": "application/json"
+          }
+        ],
+        "method": "GET",
+        "auth": null
+      },
+      "response": [
+        {
+          "id": "4234f76c-e0fa-4df9-b3d6-9a26b020bed3",
+          "name": "sensorsdata.portal.v2.api.GetLicenseProductResponse",
+          "originalRequest": {
+            "url": {
+              "path": [
+                "management",
+                "license",
+                "product"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "key": "product_name",
+                  "value": "SBP"
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "disabled": false,
+                "description": "(Required) 全局唯一的密钥，用于验证和授权访问 API 接口",
+                "key": "api-key",
+                "value": "<string>"
+              },
+              {
+                "disabled": false,
+                "description": "(Required) 项目名, 指定请求所属项目",
+                "key": "sensorsdata-project",
+                "value": "<string>"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "body": {}
+          },
+          "status": "Internal Server Error",
+          "code": 500,
+          "header": [
+            {
+              "key": "Content-Type",
+              "value": "application/json"
+            }
+          ],
+          "body": "{\n  \"code\": \"SUCCESS\",\n  \"data\": {\n    \"project_name\": \"production\",\n    \"product_name\": \"SBP\"\n  },\n  \"request_id\": \"1\"\n}",
+          "cookie": [],
+          "_postman_previewlanguage": "json"
+        }
+      ],
+      "event": [],
+      "protocolProfileBehavior": {
+        "disableBodyPruning": true
+      }
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "/api/v3/portal/v2",
+      "key": "baseUrl"
+    }
+  ],
+  "info": {
+    "_postman_id": "caba58fb-f14c-41d7-a80b-fde327e9b727",
+    "name": "神策业务门户",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "管理服务主要负责管理 SBP 一些通用产品功能组件的 open api 接口；例如：操作日志，消息通知，数据迁移等",
+      "type": "text/plain"
+    }
+  }
+}

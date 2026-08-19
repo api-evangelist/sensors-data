@@ -1,0 +1,62 @@
+overlay: 1.0.0
+info:
+  title: API Evangelist enhancements for Sensors Horizon Tag (v1)
+  version: 1.0.0
+extends: openapi/sensors-data-horizon-tag-v1-openapi.yml
+x-generated: '2026-08-13'
+x-method: generated
+x-source: openapi/_original/1.3.7-horizon-Tag-v1-swagger.json
+x-note: 'The harvested contract is complete on operations (every operation has an operationId, summary,
+  description and response example) but omits three things a machine consumer needs: a declared security
+  scheme, tags, and any modelled error status. This overlay records those additions WITHOUT mutating the
+  harvested original. The same three gaps are present in all 6 horizon specs and in all 29 specs across
+  the four products; one overlay is published per product against its largest service rather than 29 near-identical
+  copies.'
+actions:
+- target: $.components
+  description: Declare the api-key/sensorsdata-project credentials that the contract currently models
+    as ordinary required header parameters.
+  update:
+    securitySchemes:
+      apiKey:
+        type: apiKey
+        in: header
+        name: api-key
+        description: Project-scoped Sensors Data API key. Created in Project Settings -> Basic Settings
+          -> API Key Management; inherits the permissions of the account it was issued to.
+      projectHeader:
+        type: apiKey
+        in: header
+        name: sensorsdata-project
+        description: Tenant project selector, required on every call.
+- target: $
+  description: Apply the api-key scheme globally; it is required on 100% of operations.
+  update:
+    security:
+    - apiKey: []
+      projectHeader: []
+- target: $
+  description: Add a tag for the Tag service so operations can be grouped; the harvested spec declares
+    no tags and carries the service name only in x-sd-openapi-service-name.
+  update:
+    tags:
+    - name: Tag
+      description: 标签管理 — 标签管理服务
+- target: $.info
+  description: Record the release train the spec was published under; info.version is empty in the harvested
+    original.
+  update:
+    version: 1.3.7
+    x-api-evangelist-source: https://manual.sensorsdata.cn/openapi/api/v1/openapi_download?file_name=1.3.7-horizon-Tag-v1-swagger.json
+    x-api-evangelist-harvested: '2026-08-13'
+- target: $.servers
+  description: Explain the relative server path. Sensors Data is deployed per customer, so the host is
+    the customer cluster ingress; the harvested servers[] carries the path only.
+  update:
+  - url: https://{sensors_data_url}/api/v3/horizon/v1
+    description: Customer cluster entry address. The docs state the access address is the load-balancer
+      address or domain name of the customer cluster.
+    variables:
+      sensors_data_url:
+        default: sensors_data_url
+        description: Host of the customer-deployed Sensors Data cluster.

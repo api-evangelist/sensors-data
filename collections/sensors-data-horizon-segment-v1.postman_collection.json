@@ -1,0 +1,1447 @@
+{
+  "item": [
+    {
+      "id": "361422c0-2967-45f1-9f0a-fcd0303c6b79",
+      "name": "获取分群列表",
+      "request": {
+        "name": "获取分群列表",
+        "description": {
+          "content": "获取分群列表\n```\ncurl -X POST \"http://{host}:{port}/api/v3/horizon/v1/segment/definition/list\" \\\n  -H \"Accept: application/json\" \\\n  -H \"Content-Type: application/json\" \\\n  -H \"sensorsdata-project: {projectName}\" \\\n  -H \"api-key: {apiKey}\" \\\n  -d '{\"entity_name\":\"user\",\"segment_definition_names\":[\"user_segment_t\",\"user_segment_c001\"],\"segment_definition_fuzzy_name\":\"segment_c\",\"create_time_range\":{\"start_time\":\"2025-04-01T00:00:00Z\",\"end_time\":\"2025-04-30T23:59:59Z\"},\"has_valid_segment\":true,\"show_invisible\":true,\"page_size\":20,\"page\":-1}'\n 返回示例：\n{\"code\":\"SUCCESS\",\"request_id\":\"29144049a3397aefedcab4bebcb686cd\",\"data\":{\"total\":2,\"segment_definitions\":[{\"entity_name\":\"user\",\"name\":\"user_segment_c001\",\"display_name\":\"ceshi001\",\"comment\":\"\",\"segment_rule_ref\":{\"segment_rule_name\":\"7ed87d2d88124805bb6d81012648e782\",\"version\":\"1\"},\"trigger\":{\"trigger_type\":\"MANUAL\"},\"custom_params\":{\"INTERNAL_DEFINITION_ID\":{\"data_type\":\"INT\",\"int_value\":40,\"list_value\":[]}},\"visible\":true,\"managed\":true,\"status\":\"ACTIVE\",\"created_by\":\"SDH_WEB\",\"create_type\":\"QUICK_COMPONENT\",\"storage_settings\":{\"version_count\":1},\"alarm_config\":{\"enable\":false,\"alarm_rules\":[]},\"creator_id\":\"2\",\"modifier_id\":\"2\",\"create_time\":\"2025-04-09T08:12:12.580Z\",\"update_time\":\"2025-04-09T08:12:12.580Z\",\"notify_params\":{\"subscribe_param\":{\"enable\":false,\"contents\":[]},\"push_param\":{\"enable\":false,\"contents\":[]}},\"source\":{\"app\":\"SDH\",\"category\":\"SEGMENT\",\"sub_category\":\"\"},\"legacy_id\":792},{\"entity_name\":\"user\",\"name\":\"user_segment_t\",\"display_name\":\"tezheng\",\"comment\":\"\",\"segment_rule_ref\":{\"segment_rule_name\":\"13711b8bc45a4cfa83747864b468afe2\",\"version\":\"1\"},\"trigger\":{\"trigger_type\":\"MANUAL\"},\"custom_params\":{\"INTERNAL_DEFINITION_ID\":{\"data_type\":\"INT\",\"int_value\":42,\"list_value\":[]}},\"visible\":true,\"managed\":true,\"status\":\"ACTIVE\",\"created_by\":\"SDH_WEB\",\"create_type\":\"CUSTOMIZED_RULE\",\"storage_settings\":{\"version_count\":1},\"alarm_config\":{\"enable\":false,\"alarm_rules\":[]},\"creator_id\":\"2\",\"modifier_id\":\"2\",\"create_time\":\"2025-04-23T09:17:20.397Z\",\"update_time\":\"2025-04-23T09:17:20.397Z\",\"notify_params\":{\"subscribe_param\":{\"enable\":false,\"contents\":[]},\"push_param\":{\"enable\":false,\"contents\":[]}},\"source\":{\"app\":\"SDH\",\"category\":\"SEGMENT\",\"sub_category\":\"\"},\"legacy_id\":796}]}}\n```",
+          "type": "text/plain"
+        },
+        "url": {
+          "path": [
+            "segment",
+            "definition",
+            "list"
+          ],
+          "host": [
+            "{{baseUrl}}"
+          ],
+          "query": [],
+          "variable": []
+        },
+        "header": [
+          {
+            "disabled": false,
+            "description": "(Required) 全局唯一的密钥，用于验证和授权访问 API 接口",
+            "key": "api-key",
+            "value": "<string>"
+          },
+          {
+            "disabled": false,
+            "description": "(Required) 项目名, 指定请求所属项目",
+            "key": "sensorsdata-project",
+            "value": "<string>"
+          },
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          },
+          {
+            "key": "Accept",
+            "value": "application/json"
+          }
+        ],
+        "method": "POST",
+        "auth": null,
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"entity_name\": \"<string>\",\n  \"segment_definition_names\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"has_valid_segment\": \"<boolean>\",\n  \"show_invisible\": \"<boolean>\",\n  \"segment_definition_fuzzy_name\": \"<string>\",\n  \"create_time_range\": {\n    \"start_time\": \"<dateTime>\",\n    \"end_time\": \"<dateTime>\"\n  },\n  \"page_size\": \"<integer>\",\n  \"page\": \"<integer>\",\n  \"show_deleted\": \"<boolean>\"\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        }
+      },
+      "response": [
+        {
+          "id": "6cb20c0e-c66e-445c-bdb5-442d317ad2ae",
+          "name": "sensorsdata.horizon.v1.ListSegmentDefinitionsResponse",
+          "originalRequest": {
+            "url": {
+              "path": [
+                "segment",
+                "definition",
+                "list"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "disabled": false,
+                "description": "(Required) 全局唯一的密钥，用于验证和授权访问 API 接口",
+                "key": "api-key",
+                "value": "<string>"
+              },
+              {
+                "disabled": false,
+                "description": "(Required) 项目名, 指定请求所属项目",
+                "key": "sensorsdata-project",
+                "value": "<string>"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"entity_name\": \"user\",\n  \"segment_definition_names\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"has_valid_segment\": true,\n  \"show_invisible\": false,\n  \"segment_definition_fuzzy_name\": \"segment_c\",\n  \"create_time_range\": {\n    \"start_time\": \"<dateTime>\",\n    \"end_time\": \"<dateTime>\"\n  },\n  \"page_size\": 20,\n  \"page\": -1,\n  \"show_deleted\": false\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "status": "Internal Server Error",
+          "code": 500,
+          "header": [
+            {
+              "key": "Content-Type",
+              "value": "application/json"
+            }
+          ],
+          "body": "{\n  \"code\": \"SUCCESS\",\n  \"data\": {\n    \"segment_definitions\": [\n      {\n        \"entity_name\": \"user\",\n        \"segment_rule_ref\": {\n          \"expression\": {\n            \"eql_segment_rule\": {\n              \"eql\": \"user.$SegmentMembership.user_segment_t111111.is_not_null()\\nand\\nuser.user_tag_c4 == '标签值1'\\nand\\nuser.vip_level in ['高级VIP','普通用户']\"\n            },\n            \"entity_set_rules\": [\n              {}\n            ],\n            \"used_fields\": [\n              \"user.id\"\n            ],\n            \"sql_segment_rule\": {\n              \"query_options\": {\n                \"option\": \"TIMEOUT\",\n                \"value\": \"120\"\n              },\n              \"sql\": \"select user_id as id from user where user_id > 100\"\n            },\n            \"loading_segment_rule\": {\n              \"matched_field\": \"user.$identity_login_id\",\n              \"sync_flag\": false,\n              \"loading_type\": \"TAG_LOADING_TYPE_OVERWRITE\"\n            },\n            \"custom_rule\": {},\n            \"event_sequence_rule\": {\n              \"simple_event_sequences\": [\n                {\n                  \"time_window\": {\n                    \"unit\": \"DAY\"\n                  },\n                  \"time_range\": {\n                    \"start_time\": {\n                      \"type\": \"RELATIVE\",\n                      \"trunc_unit\": \"DAY\",\n                      \"base_time\": \"$TASK_TIME\",\n                      \"time_interval\": -7\n                    },\n                    \"end_time\": {\n                      \"type\": \"RELATIVE\",\n                      \"trunc_unit\": \"DAY\",\n                      \"base_time\": \"$TASK_TIME\",\n                      \"time_interval\": -1\n                    }\n                  },\n                  \"event_steps\": [\n                    {\n                      \"condition\": {\n                        \"operator\": \"AND\",\n                        \"conditions\": [\n                          {\n                            \"function\": \"IS_TRUE\",\n                            \"params\": [\n                              {\n                                \"param_type\": \"FIELD\",\n                                \"field\": \"user.$Events.$AppStart.$is_login_id\"\n                              }\n                            ]\n                          }\n                        ]\n                      },\n                      \"event_name\": \"user.$Events.AppStart\"\n                    }\n                  ]\n                }\n              ],\n              \"operator\": \"UNION\"\n            },\n            \"tailor\": {\n              \"function\": \"LESS_EQUAL\",\n              \"rank_field\": {\n                \"type\": \"PERCENT_ORDER_RANK\",\n                \"orders\": [\n                  {\n                    \"measure\": {\n                      \"type\": \"EQL_MEASURE_FIELD\",\n                      \"eql_measure\": \"user.$Events.virtual_event_for_tag.filter_event(\\n  datetime_add(${var:base_time}, -1, 'DAY'),\\n  datetime_add(${var:base_time}, -1, 'DAY')\\n).count()\"\n                    },\n                    \"is_asc\": false\n                  }\n                ]\n              },\n              \"params\": [\n                {\n                  \"param_type\": \"VALUE\",\n                  \"value\": {\n                    \"data_type\": \"NUMBER\",\n                    \"number_value\": 0.1\n                  }\n                }\n              ]\n            },\n            \"type\": \"SQL_BASED\",\n            \"version\": 2,\n            \"group_expression_rule\": {\n              \"group_expression\": \"$1-$2\"\n            }\n          },\n          \"segment_rule_name\": \"user_segment_rule_cs001\"\n        },\n        \"alarm_config\": {\n          \"alarm_rules\": [\n            {}\n          ]\n        },\n        \"name\": \"user_segment_cs001\",\n        \"create_type\": \"CUSTOMIZED_RULE\",\n        \"comment\": \"这是我的分群描述\",\n        \"trigger\": {\n          \"trigger_type\": \"CRON\",\n          \"cron_trigger\": {\n            \"crontab_exp\": \"0 6 21 * * ? *\"\n          },\n          \"periodic_trigger\": {},\n          \"static_trigger\": {\n            \"time\": \"2020-07-08T00:00:00Z\"\n          },\n          \"sync_job_trigger\": {}\n        },\n        \"source\": {},\n        \"display_name\": \"我的分群\",\n        \"storage_settings\": {\n          \"version_count\": 30\n        },\n        \"notify_params\": {\n          \"subscribe_param\": {\n            \"contents\": [\n              {}\n            ]\n          }\n        },\n        \"status\": \"ACTIVE\"\n      }\n    ]\n  },\n  \"request_id\": \"1\"\n}",
+          "cookie": [],
+          "_postman_previewlanguage": "json"
+        }
+      ],
+      "event": [],
+      "protocolProfileBehavior": {
+        "disableBodyPruning": true
+      }
+    },
+    {
+      "id": "0e85080f-042a-454d-89f5-c4ae562853eb",
+      "name": "获取分群信息",
+      "request": {
+        "name": "获取分群信息",
+        "description": {
+          "content": "获取分群信息\n```\ncurl -X POST \"http://{host}:{port}/api/v3/horizon/v1/segment/definition/get\" \\\n  -H \"Accept: application/json\" \\\n  -H \"Content-Type: application/json\" \\\n  -H \"sensorsdata-project: {projectName}\" \\\n  -H \"api-key: {apiKey}\" \\\n  -d '{\"entity_name\":\"user\",\"name\":\"user_segment_t\"}'\n 返回示例：\n{\"code\":\"SUCCESS\",\"request_id\":\"2914451801921dbc95dc8cceff783fd4\",\"data\":{\"visible\":true,\"create_time\":\"2025-04-23T09:17:20.397Z\",\"entity_name\":\"user\",\"create_type\":\"CUSTOMIZED_RULE\",\"trigger\":{\"trigger_type\":\"MANUAL\"},\"source\":{\"app\":\"SDH\",\"category\":\"SEGMENT\",\"sub_category\":\"\"},\"display_name\":\"tezheng\",\"storage_settings\":{\"version_count\":1},\"created_by\":\"SDH_WEB\",\"custom_params\":{\"INTERNAL_DEFINITION_ID\":{\"data_type\":\"INT\",\"int_value\":42,\"list_value\":[]}},\"update_time\":\"2025-04-23T09:17:20.397Z\",\"managed\":true,\"segment_rule_ref\":{\"segment_rule_name\":\"13711b8bc45a4cfa83747864b468afe2\",\"version\":\"1\"},\"alarm_config\":{\"enable\":false,\"alarm_rules\":[]},\"name\":\"user_segment_t\",\"creator_id\":\"2\",\"modifier_id\":\"2\",\"legacy_id\":796,\"comment\":\"\",\"notify_params\":{\"subscribe_param\":{\"enable\":false,\"contents\":[]},\"push_param\":{\"enable\":false,\"contents\":[]}},\"status\":\"ACTIVE\"}}\n```",
+          "type": "text/plain"
+        },
+        "url": {
+          "path": [
+            "segment",
+            "definition",
+            "get"
+          ],
+          "host": [
+            "{{baseUrl}}"
+          ],
+          "query": [],
+          "variable": []
+        },
+        "header": [
+          {
+            "disabled": false,
+            "description": "(Required) 全局唯一的密钥，用于验证和授权访问 API 接口",
+            "key": "api-key",
+            "value": "<string>"
+          },
+          {
+            "disabled": false,
+            "description": "(Required) 项目名, 指定请求所属项目",
+            "key": "sensorsdata-project",
+            "value": "<string>"
+          },
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          },
+          {
+            "key": "Accept",
+            "value": "application/json"
+          }
+        ],
+        "method": "POST",
+        "auth": null,
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"entity_name\": \"<string>\",\n  \"name\": \"<string>\",\n  \"show_deleted\": \"<boolean>\"\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        }
+      },
+      "response": [
+        {
+          "id": "1a33d6e3-3f88-4653-b77b-bd93ec32744e",
+          "name": "sensorsdata.horizon.v1.SegmentDefinition",
+          "originalRequest": {
+            "url": {
+              "path": [
+                "segment",
+                "definition",
+                "get"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "disabled": false,
+                "description": "(Required) 全局唯一的密钥，用于验证和授权访问 API 接口",
+                "key": "api-key",
+                "value": "<string>"
+              },
+              {
+                "disabled": false,
+                "description": "(Required) 项目名, 指定请求所属项目",
+                "key": "sensorsdata-project",
+                "value": "<string>"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"entity_name\": \"user\",\n  \"name\": \"user_segment_c1\",\n  \"show_deleted\": false\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "status": "Internal Server Error",
+          "code": 500,
+          "header": [
+            {
+              "key": "Content-Type",
+              "value": "application/json"
+            }
+          ],
+          "body": "{\n  \"code\": \"SUCCESS\",\n  \"data\": {\n    \"entity_name\": \"user\",\n    \"segment_rule_ref\": {\n      \"expression\": {\n        \"eql_segment_rule\": {\n          \"eql\": \"user.$SegmentMembership.user_segment_t111111.is_not_null()\\nand\\nuser.user_tag_c4 == '标签值1'\\nand\\nuser.vip_level in ['高级VIP','普通用户']\"\n        },\n        \"entity_set_rules\": [\n          {}\n        ],\n        \"used_fields\": [\n          \"user.id\"\n        ],\n        \"sql_segment_rule\": {\n          \"query_options\": {\n            \"option\": \"TIMEOUT\",\n            \"value\": \"120\"\n          },\n          \"sql\": \"select user_id as id from user where user_id > 100\"\n        },\n        \"loading_segment_rule\": {\n          \"matched_field\": \"user.$identity_login_id\",\n          \"sync_flag\": false,\n          \"loading_type\": \"TAG_LOADING_TYPE_OVERWRITE\"\n        },\n        \"custom_rule\": {},\n        \"event_sequence_rule\": {\n          \"simple_event_sequences\": [\n            {\n              \"time_window\": {\n                \"unit\": \"DAY\"\n              },\n              \"time_range\": {\n                \"start_time\": {\n                  \"type\": \"RELATIVE\",\n                  \"trunc_unit\": \"DAY\",\n                  \"base_time\": \"$TASK_TIME\",\n                  \"time_interval\": -7\n                },\n                \"end_time\": {\n                  \"type\": \"RELATIVE\",\n                  \"trunc_unit\": \"DAY\",\n                  \"base_time\": \"$TASK_TIME\",\n                  \"time_interval\": -1\n                }\n              },\n              \"event_steps\": [\n                {\n                  \"condition\": {\n                    \"operator\": \"AND\",\n                    \"conditions\": [\n                      {\n                        \"function\": \"IS_TRUE\",\n                        \"params\": [\n                          {\n                            \"param_type\": \"FIELD\",\n                            \"field\": \"user.$Events.$AppStart.$is_login_id\"\n                          }\n                        ]\n                      }\n                    ]\n                  },\n                  \"event_name\": \"user.$Events.AppStart\"\n                }\n              ]\n            }\n          ],\n          \"operator\": \"UNION\"\n        },\n        \"tailor\": {\n          \"function\": \"LESS_EQUAL\",\n          \"rank_field\": {\n            \"type\": \"PERCENT_ORDER_RANK\",\n            \"orders\": [\n              {\n                \"measure\": {\n                  \"type\": \"EQL_MEASURE_FIELD\",\n                  \"eql_measure\": \"user.$Events.virtual_event_for_tag.filter_event(\\n  datetime_add(${var:base_time}, -1, 'DAY'),\\n  datetime_add(${var:base_time}, -1, 'DAY')\\n).count()\"\n                },\n                \"is_asc\": false\n              }\n            ]\n          },\n          \"params\": [\n            {\n              \"param_type\": \"VALUE\",\n              \"value\": {\n                \"data_type\": \"NUMBER\",\n                \"number_value\": 0.1\n              }\n            }\n          ]\n        },\n        \"type\": \"SQL_BASED\",\n        \"version\": 2,\n        \"group_expression_rule\": {\n          \"group_expression\": \"$1-$2\"\n        }\n      },\n      \"segment_rule_name\": \"user_segment_rule_cs001\"\n    },\n    \"alarm_config\": {\n      \"alarm_rules\": [\n        {}\n      ]\n    },\n    \"name\": \"user_segment_cs001\",\n    \"create_type\": \"CUSTOMIZED_RULE\",\n    \"comment\": \"这是我的分群描述\",\n    \"trigger\": {\n      \"trigger_type\": \"CRON\",\n      \"cron_trigger\": {\n        \"crontab_exp\": \"0 6 21 * * ? *\"\n      },\n      \"periodic_trigger\": {},\n      \"static_trigger\": {\n        \"time\": \"2020-07-08T00:00:00Z\"\n      },\n      \"sync_job_trigger\": {}\n    },\n    \"source\": {},\n    \"display_name\": \"我的分群\",\n    \"storage_settings\": {\n      \"version_count\": 30\n    },\n    \"notify_params\": {\n      \"subscribe_param\": {\n        \"contents\": [\n          {}\n        ]\n      }\n    },\n    \"status\": \"ACTIVE\"\n  },\n  \"request_id\": \"1\"\n}",
+          "cookie": [],
+          "_postman_previewlanguage": "json"
+        }
+      ],
+      "event": [],
+      "protocolProfileBehavior": {
+        "disableBodyPruning": true
+      }
+    },
+    {
+      "id": "1720db09-7ad5-486c-9328-c84219f7366d",
+      "name": "创建分群",
+      "request": {
+        "name": "创建分群",
+        "description": {
+          "content": "创建分群\n```\ncurl -X POST \"http://{host}:{port}/api/v3/horizon/v1/segment/definition/create-with-rule\" \\\n  -H \"Accept: application/json\" \\\n  -H \"Content-Type: application/json\" \\\n  -H \"sensorsdata-project: {projectName}\" \\\n  -H \"api-key: {apiKey}\" \\\n  -d '{\"segment_definition\":{\"entity_name\":\"user\",\"name\":\"user_segment_wdfq1\",\"display_name\":\"我的分群1\",\"comment\":\"备注信息\",\"segment_rule_ref\":{\"expression\":{\"type\":\"LOADING_BASED\",\"loading_segment_rule\":{\"matched_field\":\"user.$identity_login_id\",\"sync_flag\":false,\"loading_type\":\"LOADING_TYPE_OVERWRITE\"},\"version\":2}},\"trigger\":{\"trigger_type\":\"MANUAL\"},\"visible\":true,\"managed\":true,\"status\":\"ACTIVE\",\"created_by\":\"SDH_WEB\",\"create_type\":\"IMPORT\",\"storage_settings\":{\"version_count\":1}},\"dry_run\":false}'\n 返回示例：\n{\"code\":\"SUCCESS\",\"request_id\":\"29145736a5c98fb2c455a8919189fa2d\",\"data\":{\"visible\":true,\"create_time\":\"2025-04-29T06:57:36.724Z\",\"entity_name\":\"user\",\"create_type\":\"IMPORT\",\"trigger\":{\"trigger_type\":\"MANUAL\"},\"source\":{\"app\":\"SDH\",\"category\":\"SEGMENT\",\"sub_category\":\"\"},\"display_name\":\"我的分群1\",\"storage_settings\":{\"version_count\":1},\"created_by\":\"SDH_WEB\",\"custom_params\":{\"INTERNAL_DEFINITION_ID\":{\"data_type\":\"INT\",\"int_value\":43,\"list_value\":[]}},\"update_time\":\"2025-04-29T06:57:36.724Z\",\"managed\":true,\"segment_rule_ref\":{\"segment_rule_name\":\"78eabb46c13b4673a2b2af10ef4616f8\",\"version\":\"1\"},\"name\":\"user_segment_wdfq1\",\"creator_id\":\"2\",\"modifier_id\":\"2\",\"legacy_id\":800,\"comment\":\"备注信息\",\"status\":\"ACTIVE\"}}\n```",
+          "type": "text/plain"
+        },
+        "url": {
+          "path": [
+            "segment",
+            "definition",
+            "create-with-rule"
+          ],
+          "host": [
+            "{{baseUrl}}"
+          ],
+          "query": [],
+          "variable": []
+        },
+        "header": [
+          {
+            "disabled": false,
+            "description": "(Required) 全局唯一的密钥，用于验证和授权访问 API 接口",
+            "key": "api-key",
+            "value": "<string>"
+          },
+          {
+            "disabled": false,
+            "description": "(Required) 项目名, 指定请求所属项目",
+            "key": "sensorsdata-project",
+            "value": "<string>"
+          },
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          },
+          {
+            "key": "Accept",
+            "value": "application/json"
+          }
+        ],
+        "method": "POST",
+        "auth": null,
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"segment_definition\": {\n    \"entity_name\": \"<string>\",\n    \"name\": \"<string>\",\n    \"display_name\": \"<string>\",\n    \"comment\": \"<string>\",\n    \"segment_rule_ref\": {\n      \"segment_rule_name\": \"<string>\",\n      \"version\": \"<string>\",\n      \"expression\": {\n        \"type\": \"<string>\",\n        \"sql_segment_rule\": {\n          \"sql\": \"<string>\",\n          \"query_options\": [\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          ]\n        },\n        \"eql_segment_rule\": {\n          \"eql\": \"<string>\"\n        },\n        \"loading_segment_rule\": {\n          \"matched_field\": \"<string>\",\n          \"sync_flag\": \"<boolean>\",\n          \"loading_type\": \"<string>\"\n        },\n        \"custom_rule\": {\n          \"component_name\": \"<string>\",\n          \"rule\": {},\n          \"rule_str\": \"<string>\"\n        },\n        \"event_sequence_rule\": {\n          \"operator\": \"<string>\",\n          \"simple_event_sequences\": [\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          ]\n        },\n        \"group_expression_rule\": {\n          \"groups\": [\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          ],\n          \"group_expression\": \"<string>\"\n        },\n        \"virtual\": \"<boolean>\",\n        \"tailor\": {\n          \"rank_field\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"function\": \"<string>\",\n          \"params\": [\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          ]\n        },\n        \"entity_set_rules\": [\n          {\n            \"entity_name\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"expression\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"name\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"display_name\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"comment\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"id\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"status\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"version\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"rule_available\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"created_by\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"custom_params\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"creator_id\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"modifier_id\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"create_time\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"update_time\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"type\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"read_only\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"delete_flag\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          },\n          {\n            \"entity_name\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"expression\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"name\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"display_name\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"comment\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"id\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"status\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"version\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"rule_available\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"created_by\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"custom_params\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"creator_id\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"modifier_id\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"create_time\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"update_time\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"type\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"read_only\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"delete_flag\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          }\n        ],\n        \"time_zone\": \"<string>\",\n        \"version\": \"<integer>\",\n        \"used_fields\": [\n          \"<string>\",\n          \"<string>\"\n        ]\n      }\n    },\n    \"trigger\": {\n      \"trigger_type\": \"<string>\",\n      \"periodic_trigger\": {\n        \"start_time\": \"<dateTime>\",\n        \"end_time\": \"<dateTime>\",\n        \"interval_size\": \"<integer>\",\n        \"interval_unit\": \"<string>\",\n        \"trunc_unit\": \"<string>\"\n      },\n      \"cron_trigger\": {\n        \"crontab_exp\": \"<string>\",\n        \"start_time\": \"<dateTime>\",\n        \"end_time\": \"<dateTime>\"\n      },\n      \"static_trigger\": {\n        \"time\": \"<dateTime>\"\n      }\n    },\n    \"custom_params\": {\n      \"key_0\": {\n        \"data_type\": \"<string>\",\n        \"bool_value\": \"<boolean>\",\n        \"int_value\": \"<long>\",\n        \"number_value\": \"<double>\",\n        \"string_value\": \"<string>\",\n        \"list_value\": [\n          \"<string>\",\n          \"<string>\"\n        ],\n        \"datetime_value\": \"<dateTime>\",\n        \"date_value\": \"<string>\",\n        \"bigint_value\": \"<long>\",\n        \"decimal_value\": \"<string>\"\n      },\n      \"key_1\": {\n        \"data_type\": \"<string>\",\n        \"bool_value\": \"<boolean>\",\n        \"int_value\": \"<long>\",\n        \"number_value\": \"<double>\",\n        \"string_value\": \"<string>\",\n        \"list_value\": [\n          \"<string>\",\n          \"<string>\"\n        ],\n        \"datetime_value\": \"<dateTime>\",\n        \"date_value\": \"<string>\",\n        \"bigint_value\": \"<long>\",\n        \"decimal_value\": \"<string>\"\n      },\n      \"key_2\": {\n        \"data_type\": \"<string>\",\n        \"bool_value\": \"<boolean>\",\n        \"int_value\": \"<long>\",\n        \"number_value\": \"<double>\",\n        \"string_value\": \"<string>\",\n        \"list_value\": [\n          \"<string>\",\n          \"<string>\"\n        ],\n        \"datetime_value\": \"<dateTime>\",\n        \"date_value\": \"<string>\",\n        \"bigint_value\": \"<long>\",\n        \"decimal_value\": \"<string>\"\n      }\n    },\n    \"visible\": \"<boolean>\",\n    \"managed\": \"<boolean>\",\n    \"status\": \"<string>\",\n    \"created_by\": \"<string>\",\n    \"create_type\": \"<string>\",\n    \"storage_settings\": {\n      \"version_count\": \"<integer>\"\n    },\n    \"alarm_config\": {\n      \"enable\": \"<boolean>\",\n      \"alarm_rules\": [\n        {\n          \"name\": \"<string>\",\n          \"alarm_params\": {\n            \"key_0\": \"<string>\",\n            \"key_1\": \"<string>\"\n          }\n        },\n        {\n          \"name\": \"<string>\",\n          \"alarm_params\": {\n            \"key_0\": \"<string>\",\n            \"key_1\": \"<string>\"\n          }\n        }\n      ]\n    },\n    \"creator_id\": \"<string>\",\n    \"modifier_id\": \"<string>\",\n    \"create_time\": \"<dateTime>\",\n    \"update_time\": \"<dateTime>\",\n    \"notify_params\": {\n      \"subscribe_param\": {\n        \"enable\": \"<boolean>\",\n        \"contents\": [\n          {\n            \"config_id\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"strategy_name\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"extension_point_id\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"ext_params\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          },\n          {\n            \"config_id\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"strategy_name\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"extension_point_id\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"ext_params\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          }\n        ]\n      },\n      \"push_param\": {\n        \"enable\": \"<boolean>\",\n        \"contents\": [\n          {\n            \"config_id\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"strategy_name\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"extension_point_id\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"ext_params\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          },\n          {\n            \"config_id\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"strategy_name\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"extension_point_id\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"ext_params\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          }\n        ]\n      }\n    },\n    \"delete_time\": \"<dateTime>\",\n    \"delete_account_id\": \"<string>\",\n    \"source\": {\n      \"app\": \"<string>\",\n      \"category\": \"<string>\",\n      \"sub_category\": \"<string>\"\n    },\n    \"archive_time\": \"<dateTime>\",\n    \"archive_account_id\": \"<string>\"\n  },\n  \"dry_run\": \"<boolean>\"\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        }
+      },
+      "response": [
+        {
+          "id": "35190c25-8cec-40b5-b757-8c2a538e442f",
+          "name": "sensorsdata.horizon.v1.SegmentDefinition",
+          "originalRequest": {
+            "url": {
+              "path": [
+                "segment",
+                "definition",
+                "create-with-rule"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "disabled": false,
+                "description": "(Required) 全局唯一的密钥，用于验证和授权访问 API 接口",
+                "key": "api-key",
+                "value": "<string>"
+              },
+              {
+                "disabled": false,
+                "description": "(Required) 项目名, 指定请求所属项目",
+                "key": "sensorsdata-project",
+                "value": "<string>"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"segment_definition\": {\n    \"entity_name\": \"user\",\n    \"name\": \"user_segment_cs001\",\n    \"display_name\": \"我的分群\",\n    \"comment\": \"这是我的分群描述\",\n    \"segment_rule_ref\": {\n      \"segment_rule_name\": \"user_segment_rule_cs001\",\n      \"version\": \"<string>\",\n      \"expression\": {\n        \"type\": \"SQL_BASED\",\n        \"sql_segment_rule\": {\n          \"sql\": \"select user_id as id from user where user_id > 100\",\n          \"query_options\": [\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          ]\n        },\n        \"eql_segment_rule\": {\n          \"eql\": \"user.$SegmentMembership.user_segment_t111111.is_not_null()\\nand\\nuser.user_tag_c4 == '标签值1'\\nand\\nuser.vip_level in ['高级VIP','普通用户']\"\n        },\n        \"loading_segment_rule\": {\n          \"matched_field\": \"user.$identity_login_id\",\n          \"sync_flag\": false,\n          \"loading_type\": \"<string>\"\n        },\n        \"custom_rule\": {\n          \"component_name\": \"<string>\",\n          \"rule\": {},\n          \"rule_str\": \"<string>\"\n        },\n        \"event_sequence_rule\": {\n          \"operator\": \"UNION\",\n          \"simple_event_sequences\": [\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          ]\n        },\n        \"group_expression_rule\": {\n          \"groups\": [\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          ],\n          \"group_expression\": \"$1-$2\"\n        },\n        \"virtual\": \"<boolean>\",\n        \"tailor\": {\n          \"rank_field\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"function\": \"<string>\",\n          \"params\": [\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          ]\n        },\n        \"entity_set_rules\": [\n          {\n            \"entity_name\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"expression\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"name\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"display_name\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"comment\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"id\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"status\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"version\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"rule_available\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"created_by\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"custom_params\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"creator_id\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"modifier_id\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"create_time\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"update_time\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"type\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"read_only\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"delete_flag\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          },\n          {\n            \"entity_name\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"expression\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"name\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"display_name\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"comment\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"id\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"status\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"version\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"rule_available\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"created_by\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"custom_params\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"creator_id\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"modifier_id\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"create_time\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"update_time\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"type\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"read_only\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"delete_flag\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          }\n        ],\n        \"time_zone\": \"<string>\",\n        \"version\": 2,\n        \"used_fields\": [\n          \"<string>\",\n          \"<string>\"\n        ]\n      }\n    },\n    \"trigger\": {\n      \"trigger_type\": \"CRON\",\n      \"periodic_trigger\": {\n        \"start_time\": \"<dateTime>\",\n        \"end_time\": \"<dateTime>\",\n        \"interval_size\": \"<integer>\",\n        \"interval_unit\": \"<string>\",\n        \"trunc_unit\": \"<string>\"\n      },\n      \"cron_trigger\": {\n        \"crontab_exp\": \"0 6 21 * * ? *\",\n        \"start_time\": \"<dateTime>\",\n        \"end_time\": \"<dateTime>\"\n      },\n      \"static_trigger\": {\n        \"time\": \"2020-07-08T00:00:00Z\"\n      }\n    },\n    \"custom_params\": {\n      \"key_0\": {\n        \"data_type\": \"<string>\",\n        \"bool_value\": \"<boolean>\",\n        \"int_value\": \"<long>\",\n        \"number_value\": \"<double>\",\n        \"string_value\": \"<string>\",\n        \"list_value\": [\n          \"<string>\",\n          \"<string>\"\n        ],\n        \"datetime_value\": \"<dateTime>\",\n        \"date_value\": \"<string>\",\n        \"bigint_value\": \"<long>\",\n        \"decimal_value\": \"<string>\"\n      },\n      \"key_1\": {\n        \"data_type\": \"<string>\",\n        \"bool_value\": \"<boolean>\",\n        \"int_value\": \"<long>\",\n        \"number_value\": \"<double>\",\n        \"string_value\": \"<string>\",\n        \"list_value\": [\n          \"<string>\",\n          \"<string>\"\n        ],\n        \"datetime_value\": \"<dateTime>\",\n        \"date_value\": \"<string>\",\n        \"bigint_value\": \"<long>\",\n        \"decimal_value\": \"<string>\"\n      }\n    },\n    \"visible\": \"<boolean>\",\n    \"managed\": \"<boolean>\",\n    \"status\": \"ACTIVE\",\n    \"created_by\": \"<string>\",\n    \"create_type\": \"CUSTOMIZED_RULE\",\n    \"storage_settings\": {\n      \"version_count\": 30\n    },\n    \"alarm_config\": {\n      \"enable\": \"<boolean>\",\n      \"alarm_rules\": [\n        {\n          \"name\": \"<string>\",\n          \"alarm_params\": {\n            \"key_0\": \"<string>\",\n            \"key_1\": \"<string>\"\n          }\n        },\n        {\n          \"name\": \"<string>\",\n          \"alarm_params\": {\n            \"key_0\": \"<string>\",\n            \"key_1\": \"<string>\",\n            \"key_2\": \"<string>\"\n          }\n        }\n      ]\n    },\n    \"creator_id\": \"<string>\",\n    \"modifier_id\": \"<string>\",\n    \"create_time\": \"<dateTime>\",\n    \"update_time\": \"<dateTime>\",\n    \"notify_params\": {\n      \"subscribe_param\": {\n        \"enable\": \"<boolean>\",\n        \"contents\": [\n          {\n            \"config_id\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"strategy_name\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"extension_point_id\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"ext_params\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          },\n          {\n            \"config_id\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"strategy_name\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"extension_point_id\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"ext_params\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          }\n        ]\n      },\n      \"push_param\": {\n        \"enable\": \"<boolean>\",\n        \"contents\": [\n          {\n            \"config_id\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"strategy_name\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"extension_point_id\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"ext_params\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          },\n          {\n            \"config_id\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"strategy_name\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"extension_point_id\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"ext_params\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          }\n        ]\n      }\n    },\n    \"delete_time\": \"<dateTime>\",\n    \"delete_account_id\": \"<string>\",\n    \"source\": {\n      \"app\": \"<string>\",\n      \"category\": \"<string>\",\n      \"sub_category\": \"<string>\"\n    },\n    \"archive_time\": \"<dateTime>\",\n    \"archive_account_id\": \"<string>\"\n  },\n  \"dry_run\": false\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "status": "Internal Server Error",
+          "code": 500,
+          "header": [
+            {
+              "key": "Content-Type",
+              "value": "application/json"
+            }
+          ],
+          "body": "{\n  \"code\": \"SUCCESS\",\n  \"data\": {\n    \"entity_name\": \"user\",\n    \"segment_rule_ref\": {\n      \"expression\": {\n        \"eql_segment_rule\": {\n          \"eql\": \"user.$SegmentMembership.user_segment_t111111.is_not_null()\\nand\\nuser.user_tag_c4 == '标签值1'\\nand\\nuser.vip_level in ['高级VIP','普通用户']\"\n        },\n        \"entity_set_rules\": [\n          {}\n        ],\n        \"used_fields\": [\n          \"user.id\"\n        ],\n        \"sql_segment_rule\": {\n          \"query_options\": {\n            \"option\": \"TIMEOUT\",\n            \"value\": \"120\"\n          },\n          \"sql\": \"select user_id as id from user where user_id > 100\"\n        },\n        \"loading_segment_rule\": {\n          \"matched_field\": \"user.$identity_login_id\",\n          \"sync_flag\": false,\n          \"loading_type\": \"TAG_LOADING_TYPE_OVERWRITE\"\n        },\n        \"custom_rule\": {},\n        \"event_sequence_rule\": {\n          \"simple_event_sequences\": [\n            {\n              \"time_window\": {\n                \"unit\": \"DAY\"\n              },\n              \"time_range\": {\n                \"start_time\": {\n                  \"type\": \"RELATIVE\",\n                  \"trunc_unit\": \"DAY\",\n                  \"base_time\": \"$TASK_TIME\",\n                  \"time_interval\": -7\n                },\n                \"end_time\": {\n                  \"type\": \"RELATIVE\",\n                  \"trunc_unit\": \"DAY\",\n                  \"base_time\": \"$TASK_TIME\",\n                  \"time_interval\": -1\n                }\n              },\n              \"event_steps\": [\n                {\n                  \"condition\": {\n                    \"operator\": \"AND\",\n                    \"conditions\": [\n                      {\n                        \"function\": \"IS_TRUE\",\n                        \"params\": [\n                          {\n                            \"param_type\": \"FIELD\",\n                            \"field\": \"user.$Events.$AppStart.$is_login_id\"\n                          }\n                        ]\n                      }\n                    ]\n                  },\n                  \"event_name\": \"user.$Events.AppStart\"\n                }\n              ]\n            }\n          ],\n          \"operator\": \"UNION\"\n        },\n        \"tailor\": {\n          \"function\": \"LESS_EQUAL\",\n          \"rank_field\": {\n            \"type\": \"PERCENT_ORDER_RANK\",\n            \"orders\": [\n              {\n                \"measure\": {\n                  \"type\": \"EQL_MEASURE_FIELD\",\n                  \"eql_measure\": \"user.$Events.virtual_event_for_tag.filter_event(\\n  datetime_add(${var:base_time}, -1, 'DAY'),\\n  datetime_add(${var:base_time}, -1, 'DAY')\\n).count()\"\n                },\n                \"is_asc\": false\n              }\n            ]\n          },\n          \"params\": [\n            {\n              \"param_type\": \"VALUE\",\n              \"value\": {\n                \"data_type\": \"NUMBER\",\n                \"number_value\": 0.1\n              }\n            }\n          ]\n        },\n        \"type\": \"SQL_BASED\",\n        \"version\": 2,\n        \"group_expression_rule\": {\n          \"group_expression\": \"$1-$2\"\n        }\n      },\n      \"segment_rule_name\": \"user_segment_rule_cs001\"\n    },\n    \"alarm_config\": {\n      \"alarm_rules\": [\n        {}\n      ]\n    },\n    \"name\": \"user_segment_cs001\",\n    \"create_type\": \"CUSTOMIZED_RULE\",\n    \"comment\": \"这是我的分群描述\",\n    \"trigger\": {\n      \"trigger_type\": \"CRON\",\n      \"cron_trigger\": {\n        \"crontab_exp\": \"0 6 21 * * ? *\"\n      },\n      \"periodic_trigger\": {},\n      \"static_trigger\": {\n        \"time\": \"2020-07-08T00:00:00Z\"\n      },\n      \"sync_job_trigger\": {}\n    },\n    \"source\": {},\n    \"display_name\": \"我的分群\",\n    \"storage_settings\": {\n      \"version_count\": 30\n    },\n    \"notify_params\": {\n      \"subscribe_param\": {\n        \"contents\": [\n          {}\n        ]\n      }\n    },\n    \"status\": \"ACTIVE\"\n  },\n  \"request_id\": \"1\"\n}",
+          "cookie": [],
+          "_postman_previewlanguage": "json"
+        }
+      ],
+      "event": [],
+      "protocolProfileBehavior": {
+        "disableBodyPruning": true
+      }
+    },
+    {
+      "id": "1494a5db-6629-4a7c-a640-67e619bceba7",
+      "name": "编辑分群",
+      "request": {
+        "name": "编辑分群",
+        "description": {
+          "content": "编辑分群\n```\ncurl -X POST \"http://{host}:{port}/api/v3/horizon/v1/segment/definition/update-with-rule\" \\\n  -H \"Accept: application/json\" \\\n  -H \"Content-Type: application/json\" \\\n  -H \"sensorsdata-project: {projectName}\" \\\n  -H \"api-key: {apiKey}\" \\\n  -d '{\"segment_definition\":{\"entity_name\":\"user\",\"name\":\"user_segment_wdfq1\",\"display_name\":\"我的分群1_修改\",\"comment\":\"备注信息_修改\",\"segment_rule_ref\":{\"expression\":{\"type\":\"LOADING_BASED\",\"loading_segment_rule\":{\"matched_field\":\"user.name\",\"sync_flag\":false,\"loading_type\":\"LOADING_TYPE_OVERWRITE\"},\"version\":2}},\"trigger\":{\"trigger_type\":\"MANUAL\"},\"visible\":true,\"managed\":true,\"status\":\"ACTIVE\",\"created_by\":\"SDH_WEB\",\"create_type\":\"IMPORT\",\"storage_settings\":{\"version_count\":1}},\"dry_run\":false,\"update_mask\":\"display_name,comment,segment_rule_ref,trigger,custom_params,visible,status,storage_settings\"}'\n 返回示例：\n{\"code\":\"SUCCESS\",\"request_id\":\"2916164415f0ca09d3ecd3a8ecd39a48\",\"data\":{\"visible\":true,\"create_time\":\"2025-04-29T06:57:36.724Z\",\"entity_name\":\"user\",\"create_type\":\"IMPORT\",\"trigger\":{\"trigger_type\":\"MANUAL\"},\"source\":{\"app\":\"SDH\",\"category\":\"SEGMENT\",\"sub_category\":\"\"},\"display_name\":\"我的分群1_修改\",\"storage_settings\":{\"version_count\":1},\"created_by\":\"SDH_WEB\",\"custom_params\":{\"INTERNAL_DEFINITION_ID\":{\"data_type\":\"INT\",\"int_value\":43,\"list_value\":[]}},\"update_time\":\"2025-04-29T08:16:44.750Z\",\"managed\":true,\"segment_rule_ref\":{\"segment_rule_name\":\"78eabb46c13b4673a2b2af10ef4616f8\",\"version\":\"2\"},\"name\":\"user_segment_wdfq1\",\"creator_id\":\"2\",\"modifier_id\":\"2\",\"legacy_id\":800,\"comment\":\"备注信息_修改\",\"status\":\"ACTIVE\"}}\n```",
+          "type": "text/plain"
+        },
+        "url": {
+          "path": [
+            "segment",
+            "definition",
+            "update-with-rule"
+          ],
+          "host": [
+            "{{baseUrl}}"
+          ],
+          "query": [],
+          "variable": []
+        },
+        "header": [
+          {
+            "disabled": false,
+            "description": "(Required) 全局唯一的密钥，用于验证和授权访问 API 接口",
+            "key": "api-key",
+            "value": "<string>"
+          },
+          {
+            "disabled": false,
+            "description": "(Required) 项目名, 指定请求所属项目",
+            "key": "sensorsdata-project",
+            "value": "<string>"
+          },
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          },
+          {
+            "key": "Accept",
+            "value": "application/json"
+          }
+        ],
+        "method": "POST",
+        "auth": null,
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"segment_definition\": {\n    \"entity_name\": \"<string>\",\n    \"name\": \"<string>\",\n    \"display_name\": \"<string>\",\n    \"comment\": \"<string>\",\n    \"segment_rule_ref\": {\n      \"segment_rule_name\": \"<string>\",\n      \"version\": \"<string>\",\n      \"expression\": {\n        \"type\": \"<string>\",\n        \"sql_segment_rule\": {\n          \"sql\": \"<string>\",\n          \"query_options\": [\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          ]\n        },\n        \"eql_segment_rule\": {\n          \"eql\": \"<string>\"\n        },\n        \"loading_segment_rule\": {\n          \"matched_field\": \"<string>\",\n          \"sync_flag\": \"<boolean>\",\n          \"loading_type\": \"<string>\"\n        },\n        \"custom_rule\": {\n          \"component_name\": \"<string>\",\n          \"rule\": {},\n          \"rule_str\": \"<string>\"\n        },\n        \"event_sequence_rule\": {\n          \"operator\": \"<string>\",\n          \"simple_event_sequences\": [\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          ]\n        },\n        \"group_expression_rule\": {\n          \"groups\": [\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          ],\n          \"group_expression\": \"<string>\"\n        },\n        \"virtual\": \"<boolean>\",\n        \"tailor\": {\n          \"rank_field\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"function\": \"<string>\",\n          \"params\": [\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          ]\n        },\n        \"entity_set_rules\": [\n          {\n            \"entity_name\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"expression\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"name\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"display_name\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"comment\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"id\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"status\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"version\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"rule_available\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"created_by\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"custom_params\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"creator_id\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"modifier_id\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"create_time\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"update_time\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"type\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"read_only\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"delete_flag\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          },\n          {\n            \"entity_name\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"expression\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"name\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"display_name\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"comment\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"id\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"status\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"version\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"rule_available\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"created_by\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"custom_params\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"creator_id\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"modifier_id\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"create_time\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"update_time\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"type\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"read_only\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"delete_flag\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          }\n        ],\n        \"time_zone\": \"<string>\",\n        \"version\": \"<integer>\",\n        \"used_fields\": [\n          \"<string>\",\n          \"<string>\"\n        ]\n      }\n    },\n    \"trigger\": {\n      \"trigger_type\": \"<string>\",\n      \"periodic_trigger\": {\n        \"start_time\": \"<dateTime>\",\n        \"end_time\": \"<dateTime>\",\n        \"interval_size\": \"<integer>\",\n        \"interval_unit\": \"<string>\",\n        \"trunc_unit\": \"<string>\"\n      },\n      \"cron_trigger\": {\n        \"crontab_exp\": \"<string>\",\n        \"start_time\": \"<dateTime>\",\n        \"end_time\": \"<dateTime>\"\n      },\n      \"static_trigger\": {\n        \"time\": \"<dateTime>\"\n      }\n    },\n    \"custom_params\": {\n      \"key_0\": {\n        \"data_type\": \"<string>\",\n        \"bool_value\": \"<boolean>\",\n        \"int_value\": \"<long>\",\n        \"number_value\": \"<double>\",\n        \"string_value\": \"<string>\",\n        \"list_value\": [\n          \"<string>\",\n          \"<string>\"\n        ],\n        \"datetime_value\": \"<dateTime>\",\n        \"date_value\": \"<string>\",\n        \"bigint_value\": \"<long>\",\n        \"decimal_value\": \"<string>\"\n      }\n    },\n    \"visible\": \"<boolean>\",\n    \"managed\": \"<boolean>\",\n    \"status\": \"<string>\",\n    \"created_by\": \"<string>\",\n    \"create_type\": \"<string>\",\n    \"storage_settings\": {\n      \"version_count\": \"<integer>\"\n    },\n    \"alarm_config\": {\n      \"enable\": \"<boolean>\",\n      \"alarm_rules\": [\n        {\n          \"name\": \"<string>\",\n          \"alarm_params\": {\n            \"key_0\": \"<string>\"\n          }\n        },\n        {\n          \"name\": \"<string>\",\n          \"alarm_params\": {\n            \"key_0\": \"<string>\",\n            \"key_1\": \"<string>\",\n            \"key_2\": \"<string>\"\n          }\n        }\n      ]\n    },\n    \"creator_id\": \"<string>\",\n    \"modifier_id\": \"<string>\",\n    \"create_time\": \"<dateTime>\",\n    \"update_time\": \"<dateTime>\",\n    \"notify_params\": {\n      \"subscribe_param\": {\n        \"enable\": \"<boolean>\",\n        \"contents\": [\n          {\n            \"config_id\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"strategy_name\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"extension_point_id\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"ext_params\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          },\n          {\n            \"config_id\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"strategy_name\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"extension_point_id\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"ext_params\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          }\n        ]\n      },\n      \"push_param\": {\n        \"enable\": \"<boolean>\",\n        \"contents\": [\n          {\n            \"config_id\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"strategy_name\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"extension_point_id\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"ext_params\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          },\n          {\n            \"config_id\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"strategy_name\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"extension_point_id\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"ext_params\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          }\n        ]\n      }\n    },\n    \"delete_time\": \"<dateTime>\",\n    \"delete_account_id\": \"<string>\",\n    \"source\": {\n      \"app\": \"<string>\",\n      \"category\": \"<string>\",\n      \"sub_category\": \"<string>\"\n    },\n    \"archive_time\": \"<dateTime>\",\n    \"archive_account_id\": \"<string>\"\n  },\n  \"update_mask\": \"<string>\",\n  \"dry_run\": \"<boolean>\"\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        }
+      },
+      "response": [
+        {
+          "id": "efd29a45-bf4c-48aa-a8fd-3d356968bac3",
+          "name": "sensorsdata.horizon.v1.SegmentDefinition",
+          "originalRequest": {
+            "url": {
+              "path": [
+                "segment",
+                "definition",
+                "update-with-rule"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "disabled": false,
+                "description": "(Required) 全局唯一的密钥，用于验证和授权访问 API 接口",
+                "key": "api-key",
+                "value": "<string>"
+              },
+              {
+                "disabled": false,
+                "description": "(Required) 项目名, 指定请求所属项目",
+                "key": "sensorsdata-project",
+                "value": "<string>"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"segment_definition\": {\n    \"entity_name\": \"user\",\n    \"name\": \"user_segment_cs001\",\n    \"display_name\": \"我的分群\",\n    \"comment\": \"这是我的分群描述\",\n    \"segment_rule_ref\": {\n      \"segment_rule_name\": \"user_segment_rule_cs001\",\n      \"version\": \"<string>\",\n      \"expression\": {\n        \"type\": \"SQL_BASED\",\n        \"sql_segment_rule\": {\n          \"sql\": \"select user_id as id from user where user_id > 100\",\n          \"query_options\": [\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          ]\n        },\n        \"eql_segment_rule\": {\n          \"eql\": \"user.$SegmentMembership.user_segment_t111111.is_not_null()\\nand\\nuser.user_tag_c4 == '标签值1'\\nand\\nuser.vip_level in ['高级VIP','普通用户']\"\n        },\n        \"loading_segment_rule\": {\n          \"matched_field\": \"user.$identity_login_id\",\n          \"sync_flag\": false,\n          \"loading_type\": \"<string>\"\n        },\n        \"custom_rule\": {\n          \"component_name\": \"<string>\",\n          \"rule\": {},\n          \"rule_str\": \"<string>\"\n        },\n        \"event_sequence_rule\": {\n          \"operator\": \"UNION\",\n          \"simple_event_sequences\": [\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          ]\n        },\n        \"group_expression_rule\": {\n          \"groups\": [\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          ],\n          \"group_expression\": \"$1-$2\"\n        },\n        \"virtual\": \"<boolean>\",\n        \"tailor\": {\n          \"rank_field\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"function\": \"<string>\",\n          \"params\": [\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          ]\n        },\n        \"entity_set_rules\": [\n          {\n            \"entity_name\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"expression\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"name\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"display_name\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"comment\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"id\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"status\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"version\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"rule_available\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"created_by\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"custom_params\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"creator_id\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"modifier_id\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"create_time\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"update_time\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"type\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"read_only\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"delete_flag\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          },\n          {\n            \"entity_name\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"expression\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"name\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"display_name\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"comment\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"id\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"status\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"version\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"rule_available\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"created_by\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"custom_params\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"creator_id\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"modifier_id\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"create_time\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"update_time\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"type\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"read_only\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"delete_flag\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          }\n        ],\n        \"time_zone\": \"<string>\",\n        \"version\": 2,\n        \"used_fields\": [\n          \"<string>\",\n          \"<string>\"\n        ]\n      }\n    },\n    \"trigger\": {\n      \"trigger_type\": \"CRON\",\n      \"periodic_trigger\": {\n        \"start_time\": \"<dateTime>\",\n        \"end_time\": \"<dateTime>\",\n        \"interval_size\": \"<integer>\",\n        \"interval_unit\": \"<string>\",\n        \"trunc_unit\": \"<string>\"\n      },\n      \"cron_trigger\": {\n        \"crontab_exp\": \"0 6 21 * * ? *\",\n        \"start_time\": \"<dateTime>\",\n        \"end_time\": \"<dateTime>\"\n      },\n      \"static_trigger\": {\n        \"time\": \"2020-07-08T00:00:00Z\"\n      }\n    },\n    \"custom_params\": {\n      \"key_0\": {\n        \"data_type\": \"<string>\",\n        \"bool_value\": \"<boolean>\",\n        \"int_value\": \"<long>\",\n        \"number_value\": \"<double>\",\n        \"string_value\": \"<string>\",\n        \"list_value\": [\n          \"<string>\",\n          \"<string>\"\n        ],\n        \"datetime_value\": \"<dateTime>\",\n        \"date_value\": \"<string>\",\n        \"bigint_value\": \"<long>\",\n        \"decimal_value\": \"<string>\"\n      }\n    },\n    \"visible\": \"<boolean>\",\n    \"managed\": \"<boolean>\",\n    \"status\": \"ACTIVE\",\n    \"created_by\": \"<string>\",\n    \"create_type\": \"CUSTOMIZED_RULE\",\n    \"storage_settings\": {\n      \"version_count\": 30\n    },\n    \"alarm_config\": {\n      \"enable\": \"<boolean>\",\n      \"alarm_rules\": [\n        {\n          \"name\": \"<string>\",\n          \"alarm_params\": {\n            \"key_0\": \"<string>\",\n            \"key_1\": \"<string>\"\n          }\n        },\n        {\n          \"name\": \"<string>\",\n          \"alarm_params\": {\n            \"key_0\": \"<string>\"\n          }\n        }\n      ]\n    },\n    \"creator_id\": \"<string>\",\n    \"modifier_id\": \"<string>\",\n    \"create_time\": \"<dateTime>\",\n    \"update_time\": \"<dateTime>\",\n    \"notify_params\": {\n      \"subscribe_param\": {\n        \"enable\": \"<boolean>\",\n        \"contents\": [\n          {\n            \"config_id\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"strategy_name\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"extension_point_id\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"ext_params\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          },\n          {\n            \"config_id\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"strategy_name\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"extension_point_id\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"ext_params\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          }\n        ]\n      },\n      \"push_param\": {\n        \"enable\": \"<boolean>\",\n        \"contents\": [\n          {\n            \"config_id\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"strategy_name\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"extension_point_id\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"ext_params\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          },\n          {\n            \"config_id\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"strategy_name\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"extension_point_id\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"ext_params\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          }\n        ]\n      }\n    },\n    \"delete_time\": \"<dateTime>\",\n    \"delete_account_id\": \"<string>\",\n    \"source\": {\n      \"app\": \"<string>\",\n      \"category\": \"<string>\",\n      \"sub_category\": \"<string>\"\n    },\n    \"archive_time\": \"<dateTime>\",\n    \"archive_account_id\": \"<string>\"\n  },\n  \"update_mask\": \"display_name,comment,segment_rule_ref,trigger,custom_params,visible,status,storage_settings,notify_params,alarm_config\",\n  \"dry_run\": false\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "status": "Internal Server Error",
+          "code": 500,
+          "header": [
+            {
+              "key": "Content-Type",
+              "value": "application/json"
+            }
+          ],
+          "body": "{\n  \"code\": \"SUCCESS\",\n  \"data\": {\n    \"entity_name\": \"user\",\n    \"segment_rule_ref\": {\n      \"expression\": {\n        \"eql_segment_rule\": {\n          \"eql\": \"user.$SegmentMembership.user_segment_t111111.is_not_null()\\nand\\nuser.user_tag_c4 == '标签值1'\\nand\\nuser.vip_level in ['高级VIP','普通用户']\"\n        },\n        \"entity_set_rules\": [\n          {}\n        ],\n        \"used_fields\": [\n          \"user.id\"\n        ],\n        \"sql_segment_rule\": {\n          \"query_options\": {\n            \"option\": \"TIMEOUT\",\n            \"value\": \"120\"\n          },\n          \"sql\": \"select user_id as id from user where user_id > 100\"\n        },\n        \"loading_segment_rule\": {\n          \"matched_field\": \"user.$identity_login_id\",\n          \"sync_flag\": false,\n          \"loading_type\": \"TAG_LOADING_TYPE_OVERWRITE\"\n        },\n        \"custom_rule\": {},\n        \"event_sequence_rule\": {\n          \"simple_event_sequences\": [\n            {\n              \"time_window\": {\n                \"unit\": \"DAY\"\n              },\n              \"time_range\": {\n                \"start_time\": {\n                  \"type\": \"RELATIVE\",\n                  \"trunc_unit\": \"DAY\",\n                  \"base_time\": \"$TASK_TIME\",\n                  \"time_interval\": -7\n                },\n                \"end_time\": {\n                  \"type\": \"RELATIVE\",\n                  \"trunc_unit\": \"DAY\",\n                  \"base_time\": \"$TASK_TIME\",\n                  \"time_interval\": -1\n                }\n              },\n              \"event_steps\": [\n                {\n                  \"condition\": {\n                    \"operator\": \"AND\",\n                    \"conditions\": [\n                      {\n                        \"function\": \"IS_TRUE\",\n                        \"params\": [\n                          {\n                            \"param_type\": \"FIELD\",\n                            \"field\": \"user.$Events.$AppStart.$is_login_id\"\n                          }\n                        ]\n                      }\n                    ]\n                  },\n                  \"event_name\": \"user.$Events.AppStart\"\n                }\n              ]\n            }\n          ],\n          \"operator\": \"UNION\"\n        },\n        \"tailor\": {\n          \"function\": \"LESS_EQUAL\",\n          \"rank_field\": {\n            \"type\": \"PERCENT_ORDER_RANK\",\n            \"orders\": [\n              {\n                \"measure\": {\n                  \"type\": \"EQL_MEASURE_FIELD\",\n                  \"eql_measure\": \"user.$Events.virtual_event_for_tag.filter_event(\\n  datetime_add(${var:base_time}, -1, 'DAY'),\\n  datetime_add(${var:base_time}, -1, 'DAY')\\n).count()\"\n                },\n                \"is_asc\": false\n              }\n            ]\n          },\n          \"params\": [\n            {\n              \"param_type\": \"VALUE\",\n              \"value\": {\n                \"data_type\": \"NUMBER\",\n                \"number_value\": 0.1\n              }\n            }\n          ]\n        },\n        \"type\": \"SQL_BASED\",\n        \"version\": 2,\n        \"group_expression_rule\": {\n          \"group_expression\": \"$1-$2\"\n        }\n      },\n      \"segment_rule_name\": \"user_segment_rule_cs001\"\n    },\n    \"alarm_config\": {\n      \"alarm_rules\": [\n        {}\n      ]\n    },\n    \"name\": \"user_segment_cs001\",\n    \"create_type\": \"CUSTOMIZED_RULE\",\n    \"comment\": \"这是我的分群描述\",\n    \"trigger\": {\n      \"trigger_type\": \"CRON\",\n      \"cron_trigger\": {\n        \"crontab_exp\": \"0 6 21 * * ? *\"\n      },\n      \"periodic_trigger\": {},\n      \"static_trigger\": {\n        \"time\": \"2020-07-08T00:00:00Z\"\n      },\n      \"sync_job_trigger\": {}\n    },\n    \"source\": {},\n    \"display_name\": \"我的分群\",\n    \"storage_settings\": {\n      \"version_count\": 30\n    },\n    \"notify_params\": {\n      \"subscribe_param\": {\n        \"contents\": [\n          {}\n        ]\n      }\n    },\n    \"status\": \"ACTIVE\"\n  },\n  \"request_id\": \"1\"\n}",
+          "cookie": [],
+          "_postman_previewlanguage": "json"
+        }
+      ],
+      "event": [],
+      "protocolProfileBehavior": {
+        "disableBodyPruning": true
+      }
+    },
+    {
+      "id": "a4bcfe95-f237-45db-b671-69865f23d355",
+      "name": "删除分群",
+      "request": {
+        "name": "删除分群",
+        "description": {
+          "content": "删除分群\n```\ncurl -X POST \"http://{host}:{port}/api/v3/horizon/v1/segment/definition/delete\" \\\n  -H \"Accept: application/json\" \\\n  -H \"Content-Type: application/json\" \\\n  -H \"sensorsdata-project: {projectName}\" \\\n  -H \"api-key: {apiKey}\" \\\n  -d '{ \"entity_name\": \"user\",\n        \"name\": \"user_segment_wdfq1\"\n  }'\n 返回示例：\n{\n    \"code\": \"SUCCESS\",\n    \"request_id\": \"18115057aa85bb6c55b1d02a940fe692\",\n    \"data\": {}\n}\n```",
+          "type": "text/plain"
+        },
+        "url": {
+          "path": [
+            "segment",
+            "definition",
+            "delete"
+          ],
+          "host": [
+            "{{baseUrl}}"
+          ],
+          "query": [],
+          "variable": []
+        },
+        "header": [
+          {
+            "disabled": false,
+            "description": "(Required) 全局唯一的密钥，用于验证和授权访问 API 接口",
+            "key": "api-key",
+            "value": "<string>"
+          },
+          {
+            "disabled": false,
+            "description": "(Required) 项目名, 指定请求所属项目",
+            "key": "sensorsdata-project",
+            "value": "<string>"
+          },
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          },
+          {
+            "key": "Accept",
+            "value": "application/json"
+          }
+        ],
+        "method": "POST",
+        "auth": null,
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"entity_name\": \"<string>\",\n  \"name\": \"<string>\",\n  \"project_id\": \"<integer>\",\n  \"skip_trash\": \"<boolean>\"\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        }
+      },
+      "response": [
+        {
+          "id": "2939ee5c-fc7a-4609-92cc-796ddab9e50a",
+          "originalRequest": {
+            "url": {
+              "path": [
+                "segment",
+                "definition",
+                "delete"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "disabled": false,
+                "description": "(Required) 全局唯一的密钥，用于验证和授权访问 API 接口",
+                "key": "api-key",
+                "value": "<string>"
+              },
+              {
+                "disabled": false,
+                "description": "(Required) 项目名, 指定请求所属项目",
+                "key": "sensorsdata-project",
+                "value": "<string>"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"entity_name\": \"user\",\n  \"name\": \"<string>\",\n  \"project_id\": 1,\n  \"skip_trash\": false\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "status": "Internal Server Error",
+          "code": 500,
+          "header": [
+            {
+              "key": "Content-Type",
+              "value": "application/json"
+            }
+          ],
+          "body": "{\n  \"code\": \"SUCCESS\",\n  \"data\": {},\n  \"request_id\": \"1\"\n}",
+          "cookie": [],
+          "_postman_previewlanguage": "json"
+        }
+      ],
+      "event": [],
+      "protocolProfileBehavior": {
+        "disableBodyPruning": true
+      }
+    },
+    {
+      "id": "c7835a12-1f4b-4892-b572-3c30ec13f54a",
+      "name": "恢复被删除分群",
+      "request": {
+        "name": "恢复被删除分群",
+        "description": {
+          "content": "恢复被删除分群\n```\ncurl -X POST \"http://{host}:{port}/api/v3/horizon/v1/segment/definition/recover\" \\\n  -H \"Accept: application/json\" \\\n  -H \"Content-Type: application/json\" \\\n  -H \"sensorsdata-project: {projectName}\" \\\n  -H \"api-key: {apiKey}\" \\\n  -d '{ \"entity_name\": \"user\",\n        \"name\": \"user_segment_wdfq1\"\n  }'\n 返回示例：\n{\n    \"code\": \"SUCCESS\",\n    \"request_id\": \"181155401d5eef23e64654ecf04f2f8c\",\n    \"data\": {\n        \"visible\": true,\n        \"create_time\": \"2025-06-18T03:46:47.876Z\",\n        \"entity_name\": \"user\",\n        \"create_type\": \"IMPORT\",\n        \"trigger\": {\n            \"trigger_type\": \"MANUAL\"\n        },\n        \"source\": {\n            \"app\": \"SDH\",\n            \"category\": \"SEGMENT\",\n            \"sub_category\": \"\"\n        },\n        \"display_name\": \"我的分群1\",\n        \"storage_settings\": {\n            \"version_count\": 1\n        },\n        \"created_by\": \"SDH_WEB\",\n        \"custom_params\": {\n            \"DELETE_REQUESTED_PARAM\": {\n                \"data_type\": \"STRING\",\n                \"string_value\": \"{\\\"delete_requested_time\\\":1750218657735,\\\"delete_requested_status\\\":\\\"ACTIVE\\\",\\\"delete_account_id\\\":\\\"2\\\"}\",\n                \"list_value\": []\n            },\n            \"INTERNAL_DEFINITION_ID\": {\n                \"data_type\": \"INT\",\n                \"int_value\": 2,\n                \"list_value\": []\n            }\n        },\n        \"update_time\": \"2025-06-18T03:46:47.876Z\",\n        \"managed\": true,\n        \"segment_rule_ref\": {\n            \"segment_rule_name\": \"88ebf4862ca445b6b6d5678dad50e563\",\n            \"version\": \"1\"\n        },\n        \"name\": \"user_segment_wdfq1\",\n        \"creator_id\": \"2\",\n        \"modifier_id\": \"2\",\n        \"legacy_id\": 58,\n        \"comment\": \"备注信息\",\n        \"status\": \"ACTIVE\"\n    }\n}\n```",
+          "type": "text/plain"
+        },
+        "url": {
+          "path": [
+            "segment",
+            "definition",
+            "recover"
+          ],
+          "host": [
+            "{{baseUrl}}"
+          ],
+          "query": [],
+          "variable": []
+        },
+        "header": [
+          {
+            "disabled": false,
+            "description": "(Required) 全局唯一的密钥，用于验证和授权访问 API 接口",
+            "key": "api-key",
+            "value": "<string>"
+          },
+          {
+            "disabled": false,
+            "description": "(Required) 项目名, 指定请求所属项目",
+            "key": "sensorsdata-project",
+            "value": "<string>"
+          },
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          },
+          {
+            "key": "Accept",
+            "value": "application/json"
+          }
+        ],
+        "method": "POST",
+        "auth": null,
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"entity_name\": \"<string>\",\n  \"name\": \"<string>\",\n  \"project_id\": \"<integer>\"\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        }
+      },
+      "response": [
+        {
+          "id": "557d9157-bd44-4c21-9123-534118120bf4",
+          "name": "sensorsdata.horizon.v1.SegmentDefinition",
+          "originalRequest": {
+            "url": {
+              "path": [
+                "segment",
+                "definition",
+                "recover"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "disabled": false,
+                "description": "(Required) 全局唯一的密钥，用于验证和授权访问 API 接口",
+                "key": "api-key",
+                "value": "<string>"
+              },
+              {
+                "disabled": false,
+                "description": "(Required) 项目名, 指定请求所属项目",
+                "key": "sensorsdata-project",
+                "value": "<string>"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"entity_name\": \"user\",\n  \"name\": \"<string>\",\n  \"project_id\": 1\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "status": "Internal Server Error",
+          "code": 500,
+          "header": [
+            {
+              "key": "Content-Type",
+              "value": "application/json"
+            }
+          ],
+          "body": "{\n  \"code\": \"SUCCESS\",\n  \"data\": {\n    \"entity_name\": \"user\",\n    \"segment_rule_ref\": {\n      \"expression\": {\n        \"eql_segment_rule\": {\n          \"eql\": \"user.$SegmentMembership.user_segment_t111111.is_not_null()\\nand\\nuser.user_tag_c4 == '标签值1'\\nand\\nuser.vip_level in ['高级VIP','普通用户']\"\n        },\n        \"entity_set_rules\": [\n          {}\n        ],\n        \"used_fields\": [\n          \"user.id\"\n        ],\n        \"sql_segment_rule\": {\n          \"query_options\": {\n            \"option\": \"TIMEOUT\",\n            \"value\": \"120\"\n          },\n          \"sql\": \"select user_id as id from user where user_id > 100\"\n        },\n        \"loading_segment_rule\": {\n          \"matched_field\": \"user.$identity_login_id\",\n          \"sync_flag\": false,\n          \"loading_type\": \"TAG_LOADING_TYPE_OVERWRITE\"\n        },\n        \"custom_rule\": {},\n        \"event_sequence_rule\": {\n          \"simple_event_sequences\": [\n            {\n              \"time_window\": {\n                \"unit\": \"DAY\"\n              },\n              \"time_range\": {\n                \"start_time\": {\n                  \"type\": \"RELATIVE\",\n                  \"trunc_unit\": \"DAY\",\n                  \"base_time\": \"$TASK_TIME\",\n                  \"time_interval\": -7\n                },\n                \"end_time\": {\n                  \"type\": \"RELATIVE\",\n                  \"trunc_unit\": \"DAY\",\n                  \"base_time\": \"$TASK_TIME\",\n                  \"time_interval\": -1\n                }\n              },\n              \"event_steps\": [\n                {\n                  \"condition\": {\n                    \"operator\": \"AND\",\n                    \"conditions\": [\n                      {\n                        \"function\": \"IS_TRUE\",\n                        \"params\": [\n                          {\n                            \"param_type\": \"FIELD\",\n                            \"field\": \"user.$Events.$AppStart.$is_login_id\"\n                          }\n                        ]\n                      }\n                    ]\n                  },\n                  \"event_name\": \"user.$Events.AppStart\"\n                }\n              ]\n            }\n          ],\n          \"operator\": \"UNION\"\n        },\n        \"tailor\": {\n          \"function\": \"LESS_EQUAL\",\n          \"rank_field\": {\n            \"type\": \"PERCENT_ORDER_RANK\",\n            \"orders\": [\n              {\n                \"measure\": {\n                  \"type\": \"EQL_MEASURE_FIELD\",\n                  \"eql_measure\": \"user.$Events.virtual_event_for_tag.filter_event(\\n  datetime_add(${var:base_time}, -1, 'DAY'),\\n  datetime_add(${var:base_time}, -1, 'DAY')\\n).count()\"\n                },\n                \"is_asc\": false\n              }\n            ]\n          },\n          \"params\": [\n            {\n              \"param_type\": \"VALUE\",\n              \"value\": {\n                \"data_type\": \"NUMBER\",\n                \"number_value\": 0.1\n              }\n            }\n          ]\n        },\n        \"type\": \"SQL_BASED\",\n        \"version\": 2,\n        \"group_expression_rule\": {\n          \"group_expression\": \"$1-$2\"\n        }\n      },\n      \"segment_rule_name\": \"user_segment_rule_cs001\"\n    },\n    \"alarm_config\": {\n      \"alarm_rules\": [\n        {}\n      ]\n    },\n    \"name\": \"user_segment_cs001\",\n    \"create_type\": \"CUSTOMIZED_RULE\",\n    \"comment\": \"这是我的分群描述\",\n    \"trigger\": {\n      \"trigger_type\": \"CRON\",\n      \"cron_trigger\": {\n        \"crontab_exp\": \"0 6 21 * * ? *\"\n      },\n      \"periodic_trigger\": {},\n      \"static_trigger\": {\n        \"time\": \"2020-07-08T00:00:00Z\"\n      },\n      \"sync_job_trigger\": {}\n    },\n    \"source\": {},\n    \"display_name\": \"我的分群\",\n    \"storage_settings\": {\n      \"version_count\": 30\n    },\n    \"notify_params\": {\n      \"subscribe_param\": {\n        \"contents\": [\n          {}\n        ]\n      }\n    },\n    \"status\": \"ACTIVE\"\n  },\n  \"request_id\": \"1\"\n}",
+          "cookie": [],
+          "_postman_previewlanguage": "json"
+        }
+      ],
+      "event": [],
+      "protocolProfileBehavior": {
+        "disableBodyPruning": true
+      }
+    },
+    {
+      "id": "0f111773-f2a5-4675-b439-77231ca066bf",
+      "name": "更新调度状态",
+      "request": {
+        "name": "更新调度状态",
+        "description": {
+          "content": "更新例行分群的调度状态\n```\ncurl -X POST \"http://{host}:{port}/api/v3/horizon/v1/segment/definition/status/update\" \\\n  -H \"Accept: application/json\" \\\n  -H \"Content-Type: application/json\" \\\n  -H \"sensorsdata-project: {projectName}\" \\\n  -H \"api-key: {apiKey}\" \\\n  -d '{\"entity_name\":\"user\",\"name\":\"user_segment_wdfq1\",\"status\":\"SUSPENDED\"}'\n```",
+          "type": "text/plain"
+        },
+        "url": {
+          "path": [
+            "segment",
+            "definition",
+            "status",
+            "update"
+          ],
+          "host": [
+            "{{baseUrl}}"
+          ],
+          "query": [],
+          "variable": []
+        },
+        "header": [
+          {
+            "disabled": false,
+            "description": "(Required) 全局唯一的密钥，用于验证和授权访问 API 接口",
+            "key": "api-key",
+            "value": "<string>"
+          },
+          {
+            "disabled": false,
+            "description": "(Required) 项目名, 指定请求所属项目",
+            "key": "sensorsdata-project",
+            "value": "<string>"
+          },
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          },
+          {
+            "key": "Accept",
+            "value": "application/json"
+          }
+        ],
+        "method": "POST",
+        "auth": null,
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"entity_name\": \"<string>\",\n  \"name\": \"<string>\",\n  \"status\": \"<string>\"\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        }
+      },
+      "response": [
+        {
+          "id": "44197749-1c2a-44ca-9492-8bee5aff1ba0",
+          "originalRequest": {
+            "url": {
+              "path": [
+                "segment",
+                "definition",
+                "status",
+                "update"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "disabled": false,
+                "description": "(Required) 全局唯一的密钥，用于验证和授权访问 API 接口",
+                "key": "api-key",
+                "value": "<string>"
+              },
+              {
+                "disabled": false,
+                "description": "(Required) 项目名, 指定请求所属项目",
+                "key": "sensorsdata-project",
+                "value": "<string>"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"entity_name\": \"user\",\n  \"name\": \"user_segment_c1\",\n  \"status\": \"SUSPENDED\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "status": "Internal Server Error",
+          "code": 500,
+          "header": [
+            {
+              "key": "Content-Type",
+              "value": "application/json"
+            }
+          ],
+          "body": "{\n  \"code\": \"SUCCESS\",\n  \"data\": {},\n  \"request_id\": \"1\"\n}",
+          "cookie": [],
+          "_postman_previewlanguage": "json"
+        }
+      ],
+      "event": [],
+      "protocolProfileBehavior": {
+        "disableBodyPruning": true
+      }
+    },
+    {
+      "id": "713cc720-cbc9-4d98-a678-ba18ebce5059",
+      "name": "触发分群计算",
+      "request": {
+        "name": "触发分群计算",
+        "description": {
+          "content": "触发分群计算\n```\ncurl -X POST 'http://{host}:{port}/api/v3/horizon/v1/segment/definition/evaluate' \\\n-H \"Accept: application/json\" \\\n  -H \"Content-Type: application/json\" \\\n  -H \"sensorsdata-project: {projectName}\" \\\n  -H \"api-key: {apiKey}\" \\\n  -d '{\n    \"entity_name\": \"user\",\n    \"evaluate_params\": [{\n        \"segment_definition_name\": \"user_segment_t\",\n        \"base_time\": \"2025-04-27T16:00:00Z\"\n    }]\n}'\n```",
+          "type": "text/plain"
+        },
+        "url": {
+          "path": [
+            "segment",
+            "definition",
+            "evaluate"
+          ],
+          "host": [
+            "{{baseUrl}}"
+          ],
+          "query": [],
+          "variable": []
+        },
+        "header": [
+          {
+            "disabled": false,
+            "description": "(Required) 全局唯一的密钥，用于验证和授权访问 API 接口",
+            "key": "api-key",
+            "value": "<string>"
+          },
+          {
+            "disabled": false,
+            "description": "(Required) 项目名, 指定请求所属项目",
+            "key": "sensorsdata-project",
+            "value": "<string>"
+          },
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          },
+          {
+            "key": "Accept",
+            "value": "application/json"
+          }
+        ],
+        "method": "POST",
+        "auth": null,
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"entity_name\": \"<string>\",\n  \"evaluate_params\": [\n    {\n      \"base_time\": \"<dateTime>\",\n      \"segment_definition_name\": \"<string>\",\n      \"segment_task_params\": {\n        \"key_0\": {\n          \"data_type\": \"<string>\",\n          \"bool_value\": \"<boolean>\",\n          \"int_value\": \"<long>\",\n          \"number_value\": \"<double>\",\n          \"string_value\": \"<string>\",\n          \"list_value\": [\n            \"<string>\",\n            \"<string>\"\n          ],\n          \"datetime_value\": \"<dateTime>\",\n          \"date_value\": \"<string>\",\n          \"bigint_value\": \"<long>\",\n          \"decimal_value\": \"<string>\"\n        }\n      }\n    },\n    {\n      \"base_time\": \"<dateTime>\",\n      \"segment_definition_name\": \"<string>\",\n      \"segment_task_params\": {\n        \"key_0\": {\n          \"data_type\": \"<string>\",\n          \"bool_value\": \"<boolean>\",\n          \"int_value\": \"<long>\",\n          \"number_value\": \"<double>\",\n          \"string_value\": \"<string>\",\n          \"list_value\": [\n            \"<string>\",\n            \"<string>\"\n          ],\n          \"datetime_value\": \"<dateTime>\",\n          \"date_value\": \"<string>\",\n          \"bigint_value\": \"<long>\",\n          \"decimal_value\": \"<string>\"\n        },\n        \"key_1\": {\n          \"data_type\": \"<string>\",\n          \"bool_value\": \"<boolean>\",\n          \"int_value\": \"<long>\",\n          \"number_value\": \"<double>\",\n          \"string_value\": \"<string>\",\n          \"list_value\": [\n            \"<string>\",\n            \"<string>\"\n          ],\n          \"datetime_value\": \"<dateTime>\",\n          \"date_value\": \"<string>\",\n          \"bigint_value\": \"<long>\",\n          \"decimal_value\": \"<string>\"\n        }\n      }\n    }\n  ]\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        }
+      },
+      "response": [
+        {
+          "id": "1e4919ea-d046-4b83-99d6-5306daf1e4d5",
+          "originalRequest": {
+            "url": {
+              "path": [
+                "segment",
+                "definition",
+                "evaluate"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "disabled": false,
+                "description": "(Required) 全局唯一的密钥，用于验证和授权访问 API 接口",
+                "key": "api-key",
+                "value": "<string>"
+              },
+              {
+                "disabled": false,
+                "description": "(Required) 项目名, 指定请求所属项目",
+                "key": "sensorsdata-project",
+                "value": "<string>"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"entity_name\": \"user\",\n  \"evaluate_params\": [\n    {\n      \"base_time\": \"2025-04-28T16:00:00Z\",\n      \"segment_definition_name\": \"user_segment_c1\",\n      \"segment_task_params\": {\n        \"key_0\": {\n          \"data_type\": \"<string>\",\n          \"bool_value\": \"<boolean>\",\n          \"int_value\": \"<long>\",\n          \"number_value\": \"<double>\",\n          \"string_value\": \"<string>\",\n          \"list_value\": [\n            \"<string>\",\n            \"<string>\"\n          ],\n          \"datetime_value\": \"<dateTime>\",\n          \"date_value\": \"<string>\",\n          \"bigint_value\": \"<long>\",\n          \"decimal_value\": \"<string>\"\n        },\n        \"key_1\": {\n          \"data_type\": \"<string>\",\n          \"bool_value\": \"<boolean>\",\n          \"int_value\": \"<long>\",\n          \"number_value\": \"<double>\",\n          \"string_value\": \"<string>\",\n          \"list_value\": [\n            \"<string>\",\n            \"<string>\"\n          ],\n          \"datetime_value\": \"<dateTime>\",\n          \"date_value\": \"<string>\",\n          \"bigint_value\": \"<long>\",\n          \"decimal_value\": \"<string>\"\n        },\n        \"key_2\": {\n          \"data_type\": \"<string>\",\n          \"bool_value\": \"<boolean>\",\n          \"int_value\": \"<long>\",\n          \"number_value\": \"<double>\",\n          \"string_value\": \"<string>\",\n          \"list_value\": [\n            \"<string>\",\n            \"<string>\"\n          ],\n          \"datetime_value\": \"<dateTime>\",\n          \"date_value\": \"<string>\",\n          \"bigint_value\": \"<long>\",\n          \"decimal_value\": \"<string>\"\n        }\n      }\n    },\n    {\n      \"base_time\": \"2025-04-28T16:00:00Z\",\n      \"segment_definition_name\": \"user_segment_c1\",\n      \"segment_task_params\": {\n        \"key_0\": {\n          \"data_type\": \"<string>\",\n          \"bool_value\": \"<boolean>\",\n          \"int_value\": \"<long>\",\n          \"number_value\": \"<double>\",\n          \"string_value\": \"<string>\",\n          \"list_value\": [\n            \"<string>\",\n            \"<string>\"\n          ],\n          \"datetime_value\": \"<dateTime>\",\n          \"date_value\": \"<string>\",\n          \"bigint_value\": \"<long>\",\n          \"decimal_value\": \"<string>\"\n        }\n      }\n    }\n  ]\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "status": "Internal Server Error",
+          "code": 500,
+          "header": [
+            {
+              "key": "Content-Type",
+              "value": "application/json"
+            }
+          ],
+          "body": "{\n  \"code\": \"SUCCESS\",\n  \"data\": {},\n  \"request_id\": \"1\"\n}",
+          "cookie": [],
+          "_postman_previewlanguage": "json"
+        }
+      ],
+      "event": [],
+      "protocolProfileBehavior": {
+        "disableBodyPruning": true
+      }
+    },
+    {
+      "id": "cc971b3a-bdee-4ac2-9c86-21c3b4df482f",
+      "name": "获取分群定义关联的分群包元素",
+      "request": {
+        "name": "获取分群定义关联的分群包元素",
+        "description": {
+          "content": "获取计算出来的分群包信息列表\n```\ncurl -X POST \"http://{host}:{port}/api/v3/horizon/v1/segment/item/list\" \\\n  -H \"Accept: application/json\" \\\n  -H \"Content-Type: application/json\" \\\n  -H \"sensorsdata-project: {projectName}\" \\\n  -H \"api-key: {apiKey}\" \\\n  -d '{\"entity_name\":\"user\",\"definition_name\":\"user_segment_t\",\"limit\":5,\"segment_ready\":true}'\n 返回值示例：\n{\"code\":\"SUCCESS\",\"request_id\":\"301030287ccb2a91d6c7fefa78065f25\",\"data\":{\"items\":[{\"base_time\":\"2025-04-22T16:00:00Z\",\"segment_name\":\"user_user_segment_t_42_1745337600000\",\"create_time\":\"2025-04-23T09:17:20.602Z\",\"segment_ready\":true,\"segment_ready_time\":\"2025-04-23T09:17:44.727Z\",\"count\":0}]}\n```",
+          "type": "text/plain"
+        },
+        "url": {
+          "path": [
+            "segment",
+            "item",
+            "list"
+          ],
+          "host": [
+            "{{baseUrl}}"
+          ],
+          "query": [],
+          "variable": []
+        },
+        "header": [
+          {
+            "disabled": false,
+            "description": "(Required) 全局唯一的密钥，用于验证和授权访问 API 接口",
+            "key": "api-key",
+            "value": "<string>"
+          },
+          {
+            "disabled": false,
+            "description": "(Required) 项目名, 指定请求所属项目",
+            "key": "sensorsdata-project",
+            "value": "<string>"
+          },
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          },
+          {
+            "key": "Accept",
+            "value": "application/json"
+          }
+        ],
+        "method": "POST",
+        "auth": null,
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"definition_name\": \"<string>\",\n  \"entity_name\": \"<string>\",\n  \"segment_ready\": \"<boolean>\",\n  \"base_time_list\": [\n    \"<dateTime>\",\n    \"<dateTime>\"\n  ],\n  \"limit\": \"<integer>\"\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        }
+      },
+      "response": [
+        {
+          "id": "58ac063d-25e0-4b15-b484-690bd2a0a0b0",
+          "name": "sensorsdata.horizon.v1.ListSegmentItemsResponse",
+          "originalRequest": {
+            "url": {
+              "path": [
+                "segment",
+                "item",
+                "list"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "disabled": false,
+                "description": "(Required) 全局唯一的密钥，用于验证和授权访问 API 接口",
+                "key": "api-key",
+                "value": "<string>"
+              },
+              {
+                "disabled": false,
+                "description": "(Required) 项目名, 指定请求所属项目",
+                "key": "sensorsdata-project",
+                "value": "<string>"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"definition_name\": \"user_segment_c1\",\n  \"entity_name\": \"user\",\n  \"segment_ready\": true,\n  \"base_time_list\": [\n    \"<dateTime>\",\n    \"<dateTime>\"\n  ],\n  \"limit\": \"<integer>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "status": "Internal Server Error",
+          "code": 500,
+          "header": [
+            {
+              "key": "Content-Type",
+              "value": "application/json"
+            }
+          ],
+          "body": "{\n  \"code\": \"SUCCESS\",\n  \"data\": {\n    \"items\": [\n      {}\n    ]\n  },\n  \"request_id\": \"1\"\n}",
+          "cookie": [],
+          "_postman_previewlanguage": "json"
+        }
+      ],
+      "event": [],
+      "protocolProfileBehavior": {
+        "disableBodyPruning": true
+      }
+    },
+    {
+      "id": "3dc5d36d-0241-4a4e-b69e-f007ee7188e8",
+      "name": "获取最新分群包元素",
+      "request": {
+        "name": "获取最新分群包元素",
+        "description": {
+          "content": "获取分群对应最新分群包元素\n```\ncurl -X POST \"http://{host}:{port}/api/v3/horizon/v1/segment/latest-item/get\" \\\n  -H \"Accept: application/json\" \\\n  -H \"Content-Type: application/json\" \\\n  -H \"sensorsdata-project: {projectName}\" \\\n  -H \"api-key: {apiKey}\" \\\n  -d '{\"entity_name\":\"user\",\"definition_names\":[\"user_segment_t\",\"user_segment_wdfq1\"],\"segment_ready\":true}'\n 返回值示例：\n{\"code\":\"SUCCESS\",\"request_id\":\"30104727710d6fa19eb7b5aa76b92e90\",\"data\":{\"lasted_segment_item_map\":{\"user_segment_t\":{\"base_time\":\"2025-04-22T16:00:00Z\",\"segment_name\":\"user_user_segment_t_42_1745337600000\",\"create_time\":\"2025-04-23T09:17:20.602Z\",\"segment_ready\":true,\"segment_ready_time\":\"2025-04-23T09:17:44.727Z\",\"count\":0}}}}\n```",
+          "type": "text/plain"
+        },
+        "url": {
+          "path": [
+            "segment",
+            "latest-item",
+            "get"
+          ],
+          "host": [
+            "{{baseUrl}}"
+          ],
+          "query": [],
+          "variable": []
+        },
+        "header": [
+          {
+            "disabled": false,
+            "description": "(Required) 全局唯一的密钥，用于验证和授权访问 API 接口",
+            "key": "api-key",
+            "value": "<string>"
+          },
+          {
+            "disabled": false,
+            "description": "(Required) 项目名, 指定请求所属项目",
+            "key": "sensorsdata-project",
+            "value": "<string>"
+          },
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          },
+          {
+            "key": "Accept",
+            "value": "application/json"
+          }
+        ],
+        "method": "POST",
+        "auth": null,
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"definition_names\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"entity_name\": \"<string>\",\n  \"segment_ready\": \"<boolean>\"\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        }
+      },
+      "response": [
+        {
+          "id": "4eae2951-80c5-4699-8448-095398713664",
+          "name": "sensorsdata.horizon.v1.GetLastedSegmentItemResponse",
+          "originalRequest": {
+            "url": {
+              "path": [
+                "segment",
+                "latest-item",
+                "get"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "disabled": false,
+                "description": "(Required) 全局唯一的密钥，用于验证和授权访问 API 接口",
+                "key": "api-key",
+                "value": "<string>"
+              },
+              {
+                "disabled": false,
+                "description": "(Required) 项目名, 指定请求所属项目",
+                "key": "sensorsdata-project",
+                "value": "<string>"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"definition_names\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"entity_name\": \"user\",\n  \"segment_ready\": true\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "status": "Internal Server Error",
+          "code": 500,
+          "header": [
+            {
+              "key": "Content-Type",
+              "value": "application/json"
+            }
+          ],
+          "body": "{\n  \"code\": \"SUCCESS\",\n  \"data\": {},\n  \"request_id\": \"1\"\n}",
+          "cookie": [],
+          "_postman_previewlanguage": "json"
+        }
+      ],
+      "event": [],
+      "protocolProfileBehavior": {
+        "disableBodyPruning": true
+      }
+    },
+    {
+      "id": "dd6a0fab-77ff-4fcb-bbed-add3502c9995",
+      "name": "获取分群任务状态",
+      "request": {
+        "name": "获取分群任务状态",
+        "description": {
+          "content": "获取分群任务状态\n```\n  curl -X POST \"http://{host}:{port}/api/v3/horizon/v1/segment/task/get\" \\\n    -H \"Accept: application/json\" \\\n    -H \"Content-Type: application/json\" \\\n    -H \"sensorsdata-project: {projectName}\" \\\n    -H \"api-key: {apiKey}\" \\\n    -d '{\"entity_name\":\"user\",\"definition_name\":\"user_segment_t\",\"base_time_list\":[\"2025-04-22T16:00:00Z\",\"2025-04-27T16:00:00Z\"],\"fetch_all\":false}'\n 返回值示例：\n {\"code\":\"SUCCESS\",\"request_id\":\"30110749a909652f7e7a5bd6b6753f5a\",\"data\":{\"tasks\":[{\"id\":165,\"segment_definition_name\":\"user_segment_t\",\"rule_ref\":{\"segment_rule_name\":\"13711b8bc45a4cfa83747864b468afe2\",\"version\":\"1\"},\"segment_name\":\"\",\"segment_task_params\":{},\"failure_detail\":{\"code\":\"\",\"error_message\":\"\"},\"segment_task_report\":{\"count\":0},\"base_time\":\"2025-04-22T16:00:00Z\",\"entity_name\":\"user\",\"segment_task_status\":\"SEGMENT_TASK_SUCCESS\",\"end_time\":\"2025-04-23T09:17:44.706Z\",\"failed_times\":0,\"start_time\":\"2025-04-23T09:17:37.282Z\",\"custom_params\":{},\"creator_id\":\"2\",\"modifier_id\":\"2\",\"create_time\":\"2025-04-23T09:17:20.617Z\",\"update_time\":\"2025-04-23T09:17:44.790Z\"},{\"id\":180,\"segment_definition_name\":\"user_segment_t\",\"rule_ref\":{\"segment_rule_name\":\"13711b8bc45a4cfa83747864b468afe2\",\"version\":\"1\"},\"segment_name\":\"\",\"segment_task_params\":{},\"failure_detail\":{\"code\":\"\",\"error_message\":\"\"},\"segment_task_report\":{\"count\":0},\"base_time\":\"2025-04-27T16:00:00Z\",\"entity_name\":\"user\",\"segment_task_status\":\"SEGMENT_TASK_COMPUTING\",\"end_time\":\"2025-04-30T02:23:17.523Z\",\"failed_times\":0,\"start_time\":\"2025-04-30T02:23:17.523Z\",\"custom_params\":{},\"creator_id\":\"2\",\"modifier_id\":\"2\",\"create_time\":\"2025-04-30T02:23:17.523Z\",\"update_time\":\"2025-04-30T02:23:20.082Z\"}]}}\n```",
+          "type": "text/plain"
+        },
+        "url": {
+          "path": [
+            "segment",
+            "task",
+            "get"
+          ],
+          "host": [
+            "{{baseUrl}}"
+          ],
+          "query": [],
+          "variable": []
+        },
+        "header": [
+          {
+            "disabled": false,
+            "description": "(Required) 全局唯一的密钥，用于验证和授权访问 API 接口",
+            "key": "api-key",
+            "value": "<string>"
+          },
+          {
+            "disabled": false,
+            "description": "(Required) 项目名, 指定请求所属项目",
+            "key": "sensorsdata-project",
+            "value": "<string>"
+          },
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          },
+          {
+            "key": "Accept",
+            "value": "application/json"
+          }
+        ],
+        "method": "POST",
+        "auth": null,
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"base_time_list\": [\n    \"<dateTime>\",\n    \"<dateTime>\"\n  ],\n  \"definition_name\": \"<string>\",\n  \"entity_name\": \"<string>\",\n  \"fetch_all\": \"<boolean>\"\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        }
+      },
+      "response": [
+        {
+          "id": "7a28f9ef-676a-414b-8609-27c13745677b",
+          "name": "sensorsdata.horizon.v1.GetSegmentTaskResponse",
+          "originalRequest": {
+            "url": {
+              "path": [
+                "segment",
+                "task",
+                "get"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "disabled": false,
+                "description": "(Required) 全局唯一的密钥，用于验证和授权访问 API 接口",
+                "key": "api-key",
+                "value": "<string>"
+              },
+              {
+                "disabled": false,
+                "description": "(Required) 项目名, 指定请求所属项目",
+                "key": "sensorsdata-project",
+                "value": "<string>"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"base_time_list\": [\n    \"<dateTime>\",\n    \"<dateTime>\"\n  ],\n  \"definition_name\": \"user_segment_c1\",\n  \"entity_name\": \"user\",\n  \"fetch_all\": false\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "status": "Internal Server Error",
+          "code": 500,
+          "header": [
+            {
+              "key": "Content-Type",
+              "value": "application/json"
+            }
+          ],
+          "body": "{\n  \"code\": \"SUCCESS\",\n  \"data\": {\n    \"tasks\": [\n      {\n        \"failure_detail\": {},\n        \"segment_task_report\": {\n          \"segment_loading_report\": {}\n        },\n        \"rule_ref\": {\n          \"expression\": {\n            \"eql_segment_rule\": {\n              \"eql\": \"user.$SegmentMembership.user_segment_t111111.is_not_null()\\nand\\nuser.user_tag_c4 == '标签值1'\\nand\\nuser.vip_level in ['高级VIP','普通用户']\"\n            },\n            \"entity_set_rules\": [\n              {}\n            ],\n            \"used_fields\": [\n              \"user.id\"\n            ],\n            \"sql_segment_rule\": {\n              \"query_options\": {\n                \"option\": \"TIMEOUT\",\n                \"value\": \"120\"\n              },\n              \"sql\": \"select user_id as id from user where user_id > 100\"\n            },\n            \"loading_segment_rule\": {\n              \"matched_field\": \"user.$identity_login_id\",\n              \"sync_flag\": false,\n              \"loading_type\": \"TAG_LOADING_TYPE_OVERWRITE\"\n            },\n            \"custom_rule\": {},\n            \"event_sequence_rule\": {\n              \"simple_event_sequences\": [\n                {\n                  \"time_window\": {\n                    \"unit\": \"DAY\"\n                  },\n                  \"time_range\": {\n                    \"start_time\": {\n                      \"type\": \"RELATIVE\",\n                      \"trunc_unit\": \"DAY\",\n                      \"base_time\": \"$TASK_TIME\",\n                      \"time_interval\": -7\n                    },\n                    \"end_time\": {\n                      \"type\": \"RELATIVE\",\n                      \"trunc_unit\": \"DAY\",\n                      \"base_time\": \"$TASK_TIME\",\n                      \"time_interval\": -1\n                    }\n                  },\n                  \"event_steps\": [\n                    {\n                      \"condition\": {\n                        \"operator\": \"AND\",\n                        \"conditions\": [\n                          {\n                            \"function\": \"IS_TRUE\",\n                            \"params\": [\n                              {\n                                \"param_type\": \"FIELD\",\n                                \"field\": \"user.$Events.$AppStart.$is_login_id\"\n                              }\n                            ]\n                          }\n                        ]\n                      },\n                      \"event_name\": \"user.$Events.AppStart\"\n                    }\n                  ]\n                }\n              ],\n              \"operator\": \"UNION\"\n            },\n            \"tailor\": {\n              \"function\": \"LESS_EQUAL\",\n              \"rank_field\": {\n                \"type\": \"PERCENT_ORDER_RANK\",\n                \"orders\": [\n                  {\n                    \"measure\": {\n                      \"type\": \"EQL_MEASURE_FIELD\",\n                      \"eql_measure\": \"user.$Events.virtual_event_for_tag.filter_event(\\n  datetime_add(${var:base_time}, -1, 'DAY'),\\n  datetime_add(${var:base_time}, -1, 'DAY')\\n).count()\"\n                    },\n                    \"is_asc\": false\n                  }\n                ]\n              },\n              \"params\": [\n                {\n                  \"param_type\": \"VALUE\",\n                  \"value\": {\n                    \"data_type\": \"NUMBER\",\n                    \"number_value\": 0.1\n                  }\n                }\n              ]\n            },\n            \"type\": \"SQL_BASED\",\n            \"version\": 2,\n            \"group_expression_rule\": {\n              \"group_expression\": \"$1-$2\"\n            }\n          },\n          \"segment_rule_name\": \"user_segment_rule_cs001\"\n        }\n      }\n    ]\n  },\n  \"request_id\": \"1\"\n}",
+          "cookie": [],
+          "_postman_previewlanguage": "json"
+        }
+      ],
+      "event": [],
+      "protocolProfileBehavior": {
+        "disableBodyPruning": true
+      }
+    },
+    {
+      "id": "12f77163-9296-4b7d-b570-be2d9160aeb4",
+      "name": "停止分群任务",
+      "request": {
+        "name": "停止分群任务",
+        "description": {
+          "content": "停止分群任务\n```\ncurl -X POST \"http://{host}:{port}/api/v3/horizon/v1/segment/task/cancel\" \\\n  -H \"Accept: application/json\" \\\n  -H \"Content-Type: application/json\" \\\n  -H \"sensorsdata-project: {projectName}\" \\\n  -H \"api-key: {apiKey}\" \\\n  -d '{\"task_ids\":[4121],\"sync\":\"false\",\"sync_timeout_seconds\":30}'\n```",
+          "type": "text/plain"
+        },
+        "url": {
+          "path": [
+            "segment",
+            "task",
+            "cancel"
+          ],
+          "host": [
+            "{{baseUrl}}"
+          ],
+          "query": [],
+          "variable": []
+        },
+        "header": [
+          {
+            "disabled": false,
+            "description": "(Required) 全局唯一的密钥，用于验证和授权访问 API 接口",
+            "key": "api-key",
+            "value": "<string>"
+          },
+          {
+            "disabled": false,
+            "description": "(Required) 项目名, 指定请求所属项目",
+            "key": "sensorsdata-project",
+            "value": "<string>"
+          },
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          },
+          {
+            "key": "Accept",
+            "value": "application/json"
+          }
+        ],
+        "method": "POST",
+        "auth": null,
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"task_ids\": [\n    \"<integer>\",\n    \"<integer>\"\n  ],\n  \"sync\": \"<boolean>\",\n  \"sync_timeout_seconds\": \"<integer>\"\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        }
+      },
+      "response": [
+        {
+          "id": "68477ee0-1566-40db-a76c-4290283e1b23",
+          "originalRequest": {
+            "url": {
+              "path": [
+                "segment",
+                "task",
+                "cancel"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "disabled": false,
+                "description": "(Required) 全局唯一的密钥，用于验证和授权访问 API 接口",
+                "key": "api-key",
+                "value": "<string>"
+              },
+              {
+                "disabled": false,
+                "description": "(Required) 项目名, 指定请求所属项目",
+                "key": "sensorsdata-project",
+                "value": "<string>"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"task_ids\": [\n    \"<integer>\",\n    \"<integer>\"\n  ],\n  \"sync\": false,\n  \"sync_timeout_seconds\": 30\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "status": "Internal Server Error",
+          "code": 500,
+          "header": [
+            {
+              "key": "Content-Type",
+              "value": "application/json"
+            }
+          ],
+          "body": "{\n  \"code\": \"SUCCESS\",\n  \"data\": {},\n  \"request_id\": \"1\"\n}",
+          "cookie": [],
+          "_postman_previewlanguage": "json"
+        }
+      ],
+      "event": [],
+      "protocolProfileBehavior": {
+        "disableBodyPruning": true
+      }
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "/api/v3/horizon/v1",
+      "key": "baseUrl"
+    }
+  ],
+  "info": {
+    "_postman_id": "fbfb22ee-1ec3-4af8-ba4c-e9f7f8973a02",
+    "name": "神策数界",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "分群管理服务",
+      "type": "text/plain"
+    }
+  }
+}

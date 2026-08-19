@@ -1,0 +1,817 @@
+{
+  "item": [
+    {
+      "id": "7d55042d-192c-4fe0-b31a-e684f34ac56d",
+      "name": "查询业务模型详情信息",
+      "request": {
+        "name": "查询业务模型详情信息",
+        "description": {
+          "content": "查询业务模型详情信息接口",
+          "type": "text/plain"
+        },
+        "url": {
+          "path": [
+            "dataset",
+            "detail"
+          ],
+          "host": [
+            "{{baseUrl}}"
+          ],
+          "query": [
+            {
+              "disabled": false,
+              "key": "dataset_id",
+              "value": "<integer>",
+              "description": "(Required) 业务模型ID"
+            },
+            {
+              "disabled": false,
+              "key": "model_type",
+              "value": "<string>",
+              "description": "业务模型形态，默认值为，如果支持模型态则默认为模型态，否则为二维表形态"
+            }
+          ],
+          "variable": []
+        },
+        "header": [
+          {
+            "disabled": false,
+            "description": "(Required) 全局唯一的密钥，用于验证和授权访问 API 接口",
+            "key": "api-key",
+            "value": "<string>"
+          },
+          {
+            "disabled": false,
+            "description": "(Required) 项目名, 指定请求所属项目",
+            "key": "sensorsdata-project",
+            "value": "<string>"
+          },
+          {
+            "key": "Accept",
+            "value": "application/json"
+          }
+        ],
+        "method": "GET",
+        "auth": null
+      },
+      "response": [
+        {
+          "id": "88e1871b-9e52-4506-ba22-8b482644caaa",
+          "name": "sensorsdata.analytics.v1.DatasetDetailResponse",
+          "originalRequest": {
+            "url": {
+              "path": [
+                "dataset",
+                "detail"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "key": "dataset_id",
+                  "value": "1"
+                },
+                {
+                  "key": "model_type",
+                  "value": "<string>"
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "disabled": false,
+                "description": "(Required) 全局唯一的密钥，用于验证和授权访问 API 接口",
+                "key": "api-key",
+                "value": "<string>"
+              },
+              {
+                "disabled": false,
+                "description": "(Required) 项目名, 指定请求所属项目",
+                "key": "sensorsdata-project",
+                "value": "<string>"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "body": {}
+          },
+          "status": "Internal Server Error",
+          "code": 500,
+          "header": [
+            {
+              "key": "Content-Type",
+              "value": "application/json"
+            }
+          ],
+          "body": "{\n  \"code\": \"SUCCESS\",\n  \"data\": {\n    \"dataset_type\": \"CUSTOME_SQL_QUERY\",\n    \"scheduler_status\": \"PROCESSING_BY_HOUR\",\n    \"sync_type\": \"FULL\",\n    \"columns\": [\n      {\n        \"column_name\": \"country\",\n        \"column_cname\": \"国家\",\n        \"data_type\": \"STRING\",\n        \"column_type\": \"BASIC\",\n        \"column_usage_type\": \"ALL\"\n      },\n      {\n        \"column_name\": \"citry\",\n        \"column_cname\": \"城市\",\n        \"data_type\": \"STRING\",\n        \"column_type\": \"BASIC\",\n        \"column_usage_type\": \"ALL\"\n      },\n      {\n        \"column_name\": \"measure_number\",\n        \"column_cname\": \"指标名称\",\n        \"data_type\": \"NUMBER\",\n        \"column_type\": \"BASIC\",\n        \"column_usage_type\": \"ALL\"\n      },\n      {\n        \"column_name\": \"calculate_measure_number\",\n        \"column_cname\": \"计算列1\",\n        \"data_type\": \"NUMBER\",\n        \"column_type\": \"CALCULATE\",\n        \"column_usage_type\": \"MEASURE\"\n      }\n    ],\n    \"dataset_id\": 1,\n    \"permission_info\": {\n      \"creator_eui_filter_snapshot\": {\n        \"event_permission_filter\": {\n          \"filters\": [\n            {\n              \"conditions\": [\n                {\n                  \"field\": \"event.$Anything.country\",\n                  \"function\": \"notContain\",\n                  \"params\": [\n                    \"韩国\",\n                    \"日本\"\n                  ]\n                },\n                {\n                  \"field\": \"event.$Anything.city\",\n                  \"function\": \"rlike\",\n                  \"params\": [\n                    \".*\"\n                  ]\n                }\n              ],\n              \"relation\": \"AND\"\n            }\n          ],\n          \"conditions\": [\n            {\n              \"field\": \"event.$Anything.country\",\n              \"function\": \"equal\",\n              \"params\": [\n                \"中国\"\n              ]\n            },\n            {\n              \"field\": \"event.$Anything.city\",\n              \"function\": \"contain\",\n              \"params\": [\n                \"北京\"\n              ]\n            }\n          ],\n          \"relation\": \"OR\"\n        }\n      }\n    },\n    \"manager_permission_config\": {\n      \"owner_info\": {},\n      \"co_manager_info\": {\n        \"roles\": [\n          {}\n        ],\n        \"duties\": [\n          {}\n        ]\n      }\n    },\n    \"dataset_storage_type\": \"TABLE\",\n    \"time_unit\": \"DAY\",\n    \"dataset_cname\": \"业务模型显示名\",\n    \"sync_status\": \"SUCCESS\",\n    \"last_sync_success_time\": \"2023-01-01 00:00:00\",\n    \"sync_crontab\": \"[\\\"0 0 4 * * ?\\\"]\",\n    \"data_range_time\": {}\n  },\n  \"request_id\": \"1\"\n}",
+          "cookie": [],
+          "_postman_previewlanguage": "json"
+        }
+      ],
+      "event": [],
+      "protocolProfileBehavior": {
+        "disableBodyPruning": true
+      }
+    },
+    {
+      "id": "f606dcb3-91ae-470d-b2a0-c5e31d33de78",
+      "name": "获取业务模型列表",
+      "request": {
+        "name": "获取业务模型列表",
+        "description": {
+          "content": "获取业务模型列表",
+          "type": "text/plain"
+        },
+        "url": {
+          "path": [
+            "dataset",
+            "detail_list"
+          ],
+          "host": [
+            "{{baseUrl}}"
+          ],
+          "query": [],
+          "variable": []
+        },
+        "header": [
+          {
+            "disabled": false,
+            "description": "(Required) 全局唯一的密钥，用于验证和授权访问 API 接口",
+            "key": "api-key",
+            "value": "<string>"
+          },
+          {
+            "disabled": false,
+            "description": "(Required) 项目名, 指定请求所属项目",
+            "key": "sensorsdata-project",
+            "value": "<string>"
+          },
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          },
+          {
+            "key": "Accept",
+            "value": "application/json"
+          }
+        ],
+        "method": "POST",
+        "auth": null,
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"group_name\": \"<string>\",\n  \"dataset_types\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"scheduler_statuses\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"sync_statuses\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"page_index\": \"<integer>\",\n  \"page_size\": \"<integer>\",\n  \"is_scheduler_pause\": \"<boolean>\"\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        }
+      },
+      "response": [
+        {
+          "id": "f313231b-fc81-45bf-9789-5e22551f4803",
+          "name": "sensorsdata.analytics.v1.DatasetListResponse",
+          "originalRequest": {
+            "url": {
+              "path": [
+                "dataset",
+                "detail_list"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "disabled": false,
+                "description": "(Required) 全局唯一的密钥，用于验证和授权访问 API 接口",
+                "key": "api-key",
+                "value": "<string>"
+              },
+              {
+                "disabled": false,
+                "description": "(Required) 项目名, 指定请求所属项目",
+                "key": "sensorsdata-project",
+                "value": "<string>"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"group_name\": \"默认分组\",\n  \"dataset_types\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"scheduler_statuses\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"sync_statuses\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"page_index\": 0,\n  \"page_size\": 10,\n  \"is_scheduler_pause\": false\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "status": "Internal Server Error",
+          "code": 500,
+          "header": [
+            {
+              "key": "Content-Type",
+              "value": "application/json"
+            }
+          ],
+          "body": "{\n  \"code\": \"SUCCESS\",\n  \"data\": {\n    \"page_info\": {\n      \"current_page\": 1,\n      \"page_count\": 1,\n      \"total\": 2\n    },\n    \"datasets\": [\n      {\n        \"dataset_type\": \"CUSTOME_SQL_QUERY\",\n        \"dataset_id\": 1,\n        \"dataset_cname\": \"业务模型显示名\",\n        \"is_scheduler_pause\": false\n      }\n    ]\n  },\n  \"request_id\": \"1\"\n}",
+          "cookie": [],
+          "_postman_previewlanguage": "json"
+        }
+      ],
+      "event": [],
+      "protocolProfileBehavior": {
+        "disableBodyPruning": true
+      }
+    },
+    {
+      "id": "0e000d1d-41a5-477a-89fe-ca9568964844",
+      "name": "获取业务模型分组列表",
+      "request": {
+        "name": "获取业务模型分组列表",
+        "description": {
+          "content": "获取业务模型分组列表接口",
+          "type": "text/plain"
+        },
+        "url": {
+          "path": [
+            "dataset",
+            "group",
+            "list"
+          ],
+          "host": [
+            "{{baseUrl}}"
+          ],
+          "query": [],
+          "variable": []
+        },
+        "header": [
+          {
+            "disabled": false,
+            "description": "(Required) 全局唯一的密钥，用于验证和授权访问 API 接口",
+            "key": "api-key",
+            "value": "<string>"
+          },
+          {
+            "disabled": false,
+            "description": "(Required) 项目名, 指定请求所属项目",
+            "key": "sensorsdata-project",
+            "value": "<string>"
+          },
+          {
+            "key": "Accept",
+            "value": "application/json"
+          }
+        ],
+        "method": "GET",
+        "auth": null
+      },
+      "response": [
+        {
+          "id": "30c7ac86-ea01-4e31-845d-a3c9a27be2e4",
+          "name": "sensorsdata.analytics.v1.DatasetGroupListResponse",
+          "originalRequest": {
+            "url": {
+              "path": [
+                "dataset",
+                "group",
+                "list"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "disabled": false,
+                "description": "(Required) 全局唯一的密钥，用于验证和授权访问 API 接口",
+                "key": "api-key",
+                "value": "<string>"
+              },
+              {
+                "disabled": false,
+                "description": "(Required) 项目名, 指定请求所属项目",
+                "key": "sensorsdata-project",
+                "value": "<string>"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "body": {}
+          },
+          "status": "Internal Server Error",
+          "code": 500,
+          "header": [
+            {
+              "key": "Content-Type",
+              "value": "application/json"
+            }
+          ],
+          "body": "{\n  \"code\": \"SUCCESS\",\n  \"data\": {\n    \"dataset_groups\": [\n      {\n        \"group_name\": \"分组名称\",\n        \"id\": 1\n      }\n    ]\n  },\n  \"request_id\": \"1\"\n}",
+          "cookie": [],
+          "_postman_previewlanguage": "json"
+        }
+      ],
+      "event": [],
+      "protocolProfileBehavior": {
+        "disableBodyPruning": true
+      }
+    },
+    {
+      "id": "489a2eb0-a5a0-4193-acb5-93c58fe9b0e2",
+      "name": "通过 Sql 查询业务模型数据",
+      "request": {
+        "name": "通过 Sql 查询业务模型数据",
+        "description": {
+          "content": "Sql 查询二维表模式下的业务模型数据接口,包含实时 sql, 不支持拼表业务模型查询",
+          "type": "text/plain"
+        },
+        "url": {
+          "path": [
+            "dataset",
+            "table",
+            "sql_query"
+          ],
+          "host": [
+            "{{baseUrl}}"
+          ],
+          "query": [],
+          "variable": []
+        },
+        "header": [
+          {
+            "disabled": false,
+            "description": "(Required) 全局唯一的密钥，用于验证和授权访问 API 接口",
+            "key": "api-key",
+            "value": "<string>"
+          },
+          {
+            "disabled": false,
+            "description": "(Required) 项目名, 指定请求所属项目",
+            "key": "sensorsdata-project",
+            "value": "<string>"
+          },
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          },
+          {
+            "key": "Accept",
+            "value": "application/json"
+          }
+        ],
+        "method": "POST",
+        "auth": null,
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"description\": \"<string>\",\n  \"query_parameters\": [\n    {\n      \"param_key\": \"<string>\",\n      \"param_value\": \"<string>\"\n    },\n    {\n      \"param_key\": \"<string>\",\n      \"param_value\": \"<string>\"\n    }\n  ],\n  \"sql\": \"<string>\"\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        }
+      },
+      "response": [
+        {
+          "id": "1238b3fe-5d2f-4304-841e-56304dc09138",
+          "name": "sensorsdata.analytics.v1.DatasetTableSqlResponse",
+          "originalRequest": {
+            "url": {
+              "path": [
+                "dataset",
+                "table",
+                "sql_query"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "disabled": false,
+                "description": "(Required) 全局唯一的密钥，用于验证和授权访问 API 接口",
+                "key": "api-key",
+                "value": "<string>"
+              },
+              {
+                "disabled": false,
+                "description": "(Required) 项目名, 指定请求所属项目",
+                "key": "sensorsdata-project",
+                "value": "<string>"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"description\": \"sql查询描述\",\n  \"query_parameters\": [\n    {\n      \"param_key\": \"<string>\",\n      \"param_value\": \"<string>\"\n    },\n    {\n      \"param_key\": \"<string>\",\n      \"param_value\": \"<string>\"\n    }\n  ],\n  \"sql\": \"select t1.country,t1.city,t1.measure_number  from ${dataset_table_1_t1} where date >= ${base_time} ${limit};\\nselect country , city,measure_number from ${dataset_table_1} where date >= ${base_time} ${limit};\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "status": "Internal Server Error",
+          "code": 500,
+          "header": [
+            {
+              "key": "Content-Type",
+              "value": "application/json"
+            }
+          ],
+          "body": "{\n  \"code\": \"SUCCESS\",\n  \"data\": {\n    \"data\": [\n      [\n        \"中国\",\n        \"北京市\",\n        100\n      ],\n      [\n        \"中国\",\n        \"天津市\",\n        200\n      ]\n    ],\n    \"columns\": [\n      {\n        \"column_name\": \"country\",\n        \"column_cname\": \"国家\",\n        \"data_type\": \"STRING\",\n        \"column_type\": \"BASIC\",\n        \"column_usage_type\": \"ALL\"\n      },\n      {\n        \"column_name\": \"citry\",\n        \"column_cname\": \"城市\",\n        \"data_type\": \"STRING\",\n        \"column_type\": \"BASIC\",\n        \"column_usage_type\": \"ALL\"\n      },\n      {\n        \"column_name\": \"measure_number\",\n        \"column_cname\": \"指标名称\",\n        \"data_type\": \"NUMBER\",\n        \"column_type\": \"BASIC\",\n        \"column_usage_type\": \"ALL\"\n      },\n      {\n        \"column_name\": \"calculate_measure_number\",\n        \"column_cname\": \"计算列1\",\n        \"data_type\": \"NUMBER\",\n        \"column_type\": \"CALCULATE\",\n        \"column_usage_type\": \"MEASURE\"\n      }\n    ]\n  },\n  \"request_id\": \"1\"\n}",
+          "cookie": [],
+          "_postman_previewlanguage": "json"
+        }
+      ],
+      "event": [],
+      "protocolProfileBehavior": {
+        "disableBodyPruning": true
+      }
+    },
+    {
+      "id": "dd124853-90d6-4d05-b40e-992d3f54d6bf",
+      "name": "通过指标维度规则查询业务模型数据",
+      "request": {
+        "name": "通过指标维度规则查询业务模型数据",
+        "description": {
+          "content": "查询二维表，预聚合，明细模式等的业务模型数据接口，其中二维表中不支持拼表查询",
+          "type": "text/plain"
+        },
+        "url": {
+          "path": [
+            "dataset",
+            "model",
+            "query"
+          ],
+          "host": [
+            "{{baseUrl}}"
+          ],
+          "query": [],
+          "variable": []
+        },
+        "header": [
+          {
+            "disabled": false,
+            "description": "(Required) 全局唯一的密钥，用于验证和授权访问 API 接口",
+            "key": "api-key",
+            "value": "<string>"
+          },
+          {
+            "disabled": false,
+            "description": "(Required) 项目名, 指定请求所属项目",
+            "key": "sensorsdata-project",
+            "value": "<string>"
+          },
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          },
+          {
+            "key": "Accept",
+            "value": "application/json"
+          }
+        ],
+        "method": "POST",
+        "auth": null,
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"dataset_id\": \"<integer>\",\n  \"description\": \"<string>\",\n  \"measures\": [\n    {\n      \"column_name\": \"<string>\",\n      \"aggregation\": \"<string>\",\n      \"measure_filter\": {\n        \"function\": \"<string>\"\n      }\n    },\n    {\n      \"column_name\": \"<string>\",\n      \"aggregation\": \"<string>\",\n      \"measure_filter\": {\n        \"function\": \"<string>\"\n      }\n    }\n  ],\n  \"dimensions\": [\n    {\n      \"column_name\": \"<string>\"\n    },\n    {\n      \"column_name\": \"<string>\"\n    }\n  ],\n  \"dimension_filters\": {\n    \"relation\": \"<string>\",\n    \"conditions\": [\n      {\n        \"field\": \"<string>\",\n        \"function\": \"<string>\"\n      },\n      {\n        \"field\": \"<string>\",\n        \"function\": \"<string>\"\n      }\n    ],\n    \"filters\": [\n      {\n        \"value\": \"<Circular reference to #/components/schemas/sensorsdata.analytics.v1.ApiRequestFilter detected>\"\n      },\n      {\n        \"value\": \"<Circular reference to #/components/schemas/sensorsdata.analytics.v1.ApiRequestFilter detected>\"\n      }\n    ]\n  },\n  \"sorts\": [\n    {\n      \"sort_method\": \"<string>\",\n      \"sort_column_name\": \"<string>\"\n    },\n    {\n      \"sort_method\": \"<string>\",\n      \"sort_column_name\": \"<string>\"\n    }\n  ],\n  \"page_index\": \"<integer>\",\n  \"page_size\": \"<integer>\",\n  \"from_date\": \"<string>\",\n  \"to_date\": \"<string>\",\n  \"measure_filters\": {\n    \"relation\": \"<string>\",\n    \"filters\": [\n      {\n        \"column_name\": \"<string>\",\n        \"aggregation\": \"<string>\",\n        \"function\": \"<string>\"\n      },\n      {\n        \"column_name\": \"<string>\",\n        \"aggregation\": \"<string>\",\n        \"function\": \"<string>\"\n      }\n    ]\n  },\n  \"model_type\": \"<string>\"\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        }
+      },
+      "response": [
+        {
+          "id": "b5b4d52c-dd7d-46ae-bc74-16b3dd536ca8",
+          "name": "sensorsdata.analytics.v1.DatasetModelResponse",
+          "originalRequest": {
+            "url": {
+              "path": [
+                "dataset",
+                "model",
+                "query"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "disabled": false,
+                "description": "(Required) 全局唯一的密钥，用于验证和授权访问 API 接口",
+                "key": "api-key",
+                "value": "<string>"
+              },
+              {
+                "disabled": false,
+                "description": "(Required) 项目名, 指定请求所属项目",
+                "key": "sensorsdata-project",
+                "value": "<string>"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"dataset_id\": 1,\n  \"description\": \"业务模型查询描述\",\n  \"measures\": [\n    {\n      \"column_name\": \"<string>\",\n      \"aggregation\": \"<string>\",\n      \"measure_filter\": {\n        \"function\": \"<string>\"\n      }\n    },\n    {\n      \"column_name\": \"<string>\",\n      \"aggregation\": \"<string>\",\n      \"measure_filter\": {\n        \"function\": \"<string>\"\n      }\n    }\n  ],\n  \"dimensions\": [\n    {\n      \"column_name\": \"<string>\"\n    },\n    {\n      \"column_name\": \"<string>\"\n    }\n  ],\n  \"dimension_filters\": {\n    \"relation\": \"OR\",\n    \"conditions\": [\n      {\n        \"field\": \"<string>\",\n        \"function\": \"<string>\"\n      },\n      {\n        \"field\": \"<string>\",\n        \"function\": \"<string>\"\n      }\n    ],\n    \"filters\": [\n      {\n        \"value\": \"<Circular reference to #/components/schemas/sensorsdata.analytics.v1.ApiRequestFilter detected>\"\n      },\n      {\n        \"value\": \"<Circular reference to #/components/schemas/sensorsdata.analytics.v1.ApiRequestFilter detected>\"\n      }\n    ]\n  },\n  \"sorts\": [\n    {\n      \"sort_method\": \"<string>\",\n      \"sort_column_name\": \"<string>\"\n    },\n    {\n      \"sort_method\": \"<string>\",\n      \"sort_column_name\": \"<string>\"\n    }\n  ],\n  \"page_index\": 1,\n  \"page_size\": 10,\n  \"from_date\": \"2023-01-01 00:00:00\",\n  \"to_date\": \"2023-12-31 00:00:00\",\n  \"measure_filters\": {\n    \"relation\": \"AND\",\n    \"filters\": [\n      {\n        \"column_name\": \"<string>\",\n        \"aggregation\": \"<string>\",\n        \"function\": \"<string>\"\n      },\n      {\n        \"column_name\": \"<string>\",\n        \"aggregation\": \"<string>\",\n        \"function\": \"<string>\"\n      }\n    ]\n  },\n  \"model_type\": \"<string>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "status": "Internal Server Error",
+          "code": 500,
+          "header": [
+            {
+              "key": "Content-Type",
+              "value": "application/json"
+            }
+          ],
+          "body": "{\n  \"code\": \"SUCCESS\",\n  \"data\": {\n    \"data\": [\n      [\n        \"中国\",\n        \"北京市\",\n        100\n      ],\n      [\n        \"中国\",\n        \"天津市\",\n        200\n      ]\n    ],\n    \"columns\": [\n      {\n        \"column_name\": \"country\",\n        \"column_cname\": \"国家\",\n        \"data_type\": \"STRING\",\n        \"column_type\": \"BASIC\",\n        \"column_usage_type\": \"ALL\"\n      },\n      {\n        \"column_name\": \"citry\",\n        \"column_cname\": \"城市\",\n        \"data_type\": \"STRING\",\n        \"column_type\": \"BASIC\",\n        \"column_usage_type\": \"ALL\"\n      },\n      {\n        \"column_name\": \"measure_number\",\n        \"column_cname\": \"指标名称\",\n        \"data_type\": \"NUMBER\",\n        \"column_type\": \"BASIC\",\n        \"column_usage_type\": \"ALL\"\n      }\n    ],\n    \"page_info\": {\n      \"current_page\": 1,\n      \"page_count\": 1,\n      \"total\": 2\n    }\n  },\n  \"request_id\": \"1\"\n}",
+          "cookie": [],
+          "_postman_previewlanguage": "json"
+        }
+      ],
+      "event": [],
+      "protocolProfileBehavior": {
+        "disableBodyPruning": true
+      }
+    },
+    {
+      "id": "e4e12daa-6f72-4d2b-b9cd-e964f9a6c0f4",
+      "name": "刷新指定业务模型数据",
+      "request": {
+        "name": "刷新指定业务模型数据",
+        "description": {
+          "content": "刷新业务模型接口, 其中不支持拼表，外部数据表和实时的业务模型刷新",
+          "type": "text/plain"
+        },
+        "url": {
+          "path": [
+            "dataset",
+            "refresh"
+          ],
+          "host": [
+            "{{baseUrl}}"
+          ],
+          "query": [],
+          "variable": []
+        },
+        "header": [
+          {
+            "disabled": false,
+            "description": "(Required) 全局唯一的密钥，用于验证和授权访问 API 接口",
+            "key": "api-key",
+            "value": "<string>"
+          },
+          {
+            "disabled": false,
+            "description": "(Required) 项目名, 指定请求所属项目",
+            "key": "sensorsdata-project",
+            "value": "<string>"
+          },
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          },
+          {
+            "key": "Accept",
+            "value": "application/json"
+          }
+        ],
+        "method": "POST",
+        "auth": null,
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"dataset_id\": \"<integer>\",\n  \"sync_type\": \"<string>\",\n  \"refresh_from_date\": \"<string>\",\n  \"refresh_to_date\": \"<string>\"\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        }
+      },
+      "response": [
+        {
+          "id": "beb08257-20f4-483d-b1eb-ca35ce25aebe",
+          "name": "sensorsdata.analytics.v1.DatasetRefreshResponse",
+          "originalRequest": {
+            "url": {
+              "path": [
+                "dataset",
+                "refresh"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "disabled": false,
+                "description": "(Required) 全局唯一的密钥，用于验证和授权访问 API 接口",
+                "key": "api-key",
+                "value": "<string>"
+              },
+              {
+                "disabled": false,
+                "description": "(Required) 项目名, 指定请求所属项目",
+                "key": "sensorsdata-project",
+                "value": "<string>"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"dataset_id\": 1,\n  \"sync_type\": \"INCREMENTAL\",\n  \"refresh_from_date\": \"2023-01-01 00:00:00\",\n  \"refresh_to_date\": \"2023-12-31 00:00:00\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "status": "Internal Server Error",
+          "code": 500,
+          "header": [
+            {
+              "key": "Content-Type",
+              "value": "application/json"
+            }
+          ],
+          "body": "{\n  \"code\": \"SUCCESS\",\n  \"data\": {\n    \"sync_task_id\": 1\n  },\n  \"request_id\": \"1\"\n}",
+          "cookie": [],
+          "_postman_previewlanguage": "json"
+        }
+      ],
+      "event": [],
+      "protocolProfileBehavior": {
+        "disableBodyPruning": true
+      }
+    },
+    {
+      "id": "2ae7d9aa-c5cb-49e3-b8b0-9a9a8de86640",
+      "name": "查询业务模型调度任务执行状态",
+      "request": {
+        "name": "查询业务模型调度任务执行状态",
+        "description": {
+          "content": "查询业务模型调度任务执行状态",
+          "type": "text/plain"
+        },
+        "url": {
+          "path": [
+            "dataset",
+            "sync_task_detail"
+          ],
+          "host": [
+            "{{baseUrl}}"
+          ],
+          "query": [
+            {
+              "disabled": false,
+              "key": "sync_task_id",
+              "value": "<integer>",
+              "description": "(Required) 同步任务ID"
+            }
+          ],
+          "variable": []
+        },
+        "header": [
+          {
+            "disabled": false,
+            "description": "(Required) 全局唯一的密钥，用于验证和授权访问 API 接口",
+            "key": "api-key",
+            "value": "<string>"
+          },
+          {
+            "disabled": false,
+            "description": "(Required) 项目名, 指定请求所属项目",
+            "key": "sensorsdata-project",
+            "value": "<string>"
+          },
+          {
+            "key": "Accept",
+            "value": "application/json"
+          }
+        ],
+        "method": "GET",
+        "auth": null
+      },
+      "response": [
+        {
+          "id": "6c1a86be-8357-4be3-b133-f4fa2c9f0540",
+          "name": "sensorsdata.analytics.v1.DatasetSyncTaskDetailResponse",
+          "originalRequest": {
+            "url": {
+              "path": [
+                "dataset",
+                "sync_task_detail"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "key": "sync_task_id",
+                  "value": "1"
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "disabled": false,
+                "description": "(Required) 全局唯一的密钥，用于验证和授权访问 API 接口",
+                "key": "api-key",
+                "value": "<string>"
+              },
+              {
+                "disabled": false,
+                "description": "(Required) 项目名, 指定请求所属项目",
+                "key": "sensorsdata-project",
+                "value": "<string>"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "body": {}
+          },
+          "status": "Internal Server Error",
+          "code": 500,
+          "header": [
+            {
+              "key": "Content-Type",
+              "value": "application/json"
+            }
+          ],
+          "body": "{\n  \"code\": \"SUCCESS\",\n  \"data\": {\n    \"duration_seconds\": 10,\n    \"start_time\": \"2023-01-01 12:00:00\",\n    \"end_time\": \"2023-01-01 12:00:10\",\n    \"sync_status\": \"SUCCESS\",\n    \"sync_task_id\": 1\n  },\n  \"request_id\": \"1\"\n}",
+          "cookie": [],
+          "_postman_previewlanguage": "json"
+        }
+      ],
+      "event": [],
+      "protocolProfileBehavior": {
+        "disableBodyPruning": true
+      }
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "/api/v3/analytics/v1",
+      "key": "baseUrl"
+    }
+  ],
+  "info": {
+    "_postman_id": "dcd012f2-c266-4a8b-bdde-de8ff5b83e79",
+    "name": "神策分析",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "业务集市的数据查询开放接口",
+      "type": "text/plain"
+    }
+  }
+}

@@ -1,0 +1,139 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "神策业务门户"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "获取已完成的任务详情列表",
+        "type": "http"
+      },
+      "http": {
+        "method": "GET",
+        "url": "/api/v3/portal/v2/resource-management/query/task/completed",
+        "headers": [
+          {
+            "name": "api-key",
+            "value": ""
+          },
+          {
+            "name": "sensorsdata-project",
+            "value": ""
+          }
+        ],
+        "params": [
+          {
+            "name": "start_time",
+            "value": "2022-01-01 00:00:00",
+            "type": "query",
+            "description": "（选填）查询时间起点，日期格式：yyyy-MM-dd HH:mm:ss （默认时间为 2010-01-01 00:00:00）"
+          },
+          {
+            "name": "end_time",
+            "value": "2022-03-01 00:00:00",
+            "type": "query",
+            "description": "（选填）查询时间终点，日期格式：yyyy-MM-dd HH:mm:ss （默认时间为当前日期两天后的午夜零点）"
+          },
+          {
+            "name": "sort_key",
+            "value": "START_TIME",
+            "type": "query",
+            "description": "（选填）排序依据，默认 START_TIME"
+          },
+          {
+            "name": "sort_order",
+            "value": "DESC",
+            "type": "query",
+            "description": "(选填)排序顺序，默认降序"
+          },
+          {
+            "name": "page_index",
+            "value": "1",
+            "type": "query",
+            "description": "列表页号，默认值：1，取值范围：>=1"
+          },
+          {
+            "name": "page_size",
+            "value": "20",
+            "type": "query",
+            "description": "单页返回最大记录数， 默认值：20，取值范围：1-100"
+          }
+        ]
+      },
+      "docs": "获取已完成的任务详情列表，包含任务描述，任务耗时，CPU 开销，内存消耗量，文件扫描量等，该接口支持翻页，每页最多返回 100 条记录"
+    },
+    {
+      "info": {
+        "name": "获取执行中的任务详情列表",
+        "type": "http"
+      },
+      "http": {
+        "method": "GET",
+        "url": "/api/v3/portal/v2/resource-management/query/task/executing",
+        "headers": [
+          {
+            "name": "api-key",
+            "value": ""
+          },
+          {
+            "name": "sensorsdata-project",
+            "value": ""
+          }
+        ]
+      },
+      "docs": "获取执行中的任务详情列表（注：该接口服务于资源监控，故返回结果包含“已执行完成/执行失败，但<b>仍未释放内存或其他资源</b>的查询任务”）该接口不支持翻页或筛选，执行中任务数通常预期值小于 20 条"
+    },
+    {
+      "info": {
+        "name": "获取指定资产基本信息和使用情况",
+        "type": "http"
+      },
+      "http": {
+        "method": "POST",
+        "url": "/api/v3/portal/v2/resource-management/assets/list",
+        "headers": [
+          {
+            "name": "api-key",
+            "value": ""
+          },
+          {
+            "name": "sensorsdata-project",
+            "value": ""
+          }
+        ],
+        "body": {
+          "type": "json",
+          "data": "{}"
+        }
+      },
+      "docs": "获取指定资产的基本信息和使用情况列表，包含资产名称、创建时间、查询次数、被引用次数等，该接口支持翻页，每页最多返回 100 条记录。【注：该接口在每日 06:00-23:59 时段返回数据为 T-1，00:00-6:00 时段返回数据为 T-2（前天）】"
+    },
+    {
+      "info": {
+        "name": "获取指定资产「发起」或「被引用」的查询任务详情",
+        "type": "http"
+      },
+      "http": {
+        "method": "POST",
+        "url": "/api/v3/portal/v2/resource-management/assets/query/list",
+        "headers": [
+          {
+            "name": "api-key",
+            "value": ""
+          },
+          {
+            "name": "sensorsdata-project",
+            "value": ""
+          }
+        ],
+        "body": {
+          "type": "json",
+          "data": "{}"
+        }
+      },
+      "docs": "获取资产相关的查询任务详情列表，需要指定是「由资产主动发起」的或是「引用了该资产」的任务，包含任务描述，任务耗时，CPU 开销，内存消耗量，文件扫描量等，该接口支持翻页，每页最多返回 100 条记录"
+    }
+  ],
+  "bundled": true
+}

@@ -1,0 +1,523 @@
+{
+  "item": [
+    {
+      "id": "88390794-75d3-4137-9edb-dcb2bd2f7373",
+      "name": "获取已完成的任务详情列表",
+      "request": {
+        "name": "获取已完成的任务详情列表",
+        "description": {
+          "content": "获取已完成的任务详情列表，包含任务描述，任务耗时，CPU 开销，内存消耗量，文件扫描量等，该接口支持翻页，每页最多返回 100 条记录",
+          "type": "text/plain"
+        },
+        "url": {
+          "path": [
+            "resource-management",
+            "query",
+            "task",
+            "completed"
+          ],
+          "host": [
+            "{{baseUrl}}"
+          ],
+          "query": [
+            {
+              "disabled": false,
+              "key": "start_time",
+              "value": "<string>",
+              "description": "（选填）查询时间起点，日期格式：yyyy-MM-dd HH:mm:ss （默认时间为 2010-01-01 00:00:00）"
+            },
+            {
+              "disabled": false,
+              "key": "end_time",
+              "value": "<string>",
+              "description": "（选填）查询时间终点，日期格式：yyyy-MM-dd HH:mm:ss （默认时间为当前日期两天后的午夜零点）"
+            },
+            {
+              "disabled": false,
+              "key": "sort_key",
+              "value": "<string>",
+              "description": "（选填）排序依据，默认 START_TIME"
+            },
+            {
+              "disabled": false,
+              "key": "sort_order",
+              "value": "<string>",
+              "description": "(选填)排序顺序，默认降序"
+            },
+            {
+              "disabled": false,
+              "key": "page_index",
+              "value": "<integer>",
+              "description": "列表页号，默认值：1，取值范围：>=1"
+            },
+            {
+              "disabled": false,
+              "key": "page_size",
+              "value": "<integer>",
+              "description": "单页返回最大记录数， 默认值：20，取值范围：1-100"
+            }
+          ],
+          "variable": []
+        },
+        "header": [
+          {
+            "disabled": false,
+            "description": "(Required) 全局唯一的密钥，用于验证和授权访问 API 接口",
+            "key": "api-key",
+            "value": "<string>"
+          },
+          {
+            "disabled": false,
+            "description": "(Required) 项目名, 指定请求所属项目",
+            "key": "sensorsdata-project",
+            "value": "<string>"
+          },
+          {
+            "key": "Accept",
+            "value": "application/json"
+          }
+        ],
+        "method": "GET",
+        "auth": null
+      },
+      "response": [
+        {
+          "id": "28eeafba-98ce-4b8d-b82d-19974efec45d",
+          "name": "sensorsdata.portal.v2.api.QueryCompletedTaskTableResponse",
+          "originalRequest": {
+            "url": {
+              "path": [
+                "resource-management",
+                "query",
+                "task",
+                "completed"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "key": "start_time",
+                  "value": "2022-01-01 00:00:00"
+                },
+                {
+                  "key": "end_time",
+                  "value": "2022-03-01 00:00:00"
+                },
+                {
+                  "key": "sort_key",
+                  "value": "START_TIME"
+                },
+                {
+                  "key": "sort_order",
+                  "value": "DESC"
+                },
+                {
+                  "key": "page_index",
+                  "value": "1"
+                },
+                {
+                  "key": "page_size",
+                  "value": "20"
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "disabled": false,
+                "description": "(Required) 全局唯一的密钥，用于验证和授权访问 API 接口",
+                "key": "api-key",
+                "value": "<string>"
+              },
+              {
+                "disabled": false,
+                "description": "(Required) 项目名, 指定请求所属项目",
+                "key": "sensorsdata-project",
+                "value": "<string>"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "body": {}
+          },
+          "status": "Internal Server Error",
+          "code": 500,
+          "header": [
+            {
+              "key": "Content-Type",
+              "value": "application/json"
+            }
+          ],
+          "body": "{\n  \"code\": \"SUCCESS\",\n  \"data\": {\n    \"page\": {\n      \"total\": 100,\n      \"current_page\": 1,\n      \"page_count\": 100\n    },\n    \"task_details\": [\n      {\n        \"functional_module_type\": \"其他\",\n        \"exception\": \"OK\",\n        \"query_ref_count\": 5,\n        \"total_cpu_time\": 304,\n        \"project_cname\": \"测试项目\",\n        \"query_id\": \"814d0491c18653cc:bd04dfb700000000\",\n        \"entity_name\": \"概览1-书签1\",\n        \"trigger_type\": \"例行任务\",\n        \"end_time\": \"2022-04-01 16:00:30\",\n        \"project\": \"default\",\n        \"functional_module\": \"事件分析\",\n        \"entity_id\": \"123456-67890\",\n        \"duration\": 339,\n        \"start_time\": \"2022-04-01 16:00:29\",\n        \"speed_evaluation\": \"normal\",\n        \"ext_tags\": \"[\\\"feature\\\":\\\"withtoday\\\"}]\",\n        \"total_bytes_read\": 224,\n        \"user_cname\": \"平台管理员\",\n        \"workload_query_desc\": \"将新用户同步到 User 表。[任务 id = 47]\",\n        \"workload_source\": \"后台任务-用户同步\",\n        \"state\": \"FINISHED\",\n        \"per_node_memory_usage\": 72579568,\n        \"user\": \"admin\"\n      }\n    ]\n  },\n  \"request_id\": \"1\"\n}",
+          "cookie": [],
+          "_postman_previewlanguage": "json"
+        }
+      ],
+      "event": [],
+      "protocolProfileBehavior": {
+        "disableBodyPruning": true
+      }
+    },
+    {
+      "id": "fb9b6f50-ee57-4ba2-9a73-c94de670bb11",
+      "name": "获取执行中的任务详情列表",
+      "request": {
+        "name": "获取执行中的任务详情列表",
+        "description": {
+          "content": "获取执行中的任务详情列表（注：该接口服务于资源监控，故返回结果包含“已执行完成/执行失败，但<b>仍未释放内存或其他资源</b>的查询任务”）该接口不支持翻页或筛选，执行中任务数通常预期值小于 20 条",
+          "type": "text/plain"
+        },
+        "url": {
+          "path": [
+            "resource-management",
+            "query",
+            "task",
+            "executing"
+          ],
+          "host": [
+            "{{baseUrl}}"
+          ],
+          "query": [],
+          "variable": []
+        },
+        "header": [
+          {
+            "disabled": false,
+            "description": "(Required) 全局唯一的密钥，用于验证和授权访问 API 接口",
+            "key": "api-key",
+            "value": "<string>"
+          },
+          {
+            "disabled": false,
+            "description": "(Required) 项目名, 指定请求所属项目",
+            "key": "sensorsdata-project",
+            "value": "<string>"
+          },
+          {
+            "key": "Accept",
+            "value": "application/json"
+          }
+        ],
+        "method": "GET",
+        "auth": null
+      },
+      "response": [
+        {
+          "id": "a45908c6-7cdc-4bf4-9790-6e6e5d5672e0",
+          "name": "sensorsdata.portal.v2.api.QueryExecutingTaskTableResponse",
+          "originalRequest": {
+            "url": {
+              "path": [
+                "resource-management",
+                "query",
+                "task",
+                "executing"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "disabled": false,
+                "description": "(Required) 全局唯一的密钥，用于验证和授权访问 API 接口",
+                "key": "api-key",
+                "value": "<string>"
+              },
+              {
+                "disabled": false,
+                "description": "(Required) 项目名, 指定请求所属项目",
+                "key": "sensorsdata-project",
+                "value": "<string>"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "body": {}
+          },
+          "status": "Internal Server Error",
+          "code": 500,
+          "header": [
+            {
+              "key": "Content-Type",
+              "value": "application/json"
+            }
+          ],
+          "body": "{\n  \"code\": \"SUCCESS\",\n  \"data\": {\n    \"task_details\": [\n      {\n        \"functional_module_type\": \"其他\",\n        \"query_ref_count\": 5,\n        \"total_cpu_time\": 304,\n        \"project_cname\": \"default\",\n        \"query_id\": \"814d0491c18653cc:bd04dfb700000000\",\n        \"entity_name\": \"概览1-书签1\",\n        \"trigger_type\": \"例行任务\",\n        \"end_time\": \"2022-04-01 16:00:30\",\n        \"functional_module\": \"事件分析\",\n        \"entity_id\": \"123456-67890\",\n        \"duration\": 339,\n        \"start_time\": \"2022-04-01 16:00:29\",\n        \"speed_evaluation\": \"normal\",\n        \"ext_tags\": \"[\\\"feature\\\":\\\"withtoday\\\"}]\",\n        \"total_bytes_read\": 224,\n        \"user_cname\": \"平台管理员\",\n        \"workload_query_desc\": \"将新用户同步到 User 表。[任务 id = 47]\",\n        \"workload_source\": \"后台任务-用户同步\",\n        \"per_node_peak_memory_percentage\": \"0.53%\",\n        \"state\": \"RUNNING\",\n        \"user\": \"admin\",\n        \"estimated_per_node_peak_memory\": 699998208\n      }\n    ]\n  },\n  \"request_id\": \"1\"\n}",
+          "cookie": [],
+          "_postman_previewlanguage": "json"
+        }
+      ],
+      "event": [],
+      "protocolProfileBehavior": {
+        "disableBodyPruning": true
+      }
+    },
+    {
+      "id": "a9322a3b-338d-4fd5-97f4-3020c8c0d1bd",
+      "name": "获取指定资产基本信息和使用情况",
+      "request": {
+        "name": "获取指定资产基本信息和使用情况",
+        "description": {
+          "content": "获取指定资产的基本信息和使用情况列表，包含资产名称、创建时间、查询次数、被引用次数等，该接口支持翻页，每页最多返回 100 条记录。【注：该接口在每日 06:00-23:59 时段返回数据为 T-1，00:00-6:00 时段返回数据为 T-2（前天）】",
+          "type": "text/plain"
+        },
+        "url": {
+          "path": [
+            "resource-management",
+            "assets",
+            "list"
+          ],
+          "host": [
+            "{{baseUrl}}"
+          ],
+          "query": [],
+          "variable": []
+        },
+        "header": [
+          {
+            "disabled": false,
+            "description": "(Required) 全局唯一的密钥，用于验证和授权访问 API 接口",
+            "key": "api-key",
+            "value": "<string>"
+          },
+          {
+            "disabled": false,
+            "description": "(Required) 项目名, 指定请求所属项目",
+            "key": "sensorsdata-project",
+            "value": "<string>"
+          },
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          },
+          {
+            "key": "Accept",
+            "value": "application/json"
+          }
+        ],
+        "method": "POST",
+        "auth": null,
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"asset_type\": \"<string>\",\n  \"condition\": {\n    \"conditions\": [\n      {\n        \"field\": \"<string>\",\n        \"operator\": \"<string>\",\n        \"values\": [\n          \"<string>\",\n          \"<string>\"\n        ]\n      },\n      {\n        \"field\": \"<string>\",\n        \"operator\": \"<string>\",\n        \"values\": [\n          \"<string>\",\n          \"<string>\"\n        ]\n      }\n    ]\n  },\n  \"asset_ids\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"page_index\": \"<integer>\",\n  \"page_size\": \"<integer>\",\n  \"project\": \"<string>\"\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        }
+      },
+      "response": [
+        {
+          "id": "a9791bf4-5fc7-4cee-9e0c-691e1044141d",
+          "name": "sensorsdata.portal.v2.api.ResourceManagementAssetsResponse",
+          "originalRequest": {
+            "url": {
+              "path": [
+                "resource-management",
+                "assets",
+                "list"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "disabled": false,
+                "description": "(Required) 全局唯一的密钥，用于验证和授权访问 API 接口",
+                "key": "api-key",
+                "value": "<string>"
+              },
+              {
+                "disabled": false,
+                "description": "(Required) 项目名, 指定请求所属项目",
+                "key": "sensorsdata-project",
+                "value": "<string>"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"asset_type\": \"ASSET_USER_GROUP\",\n  \"condition\": {\n    \"conditions\": [\n      {\n        \"field\": \"QUERY_INITIATOR\",\n        \"operator\": \"NOT_IN\",\n        \"values\": [\n          \"<string>\",\n          \"<string>\"\n        ]\n      },\n      {\n        \"field\": \"QUERY_INITIATOR\",\n        \"operator\": \"NOT_IN\",\n        \"values\": [\n          \"<string>\",\n          \"<string>\"\n        ]\n      }\n    ]\n  },\n  \"asset_ids\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"page_index\": 1,\n  \"page_size\": 20,\n  \"project\": \"default\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "status": "Internal Server Error",
+          "code": 500,
+          "header": [
+            {
+              "key": "Content-Type",
+              "value": "application/json"
+            }
+          ],
+          "body": "{\n  \"code\": \"SUCCESS\",\n  \"data\": {\n    \"assets\": [\n      {\n        \"asset_cname\": \"分布分析\",\n        \"creator\": \"admin\",\n        \"asset_name\": \"user_group_508\",\n        \"create_time\": \"2022-04-01 16:00:29\",\n        \"query_count\": 511,\n        \"asset_type\": \"ASSET_USER_GROUP\",\n        \"project\": \"default\",\n        \"asset_id\": \"127\",\n        \"ref_count\": 988\n      }\n    ],\n    \"page\": {\n      \"total\": 100,\n      \"current_page\": 1,\n      \"page_count\": 100\n    }\n  },\n  \"request_id\": \"1\"\n}",
+          "cookie": [],
+          "_postman_previewlanguage": "json"
+        }
+      ],
+      "event": [],
+      "protocolProfileBehavior": {
+        "disableBodyPruning": true
+      }
+    },
+    {
+      "id": "38cac9ad-2287-4378-8717-4e85153ae04b",
+      "name": "获取指定资产「发起」或「被引用」的查询任务详情",
+      "request": {
+        "name": "获取指定资产「发起」或「被引用」的查询任务详情",
+        "description": {
+          "content": "获取资产相关的查询任务详情列表，需要指定是「由资产主动发起」的或是「引用了该资产」的任务，包含任务描述，任务耗时，CPU 开销，内存消耗量，文件扫描量等，该接口支持翻页，每页最多返回 100 条记录",
+          "type": "text/plain"
+        },
+        "url": {
+          "path": [
+            "resource-management",
+            "assets",
+            "query",
+            "list"
+          ],
+          "host": [
+            "{{baseUrl}}"
+          ],
+          "query": [],
+          "variable": []
+        },
+        "header": [
+          {
+            "disabled": false,
+            "description": "(Required) 全局唯一的密钥，用于验证和授权访问 API 接口",
+            "key": "api-key",
+            "value": "<string>"
+          },
+          {
+            "disabled": false,
+            "description": "(Required) 项目名, 指定请求所属项目",
+            "key": "sensorsdata-project",
+            "value": "<string>"
+          },
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          },
+          {
+            "key": "Accept",
+            "value": "application/json"
+          }
+        ],
+        "method": "POST",
+        "auth": null,
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"asset_type\": \"<string>\",\n  \"asset_id\": \"<string>\",\n  \"project\": \"<string>\",\n  \"query_type\": \"<string>\",\n  \"condition\": {\n    \"conditions\": [\n      {\n        \"field\": \"<string>\",\n        \"operator\": \"<string>\",\n        \"values\": [\n          \"<string>\",\n          \"<string>\"\n        ]\n      },\n      {\n        \"field\": \"<string>\",\n        \"operator\": \"<string>\",\n        \"values\": [\n          \"<string>\",\n          \"<string>\"\n        ]\n      }\n    ]\n  },\n  \"page_index\": \"<integer>\",\n  \"page_size\": \"<integer>\",\n  \"sort_key\": \"<string>\",\n  \"sort_order\": \"<string>\"\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        }
+      },
+      "response": [
+        {
+          "id": "d020bf7b-8fa4-4e07-b689-4fbf482a9b09",
+          "name": "sensorsdata.portal.v2.api.QueryCompletedTaskTableResponse",
+          "originalRequest": {
+            "url": {
+              "path": [
+                "resource-management",
+                "assets",
+                "query",
+                "list"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "disabled": false,
+                "description": "(Required) 全局唯一的密钥，用于验证和授权访问 API 接口",
+                "key": "api-key",
+                "value": "<string>"
+              },
+              {
+                "disabled": false,
+                "description": "(Required) 项目名, 指定请求所属项目",
+                "key": "sensorsdata-project",
+                "value": "<string>"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"asset_type\": \"ASSET_USER_GROUP\",\n  \"asset_id\": \"187\",\n  \"project\": \"production\",\n  \"query_type\": \"REF_QUERY\",\n  \"condition\": {\n    \"conditions\": [\n      {\n        \"field\": \"QUERY_INITIATOR\",\n        \"operator\": \"NOT_IN\",\n        \"values\": [\n          \"<string>\",\n          \"<string>\"\n        ]\n      },\n      {\n        \"field\": \"QUERY_INITIATOR\",\n        \"operator\": \"NOT_IN\",\n        \"values\": [\n          \"<string>\",\n          \"<string>\"\n        ]\n      }\n    ]\n  },\n  \"page_index\": 1,\n  \"page_size\": 20,\n  \"sort_key\": \"START_TIME\",\n  \"sort_order\": \"DESC\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "status": "Internal Server Error",
+          "code": 500,
+          "header": [
+            {
+              "key": "Content-Type",
+              "value": "application/json"
+            }
+          ],
+          "body": "{\n  \"code\": \"SUCCESS\",\n  \"data\": {\n    \"page\": {\n      \"total\": 100,\n      \"current_page\": 1,\n      \"page_count\": 100\n    },\n    \"task_details\": [\n      {\n        \"functional_module_type\": \"其他\",\n        \"exception\": \"OK\",\n        \"query_ref_count\": 5,\n        \"total_cpu_time\": 304,\n        \"project_cname\": \"测试项目\",\n        \"query_id\": \"814d0491c18653cc:bd04dfb700000000\",\n        \"entity_name\": \"概览1-书签1\",\n        \"trigger_type\": \"例行任务\",\n        \"end_time\": \"2022-04-01 16:00:30\",\n        \"project\": \"default\",\n        \"functional_module\": \"事件分析\",\n        \"entity_id\": \"123456-67890\",\n        \"duration\": 339,\n        \"start_time\": \"2022-04-01 16:00:29\",\n        \"speed_evaluation\": \"normal\",\n        \"ext_tags\": \"[\\\"feature\\\":\\\"withtoday\\\"}]\",\n        \"total_bytes_read\": 224,\n        \"user_cname\": \"平台管理员\",\n        \"workload_query_desc\": \"将新用户同步到 User 表。[任务 id = 47]\",\n        \"workload_source\": \"后台任务-用户同步\",\n        \"state\": \"FINISHED\",\n        \"per_node_memory_usage\": 72579568,\n        \"user\": \"admin\"\n      }\n    ]\n  },\n  \"request_id\": \"1\"\n}",
+          "cookie": [],
+          "_postman_previewlanguage": "json"
+        }
+      ],
+      "event": [],
+      "protocolProfileBehavior": {
+        "disableBodyPruning": true
+      }
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "/api/v3/portal/v2",
+      "key": "baseUrl"
+    }
+  ],
+  "info": {
+    "_postman_id": "300667f6-d8ae-4f59-a9fd-6650f0ecda0b",
+    "name": "神策业务门户",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "资源管理服务主要负责资源管理相关模块的 open api 接口，例如：获取查询任务明细表",
+      "type": "text/plain"
+    }
+  }
+}

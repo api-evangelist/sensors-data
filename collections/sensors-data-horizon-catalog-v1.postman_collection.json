@@ -1,0 +1,376 @@
+{
+  "item": [
+    {
+      "id": "3c1b915e-803a-4f66-b49c-b3e2ee1135db",
+      "name": "查询目录树",
+      "request": {
+        "name": "查询目录树",
+        "description": {
+          "content": "获取某个业务所有的目录树\n```\n  curl -X POST 'http://{host}:{port}/api/v3/horizon/v1/catalog/tree/list' \\\n    -H 'Content-Type: application/json' \\\n    -H 'api-key: {api_key}' \\\n    -H 'sensorsdata-project: {projectName}' \\\n    -d '{\n      \"business_type\": \"ENTITY\",\n      \"business_names\": [\"user\"],\n      \"query_catalog_node_type\": \"ONLY_UNDELETE\",\n      \"show_resource\": false\n  }'\n  返回值示例：\n  {\n    \"code\": \"SUCCESS\",\n    \"request_id\": \"12163604dca26fcdc2184104654955c5\",\n    \"data\": {\n        \"catalog_trees\": [\n            {\n                \"business_name\": \"user\",\n                \"catalog\": {\n                    \"type\": \"CATALOG\",\n                    \"name\": \"8998a014-f8e3-4d8a-8b2c-ec7beeeefc97\",\n                    \"display_name\": \"user\",\n                    \"resource_type\": \"\",\n                    \"resource_id\": \"\",\n                    \"parent_name\": \"\",\n                    \"rank\": 1,\n                    \"is_deleted\": false,\n                    \"delete_path\": \"\",\n                    \"catalogs\": [\n                        {\n                            \"type\": \"CATALOG\",\n                            \"name\": \"CATALOG_DEFAULT_ATTRIBUTE_2394196636433\",\n                            \"display_name\": \"属性\",\n                            \"resource_type\": \"\",\n                            \"resource_id\": \"\",\n                            \"parent_name\": \"8998a014-f8e3-4d8a-8b2c-ec7beeeefc97\",\n                            \"rank\": 1,\n                            \"is_deleted\": false,\n                            \"delete_path\": \"\",\n                            \"catalogs\": [\n                                ...\n                            ],\n                            \"access_info\": {\n                                \"creator_id\": \"0\",\n                                \"modifier_id\": \"0\",\n                                \"create_time\": \"2025-06-09T02:54:33Z\",\n                                \"update_time\": \"2025-06-09T02:54:33Z\"\n                            },\n                            \"custom_params\": {\n                                \"BELONG_KEY\": \"DEFAULT\"\n                            },\n                            \"legacy_id\": 2\n                        }, ...\n                    ],\n                    \"access_info\": {\n                        \"creator_id\": \"2\",\n                        \"modifier_id\": \"2\",\n                        \"create_time\": \"2025-06-09T02:54:33Z\",\n                        \"update_time\": \"2025-06-09T02:54:33Z\"\n                    },\n                    \"custom_params\": {},\n                    \"legacy_id\": 1\n                },\n                \"custom_params\": {}\n            }\n        ]\n    }\n  }\n```",
+          "type": "text/plain"
+        },
+        "url": {
+          "path": [
+            "catalog",
+            "tree",
+            "list"
+          ],
+          "host": [
+            "{{baseUrl}}"
+          ],
+          "query": [],
+          "variable": []
+        },
+        "header": [
+          {
+            "disabled": false,
+            "description": "(Required) 全局唯一的密钥，用于验证和授权访问 API 接口",
+            "key": "api-key",
+            "value": "<string>"
+          },
+          {
+            "disabled": false,
+            "description": "(Required) 项目名, 指定请求所属项目",
+            "key": "sensorsdata-project",
+            "value": "<string>"
+          },
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          },
+          {
+            "key": "Accept",
+            "value": "application/json"
+          }
+        ],
+        "method": "POST",
+        "auth": null,
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"business_type\": \"<string>\",\n  \"project_id\": \"<integer>\",\n  \"query_catalog_node_type\": \"<string>\",\n  \"business_names\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"show_resource\": \"<boolean>\"\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        }
+      },
+      "response": [
+        {
+          "id": "cb878a8f-faa0-4397-b63d-c448d89e460c",
+          "name": "sensorsdata.horizon.v1.ListCatalogTreesResponse",
+          "originalRequest": {
+            "url": {
+              "path": [
+                "catalog",
+                "tree",
+                "list"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "disabled": false,
+                "description": "(Required) 全局唯一的密钥，用于验证和授权访问 API 接口",
+                "key": "api-key",
+                "value": "<string>"
+              },
+              {
+                "disabled": false,
+                "description": "(Required) 项目名, 指定请求所属项目",
+                "key": "sensorsdata-project",
+                "value": "<string>"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"business_type\": \"ENTITY\",\n  \"project_id\": 1,\n  \"query_catalog_node_type\": \"ONLY_UNDELETE\",\n  \"business_names\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"show_resource\": true\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "status": "Internal Server Error",
+          "code": 500,
+          "header": [
+            {
+              "key": "Content-Type",
+              "value": "application/json"
+            }
+          ],
+          "body": "{\n  \"code\": \"SUCCESS\",\n  \"data\": {\n    \"catalog_trees\": {\n      \"code\": \"SUCCESS\",\n      \"request_id\": \"12163604dca26fcdc2184104654955c5\",\n      \"data\": {\n        \"catalog_trees\": [\n          {\n            \"business_name\": \"user\",\n            \"catalog\": {\n              \"type\": \"CATALOG\",\n              \"name\": \"8998a014-f8e3-4d8a-8b2c-ec7beeeefc97\",\n              \"display_name\": \"user\",\n              \"resource_type\": \"\",\n              \"resource_id\": \"\",\n              \"parent_name\": \"\",\n              \"rank\": 1,\n              \"is_deleted\": false,\n              \"delete_path\": \"\",\n              \"catalogs\": [\n                {\n                  \"type\": \"CATALOG\",\n                  \"name\": \"CATALOG_DEFAULT_ATTRIBUTE_2394196636433\",\n                  \"display_name\": \"属性\",\n                  \"resource_type\": \"\",\n                  \"resource_id\": \"\",\n                  \"parent_name\": \"8998a014-f8e3-4d8a-8b2c-ec7beeeefc97\",\n                  \"rank\": 1,\n                  \"is_deleted\": false,\n                  \"delete_path\": \"\",\n                  \"catalogs\": [\n                    {\n                      \"type\": \"CATALOG\",\n                      \"name\": \"CATALOG_DEFAULT_USER_PROPERTY_2394294291991\",\n                      \"display_name\": \"普通属性\",\n                      \"resource_type\": \"\",\n                      \"resource_id\": \"\",\n                      \"parent_name\": \"CATALOG_DEFAULT_ATTRIBUTE_2394196636433\",\n                      \"rank\": 1,\n                      \"is_deleted\": false,\n                      \"delete_path\": \"\",\n                      \"catalogs\": [],\n                      \"access_info\": {\n                        \"creator_id\": \"0\",\n                        \"modifier_id\": \"0\",\n                        \"create_time\": \"2025-06-09T02:54:33Z\",\n                        \"update_time\": \"2025-06-09T02:54:33Z\"\n                      },\n                      \"custom_params\": {\n                        \"BELONG_KEY\": \"USER_PROPERTY\"\n                      },\n                      \"legacy_id\": 5\n                    }\n                  ],\n                  \"custom_params\": {\n                    \"BELONG_KEY\": \"DETAIL_INFO\"\n                  },\n                  \"legacy_id\": 4\n                }\n              ],\n              \"access_info\": {\n                \"creator_id\": \"2\",\n                \"modifier_id\": \"2\",\n                \"create_time\": \"2025-06-09T02:54:33Z\",\n                \"update_time\": \"2025-06-09T02:54:33Z\"\n              },\n              \"custom_params\": {},\n              \"legacy_id\": 1\n            },\n            \"custom_params\": {}\n          }\n        ]\n      }\n    }\n  },\n  \"request_id\": \"1\"\n}",
+          "cookie": [],
+          "_postman_previewlanguage": "json"
+        }
+      ],
+      "event": [],
+      "protocolProfileBehavior": {
+        "disableBodyPruning": true
+      }
+    },
+    {
+      "id": "39aa35cd-a4f9-4343-a2f2-b9fef6b7319f",
+      "name": "挂载资源节点",
+      "request": {
+        "name": "挂载资源节点",
+        "description": {
+          "content": "挂载资源节点\n```\n  curl -X POST 'http://{host}:{port}/api/v3/horizon/v1/catalog/resource/bind' \\\n    -H 'Content-Type: application/json' \\\n    -H 'api-key: {api_key}' \\\n    -H 'sensorsdata-project: {projectName}' \\\n    -d '{\n      \"parent_name\": \"8998a014-f8e3-4d8a-8b2c-ec7beeeefc97\",\n      \"resource_type\": \"TAG\",\n      \"resource_id\":\"user_tag_bq_meta_string\"\n  }'\n  返回值示例：\n  {\n    \"code\": \"SUCCESS\",\n    \"request_id\": \"1217080591f8f9e3d9b6d24e8a43ee8c\",\n    \"data\": {}\n  }\n```",
+          "type": "text/plain"
+        },
+        "url": {
+          "path": [
+            "catalog",
+            "resource",
+            "bind"
+          ],
+          "host": [
+            "{{baseUrl}}"
+          ],
+          "query": [],
+          "variable": []
+        },
+        "header": [
+          {
+            "disabled": false,
+            "description": "(Required) 全局唯一的密钥，用于验证和授权访问 API 接口",
+            "key": "api-key",
+            "value": "<string>"
+          },
+          {
+            "disabled": false,
+            "description": "(Required) 项目名, 指定请求所属项目",
+            "key": "sensorsdata-project",
+            "value": "<string>"
+          },
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          },
+          {
+            "key": "Accept",
+            "value": "application/json"
+          }
+        ],
+        "method": "POST",
+        "auth": null,
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"parent_name\": \"<string>\",\n  \"project_id\": \"<integer>\",\n  \"resource_id\": \"<string>\",\n  \"resource_type\": \"<string>\"\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        }
+      },
+      "response": [
+        {
+          "id": "f5401d75-0f44-4700-baaf-9e46a79027a7",
+          "originalRequest": {
+            "url": {
+              "path": [
+                "catalog",
+                "resource",
+                "bind"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "disabled": false,
+                "description": "(Required) 全局唯一的密钥，用于验证和授权访问 API 接口",
+                "key": "api-key",
+                "value": "<string>"
+              },
+              {
+                "disabled": false,
+                "description": "(Required) 项目名, 指定请求所属项目",
+                "key": "sensorsdata-project",
+                "value": "<string>"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"parent_name\": \"<string>\",\n  \"project_id\": 1,\n  \"resource_id\": \"user_tag_bq_meta_string\",\n  \"resource_type\": \"TAG\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "status": "Internal Server Error",
+          "code": 500,
+          "header": [
+            {
+              "key": "Content-Type",
+              "value": "application/json"
+            }
+          ],
+          "body": "{\n  \"code\": \"SUCCESS\",\n  \"data\": {},\n  \"request_id\": \"1\"\n}",
+          "cookie": [],
+          "_postman_previewlanguage": "json"
+        }
+      ],
+      "event": [],
+      "protocolProfileBehavior": {
+        "disableBodyPruning": true
+      }
+    },
+    {
+      "id": "777b75d5-9384-4284-9c29-3e6b348c4ea7",
+      "name": "解绑资源节点",
+      "request": {
+        "name": "解绑资源节点",
+        "description": {
+          "content": "解绑资源节点\n```\n  curl -X POST 'http://{host}:{port}/api/v3/horizon/v1/catalog/resource/unbind' \\\n    -H 'Content-Type: application/json' \\\n    -H 'api-key: {api_key}' \\\n    -H 'sensorsdata-project: {projectName}' \\\n    -d '{\n    \"business_type\": \"ENTITY\",\n    \"business_name\": \"user\",\n    \"resource_type\": \"TAG\",\n    \"resource_id\": \"user_tag_bq_meta_string\"\n  }'\n  返回值示例：\n  {\n    \"code\": \"SUCCESS\",\n    \"request_id\": \"121717050a1c695fb26a0f298252ba28\",\n    \"data\": {}\n  }\n```",
+          "type": "text/plain"
+        },
+        "url": {
+          "path": [
+            "catalog",
+            "resource",
+            "unbind"
+          ],
+          "host": [
+            "{{baseUrl}}"
+          ],
+          "query": [],
+          "variable": []
+        },
+        "header": [
+          {
+            "disabled": false,
+            "description": "(Required) 全局唯一的密钥，用于验证和授权访问 API 接口",
+            "key": "api-key",
+            "value": "<string>"
+          },
+          {
+            "disabled": false,
+            "description": "(Required) 项目名, 指定请求所属项目",
+            "key": "sensorsdata-project",
+            "value": "<string>"
+          },
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          },
+          {
+            "key": "Accept",
+            "value": "application/json"
+          }
+        ],
+        "method": "POST",
+        "auth": null,
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"business_name\": \"<string>\",\n  \"business_type\": \"<string>\",\n  \"project_id\": \"<integer>\",\n  \"resource_id\": \"<string>\",\n  \"resource_type\": \"<string>\",\n  \"skip_trash\": \"<boolean>\"\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        }
+      },
+      "response": [
+        {
+          "id": "1e478131-d5c0-46de-8e6a-89c37afcb2d9",
+          "originalRequest": {
+            "url": {
+              "path": [
+                "catalog",
+                "resource",
+                "unbind"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "disabled": false,
+                "description": "(Required) 全局唯一的密钥，用于验证和授权访问 API 接口",
+                "key": "api-key",
+                "value": "<string>"
+              },
+              {
+                "disabled": false,
+                "description": "(Required) 项目名, 指定请求所属项目",
+                "key": "sensorsdata-project",
+                "value": "<string>"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"business_name\": \"user\",\n  \"business_type\": \"ENTITY\",\n  \"project_id\": 1,\n  \"resource_id\": \"user_tag_bq_meta_string\",\n  \"resource_type\": \"TAG\",\n  \"skip_trash\": true\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "status": "Internal Server Error",
+          "code": 500,
+          "header": [
+            {
+              "key": "Content-Type",
+              "value": "application/json"
+            }
+          ],
+          "body": "{\n  \"code\": \"SUCCESS\",\n  \"data\": {},\n  \"request_id\": \"1\"\n}",
+          "cookie": [],
+          "_postman_previewlanguage": "json"
+        }
+      ],
+      "event": [],
+      "protocolProfileBehavior": {
+        "disableBodyPruning": true
+      }
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "/api/v3/horizon/v1",
+      "key": "baseUrl"
+    }
+  ],
+  "info": {
+    "_postman_id": "86f106f6-4ef7-40f4-bf29-9c506d27263d",
+    "name": "神策数界",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "目录服务",
+      "type": "text/plain"
+    }
+  }
+}

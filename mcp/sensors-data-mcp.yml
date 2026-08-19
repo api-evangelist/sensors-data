@@ -1,0 +1,113 @@
+generated: '2026-08-13'
+method: derived
+source: openapi/_original/ + https://github.com/sensorsdata/SensorsData-MCP
+status: candidate
+official_server: false
+
+deployment:
+  mode: none
+  endpoint: null
+  install: null
+  package: null
+  auth: api-key
+  verified: searched
+
+finding: >-
+  Sensors Data ships NO MCP server. The strongest available signal is a first-party
+  repository that was created and then never filled: github.com/sensorsdata/SensorsData-MCP
+  exists in the official org, was last touched 2025-04-25, and the GitHub API returns
+  "Git Repository is empty" for its tree — zero commits, zero files, no README, no
+  description. Someone at Sensors Data claimed the name and stopped. A community server
+  (pein892/SensorsMcpServer, stdio, wrapping the same api-key + sensorsdata-project
+  headers) exists and is NOT first-party.
+probes:
+  - url: https://api.github.com/repos/sensorsdata/SensorsData-MCP
+    status: 200
+    result: repository exists, archived=false, pushed_at 2025-04-25, no description, no homepage
+  - url: https://api.github.com/repos/sensorsdata/SensorsData-MCP/git/trees/main?recursive=1
+    status: 404
+    result: '{"message": "Git Repository is empty."}'
+  - url: https://docs.sensorsdata.com/llms.txt
+    status: 200
+    result: HTML SPA shell, not an llms.txt — no published tool list to fall back to
+endpoint_probe: >-
+  Not attempted, and deliberately so. There is no vendor-operated API host to probe: the
+  API lives at each customer's own cluster ingress. Guessing an MCP path on a customer
+  domain would manufacture an agent surface that does not exist.
+
+candidate_tools:
+  note: >-
+    DERIVED from the 252 harvested OpenAPI operations, as a specification for the server
+    Sensors Data has not built. Every tool below names the real operationId that would back
+    it. These are candidates, not a shipped surface.
+  auth_model: >-
+    Any server would need to pass through api-key + sensorsdata-project (and optionally
+    account-id / X-Organization-Id) per call, and — because deployments are per customer —
+    would need the cluster base URL as configuration, not a constant.
+  tools:
+    - name: query_funnel_report
+      rest: [QueryFunnelReport]
+      spec: openapi/sensors-data-analytics-model-v2-openapi.yml
+      category: analytics
+    - name: query_retention_report
+      rest: [QueryRetentionReport]
+      spec: openapi/sensors-data-analytics-model-v2-openapi.yml
+      category: analytics
+    - name: query_attribution_report
+      rest: [QueryAttributionReport]
+      spec: openapi/sensors-data-analytics-model-v1-openapi.yml
+      category: analytics
+    - name: run_sql_query
+      rest: [SqlQuery]
+      spec: openapi/sensors-data-analytics-model-v1-openapi.yml
+      category: analytics
+      note: >-
+        The single highest-value tool on the surface — arbitrary SQL over the customer's
+        event and user tables, which is exactly what a natural-language analytics agent
+        needs, and exactly what needs a permission boundary before it is exposed.
+    - name: list_events
+      rest: [ListEventsAll]
+      spec: openapi/sensors-data-analytics-event-meta-v1-openapi.yml
+      category: metadata
+    - name: list_event_properties
+      rest: [ListEventFields]
+      spec: openapi/sensors-data-horizon-schema-v1-openapi.yml
+      category: metadata
+    - name: list_segments
+      rest: [ListSegmentDefinitions]
+      spec: openapi/sensors-data-horizon-segment-v1-openapi.yml
+      category: cdp
+    - name: create_segment
+      rest: [CreateSegmentDefinitionWithRule]
+      spec: openapi/sensors-data-horizon-segment-v1-openapi.yml
+      category: cdp
+      write: true
+    - name: evaluate_segment
+      rest: [EvaluateSegment, GetSegmentTask]
+      spec: openapi/sensors-data-horizon-segment-v1-openapi.yml
+      category: cdp
+    - name: check_audience_membership
+      rest: [IsAudienceEntityExistsInRules, IsBatchAudienceEntityExists]
+      spec: openapi/sensors-data-focus-express-audience-online-v1-openapi.yml
+      category: marketing
+    - name: get_entity_attributes
+      rest: [GetEntityAttributesByEntityId, GetEntityAttributesByEntityIdList]
+      spec: openapi/sensors-data-focus-express-attribute-online-v1-openapi.yml
+      category: marketing
+    - name: list_reach_channels
+      rest: [GetAllChannelInstanceWithDesc, GetChannelCategories]
+      spec: openapi/sensors-data-focus-express-action-channel-v1-openapi.yml
+      category: marketing
+      note: >-
+        These three operations are already AI-shaped in the published contract — they sit
+        under /express-action-channel/channel/ai/ and return channel instances WITH
+        descriptions, which is a description-for-a-model surface, not a UI listing.
+    - name: list_accounts
+      rest: [ListAccounts]
+      spec: openapi/sensors-data-portal-identity-v2-openapi.yml
+      category: identity
+tool_crosswalk: not_emitted
+tool_crosswalk_reason: >-
+  A crosswalk binds a SHIPPED MCP tool to its backing REST operation. With no server, a
+  crosswalk would only restate the candidate list above and would read as evidence of an
+  agent surface that does not exist.

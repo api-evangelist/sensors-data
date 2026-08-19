@@ -1,0 +1,151 @@
+generated: '2026-08-13'
+method: searched
+source: https://docs.sensorsdata.com/sa/docs/about_open_api
+derived_from: openapi/_original/ (29 specs, 252 operations)
+docs: https://docs.sensorsdata.com/sa/docs/about_open_api
+
+style:
+  description: >-
+    "Sensors Data OpenAPI is similar to RESTful in terms of style. The difference is that
+    in order to reduce the complexity of parameter forms, there are no path parameters in
+    OpenAPI requests. The request parameters only appear in the http query and body."
+    Confirmed against the specs: zero of the 252 operations declares a path parameter.
+  verbs: GET for reads with simple filters, POST for everything else including many reads
+  rpc_flavored: true
+  note: >-
+    Paths are verb-suffixed resource actions (/segment/definition/create-with-rule,
+    /identity/account/disable) rather than REST resource paths. The x-sd-openapi extension
+    on every operation names a backing gRPC service class, which explains the shape: the
+    HTTP surface is generated from gRPC service definitions.
+
+versioning:
+  scheme: two-tier version in the base path
+  pattern: /api/v3/{product}/{interface_version}
+  api_version:
+    value: v3
+    policy: "unlikely to change unless the entire API framework is upgraded"
+  interface_version:
+    values: [v1, v2]
+    policy: >-
+      "may be updated with product upgrades. The interfaces within the same version remain
+      compatible." Compatibility is promised WITHIN an interface version; a breaking change
+      ships as a new interface version alongside the old one.
+  observed:
+    - /api/v3/analytics/v1
+    - /api/v3/analytics/v2
+    - /api/v3/focus/v1
+    - /api/v3/horizon/v1
+    - /api/v3/portal/v2
+  evidence: >-
+    analytics ships Model v1 (24 ops) and Model v2 (8 ops) side by side with overlapping
+    operationIds (QueryFunnelReport, QueryRetentionReport, QueryAttributionReport,
+    QueryLtvReport) — the documented compatibility policy in practice.
+
+base_url:
+  templated: true
+  form: https://{sensors_data_url}/api/v3/{product}/{version}
+  reason: >-
+    Sensors Data is deployed per customer (private cluster or dedicated cloud). The docs
+    state "the access address of OpenAPI is determined by the entry address of the cluster,
+    usually the load balancing address or domain name of the cluster request", and every
+    published spec carries a RELATIVE servers[] entry with no host. There is no single
+    shared production host to record.
+  default_port_in_docs: 8107
+
+authentication:
+  style: api-key header
+  headers: [api-key, sensorsdata-project]
+  optional_headers: [account-id, X-Organization-Id]
+  see: authentication/sensors-data-authentication.yml
+
+response_envelope:
+  documented: true
+  shape:
+    code: string status token — "SUCCESS" on success
+    data: the operation payload object
+    request_id: string echo/correlation id returned with every response
+  success_test: code == "SUCCESS"
+  note: >-
+    HTTP status is not the success signal — the envelope code is. All 252 operations
+    declare exactly one response entry, `default`, with an application/json example of the
+    envelope; none declares an explicit 2xx/4xx/5xx status code.
+
+errors:
+  format: proprietary envelope (NOT RFC 9457 application/problem+json)
+  fields: [code, message, request_id]
+  see: errors/sensors-data-problem-types.yml
+
+pagination:
+  style: page-number
+  request_params:
+    page_index: "list page number, default 1, range >= 1"
+    page_size: "max records per page, default 20, range 1-100"
+  alternate_param: page_num (used by a small number of operations)
+  response_fields:
+    page.total: total record count
+    page.current_page: current page number
+    page.page_count: number of pages
+  max_page_size: 100
+  coverage: 10 of 252 operations expose page_size; list endpoints without it return full sets
+
+field_expansion:
+  supported: true
+  param: expand_field
+  description: >-
+    Comma-separated list of extra fields to hydrate on list responses
+    (e.g. expand_field=last_access_time). Documented on account listing.
+
+request_id_tracing:
+  supported: true
+  direction: response
+  field: request_id (inside the JSON envelope, not an HTTP header)
+  note: >-
+    Six operations also accept request_id as a QUERY parameter to look up a prior
+    asynchronous job — it is a correlation/lookup id, not an idempotency key.
+
+idempotency:
+  supported: false
+  header: null
+  evidence: >-
+    No Idempotency-Key header, no idempotency section in the OpenAPI docs, and no
+    idempotency semantics on any of the 252 operations. Retry safety on the many
+    POST-shaped writes is the caller's problem. Recorded as an honest absence — no
+    Idempotency pointer is emitted in apis.yml.
+
+rate_limit_signaling:
+  headers_published: false
+  see: rate-limits/sensors-data-rate-limits.yml
+  note: >-
+    No X-RateLimit-*/RateLimit-*/Retry-After documentation. Sensors Focus instead exposes
+    explicit quota-read operations (QueryQuota on express-attribute and
+    express-audience-meta, QueryRealTimeTagQuota) so a client can check its own headroom
+    before writing.
+
+localisation:
+  spec_language: Chinese (zh-CN)
+  note: >-
+    Every summary, description and example in the published specs is Chinese. The English
+    help centre (docs.sensorsdata.com) mirrors the guides, but the machine-readable specs
+    themselves are Chinese-only. An English-language agent consuming these specs will read
+    Chinese operation descriptions.
+
+spec_quality:
+  operations: 252
+  with_operationid: 252
+  with_summary: 252
+  with_description: 252
+  with_response_example: 252
+  declared_tags: 0
+  declared_security_schemes: 0
+  gaps:
+    - no tags[] on any operation (service grouping lives in file names + x-sd-openapi-service-name)
+    - no securitySchemes; credentials modelled as ordinary required header parameters
+    - only a `default` response per operation; no error status codes modelled
+  see: overlays/ for the additions this pipeline records without mutating the originals
+
+cross_links:
+  errors: errors/sensors-data-problem-types.yml
+  lifecycle: lifecycle/sensors-data-lifecycle.yml
+  authentication: authentication/sensors-data-authentication.yml
+  rate_limits: rate-limits/sensors-data-rate-limits.yml
+  data_model: data-model/sensors-data-data-model.yml

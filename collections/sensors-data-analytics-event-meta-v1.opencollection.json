@@ -1,0 +1,51 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "神策分析"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "获取事件列表",
+        "type": "http"
+      },
+      "http": {
+        "method": "GET",
+        "url": "/api/v3/analytics/v1/event-meta/events/all",
+        "headers": [
+          {
+            "name": "api-key",
+            "value": ""
+          },
+          {
+            "name": "sensorsdata-project",
+            "value": ""
+          }
+        ]
+      },
+      "docs": "获取事件列表"
+    },
+    {
+      "info": {
+        "name": "获取事件标签列表",
+        "type": "http"
+      },
+      "http": {
+        "method": "GET",
+        "url": "/api/v3/analytics/v1/event-meta/events/tags",
+        "headers": [
+          {
+            "name": "api-key",
+            "value": ""
+          },
+          {
+            "name": "sensorsdata-project",
+            "value": ""
+          }
+        ]
+      },
+      "docs": "获取事件标签列表"
+    }
+  ],
+  "bundled": true
+}

@@ -1,0 +1,64 @@
+generated: '2026-08-13'
+method: searched
+source: https://github.com/sensorsdata + https://manual.sensorsdata.cn/sf/docs/channels_webhook
+summary: >-
+  Client-side and embeddable surfaces Sensors Data ships that are NOT event-collection
+  SDKs — UI that renders inside the customer's own app or page, driven by Sensors
+  Focus campaigns. Distinct from packages/, which catalogs the data-collection and
+  server-side clients.
+families:
+  - name: Sensors Focus popup (弹窗 SDK)
+    purpose: >-
+      Renders campaign-driven in-app and on-page messages inside the customer's product.
+      This is the platform's low-latency reach channel — the docs point here explicitly
+      when webhook micro-batching latency is unacceptable.
+    platforms:
+      - platform: ios
+        repo: https://github.com/sensorsdata/sf-sdk-ios
+        official: true
+        last_push: '2026-04-15'
+      - platform: android
+        repo: https://github.com/sensorsdata/sf-sdk-android
+        official: true
+        last_push: '2026-07-02'
+      - platform: web
+        repo: https://github.com/sensorsdata/sf-sdk-web
+        official: true
+        last_push: '2022-11-25'
+      - platform: miniprogram
+        repo: https://github.com/sensorsdata/sf-sdk-miniprogram
+        official: true
+        last_push: '2022-11-25'
+    note: >-
+      Currency is split down the middle: the mobile popups shipped in 2026, the web and
+      mini-program popups have not been touched since 2022.
+  - name: Web SDK visual surfaces
+    purpose: >-
+      Rendered overlays produced by the Web data-collection SDK rather than by a campaign —
+      click maps (点击图) and web visual full-tracking, plus a screenshot plugin used by the
+      visual tracking designer.
+    components:
+      - name: click map / heat map
+        docs: https://manual.sensorsdata.cn/sa/docs/tech_sdk_client_web_api
+        shipped_in: sa-sdk-javascript
+      - name: web visual full-tracking screenshot plugin
+        docs: https://manual.sensorsdata.cn/
+  - name: Third-party Web SDK plugins
+    repo: https://github.com/sensorsdata/web-sdk-third-plugin
+    official: true
+    purpose: Collected plugin surface extending the Web SDK.
+    last_push: '2023-08-23'
+loaders:
+  - name: sa-sdk-javascript
+    registry: npm
+    also_distributed_as: script tag on the customer's own page
+    note: >-
+      The Web SDK is normally loaded as an inline snippet on the customer's page rather
+      than from a vendor CDN, so there is no vendor-pinned CDN URL to version. See
+      packages/ for the npm coordinate and its published version.
+embedded_dashboards:
+  published: false
+  note: >-
+    No embeddable-dashboard or embedded-analytics product is documented. Dashboards are
+    consumed through the console or read through the Analytics OpenAPI (QueryDashboard,
+    QueryLegoDashboard, ShareDashboard).

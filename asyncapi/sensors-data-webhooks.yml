@@ -1,0 +1,144 @@
+generated: '2026-08-13'
+method: searched
+source: https://manual.sensorsdata.cn/sf/docs/webhook_integration
+asyncapi_published: false
+asyncapi_reason: >-
+  Sensors Data operates a real event surface but publishes no AsyncAPI document. This
+  artifact captures the webhook and streaming catalog from the provider's own integration
+  documentation instead. Nothing here is generated — every field name is quoted from the
+  published payload.
+
+webhooks:
+  direction: provider-to-customer
+  product: Sensors Focus (神策智能运营)
+  docs: https://manual.sensorsdata.cn/sf/docs/webhook_integration
+  management_docs: https://manual.sensorsdata.cn/sf/docs/channels_webhook
+  transport: HTTP POST, Content-Type application/json;charset=UTF-8
+  protocols: [http, https]
+  configured_in: 项目设置 -> 触达方式管理 -> Webhook (Project Settings -> Reach Channel Management)
+  batching:
+    enabled: true
+    shape: >-
+      The request body is a JSON LIST, not a single object. Sensors Focus micro-batches
+      multiple triggered users into one request to raise throughput. A receiver that
+      assumes a single-object body will break on the first real delivery.
+  latency: >-
+    Several seconds, by design, because of micro-batching. "Webhook itself makes no
+    timeliness guarantee"; sub-second use cases are directed to the in-app popup product.
+  authentication:
+    mechanism: shared secret signature
+    parameter: secretTokenForSignatureCheck
+    detail: >-
+      A Secret Token is configured on the Sensors Focus server and verified by the
+      receiver. The first-party Java helper enforces the check whenever a token is
+      supplied. Optional — a webhook can be run unsigned.
+  events:
+    - name: user-triggered reach
+      trigger: a user satisfies the conditions of an operating plan (运营计划) or canvas (流程画布)
+      payload_fields:
+        project_name: Sensors project identifier (English identifier, not display name)
+        sf_version: Sensors Focus version string
+        user_profile.user_id: long integer, the Sensors Analytics unique user id
+        user_profile.first_id: usually the device id
+        user_profile.second_id: usually the login id
+        receipt_properties.sf_msg_id: uuid for this message
+        receipt_properties.sf_plan_id: plan id
+        receipt_properties.sf_plan_version: strategy version
+        receipt_properties.sf_plan_strategy_id: experiment group id
+        receipt_properties.sf_strategy_unit_id: strategy unit id
+        receipt_properties.sf_plan_type: plan type
+        receipt_properties.sf_channel_id: channel instance id
+        receipt_properties.sf_component_id: component id
+        receipt_properties.sf_channel_category: constant "WEBHOOK"
+        receipt_properties.sf_enter_plan_time: epoch millis the user entered the plan
+        receipt_properties.sf_send_time: epoch millis the message was sent
+        plan_info.cname: plan or canvas display name (optional, configured per channel)
+        plan_info.type: SIMPLE | RICH | CANVA
+        plan_info.schedule_type: FIXED_TIME | ROUTINE | TRIGGER
+        plan_info.finish_time: plan end time, epoch millis
+        plan_info.component_cname: strategy/component display name
+        params: operator-configured dynamic and static parameters
+        send_id: the delivery identifier for this user (phone number, push id, ...)
+      typing_caveat: >-
+        Every value in params is coerced to STRING regardless of its configured type —
+        integers, decimals, dates and percentages all arrive as strings, and a percentage
+        arrives as its numeric value with no % sign.
+      naming_caveat: >-
+        Payload field names are snake_case. The docs explicitly warn callers using
+        camelCase frameworks to configure deserialization mapping.
+  expected_response:
+    - condition: HTTP 200 with no body
+      meaning: every entry in the batch is treated as delivered successfully
+    - condition: HTTP 200 with a body
+      shape: '[{"succeed": true}, {"succeed": false, "fail_reason": "..."}]'
+      meaning: per-entry result, index-aligned with the request list
+    - condition: any non-200 status
+      meaning: the entire batch is treated as failed
+  dynamic_parameter_callback:
+    direction: provider-to-customer
+    method: GET
+    purpose: >-
+      Populates operator-facing dropdowns in the plan builder in real time (available
+      coupons, templates), including multi-level trees and search.
+    response_shape: '[{"name": str, "value": str|number, "children": [...], "detail": {"subtitle": str, "description": str, "others": [{"label": str, "value": any}]}}]'
+    guidance: keep option counts under about 500 for usability and speed
+
+receipts:
+  direction: customer-to-provider
+  purpose: >-
+    Close the loop so delivery success/failure appears in the plan's analytics. Optional —
+    a webhook channel works without receipts, but plan reporting is blind without them.
+  mechanism: report a normal Sensors Analytics event through any server SDK
+  event:
+    name: $PlanMsgArrived
+    cname: Webhook 送达成功或失败回执
+    properties:
+      $sf_msg_status: RECEIPT_SEND_SUCCESS | RECEIPT_SEND_FAILED (must be upper case)
+      $sf_send_fail_code: string
+      $sf_fail_reason: string
+      $sf_enter_plan_time: long
+      $sf_send_time: long
+      $sf_channel_id: string
+      $sf_channel_category: constant "WEBHOOK" (must be upper case)
+      $sf_plan_type: plan type
+      $sf_strategy_unit_id: string
+      $sf_plan_strategy_id: string
+      $sf_plan_id: string
+      $sf_plan_version: string
+    note: >-
+      The receipt properties are exactly the receipt_properties block handed to the
+      receiver in the webhook payload — echo it back with a status.
+
+streaming:
+  - name: real-time data subscription to Kafka
+    direction: provider-to-customer
+    transport: kafka
+    docs: https://docs.sensorsdata.com/sa/docs/subscribe_data_to_kafka
+    managed_by:
+      spec: openapi/sensors-data-horizon-data-subscription-v1-openapi.yml
+      operations:
+        - CreateDataSubscription
+        - ListDataSubscriptions
+        - AddSubscriptionApplication
+        - AppendSubscriptionApplicationConfig
+        - GetSubscriptionApplication
+        - DeleteSubscriptionApplication
+        - BatchDeleteDataSubscriptions
+    note: >-
+      This is the one part of the event surface that IS contract-managed — the subscription
+      lifecycle is seven real OpenAPI operations in the Horizon spec, even though the data
+      plane itself is Kafka and therefore outside the OpenAPI.
+
+tooling:
+  - name: webhook-helper (Java)
+    repo: https://github.com/sensorsdata/sf-webhook-helper
+    official: true
+    docs: https://manual.sensorsdata.cn/sf/docs/webhook_api
+    provides:
+      - com.sensorsdata.webhook.processor.SfWebhookProcessor — handle a batch of entries
+      - com.sensorsdata.webhook.middleman.SfWebhookMiddleManProcessor — async forward to a downstream API
+      - Bootstrap — embedded Jetty server with localPort, processor selection and secretTokenForSignatureCheck
+  - name: kafka-consumer-sample
+    repo: https://github.com/sensorsdata/kafka-consumer-sample
+    official: true
+    purpose: reference consumer for the Kafka data subscription

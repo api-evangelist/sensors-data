@@ -1,0 +1,2220 @@
+{
+  "openapi" : "3.0.1",
+  "info" : {
+    "description" : "管理服务主要负责管理 SBP 一些通用产品功能组件的 open api 接口；例如：操作日志，消息通知，数据迁移等",
+    "title" : "神策业务门户",
+    "version" : ""
+  },
+  "servers" : [ {
+    "url" : "/api/v3/portal/v2"
+  } ],
+  "paths" : {
+    "/management/behavior/list" : {
+      "get" : {
+        "description" : "获取操作日志列表；为了方便于加载不同项目操作日志的数据，需要在请求参数中携带项目 ID，如果请求头携带了 sensorsdata-project 或者在请求参数中携带了 project 参数，会被忽略掉；该接口支持翻页，每页最多返回 100 条记录",
+        "operationId" : "ListBehaviors",
+        "parameters" : [ {
+          "description" : "全局唯一的密钥，用于验证和授权访问 API 接口",
+          "in" : "header",
+          "name" : "api-key",
+          "required" : true,
+          "schema" : {
+            "type" : "string"
+          }
+        }, {
+          "description" : "项目名, 指定请求所属项目",
+          "in" : "header",
+          "name" : "sensorsdata-project",
+          "required" : true,
+          "schema" : {
+            "type" : "string"
+          }
+        }, {
+          "description" : "项目 id",
+          "example" : 1,
+          "in" : "query",
+          "name" : "project_id",
+          "required" : true,
+          "schema" : {
+            "format" : "int32",
+            "type" : "integer"
+          }
+        }, {
+          "description" : "日志开始时间，日期格式：yyyy-MM-dd HH:mm:ss",
+          "example" : "2022-01-01 00:00:00",
+          "in" : "query",
+          "name" : "operation_start_time",
+          "schema" : {
+            "type" : "string"
+          }
+        }, {
+          "description" : "日志结束时间，日期格式：yyyy-MM-dd HH:mm:ss",
+          "example" : "2022-01-01 00:00:00",
+          "in" : "query",
+          "name" : "operation_end_time",
+          "schema" : {
+            "type" : "string"
+          }
+        }, {
+          "description" : "当前访问页号，默认值：1",
+          "example" : 1,
+          "in" : "query",
+          "name" : "page_index",
+          "schema" : {
+            "format" : "int32",
+            "type" : "integer"
+          }
+        }, {
+          "description" : "单页返回最大记录数，默认值：20，取值范围：1-100",
+          "example" : 20,
+          "in" : "query",
+          "name" : "page_size",
+          "schema" : {
+            "format" : "int32",
+            "type" : "integer"
+          }
+        }, {
+          "description" : "功能模块，该字段由 sbp_behavior_define.module 定义",
+          "example" : "passport",
+          "in" : "query",
+          "name" : "module",
+          "schema" : {
+            "type" : "string"
+          }
+        }, {
+          "description" : "用户名，指定时查询当前用户名的操作日志，若没有指定 user_name，该字段会被忽略",
+          "example" : "zhang_san",
+          "in" : "query",
+          "name" : "user_name",
+          "schema" : {
+            "type" : "string"
+          }
+        }, {
+          "description" : "ip地址，指定时查询该ip地址的操作记录，若没有指定 ip，该字段会被忽略",
+          "example" : "182.150.28.141",
+          "in" : "query",
+          "name" : "ip",
+          "schema" : {
+            "type" : "string"
+          }
+        }, {
+          "description" : "排序，升序还是降序，为空默认为降序，asc：升序，desc：降序",
+          "example" : "asc",
+          "in" : "query",
+          "name" : "sort_order",
+          "schema" : {
+            "type" : "string"
+          }
+        } ],
+        "requestBody" : {
+          "content" : {
+            "application/json" : {
+              "schema" : {
+                "$ref" : "#/components/schemas/sensorsdata.portal.v2.api.ListBehaviorRequestBody"
+              }
+            }
+          },
+          "description" : "「获取操作日志列表」的请求对象",
+          "required" : false
+        },
+        "responses" : {
+          "default" : {
+            "content" : {
+              "application/json" : {
+                "example" : {
+                  "code" : "SUCCESS",
+                  "data" : {
+                    "page" : {
+                      "total" : 100,
+                      "current_page" : 1,
+                      "page_count" : 100
+                    },
+                    "behavior_infos" : [ {
+                      "operation_type_name" : "编辑",
+                      "operation_time" : "2022-01-01 00:00:00",
+                      "project_id" : 1,
+                      "user_name" : "平台管理员",
+                      "ip" : "127.0.0.1",
+                      "resource_id" : "1",
+                      "description" : {
+                        "content" : "角色「管理员」"
+                      },
+                      "duty" : "销售",
+                      "module_name" : "角色管理",
+                      "resource_name" : "管理员",
+                      "user_agent" : "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/108.0.0.0 Safari/537.36"
+                    } ]
+                  },
+                  "request_id" : "1"
+                },
+                "schema" : {
+                  "$ref" : "#/components/schemas/sensorsdata.portal.v2.api.ListBehaviorResponseHttpApiResult"
+                }
+              }
+            },
+            "description" : "sensorsdata.portal.v2.api.ListBehaviorResponse"
+          }
+        },
+        "summary" : "获取操作日志列表",
+        "x-sd-openapi" : {
+          "responseClass" : "com.sensorsdata.portal.v2.api.ListBehaviorResponse",
+          "isServerStreaming" : false,
+          "requestClass" : "com.sensorsdata.portal.v2.api.ListBehaviorRequest",
+          "grpcServiceBase" : "com.sensorsdata.portal.v2.api.ManagementServiceGrpc.ManagementServiceImplBase",
+          "internalDesc" : "classes in template for grpc service dynamic invoking",
+          "isClientStreaming" : false
+        },
+        "x-codegen-request-body-name" : "ListBehaviorRequestBody"
+      }
+    },
+    "/management/behavior/define/list" : {
+      "get" : {
+        "description" : "获取操作日志定义列表；该接口支持翻页，每页最多返回 100 条记录",
+        "operationId" : "ListBehaviorDefines",
+        "parameters" : [ {
+          "description" : "全局唯一的密钥，用于验证和授权访问 API 接口",
+          "in" : "header",
+          "name" : "api-key",
+          "required" : true,
+          "schema" : {
+            "type" : "string"
+          }
+        }, {
+          "description" : "项目名, 指定请求所属项目",
+          "in" : "header",
+          "name" : "sensorsdata-project",
+          "required" : true,
+          "schema" : {
+            "type" : "string"
+          }
+        }, {
+          "description" : "当前访问页号，默认值：1",
+          "example" : 1,
+          "in" : "query",
+          "name" : "page_index",
+          "schema" : {
+            "format" : "int32",
+            "type" : "integer"
+          }
+        }, {
+          "description" : "单页返回最大记录数，默认值：20，取值范围：1-100",
+          "example" : 20,
+          "in" : "query",
+          "name" : "page_size",
+          "schema" : {
+            "format" : "int32",
+            "type" : "integer"
+          }
+        }, {
+          "description" : "声明该「操作日志定义」的产品线",
+          "example" : "SBP",
+          "in" : "query",
+          "name" : "product",
+          "schema" : {
+            "type" : "string"
+          }
+        } ],
+        "responses" : {
+          "default" : {
+            "content" : {
+              "application/json" : {
+                "example" : {
+                  "code" : "SUCCESS",
+                  "data" : {
+                    "behavior_defines" : [ {
+                      "product" : "SBP",
+                      "operation_type_name" : "登录",
+                      "operation_type" : "login",
+                      "module" : "passport",
+                      "module_name" : "系统"
+                    } ],
+                    "page" : {
+                      "total" : 100,
+                      "current_page" : 1,
+                      "page_count" : 100
+                    }
+                  },
+                  "request_id" : "1"
+                },
+                "schema" : {
+                  "$ref" : "#/components/schemas/sensorsdata.portal.v2.api.ListBehaviorDefineResponseHttpApiResult"
+                }
+              }
+            },
+            "description" : "sensorsdata.portal.v2.api.ListBehaviorDefineResponse"
+          }
+        },
+        "summary" : "获取操作日志定义列表",
+        "x-sd-openapi" : {
+          "responseClass" : "com.sensorsdata.portal.v2.api.ListBehaviorDefineResponse",
+          "isServerStreaming" : false,
+          "requestClass" : "com.sensorsdata.portal.v2.api.ListBehaviorDefineRequest",
+          "grpcServiceBase" : "com.sensorsdata.portal.v2.api.ManagementServiceGrpc.ManagementServiceImplBase",
+          "internalDesc" : "classes in template for grpc service dynamic invoking",
+          "isClientStreaming" : false
+        }
+      }
+    },
+    "/management/openapi/log/list" : {
+      "get" : {
+        "description" : "查询指定条件下的 OpenAPI 调用日志分页结果，仅支持管理员调用",
+        "operationId" : "ListOpenApiLogs",
+        "parameters" : [ {
+          "description" : "全局唯一的密钥，用于验证和授权访问 API 接口",
+          "in" : "header",
+          "name" : "api-key",
+          "required" : true,
+          "schema" : {
+            "type" : "string"
+          }
+        }, {
+          "description" : "项目名, 指定请求所属项目",
+          "in" : "header",
+          "name" : "sensorsdata-project",
+          "required" : true,
+          "schema" : {
+            "type" : "string"
+          }
+        }, {
+          "description" : "调用开始时间，Unix 时间戳，单位毫秒",
+          "example" : 1711324800000,
+          "in" : "query",
+          "name" : "call_time_start",
+          "schema" : {
+            "format" : "int64",
+            "type" : "integer"
+          }
+        }, {
+          "description" : "调用结束时间，Unix 时间戳，单位毫秒",
+          "example" : 1711411200000,
+          "in" : "query",
+          "name" : "call_time_end",
+          "schema" : {
+            "format" : "int64",
+            "type" : "integer"
+          }
+        }, {
+          "description" : "项目 id",
+          "example" : 1,
+          "in" : "query",
+          "name" : "project_id",
+          "schema" : {
+            "format" : "int64",
+            "type" : "integer"
+          }
+        }, {
+          "description" : "账号 id",
+          "example" : 10001,
+          "in" : "query",
+          "name" : "account_id",
+          "schema" : {
+            "format" : "int64",
+            "type" : "integer"
+          }
+        }, {
+          "description" : "所属功能模块",
+          "example" : "event",
+          "in" : "query",
+          "name" : "module",
+          "schema" : {
+            "type" : "string"
+          }
+        }, {
+          "description" : "请求 id",
+          "example" : "req-20260325-0001",
+          "in" : "query",
+          "name" : "request_id",
+          "schema" : {
+            "type" : "string"
+          }
+        }, {
+          "description" : "API Key ID",
+          "example" : "1",
+          "in" : "query",
+          "name" : "api_key_id",
+          "schema" : {
+            "type" : "string"
+          }
+        }, {
+          "description" : "API Key 名称",
+          "example" : "server-token",
+          "in" : "query",
+          "name" : "api_key_name",
+          "schema" : {
+            "type" : "string"
+          }
+        }, {
+          "description" : "页码，从 1 开始",
+          "example" : 1,
+          "in" : "query",
+          "name" : "page_num",
+          "schema" : {
+            "format" : "int32",
+            "type" : "integer"
+          }
+        }, {
+          "description" : "每页返回条数",
+          "example" : 20,
+          "in" : "query",
+          "name" : "page_size",
+          "schema" : {
+            "format" : "int32",
+            "type" : "integer"
+          }
+        } ],
+        "responses" : {
+          "default" : {
+            "content" : {
+              "application/json" : {
+                "example" : {
+                  "code" : "SUCCESS",
+                  "data" : {
+                    "total" : 100,
+                    "page_num" : 1,
+                    "logs" : [ {
+                      "module" : "event",
+                      "call_time" : 1711324800000,
+                      "project_name" : "演示项目",
+                      "api_path" : "/sa?project=default",
+                      "api_key_id" : "1",
+                      "api_key_name" : "server-token",
+                      "account_id" : 10001,
+                      "http_method" : "POST",
+                      "principal_uuid" : "9f4d8f1a-8a65-4d3f-80fd-8f3d7d4baf01",
+                      "project_id" : 1,
+                      "account_name" : "admin",
+                      "client_ip" : "127.0.0.1",
+                      "http_status" : 200,
+                      "response_time" : 123,
+                      "request_id" : "req-20260325-0001",
+                      "user_agent" : "Mozilla/5.0"
+                    } ],
+                    "page_size" : 20
+                  },
+                  "request_id" : "1"
+                },
+                "schema" : {
+                  "$ref" : "#/components/schemas/sensorsdata.portal.v2.api.ListOpenApiLogsResponseHttpApiResult"
+                }
+              }
+            },
+            "description" : "sensorsdata.portal.v2.api.ListOpenApiLogsResponse"
+          }
+        },
+        "summary" : "查询 OpenAPI 调用日志",
+        "x-sd-openapi" : {
+          "responseClass" : "com.sensorsdata.portal.v2.api.ListOpenApiLogsResponse",
+          "isServerStreaming" : false,
+          "requestClass" : "com.sensorsdata.portal.v2.api.ListOpenApiLogsRequest",
+          "grpcServiceBase" : "com.sensorsdata.portal.v2.api.ManagementServiceGrpc.ManagementServiceImplBase",
+          "internalDesc" : "classes in template for grpc service dynamic invoking",
+          "isClientStreaming" : false
+        }
+      }
+    },
+    "/management/project/list" : {
+      "get" : {
+        "description" : "获取当前账号已启用的项目信息和项目配置",
+        "operationId" : "ListProjects",
+        "parameters" : [ {
+          "description" : "全局唯一的密钥，用于验证和授权访问 API 接口",
+          "in" : "header",
+          "name" : "api-key",
+          "required" : true,
+          "schema" : {
+            "type" : "string"
+          }
+        }, {
+          "description" : "项目名, 指定请求所属项目",
+          "in" : "header",
+          "name" : "sensorsdata-project",
+          "required" : true,
+          "schema" : {
+            "type" : "string"
+          }
+        }, {
+          "description" : "产品名称，指定该参数则获取的项目信息为该产品下能够访问的项目列表",
+          "example" : "SA",
+          "in" : "query",
+          "name" : "product_name",
+          "schema" : {
+            "type" : "string"
+          }
+        } ],
+        "responses" : {
+          "default" : {
+            "content" : {
+              "application/json" : {
+                "example" : {
+                  "code" : "SUCCESS",
+                  "data" : {
+                    "total" : 10,
+                    "projects" : [ {
+                      "project" : {
+                        "create_time" : "2022-01-01 00:00:00",
+                        "name" : "default",
+                        "cname" : "默认项目",
+                        "project_status" : "NORMAL",
+                        "id" : 1
+                      },
+                      "config" : {
+                        "is_schema_limited" : false,
+                        "is_csm" : false,
+                        "customize_default_roles" : "admin",
+                        "is_duty_required" : true,
+                        "is_new_sign_up" : false
+                      }
+                    } ]
+                  },
+                  "request_id" : "1"
+                },
+                "schema" : {
+                  "$ref" : "#/components/schemas/sensorsdata.portal.v2.api.ListProjectResponseHttpApiResult"
+                }
+              }
+            },
+            "description" : "sensorsdata.portal.v2.api.ListProjectResponse"
+          }
+        },
+        "summary" : "获取项目列表",
+        "x-sd-openapi" : {
+          "responseClass" : "com.sensorsdata.portal.v2.api.ListProjectResponse",
+          "isServerStreaming" : false,
+          "requestClass" : "com.sensorsdata.portal.v2.api.ListProjectRequest",
+          "grpcServiceBase" : "com.sensorsdata.portal.v2.api.ManagementServiceGrpc.ManagementServiceImplBase",
+          "internalDesc" : "classes in template for grpc service dynamic invoking",
+          "isClientStreaming" : false
+        }
+      }
+    },
+    "/management/project/get" : {
+      "get" : {
+        "description" : "获取项目的详细信息",
+        "operationId" : "GetProjectByIdOrName",
+        "parameters" : [ {
+          "description" : "全局唯一的密钥，用于验证和授权访问 API 接口",
+          "in" : "header",
+          "name" : "api-key",
+          "required" : true,
+          "schema" : {
+            "type" : "string"
+          }
+        }, {
+          "description" : "项目名, 指定请求所属项目",
+          "in" : "header",
+          "name" : "sensorsdata-project",
+          "required" : true,
+          "schema" : {
+            "type" : "string"
+          }
+        }, {
+          "description" : "项目 id",
+          "example" : 2,
+          "in" : "query",
+          "name" : "project_id",
+          "schema" : {
+            "format" : "int32",
+            "type" : "integer"
+          }
+        }, {
+          "description" : "项目名称",
+          "example" : "default",
+          "in" : "query",
+          "name" : "project_name",
+          "schema" : {
+            "type" : "string"
+          }
+        } ],
+        "responses" : {
+          "default" : {
+            "content" : {
+              "application/json" : {
+                "example" : {
+                  "code" : "SUCCESS",
+                  "data" : {
+                    "project" : {
+                      "create_time" : "2022-01-01 00:00:00",
+                      "name" : "default",
+                      "cname" : "默认项目",
+                      "project_status" : "NORMAL",
+                      "id" : 1
+                    },
+                    "config" : {
+                      "is_schema_limited" : false,
+                      "is_csm" : false,
+                      "customize_default_roles" : "admin",
+                      "is_duty_required" : true,
+                      "is_new_sign_up" : false
+                    }
+                  },
+                  "request_id" : "1"
+                },
+                "schema" : {
+                  "$ref" : "#/components/schemas/sensorsdata.portal.v2.api.ProjectWithConfigHttpApiResult"
+                }
+              }
+            },
+            "description" : "sensorsdata.portal.v2.api.ProjectWithConfig"
+          }
+        },
+        "summary" : "查询通过id或name查询项目信息",
+        "x-sd-openapi" : {
+          "responseClass" : "com.sensorsdata.portal.v2.api.ProjectWithConfig",
+          "isServerStreaming" : false,
+          "requestClass" : "com.sensorsdata.portal.v2.api.GetProjectRequest",
+          "grpcServiceBase" : "com.sensorsdata.portal.v2.api.ManagementServiceGrpc.ManagementServiceImplBase",
+          "internalDesc" : "classes in template for grpc service dynamic invoking",
+          "isClientStreaming" : false
+        }
+      }
+    },
+    "/management/project/get-by-account-id" : {
+      "get" : {
+        "description" : "获取账号绑定的项目",
+        "operationId" : "GetProjectsByAccountId",
+        "parameters" : [ {
+          "description" : "全局唯一的密钥，用于验证和授权访问 API 接口",
+          "in" : "header",
+          "name" : "api-key",
+          "required" : true,
+          "schema" : {
+            "type" : "string"
+          }
+        }, {
+          "description" : "项目名, 指定请求所属项目",
+          "in" : "header",
+          "name" : "sensorsdata-project",
+          "required" : true,
+          "schema" : {
+            "type" : "string"
+          }
+        }, {
+          "description" : "账号 id",
+          "example" : 1,
+          "in" : "query",
+          "name" : "account_id",
+          "required" : true,
+          "schema" : {
+            "format" : "int32",
+            "type" : "integer"
+          }
+        } ],
+        "responses" : {
+          "default" : {
+            "content" : {
+              "application/json" : {
+                "example" : {
+                  "code" : "SUCCESS",
+                  "data" : {
+                    "projects" : [ {
+                      "create_time" : "2022-01-01 00:00:00",
+                      "name" : "default",
+                      "cname" : "默认项目",
+                      "project_status" : "NORMAL",
+                      "id" : 1
+                    } ]
+                  },
+                  "request_id" : "1"
+                },
+                "schema" : {
+                  "$ref" : "#/components/schemas/sensorsdata.portal.v2.api.GetProjectsByAccountIdResponseHttpApiResult"
+                }
+              }
+            },
+            "description" : "sensorsdata.portal.v2.api.GetProjectsByAccountIdResponse"
+          }
+        },
+        "summary" : "查询通过id查询账号绑定的项目",
+        "x-sd-openapi" : {
+          "responseClass" : "com.sensorsdata.portal.v2.api.GetProjectsByAccountIdResponse",
+          "isServerStreaming" : false,
+          "requestClass" : "com.sensorsdata.portal.v2.api.GetProjectsByAccountIdRequest",
+          "grpcServiceBase" : "com.sensorsdata.portal.v2.api.ManagementServiceGrpc.ManagementServiceImplBase",
+          "internalDesc" : "classes in template for grpc service dynamic invoking",
+          "isClientStreaming" : false
+        }
+      }
+    },
+    "/management/notice/send" : {
+      "post" : {
+        "description" : "发送站内消息，支持发送给项目下指定的用户列表或者发送给某一项目下的所有用户；使用该接口发送的消息可以在神策系统右上角的「消息通知」处查看",
+        "operationId" : "SendNoticeMessage",
+        "parameters" : [ {
+          "description" : "全局唯一的密钥，用于验证和授权访问 API 接口",
+          "in" : "header",
+          "name" : "api-key",
+          "required" : true,
+          "schema" : {
+            "type" : "string"
+          }
+        }, {
+          "description" : "项目名, 指定请求所属项目",
+          "in" : "header",
+          "name" : "sensorsdata-project",
+          "required" : true,
+          "schema" : {
+            "type" : "string"
+          }
+        } ],
+        "requestBody" : {
+          "content" : {
+            "application/json" : {
+              "schema" : {
+                "$ref" : "#/components/schemas/sensorsdata.portal.v2.api.NoticeMessageRequestBody"
+              }
+            }
+          },
+          "required" : false
+        },
+        "responses" : {
+          "default" : {
+            "content" : {
+              "application/json" : {
+                "example" : {
+                  "code" : "SUCCESS",
+                  "data" : {
+                    "notice" : {
+                      "product_line" : "SA",
+                      "operation_time" : "2022-01-01 00:00:00",
+                      "operation_type" : "DASHBOARD",
+                      "id" : 1,
+                      "priority" : "LOW",
+                      "uuid" : "38135721-2938-4585-b19b-396ceb910d88"
+                    }
+                  },
+                  "request_id" : "1"
+                },
+                "schema" : {
+                  "$ref" : "#/components/schemas/sensorsdata.portal.v2.api.NoticeMessageResponseHttpApiResult"
+                }
+              }
+            },
+            "description" : "sensorsdata.portal.v2.api.NoticeMessageResponse"
+          }
+        },
+        "summary" : "发送站内消息",
+        "x-sd-openapi" : {
+          "responseClass" : "com.sensorsdata.portal.v2.api.NoticeMessageResponse",
+          "isServerStreaming" : false,
+          "requestClass" : "com.sensorsdata.portal.v2.api.NoticeMessageRequestBody",
+          "grpcServiceBase" : "com.sensorsdata.portal.v2.api.ManagementServiceGrpc.ManagementServiceImplBase",
+          "internalDesc" : "classes in template for grpc service dynamic invoking",
+          "isClientStreaming" : false
+        },
+        "x-codegen-request-body-name" : "NoticeMessageRequestBody"
+      }
+    },
+    "/management/product/versions" : {
+      "get" : {
+        "description" : "查询私有端的版本信息",
+        "operationId" : "GetAllProductVersion",
+        "parameters" : [ {
+          "description" : "全局唯一的密钥，用于验证和授权访问 API 接口",
+          "in" : "header",
+          "name" : "api-key",
+          "required" : true,
+          "schema" : {
+            "type" : "string"
+          }
+        }, {
+          "description" : "项目名, 指定请求所属项目",
+          "in" : "header",
+          "name" : "sensorsdata-project",
+          "required" : true,
+          "schema" : {
+            "type" : "string"
+          }
+        } ],
+        "responses" : {
+          "default" : {
+            "content" : {
+              "application/json" : {
+                "example" : {
+                  "code" : "SUCCESS",
+                  "data" : {
+                    "product_versions" : [ {
+                      "product_version" : "1.5.1.224",
+                      "product_name" : "SBP"
+                    } ]
+                  },
+                  "request_id" : "1"
+                },
+                "schema" : {
+                  "$ref" : "#/components/schemas/sensorsdata.portal.v2.api.AllProductVersionResponseHttpApiResult"
+                }
+              }
+            },
+            "description" : "sensorsdata.portal.v2.api.AllProductVersionResponse"
+          }
+        },
+        "summary" : "查询私有端的版本信息",
+        "x-sd-openapi" : {
+          "responseClass" : "com.sensorsdata.portal.v2.api.AllProductVersionResponse",
+          "isServerStreaming" : false,
+          "grpcServiceBase" : "com.sensorsdata.portal.v2.api.ManagementServiceGrpc.ManagementServiceImplBase",
+          "internalDesc" : "classes in template for grpc service dynamic invoking",
+          "isClientStreaming" : false
+        }
+      }
+    },
+    "/management/license/product" : {
+      "get" : {
+        "description" : "查询私有端的所有授权组件信息（主要包括版本信息和授权情况）",
+        "operationId" : "GetLicenseProduct",
+        "parameters" : [ {
+          "description" : "全局唯一的密钥，用于验证和授权访问 API 接口",
+          "in" : "header",
+          "name" : "api-key",
+          "required" : true,
+          "schema" : {
+            "type" : "string"
+          }
+        }, {
+          "description" : "项目名, 指定请求所属项目",
+          "in" : "header",
+          "name" : "sensorsdata-project",
+          "required" : true,
+          "schema" : {
+            "type" : "string"
+          }
+        }, {
+          "description" : "产品线名称",
+          "example" : "SBP",
+          "in" : "query",
+          "name" : "product_name",
+          "schema" : {
+            "type" : "string"
+          }
+        } ],
+        "responses" : {
+          "default" : {
+            "content" : {
+              "application/json" : {
+                "example" : {
+                  "code" : "SUCCESS",
+                  "data" : {
+                    "project_name" : "production",
+                    "product_name" : "SBP"
+                  },
+                  "request_id" : "1"
+                },
+                "schema" : {
+                  "$ref" : "#/components/schemas/sensorsdata.portal.v2.api.GetLicenseProductResponseHttpApiResult"
+                }
+              }
+            },
+            "description" : "sensorsdata.portal.v2.api.GetLicenseProductResponse"
+          }
+        },
+        "summary" : "查询私有端的所有授权组件信息",
+        "x-sd-openapi" : {
+          "responseClass" : "com.sensorsdata.portal.v2.api.GetLicenseProductResponse",
+          "isServerStreaming" : false,
+          "requestClass" : "com.sensorsdata.portal.v2.api.GetLicenseProductRequest",
+          "grpcServiceBase" : "com.sensorsdata.portal.v2.api.ManagementServiceGrpc.ManagementServiceImplBase",
+          "internalDesc" : "classes in template for grpc service dynamic invoking",
+          "isClientStreaming" : false
+        }
+      }
+    }
+  },
+  "components" : {
+    "schemas" : {
+      "sensorsdata.portal.v2.api.MigrateAccountsOutResponseHttpApiResult" : {
+        "properties" : {
+          "code" : {
+            "type" : "string"
+          },
+          "message" : {
+            "type" : "string"
+          },
+          "request_id" : {
+            "type" : "string"
+          },
+          "data" : {
+            "$ref" : "#/components/schemas/sensorsdata.portal.v2.api.MigrateAccountsOutResponse"
+          },
+          "error_info" : {
+            "$ref" : "#/components/schemas/sensorsdata.common.ErrorInfo"
+          }
+        },
+        "title" : "sensorsdata.portal.v2.api.MigrateAccountsOutResponseHttpApiResult",
+        "type" : "object"
+      },
+      "sensorsdata.portal.v2.api.OpenApiLogResult.ExtraHeadersEntry" : {
+        "description" : "",
+        "properties" : {
+          "key" : {
+            "description" : "",
+            "type" : "string"
+          },
+          "value" : {
+            "$ref" : "#/components/schemas/sensorsdata.portal.v2.api.StringList"
+          }
+        },
+        "title" : "ExtraHeadersEntry",
+        "type" : "object"
+      },
+      "sensorsdata.portal.v2.api.GetProjectsByAccountIdResponseHttpApiResult" : {
+        "properties" : {
+          "code" : {
+            "type" : "string"
+          },
+          "message" : {
+            "type" : "string"
+          },
+          "request_id" : {
+            "type" : "string"
+          },
+          "data" : {
+            "$ref" : "#/components/schemas/sensorsdata.portal.v2.api.GetProjectsByAccountIdResponse"
+          },
+          "error_info" : {
+            "$ref" : "#/components/schemas/sensorsdata.common.ErrorInfo"
+          }
+        },
+        "title" : "sensorsdata.portal.v2.api.GetProjectsByAccountIdResponseHttpApiResult",
+        "type" : "object"
+      },
+      "sensorsdata.portal.v2.api.ListBehaviorRequestBody" : {
+        "description" : "「获取操作日志列表」的请求对象",
+        "properties" : {
+          "operation_types" : {
+            "description" : "操作类型，该字段仅当指定了功能模块时生效，若没有指定 module，该字段会被忽略，该字段由 sbp_behavior_define.operation_type 定义",
+            "example" : "[login,logout]",
+            "items" : {
+              "type" : "string"
+            },
+            "type" : "array"
+          }
+        },
+        "title" : "ListBehaviorRequest",
+        "type" : "object"
+      },
+      "sensorsdata.portal.v2.api.ListBehaviorResponseHttpApiResult" : {
+        "properties" : {
+          "code" : {
+            "type" : "string"
+          },
+          "message" : {
+            "type" : "string"
+          },
+          "request_id" : {
+            "type" : "string"
+          },
+          "data" : {
+            "$ref" : "#/components/schemas/sensorsdata.portal.v2.api.ListBehaviorResponse"
+          },
+          "error_info" : {
+            "$ref" : "#/components/schemas/sensorsdata.common.ErrorInfo"
+          }
+        },
+        "title" : "sensorsdata.portal.v2.api.ListBehaviorResponseHttpApiResult",
+        "type" : "object"
+      },
+      "sensorsdata.common.ErrorContext" : {
+        "description" : "发生错误时，系统快照信息",
+        "properties" : {
+          "origin_stack" : {
+            "description" : "上游异常的 stack，由系统截获",
+            "type" : "string"
+          },
+          "origin_cause" : {
+            "description" : "上游异常的 cause by，由系统截获",
+            "type" : "string"
+          },
+          "origin_code" : {
+            "description" : "上游异常的错误简码",
+            "type" : "string"
+          },
+          "origin_complete_code" : {
+            "description" : "上游异常的完整错误码",
+            "type" : "string"
+          },
+          "error_extend_desc" : {
+            "description" : "本次异常的辅助说明，可传入",
+            "type" : "string"
+          }
+        },
+        "title" : "ErrorContext",
+        "type" : "object"
+      },
+      "sensorsdata.portal.v2.api.StringList" : {
+        "description" : "字符串列表，常用于 map<string, StringList> 形态承载多值属性",
+        "properties" : {
+          "values" : {
+            "description" : "字符串值列表",
+            "example" : "v1",
+            "items" : {
+              "type" : "string"
+            },
+            "type" : "array"
+          }
+        },
+        "title" : "StringList",
+        "type" : "object"
+      },
+      "sensorsdata.portal.v2.api.MigrateRoleOutResponseHttpApiResult" : {
+        "properties" : {
+          "code" : {
+            "type" : "string"
+          },
+          "message" : {
+            "type" : "string"
+          },
+          "request_id" : {
+            "type" : "string"
+          },
+          "data" : {
+            "$ref" : "#/components/schemas/sensorsdata.portal.v2.api.MigrateRoleOutResponse"
+          },
+          "error_info" : {
+            "$ref" : "#/components/schemas/sensorsdata.common.ErrorInfo"
+          }
+        },
+        "title" : "sensorsdata.portal.v2.api.MigrateRoleOutResponseHttpApiResult",
+        "type" : "object"
+      },
+      "sensorsdata.portal.v2.api.BehaviorDefine" : {
+        "description" : "",
+        "properties" : {
+          "module" : {
+            "description" : "功能模块，该字段由 sbp_behavior_define.module 定义",
+            "example" : "passport",
+            "type" : "string"
+          },
+          "module_name" : {
+            "description" : "功能模块名称，该字段由 sbp_behavior_define.module_name 定义",
+            "example" : "系统",
+            "type" : "string"
+          },
+          "operation_type" : {
+            "description" : "操作类型，该字段仅当指定了功能模块时生效，该字段由 sbp_behavior_define.operation_type 定义",
+            "example" : "login",
+            "type" : "string"
+          },
+          "operation_type_name" : {
+            "description" : "操作类型名称，该字段由 sbp_behavior_define.operation_type_name 定义",
+            "example" : "登录",
+            "type" : "string"
+          },
+          "product" : {
+            "description" : "声明该「操作日志定义」的产品线",
+            "example" : "SBP",
+            "type" : "string"
+          }
+        },
+        "title" : "BehaviorDefine",
+        "type" : "object"
+      },
+      "sensorsdata.portal.v2.api.GetProjectRequest" : {
+        "description" : "查询项目信息请求接口,id 和 name 同时存在时优先使用id进行查询，在使用 name 查询，都没有则返回空",
+        "properties" : {
+          "project_id" : {
+            "description" : "项目 id",
+            "example" : 2,
+            "format" : "int32",
+            "type" : "integer"
+          },
+          "project_name" : {
+            "description" : "项目名称",
+            "example" : "default",
+            "type" : "string"
+          }
+        },
+        "title" : "GetProjectRequest",
+        "type" : "object"
+      },
+      "sensorsdata.portal.v2.I18nEntry" : {
+        "description" : "crowdin 定义的国际化信息",
+        "properties" : {
+          "i18n_key" : {
+            "description" : "crowdin 上定义的文本模版的key",
+            "example" : "sbp-behavior-description-content-{product}-{module}-{operationDescription}=\"角色「{roleName}」\"",
+            "type" : "string"
+          },
+          "i18n_args" : {
+            "additionalProperties" : {
+              "description" : "",
+              "type" : "string"
+            },
+            "description" : "替换 crowdin 上定义的文本模版的参数",
+            "example" : {
+              "roleName" : "测试角色"
+            },
+            "type" : "object"
+          }
+        },
+        "title" : "I18nEntry",
+        "type" : "object"
+      },
+      "sensorsdata.portal.v2.api.ProductVersion" : {
+        "description" : "产品线版本信息",
+        "properties" : {
+          "product_name" : {
+            "description" : "产品线名称",
+            "example" : "SBP",
+            "type" : "string"
+          },
+          "product_version" : {
+            "description" : "产品线版本",
+            "example" : "1.5.1.224",
+            "type" : "string"
+          }
+        },
+        "title" : "ProductVersion",
+        "type" : "object"
+      },
+      "sensorsdata.portal.v2.api.ListBehaviorDefineResponseHttpApiResult" : {
+        "properties" : {
+          "code" : {
+            "type" : "string"
+          },
+          "message" : {
+            "type" : "string"
+          },
+          "request_id" : {
+            "type" : "string"
+          },
+          "data" : {
+            "$ref" : "#/components/schemas/sensorsdata.portal.v2.api.ListBehaviorDefineResponse"
+          },
+          "error_info" : {
+            "$ref" : "#/components/schemas/sensorsdata.common.ErrorInfo"
+          }
+        },
+        "title" : "sensorsdata.portal.v2.api.ListBehaviorDefineResponseHttpApiResult",
+        "type" : "object"
+      },
+      "sensorsdata.portal.v2.GetAllProductFunctionInfoResponseHttpApiResult" : {
+        "properties" : {
+          "code" : {
+            "type" : "string"
+          },
+          "message" : {
+            "type" : "string"
+          },
+          "request_id" : {
+            "type" : "string"
+          },
+          "data" : {
+            "$ref" : "#/components/schemas/sensorsdata.portal.v2.GetAllProductFunctionInfoResponse"
+          },
+          "error_info" : {
+            "$ref" : "#/components/schemas/sensorsdata.common.ErrorInfo"
+          }
+        },
+        "title" : "sensorsdata.portal.v2.GetAllProductFunctionInfoResponseHttpApiResult",
+        "type" : "object"
+      },
+      "sensorsdata.portal.v2.api.MigrateRecordResponseHttpApiResult" : {
+        "properties" : {
+          "code" : {
+            "type" : "string"
+          },
+          "message" : {
+            "type" : "string"
+          },
+          "request_id" : {
+            "type" : "string"
+          },
+          "data" : {
+            "$ref" : "#/components/schemas/sensorsdata.portal.v2.api.MigrateRecordResponse"
+          },
+          "error_info" : {
+            "$ref" : "#/components/schemas/sensorsdata.common.ErrorInfo"
+          }
+        },
+        "title" : "sensorsdata.portal.v2.api.MigrateRecordResponseHttpApiResult",
+        "type" : "object"
+      },
+      "sensorsdata.portal.v2.api.NoticeMessageResponse" : {
+        "description" : "",
+        "properties" : {
+          "notice" : {
+            "$ref" : "#/components/schemas/sensorsdata.portal.v2.api.NoticeMessage"
+          }
+        },
+        "title" : "NoticeMessageResponse",
+        "type" : "object"
+      },
+      "sensorsdata.portal.v2.api.GetLicenseProductRequest" : {
+        "description" : "获取产品线的授权信息请求体",
+        "properties" : {
+          "product_name" : {
+            "description" : "产品线名称",
+            "example" : "SBP",
+            "type" : "string"
+          }
+        },
+        "title" : "GetLicenseProductRequest",
+        "type" : "object"
+      },
+      "sensorsdata.portal.v2.I18nEntry.I18nArgsEntry" : {
+        "description" : "",
+        "properties" : {
+          "key" : {
+            "description" : "",
+            "type" : "string"
+          },
+          "value" : {
+            "description" : "",
+            "type" : "string"
+          }
+        },
+        "title" : "I18nArgsEntry",
+        "type" : "object"
+      },
+      "sensorsdata.portal.v2.api.PageInfo" : {
+        "description" : "分页信息",
+        "properties" : {
+          "current_page" : {
+            "description" : "当前页，起始页号：1",
+            "example" : 1,
+            "format" : "int32",
+            "type" : "integer"
+          },
+          "page_count" : {
+            "description" : "总页数",
+            "example" : 100,
+            "format" : "int32",
+            "type" : "integer"
+          },
+          "total" : {
+            "description" : "总条数",
+            "example" : 100,
+            "format" : "int32",
+            "type" : "integer"
+          }
+        },
+        "title" : "PageInfo",
+        "type" : "object"
+      },
+      "sensorsdata.portal.v2.api.ListOpenApiLogsResponseHttpApiResult" : {
+        "properties" : {
+          "code" : {
+            "type" : "string"
+          },
+          "message" : {
+            "type" : "string"
+          },
+          "request_id" : {
+            "type" : "string"
+          },
+          "data" : {
+            "$ref" : "#/components/schemas/sensorsdata.portal.v2.api.ListOpenApiLogsResponse"
+          },
+          "error_info" : {
+            "$ref" : "#/components/schemas/sensorsdata.common.ErrorInfo"
+          }
+        },
+        "title" : "sensorsdata.portal.v2.api.ListOpenApiLogsResponseHttpApiResult",
+        "type" : "object"
+      },
+      "sensorsdata.portal.v2.BehaviorDescriptionArgument" : {
+        "description" : "",
+        "properties" : {
+          "key" : {
+            "description" : "占位符 key，表示被替换的关键字",
+            "example" : "id",
+            "type" : "string"
+          },
+          "type" : {
+            "description" : "替换参数的类型，可选值 [link, file]，link 表示链接，file 表示文件",
+            "example" : "职位",
+            "type" : "string"
+          },
+          "name" : {
+            "description" : "替换后的展示名称",
+            "example" : "4",
+            "type" : "string"
+          },
+          "value" : {
+            "description" : "链接的值",
+            "example" : "/sts/users?project=default",
+            "type" : "string"
+          },
+          "name_i18n_key" : {
+            "description" : "替换后的展示名称的国际化key",
+            "example" : "sbp-behavior-description-content-args-name-sa-dashboard-view",
+            "type" : "string"
+          }
+        },
+        "title" : "BehaviorDescriptionArgument",
+        "type" : "object"
+      },
+      "sensorsdata.portal.v2.api.GetProjectsByAccountIdResponse" : {
+        "description" : "项目列表的响应对象",
+        "properties" : {
+          "projects" : {
+            "description" : "项目信息",
+            "items" : {
+              "$ref" : "#/components/schemas/sensorsdata.portal.v2.api.Project"
+            },
+            "type" : "array"
+          }
+        },
+        "title" : "GetProjectsByAccountIdResponse",
+        "type" : "object"
+      },
+      "sensorsdata.portal.v2.api.NoticeMessage" : {
+        "description" : "",
+        "properties" : {
+          "id" : {
+            "description" : "消息 id",
+            "example" : 1,
+            "format" : "int32",
+            "type" : "integer"
+          },
+          "uuid" : {
+            "description" : "消息 uuid",
+            "example" : "38135721-2938-4585-b19b-396ceb910d88",
+            "type" : "string"
+          },
+          "product_line" : {
+            "description" : "所属的产品线，例如：SA、SBP、SF",
+            "example" : "SA",
+            "type" : "string"
+          },
+          "priority" : {
+            "description" : "优先级，分为高/中/低三个等级，例如：LOW、MEDDLE、HIGH",
+            "enum" : [ "PRIORITY_UNSPECIFIED", "LOW", "MEDDLE", "HIGH" ],
+            "example" : "LOW",
+            "type" : "string"
+          },
+          "operation_type" : {
+            "description" : "操作类型，例如：DEFAULT、DOWNLOAD、DASHBOARD、QUERY、ALARM、EXAMINE",
+            "example" : "DASHBOARD",
+            "type" : "string"
+          },
+          "description" : {
+            "description" : "消息描述，和发送消息时指定的 description 字段保持一致",
+            "example" : "",
+            "type" : "string"
+          },
+          "operation_time" : {
+            "description" : "消息的发送时间，日期格式：yyyy-MM-dd HH:mm:ss",
+            "example" : "2022-01-01 00:00:00",
+            "type" : "string"
+          }
+        },
+        "title" : "NoticeMessage",
+        "type" : "object"
+      },
+      "sensorsdata.portal.v2.BehaviorDescription" : {
+        "description" : "",
+        "properties" : {
+          "content" : {
+            "description" : "文本模版，描述的主体内容，支持用 ${} 作为占位符，占位符内填写 BehaviorDescriptionArgument 的 key 字段\n 表示该占位符会被替换",
+            "example" : "导出用户分群「分群-501」用户 ${linkA}",
+            "type" : "string"
+          },
+          "args" : {
+            "description" : "替换文本中占位符的参数",
+            "example" : "[{\"key\": \"linkA\",\"type\": \"link\",\"name\": \"用户分群\",\"value\": \"a.com\"}]",
+            "items" : {
+              "$ref" : "#/components/schemas/sensorsdata.portal.v2.BehaviorDescriptionArgument"
+            },
+            "type" : "array"
+          },
+          "description_i18n" : {
+            "$ref" : "#/components/schemas/sensorsdata.portal.v2.I18nEntry"
+          }
+        },
+        "title" : "BehaviorDescription",
+        "type" : "object"
+      },
+      "sensorsdata.portal.v2.api.ProjectWithConfigHttpApiResult" : {
+        "properties" : {
+          "code" : {
+            "type" : "string"
+          },
+          "message" : {
+            "type" : "string"
+          },
+          "request_id" : {
+            "type" : "string"
+          },
+          "data" : {
+            "$ref" : "#/components/schemas/sensorsdata.portal.v2.api.ProjectWithConfig"
+          },
+          "error_info" : {
+            "$ref" : "#/components/schemas/sensorsdata.common.ErrorInfo"
+          }
+        },
+        "title" : "sensorsdata.portal.v2.api.ProjectWithConfigHttpApiResult",
+        "type" : "object"
+      },
+      "sensorsdata.portal.v2.api.BehaviorInfo" : {
+        "description" : "",
+        "properties" : {
+          "module_name" : {
+            "description" : "功能模块名称，该字段由 sbp_behavior_define.module_name 定义",
+            "example" : "角色管理",
+            "type" : "string"
+          },
+          "operation_type_name" : {
+            "description" : "操作类型名称，该字段由 sbp_behavior_define.operation_type_name 定义",
+            "example" : "编辑",
+            "type" : "string"
+          },
+          "resource_id" : {
+            "description" : "资源 id，一般为对应操作数据的主键 id",
+            "example" : "1",
+            "type" : "string"
+          },
+          "resource_name" : {
+            "description" : "资源名称，一般为对应操作数据的名称",
+            "example" : "管理员",
+            "type" : "string"
+          },
+          "description" : {
+            "$ref" : "#/components/schemas/sensorsdata.portal.v2.BehaviorDescription"
+          },
+          "ip" : {
+            "description" : "ip 地址",
+            "example" : "127.0.0.1",
+            "type" : "string"
+          },
+          "user_agent" : {
+            "description" : "user-agent",
+            "example" : "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/108.0.0.0 Safari/537.36",
+            "type" : "string"
+          },
+          "user_name" : {
+            "description" : "操作人",
+            "example" : "平台管理员",
+            "type" : "string"
+          },
+          "project_id" : {
+            "description" : "项目 id",
+            "example" : 1,
+            "format" : "int32",
+            "type" : "integer"
+          },
+          "duty" : {
+            "description" : "职务",
+            "example" : "销售",
+            "type" : "string"
+          },
+          "organization" : {
+            "description" : "机构",
+            "type" : "string"
+          },
+          "operation_time" : {
+            "description" : "操作时间",
+            "example" : "2022-01-01 00:00:00",
+            "type" : "string"
+          }
+        },
+        "title" : "BehaviorInfo",
+        "type" : "object"
+      },
+      "sensorsdata.portal.v2.api.MigrateDutyOutResponseHttpApiResult" : {
+        "properties" : {
+          "code" : {
+            "type" : "string"
+          },
+          "message" : {
+            "type" : "string"
+          },
+          "request_id" : {
+            "type" : "string"
+          },
+          "data" : {
+            "$ref" : "#/components/schemas/sensorsdata.portal.v2.api.MigrateDutyOutResponse"
+          },
+          "error_info" : {
+            "$ref" : "#/components/schemas/sensorsdata.common.ErrorInfo"
+          }
+        },
+        "title" : "sensorsdata.portal.v2.api.MigrateDutyOutResponseHttpApiResult",
+        "type" : "object"
+      },
+      "sensorsdata.portal.v2.api.StatusResponseHttpApiResult" : {
+        "properties" : {
+          "code" : {
+            "type" : "string"
+          },
+          "message" : {
+            "type" : "string"
+          },
+          "request_id" : {
+            "type" : "string"
+          },
+          "data" : {
+            "$ref" : "#/components/schemas/sensorsdata.portal.v2.api.StatusResponse"
+          },
+          "error_info" : {
+            "$ref" : "#/components/schemas/sensorsdata.common.ErrorInfo"
+          }
+        },
+        "title" : "sensorsdata.portal.v2.api.StatusResponseHttpApiResult",
+        "type" : "object"
+      },
+      "sensorsdata.portal.v2.api.ProjectWithConfig" : {
+        "description" : "项目信息和项目配置",
+        "properties" : {
+          "project" : {
+            "$ref" : "#/components/schemas/sensorsdata.portal.v2.api.Project"
+          },
+          "config" : {
+            "$ref" : "#/components/schemas/sensorsdata.portal.v2.api.ProjectConfig"
+          }
+        },
+        "title" : "ProjectWithConfig",
+        "type" : "object"
+      },
+      "sensorsdata.common.HttpApiResult" : {
+        "properties" : {
+          "code" : {
+            "type" : "string"
+          },
+          "message" : {
+            "type" : "string"
+          },
+          "request_id" : {
+            "type" : "string"
+          },
+          "data" : {
+            "properties" : { },
+            "type" : "object"
+          },
+          "error_info" : {
+            "$ref" : "#/components/schemas/sensorsdata.common.ErrorInfo"
+          }
+        },
+        "title" : "HttpApiResult",
+        "type" : "object"
+      },
+      "sensorsdata.portal.v2.SendWebPushMessageResponseHttpApiResult" : {
+        "properties" : {
+          "code" : {
+            "type" : "string"
+          },
+          "message" : {
+            "type" : "string"
+          },
+          "request_id" : {
+            "type" : "string"
+          },
+          "data" : {
+            "$ref" : "#/components/schemas/sensorsdata.portal.v2.SendWebPushMessageResponse"
+          },
+          "error_info" : {
+            "$ref" : "#/components/schemas/sensorsdata.common.ErrorInfo"
+          }
+        },
+        "title" : "sensorsdata.portal.v2.SendWebPushMessageResponseHttpApiResult",
+        "type" : "object"
+      },
+      "sensorsdata.portal.v2.api.ListBehaviorResponse" : {
+        "description" : "「获取操作日志」的响应对象",
+        "properties" : {
+          "page" : {
+            "$ref" : "#/components/schemas/sensorsdata.portal.v2.api.PageInfo"
+          },
+          "behavior_infos" : {
+            "description" : "操作日志信息",
+            "items" : {
+              "$ref" : "#/components/schemas/sensorsdata.portal.v2.api.BehaviorInfo"
+            },
+            "type" : "array"
+          }
+        },
+        "title" : "ListBehaviorResponse",
+        "type" : "object"
+      },
+      "sensorsdata.portal.v2.api.Project" : {
+        "description" : "项目信息",
+        "properties" : {
+          "id" : {
+            "description" : "项目 id",
+            "example" : 1,
+            "format" : "int32",
+            "type" : "integer"
+          },
+          "name" : {
+            "description" : "项目英文名",
+            "example" : "default",
+            "type" : "string"
+          },
+          "cname" : {
+            "description" : "项目中文名",
+            "example" : "默认项目",
+            "type" : "string"
+          },
+          "create_time" : {
+            "description" : "创建时间，日期格式：yyyy-MM-dd HH:mm:ss",
+            "example" : "2022-01-01 00:00:00",
+            "type" : "string"
+          },
+          "project_status" : {
+            "description" : "项目状态",
+            "enum" : [ "STATUS_UNSPECIFIED", "UNKNOWN", "NORMAL", "DELETED" ],
+            "example" : "NORMAL",
+            "type" : "string"
+          }
+        },
+        "title" : "Project",
+        "type" : "object"
+      },
+      "sensorsdata.portal.v2.api.OpenApiLogResult" : {
+        "description" : "OpenAPI 调用日志查询结果",
+        "properties" : {
+          "project_id" : {
+            "description" : "项目 id",
+            "example" : 1,
+            "format" : "int64",
+            "type" : "integer"
+          },
+          "project_name" : {
+            "description" : "项目名称",
+            "example" : "演示项目",
+            "type" : "string"
+          },
+          "account_id" : {
+            "description" : "账号 id",
+            "example" : 10001,
+            "format" : "int64",
+            "type" : "integer"
+          },
+          "account_name" : {
+            "description" : "账号名称",
+            "example" : "admin",
+            "type" : "string"
+          },
+          "principal_uuid" : {
+            "description" : "调用主体唯一标识",
+            "example" : "9f4d8f1a-8a65-4d3f-80fd-8f3d7d4baf01",
+            "type" : "string"
+          },
+          "api_key_id" : {
+            "description" : "API Key ID",
+            "example" : "1",
+            "type" : "string"
+          },
+          "api_key_name" : {
+            "description" : "API Key 名称",
+            "example" : "server-token",
+            "type" : "string"
+          },
+          "api_path" : {
+            "description" : "接口路径",
+            "example" : "/sa?project=default",
+            "type" : "string"
+          },
+          "http_method" : {
+            "description" : "HTTP 请求方法",
+            "example" : "POST",
+            "type" : "string"
+          },
+          "client_ip" : {
+            "description" : "客户端 IP 地址",
+            "example" : "127.0.0.1",
+            "type" : "string"
+          },
+          "user_agent" : {
+            "description" : "客户端 user-agent",
+            "example" : "Mozilla/5.0",
+            "type" : "string"
+          },
+          "request_id" : {
+            "description" : "请求 id",
+            "example" : "req-20260325-0001",
+            "type" : "string"
+          },
+          "module" : {
+            "description" : "所属功能模块",
+            "example" : "event",
+            "type" : "string"
+          },
+          "call_time" : {
+            "description" : "调用时间，Unix 时间戳，单位毫秒",
+            "example" : 1711324800000,
+            "format" : "int64",
+            "type" : "integer"
+          },
+          "http_status" : {
+            "description" : "HTTP 响应状态码",
+            "example" : 200,
+            "format" : "int32",
+            "type" : "integer"
+          },
+          "response_time" : {
+            "description" : "接口响应耗时，单位毫秒",
+            "example" : 123,
+            "format" : "int64",
+            "type" : "integer"
+          },
+          "query_params" : {
+            "additionalProperties" : {
+              "$ref" : "#/components/schemas/sensorsdata.portal.v2.api.StringList"
+            },
+            "description" : "请求 query 参数，保留多值场景，value 为字符串列表",
+            "type" : "object"
+          },
+          "extra_headers" : {
+            "additionalProperties" : {
+              "$ref" : "#/components/schemas/sensorsdata.portal.v2.api.StringList"
+            },
+            "description" : "额外请求头，建议仅记录非敏感业务头，value 为字符串列表",
+            "type" : "object"
+          }
+        },
+        "title" : "OpenApiLogResult",
+        "type" : "object"
+      },
+      "sensorsdata.portal.v2.api.NoticeMessageResponseHttpApiResult" : {
+        "properties" : {
+          "code" : {
+            "type" : "string"
+          },
+          "message" : {
+            "type" : "string"
+          },
+          "request_id" : {
+            "type" : "string"
+          },
+          "data" : {
+            "$ref" : "#/components/schemas/sensorsdata.portal.v2.api.NoticeMessageResponse"
+          },
+          "error_info" : {
+            "$ref" : "#/components/schemas/sensorsdata.common.ErrorInfo"
+          }
+        },
+        "title" : "sensorsdata.portal.v2.api.NoticeMessageResponseHttpApiResult",
+        "type" : "object"
+      },
+      "sensorsdata.portal.v2.api.GetLicenseProductResponseHttpApiResult" : {
+        "properties" : {
+          "code" : {
+            "type" : "string"
+          },
+          "message" : {
+            "type" : "string"
+          },
+          "request_id" : {
+            "type" : "string"
+          },
+          "data" : {
+            "$ref" : "#/components/schemas/sensorsdata.portal.v2.api.GetLicenseProductResponse"
+          },
+          "error_info" : {
+            "$ref" : "#/components/schemas/sensorsdata.common.ErrorInfo"
+          }
+        },
+        "title" : "sensorsdata.portal.v2.api.GetLicenseProductResponseHttpApiResult",
+        "type" : "object"
+      },
+      "sensorsdata.portal.v2.api.ListProjectResponse" : {
+        "description" : "项目列表的响应对象",
+        "properties" : {
+          "projects" : {
+            "description" : "项目信息和项目配置",
+            "items" : {
+              "$ref" : "#/components/schemas/sensorsdata.portal.v2.api.ProjectWithConfig"
+            },
+            "type" : "array"
+          },
+          "total" : {
+            "description" : "项目数量",
+            "example" : 10,
+            "format" : "int32",
+            "type" : "integer"
+          }
+        },
+        "title" : "ListProjectResponse",
+        "type" : "object"
+      },
+      "sensorsdata.portal.v2.api.ProjectConfig" : {
+        "description" : "项目配置信息",
+        "properties" : {
+          "is_duty_required" : {
+            "description" : "是否需要职务",
+            "example" : true,
+            "type" : "boolean"
+          },
+          "customize_default_roles" : {
+            "description" : "当前项目自定义默认角色的名字",
+            "example" : "admin",
+            "type" : "string"
+          },
+          "is_csm" : {
+            "description" : "是否为客景类项目",
+            "example" : false,
+            "type" : "boolean"
+          },
+          "is_new_sign_up" : {
+            "description" : "多设备 ID 关联，开启后不能再关闭",
+            "example" : false,
+            "type" : "boolean"
+          },
+          "is_schema_limited" : {
+            "description" : "是否开启强 Schema 模式；true: Schema Limited，false: Schema Free",
+            "example" : false,
+            "type" : "boolean"
+          }
+        },
+        "title" : "ProjectConfig",
+        "type" : "object"
+      },
+      "sensorsdata.portal.v2.api.GetLicenseProductResponse" : {
+        "description" : "获取产品线的授权信息返回结果",
+        "properties" : {
+          "project_name" : {
+            "description" : "项目名称",
+            "example" : "production",
+            "type" : "string"
+          },
+          "product_name" : {
+            "description" : "产品线名称",
+            "example" : "SBP",
+            "type" : "string"
+          },
+          "authorized_modules" : {
+            "description" : "授权模块",
+            "items" : {
+              "type" : "string"
+            },
+            "type" : "array"
+          }
+        },
+        "title" : "GetLicenseProductResponse",
+        "type" : "object"
+      },
+      "sensorsdata.portal.v2.api.NoticeMessageRequestBody" : {
+        "description" : "",
+        "properties" : {
+          "uuid" : {
+            "description" : "消息 id，消息唯一标识，用于实现幂等发送消息。若不填，系统将会自动生成一个唯一的消息标识",
+            "example" : "38135721-2938-4585-b19b-396ceb910d88",
+            "type" : "string"
+          },
+          "priority" : {
+            "description" : "消息优先级，默认为 MIDDLE。可选项：LOW、MEDDLE、HIGH",
+            "enum" : [ "PRIORITY_UNSPECIFIED", "LOW", "MEDDLE", "HIGH" ],
+            "example" : "MEDDLE",
+            "type" : "string"
+          },
+          "operation_type" : {
+            "description" : "操作类型，不同的操作类型将显示不同的消息格式。可选项：DEFAULT、DOWNLOAD、DASHBOARD、QUERY、ALARM、EXAMINE",
+            "example" : "QUERY",
+            "type" : "string"
+          },
+          "description" : {
+            "description" : "通知消息描述，固定格式的 json 字符串；常见的操作类型的对应的格式如下：\n ```\n QUERY: {\n    // 消息的跳转链接\n   \"jump_url\": \"https://www.sensorsdata.cn/\",\n   \"content\": {\n      // 消息的标题\n     \"line\": \"分析查询\",\n      // 消息的内容\n     \"line2\": \"欢迎使用神策分析\",\n      // 消息的保留天数\n     \"reservation_day\": 19986,\n      // 如果为 true，消息卡片将显示计算成功。如果为 false，消息卡片将显示计算失败\n     \"is_success\": true\n   }\n }\n DOWNLOAD: {\n   // 消息的跳转链接\n   \"jump_url\": \"https://www.sensorsdata.cn/\",\n   \"content\": {\n      // 消息提示\n     \"line\": \"下载成功\",\n      // 该字段为 true，消息的标题将显示导出成功，为 false 将显示文件导出失败\n     \"is_success\": true,\n      // 消息的保留天数\n     \"reservation_day\": 19155,\n   }\n }\n DASHBOARD: {\n    // 消息标题的一部分\n   \"operator\": \"神策军\",\n    // 消息标题的一部分\n   \"action\": \"共享\",\n    // 消息的文本内容\n   \"content\": \"欢迎使用神策分析\"\n }\n ```",
+            "example" : "{\"jump_url\": \"https://www.sensorsdata.cn/\", \"content\": {\"line\": \"神策数据\", \"line2\": \"欢迎使用神策分析\", \"reservation_day\": 18924,\"is_success\": true}}",
+            "type" : "string"
+          },
+          "accounts" : {
+            "description" : "消息发送的用户 id 列表，如果 to_all_accounts 为 false, accounts 参数必填。如果 to_all_accounts 为 true, accounts 可以不填。",
+            "example" : "[1,2,3]",
+            "items" : {
+              "format" : "int32",
+              "type" : "integer"
+            },
+            "type" : "array"
+          },
+          "to_all_accounts" : {
+            "description" : "是否发送给所有账户。true 表示发送给全部账户，默认值为 false。",
+            "example" : false,
+            "type" : "boolean"
+          }
+        },
+        "required" : [ "description", "operation_type" ],
+        "title" : "NoticeMessageRequestBody",
+        "type" : "object"
+      },
+      "sensorsdata.portal.v2.api.OpenApiLogResult.QueryParamsEntry" : {
+        "description" : "",
+        "properties" : {
+          "key" : {
+            "description" : "",
+            "type" : "string"
+          },
+          "value" : {
+            "$ref" : "#/components/schemas/sensorsdata.portal.v2.api.StringList"
+          }
+        },
+        "title" : "QueryParamsEntry",
+        "type" : "object"
+      },
+      "sensorsdata.portal.v2.api.ListOpenApiLogsRequest" : {
+        "description" : "「查询 OpenAPI 调用日志」的请求对象",
+        "properties" : {
+          "call_time_start" : {
+            "description" : "调用开始时间，Unix 时间戳，单位毫秒",
+            "example" : 1711324800000,
+            "format" : "int64",
+            "type" : "integer"
+          },
+          "call_time_end" : {
+            "description" : "调用结束时间，Unix 时间戳，单位毫秒",
+            "example" : 1711411200000,
+            "format" : "int64",
+            "type" : "integer"
+          },
+          "project_id" : {
+            "description" : "项目 id",
+            "example" : 1,
+            "format" : "int64",
+            "type" : "integer"
+          },
+          "account_id" : {
+            "description" : "账号 id",
+            "example" : 10001,
+            "format" : "int64",
+            "type" : "integer"
+          },
+          "module" : {
+            "description" : "所属功能模块",
+            "example" : "event",
+            "type" : "string"
+          },
+          "request_id" : {
+            "description" : "请求 id",
+            "example" : "req-20260325-0001",
+            "type" : "string"
+          },
+          "api_key_id" : {
+            "description" : "API Key ID",
+            "example" : "1",
+            "type" : "string"
+          },
+          "api_key_name" : {
+            "description" : "API Key 名称",
+            "example" : "server-token",
+            "type" : "string"
+          },
+          "page_num" : {
+            "description" : "页码，从 1 开始",
+            "example" : 1,
+            "format" : "int32",
+            "type" : "integer"
+          },
+          "page_size" : {
+            "description" : "每页返回条数",
+            "example" : 20,
+            "format" : "int32",
+            "type" : "integer"
+          }
+        },
+        "title" : "ListOpenApiLogsRequest",
+        "type" : "object"
+      },
+      "sensorsdata.portal.v2.api.ListOpenApiLogsResponse" : {
+        "description" : "「查询 OpenAPI 调用日志」的响应对象",
+        "properties" : {
+          "logs" : {
+            "description" : "OpenAPI 调用日志列表",
+            "items" : {
+              "$ref" : "#/components/schemas/sensorsdata.portal.v2.api.OpenApiLogResult"
+            },
+            "type" : "array"
+          },
+          "total" : {
+            "description" : "符合条件的日志总数",
+            "example" : 100,
+            "format" : "int64",
+            "type" : "integer"
+          },
+          "page_num" : {
+            "description" : "当前页码",
+            "example" : 1,
+            "format" : "int32",
+            "type" : "integer"
+          },
+          "page_size" : {
+            "description" : "每页返回条数",
+            "example" : 20,
+            "format" : "int32",
+            "type" : "integer"
+          }
+        },
+        "title" : "ListOpenApiLogsResponse",
+        "type" : "object"
+      },
+      "sensorsdata.portal.v2.api.AllProductVersionResponseHttpApiResult" : {
+        "properties" : {
+          "code" : {
+            "type" : "string"
+          },
+          "message" : {
+            "type" : "string"
+          },
+          "request_id" : {
+            "type" : "string"
+          },
+          "data" : {
+            "$ref" : "#/components/schemas/sensorsdata.portal.v2.api.AllProductVersionResponse"
+          },
+          "error_info" : {
+            "$ref" : "#/components/schemas/sensorsdata.common.ErrorInfo"
+          }
+        },
+        "title" : "sensorsdata.portal.v2.api.AllProductVersionResponseHttpApiResult",
+        "type" : "object"
+      },
+      "sensorsdata.portal.v2.GetProductRestrictionsAlertPolicyResponseHttpApiResult" : {
+        "properties" : {
+          "code" : {
+            "type" : "string"
+          },
+          "message" : {
+            "type" : "string"
+          },
+          "request_id" : {
+            "type" : "string"
+          },
+          "data" : {
+            "$ref" : "#/components/schemas/sensorsdata.portal.v2.GetProductRestrictionsAlertPolicyResponse"
+          },
+          "error_info" : {
+            "$ref" : "#/components/schemas/sensorsdata.common.ErrorInfo"
+          }
+        },
+        "title" : "sensorsdata.portal.v2.GetProductRestrictionsAlertPolicyResponseHttpApiResult",
+        "type" : "object"
+      },
+      "sensorsdata.common.ErrorCause" : {
+        "properties" : {
+          "error_cause" : {
+            "description" : "致错原因1",
+            "example" : "参数异常1",
+            "type" : "string"
+          },
+          "action_suggestion" : {
+            "description" : "操作建议，针对该原因，建议的解决方式",
+            "example" : "检测入参的数据类型1",
+            "type" : "string"
+          }
+        },
+        "title" : "ErrorCause",
+        "type" : "object"
+      },
+      "sensorsdata.common.ErrorInfo" : {
+        "properties" : {
+          "code" : {
+            "description" : "具体的错误码",
+            "example" : "XX-D-F-2-1",
+            "type" : "string"
+          },
+          "description" : {
+            "description" : "错误描述",
+            "example" : "前端参数校验异常,PARAMETER_FORMAT_ERROR(quantiles=[10, -90] is not include [0, 100])",
+            "type" : "string"
+          },
+          "system_response" : {
+            "description" : "致错的可能原因列表",
+            "example" : "系统终止了查询处理",
+            "type" : "string"
+          },
+          "error_causes" : {
+            "items" : {
+              "$ref" : "#/components/schemas/sensorsdata.common.ErrorCause"
+            },
+            "type" : "array"
+          },
+          "context" : {
+            "$ref" : "#/components/schemas/sensorsdata.common.ErrorContext"
+          }
+        },
+        "title" : "ErrorInfo",
+        "type" : "object"
+      },
+      "sensorsdata.portal.v2.api.ListProjectRequest" : {
+        "description" : "项目列表的请求对象",
+        "properties" : {
+          "product_name" : {
+            "description" : "产品名称，指定该参数则获取的项目信息为该产品下能够访问的项目列表",
+            "example" : "SA",
+            "type" : "string"
+          }
+        },
+        "title" : "ListProjectRequest",
+        "type" : "object"
+      },
+      "sensorsdata.portal.v2.api.ListProjectResponseHttpApiResult" : {
+        "properties" : {
+          "code" : {
+            "type" : "string"
+          },
+          "message" : {
+            "type" : "string"
+          },
+          "request_id" : {
+            "type" : "string"
+          },
+          "data" : {
+            "$ref" : "#/components/schemas/sensorsdata.portal.v2.api.ListProjectResponse"
+          },
+          "error_info" : {
+            "$ref" : "#/components/schemas/sensorsdata.common.ErrorInfo"
+          }
+        },
+        "title" : "sensorsdata.portal.v2.api.ListProjectResponseHttpApiResult",
+        "type" : "object"
+      },
+      "sensorsdata.portal.v2.TimezoneConfigResponseHttpApiResult" : {
+        "properties" : {
+          "code" : {
+            "type" : "string"
+          },
+          "message" : {
+            "type" : "string"
+          },
+          "request_id" : {
+            "type" : "string"
+          },
+          "data" : {
+            "$ref" : "#/components/schemas/sensorsdata.portal.v2.TimezoneConfigResponse"
+          },
+          "error_info" : {
+            "$ref" : "#/components/schemas/sensorsdata.common.ErrorInfo"
+          }
+        },
+        "title" : "sensorsdata.portal.v2.TimezoneConfigResponseHttpApiResult",
+        "type" : "object"
+      },
+      "sensorsdata.portal.v2.api.ListBehaviorDefineRequest" : {
+        "description" : "",
+        "properties" : {
+          "page_index" : {
+            "description" : "当前访问页号，默认值：1",
+            "example" : 1,
+            "format" : "int32",
+            "type" : "integer"
+          },
+          "page_size" : {
+            "description" : "单页返回最大记录数，默认值：20，取值范围：1-100",
+            "example" : 20,
+            "format" : "int32",
+            "type" : "integer"
+          },
+          "product" : {
+            "description" : "声明该「操作日志定义」的产品线",
+            "example" : "SBP",
+            "type" : "string"
+          }
+        },
+        "title" : "ListBehaviorDefineRequest",
+        "type" : "object"
+      },
+      "sensorsdata.portal.v2.api.AllProductVersionResponse" : {
+        "description" : "查询所有产品线版本信息返回值",
+        "properties" : {
+          "product_versions" : {
+            "description" : "产品线版本列表",
+            "items" : {
+              "$ref" : "#/components/schemas/sensorsdata.portal.v2.api.ProductVersion"
+            },
+            "type" : "array"
+          }
+        },
+        "title" : "AllProductVersionResponse",
+        "type" : "object"
+      },
+      "sensorsdata.portal.v2.api.ListBehaviorDefineResponse" : {
+        "description" : "",
+        "properties" : {
+          "behavior_defines" : {
+            "description" : "已注册的「操作日志定义」列表",
+            "items" : {
+              "$ref" : "#/components/schemas/sensorsdata.portal.v2.api.BehaviorDefine"
+            },
+            "type" : "array"
+          },
+          "page" : {
+            "$ref" : "#/components/schemas/sensorsdata.portal.v2.api.PageInfo"
+          }
+        },
+        "title" : "ListBehaviorDefineResponse",
+        "type" : "object"
+      },
+      "sensorsdata.portal.v2.api.ListBehaviorRequest" : {
+        "description" : "「获取操作日志列表」的请求对象",
+        "properties" : {
+          "project_id" : {
+            "description" : "项目 id",
+            "example" : 1,
+            "format" : "int32",
+            "type" : "integer"
+          },
+          "operation_start_time" : {
+            "description" : "日志开始时间，日期格式：yyyy-MM-dd HH:mm:ss",
+            "example" : "2022-01-01 00:00:00",
+            "type" : "string"
+          },
+          "operation_end_time" : {
+            "description" : "日志结束时间，日期格式：yyyy-MM-dd HH:mm:ss",
+            "example" : "2022-01-01 00:00:00",
+            "type" : "string"
+          },
+          "page_index" : {
+            "description" : "当前访问页号，默认值：1",
+            "example" : 1,
+            "format" : "int32",
+            "type" : "integer"
+          },
+          "page_size" : {
+            "description" : "单页返回最大记录数，默认值：20，取值范围：1-100",
+            "example" : 20,
+            "format" : "int32",
+            "type" : "integer"
+          },
+          "module" : {
+            "description" : "功能模块，该字段由 sbp_behavior_define.module 定义",
+            "example" : "passport",
+            "type" : "string"
+          },
+          "operation_types" : {
+            "description" : "操作类型，该字段仅当指定了功能模块时生效，若没有指定 module，该字段会被忽略，该字段由 sbp_behavior_define.operation_type 定义",
+            "example" : "[login,logout]",
+            "items" : {
+              "type" : "string"
+            },
+            "type" : "array"
+          },
+          "user_name" : {
+            "description" : "用户名，指定时查询当前用户名的操作日志，若没有指定 user_name，该字段会被忽略",
+            "example" : "zhang_san",
+            "type" : "string"
+          },
+          "ip" : {
+            "description" : "ip地址，指定时查询该ip地址的操作记录，若没有指定 ip，该字段会被忽略",
+            "example" : "182.150.28.141",
+            "type" : "string"
+          },
+          "sort_order" : {
+            "description" : "排序，升序还是降序，为空默认为降序，asc：升序，desc：降序",
+            "example" : "asc",
+            "type" : "string"
+          }
+        },
+        "required" : [ "project_id" ],
+        "title" : "ListBehaviorRequest",
+        "type" : "object"
+      },
+      "sensorsdata.portal.v2.api.GetProjectsByAccountIdRequest" : {
+        "description" : "查询账号的绑定的项目请求体",
+        "properties" : {
+          "account_id" : {
+            "description" : "账号 id",
+            "example" : 1,
+            "format" : "int32",
+            "type" : "integer"
+          }
+        },
+        "required" : [ "account_id" ],
+        "title" : "GetProjectsByAccountIdRequest",
+        "type" : "object"
+      }
+    }
+  },
+  "x-sd-openapi-service-name" : "Management",
+  "x-sd-openapi-service-name-hyphen" : "management",
+  "x-sd-openapi-app-name" : "portal",
+  "x-sd-openapi-service-name-zh_cn" : "管理",
+  "x-original-swagger-version" : "2.0"
+}

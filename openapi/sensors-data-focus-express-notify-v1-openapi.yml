@@ -1,0 +1,338 @@
+openapi: 3.0.1
+info:
+  description: 通知相关控制流 Open Api 定义
+  title: 神策智能运营
+  version: ''
+servers:
+- url: /api/v3/focus/v1
+paths:
+  /express-notify/set:
+    post:
+      description: 增加一个通知配置
+      operationId: SetNotifyConfig
+      parameters:
+      - description: 全局唯一的密钥，用于验证和授权访问 API 接口
+        in: header
+        name: api-key
+        required: true
+        schema:
+          type: string
+      - description: 项目名, 指定请求所属项目
+        in: header
+        name: sensorsdata-project
+        required: true
+        schema:
+          type: string
+      - description: 租户 ID, 用于请求所属租户
+        in: header
+        name: X-Organization-Id
+        required: true
+        schema:
+          type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/sensorsdata.focus.v1.express.audience.SetNotifyConfigRequest'
+        required: false
+      responses:
+        default:
+          content:
+            application/json:
+              example:
+                code: SUCCESS
+                data: {}
+                request_id: '1'
+              schema:
+                $ref: '#/components/schemas/sensorsdata.focus.v1.express.audience.SetNotifyConfigResponseHttpApiResult'
+          description: sensorsdata.focus.v1.express.audience.SetNotifyConfigResponse
+      summary: 增加一个通知配置
+      x-sd-openapi:
+        responseClass: com.sensorsdata.focus.v1.express.audience.open.SetNotifyConfigResponse
+        isServerStreaming: false
+        requestClass: com.sensorsdata.focus.v1.express.audience.open.SetNotifyConfigRequest
+        grpcServiceBase: com.sensorsdata.focus.v1.express.audience.open.ExpressNotifyServiceGrpc.ExpressNotifyServiceImplBase
+        internalDesc: classes in template for grpc service dynamic invoking
+        isClientStreaming: false
+      x-codegen-request-body-name: SetNotifyConfigRequest
+  /express-notify/get:
+    get:
+      description: 获取通知配置的相关列表，通过传入条件筛选查询
+      operationId: GetNotifyConfig
+      parameters:
+      - description: 全局唯一的密钥，用于验证和授权访问 API 接口
+        in: header
+        name: api-key
+        required: true
+        schema:
+          type: string
+      - description: 项目名, 指定请求所属项目
+        in: header
+        name: sensorsdata-project
+        required: true
+        schema:
+          type: string
+      - description: 租户 ID, 用于请求所属租户
+        in: header
+        name: X-Organization-Id
+        required: true
+        schema:
+          type: string
+      responses:
+        default:
+          content:
+            application/json:
+              example:
+                code: SUCCESS
+                data:
+                  notify_config:
+                    auth_configs:
+                    - {}
+                request_id: '1'
+              schema:
+                $ref: '#/components/schemas/sensorsdata.focus.v1.express.audience.GetNotifyConfigResponseHttpApiResult'
+          description: sensorsdata.focus.v1.express.audience.GetNotifyConfigResponse
+      summary: 获取通知配置的相关列表，通过传入条件筛选查询
+      x-sd-openapi:
+        responseClass: com.sensorsdata.focus.v1.express.audience.open.GetNotifyConfigResponse
+        isServerStreaming: false
+        requestClass: com.sensorsdata.focus.v1.express.audience.open.GetNotifyConfigRequest
+        grpcServiceBase: com.sensorsdata.focus.v1.express.audience.open.ExpressNotifyServiceGrpc.ExpressNotifyServiceImplBase
+        internalDesc: classes in template for grpc service dynamic invoking
+        isClientStreaming: false
+  /express-notify/delete:
+    post:
+      description: 删除一个通知配置
+      operationId: DeleteNotifyConfig
+      parameters:
+      - description: 全局唯一的密钥，用于验证和授权访问 API 接口
+        in: header
+        name: api-key
+        required: true
+        schema:
+          type: string
+      - description: 项目名, 指定请求所属项目
+        in: header
+        name: sensorsdata-project
+        required: true
+        schema:
+          type: string
+      - description: 租户 ID, 用于请求所属租户
+        in: header
+        name: X-Organization-Id
+        required: true
+        schema:
+          type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/sensorsdata.focus.v1.express.audience.DeleteNotifyConfigRequest'
+        required: false
+      responses:
+        default:
+          content:
+            application/json:
+              example:
+                code: SUCCESS
+                data: {}
+                request_id: '1'
+              schema:
+                $ref: '#/components/schemas/sensorsdata.focus.v1.express.audience.DeleteNotifyConfigResponseHttpApiResult'
+          description: sensorsdata.focus.v1.express.audience.DeleteNotifyConfigResponse
+      summary: 删除一个通知配置
+      x-sd-openapi:
+        responseClass: com.sensorsdata.focus.v1.express.audience.open.DeleteNotifyConfigResponse
+        isServerStreaming: false
+        requestClass: com.sensorsdata.focus.v1.express.audience.open.DeleteNotifyConfigRequest
+        grpcServiceBase: com.sensorsdata.focus.v1.express.audience.open.ExpressNotifyServiceGrpc.ExpressNotifyServiceImplBase
+        internalDesc: classes in template for grpc service dynamic invoking
+        isClientStreaming: false
+      x-codegen-request-body-name: DeleteNotifyConfigRequest
+components:
+  schemas:
+    sensorsdata.focus.v1.express.audience.NotifyConfig:
+      description: ''
+      properties:
+        notify_id:
+          description: 客户自定义的业务相关 ID
+          type: string
+        notify_address:
+          description: 配置接收通知的地址
+          type: string
+        auth_type:
+          description: 鉴权方式
+          enum:
+          - NO_AUTH_UNSPECIFIED
+          - API_KEY
+          type: string
+        auth_configs:
+          description: 鉴权参数配置
+          items:
+            $ref: '#/components/schemas/sensorsdata.focus.v1.express.audience.NotifyConfig.AuthConfig'
+          type: array
+        send_mode:
+          description: 发送重试配置
+          enum:
+          - ONLY_ONCE_UNSPECIFIED
+          - RETRYABLE
+          type: string
+      title: NotifyConfig
+      type: object
+    sensorsdata.focus.v1.express.audience.NotifyConfig.AuthConfig:
+      description: ''
+      properties:
+        key:
+          description: ''
+          type: string
+        value:
+          description: ''
+          type: string
+      title: AuthConfig
+      type: object
+    sensorsdata.common.HttpApiResult:
+      properties:
+        code:
+          type: string
+        message:
+          type: string
+        request_id:
+          type: string
+        data:
+          properties: {}
+          type: object
+        error_info:
+          $ref: '#/components/schemas/sensorsdata.common.ErrorInfo'
+      title: HttpApiResult
+      type: object
+    sensorsdata.focus.v1.express.audience.DeleteNotifyConfigResponseHttpApiResult:
+      properties:
+        code:
+          type: string
+        message:
+          type: string
+        request_id:
+          type: string
+        data:
+          $ref: '#/components/schemas/sensorsdata.focus.v1.express.audience.DeleteNotifyConfigResponse'
+        error_info:
+          $ref: '#/components/schemas/sensorsdata.common.ErrorInfo'
+      title: sensorsdata.focus.v1.express.audience.DeleteNotifyConfigResponseHttpApiResult
+      type: object
+    sensorsdata.focus.v1.express.audience.SetNotifyConfigRequest:
+      description: ''
+      properties:
+        notify_config:
+          $ref: '#/components/schemas/sensorsdata.focus.v1.express.audience.NotifyConfig'
+      title: SetNotifyConfigRequest
+      type: object
+    sensorsdata.common.ErrorCause:
+      properties:
+        error_cause:
+          description: 致错原因1
+          example: 参数异常1
+          type: string
+        action_suggestion:
+          description: 操作建议，针对该原因，建议的解决方式
+          example: 检测入参的数据类型1
+          type: string
+      title: ErrorCause
+      type: object
+    sensorsdata.common.ErrorContext:
+      description: 发生错误时，系统快照信息
+      properties:
+        origin_stack:
+          description: 上游异常的 stack，由系统截获
+          type: string
+        origin_cause:
+          description: 上游异常的 cause by，由系统截获
+          type: string
+        origin_code:
+          description: 上游异常的错误简码
+          type: string
+        origin_complete_code:
+          description: 上游异常的完整错误码
+          type: string
+        error_extend_desc:
+          description: 本次异常的辅助说明，可传入
+          type: string
+      title: ErrorContext
+      type: object
+    sensorsdata.common.ErrorInfo:
+      properties:
+        code:
+          description: 具体的错误码
+          example: XX-D-F-2-1
+          type: string
+        description:
+          description: 错误描述
+          example: 前端参数校验异常,PARAMETER_FORMAT_ERROR(quantiles=[10, -90] is not include [0, 100])
+          type: string
+        system_response:
+          description: 致错的可能原因列表
+          example: 系统终止了查询处理
+          type: string
+        error_causes:
+          items:
+            $ref: '#/components/schemas/sensorsdata.common.ErrorCause'
+          type: array
+        context:
+          $ref: '#/components/schemas/sensorsdata.common.ErrorContext'
+      title: ErrorInfo
+      type: object
+    sensorsdata.focus.v1.express.audience.DeleteNotifyConfigResponse:
+      description: ''
+      title: DeleteNotifyConfigResponse
+      type: object
+    sensorsdata.focus.v1.express.audience.SetNotifyConfigResponseHttpApiResult:
+      properties:
+        code:
+          type: string
+        message:
+          type: string
+        request_id:
+          type: string
+        data:
+          $ref: '#/components/schemas/sensorsdata.focus.v1.express.audience.SetNotifyConfigResponse'
+        error_info:
+          $ref: '#/components/schemas/sensorsdata.common.ErrorInfo'
+      title: sensorsdata.focus.v1.express.audience.SetNotifyConfigResponseHttpApiResult
+      type: object
+    sensorsdata.focus.v1.express.audience.SetNotifyConfigResponse:
+      description: ''
+      title: SetNotifyConfigResponse
+      type: object
+    sensorsdata.focus.v1.express.audience.GetNotifyConfigResponseHttpApiResult:
+      properties:
+        code:
+          type: string
+        message:
+          type: string
+        request_id:
+          type: string
+        data:
+          $ref: '#/components/schemas/sensorsdata.focus.v1.express.audience.GetNotifyConfigResponse'
+        error_info:
+          $ref: '#/components/schemas/sensorsdata.common.ErrorInfo'
+      title: sensorsdata.focus.v1.express.audience.GetNotifyConfigResponseHttpApiResult
+      type: object
+    sensorsdata.focus.v1.express.audience.GetNotifyConfigRequest:
+      description: ''
+      title: GetNotifyConfigRequest
+      type: object
+    sensorsdata.focus.v1.express.audience.DeleteNotifyConfigRequest:
+      description: ''
+      title: DeleteNotifyConfigRequest
+      type: object
+    sensorsdata.focus.v1.express.audience.GetNotifyConfigResponse:
+      description: ''
+      properties:
+        notify_config:
+          $ref: '#/components/schemas/sensorsdata.focus.v1.express.audience.NotifyConfig'
+      title: GetNotifyConfigResponse
+      type: object
+x-sd-openapi-service-name: ExpressNotify
+x-sd-openapi-service-name-hyphen: express-notify
+x-sd-openapi-app-name: focus
+x-sd-openapi-service-name-zh_cn: 基础服务-通知
+x-original-swagger-version: '2.0'

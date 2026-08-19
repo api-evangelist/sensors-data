@@ -1,0 +1,640 @@
+openapi: 3.0.1
+info:
+  description: 受众引擎在线数据服务
+  title: 神策智能运营
+  version: ''
+servers:
+- url: /api/v3/focus/v1
+paths:
+  /express-audience-online/audience-entity/exists:
+    post:
+      description: 判断一个用户是否在一批受众内, 需要确保受众处于ready状态
+      operationId: IsAudienceEntityExistsInRules
+      parameters:
+      - description: 全局唯一的密钥，用于验证和授权访问 API 接口
+        in: header
+        name: api-key
+        required: true
+        schema:
+          type: string
+      - description: 项目名, 指定请求所属项目
+        in: header
+        name: sensorsdata-project
+        required: true
+        schema:
+          type: string
+      - description: 租户 ID, 用于请求所属租户
+        in: header
+        name: X-Organization-Id
+        required: true
+        schema:
+          type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/sensorsdata.focus.v1.IsAudienceEntityExistsInRulesRequest'
+        required: false
+      responses:
+        default:
+          content:
+            application/json:
+              example:
+                code: SUCCESS
+                data:
+                  invalid_entity:
+                    entity_name: user
+                    entity_id: {}
+                  results:
+                    '2': true
+                request_id: '1'
+              schema:
+                $ref: '#/components/schemas/sensorsdata.focus.v1.IsAudienceEntityExistsInRulesResponseHttpApiResult'
+          description: sensorsdata.focus.v1.IsAudienceEntityExistsInRulesResponse
+      summary: 判断一个用户是否在一批受众内
+      x-sd-openapi:
+        responseClass: com.sensorsdata.focus.v1.IsAudienceEntityExistsInRulesResponse
+        isServerStreaming: false
+        requestClass: com.sensorsdata.focus.v1.IsAudienceEntityExistsInRulesRequest
+        grpcServiceBase: com.sensorsdata.focus.v1.ExpressAudienceOnlineServiceGrpc.ExpressAudienceOnlineServiceImplBase
+        internalDesc: classes in template for grpc service dynamic invoking
+        isClientStreaming: false
+      x-codegen-request-body-name: IsAudienceEntityExistsInRulesRequest
+  /express-audience-online/audience-entities/exists:
+    post:
+      description: 查看一批用户是否在一个受众内
+      operationId: IsBatchAudienceEntityExists
+      parameters:
+      - description: 全局唯一的密钥，用于验证和授权访问 API 接口
+        in: header
+        name: api-key
+        required: true
+        schema:
+          type: string
+      - description: 项目名, 指定请求所属项目
+        in: header
+        name: sensorsdata-project
+        required: true
+        schema:
+          type: string
+      - description: 租户 ID, 用于请求所属租户
+        in: header
+        name: X-Organization-Id
+        required: true
+        schema:
+          type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/sensorsdata.focus.v1.IsBatchAudienceEntityExistsRequest'
+        required: false
+      responses:
+        default:
+          content:
+            application/json:
+              example:
+                code: SUCCESS
+                data:
+                  results:
+                  - true
+                  - false
+                  - true
+                  invalid_entities:
+                  - entity_name: user
+                    entity_id: {}
+                request_id: '1'
+              schema:
+                $ref: '#/components/schemas/sensorsdata.focus.v1.IsBatchAudienceEntityExistsResponseHttpApiResult'
+          description: sensorsdata.focus.v1.IsBatchAudienceEntityExistsResponse
+      summary: 查看一批用户是否在一个受众内
+      x-sd-openapi:
+        responseClass: com.sensorsdata.focus.v1.IsBatchAudienceEntityExistsResponse
+        isServerStreaming: false
+        requestClass: com.sensorsdata.focus.v1.IsBatchAudienceEntityExistsRequest
+        grpcServiceBase: com.sensorsdata.focus.v1.ExpressAudienceOnlineServiceGrpc.ExpressAudienceOnlineServiceImplBase
+        internalDesc: classes in template for grpc service dynamic invoking
+        isClientStreaming: false
+      x-codegen-request-body-name: IsBatchAudienceEntityExistsRequest
+  /express-audience-online/audience-entity/put:
+    post:
+      description: 将一批用户写入一个受众规则
+      operationId: PutBatchAudienceEntity
+      parameters:
+      - description: 全局唯一的密钥，用于验证和授权访问 API 接口
+        in: header
+        name: api-key
+        required: true
+        schema:
+          type: string
+      - description: 项目名, 指定请求所属项目
+        in: header
+        name: sensorsdata-project
+        required: true
+        schema:
+          type: string
+      - description: 租户 ID, 用于请求所属租户
+        in: header
+        name: X-Organization-Id
+        required: true
+        schema:
+          type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/sensorsdata.focus.v1.PutBatchAudienceEntityRequest'
+        required: false
+      responses:
+        default:
+          content:
+            application/json:
+              example:
+                code: SUCCESS
+                data:
+                  results:
+                    '2': true
+                request_id: '1'
+              schema:
+                $ref: '#/components/schemas/sensorsdata.focus.v1.PutBatchAudienceEntityResponseHttpApiResult'
+          description: sensorsdata.focus.v1.PutBatchAudienceEntityResponse
+      summary: 将一批用户写入一个受众规则
+      x-sd-openapi:
+        responseClass: com.sensorsdata.focus.v1.PutBatchAudienceEntityResponse
+        isServerStreaming: false
+        requestClass: com.sensorsdata.focus.v1.PutBatchAudienceEntityRequest
+        grpcServiceBase: com.sensorsdata.focus.v1.ExpressAudienceOnlineServiceGrpc.ExpressAudienceOnlineServiceImplBase
+        internalDesc: classes in template for grpc service dynamic invoking
+        isClientStreaming: false
+      x-codegen-request-body-name: PutBatchAudienceEntityRequest
+  /express-audience-online/audience-entity/delete:
+    post:
+      description: 将一批用户移出一个受众规则
+      operationId: DeleteBatchAudienceEntity
+      parameters:
+      - description: 全局唯一的密钥，用于验证和授权访问 API 接口
+        in: header
+        name: api-key
+        required: true
+        schema:
+          type: string
+      - description: 项目名, 指定请求所属项目
+        in: header
+        name: sensorsdata-project
+        required: true
+        schema:
+          type: string
+      - description: 租户 ID, 用于请求所属租户
+        in: header
+        name: X-Organization-Id
+        required: true
+        schema:
+          type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/sensorsdata.focus.v1.DeleteBatchAudienceEntityRequest'
+        required: false
+      responses:
+        default:
+          content:
+            application/json:
+              example:
+                code: SUCCESS
+                data:
+                  results:
+                    '2': true
+                request_id: '1'
+              schema:
+                $ref: '#/components/schemas/sensorsdata.focus.v1.DeleteBatchAudienceEntityResponseHttpApiResult'
+          description: sensorsdata.focus.v1.DeleteBatchAudienceEntityResponse
+      summary: 将一批用户移出一个受众规则
+      x-sd-openapi:
+        responseClass: com.sensorsdata.focus.v1.DeleteBatchAudienceEntityResponse
+        isServerStreaming: false
+        requestClass: com.sensorsdata.focus.v1.DeleteBatchAudienceEntityRequest
+        grpcServiceBase: com.sensorsdata.focus.v1.ExpressAudienceOnlineServiceGrpc.ExpressAudienceOnlineServiceImplBase
+        internalDesc: classes in template for grpc service dynamic invoking
+        isClientStreaming: false
+      x-codegen-request-body-name: DeleteBatchAudienceEntityRequest
+components:
+  schemas:
+    sensorsdata.focus.v1.IsBatchAudienceEntityExistsResponse:
+      description: ''
+      properties:
+        results:
+          description: 是否存在的有序结果集
+          example: '[true,false,true]'
+          items:
+            type: boolean
+          type: array
+        invalid_entities:
+          description: 系统查不到的用户列表
+          items:
+            $ref: '#/components/schemas/sensorsdata.focus.v1.express.audience.open.AudienceEntityId'
+          type: array
+        error_biz_id_map:
+          additionalProperties:
+            description: ''
+            enum:
+            - UNSPECIFIED
+            - NO_PERMISSION
+            - NOT_EXIST
+            type: string
+          description: 错误的 biz id 集合
+          type: object
+      title: IsBatchAudienceEntityExistsResponse
+      type: object
+    sensorsdata.focus.v1.PutBatchAudienceEntityResponse:
+      description: ''
+      properties:
+        results:
+          additionalProperties:
+            description: ''
+            type: boolean
+          description: 是否存在的结果集Map
+          example:
+            '2': true
+          type: object
+      title: PutBatchAudienceEntityResponse
+      type: object
+    sensorsdata.focus.v1.IsAudienceEntityExistsInRulesRequest:
+      description: ''
+      properties:
+        audience_biz_ids:
+          description: 受众规则ID列表
+          example: '[2,3,4]'
+          items:
+            type: string
+          type: array
+        audience_entity_id:
+          $ref: '#/components/schemas/sensorsdata.focus.v1.express.audience.open.AudienceEntityId'
+      title: IsAudienceEntityExistsInRulesRequest
+      type: object
+    sensorsdata.focus.v1.IsBatchAudienceEntityExistsRequest:
+      description: ''
+      properties:
+        audience_biz_id:
+          description: 受众规则ID
+          example: '2'
+          type: string
+        audience_entity_ids:
+          description: 用户ID
+          example: '[{"entity_id":123},{"entity_id":1234}]'
+          items:
+            $ref: '#/components/schemas/sensorsdata.focus.v1.express.audience.open.AudienceEntityId'
+          type: array
+      title: IsBatchAudienceEntityExistsRequest
+      type: object
+    sensorsdata.common.HttpApiResult:
+      properties:
+        code:
+          type: string
+        message:
+          type: string
+        request_id:
+          type: string
+        data:
+          properties: {}
+          type: object
+        error_info:
+          $ref: '#/components/schemas/sensorsdata.common.ErrorInfo'
+      title: HttpApiResult
+      type: object
+    sensorsdata.focus.v1.IsBatchAudienceEntityExistsResponseHttpApiResult:
+      properties:
+        code:
+          type: string
+        message:
+          type: string
+        request_id:
+          type: string
+        data:
+          $ref: '#/components/schemas/sensorsdata.focus.v1.IsBatchAudienceEntityExistsResponse'
+        error_info:
+          $ref: '#/components/schemas/sensorsdata.common.ErrorInfo'
+      title: sensorsdata.focus.v1.IsBatchAudienceEntityExistsResponseHttpApiResult
+      type: object
+    sensorsdata.focus.v1.DeleteBatchAudienceEntityResponse:
+      description: ''
+      properties:
+        results:
+          additionalProperties:
+            description: ''
+            type: boolean
+          description: 是否存在的结果集Map
+          example:
+            '2': true
+          type: object
+      title: DeleteBatchAudienceEntityResponse
+      type: object
+    sensorsdata.focus.v1.PutBatchAudienceEntityRequest:
+      description: ''
+      properties:
+        audience_biz_id:
+          description: 受众规则ID
+          example: '2'
+          type: string
+        audience_entity_ids:
+          description: 用户ID
+          example: '[{"entity_id":123},{"entity_id":1234}]'
+          items:
+            $ref: '#/components/schemas/sensorsdata.focus.v1.express.audience.open.AudienceEntityId'
+          type: array
+      title: PutBatchAudienceEntityRequest
+      type: object
+    sensorsdata.focus.v1.IsUserExistsInRulesResponseHttpApiResult:
+      properties:
+        code:
+          type: string
+        message:
+          type: string
+        request_id:
+          type: string
+        data:
+          $ref: '#/components/schemas/sensorsdata.focus.v1.IsUserExistsInRulesResponse'
+        error_info:
+          $ref: '#/components/schemas/sensorsdata.common.ErrorInfo'
+      title: sensorsdata.focus.v1.IsUserExistsInRulesResponseHttpApiResult
+      type: object
+    sensorsdata.common.ErrorContext:
+      description: 发生错误时，系统快照信息
+      properties:
+        origin_stack:
+          description: 上游异常的 stack，由系统截获
+          type: string
+        origin_cause:
+          description: 上游异常的 cause by，由系统截获
+          type: string
+        origin_code:
+          description: 上游异常的错误简码
+          type: string
+        origin_complete_code:
+          description: 上游异常的完整错误码
+          type: string
+        error_extend_desc:
+          description: 本次异常的辅助说明，可传入
+          type: string
+      title: ErrorContext
+      type: object
+    sensorsdata.focus.v1.IsAudienceEntityExistsInRulesResponse.ErrorBizIdMapEntry:
+      description: ''
+      properties:
+        key:
+          description: ''
+          type: string
+        value:
+          description: ''
+          enum:
+          - UNSPECIFIED
+          - NO_PERMISSION
+          - NOT_EXIST
+          type: string
+      title: ErrorBizIdMapEntry
+      type: object
+    sensorsdata.focus.v1.DeleteBatchAudienceEntityRequest:
+      description: ''
+      properties:
+        audience_biz_id:
+          description: 受众规则ID
+          example: '2'
+          type: string
+        audience_entity_ids:
+          description: 用户ID
+          example: '[{"entity_id":123},{"entity_id":1234}]'
+          items:
+            $ref: '#/components/schemas/sensorsdata.focus.v1.express.audience.open.AudienceEntityId'
+          type: array
+      title: DeleteBatchAudienceEntityRequest
+      type: object
+    sensorsdata.focus.v1.DeleteBatchAudienceEntityResponse.ResultsEntry:
+      description: ''
+      properties:
+        key:
+          description: ''
+          type: string
+        value:
+          description: ''
+          type: boolean
+      title: ResultsEntry
+      type: object
+    sensorsdata.focus.v1.IsAudienceEntityExistsInRulesResponse.ResultsEntry:
+      description: ''
+      properties:
+        key:
+          description: ''
+          type: string
+        value:
+          description: ''
+          type: boolean
+      title: ResultsEntry
+      type: object
+    sensorsdata.focus.v1.IsUserBatchExistsResponseHttpApiResult:
+      properties:
+        code:
+          type: string
+        message:
+          type: string
+        request_id:
+          type: string
+        data:
+          $ref: '#/components/schemas/sensorsdata.focus.v1.IsUserBatchExistsResponse'
+        error_info:
+          $ref: '#/components/schemas/sensorsdata.common.ErrorInfo'
+      title: sensorsdata.focus.v1.IsUserBatchExistsResponseHttpApiResult
+      type: object
+    sensorsdata.focus.v1.GetRuleInformationResponseHttpApiResult:
+      properties:
+        code:
+          type: string
+        message:
+          type: string
+        request_id:
+          type: string
+        data:
+          $ref: '#/components/schemas/sensorsdata.focus.v1.GetRuleInformationResponse'
+        error_info:
+          $ref: '#/components/schemas/sensorsdata.common.ErrorInfo'
+      title: sensorsdata.focus.v1.GetRuleInformationResponseHttpApiResult
+      type: object
+    sensorsdata.focus.v1.DeleteBatchAudienceEntityResponseHttpApiResult:
+      properties:
+        code:
+          type: string
+        message:
+          type: string
+        request_id:
+          type: string
+        data:
+          $ref: '#/components/schemas/sensorsdata.focus.v1.DeleteBatchAudienceEntityResponse'
+        error_info:
+          $ref: '#/components/schemas/sensorsdata.common.ErrorInfo'
+      title: sensorsdata.focus.v1.DeleteBatchAudienceEntityResponseHttpApiResult
+      type: object
+    sensorsdata.focus.v1.IsAudienceEntityExistsInRulesResponseHttpApiResult:
+      properties:
+        code:
+          type: string
+        message:
+          type: string
+        request_id:
+          type: string
+        data:
+          $ref: '#/components/schemas/sensorsdata.focus.v1.IsAudienceEntityExistsInRulesResponse'
+        error_info:
+          $ref: '#/components/schemas/sensorsdata.common.ErrorInfo'
+      title: sensorsdata.focus.v1.IsAudienceEntityExistsInRulesResponseHttpApiResult
+      type: object
+    sensorsdata.focus.v1.express.audience.open.AudienceEntityCommonId:
+      description: ''
+      properties:
+        data_type:
+          description: 取值的数据类型，必传
+          enum:
+          - INT
+          - STRING
+          type: string
+        int_value:
+          description: int_value与string_value只设置其中一个（例如：item_id为string类型，user_id为long类型）
+          format: int64
+          type: integer
+        string_value:
+          description: int_value与string_value只设置其中一个（例如：item_id为string类型，user_id为long类型）
+          type: string
+      title: AudienceEntityCommonId
+      type: object
+    sensorsdata.focus.v1.express.audience.open.AudienceEntityId.IdentityIdMapEntry:
+      description: ''
+      properties:
+        key:
+          description: ''
+          type: string
+        value:
+          description: ''
+          type: string
+      title: IdentityIdMapEntry
+      type: object
+    sensorsdata.focus.v1.express.audience.open.AudienceEntityId:
+      description: 通用的实体ID结构
+      properties:
+        entity_name:
+          description: 实体名，不传默认为user实体
+          example: user
+          type: string
+        identity_id_map:
+          additionalProperties:
+            description: ''
+            type: string
+          description: '业务主键map，key: id_name(业务id字段名), value: id_value（具体的id值）; id_name，如 distinct_id,
+            first_id, second_id, $identity_mobile等；identity_id_map 与 entity_id 只需设置其中一个，如果同时设置则以 entity_id
+            为准'
+          type: object
+        entity_id:
+          $ref: '#/components/schemas/sensorsdata.focus.v1.express.audience.open.AudienceEntityCommonId'
+      title: AudienceEntityId
+      type: object
+    sensorsdata.focus.v1.IsAudienceEntityExistsInRulesResponse:
+      description: ''
+      properties:
+        results:
+          additionalProperties:
+            description: ''
+            type: boolean
+          description: 是否存在的结果集Map
+          example:
+            '2': true
+          type: object
+        invalid_entity:
+          $ref: '#/components/schemas/sensorsdata.focus.v1.express.audience.open.AudienceEntityId'
+        error_biz_id_map:
+          additionalProperties:
+            description: ''
+            enum:
+            - UNSPECIFIED
+            - NO_PERMISSION
+            - NOT_EXIST
+            type: string
+          description: 错误的 biz id 集合
+          type: object
+      title: IsAudienceEntityExistsInRulesResponse
+      type: object
+    sensorsdata.common.ErrorCause:
+      properties:
+        error_cause:
+          description: 致错原因1
+          example: 参数异常1
+          type: string
+        action_suggestion:
+          description: 操作建议，针对该原因，建议的解决方式
+          example: 检测入参的数据类型1
+          type: string
+      title: ErrorCause
+      type: object
+    sensorsdata.focus.v1.IsBatchAudienceEntityExistsResponse.ErrorBizIdMapEntry:
+      description: ''
+      properties:
+        key:
+          description: ''
+          type: string
+        value:
+          description: ''
+          enum:
+          - UNSPECIFIED
+          - NO_PERMISSION
+          - NOT_EXIST
+          type: string
+      title: ErrorBizIdMapEntry
+      type: object
+    sensorsdata.common.ErrorInfo:
+      properties:
+        code:
+          description: 具体的错误码
+          example: XX-D-F-2-1
+          type: string
+        description:
+          description: 错误描述
+          example: 前端参数校验异常,PARAMETER_FORMAT_ERROR(quantiles=[10, -90] is not include [0, 100])
+          type: string
+        system_response:
+          description: 致错的可能原因列表
+          example: 系统终止了查询处理
+          type: string
+        error_causes:
+          items:
+            $ref: '#/components/schemas/sensorsdata.common.ErrorCause'
+          type: array
+        context:
+          $ref: '#/components/schemas/sensorsdata.common.ErrorContext'
+      title: ErrorInfo
+      type: object
+    sensorsdata.focus.v1.PutBatchAudienceEntityResponse.ResultsEntry:
+      description: ''
+      properties:
+        key:
+          description: ''
+          type: string
+        value:
+          description: ''
+          type: boolean
+      title: ResultsEntry
+      type: object
+    sensorsdata.focus.v1.PutBatchAudienceEntityResponseHttpApiResult:
+      properties:
+        code:
+          type: string
+        message:
+          type: string
+        request_id:
+          type: string
+        data:
+          $ref: '#/components/schemas/sensorsdata.focus.v1.PutBatchAudienceEntityResponse'
+        error_info:
+          $ref: '#/components/schemas/sensorsdata.common.ErrorInfo'
+      title: sensorsdata.focus.v1.PutBatchAudienceEntityResponseHttpApiResult
+      type: object
+x-sd-openapi-service-name: ExpressAudienceOnline
+x-sd-openapi-service-name-hyphen: express-audience-online
+x-sd-openapi-app-name: focus
+x-sd-openapi-service-name-zh_cn: 受众-在线接口
+x-original-swagger-version: '2.0'

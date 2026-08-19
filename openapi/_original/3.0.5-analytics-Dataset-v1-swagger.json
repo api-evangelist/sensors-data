@@ -1,0 +1,1827 @@
+{
+  "openapi" : "3.0.1",
+  "info" : {
+    "description" : "业务集市的数据查询开放接口",
+    "title" : "神策分析",
+    "version" : ""
+  },
+  "servers" : [ {
+    "url" : "/api/v3/analytics/v1"
+  } ],
+  "paths" : {
+    "/dataset/detail" : {
+      "get" : {
+        "description" : "查询业务模型详情信息接口",
+        "operationId" : "DatasetDetail",
+        "parameters" : [ {
+          "description" : "全局唯一的密钥，用于验证和授权访问 API 接口",
+          "in" : "header",
+          "name" : "api-key",
+          "required" : true,
+          "schema" : {
+            "type" : "string"
+          }
+        }, {
+          "description" : "项目名, 指定请求所属项目",
+          "in" : "header",
+          "name" : "sensorsdata-project",
+          "required" : true,
+          "schema" : {
+            "type" : "string"
+          }
+        }, {
+          "description" : "业务模型ID",
+          "example" : 1,
+          "in" : "query",
+          "name" : "dataset_id",
+          "required" : true,
+          "schema" : {
+            "format" : "int32",
+            "type" : "integer"
+          }
+        }, {
+          "description" : "业务模型形态，默认值为，如果支持模型态则默认为模型态，否则为二维表形态",
+          "in" : "query",
+          "name" : "model_type",
+          "schema" : {
+            "enum" : [ "DATASET_MODEL_TYPE_UNSPECIFIED", "DATASET_MODEL_TYPE_MODEL", "DATASET_MODEL_TYPE_TABLE" ],
+            "type" : "string",
+            "x-sd-openapi-enum-type" : "com.sensorsdata.analytics.v1.DatasetModelType"
+          },
+          "x-sd-openapi-enum-type" : "com.sensorsdata.analytics.v1.DatasetModelType"
+        } ],
+        "responses" : {
+          "default" : {
+            "content" : {
+              "application/json" : {
+                "example" : {
+                  "code" : "SUCCESS",
+                  "data" : {
+                    "dataset_type" : "CUSTOME_SQL_QUERY",
+                    "scheduler_status" : "PROCESSING_BY_HOUR",
+                    "sync_type" : "FULL",
+                    "columns" : [ {
+                      "column_name" : "country",
+                      "column_cname" : "国家",
+                      "data_type" : "STRING",
+                      "column_type" : "BASIC",
+                      "column_usage_type" : "ALL"
+                    }, {
+                      "column_name" : "citry",
+                      "column_cname" : "城市",
+                      "data_type" : "STRING",
+                      "column_type" : "BASIC",
+                      "column_usage_type" : "ALL"
+                    }, {
+                      "column_name" : "measure_number",
+                      "column_cname" : "指标名称",
+                      "data_type" : "NUMBER",
+                      "column_type" : "BASIC",
+                      "column_usage_type" : "ALL"
+                    }, {
+                      "column_name" : "calculate_measure_number",
+                      "column_cname" : "计算列1",
+                      "data_type" : "NUMBER",
+                      "column_type" : "CALCULATE",
+                      "column_usage_type" : "MEASURE"
+                    } ],
+                    "dataset_id" : 1,
+                    "permission_info" : {
+                      "creator_eui_filter_snapshot" : {
+                        "event_permission_filter" : {
+                          "filters" : [ {
+                            "conditions" : [ {
+                              "field" : "event.$Anything.country",
+                              "function" : "notContain",
+                              "params" : [ "韩国", "日本" ]
+                            }, {
+                              "field" : "event.$Anything.city",
+                              "function" : "rlike",
+                              "params" : [ ".*" ]
+                            } ],
+                            "relation" : "AND"
+                          } ],
+                          "conditions" : [ {
+                            "field" : "event.$Anything.country",
+                            "function" : "equal",
+                            "params" : [ "中国" ]
+                          }, {
+                            "field" : "event.$Anything.city",
+                            "function" : "contain",
+                            "params" : [ "北京" ]
+                          } ],
+                          "relation" : "OR"
+                        }
+                      }
+                    },
+                    "manager_permission_config" : {
+                      "owner_info" : { },
+                      "co_manager_info" : {
+                        "roles" : [ { } ],
+                        "duties" : [ { } ]
+                      }
+                    },
+                    "dataset_storage_type" : "TABLE",
+                    "time_unit" : "DAY",
+                    "dataset_cname" : "业务模型显示名",
+                    "sync_status" : "SUCCESS",
+                    "last_sync_success_time" : "2023-01-01 00:00:00",
+                    "sync_crontab" : "[\"0 0 4 * * ?\"]",
+                    "data_range_time" : { }
+                  },
+                  "request_id" : "1"
+                },
+                "schema" : {
+                  "$ref" : "#/components/schemas/sensorsdata.analytics.v1.DatasetDetailResponseHttpApiResult"
+                }
+              }
+            },
+            "description" : "sensorsdata.analytics.v1.DatasetDetailResponse"
+          }
+        },
+        "summary" : "查询业务模型详情信息",
+        "x-sd-openapi" : {
+          "responseClass" : "com.sensorsdata.analytics.v1.DatasetDetailResponse",
+          "isServerStreaming" : false,
+          "requestClass" : "com.sensorsdata.analytics.v1.DatasetDetailRequest",
+          "grpcServiceBase" : "com.sensorsdata.analytics.v1.DatasetServiceGrpc.DatasetServiceImplBase",
+          "internalDesc" : "classes in template for grpc service dynamic invoking",
+          "isClientStreaming" : false
+        }
+      }
+    },
+    "/dataset/detail_list" : {
+      "post" : {
+        "description" : "获取业务模型列表",
+        "operationId" : "DatasetDataList",
+        "parameters" : [ {
+          "description" : "全局唯一的密钥，用于验证和授权访问 API 接口",
+          "in" : "header",
+          "name" : "api-key",
+          "required" : true,
+          "schema" : {
+            "type" : "string"
+          }
+        }, {
+          "description" : "项目名, 指定请求所属项目",
+          "in" : "header",
+          "name" : "sensorsdata-project",
+          "required" : true,
+          "schema" : {
+            "type" : "string"
+          }
+        } ],
+        "requestBody" : {
+          "content" : {
+            "application/json" : {
+              "schema" : {
+                "$ref" : "#/components/schemas/sensorsdata.analytics.v1.DatasetListRequest"
+              }
+            }
+          },
+          "description" : "请求业务模型详情接口的参数描述",
+          "required" : false
+        },
+        "responses" : {
+          "default" : {
+            "content" : {
+              "application/json" : {
+                "example" : {
+                  "code" : "SUCCESS",
+                  "data" : {
+                    "page_info" : {
+                      "current_page" : 1,
+                      "page_count" : 1,
+                      "total" : 2
+                    },
+                    "datasets" : [ {
+                      "dataset_type" : "CUSTOME_SQL_QUERY",
+                      "dataset_id" : 1,
+                      "dataset_cname" : "业务模型显示名",
+                      "is_scheduler_pause" : false
+                    } ]
+                  },
+                  "request_id" : "1"
+                },
+                "schema" : {
+                  "$ref" : "#/components/schemas/sensorsdata.analytics.v1.DatasetListResponseHttpApiResult"
+                }
+              }
+            },
+            "description" : "sensorsdata.analytics.v1.DatasetListResponse"
+          }
+        },
+        "summary" : "获取业务模型列表",
+        "x-sd-openapi" : {
+          "responseClass" : "com.sensorsdata.analytics.v1.DatasetListResponse",
+          "isServerStreaming" : false,
+          "requestClass" : "com.sensorsdata.analytics.v1.DatasetListRequest",
+          "grpcServiceBase" : "com.sensorsdata.analytics.v1.DatasetServiceGrpc.DatasetServiceImplBase",
+          "internalDesc" : "classes in template for grpc service dynamic invoking",
+          "isClientStreaming" : false
+        },
+        "x-codegen-request-body-name" : "DatasetListRequest"
+      }
+    },
+    "/dataset/group/list" : {
+      "get" : {
+        "description" : "获取业务模型分组列表接口",
+        "operationId" : "DatasetGroupList",
+        "parameters" : [ {
+          "description" : "全局唯一的密钥，用于验证和授权访问 API 接口",
+          "in" : "header",
+          "name" : "api-key",
+          "required" : true,
+          "schema" : {
+            "type" : "string"
+          }
+        }, {
+          "description" : "项目名, 指定请求所属项目",
+          "in" : "header",
+          "name" : "sensorsdata-project",
+          "required" : true,
+          "schema" : {
+            "type" : "string"
+          }
+        } ],
+        "responses" : {
+          "default" : {
+            "content" : {
+              "application/json" : {
+                "example" : {
+                  "code" : "SUCCESS",
+                  "data" : {
+                    "dataset_groups" : [ {
+                      "group_name" : "分组名称",
+                      "id" : 1
+                    } ]
+                  },
+                  "request_id" : "1"
+                },
+                "schema" : {
+                  "$ref" : "#/components/schemas/sensorsdata.analytics.v1.DatasetGroupListResponseHttpApiResult"
+                }
+              }
+            },
+            "description" : "sensorsdata.analytics.v1.DatasetGroupListResponse"
+          }
+        },
+        "summary" : "获取业务模型分组列表",
+        "x-sd-openapi" : {
+          "responseClass" : "com.sensorsdata.analytics.v1.DatasetGroupListResponse",
+          "isServerStreaming" : false,
+          "grpcServiceBase" : "com.sensorsdata.analytics.v1.DatasetServiceGrpc.DatasetServiceImplBase",
+          "internalDesc" : "classes in template for grpc service dynamic invoking",
+          "isClientStreaming" : false
+        }
+      }
+    },
+    "/dataset/table/sql_query" : {
+      "post" : {
+        "description" : "Sql 查询二维表模式下的业务模型数据接口,包含实时 sql, 不支持拼表业务模型查询",
+        "operationId" : "DatasetTableSqlQuery",
+        "parameters" : [ {
+          "description" : "全局唯一的密钥，用于验证和授权访问 API 接口",
+          "in" : "header",
+          "name" : "api-key",
+          "required" : true,
+          "schema" : {
+            "type" : "string"
+          }
+        }, {
+          "description" : "项目名, 指定请求所属项目",
+          "in" : "header",
+          "name" : "sensorsdata-project",
+          "required" : true,
+          "schema" : {
+            "type" : "string"
+          }
+        } ],
+        "requestBody" : {
+          "content" : {
+            "application/json" : {
+              "schema" : {
+                "$ref" : "#/components/schemas/sensorsdata.analytics.v1.DatasetTableSqlRequest"
+              }
+            }
+          },
+          "description" : "sql查询业务模型数据接口请求参数描述",
+          "required" : false
+        },
+        "responses" : {
+          "default" : {
+            "content" : {
+              "application/json" : {
+                "example" : {
+                  "code" : "SUCCESS",
+                  "data" : {
+                    "data" : [ [ "中国", "北京市", 100 ], [ "中国", "天津市", 200.0 ] ],
+                    "columns" : [ {
+                      "column_name" : "country",
+                      "column_cname" : "国家",
+                      "data_type" : "STRING",
+                      "column_type" : "BASIC",
+                      "column_usage_type" : "ALL"
+                    }, {
+                      "column_name" : "citry",
+                      "column_cname" : "城市",
+                      "data_type" : "STRING",
+                      "column_type" : "BASIC",
+                      "column_usage_type" : "ALL"
+                    }, {
+                      "column_name" : "measure_number",
+                      "column_cname" : "指标名称",
+                      "data_type" : "NUMBER",
+                      "column_type" : "BASIC",
+                      "column_usage_type" : "ALL"
+                    }, {
+                      "column_name" : "calculate_measure_number",
+                      "column_cname" : "计算列1",
+                      "data_type" : "NUMBER",
+                      "column_type" : "CALCULATE",
+                      "column_usage_type" : "MEASURE"
+                    } ]
+                  },
+                  "request_id" : "1"
+                },
+                "schema" : {
+                  "$ref" : "#/components/schemas/sensorsdata.analytics.v1.DatasetTableSqlResponseHttpApiResult"
+                }
+              }
+            },
+            "description" : "sensorsdata.analytics.v1.DatasetTableSqlResponse"
+          }
+        },
+        "summary" : "通过 Sql 查询业务模型数据",
+        "x-sd-openapi" : {
+          "responseClass" : "com.sensorsdata.analytics.v1.DatasetTableSqlResponse",
+          "isServerStreaming" : false,
+          "requestClass" : "com.sensorsdata.analytics.v1.DatasetTableSqlRequest",
+          "grpcServiceBase" : "com.sensorsdata.analytics.v1.DatasetServiceGrpc.DatasetServiceImplBase",
+          "internalDesc" : "classes in template for grpc service dynamic invoking",
+          "isClientStreaming" : false
+        },
+        "x-codegen-request-body-name" : "DatasetTableSqlRequest"
+      }
+    },
+    "/dataset/model/query" : {
+      "post" : {
+        "description" : "查询二维表，预聚合，明细模式等的业务模型数据接口，其中二维表中不支持拼表查询",
+        "operationId" : "DatasetModelQuery",
+        "parameters" : [ {
+          "description" : "全局唯一的密钥，用于验证和授权访问 API 接口",
+          "in" : "header",
+          "name" : "api-key",
+          "required" : true,
+          "schema" : {
+            "type" : "string"
+          }
+        }, {
+          "description" : "项目名, 指定请求所属项目",
+          "in" : "header",
+          "name" : "sensorsdata-project",
+          "required" : true,
+          "schema" : {
+            "type" : "string"
+          }
+        } ],
+        "requestBody" : {
+          "content" : {
+            "application/json" : {
+              "schema" : {
+                "$ref" : "#/components/schemas/sensorsdata.analytics.v1.DatasetModelRequest"
+              }
+            }
+          },
+          "description" : "业务模型数据接口请求描述",
+          "required" : false
+        },
+        "responses" : {
+          "default" : {
+            "content" : {
+              "application/json" : {
+                "example" : {
+                  "code" : "SUCCESS",
+                  "data" : {
+                    "data" : [ [ "中国", "北京市", 100 ], [ "中国", "天津市", 200.0 ] ],
+                    "columns" : [ {
+                      "column_name" : "country",
+                      "column_cname" : "国家",
+                      "data_type" : "STRING",
+                      "column_type" : "BASIC",
+                      "column_usage_type" : "ALL"
+                    }, {
+                      "column_name" : "citry",
+                      "column_cname" : "城市",
+                      "data_type" : "STRING",
+                      "column_type" : "BASIC",
+                      "column_usage_type" : "ALL"
+                    }, {
+                      "column_name" : "measure_number",
+                      "column_cname" : "指标名称",
+                      "data_type" : "NUMBER",
+                      "column_type" : "BASIC",
+                      "column_usage_type" : "ALL"
+                    } ],
+                    "page_info" : {
+                      "current_page" : 1,
+                      "page_count" : 1,
+                      "total" : 2
+                    }
+                  },
+                  "request_id" : "1"
+                },
+                "schema" : {
+                  "$ref" : "#/components/schemas/sensorsdata.analytics.v1.DatasetModelResponseHttpApiResult"
+                }
+              }
+            },
+            "description" : "sensorsdata.analytics.v1.DatasetModelResponse"
+          }
+        },
+        "summary" : "通过指标维度规则查询业务模型数据",
+        "x-sd-openapi" : {
+          "responseClass" : "com.sensorsdata.analytics.v1.DatasetModelResponse",
+          "isServerStreaming" : false,
+          "requestClass" : "com.sensorsdata.analytics.v1.DatasetModelRequest",
+          "grpcServiceBase" : "com.sensorsdata.analytics.v1.DatasetServiceGrpc.DatasetServiceImplBase",
+          "internalDesc" : "classes in template for grpc service dynamic invoking",
+          "isClientStreaming" : false
+        },
+        "x-codegen-request-body-name" : "DatasetModelRequest"
+      }
+    },
+    "/dataset/refresh" : {
+      "post" : {
+        "description" : "刷新业务模型接口, 其中不支持拼表，外部数据表和实时的业务模型刷新",
+        "operationId" : "DatasetRefresh",
+        "parameters" : [ {
+          "description" : "全局唯一的密钥，用于验证和授权访问 API 接口",
+          "in" : "header",
+          "name" : "api-key",
+          "required" : true,
+          "schema" : {
+            "type" : "string"
+          }
+        }, {
+          "description" : "项目名, 指定请求所属项目",
+          "in" : "header",
+          "name" : "sensorsdata-project",
+          "required" : true,
+          "schema" : {
+            "type" : "string"
+          }
+        } ],
+        "requestBody" : {
+          "content" : {
+            "application/json" : {
+              "schema" : {
+                "$ref" : "#/components/schemas/sensorsdata.analytics.v1.DatasetRefreshRequest"
+              }
+            }
+          },
+          "description" : "刷新业务模型接口请求参数描述 , 不支持拼表，外部数据表和实时业务模型刷新",
+          "required" : false
+        },
+        "responses" : {
+          "default" : {
+            "content" : {
+              "application/json" : {
+                "example" : {
+                  "code" : "SUCCESS",
+                  "data" : {
+                    "sync_task_id" : 1
+                  },
+                  "request_id" : "1"
+                },
+                "schema" : {
+                  "$ref" : "#/components/schemas/sensorsdata.analytics.v1.DatasetRefreshResponseHttpApiResult"
+                }
+              }
+            },
+            "description" : "sensorsdata.analytics.v1.DatasetRefreshResponse"
+          }
+        },
+        "summary" : "刷新指定业务模型数据",
+        "x-sd-openapi" : {
+          "responseClass" : "com.sensorsdata.analytics.v1.DatasetRefreshResponse",
+          "isServerStreaming" : false,
+          "requestClass" : "com.sensorsdata.analytics.v1.DatasetRefreshRequest",
+          "grpcServiceBase" : "com.sensorsdata.analytics.v1.DatasetServiceGrpc.DatasetServiceImplBase",
+          "internalDesc" : "classes in template for grpc service dynamic invoking",
+          "isClientStreaming" : false
+        },
+        "x-codegen-request-body-name" : "DatasetRefreshRequest"
+      }
+    },
+    "/dataset/sync_task_detail" : {
+      "get" : {
+        "description" : "查询业务模型调度任务执行状态",
+        "operationId" : "DatasetSyncTaskDetail",
+        "parameters" : [ {
+          "description" : "全局唯一的密钥，用于验证和授权访问 API 接口",
+          "in" : "header",
+          "name" : "api-key",
+          "required" : true,
+          "schema" : {
+            "type" : "string"
+          }
+        }, {
+          "description" : "项目名, 指定请求所属项目",
+          "in" : "header",
+          "name" : "sensorsdata-project",
+          "required" : true,
+          "schema" : {
+            "type" : "string"
+          }
+        }, {
+          "description" : "同步任务ID",
+          "example" : 1,
+          "in" : "query",
+          "name" : "sync_task_id",
+          "required" : true,
+          "schema" : {
+            "format" : "int32",
+            "type" : "integer"
+          }
+        } ],
+        "responses" : {
+          "default" : {
+            "content" : {
+              "application/json" : {
+                "example" : {
+                  "code" : "SUCCESS",
+                  "data" : {
+                    "duration_seconds" : 10,
+                    "start_time" : "2023-01-01 12:00:00",
+                    "end_time" : "2023-01-01 12:00:10",
+                    "sync_status" : "SUCCESS",
+                    "sync_task_id" : 1
+                  },
+                  "request_id" : "1"
+                },
+                "schema" : {
+                  "$ref" : "#/components/schemas/sensorsdata.analytics.v1.DatasetSyncTaskDetailResponseHttpApiResult"
+                }
+              }
+            },
+            "description" : "sensorsdata.analytics.v1.DatasetSyncTaskDetailResponse"
+          }
+        },
+        "summary" : "查询业务模型调度任务执行状态",
+        "x-sd-openapi" : {
+          "responseClass" : "com.sensorsdata.analytics.v1.DatasetSyncTaskDetailResponse",
+          "isServerStreaming" : false,
+          "requestClass" : "com.sensorsdata.analytics.v1.DatasetSyncTaskDetailRequest",
+          "grpcServiceBase" : "com.sensorsdata.analytics.v1.DatasetServiceGrpc.DatasetServiceImplBase",
+          "internalDesc" : "classes in template for grpc service dynamic invoking",
+          "isClientStreaming" : false
+        }
+      }
+    }
+  },
+  "components" : {
+    "schemas" : {
+      "sensorsdata.analytics.v1.DatasetSyncTaskDetailResponse" : {
+        "description" : "获取刷新调度任务详情接口返回结构描述",
+        "properties" : {
+          "sync_task_id" : {
+            "description" : "同步任务ID",
+            "example" : 1,
+            "format" : "int32",
+            "type" : "integer"
+          },
+          "sync_status" : {
+            "description" : "同步状态\n - WAITING 待更新\n - SUCCESS 成功\n - FAILED 失败\n - DOING 更新中\n - DATA_EXCEPTION 数据异常\n - REFRESH_WAITING 回刷等待中\n - RETRY 失败重试",
+            "enum" : [ "SYNC_STATUS_UNSPECIFIED", "WAITING", "SUCCESS", "FAILED", "DOING", "DATA_EXCEPTION", "REFRESH_WAITING", "RETRY" ],
+            "example" : "SUCCESS",
+            "type" : "string"
+          },
+          "start_time" : {
+            "description" : "同步开始时间",
+            "example" : "2023-01-01 12:00:00",
+            "type" : "string"
+          },
+          "end_time" : {
+            "description" : "同步结束时间",
+            "example" : "2023-01-01 12:00:10",
+            "type" : "string"
+          },
+          "duration_seconds" : {
+            "description" : "调度时长（单位：秒）",
+            "example" : 10,
+            "format" : "int32",
+            "type" : "integer"
+          },
+          "failed_reason" : {
+            "description" : "失败原因",
+            "example" : "",
+            "type" : "string"
+          }
+        },
+        "title" : "DatasetSyncTaskDetailResponse",
+        "type" : "object"
+      },
+      "sensorsdata.analytics.v1.ManagerPermissionConfig" : {
+        "description" : "管理权限配置信息",
+        "properties" : {
+          "owner_info" : {
+            "$ref" : "#/components/schemas/sensorsdata.analytics.v1.AccountInfo"
+          },
+          "co_manager_info" : {
+            "$ref" : "#/components/schemas/sensorsdata.analytics.v1.CoManagerInfo"
+          }
+        },
+        "title" : "ManagerPermissionConfig",
+        "type" : "object"
+      },
+      "sensorsdata.analytics.v1.MeasureFilter" : {
+        "description" : "指标过滤信息",
+        "properties" : {
+          "function" : {
+            "description" : "筛选函数，和ApiRequestFilter里的function保持一致\n - equal 等于\n - notEqual 不等于\n - contain\t包含\n - notContain 不包含\n - isSet 有值\n - notSet 没值\n - isEmpty\t为空\n - isNotEmpty 不为空\n - rlike 正则匹配\n - notrlike 正则不匹配\n - less 小于\n - greater 大于\n - between 区间\n - isTrue\t为真\n - isFalse 为假",
+            "type" : "string"
+          },
+          "params" : {
+            "description" : "参数",
+            "items" : {
+              "properties" : { },
+              "type" : "object"
+            },
+            "type" : "array"
+          }
+        },
+        "title" : "MeasureFilter",
+        "type" : "object"
+      },
+      "sensorsdata.analytics.v1.ApiRequestFilter" : {
+        "description" : "",
+        "properties" : {
+          "relation" : {
+            "description" : "",
+            "enum" : [ "FILTER_RELATION_UNSPECIFIED", "AND", "OR" ],
+            "example" : "OR",
+            "type" : "string"
+          },
+          "conditions" : {
+            "description" : "",
+            "example" : "[{\"field\":\"event.$Anything.country\",\"function\":\"equal\",\"params\":[\"中国\"]},{\"field\":\"event.$Anything.city\",\"function\":\"contain\",\"params\":[\"北京\"]}]",
+            "items" : {
+              "$ref" : "#/components/schemas/sensorsdata.analytics.v1.ApiRequestElementCondition"
+            },
+            "type" : "array"
+          },
+          "filters" : {
+            "description" : "",
+            "example" : "[{\"conditions\":[{\"field\":\"event.$Anything.country\",\"function\":\"notContain\",\"params\":[\"韩国\",\"日本\"]},{\"field\":\"event.$Anything.city\",\"function\":\"rlike\",\"params\":[\".*\"]}],\"relation\":\"AND\"}]",
+            "items" : {
+              "$ref" : "#/components/schemas/sensorsdata.analytics.v1.ApiRequestFilter"
+            },
+            "type" : "array"
+          }
+        },
+        "title" : "ApiRequestFilter",
+        "type" : "object"
+      },
+      "sensorsdata.common.ErrorContext" : {
+        "description" : "发生错误时，系统快照信息",
+        "properties" : {
+          "origin_stack" : {
+            "description" : "上游异常的 stack，由系统截获",
+            "type" : "string"
+          },
+          "origin_cause" : {
+            "description" : "上游异常的 cause by，由系统截获",
+            "type" : "string"
+          },
+          "origin_code" : {
+            "description" : "上游异常的错误简码",
+            "type" : "string"
+          },
+          "origin_complete_code" : {
+            "description" : "上游异常的完整错误码",
+            "type" : "string"
+          },
+          "error_extend_desc" : {
+            "description" : "本次异常的辅助说明，可传入",
+            "type" : "string"
+          }
+        },
+        "title" : "ErrorContext",
+        "type" : "object"
+      },
+      "sensorsdata.analytics.v1.DatasetTableSqlResponse" : {
+        "description" : "sql查询业务模型数据接口返回结构描述",
+        "properties" : {
+          "data" : {
+            "description" : "数据(目前对于数值类型统一按浮点数格式返回 例如:10.0)",
+            "example" : "[[\"中国\", \"北京市\" ,100],[\"中国\", \"天津市\" ,200.0]]",
+            "items" : {
+              "items" : {
+                "properties" : { },
+                "type" : "object"
+              },
+              "type" : "array"
+            },
+            "type" : "array"
+          },
+          "columns" : {
+            "description" : "字段信息",
+            "example" : "[{\"column_name\":\"country\",\"column_cname\":\"国家\",\"data_type\":\"STRING\",\"column_type\":\"BASIC\",\"column_usage_type\":\"ALL\"},{\"column_name\":\"citry\",\"column_cname\":\"城市\",\"data_type\":\"STRING\",\"column_type\":\"BASIC\",\"column_usage_type\":\"ALL\"},{\"column_name\":\"measure_number\",\"column_cname\":\"指标名称\",\"data_type\":\"NUMBER\",\"column_type\":\"BASIC\",\"column_usage_type\":\"ALL\"},{\"column_name\":\"calculate_measure_number\",\"column_cname\":\"计算列1\",\"data_type\":\"NUMBER\",\"column_type\":\"CALCULATE\",\"column_usage_type\":\"MEASURE\"}]",
+            "items" : {
+              "$ref" : "#/components/schemas/sensorsdata.analytics.v1.ColumnMeta"
+            },
+            "type" : "array"
+          }
+        },
+        "title" : "DatasetTableSqlResponse",
+        "type" : "object"
+      },
+      "sensorsdata.analytics.v1.DatasetTableSqlResponseHttpApiResult" : {
+        "properties" : {
+          "code" : {
+            "type" : "string"
+          },
+          "message" : {
+            "type" : "string"
+          },
+          "request_id" : {
+            "type" : "string"
+          },
+          "data" : {
+            "$ref" : "#/components/schemas/sensorsdata.analytics.v1.DatasetTableSqlResponse"
+          },
+          "error_info" : {
+            "$ref" : "#/components/schemas/sensorsdata.common.ErrorInfo"
+          }
+        },
+        "title" : "sensorsdata.analytics.v1.DatasetTableSqlResponseHttpApiResult",
+        "type" : "object"
+      },
+      "sensorsdata.analytics.v1.ApiRequestElementCondition" : {
+        "description" : "",
+        "properties" : {
+          "field" : {
+            "description" : "",
+            "type" : "string"
+          },
+          "function" : {
+            "description" : "",
+            "type" : "string"
+          },
+          "params" : {
+            "description" : "",
+            "items" : {
+              "description" : "google.protobuf.Value 支持各种 JSON 值",
+              "properties" : { },
+              "type" : "object"
+            },
+            "type" : "array"
+          }
+        },
+        "title" : "ApiRequestElementCondition",
+        "type" : "object"
+      },
+      "sensorsdata.analytics.v1.DatasetModelResponse" : {
+        "description" : "业务模型数据请求返回结构描述",
+        "properties" : {
+          "data" : {
+            "description" : "数据(目前对于数值类型统一按浮点数格式返回 例如:10.0)",
+            "example" : "[[\"中国\", \"北京市\" ,100],[\"中国\", \"天津市\" ,200.0]]",
+            "items" : {
+              "items" : {
+                "properties" : { },
+                "type" : "object"
+              },
+              "type" : "array"
+            },
+            "type" : "array"
+          },
+          "columns" : {
+            "description" : "字段列表",
+            "example" : "[{\"column_name\":\"country\",\"column_cname\":\"国家\",\"data_type\":\"STRING\",\"column_type\":\"BASIC\",\"column_usage_type\":\"ALL\"},{\"column_name\":\"citry\",\"column_cname\":\"城市\",\"data_type\":\"STRING\",\"column_type\":\"BASIC\",\"column_usage_type\":\"ALL\"},{\"column_name\":\"measure_number\",\"column_cname\":\"指标名称\",\"data_type\":\"NUMBER\",\"column_type\":\"BASIC\",\"column_usage_type\":\"ALL\"}]",
+            "items" : {
+              "$ref" : "#/components/schemas/sensorsdata.analytics.v1.ColumnMeta"
+            },
+            "type" : "array"
+          },
+          "page_info" : {
+            "$ref" : "#/components/schemas/sensorsdata.analytics.v1.PageInfo"
+          }
+        },
+        "title" : "DatasetModelResponse",
+        "type" : "object"
+      },
+      "sensorsdata.analytics.v1.DatasetModelRequest" : {
+        "description" : "业务模型数据接口请求描述",
+        "properties" : {
+          "dataset_id" : {
+            "description" : "业务模型ID",
+            "example" : 1,
+            "format" : "int32",
+            "type" : "integer"
+          },
+          "dimensions" : {
+            "description" : "维度列表",
+            "example" : "[{\"column_name\" : \"country\"} , {\"column_name\" : \"city\"}]",
+            "items" : {
+              "$ref" : "#/components/schemas/sensorsdata.analytics.v1.Dimension"
+            },
+            "type" : "array"
+          },
+          "measures" : {
+            "description" : "指标列表 注意：明细模式和预聚合模式下业务模型下不需要传指标聚合方式，本身带有聚合的计算列指标不需要传聚合方式",
+            "example" : "[{\"column_name\": \"measure_number\",\"aggregation\": \"COUNT\",\"measure_filter\": {\"function\": \"notSet\"}}]",
+            "items" : {
+              "$ref" : "#/components/schemas/sensorsdata.analytics.v1.Measure"
+            },
+            "type" : "array"
+          },
+          "dimension_filters" : {
+            "$ref" : "#/components/schemas/sensorsdata.analytics.v1.ApiRequestFilter"
+          },
+          "sorts" : {
+            "description" : "排序",
+            "example" : "[{\"sort_method\": \"ASC\" , \"sort_column_name\" : \"country\"} , {\"sort_method\": \"DESC\" , \"sort_column_name\" : \"city\"}]",
+            "items" : {
+              "$ref" : "#/components/schemas/sensorsdata.analytics.v1.Sort"
+            },
+            "type" : "array"
+          },
+          "description" : {
+            "description" : "查询描述",
+            "example" : "业务模型查询描述",
+            "type" : "string"
+          },
+          "page_index" : {
+            "description" : "分页-第几页",
+            "example" : 1,
+            "format" : "int32",
+            "type" : "integer"
+          },
+          "page_size" : {
+            "description" : "分页-每页个数",
+            "example" : 10,
+            "format" : "int32",
+            "type" : "integer"
+          },
+          "from_date" : {
+            "description" : "开始时间 格式为yyyy-MM-dd HH:mm:ss 二维表模式下不需要传，明细模式下必须要传，预聚合模式下如果存在时间维度则需要传",
+            "example" : "2023-01-01 00:00:00",
+            "type" : "string"
+          },
+          "to_date" : {
+            "description" : "结束时间 格式为yyyy-MM-dd HH:mm:ss 二维表模式下不需要传，明细模式下必须要传，预聚合模式下如果存在时间维度则需要传",
+            "example" : "2023-12-31 00:00:00",
+            "type" : "string"
+          },
+          "measure_filters" : {
+            "$ref" : "#/components/schemas/sensorsdata.analytics.v1.ApiMeasureFilter"
+          },
+          "model_type" : {
+            "description" : "业务模型形态，默认值为，如果支持模型态则默认为模型态，否则为二维表形态",
+            "enum" : [ "DATASET_MODEL_TYPE_UNSPECIFIED", "DATASET_MODEL_TYPE_MODEL", "DATASET_MODEL_TYPE_TABLE" ],
+            "type" : "string"
+          }
+        },
+        "required" : [ "dataset_id", "description", "measures" ],
+        "title" : "DatasetModelRequest",
+        "type" : "object"
+      },
+      "sensorsdata.analytics.v1.DatasetSyncTaskDetailRequest" : {
+        "description" : "获取刷新调度任务详情接口请求描述",
+        "properties" : {
+          "sync_task_id" : {
+            "description" : "同步任务ID",
+            "example" : 1,
+            "format" : "int32",
+            "type" : "integer"
+          }
+        },
+        "required" : [ "sync_task_id" ],
+        "title" : "DatasetSyncTaskDetailRequest",
+        "type" : "object"
+      },
+      "sensorsdata.analytics.v1.DatasetDetailResponse" : {
+        "description" : "请求业务模型详情接口的返回结构描述",
+        "properties" : {
+          "dataset_id" : {
+            "description" : "业务模型ID",
+            "example" : 1,
+            "format" : "int32",
+            "type" : "integer"
+          },
+          "dataset_type" : {
+            "description" : "业务模型类型\n - DATASET_TYPE_UNSPECIFIED 未知\n - CUSTOME_SQL_QUERY 自定义查询\n - ANALYSIS_MODEL_SEGMENTATION 事件分析;\n - ANALYSIS_MODEL_RETENTION 留存分析\n - ANALYSIS_MODEL_FUNNEL 漏斗分析\n - ANALYSIS_MODEL_SESSION session分析\n - ANALYSIS_MODEL_FANCY_METRIC 自定义业务分析\n - ANALYSIS_MODEL_SEGMENTATION_TABLE 事件分析结果表\n - ANALYSIS_MODEL_RETENTION_TABLE 留存分析结果表\n - ANALYSIS_MODEL_FUNNEL_TABLE 漏斗分析结果表\n - ANALYSIS_MODEL_SESSION_TABLE session分析结果表\n - EXTERNAL_TABLE 数据外部表\n - ALYSIS_MODEL_ADDICTION 分布分析\n - ANALYSIS_MODEL_INTERVAL 间隔分析\n - ANALYSIS_MODEL_LTV ltv分析\n - ANALYSIS_MODEL_ATTRIBUTE 属性分析\n - JOIN_TABLE 拼表类型",
+            "enum" : [ "DATASET_TYPE_UNSPECIFIED", "CUSTOME_SQL_QUERY", "ANALYSIS_MODEL_SEGMENTATION", "ANALYSIS_MODEL_RETENTION", "ANALYSIS_MODEL_FUNNEL", "ANALYSIS_MODEL_FANCY_METRIC", "ANALYSIS_MODEL_SEGMENTATION_TABLE", "ANALYSIS_MODEL_RETENTION_TABLE", "ANALYSIS_MODEL_FUNNEL_TABLE", "ANALYSIS_MODEL_SESSION_TABLE", "EXTERNAL_TABLE", "ALYSIS_MODEL_ADDICTION", "ANALYSIS_MODEL_INTERVAL", "ANALYSIS_MODEL_LTV", "ANALYSIS_MODEL_ATTRIBUTE", "JOIN_TABLE", "ANALYSIS_MODEL_SESSION", "ANALYSIS_PERSONAS_GROUP", "ANALYSIS_MODEL_ATTRIBUTION", "UNION_TABLE", "DIMENSION_JOIN_MODEL" ],
+            "example" : "CUSTOME_SQL_QUERY",
+            "type" : "string"
+          },
+          "dataset_storage_type" : {
+            "description" : "业务模型存储类型\n - DATASET_STORAGE_TYPE_UNSPECIFIED 未知\n - ANALYSIS_DETAIL 明细模式\n - ANALYSIS_ROLLUP 合计模式\n - PRE_AGG 预聚合模式\n - TABLE 二维表模式",
+            "enum" : [ "DATASET_STORAGE_TYPE_UNSPECIFIED", "ANALYSIS_DETAIL", "ANALYSIS_ROLLUP", "PRE_AGG", "TABLE" ],
+            "example" : "TABLE",
+            "type" : "string"
+          },
+          "dataset_cname" : {
+            "description" : "业务模型显示名",
+            "example" : "业务模型显示名",
+            "type" : "string"
+          },
+          "columns" : {
+            "description" : "业务模型维度和指标字段列表",
+            "example" : "[{\"column_name\":\"country\",\"column_cname\":\"国家\",\"data_type\":\"STRING\",\"column_type\":\"BASIC\",\"column_usage_type\":\"ALL\"},{\"column_name\":\"citry\",\"column_cname\":\"城市\",\"data_type\":\"STRING\",\"column_type\":\"BASIC\",\"column_usage_type\":\"ALL\"},{\"column_name\":\"measure_number\",\"column_cname\":\"指标名称\",\"data_type\":\"NUMBER\",\"column_type\":\"BASIC\",\"column_usage_type\":\"ALL\"},{\"column_name\":\"calculate_measure_number\",\"column_cname\":\"计算列1\",\"data_type\":\"NUMBER\",\"column_type\":\"CALCULATE\",\"column_usage_type\":\"MEASURE\"}]",
+            "items" : {
+              "$ref" : "#/components/schemas/sensorsdata.analytics.v1.ColumnMeta"
+            },
+            "type" : "array"
+          },
+          "last_sync_success_time" : {
+            "description" : "最近一次成功更新时间",
+            "example" : "2023-01-01 00:00:00",
+            "type" : "string"
+          },
+          "sync_status" : {
+            "description" : "更新状态\n - WAITING 待更新\n - SUCCESS 成功\n - FAILED 失败\n - DOING 更新中\n - DATA_EXCEPTION 数据异常\n - REFRESH_WAITING 回刷等待中\n - RETRY 失败重试",
+            "enum" : [ "SYNC_STATUS_UNSPECIFIED", "WAITING", "SUCCESS", "FAILED", "DOING", "DATA_EXCEPTION", "REFRESH_WAITING", "RETRY" ],
+            "example" : "SUCCESS",
+            "type" : "string"
+          },
+          "scheduler_status" : {
+            "description" : "业务模型调度类型\n - MANUALLY 手动\n - NOT_START 未开始（调度时间在未来时间）\n - PROCESSING_BY_HOUR  按小时\n - PROCESSING_BY_DAY  按天\n - PROCESSING_BY_WEEK 按周\n - PROCESSING_BY_MONTH  按月\n - FINISH 正常结束\n - ABNORMAL_FINISH  异常结束\n - SCHEDULER_REALTIME 实时\n - NONE 无需调度\n - SCHEDULER_LIVE_AGGREGATION 实时聚合更新",
+            "enum" : [ "SCHEDULER_STATUS_UNSPECIFIED", "MANUALLY", "NOT_START", "PROCESSING_BY_HOUR", "PROCESSING_BY_DAY", "PROCESSING_BY_WEEK", "PROCESSING_BY_MONTH", "FINISH", "ABNORMAL_FINISH", "REALTIME", "NONE", "LIVE_AGGREGATION" ],
+            "example" : "PROCESSING_BY_HOUR",
+            "type" : "string"
+          },
+          "sync_crontab" : {
+            "description" : "同步表达式",
+            "example" : "[\"0 0 4 * * ?\"]",
+            "type" : "string"
+          },
+          "sync_type" : {
+            "description" : "同步方式\n - SYNC_TYPE_UNSPECIFIED 未知\n - FULL 全量\n - INCREMENTAL 增量",
+            "enum" : [ "SYNC_TYPE_UNSPECIFIED", "FULL", "INCREMENTAL" ],
+            "example" : "FULL",
+            "type" : "string"
+          },
+          "permission_info" : {
+            "$ref" : "#/components/schemas/sensorsdata.analytics.v1.PermissionInfo"
+          },
+          "manager_permission_config" : {
+            "$ref" : "#/components/schemas/sensorsdata.analytics.v1.ManagerPermissionConfig"
+          },
+          "update_time" : {
+            "description" : "最后编辑时间",
+            "type" : "string"
+          },
+          "description" : {
+            "description" : "备注信息",
+            "type" : "string"
+          },
+          "analysis_request_json" : {
+            "description" : "分析模型的请求条件",
+            "type" : "string"
+          },
+          "time_unit" : {
+            "description" : "查看的时间粒度，可以是，MINUTE 分钟，HOUR：按小时，DAY：按天，WEEK：按周，MONTH：按月，YEAR：按年",
+            "enum" : [ "UNIT_TYPE_UNSPECIFIED", "HOUR", "DAY", "WEEK", "MONTH", "YEAR", "QUARTER", "MINUTE", "SECOND" ],
+            "example" : "DAY",
+            "type" : "string"
+          },
+          "data_range_time" : {
+            "$ref" : "#/components/schemas/sensorsdata.analytics.v1.DatasetTimeRange"
+          },
+          "real_data_range_times" : {
+            "description" : "实际数据范围，是调度过且成功的时间范围，不代表一定有数据",
+            "items" : {
+              "$ref" : "#/components/schemas/sensorsdata.analytics.v1.DatasetTimeRange"
+            },
+            "type" : "array"
+          }
+        },
+        "title" : "DatasetDetailResponse",
+        "type" : "object"
+      },
+      "sensorsdata.analytics.v1.DutyInfo" : {
+        "description" : "",
+        "properties" : {
+          "id" : {
+            "description" : "职务ID",
+            "format" : "int32",
+            "type" : "integer"
+          },
+          "cname" : {
+            "description" : "职务名称",
+            "type" : "string"
+          }
+        },
+        "title" : "DutyInfo",
+        "type" : "object"
+      },
+      "sensorsdata.analytics.v1.ApiMeasureFilter" : {
+        "description" : "指标筛选结构",
+        "properties" : {
+          "relation" : {
+            "description" : "",
+            "enum" : [ "FILTER_RELATION_UNSPECIFIED", "AND", "OR" ],
+            "example" : "AND",
+            "type" : "string"
+          },
+          "filters" : {
+            "description" : "",
+            "example" : "[{\"column_name\": \"measure_number\" , \"aggregation\" : \"COUNT\" , \"function\" : \"notSet\"} , {\"column_name\": \"measure_number\" , \"aggregation\" : \"SUM\" , \"function\" : \"notSet\"} ]",
+            "items" : {
+              "$ref" : "#/components/schemas/sensorsdata.analytics.v1.MeasureAggFilter"
+            },
+            "type" : "array"
+          }
+        },
+        "title" : "ApiMeasureFilter",
+        "type" : "object"
+      },
+      "sensorsdata.analytics.v1.RoleInfo" : {
+        "description" : "",
+        "properties" : {
+          "id" : {
+            "description" : "角色ID",
+            "format" : "int32",
+            "type" : "integer"
+          },
+          "cname" : {
+            "description" : "角色名称",
+            "type" : "string"
+          }
+        },
+        "title" : "RoleInfo",
+        "type" : "object"
+      },
+      "sensorsdata.analytics.v1.QueryParameter" : {
+        "description" : "参数对象\n 特定参数：\n - ${limit} （业务模型数据量超过1000w的情况下必须设置）分页\n 用户可以自定义设置动态参数",
+        "properties" : {
+          "param_key" : {
+            "description" : "参数",
+            "type" : "string"
+          },
+          "param_value" : {
+            "description" : "参数值",
+            "type" : "string"
+          }
+        },
+        "title" : "QueryParameter",
+        "type" : "object"
+      },
+      "sensorsdata.analytics.v1.DatasetTableSqlRequest" : {
+        "description" : "sql查询业务模型数据接口请求参数描述",
+        "properties" : {
+          "sql" : {
+            "description" : "sql语句, 只支持单表查询，不支持计算列查询\n 可以支持的预制参数\n - ${dataset_table_XXid_XXalias} （必须设置）引用的业务模型,这个预制参数是为了做业务模型的权限限制,会解析成一个子查询，XXid是具体的业务模型ID,XXalias是表别名(这里的xxalias是个可选参数，没有取别名时不用传，取了才需要传入)\n - ${base_time} 动态变化时间，仅指当日零点",
+            "example" : "select t1.country,t1.city,t1.measure_number  from ${dataset_table_1_t1} where date >= ${base_time} ${limit};\nselect country , city,measure_number from ${dataset_table_1} where date >= ${base_time} ${limit};",
+            "type" : "string"
+          },
+          "query_parameters" : {
+            "description" : "",
+            "example" : "[{\"param_key\":\"limit\",\"param_value\":\"10\"}]",
+            "items" : {
+              "$ref" : "#/components/schemas/sensorsdata.analytics.v1.QueryParameter"
+            },
+            "type" : "array"
+          },
+          "description" : {
+            "description" : "查询描述",
+            "example" : "sql查询描述",
+            "type" : "string"
+          }
+        },
+        "required" : [ "description", "query_parameters", "sql" ],
+        "title" : "DatasetTableSqlRequest",
+        "type" : "object"
+      },
+      "sensorsdata.analytics.v1.DatasetModelResponseHttpApiResult" : {
+        "properties" : {
+          "code" : {
+            "type" : "string"
+          },
+          "message" : {
+            "type" : "string"
+          },
+          "request_id" : {
+            "type" : "string"
+          },
+          "data" : {
+            "$ref" : "#/components/schemas/sensorsdata.analytics.v1.DatasetModelResponse"
+          },
+          "error_info" : {
+            "$ref" : "#/components/schemas/sensorsdata.common.ErrorInfo"
+          }
+        },
+        "title" : "sensorsdata.analytics.v1.DatasetModelResponseHttpApiResult",
+        "type" : "object"
+      },
+      "sensorsdata.analytics.v1.DatasetDetailResponseHttpApiResult" : {
+        "properties" : {
+          "code" : {
+            "type" : "string"
+          },
+          "message" : {
+            "type" : "string"
+          },
+          "request_id" : {
+            "type" : "string"
+          },
+          "data" : {
+            "$ref" : "#/components/schemas/sensorsdata.analytics.v1.DatasetDetailResponse"
+          },
+          "error_info" : {
+            "$ref" : "#/components/schemas/sensorsdata.common.ErrorInfo"
+          }
+        },
+        "title" : "sensorsdata.analytics.v1.DatasetDetailResponseHttpApiResult",
+        "type" : "object"
+      },
+      "sensorsdata.analytics.v1.CommonResponseHttpApiResult" : {
+        "properties" : {
+          "code" : {
+            "type" : "string"
+          },
+          "message" : {
+            "type" : "string"
+          },
+          "request_id" : {
+            "type" : "string"
+          },
+          "data" : {
+            "$ref" : "#/components/schemas/sensorsdata.analytics.v1.CommonResponse"
+          },
+          "error_info" : {
+            "$ref" : "#/components/schemas/sensorsdata.common.ErrorInfo"
+          }
+        },
+        "title" : "sensorsdata.analytics.v1.CommonResponseHttpApiResult",
+        "type" : "object"
+      },
+      "sensorsdata.analytics.v1.PagingQueryReportResponseHttpApiResult" : {
+        "properties" : {
+          "code" : {
+            "type" : "string"
+          },
+          "message" : {
+            "type" : "string"
+          },
+          "request_id" : {
+            "type" : "string"
+          },
+          "data" : {
+            "$ref" : "#/components/schemas/sensorsdata.analytics.v1.PagingQueryReportResponse"
+          },
+          "error_info" : {
+            "$ref" : "#/components/schemas/sensorsdata.common.ErrorInfo"
+          }
+        },
+        "title" : "sensorsdata.analytics.v1.PagingQueryReportResponseHttpApiResult",
+        "type" : "object"
+      },
+      "sensorsdata.analytics.v1.DatasetGroup" : {
+        "description" : "",
+        "properties" : {
+          "id" : {
+            "description" : "分组ID",
+            "example" : 1,
+            "format" : "int32",
+            "type" : "integer"
+          },
+          "group_name" : {
+            "description" : "分组名称",
+            "example" : "分组名称",
+            "type" : "string"
+          }
+        },
+        "title" : "DatasetGroup",
+        "type" : "object"
+      },
+      "sensorsdata.analytics.v1.DatasetDetailRequest" : {
+        "description" : "请求业务模型详情接口的参数描述",
+        "properties" : {
+          "dataset_id" : {
+            "description" : "业务模型ID",
+            "example" : 1,
+            "format" : "int32",
+            "type" : "integer"
+          },
+          "model_type" : {
+            "description" : "业务模型形态，默认值为，如果支持模型态则默认为模型态，否则为二维表形态",
+            "enum" : [ "DATASET_MODEL_TYPE_UNSPECIFIED", "DATASET_MODEL_TYPE_MODEL", "DATASET_MODEL_TYPE_TABLE" ],
+            "type" : "string"
+          }
+        },
+        "required" : [ "dataset_id" ],
+        "title" : "DatasetDetailRequest",
+        "type" : "object"
+      },
+      "sensorsdata.common.HttpApiResult" : {
+        "properties" : {
+          "code" : {
+            "type" : "string"
+          },
+          "message" : {
+            "type" : "string"
+          },
+          "request_id" : {
+            "type" : "string"
+          },
+          "data" : {
+            "properties" : { },
+            "type" : "object"
+          },
+          "error_info" : {
+            "$ref" : "#/components/schemas/sensorsdata.common.ErrorInfo"
+          }
+        },
+        "title" : "HttpApiResult",
+        "type" : "object"
+      },
+      "sensorsdata.analytics.v1.ApiRequestPermissionFilter" : {
+        "description" : "",
+        "properties" : {
+          "event_permission_filter" : {
+            "$ref" : "#/components/schemas/sensorsdata.analytics.v1.ApiRequestFilter"
+          },
+          "user_permission_filter" : {
+            "$ref" : "#/components/schemas/sensorsdata.analytics.v1.ApiRequestFilter"
+          }
+        },
+        "title" : "ApiRequestPermissionFilter",
+        "type" : "object"
+      },
+      "sensorsdata.analytics.v1.PagingQueryDatasetResponseHttpApiResult" : {
+        "properties" : {
+          "code" : {
+            "type" : "string"
+          },
+          "message" : {
+            "type" : "string"
+          },
+          "request_id" : {
+            "type" : "string"
+          },
+          "data" : {
+            "$ref" : "#/components/schemas/sensorsdata.analytics.v1.PagingQueryDatasetResponse"
+          },
+          "error_info" : {
+            "$ref" : "#/components/schemas/sensorsdata.common.ErrorInfo"
+          }
+        },
+        "title" : "sensorsdata.analytics.v1.PagingQueryDatasetResponseHttpApiResult",
+        "type" : "object"
+      },
+      "sensorsdata.analytics.v1.PermissionInfo" : {
+        "description" : "权限信息",
+        "properties" : {
+          "dataset_permission_type" : {
+            "description" : "表示业务模型的权限类型",
+            "enum" : [ "PERMISSION_TYPE_UNSPECIFIED", "EUI_PERMISSION", "DIMENSION_MEASURE_PERMISSION", "ALL_DATA_PERMISSION" ],
+            "type" : "string"
+          },
+          "creator_eui_filter_snapshot" : {
+            "$ref" : "#/components/schemas/sensorsdata.analytics.v1.ApiRequestPermissionFilter"
+          },
+          "allow_measure_columns" : {
+            "description" : "可用的指标维度权限",
+            "items" : {
+              "type" : "string"
+            },
+            "type" : "array"
+          },
+          "dimension_permission_filter" : {
+            "$ref" : "#/components/schemas/sensorsdata.analytics.v1.ApiRequestFilter"
+          }
+        },
+        "title" : "PermissionInfo",
+        "type" : "object"
+      },
+      "sensorsdata.analytics.v1.DatasetGroupListResponseHttpApiResult" : {
+        "properties" : {
+          "code" : {
+            "type" : "string"
+          },
+          "message" : {
+            "type" : "string"
+          },
+          "request_id" : {
+            "type" : "string"
+          },
+          "data" : {
+            "$ref" : "#/components/schemas/sensorsdata.analytics.v1.DatasetGroupListResponse"
+          },
+          "error_info" : {
+            "$ref" : "#/components/schemas/sensorsdata.common.ErrorInfo"
+          }
+        },
+        "title" : "sensorsdata.analytics.v1.DatasetGroupListResponseHttpApiResult",
+        "type" : "object"
+      },
+      "sensorsdata.analytics.v1.DatasetGroupListResponse" : {
+        "description" : "业务模型分组信息列表接口返回结构",
+        "properties" : {
+          "dataset_groups" : {
+            "description" : "",
+            "items" : {
+              "$ref" : "#/components/schemas/sensorsdata.analytics.v1.DatasetGroup"
+            },
+            "type" : "array"
+          }
+        },
+        "title" : "DatasetGroupListResponse",
+        "type" : "object"
+      },
+      "sensorsdata.analytics.v1.MeasureAggFilter" : {
+        "description" : "指标过滤信息",
+        "properties" : {
+          "column_name" : {
+            "description" : "指标名称",
+            "type" : "string"
+          },
+          "aggregation" : {
+            "description" : "聚合方式，非必传，计算列或者明细和预聚合模式的指标都不需要指定聚合方式\n - AGGREGATION_UNSPECIFIED 未知\n - AVG 平均数\n - COUNT 计数\n - MAX 最大值\n - MIN 最小值\n - UNIQ_COUNT 去重计数\n - APPX_MEDIAN 中位数\n - STDDEV_POP 标准差\n - VAR_POP 方差\n - SUM 求和",
+            "enum" : [ "AGGREGATION_UNSPECIFIED", "AVG", "COUNT", "MAX", "MIN", "UNIQ_COUNT", "APPX_MEDIAN", "STDDEV_POP", "VAR_POP", "SUM" ],
+            "type" : "string"
+          },
+          "function" : {
+            "description" : "筛选函数，和ApiRequestFilter里的function保持一致\n - equal 等于\n - notEqual 不等于\n - contain\t包含\n - notContain 不包含\n - isSet 有值\n - notSet 没值\n - isEmpty\t为空\n - isNotEmpty 不为空\n - rlike 正则匹配\n - notrlike 正则不匹配\n - less 小于\n - greater 大于\n - between 区间\n - isTrue\t为真\n - isFalse 为假",
+            "type" : "string"
+          },
+          "params" : {
+            "description" : "参数",
+            "items" : {
+              "properties" : { },
+              "type" : "object"
+            },
+            "type" : "array"
+          }
+        },
+        "title" : "MeasureAggFilter",
+        "type" : "object"
+      },
+      "sensorsdata.analytics.v1.DatasetRefreshRequest" : {
+        "description" : "刷新业务模型接口请求参数描述 , 不支持拼表，外部数据表和实时业务模型刷新",
+        "properties" : {
+          "dataset_id" : {
+            "description" : "业务模型ID",
+            "example" : 1,
+            "format" : "int32",
+            "type" : "integer"
+          },
+          "sync_type" : {
+            "description" : "同步方式：全量/增量",
+            "enum" : [ "SYNC_TYPE_UNSPECIFIED", "FULL", "INCREMENTAL" ],
+            "example" : "INCREMENTAL",
+            "type" : "string"
+          },
+          "refresh_from_date" : {
+            "description" : "刷新开始时间，增量的情况需要填",
+            "example" : "2023-01-01 00:00:00",
+            "type" : "string"
+          },
+          "refresh_to_date" : {
+            "description" : "刷新结束时间，增量的情况需要填",
+            "example" : "2023-12-31 00:00:00",
+            "type" : "string"
+          }
+        },
+        "required" : [ "dataset_id", "sync_type" ],
+        "title" : "DatasetRefreshRequest",
+        "type" : "object"
+      },
+      "sensorsdata.analytics.v1.Sort" : {
+        "description" : "排序信息",
+        "properties" : {
+          "sort_method" : {
+            "description" : "排序方式",
+            "enum" : [ "SORT_METHOD_UNSPECIFIED", "DESC", "ASC" ],
+            "type" : "string"
+          },
+          "sort_column_name" : {
+            "description" : "排序字段",
+            "type" : "string"
+          }
+        },
+        "title" : "Sort",
+        "type" : "object"
+      },
+      "sensorsdata.analytics.v1.DatasetSyncTaskDetailResponseHttpApiResult" : {
+        "properties" : {
+          "code" : {
+            "type" : "string"
+          },
+          "message" : {
+            "type" : "string"
+          },
+          "request_id" : {
+            "type" : "string"
+          },
+          "data" : {
+            "$ref" : "#/components/schemas/sensorsdata.analytics.v1.DatasetSyncTaskDetailResponse"
+          },
+          "error_info" : {
+            "$ref" : "#/components/schemas/sensorsdata.common.ErrorInfo"
+          }
+        },
+        "title" : "sensorsdata.analytics.v1.DatasetSyncTaskDetailResponseHttpApiResult",
+        "type" : "object"
+      },
+      "sensorsdata.analytics.v1.DatasetResponse" : {
+        "description" : "列表里单个业务模型信息",
+        "properties" : {
+          "dataset_id" : {
+            "description" : "业务模型ID",
+            "example" : 1,
+            "format" : "int32",
+            "type" : "integer"
+          },
+          "dataset_type" : {
+            "description" : "业务模型来源类型\n - DATASET_TYPE_UNSPECIFIED 未知\n - CUSTOME_SQL_QUERY 自定义查询\n - ANALYSIS_MODEL_SEGMENTATION 事件分析;\n - ANALYSIS_MODEL_RETENTION 留存分析\n - ANALYSIS_MODEL_FUNNEL 漏斗分析\n - ANALYSIS_MODEL_FANCY_METRIC 自定义业务分析\n - ANALYSIS_MODEL_SEGMENTATION_TABLE 事件分析结果表\n - ANALYSIS_MODEL_RETENTION_TABLE 留存分析结果表\n - ANALYSIS_MODEL_FUNNEL_TABLE 漏斗分析结果表\n - ANALYSIS_MODEL_SESSION_TABLE session分析结果表\n - EXTERNAL_TABLE 数据外部表",
+            "enum" : [ "DATASET_TYPE_UNSPECIFIED", "CUSTOME_SQL_QUERY", "ANALYSIS_MODEL_SEGMENTATION", "ANALYSIS_MODEL_RETENTION", "ANALYSIS_MODEL_FUNNEL", "ANALYSIS_MODEL_FANCY_METRIC", "ANALYSIS_MODEL_SEGMENTATION_TABLE", "ANALYSIS_MODEL_RETENTION_TABLE", "ANALYSIS_MODEL_FUNNEL_TABLE", "ANALYSIS_MODEL_SESSION_TABLE", "EXTERNAL_TABLE", "ALYSIS_MODEL_ADDICTION", "ANALYSIS_MODEL_INTERVAL", "ANALYSIS_MODEL_LTV", "ANALYSIS_MODEL_ATTRIBUTE", "JOIN_TABLE", "ANALYSIS_MODEL_SESSION", "ANALYSIS_PERSONAS_GROUP", "ANALYSIS_MODEL_ATTRIBUTION", "UNION_TABLE", "DIMENSION_JOIN_MODEL" ],
+            "example" : "CUSTOME_SQL_QUERY",
+            "type" : "string"
+          },
+          "dataset_cname" : {
+            "description" : "业务模型显示名",
+            "example" : "业务模型显示名",
+            "type" : "string"
+          },
+          "is_scheduler_pause" : {
+            "description" : "是否为调度暂停状态",
+            "example" : false,
+            "type" : "boolean"
+          }
+        },
+        "title" : "DatasetResponse",
+        "type" : "object"
+      },
+      "sensorsdata.analytics.v1.PageInfo" : {
+        "description" : "",
+        "properties" : {
+          "current_page" : {
+            "description" : "",
+            "format" : "int32",
+            "type" : "integer"
+          },
+          "page_count" : {
+            "description" : "",
+            "format" : "int32",
+            "type" : "integer"
+          },
+          "total" : {
+            "description" : "",
+            "format" : "int32",
+            "type" : "integer"
+          }
+        },
+        "title" : "PageInfo",
+        "type" : "object"
+      },
+      "sensorsdata.analytics.v1.CoManagerInfo" : {
+        "description" : "",
+        "properties" : {
+          "principal_type" : {
+            "description" : "协助管理权限配置类型 [ALL : 支持全部对象管理 , CUSTOM : 指定对象管理]",
+            "enum" : [ "PRINCIPAL_TYPE_UNSPECIFIED", "ALL", "CUSTOM" ],
+            "type" : "string"
+          },
+          "accounts" : {
+            "description" : "成员信息",
+            "items" : {
+              "$ref" : "#/components/schemas/sensorsdata.analytics.v1.AccountInfo"
+            },
+            "type" : "array"
+          },
+          "roles" : {
+            "description" : "角色信息",
+            "items" : {
+              "$ref" : "#/components/schemas/sensorsdata.analytics.v1.RoleInfo"
+            },
+            "type" : "array"
+          },
+          "duties" : {
+            "description" : "职务信息",
+            "items" : {
+              "$ref" : "#/components/schemas/sensorsdata.analytics.v1.DutyInfo"
+            },
+            "type" : "array"
+          }
+        },
+        "title" : "CoManagerInfo",
+        "type" : "object"
+      },
+      "sensorsdata.analytics.v1.Measure" : {
+        "description" : "指标对象信息",
+        "properties" : {
+          "column_name" : {
+            "description" : "指标名称",
+            "type" : "string"
+          },
+          "aggregation" : {
+            "description" : "聚合方式，非必传，计算列或者明细和预聚合模式的指标都不需要指定聚合方式\n - AGGREGATION_UNSPECIFIED 未知\n - AVG 平均数\n - COUNT 计数\n - MAX 最大值\n - MIN 最小值\n - UNIQ_COUNT 去重计数\n - APPX_MEDIAN 中位数\n - STDDEV_POP 标准差\n - VAR_POP 方差\n - SUM 求和",
+            "enum" : [ "AGGREGATION_UNSPECIFIED", "AVG", "COUNT", "MAX", "MIN", "UNIQ_COUNT", "APPX_MEDIAN", "STDDEV_POP", "VAR_POP", "SUM" ],
+            "type" : "string"
+          },
+          "measure_filter" : {
+            "$ref" : "#/components/schemas/sensorsdata.analytics.v1.MeasureFilter"
+          }
+        },
+        "title" : "Measure",
+        "type" : "object"
+      },
+      "sensorsdata.analytics.v1.DatasetListResponseHttpApiResult" : {
+        "properties" : {
+          "code" : {
+            "type" : "string"
+          },
+          "message" : {
+            "type" : "string"
+          },
+          "request_id" : {
+            "type" : "string"
+          },
+          "data" : {
+            "$ref" : "#/components/schemas/sensorsdata.analytics.v1.DatasetListResponse"
+          },
+          "error_info" : {
+            "$ref" : "#/components/schemas/sensorsdata.common.ErrorInfo"
+          }
+        },
+        "title" : "sensorsdata.analytics.v1.DatasetListResponseHttpApiResult",
+        "type" : "object"
+      },
+      "sensorsdata.analytics.v1.AccountInfo" : {
+        "description" : "",
+        "properties" : {
+          "id" : {
+            "description" : "账户ID",
+            "format" : "int32",
+            "type" : "integer"
+          },
+          "cname" : {
+            "description" : "用户名称",
+            "type" : "string"
+          }
+        },
+        "title" : "AccountInfo",
+        "type" : "object"
+      },
+      "sensorsdata.analytics.v1.DatasetRefreshResponseHttpApiResult" : {
+        "properties" : {
+          "code" : {
+            "type" : "string"
+          },
+          "message" : {
+            "type" : "string"
+          },
+          "request_id" : {
+            "type" : "string"
+          },
+          "data" : {
+            "$ref" : "#/components/schemas/sensorsdata.analytics.v1.DatasetRefreshResponse"
+          },
+          "error_info" : {
+            "$ref" : "#/components/schemas/sensorsdata.common.ErrorInfo"
+          }
+        },
+        "title" : "sensorsdata.analytics.v1.DatasetRefreshResponseHttpApiResult",
+        "type" : "object"
+      },
+      "sensorsdata.common.ErrorCause" : {
+        "properties" : {
+          "error_cause" : {
+            "description" : "致错原因1",
+            "example" : "参数异常1",
+            "type" : "string"
+          },
+          "action_suggestion" : {
+            "description" : "操作建议，针对该原因，建议的解决方式",
+            "example" : "检测入参的数据类型1",
+            "type" : "string"
+          }
+        },
+        "title" : "ErrorCause",
+        "type" : "object"
+      },
+      "sensorsdata.analytics.v1.ColumnMeta" : {
+        "description" : "字段元数据信息",
+        "properties" : {
+          "column_name" : {
+            "description" : "字段名",
+            "type" : "string"
+          },
+          "column_cname" : {
+            "description" : "字段显示名",
+            "type" : "string"
+          },
+          "data_type" : {
+            "description" : "字段数据类型",
+            "enum" : [ "DATA_TYPE_UNSPECIFIED", "STRING", "DATETIME", "BOOL", "NUMBER" ],
+            "type" : "string"
+          },
+          "column_type" : {
+            "description" : "字段分类\n - COLUMN_TYPE_UNSPECIFIED 未知\n - CALCULATE 计算列\n - BASIC 普通列",
+            "enum" : [ "COLUMN_TYPE_UNSPECIFIED", "CALCULATE", "BASIC" ],
+            "type" : "string"
+          },
+          "column_usage_type" : {
+            "description" : "字段业务使用类型\n - COLUMN_USAGE_TYPE_UNSPECIFIED\n - MEASURE 指标\n - DIMENSION 维度\n - ALL 全部，可以是维度也可以是指标",
+            "enum" : [ "COLUMN_USAGE_TYPE_UNSPECIFIED", "MEASURE", "DIMENSION", "ALL" ],
+            "type" : "string"
+          },
+          "origin_column_name" : {
+            "description" : "分析模型的原始字段名称",
+            "type" : "string"
+          },
+          "sort_num" : {
+            "description" : "分析模型里指标/维度的顺序值",
+            "format" : "int32",
+            "type" : "integer"
+          },
+          "origin_data_type" : {
+            "description" : "分析模型里原始数据类型",
+            "enum" : [ "DATA_TYPE_UNSPECIFIED", "STRING", "DATETIME", "BOOL", "NUMBER" ],
+            "type" : "string"
+          },
+          "is_system_time" : {
+            "description" : "是否是预置时间字段",
+            "type" : "boolean"
+          }
+        },
+        "title" : "ColumnMeta",
+        "type" : "object"
+      },
+      "sensorsdata.common.ErrorInfo" : {
+        "properties" : {
+          "code" : {
+            "description" : "具体的错误码",
+            "example" : "XX-D-F-2-1",
+            "type" : "string"
+          },
+          "description" : {
+            "description" : "错误描述",
+            "example" : "前端参数校验异常,PARAMETER_FORMAT_ERROR(quantiles=[10, -90] is not include [0, 100])",
+            "type" : "string"
+          },
+          "system_response" : {
+            "description" : "致错的可能原因列表",
+            "example" : "系统终止了查询处理",
+            "type" : "string"
+          },
+          "error_causes" : {
+            "items" : {
+              "$ref" : "#/components/schemas/sensorsdata.common.ErrorCause"
+            },
+            "type" : "array"
+          },
+          "context" : {
+            "$ref" : "#/components/schemas/sensorsdata.common.ErrorContext"
+          }
+        },
+        "title" : "ErrorInfo",
+        "type" : "object"
+      },
+      "sensorsdata.analytics.v1.DatasetListResponse" : {
+        "description" : "请求业务模型列表接口的返回结构描述",
+        "properties" : {
+          "datasets" : {
+            "description" : "业务模型列表信息",
+            "items" : {
+              "$ref" : "#/components/schemas/sensorsdata.analytics.v1.DatasetResponse"
+            },
+            "type" : "array"
+          },
+          "page_info" : {
+            "$ref" : "#/components/schemas/sensorsdata.analytics.v1.PageInfo"
+          }
+        },
+        "title" : "DatasetListResponse",
+        "type" : "object"
+      },
+      "sensorsdata.analytics.v1.DatasetRefreshResponse" : {
+        "description" : "刷新业务模型接口返回结构描述",
+        "properties" : {
+          "sync_task_id" : {
+            "description" : "同步任务ID",
+            "example" : 1,
+            "format" : "int32",
+            "type" : "integer"
+          }
+        },
+        "title" : "DatasetRefreshResponse",
+        "type" : "object"
+      },
+      "sensorsdata.analytics.v1.Dimension" : {
+        "description" : "维度信息",
+        "properties" : {
+          "column_name" : {
+            "description" : "维度名称",
+            "type" : "string"
+          }
+        },
+        "title" : "Dimension",
+        "type" : "object"
+      },
+      "sensorsdata.analytics.v1.ResourcePvResponseHttpApiResult" : {
+        "properties" : {
+          "code" : {
+            "type" : "string"
+          },
+          "message" : {
+            "type" : "string"
+          },
+          "request_id" : {
+            "type" : "string"
+          },
+          "data" : {
+            "$ref" : "#/components/schemas/sensorsdata.analytics.v1.ResourcePvResponse"
+          },
+          "error_info" : {
+            "$ref" : "#/components/schemas/sensorsdata.common.ErrorInfo"
+          }
+        },
+        "title" : "sensorsdata.analytics.v1.ResourcePvResponseHttpApiResult",
+        "type" : "object"
+      },
+      "sensorsdata.analytics.v1.DatasetTimeRange" : {
+        "description" : "业务模型时间信息",
+        "properties" : {
+          "start_time" : {
+            "description" : "开始时间，格式为 yyyy-MM-dd HH:mm:ss",
+            "type" : "string"
+          },
+          "end_time" : {
+            "description" : "结束时间，格式为 yyyy-MM-dd HH:mm:ss",
+            "type" : "string"
+          }
+        },
+        "title" : "DatasetTimeRange",
+        "type" : "object"
+      },
+      "sensorsdata.analytics.v1.DatasetListRequest" : {
+        "description" : "请求业务模型详情接口的参数描述",
+        "properties" : {
+          "group_name" : {
+            "description" : "根据业务模型分组名称精确搜索",
+            "example" : "默认分组",
+            "type" : "string"
+          },
+          "dataset_types" : {
+            "description" : "根据业务模型来源类型搜索\n - DATASET_TYPE_UNSPECIFIED 未知\n - CUSTOME_SQL_QUERY 自定义查询\n - ANALYSIS_MODEL_SEGMENTATION 事件分析;\n - ANALYSIS_MODEL_RETENTION 留存分析\n - ANALYSIS_MODEL_FUNNEL 漏斗分析\n - ANALYSIS_MODEL_SESSION session分析\n - ANALYSIS_MODEL_FANCY_METRIC 自定义业务分析\n - ANALYSIS_MODEL_SEGMENTATION_TABLE 事件分析结果表\n - ANALYSIS_MODEL_RETENTION_TABLE 留存分析结果表\n - ANALYSIS_MODEL_FUNNEL_TABLE 漏斗分析结果表\n - ANALYSIS_MODEL_SESSION_TABLE session分析结果表\n - EXTERNAL_TABLE 数据外部表\n - ALYSIS_MODEL_ADDICTION 分布分析\n - ANALYSIS_MODEL_INTERVAL 间隔分析\n - ANALYSIS_MODEL_LTV ltv分析\n - ANALYSIS_MODEL_ATTRIBUTE 属性分析\n - JOIN_TABLE 拼表类型",
+            "example" : "[\"CUSTOME_SQL_QUERY\",\"ANALYSIS_MODEL_SEGMENTATION\"]",
+            "items" : {
+              "enum" : [ "DATASET_TYPE_UNSPECIFIED", "CUSTOME_SQL_QUERY", "ANALYSIS_MODEL_SEGMENTATION", "ANALYSIS_MODEL_RETENTION", "ANALYSIS_MODEL_FUNNEL", "ANALYSIS_MODEL_FANCY_METRIC", "ANALYSIS_MODEL_SEGMENTATION_TABLE", "ANALYSIS_MODEL_RETENTION_TABLE", "ANALYSIS_MODEL_FUNNEL_TABLE", "ANALYSIS_MODEL_SESSION_TABLE", "EXTERNAL_TABLE", "ALYSIS_MODEL_ADDICTION", "ANALYSIS_MODEL_INTERVAL", "ANALYSIS_MODEL_LTV", "ANALYSIS_MODEL_ATTRIBUTE", "JOIN_TABLE", "ANALYSIS_MODEL_SESSION", "ANALYSIS_PERSONAS_GROUP", "ANALYSIS_MODEL_ATTRIBUTION", "UNION_TABLE", "DIMENSION_JOIN_MODEL" ],
+              "type" : "string"
+            },
+            "type" : "array"
+          },
+          "scheduler_statuses" : {
+            "description" : "根据业务模型调度类型搜索\n - MANUALLY 手动\n - NOT_START 未开始（调度时间在未来时间）\n - PROCESSING_BY_HOUR  按小时\n - PROCESSING_BY_DAY  按天\n - PROCESSING_BY_WEEK 按周\n - PROCESSING_BY_MONTH  按月\n - FINISH 正常结束\n - ABNORMAL_FINISH  异常结束\n - SCHEDULER_REALTIME 实时\n - NONE 无需调度\n - LIVE_AGGREGATION 实时聚合更新",
+            "example" : "[\"PROCESSING_BY_HOUR\",\"MANUALLY\"]",
+            "items" : {
+              "enum" : [ "SCHEDULER_STATUS_UNSPECIFIED", "MANUALLY", "NOT_START", "PROCESSING_BY_HOUR", "PROCESSING_BY_DAY", "PROCESSING_BY_WEEK", "PROCESSING_BY_MONTH", "FINISH", "ABNORMAL_FINISH", "REALTIME", "NONE", "LIVE_AGGREGATION" ],
+              "type" : "string"
+            },
+            "type" : "array"
+          },
+          "sync_statuses" : {
+            "description" : "根据业务模型更新状态搜索\n - WAITING 待更新\n - SUCCESS 成功\n - FAILED 失败\n - DOING 更新中\n - DATA_EXCEPTION 数据异常\n - REFRESH_WAITING 回刷等待中\n - RETRY 失败重试",
+            "example" : "[\"SUCCESS\",\"WAITING\"]",
+            "items" : {
+              "enum" : [ "SYNC_STATUS_UNSPECIFIED", "WAITING", "SUCCESS", "FAILED", "DOING", "DATA_EXCEPTION", "REFRESH_WAITING", "RETRY" ],
+              "type" : "string"
+            },
+            "type" : "array"
+          },
+          "page_index" : {
+            "description" : "分页-第几页 从0开始",
+            "example" : 0,
+            "format" : "int32",
+            "type" : "integer"
+          },
+          "page_size" : {
+            "description" : "分页-每页个数",
+            "example" : 10,
+            "format" : "int32",
+            "type" : "integer"
+          },
+          "is_scheduler_pause" : {
+            "description" : "是否为调度暂停状态",
+            "example" : false,
+            "type" : "boolean"
+          }
+        },
+        "required" : [ "group_name" ],
+        "title" : "DatasetListRequest",
+        "type" : "object"
+      }
+    }
+  },
+  "x-sd-openapi-service-name" : "Dataset",
+  "x-sd-openapi-service-name-hyphen" : "dataset",
+  "x-sd-openapi-app-name" : "analytics",
+  "x-sd-openapi-service-name-zh_cn" : "业务集市",
+  "x-original-swagger-version" : "2.0"
+}

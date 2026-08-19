@@ -1,0 +1,314 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "神策智能运营"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "创建触发策略",
+        "type": "http"
+      },
+      "http": {
+        "method": "POST",
+        "url": "/api/v3/focus/v1/trigger-strategy/create",
+        "headers": [
+          {
+            "name": "api-key",
+            "value": ""
+          },
+          {
+            "name": "sensorsdata-project",
+            "value": ""
+          },
+          {
+            "name": "X-Organization-Id",
+            "value": ""
+          }
+        ],
+        "body": {
+          "type": "json",
+          "data": "{}"
+        }
+      },
+      "docs": "创建触发策略"
+    },
+    {
+      "info": {
+        "name": "启动触发策略",
+        "type": "http"
+      },
+      "http": {
+        "method": "POST",
+        "url": "/api/v3/focus/v1/trigger-strategy/start",
+        "headers": [
+          {
+            "name": "api-key",
+            "value": ""
+          },
+          {
+            "name": "sensorsdata-project",
+            "value": ""
+          },
+          {
+            "name": "X-Organization-Id",
+            "value": ""
+          }
+        ],
+        "body": {
+          "type": "json",
+          "data": "{}"
+        }
+      },
+      "docs": "启动触发策略"
+    },
+    {
+      "info": {
+        "name": "停止触发策略",
+        "type": "http"
+      },
+      "http": {
+        "method": "POST",
+        "url": "/api/v3/focus/v1/trigger-strategy/stop",
+        "headers": [
+          {
+            "name": "api-key",
+            "value": ""
+          },
+          {
+            "name": "sensorsdata-project",
+            "value": ""
+          },
+          {
+            "name": "X-Organization-Id",
+            "value": ""
+          }
+        ],
+        "body": {
+          "type": "json",
+          "data": "{}"
+        }
+      },
+      "docs": "停止触发策略"
+    },
+    {
+      "info": {
+        "name": "删除触发策略",
+        "type": "http"
+      },
+      "http": {
+        "method": "POST",
+        "url": "/api/v3/focus/v1/trigger-strategy/delete",
+        "headers": [
+          {
+            "name": "api-key",
+            "value": ""
+          },
+          {
+            "name": "sensorsdata-project",
+            "value": ""
+          },
+          {
+            "name": "X-Organization-Id",
+            "value": ""
+          }
+        ],
+        "body": {
+          "type": "json",
+          "data": "{}"
+        }
+      },
+      "docs": "删除触发策略"
+    },
+    {
+      "info": {
+        "name": "获取触发策略详情",
+        "type": "http"
+      },
+      "http": {
+        "method": "GET",
+        "url": "/api/v3/focus/v1/trigger-strategy/get",
+        "headers": [
+          {
+            "name": "api-key",
+            "value": ""
+          },
+          {
+            "name": "sensorsdata-project",
+            "value": ""
+          },
+          {
+            "name": "X-Organization-Id",
+            "value": ""
+          }
+        ],
+        "params": [
+          {
+            "name": "biz_id",
+            "value": "",
+            "type": "query",
+            "description": "触发策略 业务 ID"
+          }
+        ]
+      },
+      "docs": "获取触发策略详情"
+    },
+    {
+      "info": {
+        "name": "查询触发策略",
+        "type": "http"
+      },
+      "http": {
+        "method": "GET",
+        "url": "/api/v3/focus/v1/trigger-strategy/query",
+        "headers": [
+          {
+            "name": "api-key",
+            "value": ""
+          },
+          {
+            "name": "sensorsdata-project",
+            "value": ""
+          },
+          {
+            "name": "X-Organization-Id",
+            "value": ""
+          }
+        ],
+        "params": [
+          {
+            "name": "biz_key",
+            "value": "",
+            "type": "query",
+            "description": "触发策略业务 ID 或者触发策略业务名称"
+          },
+          {
+            "name": "status",
+            "value": "",
+            "type": "query",
+            "description": "触发策略状态"
+          },
+          {
+            "name": "type",
+            "value": "",
+            "type": "query",
+            "description": "触发策略类型"
+          },
+          {
+            "name": "create_time_start",
+            "value": "",
+            "type": "query",
+            "description": "触发策略创建开始时间"
+          },
+          {
+            "name": "create_time_end",
+            "value": "",
+            "type": "query",
+            "description": "触发策略创建结束时间"
+          },
+          {
+            "name": "page_num",
+            "value": "",
+            "type": "query",
+            "description": "页码"
+          },
+          {
+            "name": "page_size",
+            "value": "",
+            "type": "query",
+            "description": "页大小"
+          }
+        ]
+      },
+      "docs": "查询触发策略"
+    },
+    {
+      "info": {
+        "name": "修改触发策略",
+        "type": "http"
+      },
+      "http": {
+        "method": "POST",
+        "url": "/api/v3/focus/v1/trigger-strategy/modify",
+        "headers": [
+          {
+            "name": "api-key",
+            "value": ""
+          },
+          {
+            "name": "sensorsdata-project",
+            "value": ""
+          },
+          {
+            "name": "X-Organization-Id",
+            "value": ""
+          }
+        ],
+        "body": {
+          "type": "json",
+          "data": "{}"
+        }
+      },
+      "docs": "修改触发策略"
+    },
+    {
+      "info": {
+        "name": "校验触发策略 ID",
+        "type": "http"
+      },
+      "http": {
+        "method": "POST",
+        "url": "/api/v3/focus/v1/trigger-strategy/check",
+        "headers": [
+          {
+            "name": "api-key",
+            "value": ""
+          },
+          {
+            "name": "sensorsdata-project",
+            "value": ""
+          },
+          {
+            "name": "X-Organization-Id",
+            "value": ""
+          }
+        ],
+        "body": {
+          "type": "json",
+          "data": "{}"
+        }
+      },
+      "docs": "校验触发策略ID是否唯一;格式是否合法(大写字母（A-Z）、小写字母（a-z）、数字（0-9）和下划线（_）组成);字符串长度上限：64"
+    },
+    {
+      "info": {
+        "name": "查询触发策略 Quota",
+        "type": "http"
+      },
+      "http": {
+        "method": "POST",
+        "url": "/api/v3/focus/v1/trigger-strategy/quota/query",
+        "headers": [
+          {
+            "name": "api-key",
+            "value": ""
+          },
+          {
+            "name": "sensorsdata-project",
+            "value": ""
+          },
+          {
+            "name": "X-Organization-Id",
+            "value": ""
+          }
+        ],
+        "body": {
+          "type": "json",
+          "data": "{}"
+        }
+      },
+      "docs": "查询触发策略 Quota"
+    }
+  ],
+  "bundled": true
+}

@@ -1,0 +1,3455 @@
+openapi: 3.0.1
+info:
+  description: 分析模型开放接口
+  title: 神策分析
+  version: ''
+servers:
+- url: /api/v3/analytics/v2
+paths:
+  /model/funnel/report:
+    post:
+      description: 查询漏斗分析报告
+      operationId: QueryFunnelReport
+      parameters:
+      - description: 全局唯一的密钥，用于验证和授权访问 API 接口
+        in: header
+        name: api-key
+        required: true
+        schema:
+          type: string
+      - description: 项目名, 指定请求所属项目
+        in: header
+        name: sensorsdata-project
+        required: true
+        schema:
+          type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/sensorsdata.analytics.v2.FunnelReportRequest'
+        description: 查询漏斗分析报告请求参数描述
+        required: false
+      responses:
+        default:
+          content:
+            application/json:
+              example:
+                code: SUCCESS
+                data:
+                  by_value_lists:
+                  - - 中国
+                    - 美国
+                  - - 北京
+                    - 上海
+                  data_sufficient_update_time: '2022-09-29 12:00:00'
+                  table_data:
+                    column_meta_lists:
+                    - data_name: date
+                      view_name: 日期
+                      data_type: string
+                    cells:
+                    - date: '2022-09-29'
+                      count: 100
+                    compare_cells:
+                    - date: '2022-09-28'
+                      count: 90
+                  by_fields:
+                  - event.$AppStart.$country
+                  report_update_time: '2022-09-29 12:00:00'
+                  truncated: false
+                  sampling_factor: 64
+                  user_tags_partitions:
+                  - tag_name: user_level
+                    tag_c_name: 用户等级
+                  data_update_time: '2022-09-29 12:00:00'
+                  by_field_steps:
+                  - 0
+                  - 0
+                  date_lists:
+                  - '2022-09-29'
+                  - '2022-09-30'
+                  statistics:
+                    total_count: 1000
+                    conversion_rate: 0.5
+                request_id: '1'
+              schema:
+                $ref: '#/components/schemas/sensorsdata.analytics.v2.FunnelReportResponseHttpApiResult'
+          description: sensorsdata.analytics.v2.FunnelReportResponse
+      summary: 查询漏斗分析报告
+      x-sd-openapi:
+        responseClass: com.sensorsdata.analytics.v2.FunnelReportResponse
+        isServerStreaming: false
+        requestClass: com.sensorsdata.analytics.v2.FunnelReportRequest
+        grpcServiceBase: com.sensorsdata.analytics.v2.ModelServiceGrpc.ModelServiceImplBase
+        internalDesc: classes in template for grpc service dynamic invoking
+        isClientStreaming: false
+      x-codegen-request-body-name: FunnelReportRequest
+  /model/retention/report:
+    post:
+      description: 查询留存分析报告
+      operationId: QueryRetentionReport
+      parameters:
+      - description: 全局唯一的密钥，用于验证和授权访问 API 接口
+        in: header
+        name: api-key
+        required: true
+        schema:
+          type: string
+      - description: 项目名, 指定请求所属项目
+        in: header
+        name: sensorsdata-project
+        required: true
+        schema:
+          type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/sensorsdata.analytics.v2.RetentionReportRequest'
+        description: 查询留存分析报告请求参数描述
+        required: false
+      responses:
+        default:
+          content:
+            application/json:
+              example:
+                code: SUCCESS
+                data:
+                  column_meta_lists:
+                  - column_name: day1
+                    column_value: 1
+                  user_tag_values:
+                    user_level:
+                    - VIP
+                    - 普通用户
+                  data_sufficient_update_time: '2022-09-29 12:00:00'
+                  data:
+                  - date: '2022-09-29'
+                    day1: 0.5
+                    day3: 0.3
+                  report_update_time: '2022-09-29 12:00:00'
+                  truncated: false
+                  compare_data:
+                  - date: '2022-09-28'
+                    day1: 0.4
+                    day3: 0.2
+                  compare_column_meta_lists:
+                  - column_name: day1
+                    column_value: 1
+                  sampling_factor: 64
+                  user_tags_partitions:
+                  - tag_name: user_level
+                    tag_c_name: 用户等级
+                  data_update_time: '2022-09-29 12:00:00'
+                request_id: '1'
+              schema:
+                $ref: '#/components/schemas/sensorsdata.analytics.v2.RetentionReportResponseHttpApiResult'
+          description: sensorsdata.analytics.v2.RetentionReportResponse
+      summary: 查询留存分析报告
+      x-sd-openapi:
+        responseClass: com.sensorsdata.analytics.v2.RetentionReportResponse
+        isServerStreaming: false
+        requestClass: com.sensorsdata.analytics.v2.RetentionReportRequest
+        grpcServiceBase: com.sensorsdata.analytics.v2.ModelServiceGrpc.ModelServiceImplBase
+        internalDesc: classes in template for grpc service dynamic invoking
+        isClientStreaming: false
+      x-codegen-request-body-name: RetentionReportRequest
+  /model/ltv/report:
+    post:
+      description: 查询 LTV 分析报告（扁平/新版模型）
+      operationId: QueryLtvFlatReport
+      parameters:
+      - description: 全局唯一的密钥，用于验证和授权访问 API 接口
+        in: header
+        name: api-key
+        required: true
+        schema:
+          type: string
+      - description: 项目名, 指定请求所属项目
+        in: header
+        name: sensorsdata-project
+        required: true
+        schema:
+          type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/sensorsdata.analytics.v2.LtvFlatReportRequest'
+        description: 查询 LTV 扁平分析报告请求（OpenAPI v2，对应引擎 FlatLtv 模型）
+        required: false
+      responses:
+        default:
+          content:
+            application/json:
+              example:
+                code: SUCCESS
+                data:
+                  table_data:
+                    column_meta_lists:
+                    - data_name: date
+                      view_name: 日期
+                      data_type: string
+                    cells:
+                    - date: '2022-09-29'
+                      count: 100
+                    compare_cells:
+                    - date: '2022-09-28'
+                      count: 90
+                  user_tags_partitions:
+                  - tag_c_name: 用户等级
+                    base_time: '2022-09-29'
+                    finished_time: '2022-09-29 12:00:00'
+                    tag_name: user_level
+                    is_today: false
+                    is_routine: true
+                    today_cal_status: completed
+                request_id: '1'
+              schema:
+                $ref: '#/components/schemas/sensorsdata.analytics.v2.LtvFlatReportResponseHttpApiResult'
+          description: sensorsdata.analytics.v2.LtvFlatReportResponse
+      summary: 查询 LTV 分析报告（扁平模型）
+      x-sd-openapi:
+        responseClass: com.sensorsdata.analytics.v2.LtvFlatReportResponse
+        isServerStreaming: false
+        requestClass: com.sensorsdata.analytics.v2.LtvFlatReportRequest
+        grpcServiceBase: com.sensorsdata.analytics.v2.ModelServiceGrpc.ModelServiceImplBase
+        internalDesc: classes in template for grpc service dynamic invoking
+        isClientStreaming: false
+      x-codegen-request-body-name: LtvFlatReportRequest
+  /model/attribution/report:
+    post:
+      description: 查询归因分析报告
+      operationId: QueryAttributionReport
+      parameters:
+      - description: 全局唯一的密钥，用于验证和授权访问 API 接口
+        in: header
+        name: api-key
+        required: true
+        schema:
+          type: string
+      - description: 项目名, 指定请求所属项目
+        in: header
+        name: sensorsdata-project
+        required: true
+        schema:
+          type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/sensorsdata.analytics.v2.AttributionReportRequest'
+        description: 查询归因分析报告接口请求参数描述
+        required: false
+      responses:
+        default:
+          content:
+            application/json:
+              example:
+                code: SUCCESS
+                data:
+                  user_tag_values:
+                    user_level:
+                    - VIP
+                    - 普通用户
+                  trade_day_rewritten: false
+                  data_sufficient_update_time: '2022-09-29 12:00:00'
+                  table_data:
+                  - column_meta_lists:
+                    - data_name: date
+                      view_name: 日期
+                      data_type: string
+                    cells:
+                    - date: '2022-09-29'
+                      count: 100
+                    compare_cells:
+                    - date: '2022-09-28'
+                      count: 90
+                  report_update_time: '2022-09-29 12:00:00'
+                  truncated: false
+                  sampling_factor: 64
+                  time_zone: UTC+10:00
+                  user_tags_partitions:
+                  - tag_name: user_level
+                    tag_c_name: 用户等级
+                  data_update_time: '2022-09-29 12:00:00'
+                request_id: '1'
+              schema:
+                $ref: '#/components/schemas/sensorsdata.analytics.v2.AttributionReportResponseHttpApiResult'
+          description: sensorsdata.analytics.v2.AttributionReportResponse
+      summary: 查询归因分析报告
+      x-sd-openapi:
+        responseClass: com.sensorsdata.analytics.v2.AttributionReportResponse
+        isServerStreaming: false
+        requestClass: com.sensorsdata.analytics.v2.AttributionReportRequest
+        grpcServiceBase: com.sensorsdata.analytics.v2.ModelServiceGrpc.ModelServiceImplBase
+        internalDesc: classes in template for grpc service dynamic invoking
+        isClientStreaming: false
+      x-codegen-request-body-name: AttributionReportRequest
+  /model/personas/report:
+    post:
+      description: 查询用户群画像分析报告
+      operationId: QueryPersonasAnalyseReport
+      parameters:
+      - description: 全局唯一的密钥，用于验证和授权访问 API 接口
+        in: header
+        name: api-key
+        required: true
+        schema:
+          type: string
+      - description: 项目名, 指定请求所属项目
+        in: header
+        name: sensorsdata-project
+        required: true
+        schema:
+          type: string
+      - description: 是否使用缓存
+        in: query
+        name: use_cache
+        schema:
+          type: boolean
+          x-sd-openapi-wrapper-type: BoolValue
+        x-sd-openapi-wrapper-type: BoolValue
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/sensorsdata.analytics.v2.PersonasAnalyseReportRequestBody'
+        description: 查询用户群画像分析报告请求参数
+        required: false
+      responses:
+        default:
+          content:
+            application/json:
+              example:
+                code: SUCCESS
+                data:
+                  data:
+                    detail_result:
+                      rows:
+                      - values:
+                          values:
+                          - struct_value: {}
+                request_id: '1'
+              schema:
+                $ref: '#/components/schemas/sensorsdata.analytics.v2.PersonasAnalyseReportResponseHttpApiResult'
+          description: sensorsdata.analytics.v2.PersonasAnalyseReportResponse
+      summary: 查询用户群画像分析报告
+      x-sd-openapi:
+        responseClass: com.sensorsdata.analytics.v2.PersonasAnalyseReportResponse
+        isServerStreaming: false
+        requestClass: com.sensorsdata.analytics.v2.PersonasAnalyseReportRequest
+        grpcServiceBase: com.sensorsdata.analytics.v2.ModelServiceGrpc.ModelServiceImplBase
+        internalDesc: classes in template for grpc service dynamic invoking
+        isClientStreaming: false
+      x-codegen-request-body-name: PersonasAnalyseReportRequestBody
+  /model/funnel/users:
+    post:
+      description: 查询漏斗分析用户明细
+      operationId: QueryFunnelUsers
+      parameters:
+      - description: 全局唯一的密钥，用于验证和授权访问 API 接口
+        in: header
+        name: api-key
+        required: true
+        schema:
+          type: string
+      - description: 项目名, 指定请求所属项目
+        in: header
+        name: sensorsdata-project
+        required: true
+        schema:
+          type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/sensorsdata.analytics.v2.FunnelUserRequest'
+        description: 查询漏斗分析用户明细请求参数描述
+        required: false
+      responses:
+        default:
+          content:
+            application/json:
+              example:
+                code: SUCCESS
+                data:
+                  page:
+                    current_page: 1
+                    page_count: 1
+                    total: 2
+                  users:
+                  - id: '-8961289991947891759'
+                    first_id: 7tpEmL7hMALkIinn
+                    second_id: ''
+                    distinct_id: ''
+                    column_names:
+                    - $id
+                    - vehicle_type
+                    - vehicle_system
+                    profiles:
+                      vehicle_type: 四门轿车
+                      $id: '-8961289991947891759'
+                      vehicle_system: '7'
+                request_id: '1'
+              schema:
+                $ref: '#/components/schemas/sensorsdata.analytics.v1.UserPageResponseHttpApiResult'
+          description: sensorsdata.analytics.v1.UserPageResponse
+      summary: 查询漏斗分析用户明细
+      x-sd-openapi:
+        responseClass: com.sensorsdata.analytics.v1.UserPageResponse
+        isServerStreaming: false
+        requestClass: com.sensorsdata.analytics.v2.FunnelUserRequest
+        grpcServiceBase: com.sensorsdata.analytics.v2.ModelServiceGrpc.ModelServiceImplBase
+        internalDesc: classes in template for grpc service dynamic invoking
+        isClientStreaming: false
+      x-codegen-request-body-name: FunnelUserRequest
+  /model/retention/users:
+    post:
+      description: 查询留存分析用户明细
+      operationId: QueryRetentionUsers
+      parameters:
+      - description: 全局唯一的密钥，用于验证和授权访问 API 接口
+        in: header
+        name: api-key
+        required: true
+        schema:
+          type: string
+      - description: 项目名, 指定请求所属项目
+        in: header
+        name: sensorsdata-project
+        required: true
+        schema:
+          type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/sensorsdata.analytics.v2.RetentionUserRequest'
+        required: false
+      responses:
+        default:
+          content:
+            application/json:
+              example:
+                code: SUCCESS
+                data:
+                  page:
+                    current_page: 1
+                    page_count: 1
+                    total: 2
+                  users:
+                  - id: '-8961289991947891759'
+                    first_id: 7tpEmL7hMALkIinn
+                    second_id: ''
+                    distinct_id: ''
+                    column_names:
+                    - $id
+                    - vehicle_type
+                    - vehicle_system
+                    profiles:
+                      vehicle_type: 四门轿车
+                      $id: '-8961289991947891759'
+                      vehicle_system: '7'
+                request_id: '1'
+              schema:
+                $ref: '#/components/schemas/sensorsdata.analytics.v1.UserPageResponseHttpApiResult'
+          description: sensorsdata.analytics.v1.UserPageResponse
+      summary: 查询留存分析用户明细
+      x-sd-openapi:
+        responseClass: com.sensorsdata.analytics.v1.UserPageResponse
+        isServerStreaming: false
+        requestClass: com.sensorsdata.analytics.v2.RetentionUserRequest
+        grpcServiceBase: com.sensorsdata.analytics.v2.ModelServiceGrpc.ModelServiceImplBase
+        internalDesc: classes in template for grpc service dynamic invoking
+        isClientStreaming: false
+      x-codegen-request-body-name: RetentionUserRequest
+  /model/sql/query:
+    post:
+      description: 自定义 sql 查询
+      operationId: SqlQuery
+      parameters:
+      - description: 全局唯一的密钥，用于验证和授权访问 API 接口
+        in: header
+        name: api-key
+        required: true
+        schema:
+          type: string
+      - description: 项目名, 指定请求所属项目
+        in: header
+        name: sensorsdata-project
+        required: true
+        schema:
+          type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/sensorsdata.analytics.v1.SqlQueryRequest'
+        description: 自定义 sql 查询接口的参数描述
+        required: false
+      responses:
+        default:
+          content:
+            application/json:
+              example:
+                code: SUCCESS
+                data:
+                  data:
+                  - 56.0.2924.87
+                  - 媒介2
+                  - '1027.000'
+                  - iPad Air2
+                  - iOS
+                  - 1.0
+                  - 5G
+                  - 1.0
+                  - 127.0.0.1
+                  - '1130.000'
+                  - 广告词4
+                  - referrer3
+                  - '612.000'
+                  - path4
+                  - 广东省
+                  - url3
+                  - '352.000'
+                  - 19174.0
+                  - 咨询经销商
+                  - 中国移动
+                  - '9.0'
+                  - '1663900415616.000'
+                  - 设备指纹模糊匹配
+                  - 1.0
+                  - host1
+                  - 广州市
+                  - '476.000'
+                  - '845.000'
+                  - 新浪
+                  - Chrome
+                  - '2.0'
+                  - Android
+                  - '544.000'
+                  - 12.0
+                  - 中国
+                  - 广告4
+                  - -8565168885686534000
+                  - TJeqKhv3ETtFcvJB
+                  - 标题5
+                  - 内容1
+                  - Apple
+                  - '2022-07-01 03:31:07.904'
+                  - 1.0
+                  columns:
+                  - $browser_version
+                  - $utm_medium
+                  - $viewport_position
+                  - $dimension_dict_$model
+                  - $os
+                  - $is_first_time
+                  - $network_type
+                  - $wifi
+                  - $ip
+                  - $screen_height
+                  - $utm_term
+                  - $referrer
+                  - $viewport_height
+                  - $url_path
+                  - $province
+                  - $url
+                  - $share_depth
+                  - day
+                  - $element_content
+                  - $carrier
+                  - $os_version
+                  - $receive_time
+                  - $utm_matching_type
+                  - $is_first_day
+                  - $referrer_host
+                  - $city
+                  - $viewport_width
+                  - $screen_width
+                  - $utm_source
+                  - $browser
+                  - $app_version
+                  - $lib
+                  - $event_duration
+                  - event_id
+                  - $country
+                  - $utm_campaign
+                  - user_id
+                  - distinct_id
+                  - $title
+                  - $utm_content
+                  - $dimension_dict_$manufacturer
+                  - time
+                  - $resume_from_background
+                request_id: '1'
+              schema:
+                $ref: '#/components/schemas/sensorsdata.analytics.v1.SqlQueryResponseHttpApiResult'
+          description: sensorsdata.analytics.v1.SqlQueryResponse
+      summary: 自定义 sql 查询
+      x-sd-openapi:
+        responseClass: com.sensorsdata.analytics.v1.SqlQueryResponse
+        isServerStreaming: true
+        requestClass: com.sensorsdata.analytics.v1.SqlQueryRequest
+        grpcServiceBase: com.sensorsdata.analytics.v2.ModelServiceGrpc.ModelServiceImplBase
+        internalDesc: classes in template for grpc service dynamic invoking
+        isClientStreaming: false
+      x-codegen-request-body-name: SqlQueryRequest
+components:
+  schemas:
+    sensorsdata.analytics.v2.PersonasAnalyseReportRow:
+      description: 画像明细行数据
+      properties:
+        sort_id:
+          description: 结果排序序号
+          format: int32
+          type: integer
+        by_values:
+          description: 标签属性分布/属性交叉分布时的脱敏属性值
+          items:
+            type: string
+          type: array
+        encrypted_by_values:
+          description: 标签属性分布/属性交叉分布时的加密属性值
+          items:
+            type: string
+          type: array
+        values:
+          description: 标签属性分布/属性交叉分布时的表格数据
+          items:
+            properties: {}
+            type: object
+          type: array
+        by_value:
+          description: 行为分布分析时的维度值
+          type: string
+        encrypted_by_value:
+          description: 行为分布分析时 by_value 的加密值
+          type: string
+        people:
+          description: 行为分布分析时对应人数（非 TGI）
+          format: int64
+          type: integer
+        percent:
+          description: 行为分布分析时对应人数占比（非 TGI）
+          format: float
+          type: number
+        user_tag_event_user_cnt:
+          description: 行为分布分析时聚合值对应的目标组人数（TGI）
+          format: int64
+          type: integer
+        profile_event_user_cnt:
+          description: 行为分布分析时聚合值对应的全部人数（TGI）
+          format: int64
+          type: integer
+        user_tag_user_cnt:
+          description: 行为分布分析时目标组人数（TGI）
+          format: int64
+          type: integer
+        profile_user_cnt:
+          description: 行为分布分析时全部人数（TGI）
+          format: int64
+          type: integer
+        user_tag_event_total:
+          description: 行为分布分析时目标组事件属性聚合总值/事件总次数（TGI）
+          format: double
+          type: number
+      title: PersonasAnalyseReportRow
+      type: object
+    sensorsdata.analytics.v2.LinkEvent:
+      description: ''
+      properties:
+        event_name:
+          description: 事件名称
+          example: event.$AppClick
+          type: string
+        link_properties:
+          $ref: '#/components/schemas/sensorsdata.analytics.v2.LinkProperty'
+        filter:
+          $ref: '#/components/schemas/sensorsdata.analytics.v2.QueryExtendFilter'
+      title: LinkEvent
+      type: object
+    sensorsdata.analytics.v2.FunnelDefineRequest:
+      description: 漏斗定义请求参数
+      properties:
+        max_convert_time:
+          description: 最大转化时间，单位为分钟
+          example: 10080
+          format: int32
+          type: integer
+        comment:
+          description: 漏斗备注
+          example: 用户转化漏斗
+          type: string
+        name:
+          description: 漏斗名称
+          example: 转化漏斗
+          type: string
+        steps:
+          description: 漏斗步骤定义列表
+          example: '[{"event_name":"$AppStart"},{"event_name":"$AppViewScreen"}]'
+          items:
+            $ref: '#/components/schemas/sensorsdata.analytics.v2.FunnelStepDefine'
+          type: array
+      title: FunnelDefineRequest
+      type: object
+    sensorsdata.analytics.v1.ApiRequestFilter:
+      description: ''
+      properties:
+        relation:
+          description: ''
+          enum:
+          - FILTER_RELATION_UNSPECIFIED
+          - AND
+          - OR
+          example: OR
+          type: string
+        conditions:
+          description: ''
+          example: '[{"field":"event.$Anything.country","function":"equal","params":["中国"]},{"field":"event.$Anything.city","function":"contain","params":["北京"]}]'
+          items:
+            $ref: '#/components/schemas/sensorsdata.analytics.v1.ApiRequestElementCondition'
+          type: array
+        filters:
+          description: ''
+          example: '[{"conditions":[{"field":"event.$Anything.country","function":"notContain","params":["韩国","日本"]},{"field":"event.$Anything.city","function":"rlike","params":[".*"]}],"relation":"AND"}]'
+          items:
+            $ref: '#/components/schemas/sensorsdata.analytics.v1.ApiRequestFilter'
+          type: array
+      title: ApiRequestFilter
+      type: object
+    sensorsdata.common.ErrorContext:
+      description: 发生错误时，系统快照信息
+      properties:
+        origin_stack:
+          description: 上游异常的 stack，由系统截获
+          type: string
+        origin_cause:
+          description: 上游异常的 cause by，由系统截获
+          type: string
+        origin_code:
+          description: 上游异常的错误简码
+          type: string
+        origin_complete_code:
+          description: 上游异常的完整错误码
+          type: string
+        error_extend_desc:
+          description: 本次异常的辅助说明，可传入
+          type: string
+      title: ErrorContext
+      type: object
+    sensorsdata.analytics.v2.AttributionReportResponse.UserTagValuesEntry:
+      description: ''
+      properties:
+        key:
+          description: ''
+          type: string
+        value:
+          description: ''
+          items:
+            properties: {}
+            type: object
+          type: array
+      title: UserTagValuesEntry
+      type: object
+    sensorsdata.analytics.v2.PersonasAnalysis:
+      description: 用户群画像分析报告
+      properties:
+        id:
+          description: 报告 id
+          format: int32
+          type: integer
+        display_name:
+          description: 报告显示名称
+          type: string
+        user_name:
+          description: 报告创建者
+          type: string
+        account_id:
+          description: 报告创建者 id
+          format: int32
+          type: integer
+        create_time:
+          description: 创建报告时间
+          type: string
+        sample_factor:
+          description: 抽样系数
+          format: int32
+          type: integer
+        tgi:
+          description: 是否查询 tgi
+          type: boolean
+        group_configs:
+          description: 人群配置
+          items:
+            $ref: '#/components/schemas/sensorsdata.analytics.v2.PersonasAnalysisGroupConfig'
+          type: array
+        widget_configs:
+          description: 卡片配置
+          items:
+            $ref: '#/components/schemas/sensorsdata.analytics.v2.PersonasAnalysisWidgetConfig'
+          type: array
+        tgi_base_user_group_config:
+          $ref: '#/components/schemas/sensorsdata.analytics.v2.PersonasAnalysisTgiBaseUserGroupConfig'
+        latest_report:
+          $ref: '#/components/schemas/sensorsdata.analytics.v2.PersonasAnalysisReportResult'
+        request_id:
+          description: 请求 ID
+          type: string
+      title: PersonasAnalysis
+      type: object
+    sensorsdata.analytics.v2.PersonasAnalysisReportGroupData:
+      description: 人群结果信息
+      properties:
+        group_id:
+          description: 人群 id
+          type: string
+        user_count:
+          description: 人数
+          format: int64
+          type: integer
+        task_message:
+          $ref: '#/components/schemas/sensorsdata.analytics.v2.PersonasAnalysisTaskMessage'
+      title: PersonasAnalysisReportGroupData
+      type: object
+    sensorsdata.analytics.v1.ApiRequestEventWithFilter:
+      description: ''
+      properties:
+        event_name:
+          description: 事件名称
+          example: event.$AppClick
+          type: string
+        filter:
+          $ref: '#/components/schemas/sensorsdata.analytics.v1.ApiRequestFilter'
+        by_field:
+          description: 查看维度
+          example: event.$AppClick.country
+          type: string
+        relevance_field:
+          description: ''
+          type: string
+      title: ApiRequestEventWithFilter
+      type: object
+    sensorsdata.analytics.v1.ApiRequestElementCondition:
+      description: ''
+      properties:
+        field:
+          description: ''
+          type: string
+        function:
+          description: ''
+          type: string
+        params:
+          description: ''
+          items:
+            description: google.protobuf.Value 支持各种 JSON 值
+            properties: {}
+            type: object
+          type: array
+      title: ApiRequestElementCondition
+      type: object
+    sensorsdata.analytics.v2.PersonasAnalysisReportResult:
+      description: 画像分析报告计算结果
+      properties:
+        task_state:
+          description: 报告计算状态：WAITING、RUNNING、SUCCESS、FAILURE
+          type: string
+        task_start_time:
+          description: 计算开始时间
+          type: string
+        task_end_time:
+          description: 计算结束时间
+          type: string
+        task_failure_message:
+          description: 计算失败信息
+          properties: {}
+          type: object
+        data:
+          $ref: '#/components/schemas/sensorsdata.analytics.v2.PersonasAnalysisReportData'
+      title: PersonasAnalysisReportResult
+      type: object
+    sensorsdata.analytics.v2.LookbackWindow:
+      description: 归因窗口期
+      properties:
+        unit:
+          description: 时间粒度单位
+          example: “DAY”
+          type: string
+        value:
+          description: 时间窗口期
+          example: 7
+          format: int32
+          type: integer
+      title: LookbackWindow
+      type: object
+    sensorsdata.analytics.v2.RetentionReportRequest.BucketParamsEntry:
+      description: ''
+      properties:
+        key:
+          description: ''
+          type: string
+        value:
+          description: ''
+          items:
+            properties: {}
+            type: object
+          type: array
+      title: BucketParamsEntry
+      type: object
+    sensorsdata.analytics.v2.PersonasAnalyseReportData:
+      description: 用户群画像分析结果数据
+      properties:
+        count:
+          description: 标签属性分析/交叉分析中拥有属性的人的总数；行为分布分析中的总次数/事件属性的总和
+          format: double
+          type: number
+        detail_result:
+          $ref: '#/components/schemas/sensorsdata.analytics.v2.PersonasAnalyseReportDetailResult'
+        report_update_time:
+          description: 返回结果产生时间
+          type: string
+        data_sufficient_update_time:
+          description: 查询涉及事件数据的最后超过 1% 的更新时间
+          type: string
+        data_update_time:
+          description: 当前数据更新时间
+          type: string
+      title: PersonasAnalyseReportData
+      type: object
+    sensorsdata.common.Value:
+      description: ''
+      properties:
+        null_value:
+          description: ''
+          enum:
+          - NULL_VALUE
+          type: string
+        number_value:
+          description: ''
+          format: double
+          type: number
+        string_value:
+          description: ''
+          type: string
+        bool_value:
+          description: ''
+          type: boolean
+        int64_value:
+          description: ''
+          format: int64
+          type: integer
+        int32_value:
+          description: ''
+          format: int32
+          type: integer
+        struct_value:
+          $ref: '#/components/schemas/sensorsdata.common.Struct'
+        list_value:
+          $ref: '#/components/schemas/sensorsdata.common.ListValue'
+      title: Value
+      type: object
+    sensorsdata.analytics.v2.FunnelStepDefine:
+      description: 漏斗步骤定义
+      properties:
+        event_name:
+          description: 事件名称
+          example: $AppStart
+          type: string
+        custom_name:
+          description: 自定义步骤名称
+          example: 启动应用
+          type: string
+        filter:
+          $ref: '#/components/schemas/sensorsdata.analytics.v2.FunnelStepFilter'
+        relevance_field:
+          description: 关联属性字段
+          example: event.$AppStart.$device_id
+          type: string
+        step_measures:
+          description: 步骤指标列表
+          example: '[{"aggregator":"sum","field":"$money"}]'
+          items:
+            $ref: '#/components/schemas/sensorsdata.analytics.v2.FunnelMeasure'
+          type: array
+      title: FunnelStepDefine
+      type: object
+    sensorsdata.analytics.v2.ColumnMeta:
+      description: 列元数据结构
+      properties:
+        data_name:
+          description: 数据名称
+          example: date
+          type: string
+        view_name:
+          description: 显示名称
+          example: 日期
+          type: string
+        data_type:
+          description: 数据类型
+          example: string
+          type: string
+        metric_type:
+          description: 指标类型
+          example: dimension
+          type: string
+        data_meta:
+          description: 数据元信息
+          example: '{"format":"yyyy-MM-dd"}'
+          properties: {}
+          type: object
+        sub_data_metas:
+          description: 子数据元信息列表
+          example: '[{"sub_name":"sub_1"}]'
+          items:
+            description: google.protobuf.Struct 支持各种 JSONObject
+            properties: {}
+            type: object
+          type: array
+      title: ColumnMeta
+      type: object
+    sensorsdata.analytics.v2.PersonasAnalysisReportWidgetGroup:
+      description: 卡片对应的人群结果信息
+      properties:
+        group_id:
+          description: 人群 id
+          type: string
+        user_count:
+          description: 人数
+          format: int64
+          type: integer
+        data:
+          description: 结果数据
+          properties: {}
+          type: object
+        task_message:
+          $ref: '#/components/schemas/sensorsdata.analytics.v2.PersonasAnalysisTaskMessage'
+      title: PersonasAnalysisReportWidgetGroup
+      type: object
+    sensorsdata.common.Struct:
+      description: ''
+      properties:
+        fields:
+          additionalProperties:
+            $ref: '#/components/schemas/sensorsdata.common.Value'
+          description: ''
+          type: object
+      title: Struct
+      type: object
+    sensorsdata.analytics.v2.RetentionReportRequest:
+      description: 查询留存分析报告请求参数描述
+      properties:
+        from_date:
+          description: 查询日期范围的开始时间，格式为 yyyy-MM-dd
+          example: '2022-09-29'
+          type: string
+        to_date:
+          description: 查询日期范围的结束时间，格式为 yyyy-MM-dd
+          example: '2022-09-29'
+          type: string
+        compare_from_date:
+          description: 对比日期范围的开始时间，格式为 yyyy-MM-dd
+          example: '2022-09-22'
+          type: string
+        compare_to_date:
+          description: 对比日期范围的结束时间，格式为 yyyy-MM-dd
+          example: '2022-09-28'
+          type: string
+        retention_mode:
+          description: 留存模式
+          enum:
+          - RETENTION_MODE_UNSPECIFIED
+          - SELECTED_RETENTION
+          - CUSTOM_RANGE_RETENTION
+          - CONTINUOUS_RETENTION
+          - CONTINUOUS_WASTE
+          example: SELECTED_RETENTION
+          type: string
+        diversion_mode:
+          description: 分流模式
+          enum:
+          - DIVERSION_MODE_UNSPECIFIED
+          - USER_MULTI_GROUP
+          - USER_SINGLE_GROUP
+          example: USER_MULTI_GROUP
+          type: string
+        retention_rate_type:
+          description: 留存率类型
+          enum:
+          - RETENTION_RATE_TYPE_UNSPECIFIED
+          - DISTINCT
+          - WEIGHT
+          example: DISTINCT
+          type: string
+        by_events:
+          description: 按事件分组
+          example: '["$AppClick","$AppViewScreen"]'
+          items:
+            type: string
+          type: array
+        by_field:
+          description: 按维度分组
+          example: event.$AppClick.$country
+          type: string
+        selecteds:
+          description: 选择日列表
+          example: '[1,3,7,14,30]'
+          items:
+            properties: {}
+            type: object
+          type: array
+        custom_range:
+          description: 自定义区间
+          example: '[[1,3],[4,7]]'
+          items:
+            properties: {}
+            type: object
+          type: array
+        rollup_date:
+          description: 是否按日期汇总
+          example: true
+          type: boolean
+        duration:
+          description: 观测数，表示获取往后 N 个时间单位的留存
+          example: 7
+          format: int32
+          type: integer
+        first_event:
+          $ref: '#/components/schemas/sensorsdata.analytics.v1.ApiRequestEventWithFilter'
+        second_event:
+          $ref: '#/components/schemas/sensorsdata.analytics.v1.ApiRequestEventWithFilter'
+        filter:
+          $ref: '#/components/schemas/sensorsdata.analytics.v1.ApiRequestFilter'
+        measures:
+          description: 同时显示第三个指标
+          example: '[{"event_name":"$MPShow","aggregator":"general","filter":{}}]'
+          items:
+            $ref: '#/components/schemas/sensorsdata.analytics.v1.ApiRequestMeasure'
+          type: array
+        user_filter:
+          $ref: '#/components/schemas/sensorsdata.analytics.v1.ApiRequestFilter'
+        common_event_filter:
+          $ref: '#/components/schemas/sensorsdata.analytics.v1.ApiRequestFilter'
+        common_user_filter:
+          $ref: '#/components/schemas/sensorsdata.analytics.v1.ApiRequestFilter'
+        show_zero_day:
+          description: 是否显示第0天
+          example: 'true'
+          type: string
+        include_zero_unit:
+          description: 是否包含第0个时间单位
+          example: true
+          type: boolean
+        rate_scale:
+          description: 留存率精度
+          example: '0.01'
+          type: string
+        last_zero:
+          description: 最后是否为0
+          example: false
+          type: boolean
+        trade_day_mode:
+          description: 是否交易日模式
+          example: false
+          type: boolean
+        dashboard_id:
+          description: 概览 ID
+          format: int32
+          type: integer
+        bookmark_id:
+          description: 书签 ID
+          example: 22
+          format: int32
+          type: integer
+        unit:
+          description: 查看的时间粒度，可以是，HOUR：按小时，DAY：按天，WEEK：按周，MONTH：按月，YEAR：按年
+          example: DAY
+          type: string
+        extend_over_end_date:
+          description: （可选）后续事件是否可以超出时间区间
+          example: true
+          type: boolean
+        sampling_factor:
+          description: 抽样因子，64为全量，32为2分之1抽样
+          example: 64
+          format: int32
+          type: integer
+        is_wastage:
+          description: 是否计算流失，false为计算留存，true为计算流失
+          example: false
+          type: boolean
+        use_cache:
+          description: 是否使用缓存，若缓存中找不到相应数据，则从数据库读出
+          example: false
+          type: boolean
+        request_id:
+          description: 本次请求 ID, 方便后续追踪问题
+          example: '12345696321548954'
+          type: string
+        by_fields:
+          description: 按什么维度查看，一般是事件属性、用户属性等维度
+          example: '["event.$AppStart.$country","event.$AppStart.$province"]'
+          items:
+            type: string
+          type: array
+        rollup:
+          description: 是否使用缓存，若缓存中找不到相应数据，则从数据库读出
+          example: false
+          type: boolean
+        limit:
+          description: 用户设定的返回的最大行数，如果为 null，表示自动计算一个适合前端展示的值。如果为 -1，表示在可能得情况下返回尽量多的数据。
+          example: 10000
+          format: int64
+          type: integer
+        bucket_params:
+          additionalProperties:
+            description: ''
+            items:
+              properties: {}
+              type: object
+            type: array
+          description: 分桶条件，对数值型属性进行分组时，可以自定义分桶条件,如果不设置的话，是默认区间
+          example:
+            event.$Anything.$event_duration:
+            - '40'
+            - '50'
+          type: object
+        time_zone_mode:
+          description: 使用哪种时区模式，取值范围参考枚举 TimeZoneMode
+          enum:
+          - TIME_ZONE_MODE_UNSPECIFIED
+          - CUSTOMER
+          - SERVER
+          example: SERVER
+          type: string
+        server_time_zone:
+          description: 指定使用的服务器时区，格式为 UTC+偏移量，例如：UTC+10:00
+          example: UTC+10:00
+          type: string
+        subject_id:
+          description: 多主体 ID
+          example: $country
+          type: string
+        by_event:
+          description: 按事件分组（单个）
+          example: $AppClick
+          type: string
+        bucket_param:
+          description: 分桶参数
+          example: '["5","10","15"]'
+          items:
+            properties: {}
+            type: object
+          type: array
+      required:
+      - first_event
+      - from_date
+      - retention_mode
+      - second_event
+      - to_date
+      - unit
+      title: RetentionReportRequest
+      type: object
+    sensorsdata.analytics.v2.LtvFlatReportRequest:
+      description: 查询 LTV 扁平分析报告请求（OpenAPI v2，对应引擎 FlatLtv 模型）
+      properties:
+        from_date:
+          description: 查询日期范围的开始时间，格式为 yyyy-MM-dd
+          type: string
+        to_date:
+          description: 查询日期范围的结束时间，格式为 yyyy-MM-dd
+          type: string
+        duration:
+          description: 观测数，表示获取往后 N 个时间单位的 LTV
+          format: int32
+          type: integer
+        start_sign:
+          $ref: '#/components/schemas/sensorsdata.analytics.v1.LtvUserStartSign'
+        measures:
+          description: 营收指标定义
+          items:
+            $ref: '#/components/schemas/sensorsdata.analytics.v1.ApiRequestMeasure'
+          type: array
+        unit:
+          description: 查看的时间粒度：HOUR/DAY/WEEK/MONTH/YEAR
+          enum:
+          - UNIT_TYPE_UNSPECIFIED
+          - HOUR
+          - DAY
+          - WEEK
+          - MONTH
+          - YEAR
+          - QUARTER
+          - MINUTE
+          - SECOND
+          type: string
+        filter:
+          $ref: '#/components/schemas/sensorsdata.analytics.v1.ApiRequestFilter'
+        by_fields:
+          description: 分组维度
+          items:
+            type: string
+          type: array
+        bucket_params:
+          additionalProperties:
+            description: ''
+            items:
+              properties: {}
+              type: object
+            type: array
+          description: 分桶条件
+          type: object
+        request_id:
+          description: 请求 ID
+          type: string
+        use_cache:
+          description: 是否使用缓存
+          type: boolean
+        limit:
+          description: 最大返回行数
+          format: int32
+          type: integer
+        need_show_ltv_columns:
+          description: 需要展示的 LTV 列，如 0,1,2,3,4,5,6,7,15,30
+          type: string
+        time_zone_mode:
+          description: 时区模式
+          enum:
+          - TIME_ZONE_MODE_UNSPECIFIED
+          - CUSTOMER
+          - SERVER
+          type: string
+        server_time_zone:
+          description: 服务器时区，如 UTC+08:00
+          type: string
+        subject_id:
+          description: 多主体 ID
+          type: string
+        ltv_compute_type:
+          description: LTV 计算方式（扁平模型）
+          enum:
+          - LTV_COMPUTE_TYPE_UNSPECIFIED
+          - COMPUTE_TYPE_DEFAULT
+          - LTV_AVG
+          - LTV_ACCUMULATE_REVENUE
+          - LTV_TOTAL_REVENUE
+          - LTV_REVENUE_USER
+          - LTV_REVENUE_AVG
+          - LTV_ADD_REVENUE_USER
+          type: string
+      required:
+      - duration
+      - from_date
+      - measures
+      - start_sign
+      - to_date
+      - unit
+      title: LtvFlatReportRequest
+      type: object
+    sensorsdata.analytics.v1.SqlQueryRequest:
+      description: 自定义 sql 查询接口的参数描述
+      properties:
+        sql:
+          description: 查询 sql
+          example: select * from events
+          type: string
+        limit:
+          description: 最大返回条数
+          example: '100'
+          type: string
+        request_id:
+          description: 本次请求 ID, 方便后续追踪问题
+          example: '12345696321548954'
+          type: string
+      required:
+      - sql
+      title: SqlQueryRequest
+      type: object
+    sensorsdata.analytics.v2.QueryFilterCondition:
+      description: 查询筛选条件
+      properties:
+        render_index:
+          description: 渲染索引
+          example: 0
+          format: int32
+          type: integer
+        field:
+          description: 字段名
+          example: event.$Anything.country
+          type: string
+        function:
+          description: 功能函数，如 equal, notEqual, contain, notContain, rlike 等
+          example: equal
+          type: string
+        params:
+          description: 函数参数
+          example: '["中国","美国"]'
+          items:
+            description: google.protobuf.Value 支持各种 JSON 值
+            properties: {}
+            type: object
+          type: array
+      title: QueryFilterCondition
+      type: object
+    sensorsdata.analytics.v2.LtvFlatReportRequest.BucketParamsEntry:
+      description: ''
+      properties:
+        key:
+          description: ''
+          type: string
+        value:
+          description: ''
+          items:
+            properties: {}
+            type: object
+          type: array
+      title: BucketParamsEntry
+      type: object
+    sensorsdata.analytics.v1.UserDetail.ProfilesEntry:
+      description: ''
+      properties:
+        key:
+          description: ''
+          type: string
+        value:
+          description: ''
+          properties: {}
+          type: object
+      title: ProfilesEntry
+      type: object
+    sensorsdata.common.Struct.FieldsEntry:
+      description: ''
+      properties:
+        key:
+          description: ''
+          type: string
+        value:
+          $ref: '#/components/schemas/sensorsdata.common.Value'
+      title: FieldsEntry
+      type: object
+    sensorsdata.analytics.v2.ShowMeasure:
+      description: 展示指标相关信息
+      properties:
+        measure_name:
+          description: 指标名称
+          example: measure_name
+          type: string
+        measure_cname:
+          description: 指标显示名称
+          example: measure_cname
+          type: string
+      title: ShowMeasure
+      type: object
+    sensorsdata.analytics.v2.AttributionReportResponse:
+      description: 查询归因分析报告返回结构描述
+      properties:
+        report_update_time:
+          description: 报告更新时间
+          example: '2022-09-29 12:00:00'
+          type: string
+        data_sufficient_update_time:
+          description: 数据充足更新时间
+          example: '2022-09-29 12:00:00'
+          type: string
+        data_update_time:
+          description: 数据更新时间
+          example: '2022-09-29 12:00:00'
+          type: string
+        truncated:
+          description: 查询是否截断
+          example: false
+          type: boolean
+        sampling_factor:
+          description: 抽样因子，64为全量，32为2分之1抽样
+          example: 64
+          format: int32
+          type: integer
+        user_tag_values:
+          additionalProperties:
+            description: ''
+            items:
+              properties: {}
+              type: object
+            type: array
+          description: 用户标签值映射
+          example:
+            user_level:
+            - VIP
+            - 普通用户
+          type: object
+        time_zone:
+          description: 时区，格式为 UTC+偏移量
+          example: UTC+10:00
+          type: string
+        table_data:
+          description: 表格数据列表
+          items:
+            $ref: '#/components/schemas/sensorsdata.analytics.v2.TableData'
+          type: array
+        user_tags_partitions:
+          description: 用户标签分区信息列表
+          example: '[{"tag_name":"user_level","tag_c_name":"用户等级"}]'
+          items:
+            $ref: '#/components/schemas/sensorsdata.analytics.v2.UserTagsPartition'
+          type: array
+        trade_day_rewritten:
+          description: 是否交易日重写
+          example: false
+          type: boolean
+      title: AttributionReportResponse
+      type: object
+    sensorsdata.analytics.v2.RetentionReportResponseHttpApiResult:
+      properties:
+        code:
+          type: string
+        message:
+          type: string
+        request_id:
+          type: string
+        data:
+          $ref: '#/components/schemas/sensorsdata.analytics.v2.RetentionReportResponse'
+        error_info:
+          $ref: '#/components/schemas/sensorsdata.common.ErrorInfo'
+      title: sensorsdata.analytics.v2.RetentionReportResponseHttpApiResult
+      type: object
+    sensorsdata.analytics.v2.PersonasAnalyseReportRequestBody:
+      description: 查询用户群画像分析报告请求参数
+      properties:
+        analysis:
+          $ref: '#/components/schemas/sensorsdata.analytics.v2.PersonasAnalysis'
+      required:
+      - analysis
+      title: PersonasAnalyseReportRequest
+      type: object
+    sensorsdata.analytics.v2.FunnelReportResponseHttpApiResult:
+      properties:
+        code:
+          type: string
+        message:
+          type: string
+        request_id:
+          type: string
+        data:
+          $ref: '#/components/schemas/sensorsdata.analytics.v2.FunnelReportResponse'
+        error_info:
+          $ref: '#/components/schemas/sensorsdata.common.ErrorInfo'
+      title: sensorsdata.analytics.v2.FunnelReportResponseHttpApiResult
+      type: object
+    sensorsdata.analytics.v2.PersonasAnalyseReportDetailResult:
+      description: 图表详细结果
+      properties:
+        sampling_factor:
+          description: 计算时的抽样系数
+          format: int32
+          type: integer
+        total_people:
+          description: 报告类型为行为分布分析时，有值的总人数
+          format: int64
+          type: integer
+        rows:
+          description: 表格数据集
+          items:
+            $ref: '#/components/schemas/sensorsdata.analytics.v2.PersonasAnalyseReportRow'
+          type: array
+      title: PersonasAnalyseReportDetailResult
+      type: object
+    sensorsdata.analytics.v1.SqlQueryResponseHttpApiResult:
+      properties:
+        code:
+          type: string
+        message:
+          type: string
+        request_id:
+          type: string
+        data:
+          $ref: '#/components/schemas/sensorsdata.analytics.v1.SqlQueryResponse'
+        error_info:
+          $ref: '#/components/schemas/sensorsdata.common.ErrorInfo'
+      title: sensorsdata.analytics.v1.SqlQueryResponseHttpApiResult
+      type: object
+    sensorsdata.analytics.v2.PersonasAnalysisTgiBaseUserGroupConfig:
+      description: tgi base 人群配置
+      properties:
+        type:
+          description: 人群类型：ALL_USER、GROUP_BASED、CUSTOMIZED_RULE、EQL_RULE
+          type: string
+        user_group_rule:
+          description: 人群规则
+          properties: {}
+          type: object
+        rule_ext:
+          description: 扩展规则
+          properties: {}
+          type: object
+      title: PersonasAnalysisTgiBaseUserGroupConfig
+      type: object
+    sensorsdata.analytics.v2.UserTagsPartition:
+      description: 用户标签分区信息
+      properties:
+        tag_name:
+          description: 标签名称
+          example: user_level
+          type: string
+        tag_c_name:
+          description: 标签中文名称
+          example: 用户等级
+          type: string
+        is_routine:
+          description: 是否为常规标签
+          example: true
+          type: boolean
+        is_today:
+          description: 是否为今日标签
+          example: false
+          type: boolean
+        base_time:
+          description: 基准时间
+          example: '2022-09-29'
+          type: string
+        finished_time:
+          description: 完成时间
+          example: '2022-09-29 12:00:00'
+          type: string
+        today_cal_status:
+          description: 今日计算状态
+          example: completed
+          type: string
+      title: UserTagsPartition
+      type: object
+    sensorsdata.analytics.v2.FunnelUserRequest.BucketParamsEntry:
+      description: ''
+      properties:
+        key:
+          description: ''
+          type: string
+        value:
+          description: ''
+          items:
+            properties: {}
+            type: object
+          type: array
+      title: BucketParamsEntry
+      type: object
+    sensorsdata.analytics.v2.QueryMeasure:
+      description: 查询指标定义
+      properties:
+        event_name:
+          description: 事件名称
+          example: event.$AppClick
+          type: string
+        aggregator:
+          description: 聚合方式，如 general, unique, sum, avg 等
+          example: general
+          type: string
+        filter:
+          $ref: '#/components/schemas/sensorsdata.analytics.v2.QueryExtendFilter'
+        expression:
+          description: 自定义表达式
+          example: A/B
+          type: string
+        format:
+          description: 数据格式
+          example: percent
+          type: string
+        name:
+          description: 指标名称
+          example: measure_1
+          type: string
+        expression_filters:
+          description: 表达式筛选条件列表
+          example: '[{"conditions":[{"field":"event.$Anything.country","function":"equal","params":["中国"]}]}]'
+          items:
+            $ref: '#/components/schemas/sensorsdata.analytics.v2.QueryExtendFilter'
+          type: array
+        events:
+          description: 事件列表
+          example: '["$AppClick","$AppViewScreen"]'
+          items:
+            type: string
+          type: array
+        profit_rate:
+          description: 利润率
+          example: 0.5
+          format: float
+          type: number
+        field:
+          description: 属性字段
+          example: event.$AppClick.$money
+          type: string
+        expression_denominator_without_group:
+          description: 表达式分母是否不分组
+          example: false
+          type: boolean
+      title: QueryMeasure
+      type: object
+    sensorsdata.analytics.v2.AttributionReportResponseHttpApiResult:
+      properties:
+        code:
+          type: string
+        message:
+          type: string
+        request_id:
+          type: string
+        data:
+          $ref: '#/components/schemas/sensorsdata.analytics.v2.AttributionReportResponse'
+        error_info:
+          $ref: '#/components/schemas/sensorsdata.common.ErrorInfo'
+      title: sensorsdata.analytics.v2.AttributionReportResponseHttpApiResult
+      type: object
+    sensorsdata.analytics.v2.QueryExtendFilter:
+      description: 查询扩展筛选条件
+      properties:
+        render_index:
+          description: 渲染索引
+          example: 0
+          format: int32
+          type: integer
+        conditions:
+          description: 筛选条件列表
+          example: '[{"field":"event.$Anything.country","function":"equal","params":["中国"]},{"field":"event.$Anything.city","function":"contain","params":["北京"]}]'
+          items:
+            $ref: '#/components/schemas/sensorsdata.analytics.v2.QueryFilterCondition'
+          type: array
+        filters:
+          description: 关联筛选条件列表
+          example: '[{"conditions":[{"field":"event.$Anything.country","function":"notContain","params":["韩国","日本"]},{"field":"event.$Anything.city","function":"rlike","params":[".*"]}],"relation":"AND"}]'
+          items:
+            $ref: '#/components/schemas/sensorsdata.analytics.v2.QueryExtendFilter'
+          type: array
+        relation:
+          description: 条件关系，AND 或 OR，默认 AND
+          example: AND
+          type: string
+      title: QueryExtendFilter
+      type: object
+    sensorsdata.analytics.v1.LtvUserStartSign:
+      description: ''
+      properties:
+        start_event:
+          description: 初始事件名
+          type: string
+        start_time_field:
+          description: 初始时属性名
+          type: string
+        filter:
+          $ref: '#/components/schemas/sensorsdata.analytics.v1.ApiRequestFilter'
+      title: LtvUserStartSign
+      type: object
+    sensorsdata.analytics.v1.ApiRequestMeasure:
+      description: ''
+      properties:
+        event_name:
+          description: 事件名称
+          example: event.$AppClick
+          type: string
+        aggregator:
+          description: 聚合方式
+          example: general
+          type: string
+        field:
+          description: ''
+          type: string
+        expression:
+          description: ''
+          type: string
+        expression_filters:
+          description: ''
+          items:
+            $ref: '#/components/schemas/sensorsdata.analytics.v1.ApiRequestFilter'
+          type: array
+        filter:
+          $ref: '#/components/schemas/sensorsdata.analytics.v1.ApiRequestFilter'
+        name:
+          description: 自定义指标名称
+          example: 小程序显示的用户数
+          type: string
+        events:
+          description: 自定义指标中关联的 events
+          example: '["event.$AppClick", "event.$AppStart"]'
+          items:
+            type: string
+          type: array
+        params:
+          description: ''
+          items:
+            description: google.protobuf.Value 支持各种 JSON 值
+            properties: {}
+            type: object
+          type: array
+        split:
+          description: ''
+          type: boolean
+        profit_rate:
+          description: ''
+          format: float
+          type: number
+        by_session:
+          description: ''
+          type: boolean
+        expression_denominator_without_group:
+          description: ''
+          type: boolean
+        atom_measure_without_group:
+          description: ''
+          type: boolean
+        show_cname:
+          description: ''
+          type: string
+      title: ApiRequestMeasure
+      type: object
+    sensorsdata.common.HttpApiResult:
+      properties:
+        code:
+          type: string
+        message:
+          type: string
+        request_id:
+          type: string
+        data:
+          properties: {}
+          type: object
+        error_info:
+          $ref: '#/components/schemas/sensorsdata.common.ErrorInfo'
+      title: HttpApiResult
+      type: object
+    sensorsdata.analytics.v1.UserPageResponseHttpApiResult:
+      properties:
+        code:
+          type: string
+        message:
+          type: string
+        request_id:
+          type: string
+        data:
+          $ref: '#/components/schemas/sensorsdata.analytics.v1.UserPageResponse'
+        error_info:
+          $ref: '#/components/schemas/sensorsdata.common.ErrorInfo'
+      title: sensorsdata.analytics.v1.UserPageResponseHttpApiResult
+      type: object
+    sensorsdata.analytics.v2.LinkProperty:
+      description: ''
+      properties:
+        current_event_property:
+          description: 当前事件属性
+          example: $country
+          type: string
+        target_event_property:
+          description: 目标事件属性
+          example: $money
+          type: string
+      title: LinkProperty
+      type: object
+    sensorsdata.analytics.v2.AttributionEvent:
+      description: 归因事件
+      properties:
+        events:
+          description: 归因事件列表
+          example: '[{"event_name":"$AppClick","by_fields":["$country"]}]'
+          items:
+            $ref: '#/components/schemas/sensorsdata.analytics.v2.AttributionEventElement'
+          type: array
+        filter:
+          $ref: '#/components/schemas/sensorsdata.analytics.v2.QueryExtendFilter'
+        by_fields:
+          description: 按什么维度查看
+          example: '["event.$Anything.$province"]'
+          items:
+            type: string
+          type: array
+        bucket_params:
+          additionalProperties:
+            description: ''
+            items:
+              properties: {}
+              type: object
+            type: array
+          description: 分桶条件
+          example:
+            event.$Anything.$event_duration:
+            - '40'
+            - '50'
+          type: object
+        byfield_groups:
+          description: 维度分组列表
+          example: '[["$country","$province"]]'
+          items:
+            items:
+              properties: {}
+              type: object
+            type: array
+          type: array
+        by_unit:
+          description: 按时间单位分组
+          example: DAY
+          type: string
+      title: AttributionEvent
+      type: object
+    sensorsdata.analytics.v2.FunnelReportRequest.BucketParamsEntry:
+      description: ''
+      properties:
+        key:
+          description: ''
+          type: string
+        value:
+          description: ''
+          items:
+            properties: {}
+            type: object
+          type: array
+      title: BucketParamsEntry
+      type: object
+    sensorsdata.analytics.v2.PersonasAnalysisReportData:
+      description: 画像分析报告数据
+      properties:
+        total_count:
+          description: 总人数
+          format: int64
+          type: integer
+        groups_data:
+          description: 人群结果
+          items:
+            $ref: '#/components/schemas/sensorsdata.analytics.v2.PersonasAnalysisReportGroupData'
+          type: array
+        widgets_data:
+          description: 卡片结果
+          items:
+            $ref: '#/components/schemas/sensorsdata.analytics.v2.PersonasAnalysisReportWidgetData'
+          type: array
+      title: PersonasAnalysisReportData
+      type: object
+    sensorsdata.analytics.v2.LtvFlatReportResponse:
+      description: LTV 扁平分析报告响应（OpenAPI v2）
+      properties:
+        report_update_time:
+          description: 报告更新时间
+          type: string
+        data_sufficient_update_time:
+          description: 数据充足更新时间
+          type: string
+        data_update_time:
+          description: 数据更新时间
+          type: string
+        truncated:
+          description: 查询是否截断
+          type: boolean
+        sampling_factor:
+          description: 抽样因子
+          format: int32
+          type: integer
+        table_data:
+          $ref: '#/components/schemas/sensorsdata.analytics.v2.TableData'
+        by_fields:
+          description: 分组字段（与查询一致，含引擎补全的时间列等）
+          items:
+            type: string
+          type: array
+        user_tag_values:
+          additionalProperties:
+            description: ''
+            items:
+              properties: {}
+              type: object
+            type: array
+          description: 用户标签枚举值映射
+          type: object
+        user_tags_partitions:
+          description: 用户标签分区信息
+          items:
+            $ref: '#/components/schemas/sensorsdata.analytics.v2.UserTagsPartition'
+          type: array
+        time_zone:
+          description: 查询使用的时区
+          type: string
+        trade_day_rewritten:
+          description: 是否做过交易日改写
+          type: boolean
+      title: LtvFlatReportResponse
+      type: object
+    sensorsdata.analytics.v2.PersonasAnalyseReportResponseHttpApiResult:
+      properties:
+        code:
+          type: string
+        message:
+          type: string
+        request_id:
+          type: string
+        data:
+          $ref: '#/components/schemas/sensorsdata.analytics.v2.PersonasAnalyseReportResponse'
+        error_info:
+          $ref: '#/components/schemas/sensorsdata.common.ErrorInfo'
+      title: sensorsdata.analytics.v2.PersonasAnalyseReportResponseHttpApiResult
+      type: object
+    sensorsdata.analytics.v1.UserPageResponse:
+      description: 查询用户明细接口返回结果结构描述
+      properties:
+        users:
+          description: 用户列表
+          example: '[{"id":"-8961289991947891759","first_id":"7tpEmL7hMALkIinn","second_id":"","distinct_id":"","column_names":["$id","vehicle_type","vehicle_system"],"profiles":{"vehicle_type":"四门轿车","$id":"-8961289991947891759","vehicle_system":"7"}}]'
+          items:
+            $ref: '#/components/schemas/sensorsdata.analytics.v1.UserDetail'
+          type: array
+        page:
+          $ref: '#/components/schemas/sensorsdata.analytics.v1.PageInfo'
+      title: UserPageResponse
+      type: object
+    sensorsdata.analytics.v2.AttributionEventElement.BucketParamsEntry:
+      description: ''
+      properties:
+        key:
+          description: ''
+          type: string
+        value:
+          description: ''
+          items:
+            properties: {}
+            type: object
+          type: array
+      title: BucketParamsEntry
+      type: object
+    sensorsdata.analytics.v1.SqlQueryResponse:
+      description: 自定义 sql 查询接口的返回结构描述
+      properties:
+        columns:
+          description: 查询列
+          example: '["$browser_version","$utm_medium","$viewport_position","$dimension_dict_$model","$os","$is_first_time","$network_type","$wifi","$ip","$screen_height","$utm_term","$referrer","$viewport_height","$url_path","$province","$url","$share_depth","day","$element_content","$carrier","$os_version","$receive_time","$utm_matching_type","$is_first_day","$referrer_host","$city","$viewport_width","$screen_width","$utm_source","$browser","$app_version","$lib","$event_duration","event_id","$country","$utm_campaign","user_id","distinct_id","$title","$utm_content","$dimension_dict_$manufacturer","time","$resume_from_background"]'
+          items:
+            type: string
+          type: array
+        data:
+          $ref: '#/components/schemas/sensorsdata.common.ListValue'
+      title: SqlQueryResponse
+      type: object
+    sensorsdata.analytics.v2.LtvFlatReportResponse.UserTagValuesEntry:
+      description: ''
+      properties:
+        key:
+          description: ''
+          type: string
+        value:
+          description: ''
+          items:
+            properties: {}
+            type: object
+          type: array
+      title: UserTagValuesEntry
+      type: object
+    sensorsdata.analytics.v2.PersonasAnalyseReportRequest:
+      description: 查询用户群画像分析报告请求参数
+      properties:
+        analysis:
+          $ref: '#/components/schemas/sensorsdata.analytics.v2.PersonasAnalysis'
+        use_cache:
+          description: 是否使用缓存
+          type: boolean
+      required:
+      - analysis
+      title: PersonasAnalyseReportRequest
+      type: object
+    sensorsdata.analytics.v2.RetentionUserRequest:
+      description: ''
+      properties:
+        from_date:
+          description: 查询日期范围的开始时间，格式为 yyyy-MM-dd
+          example: '2022-09-29'
+          type: string
+        to_date:
+          description: 查询日期范围的结束时间，格式为 yyyy-MM-dd
+          example: '2022-09-29'
+          type: string
+        compare_from_date:
+          description: 对比日期范围的开始时间，格式为 yyyy-MM-dd
+          example: '2022-09-22'
+          type: string
+        compare_to_date:
+          description: 对比日期范围的结束时间，格式为 yyyy-MM-dd
+          example: '2022-09-28'
+          type: string
+        retention_mode:
+          description: 留存模式
+          enum:
+          - RETENTION_MODE_UNSPECIFIED
+          - SELECTED_RETENTION
+          - CUSTOM_RANGE_RETENTION
+          - CONTINUOUS_RETENTION
+          - CONTINUOUS_WASTE
+          example: SELECTED_RETENTION
+          type: string
+        diversion_mode:
+          description: 分流模式
+          enum:
+          - DIVERSION_MODE_UNSPECIFIED
+          - USER_MULTI_GROUP
+          - USER_SINGLE_GROUP
+          example: USER_MULTI_GROUP
+          type: string
+        retention_rate_type:
+          description: 留存率类型
+          enum:
+          - RETENTION_RATE_TYPE_UNSPECIFIED
+          - DISTINCT
+          - WEIGHT
+          example: DISTINCT
+          type: string
+        by_events:
+          description: 按事件分组
+          example: '["$AppClick","$AppViewScreen"]'
+          items:
+            type: string
+          type: array
+        by_field:
+          description: 按维度分组
+          example: event.$AppClick.$country
+          type: string
+        selecteds:
+          description: 选择日列表
+          example: '[1,3,7,14,30]'
+          items:
+            properties: {}
+            type: object
+          type: array
+        custom_range:
+          description: 自定义区间
+          example: '[[1,3],[4,7]]'
+          items:
+            properties: {}
+            type: object
+          type: array
+        rollup_date:
+          description: 是否按日期汇总
+          example: true
+          type: boolean
+        duration:
+          description: 观测数，表示获取往后 N 个时间单位的留存
+          example: 7
+          format: int32
+          type: integer
+        first_event:
+          $ref: '#/components/schemas/sensorsdata.analytics.v1.ApiRequestEventWithFilter'
+        second_event:
+          $ref: '#/components/schemas/sensorsdata.analytics.v1.ApiRequestEventWithFilter'
+        filter:
+          $ref: '#/components/schemas/sensorsdata.analytics.v1.ApiRequestFilter'
+        measures:
+          description: 同时显示第三个指标
+          example: '[{"event_name":"$MPShow","aggregator":"general","filter":{}}]'
+          items:
+            $ref: '#/components/schemas/sensorsdata.analytics.v1.ApiRequestMeasure'
+          type: array
+        user_filter:
+          $ref: '#/components/schemas/sensorsdata.analytics.v1.ApiRequestFilter'
+        common_event_filter:
+          $ref: '#/components/schemas/sensorsdata.analytics.v1.ApiRequestFilter'
+        common_user_filter:
+          $ref: '#/components/schemas/sensorsdata.analytics.v1.ApiRequestFilter'
+        show_zero_day:
+          description: 是否显示第0天
+          example: 'true'
+          type: string
+        include_zero_unit:
+          description: 是否包含第0个时间单位
+          example: true
+          type: boolean
+        rate_scale:
+          description: 留存率精度
+          example: '0.01'
+          type: string
+        last_zero:
+          description: 最后是否为0
+          example: false
+          type: boolean
+        trade_day_mode:
+          description: 是否交易日模式
+          example: false
+          type: boolean
+        dashboard_id:
+          description: 仪表盘 ID
+          example: 123
+          format: int32
+          type: integer
+        bookmark_id:
+          description: 书签 ID
+          example: 123
+          format: int32
+          type: integer
+        unit:
+          description: 查看的时间粒度，可以是，HOUR：按小时，DAY：按天，WEEK：按周，MONTH：按月，YEAR：按年
+          example: DAY
+          type: string
+        extend_over_end_date:
+          description: （可选）后续事件是否可以超出时间区间
+          example: true
+          type: boolean
+        sampling_factor:
+          description: 抽样因子，64为全量，32为2分之1抽样
+          example: 64
+          format: int32
+          type: integer
+        is_wastage:
+          description: 是否计算流失，false为计算留存，true为计算流失
+          example: false
+          type: boolean
+        use_cache:
+          description: 是否使用缓存，若缓存中找不到相应数据，则从数据库读出
+          example: false
+          type: boolean
+        request_id:
+          description: 本次请求 ID, 方便后续追踪问题
+          example: '12345696321548954'
+          type: string
+        by_fields:
+          description: 按什么维度查看，一般是事件属性、用户属性等维度
+          example: '["event.$AppStart.$country","event.$AppStart.$province"]'
+          items:
+            type: string
+          type: array
+        rollup:
+          description: 是否汇总
+          example: true
+          type: boolean
+        limit:
+          description: 用户设定的返回的最大行数，如果为 null，表示自动计算一个适合前端展示的值。如果为 -1，表示在可能得情况下返回尽量多的数据。
+          example: 10000
+          format: int64
+          type: integer
+        bucket_params:
+          additionalProperties:
+            description: ''
+            items:
+              properties: {}
+              type: object
+            type: array
+          description: 分桶条件，对数值型属性进行分组时，可以自定义分桶条件,如果不设置的话，是默认区间
+          example:
+            event.$Anything.$event_duration:
+            - '40'
+            - '50'
+          type: object
+        time_zone_mode:
+          description: 使用哪种时区模式，取值范围参考枚举 TimeZoneMode
+          enum:
+          - TIME_ZONE_MODE_UNSPECIFIED
+          - CUSTOMER
+          - SERVER
+          example: SERVER
+          type: string
+        server_time_zone:
+          description: 指定使用的服务器时区，格式为 UTC+偏移量，例如：UTC+10:00
+          example: UTC+10:00
+          type: string
+        subject_id:
+          description: 多主体 ID
+          example: $country
+          type: string
+        by_event:
+          description: 按事件分组（单个）
+          example: $AppClick
+          type: string
+        bucket_param:
+          description: 分桶参数
+          example: '["5","10","15"]'
+          items:
+            properties: {}
+            type: object
+          type: array
+        slice_value:
+          description: 切片值
+          example: 中国
+          type: string
+        slice_by_value:
+          description: 按切片值分组
+          example: 中国
+          type: string
+        slice_by_values:
+          description: 按切片值分组列表
+          example: '["中国","美国"]'
+          items:
+            type: string
+          type: array
+        slice_by_fields:
+          description: 按切片字段分组列表
+          example: '["$country","$province"]'
+          items:
+            type: string
+          type: array
+        slice_date:
+          description: 切片日期
+          example: '2022-09-29'
+          type: string
+        slice_interval:
+          description: 切片时间间隔
+          example: day1
+          type: string
+        detail:
+          description: 是否获取详情
+          example: true
+          type: boolean
+        page:
+          description: 页码
+          example: 1
+          format: int32
+          type: integer
+        profiles:
+          description: 需要返回的用户属性列表
+          example: '["$name","$city"]'
+          items:
+            type: string
+          type: array
+        sort_by_field:
+          description: 排序字段
+          example: $name
+          type: string
+        asc:
+          description: 是否升序
+          example: true
+          type: boolean
+        num_per_page:
+          description: 每页数量
+          example: 20
+          format: int32
+          type: integer
+        all_page:
+          description: 是否返回所有页
+          example: false
+          type: boolean
+      required:
+      - first_event
+      - from_date
+      - retention_mode
+      - second_event
+      - to_date
+      - unit
+      title: RetentionUserRequest
+      type: object
+    sensorsdata.analytics.v2.FunnelMeasure:
+      description: 漏斗步骤指标
+      properties:
+        aggregator:
+          description: 聚合方式
+          example: sum
+          type: string
+        event_name:
+          description: 事件名称
+          example: $AppClick
+          type: string
+        measure_name:
+          description: 指标名称
+          example: 总金额
+          type: string
+        field:
+          description: 属性字段
+          example: $money
+          type: string
+      title: FunnelMeasure
+      type: object
+    sensorsdata.analytics.v1.PageInfo:
+      description: ''
+      properties:
+        current_page:
+          description: ''
+          format: int32
+          type: integer
+        page_count:
+          description: ''
+          format: int32
+          type: integer
+        total:
+          description: ''
+          format: int32
+          type: integer
+      title: PageInfo
+      type: object
+    sensorsdata.analytics.v2.RetentionColumn:
+      description: 留存列信息
+      properties:
+        column_value:
+          description: 列值
+          example: '1'
+          properties: {}
+          type: object
+        column_unit:
+          description: 列时间单位
+          example: DAY
+          properties: {}
+          type: object
+        column_name:
+          description: 列名称
+          example: day1
+          type: string
+        column_meta:
+          $ref: '#/components/schemas/sensorsdata.analytics.v2.RetentionDataDesc'
+      title: RetentionColumn
+      type: object
+    sensorsdata.analytics.v2.PersonasAnalysisReportWidgetData:
+      description: 卡片结果信息
+      properties:
+        widget_id:
+          description: 卡片 id
+          type: string
+        widget_time_ranges:
+          description: 卡片时间范围
+          items:
+            type: string
+          type: array
+        widget_groups:
+          description: 卡片对应的人群结果
+          items:
+            $ref: '#/components/schemas/sensorsdata.analytics.v2.PersonasAnalysisReportWidgetGroup'
+          type: array
+      title: PersonasAnalysisReportWidgetData
+      type: object
+    sensorsdata.analytics.v2.AttributeTargetEvent:
+      description: 归因目标事件
+      properties:
+        measure:
+          $ref: '#/components/schemas/sensorsdata.analytics.v2.QueryMeasure'
+        by_fields:
+          description: 按什么维度查看
+          example: '["$country","$province"]'
+          items:
+            type: string
+          type: array
+        bucket_params:
+          additionalProperties:
+            description: ''
+            items:
+              properties: {}
+              type: object
+            type: array
+          description: 分桶条件
+          example:
+            event.$Anything.$event_duration:
+            - '40'
+            - '50'
+          type: object
+        by_unit:
+          description: 按时间单位分组
+          example: DAY
+          type: string
+        event_name:
+          description: 事件名称
+          example: $AppClick
+          type: string
+        aggregator:
+          description: 聚合方式
+          example: general
+          type: string
+        field:
+          description: 属性字段
+          example: event.$AppClick.$money
+          type: string
+        filter:
+          $ref: '#/components/schemas/sensorsdata.analytics.v2.QueryExtendFilter'
+      title: AttributeTargetEvent
+      type: object
+    sensorsdata.analytics.v2.FunnelReportResponse:
+      description: 查询漏斗分析报告返回结构描述
+      properties:
+        report_update_time:
+          description: 查询报告数据更新时间
+          example: '2022-09-29 12:00:00'
+          type: string
+        data_sufficient_update_time:
+          description: 数据显著更新时间
+          example: '2022-09-29 12:00:00'
+          type: string
+        data_update_time:
+          description: 数据更新时间
+          example: '2022-09-29 12:00:00'
+          type: string
+        truncated:
+          description: 查询是否截断
+          example: false
+          type: boolean
+        sampling_factor:
+          description: 抽样因子，64为全量，32为2分之1抽样
+          example: 64
+          format: int32
+          type: integer
+        table_data:
+          $ref: '#/components/schemas/sensorsdata.analytics.v2.TableData'
+        by_fields:
+          description: 按什么维度查看
+          example: '["event.$AppStart.$country"]'
+          items:
+            type: string
+          type: array
+        by_field_steps:
+          description: （可选）分组的步骤 id，如果为 -1 表示用户属性/分群名，0 表示第一步骤事件属性，若 "by_field" 中能明确看出为第几步的事件属性/用户属性，则此参数可以不用配置。否则需要配置相应参数值，并且和
+            "by_field" 请求参数保持一致
+          example: '[0,0]'
+          items:
+            properties: {}
+            type: object
+          type: array
+        by_value_lists:
+          description: 维度值列表
+          example: '[["中国","美国"],["北京","上海"]]'
+          items:
+            items:
+              properties: {}
+              type: object
+            type: array
+          type: array
+        date_lists:
+          description: 日期列表
+          example: '["2022-09-29","2022-09-30"]'
+          items:
+            type: string
+          type: array
+        statistics:
+          description: 统计信息
+          example: '{"total_count":1000,"conversion_rate":0.5}'
+          properties: {}
+          type: object
+        user_tags_partitions:
+          description: 用户标签分区信息列表
+          example: '[{"tag_name":"user_level","tag_c_name":"用户等级"}]'
+          items:
+            $ref: '#/components/schemas/sensorsdata.analytics.v2.UserTagsPartition'
+          type: array
+      title: FunnelReportResponse
+      type: object
+    sensorsdata.analytics.v2.AttributionEventElement:
+      description: 归因事件相关信息
+      properties:
+        event_name:
+          description: 事件名称
+          example: $AppClick
+          type: string
+        by_fields:
+          description: 事件关联的维度集合
+          example: '["$country","$province"]'
+          items:
+            type: string
+          type: array
+        link_events:
+          description: 关联事件集合
+          example: '[{"event_name":"$AppViewScreen","link_properties":{}}]'
+          items:
+            $ref: '#/components/schemas/sensorsdata.analytics.v2.LinkEvent'
+          type: array
+        bucket_params:
+          additionalProperties:
+            description: ''
+            items:
+              properties: {}
+              type: object
+            type: array
+          description: 分桶条件，对数值型属性进行分组时，可以自定义分桶条件,如果不设置的话，是默认区间
+          example:
+            event.$Anything.$event_duration:
+            - '40'
+            - '50'
+          type: object
+        filter:
+          $ref: '#/components/schemas/sensorsdata.analytics.v2.QueryExtendFilter'
+      title: AttributionEventElement
+      type: object
+    sensorsdata.analytics.v2.AttributeTargetEvent.BucketParamsEntry:
+      description: ''
+      properties:
+        key:
+          description: ''
+          type: string
+        value:
+          description: ''
+          items:
+            properties: {}
+            type: object
+          type: array
+      title: BucketParamsEntry
+      type: object
+    sensorsdata.analytics.v2.RetentionUserRequest.BucketParamsEntry:
+      description: ''
+      properties:
+        key:
+          description: ''
+          type: string
+        value:
+          description: ''
+          items:
+            properties: {}
+            type: object
+          type: array
+      title: BucketParamsEntry
+      type: object
+    sensorsdata.analytics.v2.FunnelReportRequest:
+      description: 查询漏斗分析报告请求参数描述
+      properties:
+        funnel_define:
+          $ref: '#/components/schemas/sensorsdata.analytics.v2.FunnelDefineRequest'
+        from_date:
+          description: 查询日期范围的开始时间，格式为 yyyy-MM-dd
+          example: '2022-09-29'
+          type: string
+        to_date:
+          description: 查询日期范围的结束时间，格式为 yyyy-MM-dd
+          example: '2022-09-29'
+          type: string
+        filter:
+          $ref: '#/components/schemas/sensorsdata.analytics.v2.QueryExtendFilter'
+        by_fields:
+          description: 按什么维度查看，一般是事件属性、用户属性等维度
+          example: '["event.$AppStart.$country","event.$AppStart.$province"]'
+          items:
+            type: string
+          type: array
+        extend_over_end_date:
+          description: 是否限制漏斗所有步骤在事件窗口内，true:不限制，false:限制（将首步骤之后的步骤的发生时间限定在时间区间内）
+          example: false
+          type: boolean
+        by_field_step:
+          description: （可选）分组的步骤 id，如果为 -1 表示用户属性/分群名，0 表示第一步骤事件属性，
+          format: int32
+          type: integer
+        sampling_factor:
+          description: 抽样因子，64为全量，32为2分之1抽样
+          example: 64
+          format: int32
+          type: integer
+        filter_field_steps:
+          description: 指定筛选条件针对的步骤，0 为第一步骤，-1 为用筛选条件为用户属性/用户分群, 如果配置此参数, 需要和 “field” 请求参数中的步骤保持一致。
+          example: '[0,0]'
+          items:
+            properties: {}
+            type: object
+          type: array
+        request_id:
+          description: 本次请求 ID, 方便后续追踪问题
+          example: '12345696321548954'
+          type: string
+        dashboard_id:
+          description: 仪表盘 ID
+          format: int32
+          type: integer
+        bookmark_id:
+          description: 书签 ID
+          format: int32
+          type: integer
+        ignore_cache_expire:
+          description: 是否忽略缓存的过期时间，true:忽略，false:不忽略
+          example: true
+          type: boolean
+        trade_day_mode:
+          description: 是否使用交易日
+          example: false
+          type: boolean
+        cache_ignore_seconds:
+          description: 缓存忽略秒数
+          example: 3600
+          format: int64
+          type: integer
+        dashboard_cache_policy:
+          description: 概览缓存策略
+          example: default
+          type: string
+        dashboard_stop_update:
+          description: 概览是否停止更新
+          example: false
+          type: boolean
+        use_entire_cache_only:
+          description: 是否只使用全量缓存
+          example: false
+          type: boolean
+        funnel_id:
+          description: 漏斗 ID
+          example: 123
+          format: int32
+          type: integer
+        funnel_name:
+          description: 漏斗名称
+          example: 用户转化漏斗
+          type: string
+        use_cache:
+          description: 是否使用缓存，若缓存中找不到相应数据，则从数据库读出
+          example: false
+          type: boolean
+        arith_rollup:
+          description: 查询汇总或者明细数据， true：汇总，false：明细
+          example: true
+          type: boolean
+        calculation_caliber:
+          description: 是否次数漏斗
+          example: count
+          type: string
+        limit:
+          description: 用户设定的返回的最大行数，如果为 null，表示自动计算一个适合前端展示的值。如果为 -1，表示在可能得情况下返回尽量多的数据。
+          example: 10000
+          format: int32
+          type: integer
+        bucket_params:
+          additionalProperties:
+            description: ''
+            items:
+              properties: {}
+              type: object
+            type: array
+          description: 分桶条件，对数值型属性进行分组时，可以自定义分桶条件,如果不设置的话，是默认区间
+          example:
+            event.$Anything.$event_duration:
+            - '40'
+            - '50'
+          type: object
+        by_field_steps:
+          description: 查看维度映射关系, 如果配置此参数, 需要和 “field” 请求参数中的步骤保持一致。
+          example: '[0,0]'
+          items:
+            properties: {}
+            type: object
+          type: array
+        time_zone_mode:
+          description: 使用哪种时区模式，取值范围参考枚举 TimeZoneMode
+          enum:
+          - TIME_ZONE_MODE_UNSPECIFIED
+          - CUSTOMER
+          - SERVER
+          example: SERVER
+          type: string
+        server_time_zone:
+          description: 指定使用的服务器时区，格式为 UTC+偏移量，例如：UTC+10:00
+          example: UTC+10:00
+          type: string
+        subject_id:
+          description: 多主体 ID
+          example: $country
+          type: string
+        unit:
+          description: 查看的时间粒度，可以是，HOUR：按小时，DAY：按天，WEEK：按周，MONTH：按月
+          example: DAY
+          type: string
+        diversion_mode:
+          description: 分流模式
+          enum:
+          - DIVERSION_MODE_UNSPECIFIED
+          - USER_MULTI_GROUP
+          - USER_SINGLE_GROUP
+          example: USER_MULTI_GROUP
+          type: string
+        order_type:
+          description: 排序类型
+          example: asc
+          type: string
+        compare_from_date:
+          description: 对比日期范围的开始时间，格式为 yyyy-MM-dd
+          example: '2022-09-22'
+          type: string
+        compare_to_date:
+          description: 对比日期范围的结束时间，格式为 yyyy-MM-dd
+          example: '2022-09-28'
+          type: string
+        common_user_filter:
+          $ref: '#/components/schemas/sensorsdata.analytics.v2.QueryExtendFilter'
+      required:
+      - from_date
+      - to_date
+      title: FunnelReportRequest
+      type: object
+    sensorsdata.analytics.v2.TableData:
+      description: 表格数据结构
+      properties:
+        column_meta_lists:
+          description: 列元数据列表
+          example: '[{"data_name":"date","view_name":"日期","data_type":"string"}]'
+          items:
+            $ref: '#/components/schemas/sensorsdata.analytics.v2.ColumnMeta'
+          type: array
+        cells:
+          description: 数据单元格列表
+          example: '[{"date":"2022-09-29","count":100}]'
+          items:
+            description: google.protobuf.Struct 支持各种 JSONObject
+            properties: {}
+            type: object
+          type: array
+        compare_cells:
+          description: 对比数据单元格列表
+          example: '[{"date":"2022-09-28","count":90}]'
+          items:
+            description: google.protobuf.Struct 支持各种 JSONObject
+            properties: {}
+            type: object
+          type: array
+      title: TableData
+      type: object
+    sensorsdata.analytics.v2.RetentionReportResponse.UserTagValuesEntry:
+      description: ''
+      properties:
+        key:
+          description: ''
+          type: string
+        value:
+          description: ''
+          items:
+            properties: {}
+            type: object
+          type: array
+      title: UserTagValuesEntry
+      type: object
+    sensorsdata.analytics.v2.FunnelUserRequest:
+      description: 查询漏斗分析用户明细请求参数描述
+      properties:
+        use_cache:
+          description: 是否使用缓存，若缓存中找不到相应数据，则从数据库读出
+          example: false
+          type: boolean
+        from_date:
+          description: 查询日期范围的开始时间，格式为 yyyy-MM-dd
+          example: '2022-09-29'
+          type: string
+        to_date:
+          description: 查询日期范围的结束时间，格式为 yyyy-MM-dd
+          example: '2022-09-29'
+          type: string
+        unit:
+          description: 查看的时间粒度，可以是，HOUR：按小时，DAY：按天，WEEK：按周，MONTH：按月
+          example: DAY
+          type: string
+        sampling_factor:
+          description: 抽样因子，64为全量，32为2分之1抽样
+          example: 64
+          format: int32
+          type: integer
+        request_id:
+          description: 本次请求 ID, 方便后续追踪问题
+          example: '12345696321548954'
+          type: string
+        ignore_cache_expire:
+          description: 是否忽略缓存的过期时间，true:忽略，false:不忽略
+          example: false
+          type: boolean
+        extend_over_end_date:
+          description: 是否限制漏斗所有步骤在事件窗口内，true:不限制，false:限制
+          example: true
+          type: boolean
+        limit:
+          description: 用户设定的返回的最大行数
+          example: 10000
+          format: int64
+          type: integer
+        dashboard_id:
+          description: 仪表盘 ID
+          example: 123
+          format: int32
+          type: integer
+        bookmark_id:
+          description: 书签 ID
+          example: 123
+          format: int32
+          type: integer
+        filter:
+          $ref: '#/components/schemas/sensorsdata.analytics.v2.QueryExtendFilter'
+        subject_id:
+          description: 多主体 ID
+          example: $country
+          type: string
+        time_zone_mode:
+          description: 使用哪种时区模式，取值范围参考枚举 TimeZoneMode
+          enum:
+          - TIME_ZONE_MODE_UNSPECIFIED
+          - CUSTOMER
+          - SERVER
+          example: SERVER
+          type: string
+        server_time_zone:
+          description: 指定使用的服务器时区，格式为 UTC+偏移量，例如：UTC+10:00
+          example: UTC+10:00
+          type: string
+        trade_day_mode:
+          description: 是否交易日模式
+          example: false
+          type: boolean
+        cache_expire_seconds:
+          description: 缓存过期秒数
+          example: 3600
+          format: int64
+          type: integer
+        dashboard_cache_policy:
+          description: 仪表盘缓存策略
+          example: default
+          type: string
+        dashboard_stop_update:
+          description: 仪表盘是否停止更新
+          example: false
+          type: boolean
+        use_entire_cache_only:
+          description: 是否只使用完整缓存
+          example: false
+          type: boolean
+        funnel_id:
+          description: 漏斗 ID
+          example: 123
+          format: int32
+          type: integer
+        funnel_name:
+          description: 漏斗名称
+          example: 用户转化漏斗
+          type: string
+        by_fields:
+          description: 按什么维度查看
+          example: '["event.$AppStart.$country"]'
+          items:
+            type: string
+          type: array
+        bucket_params:
+          additionalProperties:
+            description: ''
+            items:
+              properties: {}
+              type: object
+            type: array
+          description: 分桶条件
+          example:
+            event.$Anything.$event_duration:
+            - '40'
+            - '50'
+          type: object
+        by_field_steps:
+          description: 维度步骤映射
+          example: '[0,0]'
+          items:
+            format: int32
+            type: integer
+          type: array
+        filter_field_steps:
+          description: 筛选条件步骤映射
+          example: '[0,0]'
+          items:
+            format: int32
+            type: integer
+          type: array
+        funnel_define:
+          $ref: '#/components/schemas/sensorsdata.analytics.v2.FunnelDefineRequest'
+        calculation_caliber:
+          description: 计算口径，是否次数漏斗
+          example: count
+          type: string
+        arith_rollup:
+          description: 查询汇总或者明细数据
+          example: true
+          type: boolean
+        diversion_mode:
+          description: 分流模式
+          example: USER_MULTI_GROUP
+          type: string
+        order_type:
+          description: 排序类型
+          example: asc
+          type: string
+        compare_from_date:
+          description: 对比日期范围的开始时间，格式为 yyyy-MM-dd
+          example: '2022-09-22'
+          type: string
+        compare_to_date:
+          description: 对比日期范围的结束时间，格式为 yyyy-MM-dd
+          example: '2022-09-28'
+          type: string
+        common_user_filter:
+          $ref: '#/components/schemas/sensorsdata.analytics.v2.QueryExtendFilter'
+        slice_by_value:
+          description: 切片维度值
+          example: 中国
+          type: string
+        slice_by_values:
+          description: 切片维度值列表
+          example: '["中国","美国"]'
+          items:
+            type: string
+          type: array
+        slice_step:
+          description: 切片步骤
+          example: 0
+          format: int32
+          type: integer
+        slice_wastage_user:
+          description: 是否切片流失用户
+          example: false
+          type: boolean
+        detail:
+          description: 是否获取详情
+          example: true
+          type: boolean
+        page:
+          description: 页码
+          example: 1
+          format: int32
+          type: integer
+        profiles:
+          description: 需要返回的用户属性列表
+          example: '["$name","$city"]'
+          items:
+            type: string
+          type: array
+        sort_by_field:
+          description: 排序字段
+          example: $name
+          type: string
+        asc:
+          description: 是否升序
+          example: true
+          type: boolean
+        num_per_page:
+          description: 每页数量
+          example: 20
+          format: int32
+          type: integer
+        all_page:
+          description: 是否返回所有页
+          example: false
+          type: boolean
+        slice_end_date:
+          description: 切片结束日期
+          example: '2022-09-30'
+          type: string
+        slice_measure_index:
+          description: 切片指标索引
+          example: 0
+          format: int32
+          type: integer
+      required:
+      - from_date
+      - to_date
+      - unit
+      title: FunnelUserRequest
+      type: object
+    sensorsdata.analytics.v2.AttributionReportRequest:
+      description: 查询归因分析报告接口请求参数描述
+      properties:
+        from_date:
+          description: 查询日期范围的开始时间，格式为 yyyy-MM-dd
+          example: '2022-09-29'
+          type: string
+        to_date:
+          description: 查询日期范围的结束时间，格式为 yyyy-MM-dd
+          example: '2022-09-29'
+          type: string
+        unit:
+          description: 归因分析结果返回的时间单位，取值范围参考枚举 TimeUnit
+          example: DAY
+          type: string
+        use_cache:
+          description: 是否使用缓存，若缓存中找不到相应数据，则从数据库读出
+          example: false
+          type: boolean
+        direct_conversion:
+          description: 是否直接转化是否参与归因计算
+          example: false
+          type: boolean
+        sampling_factor:
+          description: 抽样因子，64为全量，32为2分之1抽样
+          example: 64
+          format: int32
+          type: integer
+        file_name:
+          description: 输出文件名?
+          example: attribution_report_2022-09-29_2022-09-29_DAY_first.csv?
+          type: string
+        dashboard_id:
+          description: 仪表盘 ID
+          format: int32
+          type: integer
+        bookmark_id:
+          description: 书签 ID
+          format: int32
+          type: integer
+        target_event:
+          $ref: '#/components/schemas/sensorsdata.analytics.v2.AttributeTargetEvent'
+        link_events:
+          description: 关联事件
+          example: '[]'
+          items:
+            $ref: '#/components/schemas/sensorsdata.analytics.v2.LinkEvent'
+          type: array
+        attribution_events:
+          $ref: '#/components/schemas/sensorsdata.analytics.v2.AttributionEvent'
+        filter:
+          $ref: '#/components/schemas/sensorsdata.analytics.v2.QueryExtendFilter'
+        model_type:
+          description: 归因分析模型，first：首次触点归因，last：末次触点归因，linear：线性归因，position：未知归因，time_decay：事件衰减归因
+          example: first
+          type: string
+        by_fields:
+          description: 按什么维度查看
+          example: '["event.$Anything.$province"]'
+          items:
+            type: string
+          type: array
+        lookback_window:
+          $ref: '#/components/schemas/sensorsdata.analytics.v2.LookbackWindow'
+        request_id:
+          description: 本次请求 ID, 方便后续追踪问题
+          example: '12345696321548954'
+          type: string
+        show_by_field_summary:
+          description: 是否显示属性汇总数据， true：显示，false：不显示
+          example: false
+          type: boolean
+        arith_rollup:
+          description: 查询汇总或者明细数据， true：汇总，false：明细
+          example: true
+          type: boolean
+        limit:
+          description: 用户设定的返回的最大行数，如果为 null，表示自动计算一个适合前端展示的值。如果为 -1，表示在可能得情况下返回尽量多的数据。
+          example: 10000
+          format: int32
+          type: integer
+        time_zone_mode:
+          description: 使用哪种时区模式，取值范围参考枚举 TimeZoneMode
+          enum:
+          - TIME_ZONE_MODE_UNSPECIFIED
+          - CUSTOMER
+          - SERVER
+          example: SERVER
+          type: string
+        server_time_zone:
+          description: 指定使用的服务器时区，格式为 UTC+偏移量，例如：UTC+10:00
+          example: UTC+10:00
+          type: string
+        subject_id:
+          description: 多主体 ID
+          example: $country
+          type: string
+        show_measure_lists:
+          description: 展示指标列表
+          example: '[{"measure_name":"measure_1","measure_cname":"measure_hhh"}]'
+          items:
+            $ref: '#/components/schemas/sensorsdata.analytics.v2.ShowMeasure'
+          type: array
+        user_filter:
+          $ref: '#/components/schemas/sensorsdata.analytics.v2.QueryExtendFilter'
+      required:
+      - attribution_events
+      - from_date
+      - lookback_window
+      - model_type
+      - target_event
+      - to_date
+      title: AttributionReportRequest
+      type: object
+    sensorsdata.common.ErrorCause:
+      properties:
+        error_cause:
+          description: 致错原因1
+          example: 参数异常1
+          type: string
+        action_suggestion:
+          description: 操作建议，针对该原因，建议的解决方式
+          example: 检测入参的数据类型1
+          type: string
+      title: ErrorCause
+      type: object
+    sensorsdata.analytics.v2.PersonasAnalyseReportResponse:
+      description: 查询用户群画像分析报告返回结构
+      properties:
+        group_id:
+          description: 人群 id
+          type: string
+        widget_id:
+          description: 卡片 id
+          type: string
+        widget_time_ranges:
+          description: 卡片时间范围
+          items:
+            type: string
+          type: array
+        data:
+          $ref: '#/components/schemas/sensorsdata.analytics.v2.PersonasAnalyseReportData'
+      title: PersonasAnalyseReportResponse
+      type: object
+    sensorsdata.common.ListValue:
+      description: ''
+      properties:
+        values:
+          description: ''
+          items:
+            $ref: '#/components/schemas/sensorsdata.common.Value'
+          type: array
+      title: ListValue
+      type: object
+    sensorsdata.common.ErrorInfo:
+      properties:
+        code:
+          description: 具体的错误码
+          example: XX-D-F-2-1
+          type: string
+        description:
+          description: 错误描述
+          example: 前端参数校验异常,PARAMETER_FORMAT_ERROR(quantiles=[10, -90] is not include [0, 100])
+          type: string
+        system_response:
+          description: 致错的可能原因列表
+          example: 系统终止了查询处理
+          type: string
+        error_causes:
+          items:
+            $ref: '#/components/schemas/sensorsdata.common.ErrorCause'
+          type: array
+        context:
+          $ref: '#/components/schemas/sensorsdata.common.ErrorContext'
+      title: ErrorInfo
+      type: object
+    sensorsdata.analytics.v2.PersonasAnalysisTaskMessage:
+      description: 画像分析报告任务信息
+      properties:
+        task_state:
+          description: 任务状态：SUCCESS、FAILURE
+          type: string
+        failure_message:
+          description: 失败信息
+          properties: {}
+          type: object
+      title: PersonasAnalysisTaskMessage
+      type: object
+    sensorsdata.analytics.v1.UserDetail:
+      description: ''
+      properties:
+        id:
+          description: 神策用户 ID
+          example: '-8961289991947891759'
+          type: string
+        first_id:
+          description: firstId
+          example: 7tpEmL7hMALkIinn
+          type: string
+        second_id:
+          description: secondId
+          example: ''
+          type: string
+        distinct_id:
+          description: distinctId
+          example: 02ta9OJYJVXcDbqs
+          type: string
+        column_names:
+          description: 字段名
+          items:
+            type: string
+          type: array
+        profiles:
+          additionalProperties:
+            description: ''
+            properties: {}
+            type: object
+          description: 属性明细
+          type: object
+      title: UserDetail
+      type: object
+    sensorsdata.analytics.v2.PersonasAnalysisWidgetConfig:
+      description: 卡片配置
+      properties:
+        widget_id:
+          description: 卡片 id
+          type: string
+        widget_name:
+          description: 卡片名称
+          type: string
+        type:
+          description: 查询类型：USER_TAG_DISTRIBUTION、MEASURES_DISTRIBUTION、USER_PROPERTY_DISTRIBUTION
+          type: string
+        request:
+          description: 根据查询类型定义请求结构
+          properties: {}
+          type: object
+        chart_type:
+          description: 展示图类型
+          type: string
+        row_index:
+          description: 展示图所在行
+          format: int32
+          type: integer
+        group_ids:
+          description: 对应的人群 id 列表
+          items:
+            type: string
+          type: array
+      title: PersonasAnalysisWidgetConfig
+      type: object
+    sensorsdata.analytics.v2.LtvFlatReportResponseHttpApiResult:
+      properties:
+        code:
+          type: string
+        message:
+          type: string
+        request_id:
+          type: string
+        data:
+          $ref: '#/components/schemas/sensorsdata.analytics.v2.LtvFlatReportResponse'
+        error_info:
+          $ref: '#/components/schemas/sensorsdata.common.ErrorInfo'
+      title: sensorsdata.analytics.v2.LtvFlatReportResponseHttpApiResult
+      type: object
+    sensorsdata.analytics.v2.PersonasAnalysisGroupConfig:
+      description: 人群配置
+      properties:
+        group_id:
+          description: 人群 id
+          type: string
+        group_name:
+          description: 人群名称
+          type: string
+        group_type:
+          description: 人群类型：TARGET_GROUP、CONTROL_GROUP、TGI_GROUP
+          type: string
+        group_missed:
+          description: 分群是否已经找不到
+          type: boolean
+        group_component_type:
+          description: 人群组件类型：QUICK_COMPONENT、CUSTOMIZED_RULE、QUERY_RESULT、GROUP_BASED、EQL_RULE
+          type: string
+        user_group_rule:
+          description: 人群规则
+          properties: {}
+          type: object
+        query_request:
+          description: 查询请求
+          properties: {}
+          type: object
+        query_type:
+          description: 查询类型
+          type: string
+        template_data:
+          description: 模板数据
+          properties: {}
+          type: object
+        rule_ext:
+          description: 扩展规则
+          properties: {}
+          type: object
+        sql_encode:
+          description: sql 是否加密
+          type: boolean
+      title: PersonasAnalysisGroupConfig
+      type: object
+    sensorsdata.analytics.v2.RetentionReportResponse:
+      description: 查询留存分析报告返回结构描述
+      properties:
+        report_update_time:
+          description: 报告更新时间
+          example: '2022-09-29 12:00:00'
+          type: string
+        data_sufficient_update_time:
+          description: 数据充足更新时间
+          example: '2022-09-29 12:00:00'
+          type: string
+        data_update_time:
+          description: 数据更新时间
+          example: '2022-09-29 12:00:00'
+          type: string
+        truncated:
+          description: 查询是否截断
+          example: false
+          type: boolean
+        sampling_factor:
+          description: 抽样因子，64为全量，32为2分之1抽样
+          example: 64
+          format: int32
+          type: integer
+        data:
+          description: 留存数据列表
+          example: '[{"date":"2022-09-29","day1":0.5,"day3":0.3}]'
+          items:
+            description: google.protobuf.Struct 支持各种 JSONObject
+            properties: {}
+            type: object
+          type: array
+        column_meta_lists:
+          description: 列元数据列表
+          example: '[{"column_name":"day1","column_value":1}]'
+          items:
+            $ref: '#/components/schemas/sensorsdata.analytics.v2.RetentionColumn'
+          type: array
+        compare_data:
+          description: 对比留存数据列表
+          example: '[{"date":"2022-09-28","day1":0.4,"day3":0.2}]'
+          items:
+            description: google.protobuf.Struct 支持各种 JSONObject
+            properties: {}
+            type: object
+          type: array
+        compare_column_meta_lists:
+          description: 对比列元数据列表
+          example: '[{"column_name":"day1","column_value":1}]'
+          items:
+            $ref: '#/components/schemas/sensorsdata.analytics.v2.RetentionColumn'
+          type: array
+        user_tag_values:
+          additionalProperties:
+            description: ''
+            items:
+              properties: {}
+              type: object
+            type: array
+          description: 用户标签值映射
+          example:
+            user_level:
+            - VIP
+            - 普通用户
+          type: object
+        user_tags_partitions:
+          description: 用户标签分区信息列表
+          example: '[{"tag_name":"user_level","tag_c_name":"用户等级"}]'
+          items:
+            $ref: '#/components/schemas/sensorsdata.analytics.v2.UserTagsPartition'
+          type: array
+      title: RetentionReportResponse
+      type: object
+    sensorsdata.analytics.v2.FunnelStepFilter:
+      description: 漏斗步骤筛选条件
+      properties:
+        conditions:
+          description: 筛选条件列表
+          example: '[{"field":"event.$AppStart.$country","function":"equal","params":["中国"]}]'
+          items:
+            $ref: '#/components/schemas/sensorsdata.analytics.v2.QueryFilterCondition'
+          type: array
+        filters:
+          description: 嵌套筛选条件
+          example: '[{"conditions":[{"field":"event.$AppStart.$city","function":"equal","params":["北京"]}],"relation":"AND"}]'
+          items:
+            $ref: '#/components/schemas/sensorsdata.analytics.v2.FunnelStepFilter'
+          type: array
+        relation:
+          description: 条件关系，AND 或 OR
+          example: AND
+          type: string
+      title: FunnelStepFilter
+      type: object
+    sensorsdata.analytics.v2.RetentionDataDesc:
+      description: 留存数据描述
+      properties:
+        data_type:
+          description: 数据类型
+          example: number
+          type: string
+        column_type:
+          description: 列类型
+          example: retention
+          type: string
+        by_event:
+          description: 按事件分组
+          example: $AppClick
+          type: string
+        by_field:
+          description: 按维度分组
+          example: event.$AppClick.$country
+          type: string
+      title: RetentionDataDesc
+      type: object
+    sensorsdata.analytics.v2.AttributionEvent.BucketParamsEntry:
+      description: ''
+      properties:
+        key:
+          description: ''
+          type: string
+        value:
+          description: ''
+          items:
+            properties: {}
+            type: object
+          type: array
+      title: BucketParamsEntry
+      type: object
+x-sd-openapi-service-name: Model
+x-sd-openapi-service-name-hyphen: model
+x-sd-openapi-app-name: analytics
+x-sd-openapi-service-name-zh_cn: 分析模型
+x-original-swagger-version: '2.0'

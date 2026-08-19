@@ -1,0 +1,194 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "神策数界"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "创建订阅方",
+        "type": "http"
+      },
+      "http": {
+        "method": "POST",
+        "url": "/api/v3/horizon/v1/data-subscription/application/add",
+        "headers": [
+          {
+            "name": "api-key",
+            "value": ""
+          },
+          {
+            "name": "sensorsdata-project",
+            "value": ""
+          }
+        ],
+        "body": {
+          "type": "json",
+          "data": "{}"
+        }
+      },
+      "docs": "创建订阅方\n ```\n curl -X POST 'http://{host}:8107/api/v3/horizon/v1/data-subscription/application/add' \\\n -H 'api-key: {api-key}' \\\n -H 'Content-Type: application/json;charset=UTF-8' \\\n -H 'sensorsdata-project: {project_name}' \\\n -d '{\n    \"application\":{\n        \"application_name\": \"{application_name}\",\n        \"application_type\": \"KAFKA_BASED_APP\",\n        \"kafka_based_app_config\": {\n            \"data_format_type\": \"NESTED_JSON\",\n            \"profile_kafka_descriptor\":{\n                \"type\": \"CUS"
+    },
+    {
+      "info": {
+        "name": "补充订阅方配置信息",
+        "type": "http"
+      },
+      "http": {
+        "method": "POST",
+        "url": "/api/v3/horizon/v1/data-subscription/application/config/append",
+        "headers": [
+          {
+            "name": "api-key",
+            "value": ""
+          },
+          {
+            "name": "sensorsdata-project",
+            "value": ""
+          }
+        ],
+        "body": {
+          "type": "json",
+          "data": "{}"
+        }
+      },
+      "docs": "补充订阅方的配置信息, 例如绑定一个接收新类型数据的 kafka\n ```\n curl -L -X POST 'http://{host}:8107/api/v3/horizon/v1/data-subscription/application/config/append' \\\n -H 'api-key: {api-key}' \\\n -H 'Content-Type: application/json;charset=UTF-8' \\\n -H 'sensorsdata-project: {project_name}' \\\n -d '{\n     \"application_name\": \"{application_name}\",\n     \"kafka_based_app_config\": {\n         \"detail_kafka_descriptor\": {\n             \"type\": \"CUSTOMIZED_KAFKA\",\n             \"customized_kafka_descriptor\": {\n                 \"bootst"
+    },
+    {
+      "info": {
+        "name": "查询订阅方信息",
+        "type": "http"
+      },
+      "http": {
+        "method": "POST",
+        "url": "/api/v3/horizon/v1/data-subscription/application/get",
+        "headers": [
+          {
+            "name": "api-key",
+            "value": ""
+          },
+          {
+            "name": "sensorsdata-project",
+            "value": ""
+          }
+        ],
+        "body": {
+          "type": "json",
+          "data": "{}"
+        }
+      },
+      "docs": "查询订阅方信息\n ```\n curl -X POST 'http://{host}:8107/api/v3/horizon/v1/data-subscription/application/get \\\n -H 'api-key: {api-key}' \\\n -H 'Content-Type: application/json;charset=UTF-8' \\\n -H 'sensorsdata-project: {project_name}' \\\n -d '{\"application_name\": \"{application_name}\"}'\n ```"
+    },
+    {
+      "info": {
+        "name": "删除订阅方",
+        "type": "http"
+      },
+      "http": {
+        "method": "POST",
+        "url": "/api/v3/horizon/v1/data-subscription/application/delete",
+        "headers": [
+          {
+            "name": "api-key",
+            "value": ""
+          },
+          {
+            "name": "sensorsdata-project",
+            "value": ""
+          }
+        ],
+        "body": {
+          "type": "json",
+          "data": "{}"
+        }
+      },
+      "docs": "删除订阅方，删除之前需先取消该订阅方发起的所有订阅\n ```\n curl -X POST 'http://{host}:8107/api/v3/horizon/v1/data-subscription/application/delete' \\\n -H 'api-key: {api-key}' \\\n -H 'Content-Type: application/json;charset=UTF-8' \\\n -H 'sensorsdata-project: {project_name}' \\\n -d '{\n     \"application_name\":\"{application_name}\"\n }'\n ```"
+    },
+    {
+      "info": {
+        "name": "创建数据订阅",
+        "type": "http"
+      },
+      "http": {
+        "method": "POST",
+        "url": "/api/v3/horizon/v1/data-subscription/create",
+        "headers": [
+          {
+            "name": "api-key",
+            "value": ""
+          },
+          {
+            "name": "sensorsdata-project",
+            "value": ""
+          }
+        ],
+        "body": {
+          "type": "json",
+          "data": "{}"
+        }
+      },
+      "docs": "创建数据订阅\n ```\n curl -X POST 'http://{host}:8107/api/v3/horizon/v1/data-subscription/create' \\\n -H 'sensorsdata-project: {project_name}' \\\n -H 'Content-Type: application/json;charset=UTF-8' \\\n -H 'api-key: {api-key}' \\\n -d '{\n     \"subscription\": {\n         \"application\": \"{application_id}\",\n         \"subscriber\": \"{subscriber}\",\n         \"target_type\": \"ENTITY_DATA\",\n         \"entity_data_subscription_config\": {\n             \"entity_name\": \"user\",\n             \"attribute_type\": \"SIMPLE\",\n         "
+    },
+    {
+      "info": {
+        "name": "批量查询订阅记录列表",
+        "type": "http"
+      },
+      "http": {
+        "method": "GET",
+        "url": "/api/v3/horizon/v1/data-subscription/list",
+        "headers": [
+          {
+            "name": "api-key",
+            "value": ""
+          },
+          {
+            "name": "sensorsdata-project",
+            "value": ""
+          }
+        ],
+        "params": [
+          {
+            "name": "application",
+            "value": "shence.sep-org-111.app.sensorsdata.cloud",
+            "type": "query",
+            "description": "订阅方的唯一标识, 即 application_id"
+          },
+          {
+            "name": "subscriber",
+            "value": "sa",
+            "type": "query",
+            "description": "订阅方业务标识, 一个 application_id 下可以有多个 subscriber，用户可通过 subscriber 确认订阅记录属于哪个业务方"
+          }
+        ]
+      },
+      "docs": "批量查询订阅记录\n 发起请求例子:\n ```\n curl -L -X GET 'http://{host}:8107/api/v3/horizon/v1/data-subscription/list?application={application_id}&subscriber={subscriber}' \\\n -H 'api-key: {api-key}' \\\n -H 'Content-Type: application/json;charset=UTF-8' \\\n -H 'sensorsdata-project: {project_name}'\n ```"
+    },
+    {
+      "info": {
+        "name": "批量取消订阅",
+        "type": "http"
+      },
+      "http": {
+        "method": "POST",
+        "url": "/api/v3/horizon/v1/data-subscription/batch-delete",
+        "headers": [
+          {
+            "name": "api-key",
+            "value": ""
+          },
+          {
+            "name": "sensorsdata-project",
+            "value": ""
+          }
+        ],
+        "body": {
+          "type": "json",
+          "data": "{}"
+        }
+      },
+      "docs": "批量取消订阅\n ```\n curl -X POST 'http://{host}:8107/api/v3/horizon/v1/data-subscription/batch-delete' \\\n -H 'api-key: {api-key}' \\\n -H 'Content-Type: application/json;charset=UTF-8' \\\n -H 'sensorsdata-project: {project_name}' \\\n -d '{\n    \"application\":\"{application_id}\",\n    \"subscriber\":\"{subscriber}\",\n    \"subscription_ids\":[{subscription_id}]\n }'\n ```"
+    }
+  ],
+  "bundled": true
+}

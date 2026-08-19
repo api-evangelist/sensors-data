@@ -1,0 +1,75 @@
+generated: '2026-08-13'
+method: searched
+source: https://docs.sensorsdata.com/sa/docs/about_open_api
+docs: https://docs.sensorsdata.com/sa/docs/about_open_api
+
+versioning:
+  published: true
+  scheme: two-tier path version — /api/v3/{product}/{interface_version}
+  api_version_policy: >-
+    v3 is "unlikely to change unless the entire API framework is upgraded" — the framework
+    version, not the product version.
+  interface_version_policy: >-
+    "The interfaces within the same version remain compatible." Breaking change ships as a
+    new interface version served alongside the old one.
+  evidence: analytics /v1 and /v2 of the Model service are both live and both published
+
+deprecation:
+  policy_published: false
+  sunset_header: false
+  deprecation_header: false
+  rfc8594: false
+  deprecated_operations: []
+  deprecated_operation_count: 0
+  evidence: >-
+    Zero of the 252 published operations carries `deprecated: true`. No deprecation policy,
+    no Sunset/Deprecation response headers, and no advertised removal window for a
+    superseded interface version. Retirement of an old interface version happens through
+    the product upgrade cycle, which the customer controls (see delivery, below) — not
+    through an API deprecation contract. No Deprecation pointer is emitted in apis.yml.
+  sdk_deprecation_signal: >-
+    Deprecation IS practised in the SDK estate, just not in the API: sa-sdk-ios-weex and
+    sa-sdk-android-weex are both marked 已废弃 (deprecated) in their GitHub descriptions and
+    redirect readers to sa-sdk-weex.
+
+delivery:
+  model: customer-deployed
+  detail: >-
+    Sensors Data runs as a private cluster or dedicated cloud per customer. The API version
+    a caller sees is the version of THAT customer's cluster, and upgrades are scheduled
+    with the customer ("在线升级" / online upgrade is a documented console feature). There is
+    no single global API version for the vendor to deprecate.
+  consequence_for_agents: >-
+    An agent cannot assume the newest published interface version is available at a given
+    customer's base URL. Discover the deployed version from the cluster before binding to
+    a v2 operation.
+
+sla:
+  published: false
+  note: no public SLA, uptime commitment or support-response target found on the .com or .cn sites
+
+status_page:
+  published: false
+  probed:
+    - url: https://status.sensorsdata.cn/
+      status: 000
+      note: DNS does not resolve
+  note: >-
+    No status page exists, and for a customer-deployed platform a vendor status page would
+    not describe the customer's own cluster anyway. No StatusPage pointer is emitted.
+
+release_log:
+  published: true
+  url: https://manual.sensorsdata.cn/sa/docs/update_log
+  see: changelog/sensors-data-changelog.yml
+  first_release: '2015-07-01'
+  current: '3.0 (2023-07-30), maintenance 3.0.5'
+
+spec_history:
+  published: true
+  detail: >-
+    Every historical spec set stays addressable through the OpenAPI manual service — 196
+    files spanning analytics 2.5.0-3.0.5, focus 4.4.5-4.5.3, horizon 1.3.1-1.3.7 and portal
+    1.4.0-1.5.5. This is a genuinely strong lifecycle artifact: a customer on an older
+    cluster can fetch the exact contract their deployment implements.
+  index: https://manual.sensorsdata.cn/openapi/api/v1/openapi_tree

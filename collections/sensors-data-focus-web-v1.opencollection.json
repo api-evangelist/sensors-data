@@ -1,0 +1,378 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "神策智能运营"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "获取计划列表",
+        "type": "http"
+      },
+      "http": {
+        "method": "POST",
+        "url": "/api/v3/focus/v1/web/plan/list",
+        "headers": [
+          {
+            "name": "api-key",
+            "value": ""
+          },
+          {
+            "name": "sensorsdata-project",
+            "value": ""
+          },
+          {
+            "name": "X-Organization-Id",
+            "value": ""
+          }
+        ],
+        "params": [
+          {
+            "name": "channel_instance_id",
+            "value": "",
+            "type": "query",
+            "description": "通道实例ID"
+          }
+        ],
+        "body": {
+          "type": "json",
+          "data": "{}"
+        }
+      },
+      "docs": "获取计划列表"
+    },
+    {
+      "info": {
+        "name": "获取单个计划",
+        "type": "http"
+      },
+      "http": {
+        "method": "GET",
+        "url": "/api/v3/focus/v1/web/plan/get",
+        "headers": [
+          {
+            "name": "api-key",
+            "value": ""
+          },
+          {
+            "name": "sensorsdata-project",
+            "value": ""
+          },
+          {
+            "name": "X-Organization-Id",
+            "value": ""
+          }
+        ],
+        "params": [
+          {
+            "name": "id",
+            "value": "",
+            "type": "query"
+          }
+        ]
+      },
+      "docs": "获取单个计划"
+    },
+    {
+      "info": {
+        "name": "获取老画布列表",
+        "type": "http"
+      },
+      "http": {
+        "method": "POST",
+        "url": "/api/v3/focus/v1/web/old-canvas/list",
+        "headers": [
+          {
+            "name": "api-key",
+            "value": ""
+          },
+          {
+            "name": "sensorsdata-project",
+            "value": ""
+          },
+          {
+            "name": "X-Organization-Id",
+            "value": ""
+          }
+        ],
+        "body": {
+          "type": "json",
+          "data": "{}"
+        }
+      },
+      "docs": "获取老画布列表"
+    },
+    {
+      "info": {
+        "name": "获取单个老画布",
+        "type": "http"
+      },
+      "http": {
+        "method": "GET",
+        "url": "/api/v3/focus/v1/web/old-canvas/get",
+        "headers": [
+          {
+            "name": "api-key",
+            "value": ""
+          },
+          {
+            "name": "sensorsdata-project",
+            "value": ""
+          },
+          {
+            "name": "X-Organization-Id",
+            "value": ""
+          }
+        ],
+        "params": [
+          {
+            "name": "id",
+            "value": "",
+            "type": "query"
+          }
+        ]
+      },
+      "docs": "获取单个老画布"
+    },
+    {
+      "info": {
+        "name": "获取新画布列表",
+        "type": "http"
+      },
+      "http": {
+        "method": "POST",
+        "url": "/api/v3/focus/v1/web/canvas/list",
+        "headers": [
+          {
+            "name": "api-key",
+            "value": ""
+          },
+          {
+            "name": "sensorsdata-project",
+            "value": ""
+          },
+          {
+            "name": "X-Organization-Id",
+            "value": ""
+          }
+        ],
+        "body": {
+          "type": "json",
+          "data": "{}"
+        }
+      },
+      "docs": "获取新画布列表"
+    },
+    {
+      "info": {
+        "name": "获取单个新画布",
+        "type": "http"
+      },
+      "http": {
+        "method": "GET",
+        "url": "/api/v3/focus/v1/web/canvas/get",
+        "headers": [
+          {
+            "name": "api-key",
+            "value": ""
+          },
+          {
+            "name": "sensorsdata-project",
+            "value": ""
+          },
+          {
+            "name": "X-Organization-Id",
+            "value": ""
+          }
+        ],
+        "params": [
+          {
+            "name": "id",
+            "value": "",
+            "type": "query"
+          }
+        ]
+      },
+      "docs": "获取单个新画布"
+    },
+    {
+      "info": {
+        "name": "发布新画布草稿",
+        "type": "http"
+      },
+      "http": {
+        "method": "POST",
+        "url": "/api/v3/focus/v1/web/canvas/deliver",
+        "headers": [
+          {
+            "name": "api-key",
+            "value": ""
+          },
+          {
+            "name": "sensorsdata-project",
+            "value": ""
+          },
+          {
+            "name": "X-Organization-Id",
+            "value": ""
+          }
+        ],
+        "body": {
+          "type": "json",
+          "data": "{}"
+        }
+      },
+      "docs": "发布status=DRAFT状态的新画布， 进入待审批状态"
+    },
+    {
+      "info": {
+        "name": "终止新画布",
+        "type": "http"
+      },
+      "http": {
+        "method": "POST",
+        "url": "/api/v3/focus/v1/web/canvas/terminate",
+        "headers": [
+          {
+            "name": "api-key",
+            "value": ""
+          },
+          {
+            "name": "sensorsdata-project",
+            "value": ""
+          },
+          {
+            "name": "X-Organization-Id",
+            "value": ""
+          }
+        ],
+        "body": {
+          "type": "json",
+          "data": "{}"
+        }
+      },
+      "docs": "终止新画布, 只能终止以下状态的新画布：待运行-审批中(PENDING-子状态为AUDITING)、运行中(ACTIVE)、暂停中(SUSPEND)"
+    },
+    {
+      "info": {
+        "name": "删除新画布",
+        "type": "http"
+      },
+      "http": {
+        "method": "POST",
+        "url": "/api/v3/focus/v1/web/canvas/delete",
+        "headers": [
+          {
+            "name": "api-key",
+            "value": ""
+          },
+          {
+            "name": "sensorsdata-project",
+            "value": ""
+          },
+          {
+            "name": "X-Organization-Id",
+            "value": ""
+          }
+        ],
+        "body": {
+          "type": "json",
+          "data": "{}"
+        }
+      },
+      "docs": "删除新画布, 只能删除以下状态的新画布：草稿（DRAFT）、待运行-审批驳回（PENDING-子状态为AUDIT_BACK）、已终止(FINISHED)"
+    },
+    {
+      "info": {
+        "name": "修改草稿状态（DRAFT）/暂停中驳回状态（SUSPEND AUDIT_BACK）/待运行驳回（PENDING AUDIT_BACK）的新画布开始结束时间",
+        "type": "http"
+      },
+      "http": {
+        "method": "POST",
+        "url": "/api/v3/focus/v1/web/canvas/update-time",
+        "headers": [
+          {
+            "name": "api-key",
+            "value": ""
+          },
+          {
+            "name": "sensorsdata-project",
+            "value": ""
+          },
+          {
+            "name": "X-Organization-Id",
+            "value": ""
+          }
+        ],
+        "body": {
+          "type": "json",
+          "data": "{}"
+        }
+      },
+      "docs": "修改草稿状态（DRAFT）/暂停中驳回状态（SUSPEND AUDIT_BACK）/待运行驳回（PENDING AUDIT_BACK）的新画布开始结束时间"
+    },
+    {
+      "info": {
+        "name": "获取单个计划、老画布、新画布的受众列表",
+        "type": "http"
+      },
+      "http": {
+        "method": "GET",
+        "url": "/api/v3/focus/v1/web/user-groups/list",
+        "headers": [
+          {
+            "name": "api-key",
+            "value": ""
+          },
+          {
+            "name": "sensorsdata-project",
+            "value": ""
+          },
+          {
+            "name": "X-Organization-Id",
+            "value": ""
+          }
+        ],
+        "params": [
+          {
+            "name": "id",
+            "value": "",
+            "type": "query",
+            "description": "计划、画布、新画布 id"
+          }
+        ]
+      },
+      "docs": "获取单个计划、老画布、新画布的受众列表"
+    },
+    {
+      "info": {
+        "name": "查询指标",
+        "type": "http"
+      },
+      "http": {
+        "method": "POST",
+        "url": "/api/v3/focus/v1/web/metrics/query",
+        "headers": [
+          {
+            "name": "api-key",
+            "value": ""
+          },
+          {
+            "name": "sensorsdata-project",
+            "value": ""
+          },
+          {
+            "name": "X-Organization-Id",
+            "value": ""
+          }
+        ],
+        "body": {
+          "type": "json",
+          "data": "{}"
+        }
+      },
+      "docs": "根据传入条件查询指标信息"
+    }
+  ],
+  "bundled": true
+}

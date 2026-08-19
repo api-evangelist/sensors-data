@@ -1,0 +1,134 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "神策数界"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "批量查询数据表信息",
+        "type": "http"
+      },
+      "http": {
+        "method": "POST",
+        "url": "/api/v3/horizon/v1/table/list",
+        "headers": [
+          {
+            "name": "api-key",
+            "value": ""
+          },
+          {
+            "name": "sensorsdata-project",
+            "value": ""
+          }
+        ],
+        "body": {
+          "type": "json",
+          "data": "{}"
+        }
+      },
+      "docs": "批量查询数据表信息\n```\n  curl -X POST 'http://{host}:{port}/api/v3/horizon/v1/table/list' \\\n    -H 'Content-Type: application/json' \\\n    -H 'api-key: api_key' \\\n    -H 'sensorsdata-project: default' \\\n    -d '{\n    \"project_id\": 1,\n    \"db_name\": \"horizon_default_db\",\n    \"page_size\": -1\n  }'\n  返回值示例：\n  {\n    \"code\": \"SUCCESS\",\n    \"request_id\": \"12152403a440365312df1603995514f4\",\n    \"data\": {\n        \"tables\": [\n            {\n                \"project_id\": 1,\n                \"db_name\": \"horizon_default"
+    },
+    {
+      "info": {
+        "name": "查询数据表信息",
+        "type": "http"
+      },
+      "http": {
+        "method": "POST",
+        "url": "/api/v3/horizon/v1/table/get",
+        "headers": [
+          {
+            "name": "api-key",
+            "value": ""
+          },
+          {
+            "name": "sensorsdata-project",
+            "value": ""
+          }
+        ],
+        "body": {
+          "type": "json",
+          "data": "{}"
+        }
+      },
+      "docs": "查询数据表信息\n```\n  curl -X POST 'http://{host}:{port}/api/v3/horizon/v1/table/get' \\\n    -H 'Content-Type: application/json' \\\n    -H 'api-key: api_key' \\\n    -H 'sensorsdata-project: default' \\\n    -d '{\n    \"project_id\": 1,\n    \"db_name\": \"horizon_default_db\",\n    \"table_name\": \"users\"\n  }'\n  返回值示例：\n  {\n    \"code\": \"SUCCESS\",\n    \"request_id\": \"12154350afbda336505d9385a72985b9\",\n    \"data\": {\n        \"workspace\": \"PUBLIC\",\n        \"primary_keys\": [],\n        \"columns\": [],\n        \"unique_keys\": []"
+    },
+    {
+      "info": {
+        "name": "创建数据表",
+        "type": "http"
+      },
+      "http": {
+        "method": "POST",
+        "url": "/api/v3/horizon/v1/table/create",
+        "headers": [
+          {
+            "name": "api-key",
+            "value": ""
+          },
+          {
+            "name": "sensorsdata-project",
+            "value": ""
+          }
+        ],
+        "body": {
+          "type": "json",
+          "data": "{}"
+        }
+      },
+      "docs": "创建数据表\n```\n  curl -X POST 'http://{host}:{port}/api/v3/horizon/v1/table/create' \\\n    -H 'Content-Type: application/json' \\\n    -H 'api-key: api_key' \\\n    -H 'sensorsdata-project: default' \\\n    -d '{\n    \"project_id\": 1,\n    \"table\": {\n      \"db_name\": \"test_db\",\n      \"name\": \"test_table\",\n      \"type\": \"TABLE\",\n      \"engine\": \"MUTABLE\",\n      \"primary_keys\": [\"id\"],\n      \"columns\": [\n        {\n          \"name\": \"id\",\n          \"dw_data_type\": \"STRING\"\n        }\n      ]\n    }\n  }'\n  返回值示例：\n "
+    },
+    {
+      "info": {
+        "name": "批量查询数据库信息",
+        "type": "http"
+      },
+      "http": {
+        "method": "POST",
+        "url": "/api/v3/horizon/v1/table/public-database/list",
+        "headers": [
+          {
+            "name": "api-key",
+            "value": ""
+          },
+          {
+            "name": "sensorsdata-project",
+            "value": ""
+          }
+        ],
+        "body": {
+          "type": "json",
+          "data": "{}"
+        }
+      },
+      "docs": "批量查询数据库信息\n```\n  curl -X POST 'http://{host}:{port}/api/v3/horizon/v1/table/public-database/list' \\\n    -H 'Content-Type: application/json' \\\n    -H 'api-key: api_key' \\\n    -H 'sensorsdata-project: default' \\\n    -d '{\n    \"project_id\": 1\n  }'\n  返回值示例：\n  {\n    \"code\": \"SUCCESS\",\n    \"request_id\": \"121616536838406dccc1bec7f5e18495\",\n    \"data\": {\n        \"databases\": [\n            {\n                \"project_id\": 1,\n                \"name\": \"horizon_default_1\",\n                \"created_by\": \"sensor"
+    },
+    {
+      "info": {
+        "name": "创建数据库",
+        "type": "http"
+      },
+      "http": {
+        "method": "POST",
+        "url": "/api/v3/horizon/v1/table/public-database/create",
+        "headers": [
+          {
+            "name": "api-key",
+            "value": ""
+          },
+          {
+            "name": "sensorsdata-project",
+            "value": ""
+          }
+        ],
+        "body": {
+          "type": "json",
+          "data": "{}"
+        }
+      },
+      "docs": "创建数据库\n```\n  curl -X POST 'http://{host}:{port}/api/v3/horizon/v1/table/public-database/create' \\\n    -H 'Content-Type: application/json' \\\n    -H 'api-key: api_key' \\\n    -H 'sensorsdata-project: default' \\\n    -d '{\n    \"project_id\": 1,\n    \"database\": {\n      \"name\": \"test_db\",\n      \"created_by\": \"test\"\n    }\n  }'\n  返回值示例：\n  {\n    \"code\": \"SUCCESS\",\n    \"request_id\": \"121604079d9834d9a4011cb2b1fe588d\",\n    \"data\": {\n        \"workspace\": \"PUBLIC\",\n        \"project_id\": 1,\n        \"name\": \"test"
+    }
+  ],
+  "bundled": true
+}

@@ -1,32 +1,131 @@
 # Sensors Data (神策数据)
 
-> Sensors Data is a customer data analytics and CDP (Customer Data Platform) company. Its platform unifies customer data across channels into real-time profiles and provides product analytics, user profiling, marketing/ad attribution, A/B testing, and smart-operations tooling. Sensors Data processes 250+ billion data points daily, ships 50+ data-collection SDKs, and serves 2,000+ enterprise customers, with both cloud and on-premise deployment. An OpenAPI is exposed for ecosystem integration; per-language SDKs handle client- and server-side event tracking.
+> Sensors Data is a Chinese customer-data analytics and CDP company. Its platform unifies
+> customer data across channels into real-time profiles and provides product analytics,
+> user profiling, marketing and ad attribution, A/B testing and smart-operations tooling.
+> It processes 250+ billion data points daily, ships 50+ first-party data-collection SDKs
+> and serves 2,000+ enterprise customers. The platform is deployed per customer — private
+> cluster or dedicated cloud — so the API base URL is the customer's own cluster ingress,
+> not a vendor host.
 
-## Products
-- [Real-time CDP (Sensors Data Universe / 神策数界)](https://www.sensorsdata.com/): Unifies multi-channel data into real-time customer profiles with ID-mapping, segmentation, and an OpenAPI for integration.
-- [Product Analytics (神策分析)](https://www.sensorsdata.com/): Behavioral analytics for product teams.
-- [User Profiles (神策用户画像)](https://www.sensorsdata.com/): User segmentation and tagging.
-- [Ads Tracking (神策广告分析)](https://www.sensorsdata.com/): Cross-channel marketing/ad attribution and ROI.
-- [Smart Operations (神策智能运营)](https://www.sensorsdata.com/): Marketing automation.
-- [A/B Testing (神策A/B测试)](https://www.sensorsdata.com/): Experimentation platform.
+## The API surface
+
+Sensors Data publishes 252 operations across 29 OpenAPI 3.0.1 documents, in four product
+contracts. The specs are real, complete (every operation carries an operationId, summary,
+description and response example) and Chinese-language. They are served from the OpenAPI
+manual, which also serves every historical release — 196 spec files in total.
+
+- [OpenAPI overview](https://docs.sensorsdata.com/sa/docs/about_open_api): style,
+  versioning and base-path conventions.
+- [OpenAPI manual](https://manual.sensorsdata.cn/openapi): the browsable spec catalog.
+- [Spec index (JSON)](https://manual.sensorsdata.cn/openapi/api/v1/openapi_tree): every
+  product, release and service file.
+- [Spec download](https://manual.sensorsdata.cn/openapi/api/v1/openapi_download?file_name=3.0.5-analytics-Model-v2-swagger.json):
+  `?file_name=<file>` returns the raw document.
+
+### Products
+
+- **Sensors Analytics (神策分析)** — `/api/v3/analytics/v1` and `/v2` — 64 operations.
+  Funnel, retention, LTV, attribution, path, interval, addiction and segmentation models,
+  custom SQL, dashboards and bookmarks, business-mart datasets, event and property
+  metadata, channel link tracking, smart alarms.
+- **Sensors Horizon (神策数界)** — `/api/v3/horizon/v1` — 54 operations. The CDP layer:
+  event/user schema management, segment definitions and computation tasks, tag management,
+  data tables, catalogs, and data subscriptions that stream results to Kafka.
+- **Sensors Focus (神策智能运营)** — `/api/v3/focus/v1` — 70 operations. Marketing
+  automation: reach channels and channel instances, audience rules and online membership
+  checks, real-time entity attributes and tags, trigger strategies, plans and canvases,
+  resource sections, materials, blacklists.
+- **Sensors Portal (神策业务门户)** — `/api/v3/portal/v2` — 64 operations. Shared identity
+  and tenancy: accounts, global accounts, roles, permission resources, organisational
+  attribute trees, projects.
+
+### How to call it
+
+- Base URL: `https://{sensors_data_url}/api/v3/{product}/{version}`. There is no shared
+  vendor host — `{sensors_data_url}` is the customer cluster's load-balancer address.
+- Auth: `api-key` header (project-scoped key, inherits its owning account's permissions)
+  plus `sensorsdata-project` header. Optional `account-id` (admin impersonation) and
+  `X-Organization-Id`.
+- No path parameters anywhere — parameters travel in query and body only. Many reads are
+  POSTs.
+- Response envelope `{code, data, request_id}`. **HTTP 200 is not success** — test
+  `code == "SUCCESS"`.
+- Pagination: `page_index` / `page_size` (max 100), response `page.total`,
+  `page.current_page`, `page.page_count`.
+- No idempotency key, no published rate limits, no RFC 9457 problem details, no OAuth.
+- Versioning: `/api/v3` is the framework version; the trailing `v1`/`v2` is the interface
+  version, and interfaces stay compatible within one. Analytics ships Model v1 and v2
+  side by side.
+
+## Event surface
+
+- [Sensors Focus webhooks](https://manual.sensorsdata.cn/sf/docs/webhook_integration):
+  Focus POSTs a **JSON list** of micro-batched user triggers to a customer-owned endpoint.
+  Answer 200-empty (all succeeded), 200 with an index-aligned
+  `[{"succeed":true},{"succeed":false,"fail_reason":"..."}]`, or non-200 (all failed).
+  Optional shared-secret signature. Close the loop by reporting a `$PlanMsgArrived` event.
+- [Kafka data subscription](https://docs.sensorsdata.com/sa/docs/subscribe_data_to_kafka):
+  subscription lifecycle is managed by seven Horizon operations; the data plane is Kafka.
+- No AsyncAPI document is published.
+
+## Agent readiness
+
+- No MCP server. `github.com/sensorsdata/SensorsData-MCP` exists in the official org and
+  is **empty** — created 2025-04-25, zero commits.
+- No A2A agent card on any host.
+- No `llms.txt` on any Sensors Data host (this file is written by API Evangelist).
+- No `/.well-known/` discovery documents anywhere.
+- Notable: Sensors Focus already ships three model-facing operations under
+  `/express-action-channel/channel/ai/` that return reach channels *with descriptions* —
+  a description-for-a-model surface hiding inside a conventional contract.
 
 ## Docs
-- [Website](https://www.sensorsdata.com/)
-- [Documentation / Manual](https://manual.sensorsdata.cn/)
-- [GitHub Organization](https://github.com/sensorsdata)
+
+- [Website (EN)](https://www.sensorsdata.com/)
+- [Website (CN)](https://www.sensorsdata.cn/)
+- [Help centre / manual](https://manual.sensorsdata.cn/)
+- [English help centre](https://docs.sensorsdata.com/)
+- [Release log](https://manual.sensorsdata.cn/sa/docs/update_log) — dated back to 2015-07-01
+- [Trust centre](https://www.sensorsdata.cn/trust/compliance.html) — MLPS Level 3,
+  ISO/IEC 27001, ISO/IEC 27701, ISO 9001, CMMI 3, CAICT SDK security assessment
+- [GitHub organization](https://github.com/sensorsdata) — 96 public repositories
 
 ## SDKs
-- [JavaScript (web/H5) — sa-sdk-javascript](https://www.npmjs.com/package/sa-sdk-javascript)
-- [Mini-program — sa-sdk-miniprogram](https://www.npmjs.com/package/sa-sdk-miniprogram)
-- [Python — SensorsAnalyticsSDK](https://pypi.org/project/SensorsAnalyticsSDK/)
-- [Java — com.sensorsdata.analytics.javasdk:SensorsAnalyticsSDK](https://central.sonatype.com/artifact/com.sensorsdata.analytics.javasdk/SensorsAnalyticsSDK)
-- [PHP — sensorsdata/sa-sdk-php](https://packagist.org/packages/sensorsdata/sa-sdk-php)
-- [Ruby — sensors_analytics_sdk](https://rubygems.org/gems/sensors_analytics_sdk)
-- [Flutter — sensors_analytics_flutter_plugin](https://pub.dev/packages/sensors_analytics_flutter_plugin)
-- [iOS — SensorsAnalyticsSDK](https://cocoapods.org/pods/SensorsAnalyticsSDK)
-- [Android — sa-sdk-android](https://github.com/sensorsdata/sa-sdk-android)
-- [.NET — sa-sdk-dotnet](https://github.com/sensorsdata/sa-sdk-dotnet)
 
-## Artifacts
-- [Client SDK packages](https://raw.githubusercontent.com/api-evangelist/sensors-data/refs/heads/main/packages/sensors-data-packages.yml)
+Server-side: [Java](https://central.sonatype.com/artifact/com.sensorsdata.analytics.javasdk/SensorsAnalyticsSDK),
+[Python](https://pypi.org/project/SensorsAnalyticsSDK/),
+[PHP](https://packagist.org/packages/sensorsdata/sa-sdk-php),
+[Go](https://pkg.go.dev/github.com/sensorsdata/sa-sdk-go),
+[Node](https://www.npmjs.com/package/sa-sdk-node),
+[Ruby](https://rubygems.org/gems/sensors_analytics_sdk),
+[.NET](https://github.com/sensorsdata/sa-sdk-dotnet),
+[C](https://github.com/sensorsdata/sa-sdk-c),
+[C++](https://github.com/sensorsdata/sa-sdk-cpp).
+
+Client-side: [Web/H5](https://www.npmjs.com/package/sa-sdk-javascript),
+[iOS](https://cocoapods.org/pods/SensorsAnalyticsSDK),
+[Android](https://github.com/sensorsdata/sa-sdk-android),
+[Flutter](https://pub.dev/packages/sensors_analytics_flutter_plugin),
+[React Native](https://github.com/sensorsdata/react-native-sensors-analytics),
+[mini-programs](https://www.npmjs.com/package/sa-sdk-miniprogram),
+[Unity](https://github.com/sensorsdata/sa-sdk-unity),
+[Unreal](https://github.com/sensorsdata/unreal-engine-sdk),
+HarmonyOS, uni-app, Weex, APICloud, Cocos2d-x, LayaAir.
+
+Currency is uneven — see the packages artifact for per-package versions and publish dates.
+
+## API Evangelist artifacts
+
+- [OpenAPI specs (29)](https://github.com/api-evangelist/sensors-data/tree/main/openapi)
+- [Authentication](https://raw.githubusercontent.com/api-evangelist/sensors-data/refs/heads/main/authentication/sensors-data-authentication.yml)
+- [Conventions](https://raw.githubusercontent.com/api-evangelist/sensors-data/refs/heads/main/conventions/sensors-data-conventions.yml)
+- [Error envelope](https://raw.githubusercontent.com/api-evangelist/sensors-data/refs/heads/main/errors/sensors-data-problem-types.yml)
+- [Data model](https://raw.githubusercontent.com/api-evangelist/sensors-data/refs/heads/main/data-model/sensors-data-data-model.yml)
+- [Lifecycle](https://raw.githubusercontent.com/api-evangelist/sensors-data/refs/heads/main/lifecycle/sensors-data-lifecycle.yml)
+- [Changelog](https://raw.githubusercontent.com/api-evangelist/sensors-data/refs/heads/main/changelog/sensors-data-changelog.yml)
+- [Conformance](https://raw.githubusercontent.com/api-evangelist/sensors-data/refs/heads/main/conformance/sensors-data-conformance.yml)
+- [Webhook + streaming catalog](https://raw.githubusercontent.com/api-evangelist/sensors-data/refs/heads/main/asyncapi/sensors-data-webhooks.yml)
+- [Agent skills](https://github.com/api-evangelist/sensors-data/tree/main/skills)
+- [Packages](https://raw.githubusercontent.com/api-evangelist/sensors-data/refs/heads/main/packages/sensors-data-packages.yml)
 - [Domain security probe](https://raw.githubusercontent.com/api-evangelist/sensors-data/refs/heads/main/security/sensors-data-domain-security.yml)

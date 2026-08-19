@@ -1,0 +1,84 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "神策数界"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "查询目录树",
+        "type": "http"
+      },
+      "http": {
+        "method": "POST",
+        "url": "/api/v3/horizon/v1/catalog/tree/list",
+        "headers": [
+          {
+            "name": "api-key",
+            "value": ""
+          },
+          {
+            "name": "sensorsdata-project",
+            "value": ""
+          }
+        ],
+        "body": {
+          "type": "json",
+          "data": "{}"
+        }
+      },
+      "docs": "获取某个业务所有的目录树\n```\n  curl -X POST 'http://{host}:{port}/api/v3/horizon/v1/catalog/tree/list' \\\n    -H 'Content-Type: application/json' \\\n    -H 'api-key: {api_key}' \\\n    -H 'sensorsdata-project: {projectName}' \\\n    -d '{\n      \"business_type\": \"ENTITY\",\n      \"business_names\": [\"user\"],\n      \"query_catalog_node_type\": \"ONLY_UNDELETE\",\n      \"show_resource\": false\n  }'\n  返回值示例：\n  {\n    \"code\": \"SUCCESS\",\n    \"request_id\": \"12163604dca26fcdc2184104654955c5\",\n    \"data\": {\n        \"catalog_trees\":"
+    },
+    {
+      "info": {
+        "name": "挂载资源节点",
+        "type": "http"
+      },
+      "http": {
+        "method": "POST",
+        "url": "/api/v3/horizon/v1/catalog/resource/bind",
+        "headers": [
+          {
+            "name": "api-key",
+            "value": ""
+          },
+          {
+            "name": "sensorsdata-project",
+            "value": ""
+          }
+        ],
+        "body": {
+          "type": "json",
+          "data": "{}"
+        }
+      },
+      "docs": "挂载资源节点\n```\n  curl -X POST 'http://{host}:{port}/api/v3/horizon/v1/catalog/resource/bind' \\\n    -H 'Content-Type: application/json' \\\n    -H 'api-key: {api_key}' \\\n    -H 'sensorsdata-project: {projectName}' \\\n    -d '{\n      \"parent_name\": \"8998a014-f8e3-4d8a-8b2c-ec7beeeefc97\",\n      \"resource_type\": \"TAG\",\n      \"resource_id\":\"user_tag_bq_meta_string\"\n  }'\n  返回值示例：\n  {\n    \"code\": \"SUCCESS\",\n    \"request_id\": \"1217080591f8f9e3d9b6d24e8a43ee8c\",\n    \"data\": {}\n  }\n```"
+    },
+    {
+      "info": {
+        "name": "解绑资源节点",
+        "type": "http"
+      },
+      "http": {
+        "method": "POST",
+        "url": "/api/v3/horizon/v1/catalog/resource/unbind",
+        "headers": [
+          {
+            "name": "api-key",
+            "value": ""
+          },
+          {
+            "name": "sensorsdata-project",
+            "value": ""
+          }
+        ],
+        "body": {
+          "type": "json",
+          "data": "{}"
+        }
+      },
+      "docs": "解绑资源节点\n```\n  curl -X POST 'http://{host}:{port}/api/v3/horizon/v1/catalog/resource/unbind' \\\n    -H 'Content-Type: application/json' \\\n    -H 'api-key: {api_key}' \\\n    -H 'sensorsdata-project: {projectName}' \\\n    -d '{\n    \"business_type\": \"ENTITY\",\n    \"business_name\": \"user\",\n    \"resource_type\": \"TAG\",\n    \"resource_id\": \"user_tag_bq_meta_string\"\n  }'\n  返回值示例：\n  {\n    \"code\": \"SUCCESS\",\n    \"request_id\": \"121717050a1c695fb26a0f298252ba28\",\n    \"data\": {}\n  }\n```"
+    }
+  ],
+  "bundled": true
+}

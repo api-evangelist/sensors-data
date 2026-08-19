@@ -1,0 +1,279 @@
+{
+  "item": [
+    {
+      "id": "55c73868-b24e-4c6a-8281-a2308c66ac17",
+      "name": "批量用户获取多属性/标签值",
+      "request": {
+        "name": "批量用户获取多属性/标签值",
+        "description": {
+          "content": "支持批量用户ID或其他业务ID.需要确保属性处于订阅状态",
+          "type": "text/plain"
+        },
+        "url": {
+          "path": [
+            "express-attribute-online",
+            "batch-get"
+          ],
+          "host": [
+            "{{baseUrl}}"
+          ],
+          "query": [],
+          "variable": []
+        },
+        "header": [
+          {
+            "disabled": false,
+            "description": "(Required) 全局唯一的密钥，用于验证和授权访问 API 接口",
+            "key": "api-key",
+            "value": "<string>"
+          },
+          {
+            "disabled": false,
+            "description": "(Required) 项目名, 指定请求所属项目",
+            "key": "sensorsdata-project",
+            "value": "<string>"
+          },
+          {
+            "disabled": false,
+            "description": "(Required) 租户 ID, 用于请求所属租户",
+            "key": "X-Organization-Id",
+            "value": "<string>"
+          },
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          },
+          {
+            "key": "Accept",
+            "value": "application/json"
+          }
+        ],
+        "method": "POST",
+        "auth": null,
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"entity_name\": \"<string>\",\n  \"audience_entity_ids\": [\n    {\n      \"entity_name\": \"<string>\",\n      \"identity_id_map\": {\n        \"key_0\": \"<string>\",\n        \"key_1\": \"<string>\"\n      },\n      \"entity_id\": {\n        \"data_type\": \"<string>\",\n        \"int_value\": \"<long>\",\n        \"string_value\": \"<string>\"\n      }\n    },\n    {\n      \"entity_name\": \"<string>\",\n      \"identity_id_map\": {\n        \"key_0\": \"<string>\"\n      },\n      \"entity_id\": {\n        \"data_type\": \"<string>\",\n        \"int_value\": \"<long>\",\n        \"string_value\": \"<string>\"\n      }\n    }\n  ],\n  \"attribute_names\": [\n    \"<string>\",\n    \"<string>\"\n  ]\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        }
+      },
+      "response": [
+        {
+          "id": "961fae4e-a52b-480c-8088-2ea4028f5d79",
+          "name": "sensorsdata.focus.v1.GetEntityAttributesByEntityIdListResponse",
+          "originalRequest": {
+            "url": {
+              "path": [
+                "express-attribute-online",
+                "batch-get"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "disabled": false,
+                "description": "(Required) 全局唯一的密钥，用于验证和授权访问 API 接口",
+                "key": "api-key",
+                "value": "<string>"
+              },
+              {
+                "disabled": false,
+                "description": "(Required) 项目名, 指定请求所属项目",
+                "key": "sensorsdata-project",
+                "value": "<string>"
+              },
+              {
+                "disabled": false,
+                "description": "(Required) 租户 ID, 用于请求所属租户",
+                "key": "X-Organization-Id",
+                "value": "<string>"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"entity_name\": \"<string>\",\n  \"audience_entity_ids\": [\n    {\n      \"entity_name\": \"user\",\n      \"identity_id_map\": {\n        \"key_0\": \"<string>\",\n        \"key_1\": \"<string>\"\n      },\n      \"entity_id\": {\n        \"data_type\": \"<string>\",\n        \"int_value\": \"<long>\",\n        \"string_value\": \"<string>\"\n      }\n    },\n    {\n      \"entity_name\": \"user\",\n      \"identity_id_map\": {\n        \"key_0\": \"<string>\"\n      },\n      \"entity_id\": {\n        \"data_type\": \"<string>\",\n        \"int_value\": \"<long>\",\n        \"string_value\": \"<string>\"\n      }\n    }\n  ],\n  \"attribute_names\": [\n    \"<string>\",\n    \"<string>\"\n  ]\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "status": "Internal Server Error",
+          "code": 500,
+          "header": [
+            {
+              "key": "Content-Type",
+              "value": "application/json"
+            }
+          ],
+          "body": "{\n  \"code\": \"SUCCESS\",\n  \"data\": {\n    \"audience_entities\": [\n      {\n        \"entity_name\": \"user\",\n        \"entity_id\": {},\n        \"audience_entity_attributes\": [\n          {\n            \"value\": {}\n          }\n        ]\n      }\n    ]\n  },\n  \"request_id\": \"1\"\n}",
+          "cookie": [],
+          "_postman_previewlanguage": "json"
+        }
+      ],
+      "event": [],
+      "protocolProfileBehavior": {
+        "disableBodyPruning": true
+      }
+    },
+    {
+      "id": "e5fe9e6f-802d-4eb7-8679-7080cade6f9b",
+      "name": "单个用户获取多属性/标签值",
+      "request": {
+        "name": "单个用户获取多属性/标签值",
+        "description": {
+          "content": "支持批量用户ID或其他业务ID.需要确保属性处于订阅状态",
+          "type": "text/plain"
+        },
+        "url": {
+          "path": [
+            "express-attribute-online",
+            "get"
+          ],
+          "host": [
+            "{{baseUrl}}"
+          ],
+          "query": [],
+          "variable": []
+        },
+        "header": [
+          {
+            "disabled": false,
+            "description": "(Required) 全局唯一的密钥，用于验证和授权访问 API 接口",
+            "key": "api-key",
+            "value": "<string>"
+          },
+          {
+            "disabled": false,
+            "description": "(Required) 项目名, 指定请求所属项目",
+            "key": "sensorsdata-project",
+            "value": "<string>"
+          },
+          {
+            "disabled": false,
+            "description": "(Required) 租户 ID, 用于请求所属租户",
+            "key": "X-Organization-Id",
+            "value": "<string>"
+          },
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          },
+          {
+            "key": "Accept",
+            "value": "application/json"
+          }
+        ],
+        "method": "POST",
+        "auth": null,
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"entity_name\": \"<string>\",\n  \"audience_entity_id\": {\n    \"entity_name\": \"<string>\",\n    \"identity_id_map\": {\n      \"key_0\": \"<string>\",\n      \"key_1\": \"<string>\"\n    },\n    \"entity_id\": {\n      \"data_type\": \"<string>\",\n      \"int_value\": \"<long>\",\n      \"string_value\": \"<string>\"\n    }\n  },\n  \"attribute_names\": [\n    \"<string>\",\n    \"<string>\"\n  ]\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        }
+      },
+      "response": [
+        {
+          "id": "6b8fb23d-99b4-419c-8aaf-586581260581",
+          "name": "sensorsdata.focus.v1.GetEntityAttributesByEntityIdResponse",
+          "originalRequest": {
+            "url": {
+              "path": [
+                "express-attribute-online",
+                "get"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "disabled": false,
+                "description": "(Required) 全局唯一的密钥，用于验证和授权访问 API 接口",
+                "key": "api-key",
+                "value": "<string>"
+              },
+              {
+                "disabled": false,
+                "description": "(Required) 项目名, 指定请求所属项目",
+                "key": "sensorsdata-project",
+                "value": "<string>"
+              },
+              {
+                "disabled": false,
+                "description": "(Required) 租户 ID, 用于请求所属租户",
+                "key": "X-Organization-Id",
+                "value": "<string>"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"entity_name\": \"<string>\",\n  \"audience_entity_id\": {\n    \"entity_name\": \"user\",\n    \"identity_id_map\": {\n      \"key_0\": \"<string>\",\n      \"key_1\": \"<string>\",\n      \"key_2\": \"<string>\"\n    },\n    \"entity_id\": {\n      \"data_type\": \"<string>\",\n      \"int_value\": \"<long>\",\n      \"string_value\": \"<string>\"\n    }\n  },\n  \"attribute_names\": [\n    \"<string>\",\n    \"<string>\"\n  ]\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "status": "Internal Server Error",
+          "code": 500,
+          "header": [
+            {
+              "key": "Content-Type",
+              "value": "application/json"
+            }
+          ],
+          "body": "{\n  \"code\": \"SUCCESS\",\n  \"data\": {\n    \"audience_entity\": {\n      \"entity_name\": \"user\",\n      \"entity_id\": {},\n      \"audience_entity_attributes\": [\n        {\n          \"value\": {}\n        }\n      ]\n    }\n  },\n  \"request_id\": \"1\"\n}",
+          "cookie": [],
+          "_postman_previewlanguage": "json"
+        }
+      ],
+      "event": [],
+      "protocolProfileBehavior": {
+        "disableBodyPruning": true
+      }
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "/api/v3/focus/v1",
+      "key": "baseUrl"
+    }
+  ],
+  "info": {
+    "_postman_id": "248e264f-b7f8-44db-9cce-c72f55398b81",
+    "name": "神策智能运营",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "属性在线查询服务，提供标签查询接口",
+      "type": "text/plain"
+    }
+  }
+}

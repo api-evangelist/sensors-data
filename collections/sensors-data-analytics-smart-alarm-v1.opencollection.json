@@ -1,0 +1,116 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "神策分析"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "获取一个预警配置的详细信息",
+        "type": "http"
+      },
+      "http": {
+        "method": "GET",
+        "url": "/api/v3/analytics/v1/smart-alarm/detail",
+        "headers": [
+          {
+            "name": "api-key",
+            "value": ""
+          },
+          {
+            "name": "sensorsdata-project",
+            "value": ""
+          }
+        ],
+        "params": [
+          {
+            "name": "config_id",
+            "value": "1",
+            "type": "query",
+            "description": "配置 ID"
+          },
+          {
+            "name": "request_id",
+            "value": "12345696321548954",
+            "type": "query",
+            "description": "本次请求 ID, 方便后续追踪问题"
+          }
+        ]
+      },
+      "docs": "获取一个预警配置的详细信息"
+    },
+    {
+      "info": {
+        "name": "获取所有的预警列表",
+        "type": "http"
+      },
+      "http": {
+        "method": "POST",
+        "url": "/api/v3/analytics/v1/smart-alarm/all",
+        "headers": [
+          {
+            "name": "api-key",
+            "value": ""
+          },
+          {
+            "name": "sensorsdata-project",
+            "value": ""
+          }
+        ],
+        "body": {
+          "type": "json",
+          "data": "{}"
+        }
+      },
+      "docs": "获取所有的预警列表"
+    },
+    {
+      "info": {
+        "name": "获取轮询模式某次 execution 的预警结果",
+        "type": "http"
+      },
+      "http": {
+        "method": "GET",
+        "url": "/api/v3/analytics/v1/smart-alarm/polling-execution/detail",
+        "headers": [
+          {
+            "name": "api-key",
+            "value": ""
+          },
+          {
+            "name": "sensorsdata-project",
+            "value": ""
+          }
+        ],
+        "params": [
+          {
+            "name": "config_id",
+            "value": "1",
+            "type": "query",
+            "description": "预警配置 ID"
+          },
+          {
+            "name": "execution_id",
+            "value": "456",
+            "type": "query",
+            "description": "execution ID"
+          },
+          {
+            "name": "include_non_triggered_results",
+            "value": "false",
+            "type": "query",
+            "description": "是否返回未触发预警的结果，默认 false"
+          },
+          {
+            "name": "request_id",
+            "value": "12345696321548954",
+            "type": "query",
+            "description": "本次请求 ID, 方便后续追踪问题"
+          }
+        ]
+      },
+      "docs": "获取轮询模式某次 execution 的预警结果"
+    }
+  ],
+  "bundled": true
+}

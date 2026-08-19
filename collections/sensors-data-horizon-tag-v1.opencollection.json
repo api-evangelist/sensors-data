@@ -1,0 +1,359 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "神策数界"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "查询标签列表",
+        "type": "http"
+      },
+      "http": {
+        "method": "POST",
+        "url": "/api/v3/horizon/v1/tag/definition/list",
+        "headers": [
+          {
+            "name": "api-key",
+            "value": ""
+          },
+          {
+            "name": "sensorsdata-project",
+            "value": ""
+          }
+        ],
+        "body": {
+          "type": "json",
+          "data": "{}"
+        }
+      },
+      "docs": "查询标签列表\n 发起请求例子：\n ```\n curl -X POST \"http://{host}:{port}/api/v3/horizon/v1/tag/definition/list\" \\\n  -H \"Accept: application/json\" \\\n  -H \"Content-Type: application/json\" \\\n  -H \"sensorsdata-project: {项目英文名}\" \\\n  -H \"api-key: {apiToken}\" \\\n  -d '{\"page_size\": 2,\"page\": 1,\"entity_name\": \"user\", \"show_deleted\": true,\"show_invisible\": true}'\n  ```"
+    },
+    {
+      "info": {
+        "name": "查询单个标签信息",
+        "type": "http"
+      },
+      "http": {
+        "method": "POST",
+        "url": "/api/v3/horizon/v1/tag/definition/get",
+        "headers": [
+          {
+            "name": "api-key",
+            "value": ""
+          },
+          {
+            "name": "sensorsdata-project",
+            "value": ""
+          }
+        ],
+        "body": {
+          "type": "json",
+          "data": "{}"
+        }
+      },
+      "docs": "查询单个标签信息\n ```\n curl -X POST \"http://{host}:{port}/api/v3/horizon/v1/tag/definition/get\" \\\n  -H \"Accept: application/json\" \\\n  -H \"Content-Type: application/json\" \\\n  -H \"sensorsdata-project: {projectName}\" \\\n  -H \"api-key: {token}\" \\\n  -d '{ \"entity_name\": \"user\",\"show_deleted\": true,\"name\": \"user_tag_c1\"}'\n  ```"
+    },
+    {
+      "info": {
+        "name": "创建标签定义",
+        "type": "http"
+      },
+      "http": {
+        "method": "POST",
+        "url": "/api/v3/horizon/v1/tag/definition/create",
+        "headers": [
+          {
+            "name": "api-key",
+            "value": ""
+          },
+          {
+            "name": "sensorsdata-project",
+            "value": ""
+          }
+        ],
+        "body": {
+          "type": "json",
+          "data": "{}"
+        }
+      },
+      "docs": "创建标签定义\n ```\n curl -X POST \"http://{host}:{port}/api/v3/horizon/v1/tag/definition/create\" \\\n  -H \"Accept: application/json\" \\\n  -H \"Content-Type: application/json\" \\\n  -H \"sensorsdata-project: {projectName}\" \\\n  -H \"api-key: {token}\" \\\n  -d '{\"definition\":{\"entity_name\":\"user\",\"create_type\":\"TAG_UPLOAD\",\"source\":{\"app\":\"SDH\",\"category\":\"TAG\",\"sub_category\":\"\"},\"storage_settings\":{\"version_count\":1},\"managed\":true,\"expression\":{\"tag_type\":\"LOADING_BASED\",\"virtual\":false,\"filter_segment_at_last\":fa"
+    },
+    {
+      "info": {
+        "name": "修改标签定义",
+        "type": "http"
+      },
+      "http": {
+        "method": "POST",
+        "url": "/api/v3/horizon/v1/tag/definition/update",
+        "headers": [
+          {
+            "name": "api-key",
+            "value": ""
+          },
+          {
+            "name": "sensorsdata-project",
+            "value": ""
+          }
+        ],
+        "body": {
+          "type": "json",
+          "data": "{}"
+        }
+      },
+      "docs": "修改标签定义\n```\ncurl -X POST \"http://{host}:{port}/api/v3/horizon/v1/tag/definition/update\" \\\n  -H \"Accept: application/json\" \\\n  -H \"Content-Type: application/json\" \\\n  -H \"sensorsdata-project: {projectName}\" \\\n  -H \"api-key: {token}\" \\\n  -d '{\"definition\":{\"entity_name\":\"user\",\"storage_settings\":{\"version_count\":2},\"expression\":{\"tag_type\":\"LOADING_BASED\",\"virtual\":false,\"filter_segment_at_last\":false,\"entity_set_rules\":[],\"loading_based_rule\":{\"matched_field\":\"user.$identity_login_id\",\"sync_flag\":"
+    },
+    {
+      "info": {
+        "name": "删除标签定义",
+        "type": "http"
+      },
+      "http": {
+        "method": "POST",
+        "url": "/api/v3/horizon/v1/tag/definition/delete",
+        "headers": [
+          {
+            "name": "api-key",
+            "value": ""
+          },
+          {
+            "name": "sensorsdata-project",
+            "value": ""
+          }
+        ],
+        "body": {
+          "type": "json",
+          "data": "{}"
+        }
+      },
+      "docs": "删除标签定义\n```\ncurl -X POST \"http://{host}:{port}/api/v3/horizon/v1/tag/definition/delete\" \\\n  -H \"Accept: application/json\" \\\n  -H \"Content-Type: application/json\" \\\n  -H \"sensorsdata-project: {projectName}\" \\\n  -H \"api-key: {token}\" \\\n  -d '{\"entity_name\":\"user\",\"name\":\"user_tag_zdybq\",\"skip_trash\":false}'\n 返回值：\n {\"code\":\"SUCCESS\",\"request_id\":\"281138383035f9fd2bb394df6fe17970\",\"data\":{}}\n```"
+    },
+    {
+      "info": {
+        "name": "恢复标签定义",
+        "type": "http"
+      },
+      "http": {
+        "method": "POST",
+        "url": "/api/v3/horizon/v1/tag/definition/recover",
+        "headers": [
+          {
+            "name": "api-key",
+            "value": ""
+          },
+          {
+            "name": "sensorsdata-project",
+            "value": ""
+          }
+        ],
+        "body": {
+          "type": "json",
+          "data": "{}"
+        }
+      },
+      "docs": "恢复标签定义\n```\ncurl -X POST \"http://{host}:{port}/api/v3/horizon/v1/tag/definition/recover\" \\\n  -H \"Accept: application/json\" \\\n  -H \"Content-Type: application/json\" \\\n  -H \"sensorsdata-project: {projectName}\" \\\n  -H \"api-key: {token}\" \\\n  -d '{\"entity_name\":\"user\",\"name\":\"user_tag_zdybq\"}'\n 返回值：\n{\"code\":\"SUCCESS\",\"request_id\":\"281141337b94cc1225cf95803d55ef53\",\"data\":{\"visible\":false,\"entity_name\":\"\",\"create_type\":\"\",\"tag_post_actions\":[],\"created_by\":\"\",\"labels\":[],\"custom_params\":{},\"folder\":\"\",\""
+    },
+    {
+      "info": {
+        "name": "归档标签定义",
+        "type": "http"
+      },
+      "http": {
+        "method": "POST",
+        "url": "/api/v3/horizon/v1/tag/definition/archive",
+        "headers": [
+          {
+            "name": "api-key",
+            "value": ""
+          },
+          {
+            "name": "sensorsdata-project",
+            "value": ""
+          }
+        ],
+        "body": {
+          "type": "json",
+          "data": "{}"
+        }
+      },
+      "docs": "归档标签定义\n```\ncurl -X POST \"http://{host}:{port}/api/v3/horizon/v1/tag/definition/archive\" \\\n  -H \"Accept: application/json\" \\\n  -H \"Content-Type: application/json\" \\\n  -H \"sensorsdata-project: {projectName}\" \\\n  -H \"api-key: {token}\" \\\n  -d '{\"entity_name\":\"user\",\"name\":\"user_tag_zdybq\"}'\n 返回值：\n {\"code\":\"SUCCESS\",\"request_id\":\"28114456e926d6e022c498ecdf24c3f7\",\"data\":{}}\n```"
+    },
+    {
+      "info": {
+        "name": "从归档恢复标签定义",
+        "type": "http"
+      },
+      "http": {
+        "method": "POST",
+        "url": "/api/v3/horizon/v1/tag/definition/recover-from-archive",
+        "headers": [
+          {
+            "name": "api-key",
+            "value": ""
+          },
+          {
+            "name": "sensorsdata-project",
+            "value": ""
+          }
+        ],
+        "body": {
+          "type": "json",
+          "data": "{}"
+        }
+      },
+      "docs": "从归档恢复标签定义\n```\ncurl -X POST \"http://{host}:{port}/api/v3/horizon/v1/tag/definition/recover-from-archive\" \\\n  -H \"Accept: application/json\" \\\n  -H \"Content-Type: application/json\" \\\n  -H \"sensorsdata-project: {projectName}\" \\\n  -H \"api-key: {token}\" \\\n  -d '{\"entity_name\":\"user\",\"name\":\"user_tag_zdybq\"}'\n 返回值：\n{\"code\":\"SUCCESS\",\"request_id\":\"281241337b94dc1235cf95803d56df53\",\"data\":{\"visible\":false,\"entity_name\":\"\",\"create_type\":\"\",\"tag_post_actions\":[],\"created_by\":\"\",\"labels\":[],\"custom_params\":"
+    },
+    {
+      "info": {
+        "name": "执行标签计算",
+        "type": "http"
+      },
+      "http": {
+        "method": "POST",
+        "url": "/api/v3/horizon/v1/tag/definition/evaluate",
+        "headers": [
+          {
+            "name": "api-key",
+            "value": ""
+          },
+          {
+            "name": "sensorsdata-project",
+            "value": ""
+          }
+        ],
+        "body": {
+          "type": "json",
+          "data": "{}"
+        }
+      },
+      "docs": "执行标签计算\n```\ncurl -X POST 'http://{host}:{port}/api/v3/horizon/v1/tag/definition/evaluate' \\\n-H \"Accept: application/json\" \\\n  -H \"Content-Type: application/json\" \\\n  -H \"sensorsdata-project: {projectName}\" \\\n  -H \"api-key: {token}\" \\\n  -d '{\"entity_name\": \"user\",\"evaluate_params\": [{\"tag_definition_name\": \"user_tag_sbqsl\",\"base_time\": \"2025-04-27T16:00:00Z\"}]}'\n```"
+    },
+    {
+      "info": {
+        "name": "更改调度状态",
+        "type": "http"
+      },
+      "http": {
+        "method": "POST",
+        "url": "/api/v3/horizon/v1/tag/definition/status/update",
+        "headers": [
+          {
+            "name": "api-key",
+            "value": ""
+          },
+          {
+            "name": "sensorsdata-project",
+            "value": ""
+          }
+        ],
+        "body": {
+          "type": "json",
+          "data": "{}"
+        }
+      },
+      "docs": "更改调度状态 TAG_ACTIVE <--> TAG_SUSPENDED\n```\ncurl -X POST \"http://{host}:{port}/api/v3/horizon/v1/tag/definition/status/update\" \\\n  -H \"Accept: application/json\" \\\n  -H \"Content-Type: application/json\" \\\n  -H \"sensorsdata-project: {projectName}\" \\\n  -H \"api-key: {token}\" \\\n  -d '{\"entity_name\":\"user\",\"tag_name\":\"user_tag_bq_meta_bool\",\"status\":\"TAG_SUSPENDED\"}'\n```"
+    },
+    {
+      "info": {
+        "name": "获取标签的 partition 列表",
+        "type": "http"
+      },
+      "http": {
+        "method": "POST",
+        "url": "/api/v3/horizon/v1/tag/partition/get",
+        "headers": [
+          {
+            "name": "api-key",
+            "value": ""
+          },
+          {
+            "name": "sensorsdata-project",
+            "value": ""
+          }
+        ],
+        "body": {
+          "type": "json",
+          "data": "{}"
+        }
+      },
+      "docs": "获取标签的 partition 列表\n```\ncurl -X POST \"http://{host}:{port}/api/v3/horizon/v1/tag/partition/get\" \\\n  -H \"Accept: application/json\" \\\n  -H \"Content-Type: application/json\" \\\n  -H \"sensorsdata-project: {projectName}\" \\\n  -H \"api-key: {token}\" \\\n  -d '{\"entity_name\":\"user\",\"tag_name\":\"user_tag_atbqlxyllxbqazgxzyhzegx\",\"start_time\":\"2025-01-01T16:00:00Z\",\"end_time\":\"2025-04-01T16:00:00Z\",\"limit\":5}'\n 返回值示例：\n {\"code\":\"SUCCESS\",\"request_id\":\"281751438c9856102ed202cc42e0aea5\",\"data\":{\"tag_partitions\":[{\""
+    },
+    {
+      "info": {
+        "name": "获取最新的 partition 信息",
+        "type": "http"
+      },
+      "http": {
+        "method": "POST",
+        "url": "/api/v3/horizon/v1/tag/latest-partition/get",
+        "headers": [
+          {
+            "name": "api-key",
+            "value": ""
+          },
+          {
+            "name": "sensorsdata-project",
+            "value": ""
+          }
+        ],
+        "body": {
+          "type": "json",
+          "data": "{}"
+        }
+      },
+      "docs": "获取最新的 partition 信息,一般查询一批标签最新可用partition信息\n```\ncurl -X POST \"http://{host}:{port}/api/v3/horizon/v1/tag/latest-partition/get\" \\\n  -H \"Accept: application/json\" \\\n  -H \"Content-Type: application/json\" \\\n  -H \"sensorsdata-project: {projectName}\" \\\n  -H \"api-key: {token}\" \\\n  -d '{\"entity_name\":\"user\",\"tag_names\":[\"user_tag_atbqlxyllxbqazgxzyhzegx\",\"user_tag_bq_meta_bool\"],\"status\":\"TAG_PARTITION_AVAILABLE\"}'\n 返回值示例：\n {\"code\":\"SUCCESS\",\"request_id\":\"281802107217590e224c69973e12497d\",\"data\":{\"lasted"
+    },
+    {
+      "info": {
+        "name": "获取标签任务信息",
+        "type": "http"
+      },
+      "http": {
+        "method": "POST",
+        "url": "/api/v3/horizon/v1/tag/task/get",
+        "headers": [
+          {
+            "name": "api-key",
+            "value": ""
+          },
+          {
+            "name": "sensorsdata-project",
+            "value": ""
+          }
+        ],
+        "body": {
+          "type": "json",
+          "data": "{}"
+        }
+      },
+      "docs": "获取标签任务信息\n```\ncurl -X POST \"http://{host}:{port}/api/v3/horizon/v1/tag/task/get\" \\\n  -H \"Accept: application/json\" \\\n  -H \"Content-Type: application/json\" \\\n  -H \"sensorsdata-project: {projectName}\" \\\n  -H \"api-key: {token}\" \\\n  -d '{\"entity_name\":\"user\",\"tag_name\":\"user_tag_atbqlxyllxbqazgxzyhzegx\",\"start_time\":\"2025-03-09T16:00:00Z\",\"end_time\":\"2025-03-11T16:00:00Z\",\"fetch_all\":false}'\n 返回值示例：\n {\"code\":\"SUCCESS\",\"request_id\":\"29115347ead9f614dc00e62ad69fc33b\",\"data\":{\"tasks\":[{\"id\":194,\"tag_def"
+    },
+    {
+      "info": {
+        "name": "取消计算任务",
+        "type": "http"
+      },
+      "http": {
+        "method": "POST",
+        "url": "/api/v3/horizon/v1/tag/task/cancel",
+        "headers": [
+          {
+            "name": "api-key",
+            "value": ""
+          },
+          {
+            "name": "sensorsdata-project",
+            "value": ""
+          }
+        ],
+        "body": {
+          "type": "json",
+          "data": "{}"
+        }
+      },
+      "docs": "取消计算任务,需要通过 task/get 接口先获取到计算任务的 task_id\n ```\ncurl -X POST \"http://{host}:{port}/api/v3/horizon/v1/tag/task/cancel\" \\\n  -H \"Accept: application/json\" \\\n  -H \"Content-Type: application/json\" \\\n  -H \"sensorsdata-project: {projectName}\" \\\n  -H \"api-key: {token}\" \\\n  -d '{\"task_ids\":[4121],\"sync\":\"true\",\"sync_timeout_seconds\":30}'\n ```"
+    }
+  ],
+  "bundled": true
+}

@@ -1,0 +1,950 @@
+openapi: 3.0.1
+info:
+  description: 资源管理服务主要负责资源管理相关模块的 open api 接口，例如：获取查询任务明细表
+  title: 神策业务门户
+  version: ''
+servers:
+- url: /api/v3/portal/v2
+paths:
+  /resource-management/query/task/completed:
+    get:
+      description: 获取已完成的任务详情列表，包含任务描述，任务耗时，CPU 开销，内存消耗量，文件扫描量等，该接口支持翻页，每页最多返回 100 条记录
+      operationId: ListCompletedQueryTaskTable
+      parameters:
+      - description: 全局唯一的密钥，用于验证和授权访问 API 接口
+        in: header
+        name: api-key
+        required: true
+        schema:
+          type: string
+      - description: 项目名, 指定请求所属项目
+        in: header
+        name: sensorsdata-project
+        required: true
+        schema:
+          type: string
+      - description: （选填）查询时间起点，日期格式：yyyy-MM-dd HH:mm:ss （默认时间为 2010-01-01 00:00:00）
+        example: '2022-01-01 00:00:00'
+        in: query
+        name: start_time
+        schema:
+          type: string
+      - description: （选填）查询时间终点，日期格式：yyyy-MM-dd HH:mm:ss （默认时间为当前日期两天后的午夜零点）
+        example: '2022-03-01 00:00:00'
+        in: query
+        name: end_time
+        schema:
+          type: string
+      - description: （选填）排序依据，默认 START_TIME
+        example: START_TIME
+        in: query
+        name: sort_key
+        schema:
+          enum:
+          - SORT_KEY_UNSPECIFIED
+          - START_TIME
+          - DURATION
+          - TOTAL_CPU_TIME
+          - PER_NODE_MEMORY_USAGE
+          - TOTAL_BYTES_READ
+          - USER
+          type: string
+          x-sd-openapi-enum-type: com.sensorsdata.portal.v2.api.SortKey
+        x-sd-openapi-enum-type: com.sensorsdata.portal.v2.api.SortKey
+      - description: (选填)排序顺序，默认降序
+        example: DESC
+        in: query
+        name: sort_order
+        schema:
+          enum:
+          - SORT_ORDER_UNSPECIFIED
+          - DESC
+          - ASC
+          type: string
+          x-sd-openapi-enum-type: com.sensorsdata.portal.v2.api.SortOrder
+        x-sd-openapi-enum-type: com.sensorsdata.portal.v2.api.SortOrder
+      - description: 列表页号，默认值：1，取值范围：>=1
+        example: 1
+        in: query
+        name: page_index
+        schema:
+          format: int32
+          type: integer
+      - description: 单页返回最大记录数， 默认值：20，取值范围：1-100
+        example: 20
+        in: query
+        name: page_size
+        schema:
+          format: int32
+          type: integer
+      responses:
+        default:
+          content:
+            application/json:
+              example:
+                code: SUCCESS
+                data:
+                  page:
+                    total: 100
+                    current_page: 1
+                    page_count: 100
+                  task_details:
+                  - functional_module_type: 其他
+                    exception: OK
+                    query_ref_count: 5
+                    total_cpu_time: 304
+                    project_cname: 测试项目
+                    query_id: 814d0491c18653cc:bd04dfb700000000
+                    entity_name: 概览1-书签1
+                    trigger_type: 例行任务
+                    end_time: '2022-04-01 16:00:30'
+                    project: default
+                    functional_module: 事件分析
+                    entity_id: 123456-67890
+                    duration: 339
+                    start_time: '2022-04-01 16:00:29'
+                    speed_evaluation: normal
+                    ext_tags: '["feature":"withtoday"}]'
+                    total_bytes_read: 224
+                    user_cname: 平台管理员
+                    workload_query_desc: 将新用户同步到 User 表。[任务 id = 47]
+                    workload_source: 后台任务-用户同步
+                    state: FINISHED
+                    per_node_memory_usage: 72579568
+                    user: admin
+                request_id: '1'
+              schema:
+                $ref: '#/components/schemas/sensorsdata.portal.v2.api.QueryCompletedTaskTableResponseHttpApiResult'
+          description: sensorsdata.portal.v2.api.QueryCompletedTaskTableResponse
+      summary: 获取已完成的任务详情列表
+      x-sd-openapi:
+        responseClass: com.sensorsdata.portal.v2.api.QueryCompletedTaskTableResponse
+        isServerStreaming: false
+        requestClass: com.sensorsdata.portal.v2.api.ResourceManagementCompletedQueryRequest
+        grpcServiceBase: com.sensorsdata.portal.v2.api.ResourceManagementServiceGrpc.ResourceManagementServiceImplBase
+        internalDesc: classes in template for grpc service dynamic invoking
+        isClientStreaming: false
+  /resource-management/query/task/executing:
+    get:
+      description: 获取执行中的任务详情列表（注：该接口服务于资源监控，故返回结果包含“已执行完成/执行失败，但<b>仍未释放内存或其他资源</b>的查询任务”）该接口不支持翻页或筛选，执行中任务数通常预期值小于
+        20 条
+      operationId: ListExecutingQueryTaskTable
+      parameters:
+      - description: 全局唯一的密钥，用于验证和授权访问 API 接口
+        in: header
+        name: api-key
+        required: true
+        schema:
+          type: string
+      - description: 项目名, 指定请求所属项目
+        in: header
+        name: sensorsdata-project
+        required: true
+        schema:
+          type: string
+      responses:
+        default:
+          content:
+            application/json:
+              example:
+                code: SUCCESS
+                data:
+                  task_details:
+                  - functional_module_type: 其他
+                    query_ref_count: 5
+                    total_cpu_time: 304
+                    project_cname: default
+                    query_id: 814d0491c18653cc:bd04dfb700000000
+                    entity_name: 概览1-书签1
+                    trigger_type: 例行任务
+                    end_time: '2022-04-01 16:00:30'
+                    functional_module: 事件分析
+                    entity_id: 123456-67890
+                    duration: 339
+                    start_time: '2022-04-01 16:00:29'
+                    speed_evaluation: normal
+                    ext_tags: '["feature":"withtoday"}]'
+                    total_bytes_read: 224
+                    user_cname: 平台管理员
+                    workload_query_desc: 将新用户同步到 User 表。[任务 id = 47]
+                    workload_source: 后台任务-用户同步
+                    per_node_peak_memory_percentage: 0.53%
+                    state: RUNNING
+                    user: admin
+                    estimated_per_node_peak_memory: 699998208
+                request_id: '1'
+              schema:
+                $ref: '#/components/schemas/sensorsdata.portal.v2.api.QueryExecutingTaskTableResponseHttpApiResult'
+          description: sensorsdata.portal.v2.api.QueryExecutingTaskTableResponse
+      summary: 获取执行中的任务详情列表
+      x-sd-openapi:
+        responseClass: com.sensorsdata.portal.v2.api.QueryExecutingTaskTableResponse
+        isServerStreaming: false
+        grpcServiceBase: com.sensorsdata.portal.v2.api.ResourceManagementServiceGrpc.ResourceManagementServiceImplBase
+        internalDesc: classes in template for grpc service dynamic invoking
+        isClientStreaming: false
+  /resource-management/assets/list:
+    post:
+      description: 获取指定资产的基本信息和使用情况列表，包含资产名称、创建时间、查询次数、被引用次数等，该接口支持翻页，每页最多返回 100 条记录。【注：该接口在每日 06:00-23:59
+        时段返回数据为 T-1，00:00-6:00 时段返回数据为 T-2（前天）】
+      operationId: ListAssets
+      parameters:
+      - description: 全局唯一的密钥，用于验证和授权访问 API 接口
+        in: header
+        name: api-key
+        required: true
+        schema:
+          type: string
+      - description: 项目名, 指定请求所属项目
+        in: header
+        name: sensorsdata-project
+        required: true
+        schema:
+          type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/sensorsdata.portal.v2.api.ResourceManagementListAssetsRequest'
+        required: false
+      responses:
+        default:
+          content:
+            application/json:
+              example:
+                code: SUCCESS
+                data:
+                  assets:
+                  - asset_cname: 分布分析
+                    creator: admin
+                    asset_name: user_group_508
+                    create_time: '2022-04-01 16:00:29'
+                    query_count: 511
+                    asset_type: ASSET_USER_GROUP
+                    project: default
+                    asset_id: '127'
+                    ref_count: 988
+                  page:
+                    total: 100
+                    current_page: 1
+                    page_count: 100
+                request_id: '1'
+              schema:
+                $ref: '#/components/schemas/sensorsdata.portal.v2.api.ResourceManagementAssetsResponseHttpApiResult'
+          description: sensorsdata.portal.v2.api.ResourceManagementAssetsResponse
+      summary: 获取指定资产基本信息和使用情况
+      x-sd-openapi:
+        responseClass: com.sensorsdata.portal.v2.api.ResourceManagementAssetsResponse
+        isServerStreaming: false
+        requestClass: com.sensorsdata.portal.v2.api.ResourceManagementListAssetsRequest
+        grpcServiceBase: com.sensorsdata.portal.v2.api.ResourceManagementServiceGrpc.ResourceManagementServiceImplBase
+        internalDesc: classes in template for grpc service dynamic invoking
+        isClientStreaming: false
+      x-codegen-request-body-name: ResourceManagementListAssetsRequest
+  /resource-management/assets/query/list:
+    post:
+      description: 获取资产相关的查询任务详情列表，需要指定是「由资产主动发起」的或是「引用了该资产」的任务，包含任务描述，任务耗时，CPU 开销，内存消耗量，文件扫描量等，该接口支持翻页，每页最多返回
+        100 条记录
+      operationId: ListAssetQuery
+      parameters:
+      - description: 全局唯一的密钥，用于验证和授权访问 API 接口
+        in: header
+        name: api-key
+        required: true
+        schema:
+          type: string
+      - description: 项目名, 指定请求所属项目
+        in: header
+        name: sensorsdata-project
+        required: true
+        schema:
+          type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/sensorsdata.portal.v2.api.ResourceManagementListAssetQueryRequest'
+        required: false
+      responses:
+        default:
+          content:
+            application/json:
+              example:
+                code: SUCCESS
+                data:
+                  page:
+                    total: 100
+                    current_page: 1
+                    page_count: 100
+                  task_details:
+                  - functional_module_type: 其他
+                    exception: OK
+                    query_ref_count: 5
+                    total_cpu_time: 304
+                    project_cname: 测试项目
+                    query_id: 814d0491c18653cc:bd04dfb700000000
+                    entity_name: 概览1-书签1
+                    trigger_type: 例行任务
+                    end_time: '2022-04-01 16:00:30'
+                    project: default
+                    functional_module: 事件分析
+                    entity_id: 123456-67890
+                    duration: 339
+                    start_time: '2022-04-01 16:00:29'
+                    speed_evaluation: normal
+                    ext_tags: '["feature":"withtoday"}]'
+                    total_bytes_read: 224
+                    user_cname: 平台管理员
+                    workload_query_desc: 将新用户同步到 User 表。[任务 id = 47]
+                    workload_source: 后台任务-用户同步
+                    state: FINISHED
+                    per_node_memory_usage: 72579568
+                    user: admin
+                request_id: '1'
+              schema:
+                $ref: '#/components/schemas/sensorsdata.portal.v2.api.QueryCompletedTaskTableResponseHttpApiResult'
+          description: sensorsdata.portal.v2.api.QueryCompletedTaskTableResponse
+      summary: 获取指定资产「发起」或「被引用」的查询任务详情
+      x-sd-openapi:
+        responseClass: com.sensorsdata.portal.v2.api.QueryCompletedTaskTableResponse
+        isServerStreaming: false
+        requestClass: com.sensorsdata.portal.v2.api.ResourceManagementListAssetQueryRequest
+        grpcServiceBase: com.sensorsdata.portal.v2.api.ResourceManagementServiceGrpc.ResourceManagementServiceImplBase
+        internalDesc: classes in template for grpc service dynamic invoking
+        isClientStreaming: false
+      x-codegen-request-body-name: ResourceManagementListAssetQueryRequest
+components:
+  schemas:
+    sensorsdata.portal.v2.api.ResourceManagementAssetsResponse:
+      description: ''
+      properties:
+        assets:
+          description: 资产列表
+          items:
+            $ref: '#/components/schemas/sensorsdata.portal.v2.api.ResourceManagementAsset'
+          type: array
+        cutoff_time:
+          description: 统计截止时间
+          type: string
+        page:
+          $ref: '#/components/schemas/sensorsdata.portal.v2.api.PageInfo'
+      title: ResourceManagementAssetsResponse
+      type: object
+    sensorsdata.portal.v2.api.ExecutingQueryTaskDetail:
+      description: 执行中的任务执行详细信息，若查询到运行失败的信息，请等待该任务释放资源后于已完成任务列表中查看失败原因
+      properties:
+        functional_module:
+          description: 任务模块（任务二级分类）
+          example: 事件分析
+          type: string
+        functional_module_type:
+          description: "任务类型（任务一级分类）\n ```\n 一级分类与二级分类规整关系（非完整内容，由于旧模型不存在一级分类，下述旧模型一二级分类映射关系）\n for common\n\
+            \   \"其他\"「\n       * \"自定义查询\"\n       * \"候选值刷新任务\"\n       * \"资源报告任务\"\n  」\n for ANALYTICS\
+            \ （分析相关）\n   \"报表\"\n   \"业务集市\"\n   \"渠道追踪\"\n   \"概览\" :「\n       * \"概览\"\n       * \"\
+            定时任务:数据概览缓存刷新\"\n       * \"定时任务:数据概览同环比趋势计算\"\n       * \"定时任务:邮件概览任务\"\n   」\n  \"行为分析\"\
+            \ :「\n       * \"事件分析\"\n       * \"漏斗分析\"\n       * \"留存分析\"\n       * \"分布分析\"\n       *\
+            \ \"LTV分析\"\n       * \"用户路径分析\"\n       * \"间隔分析\"\n       * \"归因分析\"\n       * \"网页热力分析\"\
+            \n       * \"App点击分析\"\n      」\n   \"用户分析\" :「\n       * \"属性分析\"\n       * \"通用分析模型\"\n\
+            \       * \"用户列表\"\n       * \"用户群画像\"\n      」\n      \"经营分析\" :「\n       * \"自定义查询\"\n \
+            \      * \"自定义接口查询\"\n      」\n   \"预警\" :「\n       * \"定时任务:智能预警分析\"\n       * \"预警预测值分析\"\
+            \n   」\n for PERSONAS （用户相关）\n   \"用户画像\"\n   \"用户分群\" :「\n       * \"分群管理\"\n       * \"\
+            后台任务\" 且任务来源为 \"后台任务-分群计算\"\n   」\n   \"用户标签\" :「\n       * \"标签管理\"\n       * \"相似度标签\"\n\
+            \       * \"后台任务\" 且任务来源为 \"后台任务-标签计算\"\n      」\n   \"用户资产\" :「\n       * \"新用户列表\"\n   \
+            \    * \"单用户全景视图\"\n       * \"单用户画像\"\n   」\n ```"
+          example: 其他
+          type: string
+        workload_source:
+          description: 任务来源
+          example: 后台任务-用户同步
+          type: string
+        workload_query_desc:
+          description: 任务描述
+          example: 将新用户同步到 User 表。[任务 id = 47]
+          type: string
+        duration:
+          description: 任务已耗时间，非完成耗时（单位：ms）
+          example: 339
+          format: int64
+          type: integer
+        total_cpu_time:
+          description: CPU 开销（单位：ms）
+          example: 304
+          format: int64
+          type: integer
+        per_node_peak_memory_percentage:
+          description: 内存中，该任务占比峰值
+          example: 0.53%
+          type: string
+        total_bytes_read:
+          description: 文件扫描量（单位：byte）
+          example: 224
+          format: int64
+          type: integer
+        speed_evaluation:
+          description: 速度评估
+          example: normal
+          type: string
+        project_cname:
+          description: 项目中文名
+          example: default
+          type: string
+        state:
+          description: 任务状态（若返回结果为 EXCEPTION 为正常现象，因为”尚未释放资源“的任务皆视为”执行中任务“）
+          example: RUNNING
+          type: string
+        user:
+          description: 负载用户（登录账号）
+          example: admin
+          type: string
+        start_time:
+          description: 负载起始时间
+          example: '2022-04-01 16:00:29'
+          type: string
+        end_time:
+          description: 结果返回/报错返回结束时间(该字段大部分情况为空为正常现象，因为查询到的任务尚未停止，当查询已经结束或出现异常，且资源未释放时将返回查询任务结果出现时间)
+          example: '2022-04-01 16:00:30'
+          type: string
+        query_id:
+          description: 业务资源 ID (唯一标识)
+          example: 814d0491c18653cc:bd04dfb700000000
+          type: string
+        trigger_type:
+          description: 触发类型
+          example: 例行任务
+          type: string
+        entity_id:
+          description: 业务对象 ID (概览 ID - 书签 ID)
+          example: 123456-67890
+          type: string
+        ext_tags:
+          description: 扩展标签（业务自有标签）
+          example: '["feature":"withtoday"}]'
+          type: string
+        estimated_per_node_peak_memory:
+          description: 估值消耗内存（单位：byte）
+          example: 699998208
+          format: int64
+          type: integer
+        query_ref_count:
+          description: 查询引用资源数
+          example: 5
+          format: int32
+          type: integer
+        user_cname:
+          description: 负载用户中文名称
+          example: 平台管理员
+          type: string
+        entity_name:
+          description: 业务对象名称 (概览 ID - 书签 ID)
+          example: 概览1-书签1
+          type: string
+      title: ExecutingQueryTaskDetail
+      type: object
+    sensorsdata.portal.v2.api.ResourceManagementAssetsResponseHttpApiResult:
+      properties:
+        code:
+          type: string
+        message:
+          type: string
+        request_id:
+          type: string
+        data:
+          $ref: '#/components/schemas/sensorsdata.portal.v2.api.ResourceManagementAssetsResponse'
+        error_info:
+          $ref: '#/components/schemas/sensorsdata.common.ErrorInfo'
+      title: sensorsdata.portal.v2.api.ResourceManagementAssetsResponseHttpApiResult
+      type: object
+    sensorsdata.common.HttpApiResult:
+      properties:
+        code:
+          type: string
+        message:
+          type: string
+        request_id:
+          type: string
+        data:
+          properties: {}
+          type: object
+        error_info:
+          $ref: '#/components/schemas/sensorsdata.common.ErrorInfo'
+      title: HttpApiResult
+      type: object
+    sensorsdata.portal.v2.api.ResourceManagementListAssetsRequest:
+      description: ''
+      properties:
+        asset_type:
+          description: （必填）资产类型
+          enum:
+          - ASSET_TYPE_UNSPECIFIED
+          - ASSET_DASHBOARD
+          - ASSET_BOOKMARK
+          - ASSET_USER_GROUP
+          - ASSET_USER_TAG
+          - ASSET_EVENT
+          - ASSET_EVENT_PROPERTY
+          - ASSET_USER_PROPERTY
+          example: ASSET_USER_GROUP
+          type: string
+        condition:
+          $ref: '#/components/schemas/sensorsdata.portal.v2.api.AssetStatisticCondition'
+        asset_ids:
+          description: （选填）「书签/概览不支持该字段」资产 id 筛选列表。最多支持 100 个 id 搜索，超出部分会被截断。【注：该接口不保证资产 id 唯一性，即 100
+            个 id 可能对应超过 100 条结果，请注意查看分页信息】
+          example: '["178","467","124"]'
+          items:
+            type: string
+          type: array
+        page_index:
+          description: 列表页号，默认值：1，取值范围：>=1
+          example: 1
+          format: int32
+          type: integer
+        page_size:
+          description: 单页返回最大记录数， 默认值：20，取值范围：1-500
+          example: 20
+          format: int32
+          type: integer
+        project:
+          description: （选填）资产所属项目
+          example: default
+          type: string
+      title: ResourceManagementListAssetsRequest
+      type: object
+    sensorsdata.portal.v2.api.AssetStatisticCondition:
+      description: ''
+      properties:
+        conditions:
+          description: 筛选条件列表，目前筛选条件之间以 AND 关系关联
+          example: '[{"field":"TRIGGER_TYPE","operator":"IN","values":["UI","API"]},{"field":"QUERY_INITIATOR","operator":"NOT_IN","values":["system"]},{"field":"CATEGORY","operator":"IN","values":["USERGROUP","SEGMENT"]}]'
+          items:
+            $ref: '#/components/schemas/sensorsdata.portal.v2.api.AssetQueryCondition'
+          type: array
+      title: AssetStatisticCondition
+      type: object
+    sensorsdata.portal.v2.api.AssetQueryCondition:
+      description: ''
+      properties:
+        field:
+          description: 筛选字段，目前仅支持 TRIGGER_TYPE, QUERY_INITIATOR 和 CATEGORY
+          example: QUERY_INITIATOR
+          type: string
+        operator:
+          description: 筛选动作，目前仅支持 IN 和 NOT_IN
+          example: NOT_IN
+          type: string
+        values:
+          description: 筛选值列表。最多支持 100 个 筛选值，超出部分会被截断
+          example: '["system","admin"]'
+          items:
+            type: string
+          type: array
+      title: AssetQueryCondition
+      type: object
+    sensorsdata.portal.v2.api.PageInfo:
+      description: 分页信息
+      properties:
+        current_page:
+          description: 当前页，起始页号：1
+          example: 1
+          format: int32
+          type: integer
+        page_count:
+          description: 总页数
+          example: 100
+          format: int32
+          type: integer
+        total:
+          description: 总条数
+          example: 100
+          format: int32
+          type: integer
+      title: PageInfo
+      type: object
+    sensorsdata.common.ErrorCause:
+      properties:
+        error_cause:
+          description: 致错原因1
+          example: 参数异常1
+          type: string
+        action_suggestion:
+          description: 操作建议，针对该原因，建议的解决方式
+          example: 检测入参的数据类型1
+          type: string
+      title: ErrorCause
+      type: object
+    sensorsdata.common.ErrorContext:
+      description: 发生错误时，系统快照信息
+      properties:
+        origin_stack:
+          description: 上游异常的 stack，由系统截获
+          type: string
+        origin_cause:
+          description: 上游异常的 cause by，由系统截获
+          type: string
+        origin_code:
+          description: 上游异常的错误简码
+          type: string
+        origin_complete_code:
+          description: 上游异常的完整错误码
+          type: string
+        error_extend_desc:
+          description: 本次异常的辅助说明，可传入
+          type: string
+      title: ErrorContext
+      type: object
+    sensorsdata.common.ErrorInfo:
+      properties:
+        code:
+          description: 具体的错误码
+          example: XX-D-F-2-1
+          type: string
+        description:
+          description: 错误描述
+          example: 前端参数校验异常,PARAMETER_FORMAT_ERROR(quantiles=[10, -90] is not include [0, 100])
+          type: string
+        system_response:
+          description: 致错的可能原因列表
+          example: 系统终止了查询处理
+          type: string
+        error_causes:
+          items:
+            $ref: '#/components/schemas/sensorsdata.common.ErrorCause'
+          type: array
+        context:
+          $ref: '#/components/schemas/sensorsdata.common.ErrorContext'
+      title: ErrorInfo
+      type: object
+    sensorsdata.portal.v2.api.QueryCompletedTaskTableResponseHttpApiResult:
+      properties:
+        code:
+          type: string
+        message:
+          type: string
+        request_id:
+          type: string
+        data:
+          $ref: '#/components/schemas/sensorsdata.portal.v2.api.QueryCompletedTaskTableResponse'
+        error_info:
+          $ref: '#/components/schemas/sensorsdata.common.ErrorInfo'
+      title: sensorsdata.portal.v2.api.QueryCompletedTaskTableResponseHttpApiResult
+      type: object
+    sensorsdata.portal.v2.api.QueryExecutingTaskTableResponseHttpApiResult:
+      properties:
+        code:
+          type: string
+        message:
+          type: string
+        request_id:
+          type: string
+        data:
+          $ref: '#/components/schemas/sensorsdata.portal.v2.api.QueryExecutingTaskTableResponse'
+        error_info:
+          $ref: '#/components/schemas/sensorsdata.common.ErrorInfo'
+      title: sensorsdata.portal.v2.api.QueryExecutingTaskTableResponseHttpApiResult
+      type: object
+    sensorsdata.portal.v2.api.QueryCompletedTaskTableResponse:
+      description: 「获取已完成的任务详情列表」接口的返回对象，包含队列和分页信息
+      properties:
+        task_details:
+          description: 任务执行的详细信息
+          items:
+            $ref: '#/components/schemas/sensorsdata.portal.v2.api.CompletedQueryTaskDetail'
+          type: array
+        page:
+          $ref: '#/components/schemas/sensorsdata.portal.v2.api.PageInfo'
+      title: QueryCompletedTaskTableResponse
+      type: object
+    sensorsdata.portal.v2.api.CompletedQueryTaskDetail:
+      description: 已完成任务执行的详细信息
+      properties:
+        functional_module:
+          description: 任务模块（任务二级分类）
+          example: 事件分析
+          type: string
+        functional_module_type:
+          description: "任务类型（任务一级分类）\n ```\n 一级分类与二级分类规整关系（非完整内容，由于旧模型不存在一级分类，下述旧模型一二级分类映射关系）\n for common\n\
+            \   \"其他\"「\n       * \"自定义查询\"\n       * \"候选值刷新任务\"\n       * \"资源报告任务\"\n  」\n for ANALYTICS\
+            \ （分析相关）\n   \"报表\"\n   \"业务集市\"\n   \"渠道追踪\"\n   \"概览\" :「\n       * \"概览\"\n       * \"\
+            定时任务:数据概览缓存刷新\"\n       * \"定时任务:数据概览同环比趋势计算\"\n       * \"定时任务:邮件概览任务\"\n   」\n  \"行为分析\"\
+            \ :「\n       * \"事件分析\"\n       * \"漏斗分析\"\n       * \"留存分析\"\n       * \"分布分析\"\n       *\
+            \ \"LTV分析\"\n       * \"用户路径分析\"\n       * \"间隔分析\"\n       * \"归因分析\"\n       * \"网页热力分析\"\
+            \n       * \"App点击分析\"\n      」\n   \"用户分析\" :「\n       * \"属性分析\"\n       * \"通用分析模型\"\n\
+            \       * \"用户列表\"\n       * \"用户群画像\"\n      」\n      \"经营分析\" :「\n       * \"自定义查询\"\n \
+            \      * \"自定义接口查询\"\n      」\n   \"预警\" :「\n       * \"定时任务:智能预警分析\"\n       * \"预警预测值分析\"\
+            \n   」\n for PERSONAS （用户相关）\n   \"用户画像\"\n   \"用户分群\" :「\n       * \"分群管理\"\n       * \"\
+            后台任务\" 且任务来源为 \"后台任务-分群计算\"\n   」\n   \"用户标签\" :「\n       * \"标签管理\"\n       * \"相似度标签\"\n\
+            \       * \"后台任务\" 且任务来源为 \"后台任务-标签计算\"\n      」\n   \"用户资产\" :「\n       * \"新用户列表\"\n   \
+            \    * \"单用户全景视图\"\n       * \"单用户画像\"\n   」\n ```"
+          example: 其他
+          type: string
+        workload_source:
+          description: 任务来源
+          example: 后台任务-用户同步
+          type: string
+        workload_query_desc:
+          description: 任务描述
+          example: 将新用户同步到 User 表。[任务 id = 47]
+          type: string
+        duration:
+          description: 任务耗时（单位：ms）
+          example: 339
+          format: int64
+          type: integer
+        total_cpu_time:
+          description: CPU 开销（单位：ms）
+          example: 304
+          format: int64
+          type: integer
+        per_node_memory_usage:
+          description: 内存消耗量（单位：byte）
+          example: 72579568
+          format: int64
+          type: integer
+        total_bytes_read:
+          description: 文件扫描量（单位：byte）
+          example: 224
+          format: int64
+          type: integer
+        speed_evaluation:
+          description: 速度评估
+          example: normal
+          type: string
+        project:
+          description: 项目英文名
+          example: default
+          type: string
+        project_cname:
+          description: 项目中文名
+          example: 测试项目
+          type: string
+        state:
+          description: 任务状态
+          example: FINISHED
+          type: string
+        exception:
+          description: 失败原因
+          example: OK
+          type: string
+        user:
+          description: 负载用户（登录账号）
+          example: admin
+          type: string
+        start_time:
+          description: 负载起始时间
+          example: '2022-04-01 16:00:29'
+          type: string
+        end_time:
+          description: 负载结束时间
+          example: '2022-04-01 16:00:30'
+          type: string
+        query_id:
+          description: 业务资源 ID (唯一标识)
+          example: 814d0491c18653cc:bd04dfb700000000
+          type: string
+        trigger_type:
+          description: 触发类型
+          example: 例行任务
+          type: string
+        entity_id:
+          description: 业务对象 ID (概览 ID - 书签 ID)
+          example: 123456-67890
+          type: string
+        ext_tags:
+          description: 扩展标签（业务自有标签）
+          example: '["feature":"withtoday"}]'
+          type: string
+        query_ref_count:
+          description: 查询引用资源数
+          example: 5
+          format: int32
+          type: integer
+        user_cname:
+          description: 负载用户中文名称
+          example: 平台管理员
+          type: string
+        entity_name:
+          description: 业务对象名称 (概览 ID - 书签 ID)
+          example: 概览1-书签1
+          type: string
+      title: CompletedQueryTaskDetail
+      type: object
+    sensorsdata.portal.v2.api.ResourceManagementListAssetQueryRequest:
+      description: ''
+      properties:
+        asset_type:
+          description: （必填）资产类型
+          enum:
+          - ASSET_TYPE_UNSPECIFIED
+          - ASSET_DASHBOARD
+          - ASSET_BOOKMARK
+          - ASSET_USER_GROUP
+          - ASSET_USER_TAG
+          - ASSET_EVENT
+          - ASSET_EVENT_PROPERTY
+          - ASSET_USER_PROPERTY
+          example: ASSET_USER_GROUP
+          type: string
+        asset_id:
+          description: （必填）资产id
+          example: '187'
+          type: string
+        project:
+          description: （必填）资产所属项目
+          example: production
+          type: string
+        query_type:
+          description: （必填）查询类型（资产发起的查询 或 引用了该资产的查询）
+          enum:
+          - QUERY_TYPE_UNSPECIFIED
+          - LAUNCH_QUERY
+          - REF_QUERY
+          example: REF_QUERY
+          type: string
+        condition:
+          $ref: '#/components/schemas/sensorsdata.portal.v2.api.AssetStatisticCondition'
+        page_index:
+          description: 列表页号，默认值：1，取值范围：>=1
+          example: 1
+          format: int32
+          type: integer
+        page_size:
+          description: 单页返回最大记录数， 默认值：20，取值范围：1-100
+          example: 20
+          format: int32
+          type: integer
+        sort_key:
+          description: （选填）排序依据，默认 START_TIME
+          enum:
+          - SORT_KEY_UNSPECIFIED
+          - START_TIME
+          - DURATION
+          - TOTAL_CPU_TIME
+          - PER_NODE_MEMORY_USAGE
+          - TOTAL_BYTES_READ
+          - USER
+          example: START_TIME
+          type: string
+        sort_order:
+          description: (选填)排序顺序，默认降序
+          enum:
+          - SORT_ORDER_UNSPECIFIED
+          - DESC
+          - ASC
+          example: DESC
+          type: string
+      title: ResourceManagementListAssetQueryRequest
+      type: object
+    sensorsdata.portal.v2.api.ResourceManagementCompletedQueryRequest:
+      description: 「获取已完成的任务详情列表」接口的请求对象
+      properties:
+        start_time:
+          description: （选填）查询时间起点，日期格式：yyyy-MM-dd HH:mm:ss （默认时间为 2010-01-01 00:00:00）
+          example: '2022-01-01 00:00:00'
+          type: string
+        end_time:
+          description: （选填）查询时间终点，日期格式：yyyy-MM-dd HH:mm:ss （默认时间为当前日期两天后的午夜零点）
+          example: '2022-03-01 00:00:00'
+          type: string
+        sort_key:
+          description: （选填）排序依据，默认 START_TIME
+          enum:
+          - SORT_KEY_UNSPECIFIED
+          - START_TIME
+          - DURATION
+          - TOTAL_CPU_TIME
+          - PER_NODE_MEMORY_USAGE
+          - TOTAL_BYTES_READ
+          - USER
+          example: START_TIME
+          type: string
+        sort_order:
+          description: (选填)排序顺序，默认降序
+          enum:
+          - SORT_ORDER_UNSPECIFIED
+          - DESC
+          - ASC
+          example: DESC
+          type: string
+        page_index:
+          description: 列表页号，默认值：1，取值范围：>=1
+          example: 1
+          format: int32
+          type: integer
+        page_size:
+          description: 单页返回最大记录数， 默认值：20，取值范围：1-100
+          example: 20
+          format: int32
+          type: integer
+      title: ResourceManagementCompletedQueryRequest
+      type: object
+    sensorsdata.portal.v2.api.ResourceManagementAsset:
+      description: ''
+      properties:
+        asset_type:
+          description: 资产类型
+          enum:
+          - ASSET_TYPE_UNSPECIFIED
+          - ASSET_DASHBOARD
+          - ASSET_BOOKMARK
+          - ASSET_USER_GROUP
+          - ASSET_USER_TAG
+          - ASSET_EVENT
+          - ASSET_EVENT_PROPERTY
+          - ASSET_USER_PROPERTY
+          example: ASSET_USER_GROUP
+          type: string
+        asset_id:
+          description: 资产 id
+          example: '127'
+          type: string
+        asset_name:
+          description: 资产名称
+          example: user_group_508
+          type: string
+        asset_cname:
+          description: 资产展示名称
+          example: 分布分析
+          type: string
+        query_count:
+          description: 查询次数，若该类型资产不支持获取查询次数，将返回 -1
+          example: 511
+          format: int64
+          type: integer
+        ref_count:
+          description: 引用次数，若该类型资产不支持获取引用次数，将返回 -1
+          example: 988
+          format: int64
+          type: integer
+        project:
+          description: 所属项目
+          example: default
+          type: string
+        creator:
+          description: 创建人，若该类型资产不支持获取创建人，将返回 "_NO_SUPPORTED"
+          example: admin
+          type: string
+        create_time:
+          description: 创建时间
+          example: '2022-04-01 16:00:29'
+          type: string
+      title: ResourceManagementAsset
+      type: object
+    sensorsdata.portal.v2.api.QueryExecutingTaskTableResponse:
+      description: 「获取执行中的任务详情列表」接口的返回对象，包含队列和返回条数，（注：返回列表包含“已执行完成/执行失败，但<b>仍未释放内存或其他资源</b>的查询任务”）
+      properties:
+        task_details:
+          description: 任务执行的详细信息
+          items:
+            $ref: '#/components/schemas/sensorsdata.portal.v2.api.ExecutingQueryTaskDetail'
+          type: array
+        total:
+          description: 查询到的总任务数
+          format: int32
+          type: integer
+      title: QueryExecutingTaskTableResponse
+      type: object
+x-sd-openapi-service-name: ResourceManagement
+x-sd-openapi-service-name-hyphen: resource-management
+x-sd-openapi-app-name: portal
+x-sd-openapi-service-name-zh_cn: 资源管理
+x-original-swagger-version: '2.0'

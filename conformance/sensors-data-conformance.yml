@@ -1,0 +1,111 @@
+generated: '2026-08-13'
+method: derived
+source: openapi/_original/ + https://www.sensorsdata.cn/trust/compliance.html
+summary: >-
+  Assertions about which cross-cutting standards the Sensors Data OpenAPI surface actually
+  conforms to, each with the evidence it was judged on. Certifications come from the
+  provider's own trust centre; API-shape claims come from the 29 harvested specs.
+
+standards:
+  - id: openapi
+    conforms: true
+    version: 3.0.1
+    evidence: >-
+      All 29 published specs declare openapi 3.0.1 and carry an x-original-swagger-version
+      extension, indicating a Swagger 2.0 -> OpenAPI 3.0.1 conversion in the publishing
+      pipeline. All 252 operations parse with operationId, summary, description and a
+      response example.
+  - id: json-schema
+    conforms: true
+    evidence: components.schemas present in all 29 specs (OpenAPI 3.0 Schema dialect)
+  - id: grpc
+    conforms: partial
+    evidence: >-
+      Every operation carries x-sd-openapi.grpcServiceBase naming a Java gRPC service
+      implementation base (e.g. com.sensorsdata.portal.v2.api.IdentityServiceGrpc), plus
+      requestClass/responseClass and isServerStreaming/isClientStreaming flags. The HTTP
+      OpenAPI is generated from gRPC service definitions.
+    caveat: >-
+      No .proto files are published to GitHub, buf.build, or the docs, and no public gRPC
+      endpoint is documented. The gRPC layer is internal — it is visible in the contract
+      but not callable. No grpc/ artifact is written.
+  - id: rfc9457
+    conforms: false
+    evidence: >-
+      Errors use a proprietary {code,message,data,request_id} envelope on a `default`
+      response, not application/problem+json. See errors/sensors-data-problem-types.yml.
+  - id: http-status-semantics
+    conforms: false
+    evidence: >-
+      No operation declares an explicit HTTP status code; success and failure share one
+      `default` response and are distinguished only by envelope.code.
+  - id: pagination
+    conforms: true
+    style: page-number
+    evidence: page_index / page_size (max 100) with page.total / page.current_page / page.page_count
+  - id: idempotency
+    conforms: false
+    evidence: no Idempotency-Key header and no idempotency semantics on any of 252 operations
+  - id: oauth2
+    conforms: false
+    evidence: >-
+      API auth is an api-key header. OAuth 2.0 exists only as console SSO for human
+      operators (/sa/docs/tech_super_three_oauth), not as an API authorization grant.
+  - id: oidc
+    conforms: false
+    evidence: no /.well-known/openid-configuration on any of four probed hosts (all 404)
+  - id: json-api
+    conforms: false
+  - id: odata
+    conforms: false
+  - id: asyncapi
+    conforms: false
+    evidence: >-
+      A real event surface exists (Sensors Focus webhooks, Kafka data subscription) but no
+      AsyncAPI document is published. See asyncapi/sensors-data-webhooks.yml.
+  - id: mcp
+    conforms: false
+    evidence: >-
+      The official github.com/sensorsdata/SensorsData-MCP repository exists but is EMPTY
+      (GitHub returns "Git Repository is empty" for its tree). No first-party MCP server ships.
+  - id: a2a
+    conforms: false
+    evidence: no agent card at /.well-known/agent-card.json or /.well-known/agent.json on any probed host
+
+certifications:
+  published: true
+  source: https://www.sensorsdata.cn/trust/compliance.html
+  probed_status: 200
+  items:
+    - id: mlps-level-3
+      name: 网络安全等级保护三级 (China MLPS / Cybersecurity Classified Protection Level 3)
+      standard: GB/T 22239-2019
+      scope: Sensors Analytics Cloud (神策分析云) and Sensors Marketing Cloud (神策营销云)
+      status: filed / 备案
+    - id: iso-27001
+      name: ISO/IEC 27001
+      domain: information security management system
+    - id: iso-27701
+      name: ISO/IEC 27701
+      domain: privacy information management system (PII controller and processor)
+    - id: iso-9001
+      name: ISO 9001
+      domain: quality management system
+    - id: cmmi-3
+      name: CMMI Level 3 (Defined)
+      domain: software process maturity
+    - id: sdk-security-assessment
+      name: SDK 安全专项测评
+      body: 中国信息通信研究院 (CAICT) Big Data Application and Security Innovation Lab
+      domain: Android SDK security evaluation
+  not_claimed:
+    - SOC 2
+    - PCI DSS
+    - HIPAA
+    - FedRAMP
+    - GDPR certification (a privacy policy exists; no certification is claimed)
+  note: >-
+    Certificates themselves are not published as downloadable documents; the trust centre
+    names each certification and directs customers to their customer-success contact for
+    the artifacts. Named, scoped certifications on the provider's own domain are treated as
+    a published compliance program.

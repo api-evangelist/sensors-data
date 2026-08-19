@@ -1,0 +1,4119 @@
+{
+  "openapi" : "3.0.1",
+  "info" : {
+    "description" : "标签管理服务",
+    "title" : "神策数界",
+    "version" : ""
+  },
+  "servers" : [ {
+    "url" : "/api/v3/horizon/v1"
+  } ],
+  "paths" : {
+    "/tag/definition/list" : {
+      "post" : {
+        "description" : "查询标签列表\n 发起请求例子：\n ```\n curl -X POST \"http://{host}:{port}/api/v3/horizon/v1/tag/definition/list\" \\\n  -H \"Accept: application/json\" \\\n  -H \"Content-Type: application/json\" \\\n  -H \"sensorsdata-project: {项目英文名}\" \\\n  -H \"api-key: {apiToken}\" \\\n  -d '{\"page_size\": 2,\"page\": 1,\"entity_name\": \"user\", \"show_deleted\": true,\"show_invisible\": true}'\n  ```",
+        "operationId" : "ListTagDefinitions",
+        "parameters" : [ {
+          "description" : "全局唯一的密钥，用于验证和授权访问 API 接口",
+          "in" : "header",
+          "name" : "api-key",
+          "required" : true,
+          "schema" : {
+            "type" : "string"
+          }
+        }, {
+          "description" : "项目名, 指定请求所属项目",
+          "in" : "header",
+          "name" : "sensorsdata-project",
+          "required" : true,
+          "schema" : {
+            "type" : "string"
+          }
+        } ],
+        "requestBody" : {
+          "content" : {
+            "application/json" : {
+              "schema" : {
+                "$ref" : "#/components/schemas/sensorsdata.horizon.v1.ListTagDefinitionsRequest"
+              }
+            }
+          },
+          "required" : false
+        },
+        "responses" : {
+          "default" : {
+            "content" : {
+              "application/json" : {
+                "example" : {
+                  "code" : "SUCCESS",
+                  "data" : {
+                    "tags" : {
+                      "code" : "SUCCESS",
+                      "request_id" : "251401273be374c310082b8616ec7f52",
+                      "data" : {
+                        "tags" : [ {
+                          "entity_name" : "user",
+                          "name" : "user_tag_c1",
+                          "display_name" : "ces1",
+                          "comment" : "",
+                          "folder" : "",
+                          "data_type" : "STRING",
+                          "expression" : {
+                            "tag_type" : "SEGMENT_BASED",
+                            "virtual" : false,
+                            "filter_segment_at_last" : false,
+                            "entity_set_rules" : [ ],
+                            "segment_based_rule" : {
+                              "groups" : [ {
+                                "segment" : {
+                                  "type" : "GROUP_EXPRESSION_BASED",
+                                  "virtual" : false,
+                                  "entity_set_rules" : [ ],
+                                  "group_expression_rule" : {
+                                    "groups" : [ {
+                                      "type" : "EQL_BASED",
+                                      "virtual" : false,
+                                      "entity_set_rules" : [ ],
+                                      "eql_segment_rule" : {
+                                        "eql" : "(user.city.is_null())"
+                                      },
+                                      "version" : 0
+                                    } ],
+                                    "group_expression" : "\"$1\""
+                                  },
+                                  "version" : 0
+                                },
+                                "tag" : "分层1"
+                              } ]
+                            },
+                            "version" : 2
+                          },
+                          "visible" : true,
+                          "current_rule_available" : true,
+                          "trigger" : {
+                            "trigger_type" : "MANUAL"
+                          },
+                          "custom_params" : {
+                            "sdh_tag_service_internal_tag_id" : {
+                              "data_type" : "INT",
+                              "int_value" : 37,
+                              "list_value" : [ ]
+                            },
+                            "front_type" : {
+                              "data_type" : "STRING",
+                              "string_value" : "TAG_CUSTOMIZED_RULE_NEW",
+                              "list_value" : [ ]
+                            }
+                          },
+                          "managed" : true,
+                          "status" : "TAG_ACTIVE",
+                          "created_by" : "SDH_WEB",
+                          "create_type" : "TAG_CUSTOMIZED_RULE",
+                          "storage_settings" : {
+                            "version_count" : 1
+                          },
+                          "tag_post_actions" : [ ],
+                          "alarm_config" : {
+                            "enable" : false,
+                            "alarm_rules" : [ ]
+                          },
+                          "rule_version" : 2,
+                          "labels" : [ ],
+                          "creator_id" : "5",
+                          "modifier_id" : "5",
+                          "create_time" : "2025-03-21T05:57:06.706Z",
+                          "update_time" : "2025-03-21T06:03:26.183Z",
+                          "source" : {
+                            "app" : "SDH",
+                            "category" : "TAG",
+                            "sub_category" : ""
+                          }
+                        }, {
+                          "entity_name" : "user",
+                          "name" : "user_tag_c2",
+                          "display_name" : "ces2",
+                          "comment" : "",
+                          "folder" : "",
+                          "data_type" : "STRING",
+                          "expression" : {
+                            "tag_type" : "SEGMENT_BASED",
+                            "virtual" : false,
+                            "filter_segment_at_last" : false,
+                            "entity_set_rules" : [ ],
+                            "segment_based_rule" : {
+                              "groups" : [ {
+                                "segment" : {
+                                  "type" : "GROUP_EXPRESSION_BASED",
+                                  "virtual" : false,
+                                  "entity_set_rules" : [ ],
+                                  "group_expression_rule" : {
+                                    "groups" : [ {
+                                      "type" : "EQL_BASED",
+                                      "virtual" : false,
+                                      "entity_set_rules" : [ ],
+                                      "eql_segment_rule" : {
+                                        "eql" : "(user.birthday.is_not_null())"
+                                      },
+                                      "version" : 0
+                                    } ],
+                                    "group_expression" : "\"$1\""
+                                  },
+                                  "version" : 0
+                                },
+                                "tag" : "分层1"
+                              } ]
+                            },
+                            "version" : 2
+                          },
+                          "visible" : true,
+                          "current_rule_available" : true,
+                          "trigger" : {
+                            "trigger_type" : "MANUAL"
+                          },
+                          "custom_params" : {
+                            "sdh_tag_service_internal_tag_id" : {
+                              "data_type" : "INT",
+                              "int_value" : 38,
+                              "list_value" : [ ]
+                            },
+                            "front_type" : {
+                              "data_type" : "STRING",
+                              "string_value" : "TAG_CUSTOMIZED_RULE_NEW",
+                              "list_value" : [ ]
+                            }
+                          },
+                          "managed" : true,
+                          "status" : "TAG_ACTIVE",
+                          "created_by" : "SDH_WEB",
+                          "create_type" : "TAG_CUSTOMIZED_RULE",
+                          "storage_settings" : {
+                            "version_count" : 1
+                          },
+                          "tag_post_actions" : [ ],
+                          "alarm_config" : {
+                            "enable" : false,
+                            "alarm_rules" : [ ]
+                          },
+                          "rule_version" : 1,
+                          "labels" : [ ],
+                          "creator_id" : "5",
+                          "modifier_id" : "5",
+                          "create_time" : "2025-03-21T06:05:46.234Z",
+                          "update_time" : "2025-03-21T06:05:56.217Z",
+                          "source" : {
+                            "app" : "SDH",
+                            "category" : "TAG",
+                            "sub_category" : ""
+                          }
+                        } ]
+                      }
+                    }
+                  },
+                  "request_id" : "1"
+                },
+                "schema" : {
+                  "$ref" : "#/components/schemas/sensorsdata.horizon.v1.ListTagDefinitionsResponseHttpApiResult"
+                }
+              }
+            },
+            "description" : "sensorsdata.horizon.v1.ListTagDefinitionsResponse"
+          }
+        },
+        "summary" : "查询标签列表",
+        "x-sd-openapi" : {
+          "responseClass" : "com.sensorsdata.horizon.v1.ListTagDefinitionsResponse",
+          "isServerStreaming" : false,
+          "requestClass" : "com.sensorsdata.horizon.v1.ListTagDefinitionsRequest",
+          "grpcServiceBase" : "com.sensorsdata.horizon.v1.TagServiceGrpc.TagServiceImplBase",
+          "internalDesc" : "classes in template for grpc service dynamic invoking",
+          "isClientStreaming" : false
+        },
+        "x-codegen-request-body-name" : "ListTagDefinitionsRequest"
+      }
+    },
+    "/tag/definition/get" : {
+      "post" : {
+        "description" : "查询单个标签信息\n ```\n curl -X POST \"http://{host}:{port}/api/v3/horizon/v1/tag/definition/get\" \\\n  -H \"Accept: application/json\" \\\n  -H \"Content-Type: application/json\" \\\n  -H \"sensorsdata-project: {projectName}\" \\\n  -H \"api-key: {token}\" \\\n  -d '{ \"entity_name\": \"user\",\"show_deleted\": true,\"name\": \"user_tag_c1\"}'\n  ```",
+        "operationId" : "GetTagDefinition",
+        "parameters" : [ {
+          "description" : "全局唯一的密钥，用于验证和授权访问 API 接口",
+          "in" : "header",
+          "name" : "api-key",
+          "required" : true,
+          "schema" : {
+            "type" : "string"
+          }
+        }, {
+          "description" : "项目名, 指定请求所属项目",
+          "in" : "header",
+          "name" : "sensorsdata-project",
+          "required" : true,
+          "schema" : {
+            "type" : "string"
+          }
+        } ],
+        "requestBody" : {
+          "content" : {
+            "application/json" : {
+              "schema" : {
+                "$ref" : "#/components/schemas/sensorsdata.horizon.v1.GetTagDefinitionRequest"
+              }
+            }
+          },
+          "required" : false
+        },
+        "responses" : {
+          "default" : {
+            "content" : {
+              "application/json" : {
+                "example" : {
+                  "code" : "SUCCESS",
+                  "data" : {
+                    "expression" : {
+                      "tag_type" : "LOADING_BASED",
+                      "virtual" : false,
+                      "filter_segment_at_last" : false,
+                      "entity_set_rules" : [ ],
+                      "loading_based_rule" : {
+                        "matched_field" : "user.$identity_login_id",
+                        "sync_flag" : false,
+                        "loading_type" : "TAG_LOADING_TYPE_OVERWRITE"
+                      }
+                    },
+                    "visible" : true,
+                    "entity_name" : "user",
+                    "create_type" : "TAG_CUSTOMIZED_RULE",
+                    "tag_post_actions" : [ { } ],
+                    "trigger" : {
+                      "trigger_type" : "CRON",
+                      "cron_trigger" : {
+                        "crontab_exp" : "0 6 21 * * ? *"
+                      },
+                      "periodic_trigger" : { },
+                      "static_trigger" : {
+                        "time" : "2020-07-08T00:00:00Z"
+                      },
+                      "sync_job_trigger" : { }
+                    },
+                    "source" : {
+                      "app" : "SF",
+                      "category" : "AUDIENCE"
+                    },
+                    "display_name" : "我的标签",
+                    "storage_settings" : {
+                      "version_count" : 100
+                    },
+                    "created_by" : "SA",
+                    "labels" : [ {
+                      "label_display_name" : "标签扩展属性1",
+                      "label_values" : [ "标签自定义属性值1" ],
+                      "label_type" : "SINGLE_ENUM",
+                      "label_name" : "tag_label_name1"
+                    } ],
+                    "managed" : "true",
+                    "alarm_config" : {
+                      "alarm_rules" : [ {
+                        "name" : "alar_rule_1"
+                      } ],
+                      "enable" : true
+                    },
+                    "name" : "user_tag_bq1",
+                    "data_type" : "STRING",
+                    "comment" : "我的标签描述",
+                    "notify_params" : {
+                      "subscribe_param" : {
+                        "contents" : [ { } ]
+                      }
+                    },
+                    "status" : "TAG_ACTIVE"
+                  },
+                  "request_id" : "1"
+                },
+                "schema" : {
+                  "$ref" : "#/components/schemas/sensorsdata.horizon.v1.TagDefinitionHttpApiResult"
+                }
+              }
+            },
+            "description" : "sensorsdata.horizon.v1.TagDefinition"
+          }
+        },
+        "summary" : "查询单个标签信息",
+        "x-sd-openapi" : {
+          "responseClass" : "com.sensorsdata.horizon.v1.TagDefinition",
+          "isServerStreaming" : false,
+          "requestClass" : "com.sensorsdata.horizon.v1.GetTagDefinitionRequest",
+          "grpcServiceBase" : "com.sensorsdata.horizon.v1.TagServiceGrpc.TagServiceImplBase",
+          "internalDesc" : "classes in template for grpc service dynamic invoking",
+          "isClientStreaming" : false
+        },
+        "x-codegen-request-body-name" : "GetTagDefinitionRequest"
+      }
+    },
+    "/tag/definition/create" : {
+      "post" : {
+        "description" : "创建标签定义\n ```\n curl -X POST \"http://{host}:{port}/api/v3/horizon/v1/tag/definition/create\" \\\n  -H \"Accept: application/json\" \\\n  -H \"Content-Type: application/json\" \\\n  -H \"sensorsdata-project: {projectName}\" \\\n  -H \"api-key: {token}\" \\\n  -d '{\"definition\":{\"entity_name\":\"user\",\"create_type\":\"TAG_UPLOAD\",\"source\":{\"app\":\"SDH\",\"category\":\"TAG\",\"sub_category\":\"\"},\"storage_settings\":{\"version_count\":1},\"managed\":true,\"expression\":{\"tag_type\":\"LOADING_BASED\",\"virtual\":false,\"filter_segment_at_last\":false,\"entity_set_rules\":[],\"loading_based_rule\":{\"matched_field\":\"user.$identity_login_id\",\"sync_flag\":false,\"loading_type\":\"TAG_LOADING_TYPE_OVERWRITE\"}},\"visible\":true,\"trigger\":{\"trigger_type\":\"MANUAL\"},\"display_name\":\"导入测试1\",\"created_by\":\"SDH_WEB\",\"rule_version\":1,\"name\":\"user_tag_drcs1\",\"data_type\":\"NUMBER\",\"comment\":\"\",\"status\":\"TAG_ACTIVE\"},\"dry_run\":false}'\n ```",
+        "operationId" : "CreateTagDefinition",
+        "parameters" : [ {
+          "description" : "全局唯一的密钥，用于验证和授权访问 API 接口",
+          "in" : "header",
+          "name" : "api-key",
+          "required" : true,
+          "schema" : {
+            "type" : "string"
+          }
+        }, {
+          "description" : "项目名, 指定请求所属项目",
+          "in" : "header",
+          "name" : "sensorsdata-project",
+          "required" : true,
+          "schema" : {
+            "type" : "string"
+          }
+        } ],
+        "requestBody" : {
+          "content" : {
+            "application/json" : {
+              "schema" : {
+                "$ref" : "#/components/schemas/sensorsdata.horizon.v1.CreateTagDefinitionRequest"
+              }
+            }
+          },
+          "required" : false
+        },
+        "responses" : {
+          "default" : {
+            "content" : {
+              "application/json" : {
+                "example" : {
+                  "code" : "SUCCESS",
+                  "data" : {
+                    "expression" : {
+                      "tag_type" : "LOADING_BASED",
+                      "virtual" : false,
+                      "filter_segment_at_last" : false,
+                      "entity_set_rules" : [ ],
+                      "loading_based_rule" : {
+                        "matched_field" : "user.$identity_login_id",
+                        "sync_flag" : false,
+                        "loading_type" : "TAG_LOADING_TYPE_OVERWRITE"
+                      }
+                    },
+                    "visible" : true,
+                    "entity_name" : "user",
+                    "create_type" : "TAG_CUSTOMIZED_RULE",
+                    "tag_post_actions" : [ { } ],
+                    "trigger" : {
+                      "trigger_type" : "CRON",
+                      "cron_trigger" : {
+                        "crontab_exp" : "0 6 21 * * ? *"
+                      },
+                      "periodic_trigger" : { },
+                      "static_trigger" : {
+                        "time" : "2020-07-08T00:00:00Z"
+                      },
+                      "sync_job_trigger" : { }
+                    },
+                    "source" : {
+                      "app" : "SF",
+                      "category" : "AUDIENCE"
+                    },
+                    "display_name" : "我的标签",
+                    "storage_settings" : {
+                      "version_count" : 100
+                    },
+                    "created_by" : "SA",
+                    "labels" : [ {
+                      "label_display_name" : "标签扩展属性1",
+                      "label_values" : [ "标签自定义属性值1" ],
+                      "label_type" : "SINGLE_ENUM",
+                      "label_name" : "tag_label_name1"
+                    } ],
+                    "managed" : "true",
+                    "alarm_config" : {
+                      "alarm_rules" : [ {
+                        "name" : "alar_rule_1"
+                      } ],
+                      "enable" : true
+                    },
+                    "name" : "user_tag_bq1",
+                    "data_type" : "STRING",
+                    "comment" : "我的标签描述",
+                    "notify_params" : {
+                      "subscribe_param" : {
+                        "contents" : [ { } ]
+                      }
+                    },
+                    "status" : "TAG_ACTIVE"
+                  },
+                  "request_id" : "1"
+                },
+                "schema" : {
+                  "$ref" : "#/components/schemas/sensorsdata.horizon.v1.TagDefinitionHttpApiResult"
+                }
+              }
+            },
+            "description" : "sensorsdata.horizon.v1.TagDefinition"
+          }
+        },
+        "summary" : "创建标签定义",
+        "x-sd-openapi" : {
+          "responseClass" : "com.sensorsdata.horizon.v1.TagDefinition",
+          "isServerStreaming" : false,
+          "requestClass" : "com.sensorsdata.horizon.v1.CreateTagDefinitionRequest",
+          "grpcServiceBase" : "com.sensorsdata.horizon.v1.TagServiceGrpc.TagServiceImplBase",
+          "internalDesc" : "classes in template for grpc service dynamic invoking",
+          "isClientStreaming" : false
+        },
+        "x-codegen-request-body-name" : "CreateTagDefinitionRequest"
+      }
+    },
+    "/tag/definition/update" : {
+      "post" : {
+        "description" : "修改标签定义\n```\ncurl -X POST \"http://{host}:{port}/api/v3/horizon/v1/tag/definition/update\" \\\n  -H \"Accept: application/json\" \\\n  -H \"Content-Type: application/json\" \\\n  -H \"sensorsdata-project: {projectName}\" \\\n  -H \"api-key: {token}\" \\\n  -d '{\"definition\":{\"entity_name\":\"user\",\"storage_settings\":{\"version_count\":2},\"expression\":{\"tag_type\":\"LOADING_BASED\",\"virtual\":false,\"filter_segment_at_last\":false,\"entity_set_rules\":[],\"loading_based_rule\":{\"matched_field\":\"user.$identity_login_id\",\"sync_flag\":false,\"loading_type\":\"TAG_LOADING_TYPE_OVERWRITE\"}},\"visible\":true,\"trigger\":{\"trigger_type\":\"MANUAL\"},\"comment\":\"修改后的备注\",\"display_name\":\"导入测试1\",\"name\":\"user_tag_drcs1\",\"status\":\"TAG_ACTIVE\"},\"update_mask\":\"display_name,comment,expression,visible,trigger,custom_params,alarm_config,labels,status\"}'\n```",
+        "operationId" : "UpdateTagDefinition",
+        "parameters" : [ {
+          "description" : "全局唯一的密钥，用于验证和授权访问 API 接口",
+          "in" : "header",
+          "name" : "api-key",
+          "required" : true,
+          "schema" : {
+            "type" : "string"
+          }
+        }, {
+          "description" : "项目名, 指定请求所属项目",
+          "in" : "header",
+          "name" : "sensorsdata-project",
+          "required" : true,
+          "schema" : {
+            "type" : "string"
+          }
+        } ],
+        "requestBody" : {
+          "content" : {
+            "application/json" : {
+              "schema" : {
+                "$ref" : "#/components/schemas/sensorsdata.horizon.v1.UpdateTagDefinitionRequest"
+              }
+            }
+          },
+          "required" : false
+        },
+        "responses" : {
+          "default" : {
+            "content" : {
+              "application/json" : {
+                "example" : {
+                  "code" : "SUCCESS",
+                  "data" : {
+                    "expression" : {
+                      "tag_type" : "LOADING_BASED",
+                      "virtual" : false,
+                      "filter_segment_at_last" : false,
+                      "entity_set_rules" : [ ],
+                      "loading_based_rule" : {
+                        "matched_field" : "user.$identity_login_id",
+                        "sync_flag" : false,
+                        "loading_type" : "TAG_LOADING_TYPE_OVERWRITE"
+                      }
+                    },
+                    "visible" : true,
+                    "entity_name" : "user",
+                    "create_type" : "TAG_CUSTOMIZED_RULE",
+                    "tag_post_actions" : [ { } ],
+                    "trigger" : {
+                      "trigger_type" : "CRON",
+                      "cron_trigger" : {
+                        "crontab_exp" : "0 6 21 * * ? *"
+                      },
+                      "periodic_trigger" : { },
+                      "static_trigger" : {
+                        "time" : "2020-07-08T00:00:00Z"
+                      },
+                      "sync_job_trigger" : { }
+                    },
+                    "source" : {
+                      "app" : "SF",
+                      "category" : "AUDIENCE"
+                    },
+                    "display_name" : "我的标签",
+                    "storage_settings" : {
+                      "version_count" : 100
+                    },
+                    "created_by" : "SA",
+                    "labels" : [ {
+                      "label_display_name" : "标签扩展属性1",
+                      "label_values" : [ "标签自定义属性值1" ],
+                      "label_type" : "SINGLE_ENUM",
+                      "label_name" : "tag_label_name1"
+                    } ],
+                    "managed" : "true",
+                    "alarm_config" : {
+                      "alarm_rules" : [ {
+                        "name" : "alar_rule_1"
+                      } ],
+                      "enable" : true
+                    },
+                    "name" : "user_tag_bq1",
+                    "data_type" : "STRING",
+                    "comment" : "我的标签描述",
+                    "notify_params" : {
+                      "subscribe_param" : {
+                        "contents" : [ { } ]
+                      }
+                    },
+                    "status" : "TAG_ACTIVE"
+                  },
+                  "request_id" : "1"
+                },
+                "schema" : {
+                  "$ref" : "#/components/schemas/sensorsdata.horizon.v1.TagDefinitionHttpApiResult"
+                }
+              }
+            },
+            "description" : "sensorsdata.horizon.v1.TagDefinition"
+          }
+        },
+        "summary" : "修改标签定义",
+        "x-sd-openapi" : {
+          "responseClass" : "com.sensorsdata.horizon.v1.TagDefinition",
+          "isServerStreaming" : false,
+          "requestClass" : "com.sensorsdata.horizon.v1.UpdateTagDefinitionRequest",
+          "grpcServiceBase" : "com.sensorsdata.horizon.v1.TagServiceGrpc.TagServiceImplBase",
+          "internalDesc" : "classes in template for grpc service dynamic invoking",
+          "isClientStreaming" : false
+        },
+        "x-codegen-request-body-name" : "UpdateTagDefinitionRequest"
+      }
+    },
+    "/tag/definition/delete" : {
+      "post" : {
+        "description" : "删除标签定义\n```\ncurl -X POST \"http://{host}:{port}/api/v3/horizon/v1/tag/definition/delete\" \\\n  -H \"Accept: application/json\" \\\n  -H \"Content-Type: application/json\" \\\n  -H \"sensorsdata-project: {projectName}\" \\\n  -H \"api-key: {token}\" \\\n  -d '{\"entity_name\":\"user\",\"name\":\"user_tag_zdybq\",\"skip_trash\":false}'\n 返回值：\n {\"code\":\"SUCCESS\",\"request_id\":\"281138383035f9fd2bb394df6fe17970\",\"data\":{}}\n```",
+        "operationId" : "DeleteTagDefinition",
+        "parameters" : [ {
+          "description" : "全局唯一的密钥，用于验证和授权访问 API 接口",
+          "in" : "header",
+          "name" : "api-key",
+          "required" : true,
+          "schema" : {
+            "type" : "string"
+          }
+        }, {
+          "description" : "项目名, 指定请求所属项目",
+          "in" : "header",
+          "name" : "sensorsdata-project",
+          "required" : true,
+          "schema" : {
+            "type" : "string"
+          }
+        } ],
+        "requestBody" : {
+          "content" : {
+            "application/json" : {
+              "schema" : {
+                "$ref" : "#/components/schemas/sensorsdata.horizon.v1.DeleteTagDefinitionRequest"
+              }
+            }
+          },
+          "required" : false
+        },
+        "responses" : {
+          "default" : {
+            "content" : {
+              "application/json" : {
+                "example" : {
+                  "code" : "SUCCESS",
+                  "data" : { },
+                  "request_id" : "1"
+                },
+                "schema" : {
+                  "$ref" : "#/components/schemas/sensorsdata.common.HttpApiResult"
+                }
+              }
+            },
+            "description" : ""
+          }
+        },
+        "summary" : "删除标签定义",
+        "x-sd-openapi" : {
+          "responseClass" : "com.google.protobuf.Empty",
+          "isServerStreaming" : false,
+          "requestClass" : "com.sensorsdata.horizon.v1.DeleteTagDefinitionRequest",
+          "grpcServiceBase" : "com.sensorsdata.horizon.v1.TagServiceGrpc.TagServiceImplBase",
+          "internalDesc" : "classes in template for grpc service dynamic invoking",
+          "isClientStreaming" : false
+        },
+        "x-codegen-request-body-name" : "DeleteTagDefinitionRequest"
+      }
+    },
+    "/tag/definition/recover" : {
+      "post" : {
+        "description" : "恢复标签定义\n```\ncurl -X POST \"http://{host}:{port}/api/v3/horizon/v1/tag/definition/recover\" \\\n  -H \"Accept: application/json\" \\\n  -H \"Content-Type: application/json\" \\\n  -H \"sensorsdata-project: {projectName}\" \\\n  -H \"api-key: {token}\" \\\n  -d '{\"entity_name\":\"user\",\"name\":\"user_tag_zdybq\"}'\n 返回值：\n{\"code\":\"SUCCESS\",\"request_id\":\"281141337b94cc1225cf95803d55ef53\",\"data\":{\"visible\":false,\"entity_name\":\"\",\"create_type\":\"\",\"tag_post_actions\":[],\"created_by\":\"\",\"labels\":[],\"custom_params\":{},\"folder\":\"\",\"rule_version\":0,\"name\":\"\",\"data_type\":\"DATA_TYPE_UNSPECIFIED\",\"creator_id\":\"\",\"modifier_id\":\"\",\"current_rule_available\":false,\"status\":\"TAG_STATUS_UNSPECIFIED\"}}\n```",
+        "operationId" : "RecoverTagDefinition",
+        "parameters" : [ {
+          "description" : "全局唯一的密钥，用于验证和授权访问 API 接口",
+          "in" : "header",
+          "name" : "api-key",
+          "required" : true,
+          "schema" : {
+            "type" : "string"
+          }
+        }, {
+          "description" : "项目名, 指定请求所属项目",
+          "in" : "header",
+          "name" : "sensorsdata-project",
+          "required" : true,
+          "schema" : {
+            "type" : "string"
+          }
+        } ],
+        "requestBody" : {
+          "content" : {
+            "application/json" : {
+              "schema" : {
+                "$ref" : "#/components/schemas/sensorsdata.horizon.v1.RecoverTagDefinitionRequest"
+              }
+            }
+          },
+          "required" : false
+        },
+        "responses" : {
+          "default" : {
+            "content" : {
+              "application/json" : {
+                "example" : {
+                  "code" : "SUCCESS",
+                  "data" : {
+                    "expression" : {
+                      "tag_type" : "LOADING_BASED",
+                      "virtual" : false,
+                      "filter_segment_at_last" : false,
+                      "entity_set_rules" : [ ],
+                      "loading_based_rule" : {
+                        "matched_field" : "user.$identity_login_id",
+                        "sync_flag" : false,
+                        "loading_type" : "TAG_LOADING_TYPE_OVERWRITE"
+                      }
+                    },
+                    "visible" : true,
+                    "entity_name" : "user",
+                    "create_type" : "TAG_CUSTOMIZED_RULE",
+                    "tag_post_actions" : [ { } ],
+                    "trigger" : {
+                      "trigger_type" : "CRON",
+                      "cron_trigger" : {
+                        "crontab_exp" : "0 6 21 * * ? *"
+                      },
+                      "periodic_trigger" : { },
+                      "static_trigger" : {
+                        "time" : "2020-07-08T00:00:00Z"
+                      },
+                      "sync_job_trigger" : { }
+                    },
+                    "source" : {
+                      "app" : "SF",
+                      "category" : "AUDIENCE"
+                    },
+                    "display_name" : "我的标签",
+                    "storage_settings" : {
+                      "version_count" : 100
+                    },
+                    "created_by" : "SA",
+                    "labels" : [ {
+                      "label_display_name" : "标签扩展属性1",
+                      "label_values" : [ "标签自定义属性值1" ],
+                      "label_type" : "SINGLE_ENUM",
+                      "label_name" : "tag_label_name1"
+                    } ],
+                    "managed" : "true",
+                    "alarm_config" : {
+                      "alarm_rules" : [ {
+                        "name" : "alar_rule_1"
+                      } ],
+                      "enable" : true
+                    },
+                    "name" : "user_tag_bq1",
+                    "data_type" : "STRING",
+                    "comment" : "我的标签描述",
+                    "notify_params" : {
+                      "subscribe_param" : {
+                        "contents" : [ { } ]
+                      }
+                    },
+                    "status" : "TAG_ACTIVE"
+                  },
+                  "request_id" : "1"
+                },
+                "schema" : {
+                  "$ref" : "#/components/schemas/sensorsdata.horizon.v1.TagDefinitionHttpApiResult"
+                }
+              }
+            },
+            "description" : "sensorsdata.horizon.v1.TagDefinition"
+          }
+        },
+        "summary" : "恢复标签定义",
+        "x-sd-openapi" : {
+          "responseClass" : "com.sensorsdata.horizon.v1.TagDefinition",
+          "isServerStreaming" : false,
+          "requestClass" : "com.sensorsdata.horizon.v1.RecoverTagDefinitionRequest",
+          "grpcServiceBase" : "com.sensorsdata.horizon.v1.TagServiceGrpc.TagServiceImplBase",
+          "internalDesc" : "classes in template for grpc service dynamic invoking",
+          "isClientStreaming" : false
+        },
+        "x-codegen-request-body-name" : "RecoverTagDefinitionRequest"
+      }
+    },
+    "/tag/definition/archive" : {
+      "post" : {
+        "description" : "归档标签定义\n```\ncurl -X POST \"http://{host}:{port}/api/v3/horizon/v1/tag/definition/archive\" \\\n  -H \"Accept: application/json\" \\\n  -H \"Content-Type: application/json\" \\\n  -H \"sensorsdata-project: {projectName}\" \\\n  -H \"api-key: {token}\" \\\n  -d '{\"entity_name\":\"user\",\"name\":\"user_tag_zdybq\"}'\n 返回值：\n {\"code\":\"SUCCESS\",\"request_id\":\"28114456e926d6e022c498ecdf24c3f7\",\"data\":{}}\n```",
+        "operationId" : "ArchiveTagDefinition",
+        "parameters" : [ {
+          "description" : "全局唯一的密钥，用于验证和授权访问 API 接口",
+          "in" : "header",
+          "name" : "api-key",
+          "required" : true,
+          "schema" : {
+            "type" : "string"
+          }
+        }, {
+          "description" : "项目名, 指定请求所属项目",
+          "in" : "header",
+          "name" : "sensorsdata-project",
+          "required" : true,
+          "schema" : {
+            "type" : "string"
+          }
+        } ],
+        "requestBody" : {
+          "content" : {
+            "application/json" : {
+              "schema" : {
+                "$ref" : "#/components/schemas/sensorsdata.horizon.v1.ArchiveTagDefinitionRequest"
+              }
+            }
+          },
+          "required" : false
+        },
+        "responses" : {
+          "default" : {
+            "content" : {
+              "application/json" : {
+                "example" : {
+                  "code" : "SUCCESS",
+                  "data" : { },
+                  "request_id" : "1"
+                },
+                "schema" : {
+                  "$ref" : "#/components/schemas/sensorsdata.common.HttpApiResult"
+                }
+              }
+            },
+            "description" : ""
+          }
+        },
+        "summary" : "归档标签定义",
+        "x-sd-openapi" : {
+          "responseClass" : "com.google.protobuf.Empty",
+          "isServerStreaming" : false,
+          "requestClass" : "com.sensorsdata.horizon.v1.ArchiveTagDefinitionRequest",
+          "grpcServiceBase" : "com.sensorsdata.horizon.v1.TagServiceGrpc.TagServiceImplBase",
+          "internalDesc" : "classes in template for grpc service dynamic invoking",
+          "isClientStreaming" : false
+        },
+        "x-codegen-request-body-name" : "ArchiveTagDefinitionRequest"
+      }
+    },
+    "/tag/definition/recover-from-archive" : {
+      "post" : {
+        "description" : "从归档恢复标签定义\n```\ncurl -X POST \"http://{host}:{port}/api/v3/horizon/v1/tag/definition/recover-from-archive\" \\\n  -H \"Accept: application/json\" \\\n  -H \"Content-Type: application/json\" \\\n  -H \"sensorsdata-project: {projectName}\" \\\n  -H \"api-key: {token}\" \\\n  -d '{\"entity_name\":\"user\",\"name\":\"user_tag_zdybq\"}'\n 返回值：\n{\"code\":\"SUCCESS\",\"request_id\":\"281241337b94dc1235cf95803d56df53\",\"data\":{\"visible\":false,\"entity_name\":\"\",\"create_type\":\"\",\"tag_post_actions\":[],\"created_by\":\"\",\"labels\":[],\"custom_params\":{},\"folder\":\"\",\"rule_version\":0,\"name\":\"\",\"data_type\":\"DATA_TYPE_UNSPECIFIED\",\"creator_id\":\"\",\"modifier_id\":\"\",\"current_rule_available\":false,\"status\":\"TAG_STATUS_UNSPECIFIED\"}}\n```",
+        "operationId" : "RecoverArchivedTagDefinition",
+        "parameters" : [ {
+          "description" : "全局唯一的密钥，用于验证和授权访问 API 接口",
+          "in" : "header",
+          "name" : "api-key",
+          "required" : true,
+          "schema" : {
+            "type" : "string"
+          }
+        }, {
+          "description" : "项目名, 指定请求所属项目",
+          "in" : "header",
+          "name" : "sensorsdata-project",
+          "required" : true,
+          "schema" : {
+            "type" : "string"
+          }
+        } ],
+        "requestBody" : {
+          "content" : {
+            "application/json" : {
+              "schema" : {
+                "$ref" : "#/components/schemas/sensorsdata.horizon.v1.RecoverArchivedTagDefinitionRequest"
+              }
+            }
+          },
+          "required" : false
+        },
+        "responses" : {
+          "default" : {
+            "content" : {
+              "application/json" : {
+                "example" : {
+                  "code" : "SUCCESS",
+                  "data" : {
+                    "expression" : {
+                      "tag_type" : "LOADING_BASED",
+                      "virtual" : false,
+                      "filter_segment_at_last" : false,
+                      "entity_set_rules" : [ ],
+                      "loading_based_rule" : {
+                        "matched_field" : "user.$identity_login_id",
+                        "sync_flag" : false,
+                        "loading_type" : "TAG_LOADING_TYPE_OVERWRITE"
+                      }
+                    },
+                    "visible" : true,
+                    "entity_name" : "user",
+                    "create_type" : "TAG_CUSTOMIZED_RULE",
+                    "tag_post_actions" : [ { } ],
+                    "trigger" : {
+                      "trigger_type" : "CRON",
+                      "cron_trigger" : {
+                        "crontab_exp" : "0 6 21 * * ? *"
+                      },
+                      "periodic_trigger" : { },
+                      "static_trigger" : {
+                        "time" : "2020-07-08T00:00:00Z"
+                      },
+                      "sync_job_trigger" : { }
+                    },
+                    "source" : {
+                      "app" : "SF",
+                      "category" : "AUDIENCE"
+                    },
+                    "display_name" : "我的标签",
+                    "storage_settings" : {
+                      "version_count" : 100
+                    },
+                    "created_by" : "SA",
+                    "labels" : [ {
+                      "label_display_name" : "标签扩展属性1",
+                      "label_values" : [ "标签自定义属性值1" ],
+                      "label_type" : "SINGLE_ENUM",
+                      "label_name" : "tag_label_name1"
+                    } ],
+                    "managed" : "true",
+                    "alarm_config" : {
+                      "alarm_rules" : [ {
+                        "name" : "alar_rule_1"
+                      } ],
+                      "enable" : true
+                    },
+                    "name" : "user_tag_bq1",
+                    "data_type" : "STRING",
+                    "comment" : "我的标签描述",
+                    "notify_params" : {
+                      "subscribe_param" : {
+                        "contents" : [ { } ]
+                      }
+                    },
+                    "status" : "TAG_ACTIVE"
+                  },
+                  "request_id" : "1"
+                },
+                "schema" : {
+                  "$ref" : "#/components/schemas/sensorsdata.horizon.v1.TagDefinitionHttpApiResult"
+                }
+              }
+            },
+            "description" : "sensorsdata.horizon.v1.TagDefinition"
+          }
+        },
+        "summary" : "从归档恢复标签定义",
+        "x-sd-openapi" : {
+          "responseClass" : "com.sensorsdata.horizon.v1.TagDefinition",
+          "isServerStreaming" : false,
+          "requestClass" : "com.sensorsdata.horizon.v1.RecoverArchivedTagDefinitionRequest",
+          "grpcServiceBase" : "com.sensorsdata.horizon.v1.TagServiceGrpc.TagServiceImplBase",
+          "internalDesc" : "classes in template for grpc service dynamic invoking",
+          "isClientStreaming" : false
+        },
+        "x-codegen-request-body-name" : "RecoverArchivedTagDefinitionRequest"
+      }
+    },
+    "/tag/definition/evaluate" : {
+      "post" : {
+        "description" : "执行标签计算\n```\ncurl -X POST 'http://{host}:{port}/api/v3/horizon/v1/tag/definition/evaluate' \\\n-H \"Accept: application/json\" \\\n  -H \"Content-Type: application/json\" \\\n  -H \"sensorsdata-project: {projectName}\" \\\n  -H \"api-key: {token}\" \\\n  -d '{\"entity_name\": \"user\",\"evaluate_params\": [{\"tag_definition_name\": \"user_tag_sbqsl\",\"base_time\": \"2025-04-27T16:00:00Z\"}]}'\n```",
+        "operationId" : "EvaluateTag",
+        "parameters" : [ {
+          "description" : "全局唯一的密钥，用于验证和授权访问 API 接口",
+          "in" : "header",
+          "name" : "api-key",
+          "required" : true,
+          "schema" : {
+            "type" : "string"
+          }
+        }, {
+          "description" : "项目名, 指定请求所属项目",
+          "in" : "header",
+          "name" : "sensorsdata-project",
+          "required" : true,
+          "schema" : {
+            "type" : "string"
+          }
+        } ],
+        "requestBody" : {
+          "content" : {
+            "application/json" : {
+              "schema" : {
+                "$ref" : "#/components/schemas/sensorsdata.horizon.v1.EvaluateTagRequest"
+              }
+            }
+          },
+          "required" : false
+        },
+        "responses" : {
+          "default" : {
+            "content" : {
+              "application/json" : {
+                "example" : {
+                  "code" : "SUCCESS",
+                  "data" : { },
+                  "request_id" : "1"
+                },
+                "schema" : {
+                  "$ref" : "#/components/schemas/sensorsdata.common.HttpApiResult"
+                }
+              }
+            },
+            "description" : ""
+          }
+        },
+        "summary" : "执行标签计算",
+        "x-sd-openapi" : {
+          "responseClass" : "com.google.protobuf.Empty",
+          "isServerStreaming" : false,
+          "requestClass" : "com.sensorsdata.horizon.v1.EvaluateTagRequest",
+          "grpcServiceBase" : "com.sensorsdata.horizon.v1.TagServiceGrpc.TagServiceImplBase",
+          "internalDesc" : "classes in template for grpc service dynamic invoking",
+          "isClientStreaming" : false
+        },
+        "x-codegen-request-body-name" : "EvaluateTagRequest"
+      }
+    },
+    "/tag/definition/status/update" : {
+      "post" : {
+        "description" : "更改调度状态 TAG_ACTIVE <--> TAG_SUSPENDED\n```\ncurl -X POST \"http://{host}:{port}/api/v3/horizon/v1/tag/definition/status/update\" \\\n  -H \"Accept: application/json\" \\\n  -H \"Content-Type: application/json\" \\\n  -H \"sensorsdata-project: {projectName}\" \\\n  -H \"api-key: {token}\" \\\n  -d '{\"entity_name\":\"user\",\"tag_name\":\"user_tag_bq_meta_bool\",\"status\":\"TAG_SUSPENDED\"}'\n```",
+        "operationId" : "UpdateTagSchedulerStatus",
+        "parameters" : [ {
+          "description" : "全局唯一的密钥，用于验证和授权访问 API 接口",
+          "in" : "header",
+          "name" : "api-key",
+          "required" : true,
+          "schema" : {
+            "type" : "string"
+          }
+        }, {
+          "description" : "项目名, 指定请求所属项目",
+          "in" : "header",
+          "name" : "sensorsdata-project",
+          "required" : true,
+          "schema" : {
+            "type" : "string"
+          }
+        } ],
+        "requestBody" : {
+          "content" : {
+            "application/json" : {
+              "schema" : {
+                "$ref" : "#/components/schemas/sensorsdata.horizon.v1.UpdateTagSchedulerStatusRequest"
+              }
+            }
+          },
+          "required" : false
+        },
+        "responses" : {
+          "default" : {
+            "content" : {
+              "application/json" : {
+                "example" : {
+                  "code" : "SUCCESS",
+                  "data" : { },
+                  "request_id" : "1"
+                },
+                "schema" : {
+                  "$ref" : "#/components/schemas/sensorsdata.common.HttpApiResult"
+                }
+              }
+            },
+            "description" : ""
+          }
+        },
+        "summary" : "更改调度状态",
+        "x-sd-openapi" : {
+          "responseClass" : "com.google.protobuf.Empty",
+          "isServerStreaming" : false,
+          "requestClass" : "com.sensorsdata.horizon.v1.UpdateTagSchedulerStatusRequest",
+          "grpcServiceBase" : "com.sensorsdata.horizon.v1.TagServiceGrpc.TagServiceImplBase",
+          "internalDesc" : "classes in template for grpc service dynamic invoking",
+          "isClientStreaming" : false
+        },
+        "x-codegen-request-body-name" : "UpdateTagSchedulerStatusRequest"
+      }
+    },
+    "/tag/partition/get" : {
+      "post" : {
+        "description" : "获取标签的 partition 列表\n```\ncurl -X POST \"http://{host}:{port}/api/v3/horizon/v1/tag/partition/get\" \\\n  -H \"Accept: application/json\" \\\n  -H \"Content-Type: application/json\" \\\n  -H \"sensorsdata-project: {projectName}\" \\\n  -H \"api-key: {token}\" \\\n  -d '{\"entity_name\":\"user\",\"tag_name\":\"user_tag_atbqlxyllxbqazgxzyhzegx\",\"start_time\":\"2025-01-01T16:00:00Z\",\"end_time\":\"2025-04-01T16:00:00Z\",\"limit\":5}'\n 返回值示例：\n {\"code\":\"SUCCESS\",\"request_id\":\"281751438c9856102ed202cc42e0aea5\",\"data\":{\"tag_partitions\":[{\"entity_name\":\"user\",\"tag_definition_name\":\"user_tag_atbqlxyllxbqazgxzyhzegx\",\"count\":0,\"base_time\":\"2025-03-16T16:00:00Z\",\"completed_time\":\"2025-03-17T17:00:44.423Z\",\"status\":\"TAG_PARTITION_AVAILABLE\",\"custom_params\":{}},{\"entity_name\":\"user\",\"tag_definition_name\":\"user_tag_atbqlxyllxbqazgxzyhzegx\",\"count\":0,\"base_time\":\"2025-03-15T16:00:00Z\",\"completed_time\":\"2025-03-15T16:01:25.343Z\",\"status\":\"TAG_PARTITION_AVAILABLE\",\"custom_params\":{}},{\"entity_name\":\"user\",\"tag_definition_name\":\"user_tag_atbqlxyllxbqazgxzyhzegx\",\"count\":0,\"base_time\":\"2025-03-14T16:00:00Z\",\"completed_time\":\"2025-03-14T16:01:36.056Z\",\"status\":\"TAG_PARTITION_AVAILABLE\",\"custom_params\":{}},{\"entity_name\":\"user\",\"tag_definition_name\":\"user_tag_atbqlxyllxbqazgxzyhzegx\",\"count\":0,\"base_time\":\"2025-03-13T16:00:00Z\",\"completed_time\":\"2025-03-13T16:01:31.800Z\",\"status\":\"TAG_PARTITION_AVAILABLE\",\"custom_params\":{}},{\"entity_name\":\"user\",\"tag_definition_name\":\"user_tag_atbqlxyllxbqazgxzyhzegx\",\"count\":0,\"base_time\":\"2025-03-12T16:00:00Z\",\"completed_time\":\"2025-03-12T16:01:18.588Z\",\"status\":\"TAG_PARTITION_AVAILABLE\",\"custom_params\":{}}]}}\n```",
+        "operationId" : "ListTagPartitions",
+        "parameters" : [ {
+          "description" : "全局唯一的密钥，用于验证和授权访问 API 接口",
+          "in" : "header",
+          "name" : "api-key",
+          "required" : true,
+          "schema" : {
+            "type" : "string"
+          }
+        }, {
+          "description" : "项目名, 指定请求所属项目",
+          "in" : "header",
+          "name" : "sensorsdata-project",
+          "required" : true,
+          "schema" : {
+            "type" : "string"
+          }
+        } ],
+        "requestBody" : {
+          "content" : {
+            "application/json" : {
+              "schema" : {
+                "$ref" : "#/components/schemas/sensorsdata.horizon.v1.ListTagPartitionsRequest"
+              }
+            }
+          },
+          "required" : false
+        },
+        "responses" : {
+          "default" : {
+            "content" : {
+              "application/json" : {
+                "example" : {
+                  "code" : "SUCCESS",
+                  "data" : {
+                    "tag_partitions" : [ {
+                      "base_time" : "2025-04-01T16:00:00Z",
+                      "completed_time" : "2025-04-01T16:10:00Z",
+                      "entity_name" : "user",
+                      "tag_definition_name" : "user_tag_bq1",
+                      "count" : 1000000,
+                      "layer_counts" : [ {
+                        "count" : 32000,
+                        "layer" : "分层一"
+                      } ],
+                      "status" : "TAG_PARTITION_AVAILABLE"
+                    } ]
+                  },
+                  "request_id" : "1"
+                },
+                "schema" : {
+                  "$ref" : "#/components/schemas/sensorsdata.horizon.v1.ListTagPartitionsResponseHttpApiResult"
+                }
+              }
+            },
+            "description" : "sensorsdata.horizon.v1.ListTagPartitionsResponse"
+          }
+        },
+        "summary" : "获取标签的 partition 列表",
+        "x-sd-openapi" : {
+          "responseClass" : "com.sensorsdata.horizon.v1.ListTagPartitionsResponse",
+          "isServerStreaming" : false,
+          "requestClass" : "com.sensorsdata.horizon.v1.ListTagPartitionsRequest",
+          "grpcServiceBase" : "com.sensorsdata.horizon.v1.TagServiceGrpc.TagServiceImplBase",
+          "internalDesc" : "classes in template for grpc service dynamic invoking",
+          "isClientStreaming" : false
+        },
+        "x-codegen-request-body-name" : "ListTagPartitionsRequest"
+      }
+    },
+    "/tag/latest-partition/get" : {
+      "post" : {
+        "description" : "获取最新的 partition 信息,一般查询一批标签最新可用partition信息\n```\ncurl -X POST \"http://{host}:{port}/api/v3/horizon/v1/tag/latest-partition/get\" \\\n  -H \"Accept: application/json\" \\\n  -H \"Content-Type: application/json\" \\\n  -H \"sensorsdata-project: {projectName}\" \\\n  -H \"api-key: {token}\" \\\n  -d '{\"entity_name\":\"user\",\"tag_names\":[\"user_tag_atbqlxyllxbqazgxzyhzegx\",\"user_tag_bq_meta_bool\"],\"status\":\"TAG_PARTITION_AVAILABLE\"}'\n 返回值示例：\n {\"code\":\"SUCCESS\",\"request_id\":\"281802107217590e224c69973e12497d\",\"data\":{\"lasted_tag_partition_map\":{\"user_tag_bq_meta_bool\":{\"entity_name\":\"user\",\"tag_definition_name\":\"user_tag_bq_meta_bool\",\"count\":500,\"base_time\":\"2025-03-23T16:00:00Z\",\"completed_time\":\"2025-03-24T06:14:45.831Z\",\"status\":\"TAG_PARTITION_AVAILABLE\",\"custom_params\":{}},\"user_tag_atbqlxyllxbqazgxzyhzegx\":{\"entity_name\":\"user\",\"tag_definition_name\":\"user_tag_atbqlxyllxbqazgxzyhzegx\",\"count\":0,\"base_time\":\"2025-03-16T16:00:00Z\",\"completed_time\":\"2025-03-17T17:00:44.423Z\",\"status\":\"TAG_PARTITION_AVAILABLE\",\"custom_params\":{}}}}}\n```",
+        "operationId" : "GetLastedTagPartition",
+        "parameters" : [ {
+          "description" : "全局唯一的密钥，用于验证和授权访问 API 接口",
+          "in" : "header",
+          "name" : "api-key",
+          "required" : true,
+          "schema" : {
+            "type" : "string"
+          }
+        }, {
+          "description" : "项目名, 指定请求所属项目",
+          "in" : "header",
+          "name" : "sensorsdata-project",
+          "required" : true,
+          "schema" : {
+            "type" : "string"
+          }
+        } ],
+        "requestBody" : {
+          "content" : {
+            "application/json" : {
+              "schema" : {
+                "$ref" : "#/components/schemas/sensorsdata.horizon.v1.GetLastedTagPartitionRequest"
+              }
+            }
+          },
+          "required" : false
+        },
+        "responses" : {
+          "default" : {
+            "content" : {
+              "application/json" : {
+                "example" : {
+                  "code" : "SUCCESS",
+                  "data" : { },
+                  "request_id" : "1"
+                },
+                "schema" : {
+                  "$ref" : "#/components/schemas/sensorsdata.horizon.v1.GetLastedTagPartitionResponseHttpApiResult"
+                }
+              }
+            },
+            "description" : "sensorsdata.horizon.v1.GetLastedTagPartitionResponse"
+          }
+        },
+        "summary" : "获取最新的 partition 信息",
+        "x-sd-openapi" : {
+          "responseClass" : "com.sensorsdata.horizon.v1.GetLastedTagPartitionResponse",
+          "isServerStreaming" : false,
+          "requestClass" : "com.sensorsdata.horizon.v1.GetLastedTagPartitionRequest",
+          "grpcServiceBase" : "com.sensorsdata.horizon.v1.TagServiceGrpc.TagServiceImplBase",
+          "internalDesc" : "classes in template for grpc service dynamic invoking",
+          "isClientStreaming" : false
+        },
+        "x-codegen-request-body-name" : "GetLastedTagPartitionRequest"
+      }
+    },
+    "/tag/task/get" : {
+      "post" : {
+        "description" : "获取标签任务信息\n```\ncurl -X POST \"http://{host}:{port}/api/v3/horizon/v1/tag/task/get\" \\\n  -H \"Accept: application/json\" \\\n  -H \"Content-Type: application/json\" \\\n  -H \"sensorsdata-project: {projectName}\" \\\n  -H \"api-key: {token}\" \\\n  -d '{\"entity_name\":\"user\",\"tag_name\":\"user_tag_atbqlxyllxbqazgxzyhzegx\",\"start_time\":\"2025-03-09T16:00:00Z\",\"end_time\":\"2025-03-11T16:00:00Z\",\"fetch_all\":false}'\n 返回值示例：\n {\"code\":\"SUCCESS\",\"request_id\":\"29115347ead9f614dc00e62ad69fc33b\",\"data\":{\"tasks\":[{\"id\":194,\"tag_definition_name\":\"user_tag_atbqlxyllxbqazgxzyhzegx\",\"rule\":{\"tag_type\":\"SEGMENT_BASED\",\"virtual\":false,\"filter_segment_at_last\":false,\"entity_set_rules\":[],\"segment_based_rule\":{\"groups\":[{\"segment\":{\"type\":\"GROUP_EXPRESSION_BASED\",\"virtual\":false,\"entity_set_rules\":[],\"group_expression_rule\":{\"groups\":[{\"type\":\"EQL_BASED\",\"virtual\":false,\"entity_set_rules\":[],\"eql_segment_rule\":{\"eql\":\"(\\n  user.user_tag_lxbqazgxzyhzegx.is_not_null()\\n)\"},\"version\":0}],\"group_expression\":\"\\\"$1\\\"\"},\"version\":0},\"tag\":\"分层1\"}]},\"version\":2},\"base_time\":\"2025-03-09T16:00:00Z\",\"tag_task_params\":{\"system_compute_priority\":{\"data_type\":\"INT\",\"int_value\":3,\"list_value\":[]},\"system_delay_time\":{\"data_type\":\"INT\",\"int_value\":0,\"list_value\":[]},\"system_task_dependency\":{\"data_type\":\"STRING\",\"string_value\":\"{\\\"dependency_items\\\":[{\\\"type\\\":\\\"TAG\\\",\\\"field\\\":\\\"user.user_tag_lxbqazgxzyhzegx\\\",\\\"version\\\":\\\"20250310\\\",\\\"selected_version_list\\\":null,\\\"start_time\\\":0,\\\"end_time\\\":0,\\\"relation_name\\\":null}]}\",\"list_value\":[]},\"system_latest_verify_rule_time\":{\"data_type\":\"INT\",\"int_value\":\"1741620559194\",\"list_value\":[]}},\"status\":\"TAG_SUCCESS\",\"tag_task_report\":{\"count\":0,\"extend_report_info\":{}},\"entity_name\":\"user\",\"start_time\":\"2025-03-10T17:00:38.136Z\",\"end_time\":\"2025-03-10T17:00:48.636Z\",\"failed_times\":0,\"rule_version\":1,\"creator_id\":\"2\",\"modifier_id\":\"2\",\"create_time\":\"2025-03-10T09:29:08.296Z\",\"update_time\":\"2025-03-10T17:00:48.710Z\"},{\"id\":269,\"tag_definition_name\":\"user_tag_atbqlxyllxbqazgxzyhzegx\",\"rule\":{\"tag_type\":\"SEGMENT_BASED\",\"virtual\":false,\"filter_segment_at_last\":false,\"entity_set_rules\":[],\"segment_based_rule\":{\"groups\":[{\"segment\":{\"type\":\"GROUP_EXPRESSION_BASED\",\"virtual\":false,\"entity_set_rules\":[],\"group_expression_rule\":{\"groups\":[{\"type\":\"EQL_BASED\",\"virtual\":false,\"entity_set_rules\":[],\"eql_segment_rule\":{\"eql\":\"(\\n  user.user_tag_lxbqazgxzyhzegx.is_not_null()\\n)\"},\"version\":0}],\"group_expression\":\"\\\"$1\\\"\"},\"version\":0},\"tag\":\"分层1\"}]},\"version\":2},\"base_time\":\"2025-03-10T16:00:00Z\",\"tag_task_params\":{\"system_compute_priority\":{\"data_type\":\"INT\",\"int_value\":3,\"list_value\":[]},\"system_delay_time\":{\"data_type\":\"INT\",\"int_value\":0,\"list_value\":[]},\"system_task_dependency\":{\"data_type\":\"STRING\",\"string_value\":\"{\\\"dependency_items\\\":[{\\\"type\\\":\\\"TAG\\\",\\\"field\\\":\\\"user.user_tag_lxbqazgxzyhzegx\\\",\\\"version\\\":\\\"20250311\\\",\\\"selected_version_list\\\":null,\\\"start_time\\\":0,\\\"end_time\\\":0,\\\"relation_name\\\":null}]}\",\"list_value\":[]},\"system_latest_verify_rule_time\":{\"data_type\":\"INT\",\"int_value\":\"1741708822750\",\"list_value\":[]}},\"status\":\"TAG_SUCCESS\",\"tag_task_report\":{\"count\":0,\"extend_report_info\":{}},\"entity_name\":\"user\",\"start_time\":\"2025-03-11T17:00:17.822Z\",\"end_time\":\"2025-03-11T17:00:21.648Z\",\"failed_times\":0,\"rule_version\":1,\"creator_id\":\"5\",\"modifier_id\":\"5\",\"create_time\":\"2025-03-10T16:00:03.855Z\",\"update_time\":\"2025-03-11T17:00:21.718Z\"},{\"id\":343,\"tag_definition_name\":\"user_tag_atbqlxyllxbqazgxzyhzegx\",\"rule\":{\"tag_type\":\"SEGMENT_BASED\",\"virtual\":false,\"filter_segment_at_last\":false,\"entity_set_rules\":[],\"segment_based_rule\":{\"groups\":[{\"segment\":{\"type\":\"GROUP_EXPRESSION_BASED\",\"virtual\":false,\"entity_set_rules\":[],\"group_expression_rule\":{\"groups\":[{\"type\":\"EQL_BASED\",\"virtual\":false,\"entity_set_rules\":[],\"eql_segment_rule\":{\"eql\":\"(\\n  user.user_tag_lxbqazgxzyhzegx.is_not_null()\\n)\"},\"version\":0}],\"group_expression\":\"\\\"$1\\\"\"},\"version\":0},\"tag\":\"分层1\"}]},\"version\":2},\"base_time\":\"2025-03-11T16:00:00Z\",\"tag_task_params\":{\"system_compute_priority\":{\"data_type\":\"INT\",\"int_value\":3,\"list_value\":[]},\"system_delay_time\":{\"data_type\":\"INT\",\"int_value\":0,\"list_value\":[]},\"system_task_dependency\":{\"data_type\":\"STRING\",\"string_value\":\"{\\\"dependency_items\\\":[{\\\"type\\\":\\\"TAG\\\",\\\"field\\\":\\\"user.user_tag_lxbqazgxzyhzegx\\\",\\\"version\\\":\\\"20250311\\\",\\\"selected_version_list\\\":null,\\\"start_time\\\":0,\\\"end_time\\\":0,\\\"relation_name\\\":null}]}\",\"list_value\":[]},\"system_latest_verify_rule_time\":{\"data_type\":\"INT\",\"int_value\":\"1741708813267\",\"list_value\":[]}},\"status\":\"TAG_SUCCESS\",\"tag_task_report\":{\"count\":0,\"extend_report_info\":{}},\"entity_name\":\"user\",\"start_time\":\"2025-03-11T17:00:17.830Z\",\"end_time\":\"2025-03-11T17:00:27.651Z\",\"failed_times\":0,\"rule_version\":1,\"creator_id\":\"5\",\"modifier_id\":\"5\",\"create_time\":\"2025-03-11T16:00:04.733Z\",\"update_time\":\"2025-03-11T17:00:27.723Z\"}]}}\n```",
+        "operationId" : "GetTagTask",
+        "parameters" : [ {
+          "description" : "全局唯一的密钥，用于验证和授权访问 API 接口",
+          "in" : "header",
+          "name" : "api-key",
+          "required" : true,
+          "schema" : {
+            "type" : "string"
+          }
+        }, {
+          "description" : "项目名, 指定请求所属项目",
+          "in" : "header",
+          "name" : "sensorsdata-project",
+          "required" : true,
+          "schema" : {
+            "type" : "string"
+          }
+        } ],
+        "requestBody" : {
+          "content" : {
+            "application/json" : {
+              "schema" : {
+                "$ref" : "#/components/schemas/sensorsdata.horizon.v1.GetTagTaskRequest"
+              }
+            }
+          },
+          "required" : false
+        },
+        "responses" : {
+          "default" : {
+            "content" : {
+              "application/json" : {
+                "example" : {
+                  "code" : "SUCCESS",
+                  "data" : {
+                    "tasks" : [ {
+                      "base_time" : "2025-04-01T16:00:00Z",
+                      "failed_times" : 0,
+                      "create_time" : "2025-04-01T16:00:00Z",
+                      "entity_name" : "user",
+                      "tag_definition_name" : "user_tag_bq1",
+                      "end_time" : "2025-04-02T16:00:00Z",
+                      "rule" : {
+                        "virtual" : false,
+                        "eql_based_rule" : {
+                          "value_expression" : "user.p1/user.p2+user.p3",
+                          "filter_expression" : "user.user_tag_1.is_not_null() and user.user_tag_2.is_not_null()"
+                        },
+                        "segment_based_rule" : {
+                          "groups" : [ {
+                            "segment" : {
+                              "eql_segment_rule" : {
+                                "eql" : "user.$SegmentMembership.user_segment_t111111.is_not_null()\nand\nuser.user_tag_c4 == '标签值1'\nand\nuser.vip_level in ['高级VIP','普通用户']"
+                              },
+                              "entity_set_rules" : [ { } ],
+                              "used_fields" : [ "user.id" ],
+                              "sql_segment_rule" : {
+                                "query_options" : {
+                                  "option" : "TIMEOUT",
+                                  "value" : "120"
+                                },
+                                "sql" : "select user_id as id from user where user_id > 100"
+                              },
+                              "loading_segment_rule" : {
+                                "matched_field" : "user.$identity_login_id",
+                                "sync_flag" : false,
+                                "loading_type" : "TAG_LOADING_TYPE_OVERWRITE"
+                              },
+                              "custom_rule" : { },
+                              "event_sequence_rule" : {
+                                "simple_event_sequences" : [ {
+                                  "time_window" : {
+                                    "unit" : "DAY"
+                                  },
+                                  "time_range" : {
+                                    "start_time" : {
+                                      "type" : "RELATIVE",
+                                      "trunc_unit" : "DAY",
+                                      "base_time" : "$TASK_TIME",
+                                      "time_interval" : -7
+                                    },
+                                    "end_time" : {
+                                      "type" : "RELATIVE",
+                                      "trunc_unit" : "DAY",
+                                      "base_time" : "$TASK_TIME",
+                                      "time_interval" : -1
+                                    }
+                                  },
+                                  "event_steps" : [ {
+                                    "condition" : {
+                                      "operator" : "AND",
+                                      "conditions" : [ {
+                                        "function" : "IS_TRUE",
+                                        "params" : [ {
+                                          "param_type" : "FIELD",
+                                          "field" : "user.$Events.$AppStart.$is_login_id"
+                                        } ]
+                                      } ]
+                                    },
+                                    "event_name" : "user.$Events.AppStart"
+                                  } ]
+                                } ],
+                                "operator" : "UNION"
+                              },
+                              "tailor" : {
+                                "function" : "LESS_EQUAL",
+                                "rank_field" : {
+                                  "type" : "PERCENT_ORDER_RANK",
+                                  "orders" : [ {
+                                    "measure" : {
+                                      "type" : "EQL_MEASURE_FIELD",
+                                      "eql_measure" : "user.$Events.virtual_event_for_tag.filter_event(\n  datetime_add(${var:base_time}, -1, 'DAY'),\n  datetime_add(${var:base_time}, -1, 'DAY')\n).count()"
+                                    },
+                                    "is_asc" : false
+                                  } ]
+                                },
+                                "params" : [ {
+                                  "param_type" : "VALUE",
+                                  "value" : {
+                                    "data_type" : "NUMBER",
+                                    "number_value" : 0.1
+                                  }
+                                } ]
+                              },
+                              "type" : "SQL_BASED",
+                              "version" : 2,
+                              "group_expression_rule" : {
+                                "group_expression" : "$1-$2"
+                              }
+                            },
+                            "tag" : "分层一"
+                          } ]
+                        },
+                        "used_fields" : [ "user.id" ],
+                        "tag_type" : "LOADING_BASED",
+                        "basic_measure_based_rule" : {
+                          "measure_rule" : "user.$Events.virtual_event_for_tag.filter_event(\n  datetime_add(${var:base_time}, -1, 'DAY'),\n  datetime_add(${var:base_time}, -1, 'DAY'),\n  (\n    user.$Events.virtual_event_for_tag.$is_login_id == true\n  )\n).count()",
+                          "bucket_type" : "NUMBER",
+                          "values" : [ "高附加值人群", "中附加值人群", "低附加值人群" ],
+                          "buckets" : [ 100.0, 500.0, 1000.0 ]
+                        },
+                        "rfm_based_rule" : {
+                          "r_factor" : {
+                            "factor_group_rules" : [ {
+                              "aggregator" : "SUM",
+                              "function" : "LESS",
+                              "tag" : "高附加值人群",
+                              "params" : [ {
+                                "expression" : "user.p1/user.p2+user.p3",
+                                "field" : "#ResourceId",
+                                "time_point" : {
+                                  "relative_time" : {
+                                    "time_interval" : { }
+                                  }
+                                },
+                                "variable" : "$ENTRY_TIME",
+                                "value" : { },
+                                "param_type" : "FIELD"
+                              } ]
+                            } ]
+                          }
+                        },
+                        "filter_segment_at_last" : false,
+                        "sql_based_rule" : {
+                          "sql" : "select user_id as id, count(1) as value\nFROM events\n-- 表示查看最近7日前到昨日的 指定事件名\nwhere `date` between cast('[baseTime]' as TIMESTAMP) - INTERVAL 7 DAY AND  cast('[baseTime]' as TIMESTAMP)  - INTERVAL 1 DAY AND event=\"事件名\"\ngroup by 1",
+                          "query_options" : [ ]
+                        },
+                        "loading_based_rule" : {
+                          "matched_field" : "user.$identity_login_id",
+                          "sync_flag" : false,
+                          "loading_type" : "TAG_LOADING_TYPE_OVERWRITE"
+                        },
+                        "version" : 2,
+                        "custom_based_rule" : { }
+                      },
+                      "tag_task_report" : {
+                        "tag_loading_report" : {
+                          "total_line_count" : 1000000,
+                          "valid_line_count" : 999999
+                        }
+                      },
+                      "failure_detail" : { },
+                      "start_time" : "2025-04-01T16:00:00Z",
+                      "update_time" : "2025-04-01T16:00:00Z",
+                      "id" : 123,
+                      "status" : "TAG_COMPUTING"
+                    } ]
+                  },
+                  "request_id" : "1"
+                },
+                "schema" : {
+                  "$ref" : "#/components/schemas/sensorsdata.horizon.v1.GetTagTaskResponseHttpApiResult"
+                }
+              }
+            },
+            "description" : "sensorsdata.horizon.v1.GetTagTaskResponse"
+          }
+        },
+        "summary" : "获取标签任务信息",
+        "x-sd-openapi" : {
+          "responseClass" : "com.sensorsdata.horizon.v1.GetTagTaskResponse",
+          "isServerStreaming" : false,
+          "requestClass" : "com.sensorsdata.horizon.v1.GetTagTaskRequest",
+          "grpcServiceBase" : "com.sensorsdata.horizon.v1.TagServiceGrpc.TagServiceImplBase",
+          "internalDesc" : "classes in template for grpc service dynamic invoking",
+          "isClientStreaming" : false
+        },
+        "x-codegen-request-body-name" : "GetTagTaskRequest"
+      }
+    },
+    "/tag/task/cancel" : {
+      "post" : {
+        "description" : "取消计算任务,需要通过 task/get 接口先获取到计算任务的 task_id\n ```\ncurl -X POST \"http://{host}:{port}/api/v3/horizon/v1/tag/task/cancel\" \\\n  -H \"Accept: application/json\" \\\n  -H \"Content-Type: application/json\" \\\n  -H \"sensorsdata-project: {projectName}\" \\\n  -H \"api-key: {token}\" \\\n  -d '{\"task_ids\":[4121],\"sync\":\"true\",\"sync_timeout_seconds\":30}'\n ```",
+        "operationId" : "CancelTagTask",
+        "parameters" : [ {
+          "description" : "全局唯一的密钥，用于验证和授权访问 API 接口",
+          "in" : "header",
+          "name" : "api-key",
+          "required" : true,
+          "schema" : {
+            "type" : "string"
+          }
+        }, {
+          "description" : "项目名, 指定请求所属项目",
+          "in" : "header",
+          "name" : "sensorsdata-project",
+          "required" : true,
+          "schema" : {
+            "type" : "string"
+          }
+        } ],
+        "requestBody" : {
+          "content" : {
+            "application/json" : {
+              "schema" : {
+                "$ref" : "#/components/schemas/sensorsdata.horizon.v1.CancelTagTaskRequest"
+              }
+            }
+          },
+          "required" : false
+        },
+        "responses" : {
+          "default" : {
+            "content" : {
+              "application/json" : {
+                "example" : {
+                  "code" : "SUCCESS",
+                  "data" : { },
+                  "request_id" : "1"
+                },
+                "schema" : {
+                  "$ref" : "#/components/schemas/sensorsdata.common.HttpApiResult"
+                }
+              }
+            },
+            "description" : ""
+          }
+        },
+        "summary" : "取消计算任务",
+        "x-sd-openapi" : {
+          "responseClass" : "com.google.protobuf.Empty",
+          "isServerStreaming" : false,
+          "requestClass" : "com.sensorsdata.horizon.v1.CancelTagTaskRequest",
+          "grpcServiceBase" : "com.sensorsdata.horizon.v1.TagServiceGrpc.TagServiceImplBase",
+          "internalDesc" : "classes in template for grpc service dynamic invoking",
+          "isClientStreaming" : false
+        },
+        "x-codegen-request-body-name" : "CancelTagTaskRequest"
+      }
+    }
+  },
+  "components" : {
+    "schemas" : {
+      "sensorsdata.horizon.v1.EqlBasedRuleExpression" : {
+        "description" : "",
+        "properties" : {
+          "value_expression" : {
+            "description" : "eql 表达式",
+            "example" : "user.p1/user.p2+user.p3",
+            "type" : "string"
+          },
+          "filter_expression" : {
+            "description" : "filter 为空的时候，表示全量用户",
+            "example" : "user.user_tag_1.is_not_null() and user.user_tag_2.is_not_null()",
+            "type" : "string"
+          }
+        },
+        "title" : "EqlBasedRuleExpression",
+        "type" : "object"
+      },
+      "sensorsdata.horizon.v1.SegmentBasedRuleExpression.SegmentTagEntry" : {
+        "description" : "",
+        "properties" : {
+          "segment" : {
+            "$ref" : "#/components/schemas/sensorsdata.horizon.v1.SegmentRuleExpression"
+          },
+          "tag" : {
+            "description" : "分层名称，对应到该分层的标签值",
+            "example" : "分层一",
+            "type" : "string"
+          }
+        },
+        "title" : "SegmentTagEntry",
+        "type" : "object"
+      },
+      "sensorsdata.horizon.v1.GetTagDefinitionCountResponseHttpApiResult" : {
+        "properties" : {
+          "code" : {
+            "type" : "string"
+          },
+          "message" : {
+            "type" : "string"
+          },
+          "request_id" : {
+            "type" : "string"
+          },
+          "data" : {
+            "$ref" : "#/components/schemas/sensorsdata.horizon.v1.GetTagDefinitionCountResponse"
+          },
+          "error_info" : {
+            "$ref" : "#/components/schemas/sensorsdata.common.ErrorInfo"
+          }
+        },
+        "title" : "sensorsdata.horizon.v1.GetTagDefinitionCountResponseHttpApiResult",
+        "type" : "object"
+      },
+      "sensorsdata.horizon.v1.CustomSegmentRuleExpression" : {
+        "description" : "",
+        "properties" : {
+          "component_name" : {
+            "description" : "组件的 name， 用来唯一标识一个组件\n 如 USER_GROUP_RULE",
+            "type" : "string"
+          },
+          "rule" : {
+            "description" : "",
+            "properties" : { },
+            "type" : "object"
+          },
+          "rule_str" : {
+            "description" : "",
+            "type" : "string"
+          }
+        },
+        "title" : "CustomSegmentRuleExpression",
+        "type" : "object"
+      },
+      "sensorsdata.horizon.v1.TagPartition.CustomParamsEntry" : {
+        "description" : "",
+        "properties" : {
+          "key" : {
+            "description" : "",
+            "type" : "string"
+          },
+          "value" : {
+            "description" : "",
+            "type" : "string"
+          }
+        },
+        "title" : "CustomParamsEntry",
+        "type" : "object"
+      },
+      "sensorsdata.horizon.v1.GroupExpressionSegmentRuleExpression" : {
+        "description" : "规则组",
+        "properties" : {
+          "groups" : {
+            "description" : "规则组，与 expression 配合使用",
+            "items" : {
+              "$ref" : "#/components/schemas/sensorsdata.horizon.v1.SegmentRuleExpression"
+            },
+            "type" : "array"
+          },
+          "group_expression" : {
+            "description" : "集合的交并差运算\n 如: ($1-$2)*($3-$4)+$5\n 其中, '*' => 交, '+' => 并, '-' => 差\n 在算式中, 以 $1、$2 代表第一个群组、第二个群组",
+            "example" : "$1-$2",
+            "type" : "string"
+          }
+        },
+        "title" : "GroupExpressionSegmentRuleExpression",
+        "type" : "object"
+      },
+      "sensorsdata.horizon.v1.Order" : {
+        "description" : "",
+        "properties" : {
+          "measure" : {
+            "$ref" : "#/components/schemas/sensorsdata.horizon.v1.OrderMeasure"
+          },
+          "is_asc" : {
+            "description" : "排序方向, true 表示升序，false 表示降序",
+            "example" : false,
+            "type" : "boolean"
+          }
+        },
+        "title" : "Order",
+        "type" : "object"
+      },
+      "sensorsdata.horizon.v1.CancelTagTaskRequest" : {
+        "description" : "",
+        "properties" : {
+          "task_ids" : {
+            "description" : "需要取消计算的任务ID列表",
+            "example" : "[1, 2, 3]",
+            "items" : {
+              "format" : "int32",
+              "type" : "integer"
+            },
+            "type" : "array"
+          },
+          "sync" : {
+            "description" : "是否同步等待任务终止, 默认为 False",
+            "example" : false,
+            "type" : "boolean"
+          },
+          "sync_timeout_seconds" : {
+            "description" : "同步等待超时时间",
+            "example" : 10,
+            "format" : "int32",
+            "type" : "integer"
+          }
+        },
+        "required" : [ "task_ids" ],
+        "title" : "CancelTagTaskRequest",
+        "type" : "object"
+      },
+      "sensorsdata.common.ErrorContext" : {
+        "description" : "发生错误时，系统快照信息",
+        "properties" : {
+          "origin_stack" : {
+            "description" : "上游异常的 stack，由系统截获",
+            "type" : "string"
+          },
+          "origin_cause" : {
+            "description" : "上游异常的 cause by，由系统截获",
+            "type" : "string"
+          },
+          "origin_code" : {
+            "description" : "上游异常的错误简码",
+            "type" : "string"
+          },
+          "origin_complete_code" : {
+            "description" : "上游异常的完整错误码",
+            "type" : "string"
+          },
+          "error_extend_desc" : {
+            "description" : "本次异常的辅助说明，可传入",
+            "type" : "string"
+          }
+        },
+        "title" : "ErrorContext",
+        "type" : "object"
+      },
+      "sensorsdata.horizon.v1.BatchDeleteTagPartitionsResponseHttpApiResult" : {
+        "properties" : {
+          "code" : {
+            "type" : "string"
+          },
+          "message" : {
+            "type" : "string"
+          },
+          "request_id" : {
+            "type" : "string"
+          },
+          "data" : {
+            "$ref" : "#/components/schemas/sensorsdata.horizon.v1.BatchDeleteTagPartitionsResponse"
+          },
+          "error_info" : {
+            "$ref" : "#/components/schemas/sensorsdata.common.ErrorInfo"
+          }
+        },
+        "title" : "sensorsdata.horizon.v1.BatchDeleteTagPartitionsResponseHttpApiResult",
+        "type" : "object"
+      },
+      "sensorsdata.horizon.v1.EventSequenceSegmentRuleExpression" : {
+        "description" : "",
+        "properties" : {
+          "operator" : {
+            "description" : "用于描述多个 simple_event_sequence 之间的关系\n ```\n  UNION: 多个 simple_event_sequence 之间的并集\n  INTERSECT: 多个 simple_event_sequence 之间的交集\n```",
+            "enum" : [ "SET_OPERATOR_UNSPECIFIED", "UNION", "INTERSECT" ],
+            "example" : "UNION",
+            "type" : "string"
+          },
+          "simple_event_sequences" : {
+            "description" : "多个单一的行为序列的",
+            "items" : {
+              "$ref" : "#/components/schemas/sensorsdata.horizon.v1.EventSequenceSegmentRuleExpression.SimpleEventSequenceSegmentRuleExpression"
+            },
+            "type" : "array"
+          }
+        },
+        "title" : "EventSequenceSegmentRuleExpression",
+        "type" : "object"
+      },
+      "sensorsdata.horizon.v1.SqlSegmentRuleExpression.QueryOption" : {
+        "description" : "",
+        "properties" : {
+          "option" : {
+            "description" : "",
+            "type" : "string"
+          },
+          "value" : {
+            "description" : "",
+            "type" : "string"
+          }
+        },
+        "title" : "QueryOption",
+        "type" : "object"
+      },
+      "sensorsdata.horizon.v1.GetTagTaskResponseHttpApiResult" : {
+        "properties" : {
+          "code" : {
+            "type" : "string"
+          },
+          "message" : {
+            "type" : "string"
+          },
+          "request_id" : {
+            "type" : "string"
+          },
+          "data" : {
+            "$ref" : "#/components/schemas/sensorsdata.horizon.v1.GetTagTaskResponse"
+          },
+          "error_info" : {
+            "$ref" : "#/components/schemas/sensorsdata.common.ErrorInfo"
+          }
+        },
+        "title" : "sensorsdata.horizon.v1.GetTagTaskResponseHttpApiResult",
+        "type" : "object"
+      },
+      "sensorsdata.horizon.v1.TagTaskReport.ExtendReportInfoEntry" : {
+        "description" : "",
+        "properties" : {
+          "key" : {
+            "description" : "",
+            "type" : "string"
+          },
+          "value" : {
+            "description" : "",
+            "type" : "string"
+          }
+        },
+        "title" : "ExtendReportInfoEntry",
+        "type" : "object"
+      },
+      "sensorsdata.horizon.v1.RfmBasedRuleExpression.RfmFactor.RfmFactorGroupRule" : {
+        "description" : "分层规则 rule",
+        "properties" : {
+          "aggregator" : {
+            "description" : "聚合函数\n```\nSUM\nAVG\nMAX\nMIN\n```",
+            "enum" : [ "AGGREGATOR_TYPE_UNSPECIFIED", "COUNT", "AVG", "MAX", "MIN", "SUM", "UNIQUE_COUNT", "UNIQUE_AVG", "BOUNCE_RATE", "EXIT_RATE", "UNIQUE_COUNT_APPROX", "COUNT_PERCENT", "RANK_ASC", "RANK_DESC", "PERCENT_RANK_ASC", "PERCENT_RANK_DESC", "SESSION_COUNT", "FIRST_TIME", "LAST_TIME", "FIRST_TIME_INTERVAL", "LAST_TIME_INTERVAL", "GROUP_CONCAT", "UNIQUE_COUNT_BITMAP", "UNIQUE_COUNT_APPROX_ORDINARY", "COUNT_DISTINCT", "LTV", "LTV_AVG", "COUNT_RANK", "AVG_RANK", "MAX_RANK", "MIN_RANK", "SUM_RANK", "COUNT_RANK_ASC", "COUNT_RANK_DESC", "COUNT_PERCENT_RANK_ASC", "COUNT_PERCENT_RANK_DESC", "AVG_RANK_ASC", "AVG_RANK_DESC", "AVG_PERCENT_RANK_ASC", "AVG_PERCENT_RANK_DESC", "MAX_RANK_ASC", "MAX_RANK_DESC", "MAX_PERCENT_RANK_ASC", "MAX_PERCENT_RANK_DESC", "MIN_RANK_ASC", "MIN_RANK_DESC", "MIN_PERCENT_RANK_ASC", "MIN_PERCENT_RANK_DESC", "SUM_RANK_ASC", "SUM_RANK_DESC", "SUM_PERCENT_RANK_ASC", "SUM_PERCENT_RANK_DESC" ],
+            "example" : "SUM",
+            "type" : "string"
+          },
+          "function" : {
+            "description" : "过滤方式\n```\nIS_SET 有值\nIS_NOT_SET 无值\nEQUAL =\nNOT_EQUAL !=\nLESS <\nLESS_EQUAL <=\nGREATER >\n```",
+            "enum" : [ "PREDICATE_FUNCTION_TYPE_UNSPECIFIED", "IS_SET", "IS_NOT_SET", "EQUAL", "NOT_EQUAL", "IN", "NOT_IN", "LESS", "LESS_EQUAL", "GREATER", "GREATER_EQUAL", "BETWEEN", "RIGHT_OPEN_BETWEEN", "HASH_BETWEEN", "LEFT_OPEN_BETWEEN", "OPEN_BETWEEN", "IS_TRUE", "IS_FALSE", "CONTAIN", "NOT_CONTAIN", "IS_EMPTY", "IS_NOT_EMPTY", "RLIKE", "NOT_RLIKE", "INCLUDE", "NOT_INCLUDE", "ABSOLUTE_BETWEEN", "RELATIVE_WITHIN", "RELATIVE_BETWEEN", "RELATIVE_EVENT_TIME", "RELATIVE_BEFORE", "INTERSECTS", "NOT_INTERSECTS", "SUBSET_OF", "NOT_SUBSET_OF", "SUPERSET_OF", "NOT_SUPERSET_OF" ],
+            "example" : "LESS",
+            "type" : "string"
+          },
+          "params" : {
+            "description" : "聚合函数参数",
+            "items" : {
+              "$ref" : "#/components/schemas/sensorsdata.common.PredicateFunctionParam"
+            },
+            "type" : "array"
+          },
+          "tag" : {
+            "description" : "对应分层值, [高｜低]",
+            "example" : "高附加值人群",
+            "type" : "string"
+          }
+        },
+        "title" : "RfmFactorGroupRule",
+        "type" : "object"
+      },
+      "sensorsdata.horizon.v1.UpdateTagDefinitionRequest" : {
+        "description" : "",
+        "properties" : {
+          "definition" : {
+            "$ref" : "#/components/schemas/sensorsdata.horizon.v1.TagDefinition"
+          },
+          "update_mask" : {
+            "description" : "更新的字段信息名称列表，\n  DISPLAY_NAME, 显示名\n  COMMENT, 备注\n  EXPRESSION, 规则表达式\n  VISIBLE, 可见\n  TRIGGER, 触发方式，只能修改例行的调度时间间隔和起止时间\n  CUSTOM_PARAMS, 自定义参数\n  STORAGE_SETTINGS, 存储设置\n  ALARM_CONFIG, 报警配置\n  LABELS, 标签扩展属性\n  STATUS; 状态",
+            "example" : "display_name,comment,expression,visible,trigger,custom_params,alarm_config,labels,status",
+            "type" : "string"
+          }
+        },
+        "required" : [ "definition" ],
+        "title" : "UpdateTagDefinitionRequest",
+        "type" : "object"
+      },
+      "sensorsdata.horizon.v1.ListTagPartitionsResponse" : {
+        "description" : "",
+        "properties" : {
+          "tag_partitions" : {
+            "description" : "查询到的partition列表",
+            "items" : {
+              "$ref" : "#/components/schemas/sensorsdata.horizon.v1.TagPartition"
+            },
+            "type" : "array"
+          }
+        },
+        "title" : "ListTagPartitionsResponse",
+        "type" : "object"
+      },
+      "sensorsdata.horizon.v1.ListTagDefinitionsResponse" : {
+        "description" : "",
+        "properties" : {
+          "tags" : {
+            "description" : "标签定义列表",
+            "example" : "{\"code\":\"SUCCESS\",\"request_id\":\"251401273be374c310082b8616ec7f52\",\"data\":{\"tags\":\n [{\"entity_name\":\"user\",\"name\":\"user_tag_c1\",\"display_name\":\"ces1\",\"comment\":\"\",\"folder\":\"\",\"data_type\":\"STRING\",\"expression\":\n {\"tag_type\":\"SEGMENT_BASED\",\"virtual\":false,\"filter_segment_at_last\":false,\"entity_set_rules\":[],\"segment_based_rule\":\n {\"groups\":[{\"segment\":{\"type\":\"GROUP_EXPRESSION_BASED\",\"virtual\":false,\"entity_set_rules\":[],\"group_expression_rule\":\n {\"groups\":[{\"type\":\"EQL_BASED\",\"virtual\":false,\"entity_set_rules\":[],\"eql_segment_rule\":{\"eql\":\"(user.city.is_null())\"},\"version\":0}],\n \"group_expression\":\"\\\"$1\\\"\"},\"version\":0},\"tag\":\"分层1\"}]},\"version\":2},\"visible\":true,\"current_rule_available\":true,\"trigger\":{\"trigger_type\":\"MANUAL\"},\n \"custom_params\":{\"sdh_tag_service_internal_tag_id\":{\"data_type\":\"INT\",\"int_value\":37,\"list_value\":[]},\"front_type\":{\"data_type\":\"STRING\",\"string_value\":\"TAG_CUSTOMIZED_RULE_NEW\",\"list_value\":[]}},\n \"managed\":true,\"status\":\"TAG_ACTIVE\",\"created_by\":\"SDH_WEB\",\"create_type\":\"TAG_CUSTOMIZED_RULE\",\"storage_settings\":{\"version_count\":1},\"tag_post_actions\":[],\"alarm_config\":{\"enable\":false,\"alarm_rules\":[]},\n \"rule_version\":2,\"labels\":[],\"creator_id\":\"5\",\"modifier_id\":\"5\",\"create_time\":\"2025-03-21T05:57:06.706Z\",\"update_time\":\"2025-03-21T06:03:26.183Z\",\"source\":{\"app\":\"SDH\",\"category\":\"TAG\",\"sub_category\":\"\"}},{\"entity_name\":\"user\",\"name\":\"user_tag_c2\",\"display_name\":\"ces2\",\"comment\":\"\",\"folder\":\"\",\"data_type\":\"STRING\",\"expression\":{\"tag_type\":\"SEGMENT_BASED\",\"virtual\":false,\"filter_segment_at_last\":false,\"entity_set_rules\":[],\"segment_based_rule\":{\"groups\":[{\"segment\":{\"type\":\"GROUP_EXPRESSION_BASED\",\"virtual\":false,\"entity_set_rules\":[],\"group_expression_rule\":{\"groups\":[{\"type\":\"EQL_BASED\",\"virtual\":false,\"entity_set_rules\":[],\"eql_segment_rule\":{\"eql\":\"(user.birthday.is_not_null())\"},\"version\":0}],\"group_expression\":\"\\\"$1\\\"\"},\"version\":0},\"tag\":\"分层1\"}]},\"version\":2},\"visible\":true,\"current_rule_available\":true,\"trigger\":{\"trigger_type\":\"MANUAL\"},\"custom_params\":{\"sdh_tag_service_internal_tag_id\":{\"data_type\":\"INT\",\"int_value\":38,\"list_value\":[]},\"front_type\":{\"data_type\":\"STRING\",\"string_value\":\"TAG_CUSTOMIZED_RULE_NEW\",\"list_value\":[]}},\"managed\":true,\"status\":\"TAG_ACTIVE\",\"created_by\":\"SDH_WEB\",\"create_type\":\"TAG_CUSTOMIZED_RULE\",\"storage_settings\":{\"version_count\":1},\"tag_post_actions\":[],\"alarm_config\":{\"enable\":false,\"alarm_rules\":[]},\"rule_version\":1,\"labels\":[],\"creator_id\":\"5\",\"modifier_id\":\"5\",\"create_time\":\"2025-03-21T06:05:46.234Z\",\"update_time\":\"2025-03-21T06:05:56.217Z\",\"source\":{\"app\":\"SDH\",\"category\":\"TAG\",\"sub_category\":\"\"}}]}}",
+            "items" : {
+              "$ref" : "#/components/schemas/sensorsdata.horizon.v1.TagDefinition"
+            },
+            "type" : "array"
+          }
+        },
+        "title" : "ListTagDefinitionsResponse",
+        "type" : "object"
+      },
+      "sensorsdata.horizon.v1.GetLastedTagPartitionResponse" : {
+        "description" : "",
+        "properties" : {
+          "lasted_tag_partition_map" : {
+            "additionalProperties" : {
+              "$ref" : "#/components/schemas/sensorsdata.horizon.v1.TagPartition"
+            },
+            "description" : "key: tag_name, value: 最近标签的信息",
+            "type" : "object"
+          }
+        },
+        "title" : "GetLastedTagPartitionResponse",
+        "type" : "object"
+      },
+      "sensorsdata.common.PeriodicTrigger" : {
+        "description" : "周期调度触发\n 整点调度, 每次触发时间设置为 $TASK_TIME\n 若 TimeRange 里包含 RELATIVE 类型, 且 base_time 设置为 $TASK_TIME, 则将每次触发时间设置为 $TASK_TIME",
+        "properties" : {
+          "start_time" : {
+            "description" : "周期调度的生效时间，可以早于创建时间，这样会触发数据补齐",
+            "format" : "date-time",
+            "type" : "string"
+          },
+          "end_time" : {
+            "description" : "周期调度的失效时间，超过此时间之后不再进行周期触发",
+            "format" : "date-time",
+            "type" : "string"
+          },
+          "interval_size" : {
+            "description" : "interval_size + interval_unit 定义了调度间隔, 如 3 DAY",
+            "format" : "int32",
+            "type" : "integer"
+          },
+          "interval_unit" : {
+            "description" : "",
+            "enum" : [ "DATE_TIME_UNIT_UNSPECIFIED", "MILLISECOND", "SECOND", "MINUTE", "HOUR", "DAY", "WEEK", "MONTH", "YEAR" ],
+            "type" : "string"
+          },
+          "trunc_unit" : {
+            "description" : "时间点的取整方式, 一般只会是 TRUNC_HOUR 或 TRUNC_DAY",
+            "enum" : [ "TRUNC_UNIT_UNSPECIFIED", "TRUNC_HOUR", "TRUNC_DAY", "TRUNC_WEEK", "TRUNC_MONTH", "TRUNC_YEAR", "TRUNC_BIGBANG" ],
+            "type" : "string"
+          }
+        },
+        "title" : "PeriodicTrigger",
+        "type" : "object"
+      },
+      "sensorsdata.common.StaticTrigger" : {
+        "description" : "静态触发\n $TASK_TIME 永远为此处设置的 time",
+        "properties" : {
+          "time" : {
+            "description" : "静态触发的时间点",
+            "example" : "2020-07-08T00:00:00Z",
+            "format" : "date-time",
+            "type" : "string"
+          }
+        },
+        "title" : "StaticTrigger",
+        "type" : "object"
+      },
+      "sensorsdata.horizon.v1.TagAlarmConfig.AlarmRule.AlarmParamsEntry" : {
+        "description" : "",
+        "properties" : {
+          "key" : {
+            "description" : "",
+            "type" : "string"
+          },
+          "value" : {
+            "description" : "",
+            "type" : "string"
+          }
+        },
+        "title" : "AlarmParamsEntry",
+        "type" : "object"
+      },
+      "sensorsdata.horizon.v1.GetTagPartitionUsedDataResourceResponseHttpApiResult" : {
+        "properties" : {
+          "code" : {
+            "type" : "string"
+          },
+          "message" : {
+            "type" : "string"
+          },
+          "request_id" : {
+            "type" : "string"
+          },
+          "data" : {
+            "$ref" : "#/components/schemas/sensorsdata.horizon.v1.GetTagPartitionUsedDataResourceResponse"
+          },
+          "error_info" : {
+            "$ref" : "#/components/schemas/sensorsdata.common.ErrorInfo"
+          }
+        },
+        "title" : "sensorsdata.horizon.v1.GetTagPartitionUsedDataResourceResponseHttpApiResult",
+        "type" : "object"
+      },
+      "sensorsdata.common.TimePoint" : {
+        "description" : "",
+        "properties" : {
+          "type" : {
+            "description" : "",
+            "enum" : [ "TIME_POINT_TYPE_UNSPECIFIED", "STATIC", "RELATIVE", "EXPRESSION" ],
+            "type" : "string"
+          },
+          "trunc_unit" : {
+            "description" : "",
+            "enum" : [ "TRUNC_UNIT_UNSPECIFIED", "TRUNC_HOUR", "TRUNC_DAY", "TRUNC_WEEK", "TRUNC_MONTH", "TRUNC_YEAR", "TRUNC_BIGBANG" ],
+            "type" : "string"
+          },
+          "static_time" : {
+            "description" : "",
+            "format" : "date-time",
+            "type" : "string"
+          },
+          "relative_time" : {
+            "$ref" : "#/components/schemas/sensorsdata.common.TimePoint.RelativeTimePoint"
+          },
+          "expression" : {
+            "description" : "",
+            "type" : "string"
+          }
+        },
+        "title" : "TimePoint",
+        "type" : "object"
+      },
+      "sensorsdata.horizon.v1.CustomBasedRuleExpression" : {
+        "description" : "自定义规则组件规则，兼容SPS原地升级规则",
+        "properties" : {
+          "component_name" : {
+            "description" : "EVENT_MEASURE_BASED 基础指标值\n GROUP_BASED 分层标签\n PROFILE_BASED 属性标签\n 组件的 name， 用来唯一标识一个组件",
+            "type" : "string"
+          },
+          "rule" : {
+            "description" : "规则对象",
+            "properties" : { },
+            "type" : "object"
+          },
+          "rule_str" : {
+            "description" : "为了规则在保存时可读, 添加字符串传递, 例如：兼容 QE 版本规则时, 传递规则 JSON 即可",
+            "type" : "string"
+          }
+        },
+        "title" : "CustomBasedRuleExpression",
+        "type" : "object"
+      },
+      "sensorsdata.horizon.v1.GetTagLabelDefinitionCountResponseHttpApiResult" : {
+        "properties" : {
+          "code" : {
+            "type" : "string"
+          },
+          "message" : {
+            "type" : "string"
+          },
+          "request_id" : {
+            "type" : "string"
+          },
+          "data" : {
+            "$ref" : "#/components/schemas/sensorsdata.horizon.v1.GetTagLabelDefinitionCountResponse"
+          },
+          "error_info" : {
+            "$ref" : "#/components/schemas/sensorsdata.common.ErrorInfo"
+          }
+        },
+        "title" : "sensorsdata.horizon.v1.GetTagLabelDefinitionCountResponseHttpApiResult",
+        "type" : "object"
+      },
+      "sensorsdata.horizon.v1.TagTask.TagTaskFailureDetail" : {
+        "description" : "",
+        "properties" : {
+          "code" : {
+            "description" : "失败代码",
+            "type" : "string"
+          },
+          "error_message" : {
+            "description" : "失败信息",
+            "type" : "string"
+          }
+        },
+        "title" : "TagTaskFailureDetail",
+        "type" : "object"
+      },
+      "sensorsdata.horizon.v1.LoadingBasedRuleExpression" : {
+        "description" : "导入标签规则表达式",
+        "properties" : {
+          "matched_field" : {
+            "description" : "匹配字段, 文件放在任务中，规则中没有文件信息",
+            "example" : "user.$identity_login_id",
+            "type" : "string"
+          },
+          "sync_flag" : {
+            "description" : "导入的用户不在实体中，是否通过到实体表。如导入列表中有个 用户标识=【新增用户1】不在用户表， 这个参数可以控制是否将【新增用户1】 通过到用户表",
+            "example" : false,
+            "type" : "boolean"
+          },
+          "loading_type" : {
+            "description" : "导入类型，\n ```\n TAG_LOADING_TYPE_OVERWRITE: 覆盖模式\n TAG_LOADING_TYPE_INCREMENT: 增量模式\n ```",
+            "enum" : [ "TAG_LOADING_TYPE_UNSPECIFIED", "TAG_LOADING_TYPE_OVERWRITE", "TAG_LOADING_TYPE_INCREMENT", "TAG_LOADING_TYPE_INCREMENT_AND_OVERWRITE" ],
+            "example" : "TAG_LOADING_TYPE_OVERWRITE",
+            "type" : "string"
+          }
+        },
+        "title" : "LoadingBasedRuleExpression",
+        "type" : "object"
+      },
+      "sensorsdata.horizon.v1.RfmBasedRuleExpression" : {
+        "description" : "RFM分析 & RFM标签计算规则",
+        "properties" : {
+          "segment" : {
+            "$ref" : "#/components/schemas/sensorsdata.horizon.v1.SegmentRuleExpression"
+          },
+          "r_factor" : {
+            "$ref" : "#/components/schemas/sensorsdata.horizon.v1.RfmBasedRuleExpression.RfmFactor"
+          },
+          "f_factor" : {
+            "$ref" : "#/components/schemas/sensorsdata.horizon.v1.RfmBasedRuleExpression.RfmFactor"
+          },
+          "m_factor" : {
+            "$ref" : "#/components/schemas/sensorsdata.horizon.v1.RfmBasedRuleExpression.RfmFactor"
+          },
+          "layer_params" : {
+            "additionalProperties" : {
+              "description" : "",
+              "type" : "string"
+            },
+            "description" : "rfm 的分层规则",
+            "type" : "object"
+          }
+        },
+        "title" : "RfmBasedRuleExpression",
+        "type" : "object"
+      },
+      "sensorsdata.horizon.v1.GetTagComputeSuccessMessageSendResultResponseHttpApiResult" : {
+        "properties" : {
+          "code" : {
+            "type" : "string"
+          },
+          "message" : {
+            "type" : "string"
+          },
+          "request_id" : {
+            "type" : "string"
+          },
+          "data" : {
+            "$ref" : "#/components/schemas/sensorsdata.horizon.v1.GetTagComputeSuccessMessageSendResultResponse"
+          },
+          "error_info" : {
+            "$ref" : "#/components/schemas/sensorsdata.common.ErrorInfo"
+          }
+        },
+        "title" : "sensorsdata.horizon.v1.GetTagComputeSuccessMessageSendResultResponseHttpApiResult",
+        "type" : "object"
+      },
+      "sensorsdata.horizon.v1.SegmentRuleExpression" : {
+        "description" : "",
+        "properties" : {
+          "type" : {
+            "description" : "分群规则类型\n```\n  SQL_BASED: 基于 SQL 的分群规则\n  EQL_BASED: 基于 EQL 的分群规则\n  LOADING_BASED: 基于文件加载的分群规则\n  CUSTOM_BASED: 基于自定义组件的分群规则\n  EVENT_SEQUENCE_BASED: 基于行为序列的分群规则\n  GROUP_EXPRESSION_BASED: 基于规则组的分群规则\n  ALL: 表示全部实体, 该类型比较特殊, 无实际的规则信息。\n```",
+            "enum" : [ "SIMPLE_USER_GROUP_TYPE_UNSPECIFIED", "SQL_BASED", "EQL_BASED", "LOADING_BASED", "CUSTOM_BASED", "EVENT_SEQUENCE_BASED", "GROUP_EXPRESSION_BASED", "ALL" ],
+            "example" : "SQL_BASED",
+            "type" : "string"
+          },
+          "sql_segment_rule" : {
+            "$ref" : "#/components/schemas/sensorsdata.horizon.v1.SqlSegmentRuleExpression"
+          },
+          "eql_segment_rule" : {
+            "$ref" : "#/components/schemas/sensorsdata.horizon.v1.EqlSegmentRuleExpression"
+          },
+          "loading_segment_rule" : {
+            "$ref" : "#/components/schemas/sensorsdata.horizon.v1.LoadingSegmentRuleExpression"
+          },
+          "custom_rule" : {
+            "$ref" : "#/components/schemas/sensorsdata.horizon.v1.CustomSegmentRuleExpression"
+          },
+          "event_sequence_rule" : {
+            "$ref" : "#/components/schemas/sensorsdata.horizon.v1.EventSequenceSegmentRuleExpression"
+          },
+          "group_expression_rule" : {
+            "$ref" : "#/components/schemas/sensorsdata.horizon.v1.GroupExpressionSegmentRuleExpression"
+          },
+          "virtual" : {
+            "description" : "是否是虚拟分群, 如果是虚拟分群则不会执行 SQL 存储分群结果\n LoadingSegmentRuleExpression 不能为虚拟分群",
+            "type" : "boolean"
+          },
+          "tailor" : {
+            "$ref" : "#/components/schemas/sensorsdata.horizon.v1.Tailor"
+          },
+          "entity_set_rules" : {
+            "description" : "实体范围数组, 实体范围之间的关系为 \"OR/或\" 关系\n 保存规则的时候, SegmentRule 只需要填充 id\n 查询返回的时候, gRPC 会返回 id、display_name、expression、version、rule_available、delete_flag",
+            "items" : {
+              "$ref" : "#/components/schemas/sensorsdata.horizon.v1.SegmentRule"
+            },
+            "type" : "array"
+          },
+          "time_zone" : {
+            "description" : "规则时区, 设置之后事件规则中 time 及 时间类型事件属性计算时会相对服务器时区发生偏移, 数据样例：UTC+11:00",
+            "type" : "string"
+          },
+          "version" : {
+            "description" : "分群规则版本, 从 sps 升级带上来的规则为 1 (QE 和 老PB), 在 horizon 新组件创建出来的为 2， openApi创建的时候，固定传2",
+            "example" : 2,
+            "format" : "int32",
+            "type" : "integer"
+          },
+          "used_fields" : {
+            "description" : "规则引用到的字段",
+            "example" : "[\"user.id\"]",
+            "items" : {
+              "type" : "string"
+            },
+            "type" : "array"
+          }
+        },
+        "title" : "SegmentRuleExpression",
+        "type" : "object"
+      },
+      "sensorsdata.common.PredicateFunctionParam" : {
+        "description" : "```\n 函数的参数，有几种可能\n 1. 一个 field, 如 events.$Anything.$city\n 2. 一个 Literal 的常量\n 3. 一个变量, 如 $ENTRY_TIME, 需要在执行上下文里进行替换\n 4. 一个 TimePoint, 代表一个相对或绝对的时间点, 用于时间类型的条件\n 5. 一个 expression user.p1/user.p2+user.p3\n ```",
+        "properties" : {
+          "param_type" : {
+            "description" : "函数的参数类型",
+            "enum" : [ "FUNCTION_PARAM_TYPE_UNSPECIFIED", "FIELD", "VALUE", "VARIABLE", "TIME_POINT", "EXPRESSION" ],
+            "example" : "FIELD",
+            "type" : "string"
+          },
+          "field" : {
+            "description" : "字段名",
+            "example" : "#ResourceId",
+            "type" : "string"
+          },
+          "value" : {
+            "$ref" : "#/components/schemas/sensorsdata.common.Literal"
+          },
+          "variable" : {
+            "description" : "变量，需要在执行上下文里进行替换",
+            "example" : "$ENTRY_TIME",
+            "type" : "string"
+          },
+          "time_point" : {
+            "$ref" : "#/components/schemas/sensorsdata.common.TimePoint"
+          },
+          "expression" : {
+            "description" : "自定义表达式",
+            "example" : "user.p1/user.p2+user.p3",
+            "type" : "string"
+          }
+        },
+        "title" : "PredicateFunctionParam",
+        "type" : "object"
+      },
+      "sensorsdata.horizon.v1.SqlBasedRuleExpression.QueryOption" : {
+        "description" : "执行sql的额外参数信息",
+        "properties" : {
+          "option" : {
+            "description" : "额外参数的名称",
+            "type" : "string"
+          },
+          "value" : {
+            "description" : "额外参数的值",
+            "type" : "string"
+          }
+        },
+        "title" : "QueryOption",
+        "type" : "object"
+      },
+      "sensorsdata.horizon.v1.GetLastedTagPartitionRequest" : {
+        "description" : "",
+        "properties" : {
+          "entity_name" : {
+            "description" : "实体标识",
+            "example" : "user",
+            "type" : "string"
+          },
+          "tag_names" : {
+            "description" : "标签定义名",
+            "example" : "user_tag_c1",
+            "items" : {
+              "type" : "string"
+            },
+            "type" : "array"
+          },
+          "status" : {
+            "description" : "查询的partition状态\n```\n TAG_PARTITION_AVAILABLE 计算成功，数据可用\n TAG_PARTITION_UNAVAILABLE 未计算完成或者计算失败，数据不可用\n```",
+            "enum" : [ "TAG_PARTITION_STATUS_UNSPECIFIED", "TAG_PARTITION_AVAILABLE", "TAG_PARTITION_UNAVAILABLE" ],
+            "example" : "TAG_PARTITION_AVAILABLE",
+            "type" : "string"
+          }
+        },
+        "required" : [ "entity_name", "tag_names" ],
+        "title" : "GetLastedTagPartitionRequest",
+        "type" : "object"
+      },
+      "sensorsdata.horizon.v1.Tailor" : {
+        "description" : "",
+        "properties" : {
+          "rank_field" : {
+            "$ref" : "#/components/schemas/sensorsdata.horizon.v1.RankField"
+          },
+          "function" : {
+            "description" : "",
+            "enum" : [ "PREDICATE_FUNCTION_TYPE_UNSPECIFIED", "IS_SET", "IS_NOT_SET", "EQUAL", "NOT_EQUAL", "IN", "NOT_IN", "LESS", "LESS_EQUAL", "GREATER", "GREATER_EQUAL", "BETWEEN", "RIGHT_OPEN_BETWEEN", "HASH_BETWEEN", "LEFT_OPEN_BETWEEN", "OPEN_BETWEEN", "IS_TRUE", "IS_FALSE", "CONTAIN", "NOT_CONTAIN", "IS_EMPTY", "IS_NOT_EMPTY", "RLIKE", "NOT_RLIKE", "INCLUDE", "NOT_INCLUDE", "ABSOLUTE_BETWEEN", "RELATIVE_WITHIN", "RELATIVE_BETWEEN", "RELATIVE_EVENT_TIME", "RELATIVE_BEFORE", "INTERSECTS", "NOT_INTERSECTS", "SUBSET_OF", "NOT_SUBSET_OF", "SUPERSET_OF", "NOT_SUPERSET_OF" ],
+            "type" : "string"
+          },
+          "params" : {
+            "description" : "",
+            "items" : {
+              "$ref" : "#/components/schemas/sensorsdata.common.PredicateFunctionParam"
+            },
+            "type" : "array"
+          }
+        },
+        "title" : "Tailor",
+        "type" : "object"
+      },
+      "sensorsdata.horizon.v1.EventSequenceSegmentRuleExpression.SimpleEventSequenceSegmentRuleExpression.TimeWindow" : {
+        "description" : "通过 数值 + 时间单位 描述一个时间窗口",
+        "properties" : {
+          "size" : {
+            "description" : "时间窗口大小",
+            "format" : "int32",
+            "type" : "integer"
+          },
+          "unit" : {
+            "description" : "时间窗口单位\n```\n  DAY: 天\n  HOUR: 小时\n  MINUTE: 分钟\n```",
+            "enum" : [ "TIME_UNIT_UNSPECIFIED", "DAY", "HOUR", "MINUTE" ],
+            "example" : "DAY",
+            "type" : "string"
+          }
+        },
+        "title" : "TimeWindow",
+        "type" : "object"
+      },
+      "sensorsdata.common.CronTrigger" : {
+        "description" : "周期时间窗口的触发器定义\n 理论上可以覆盖 PeriodicTrigger, 实现更复杂的调度周期",
+        "properties" : {
+          "crontab_exp" : {
+            "description" : "cron 表达式，例如 \"0 6 21 * * ? *\"",
+            "example" : "0 6 21 * * ? *",
+            "type" : "string"
+          },
+          "start_time" : {
+            "description" : "周期调度的生效时间，可以早于创建时间，这样会触发数据补齐",
+            "format" : "date-time",
+            "type" : "string"
+          },
+          "end_time" : {
+            "description" : "周期调度的失效时间，超过此时间之后不再进行周期触发",
+            "format" : "date-time",
+            "type" : "string"
+          }
+        },
+        "title" : "CronTrigger",
+        "type" : "object"
+      },
+      "sensorsdata.horizon.v1.TagAlarmConfig.AlarmRule" : {
+        "description" : "报警规则",
+        "properties" : {
+          "name" : {
+            "description" : "报警规则名称，每个报警规则名称不能重复",
+            "example" : "alar_rule_1",
+            "type" : "string"
+          },
+          "alarm_params" : {
+            "additionalProperties" : {
+              "description" : "",
+              "type" : "string"
+            },
+            "description" : "报警规则参数",
+            "type" : "object"
+          }
+        },
+        "title" : "AlarmRule",
+        "type" : "object"
+      },
+      "sensorsdata.common.HttpApiResult" : {
+        "properties" : {
+          "code" : {
+            "type" : "string"
+          },
+          "message" : {
+            "type" : "string"
+          },
+          "request_id" : {
+            "type" : "string"
+          },
+          "data" : {
+            "properties" : { },
+            "type" : "object"
+          },
+          "error_info" : {
+            "$ref" : "#/components/schemas/sensorsdata.common.ErrorInfo"
+          }
+        },
+        "title" : "HttpApiResult",
+        "type" : "object"
+      },
+      "sensorsdata.horizon.v1.CheckTagRuleResponseHttpApiResult" : {
+        "properties" : {
+          "code" : {
+            "type" : "string"
+          },
+          "message" : {
+            "type" : "string"
+          },
+          "request_id" : {
+            "type" : "string"
+          },
+          "data" : {
+            "$ref" : "#/components/schemas/sensorsdata.horizon.v1.CheckTagRuleResponse"
+          },
+          "error_info" : {
+            "$ref" : "#/components/schemas/sensorsdata.common.ErrorInfo"
+          }
+        },
+        "title" : "sensorsdata.horizon.v1.CheckTagRuleResponseHttpApiResult",
+        "type" : "object"
+      },
+      "sensorsdata.horizon.v1.TagRuleExpression" : {
+        "description" : "标签规则表达式，根据不同的类型，使用不同的规则表达式",
+        "properties" : {
+          "tag_type" : {
+            "description" : "标签规则类型，必填\n ```\n SQL_BASED: SQL规则表达式\n LOADING_BASED: 导入标签规则表达式\n EQL_BASED: EQL规则表达式\n CUSTOM_BASED: 自定义规则表达式 (-暂不支持创建-)\n SEGMENT_BASED: 分层标签规则表达式\n BASIC_MEASURE_BASED: 基础指标值规则表达式\n RFM_BASED: RFM规则表达式\n ```",
+            "enum" : [ "TAG_TYPE_UNSPECIFIED", "SQL_BASED", "LOADING_BASED", "EQL_BASED", "CUSTOM_BASED", "SEGMENT_BASED", "BASIC_MEASURE_BASED", "RFM_BASED" ],
+            "example" : "LOADING_BASED",
+            "type" : "string"
+          },
+          "sql_based_rule" : {
+            "$ref" : "#/components/schemas/sensorsdata.horizon.v1.SqlBasedRuleExpression"
+          },
+          "eql_based_rule" : {
+            "$ref" : "#/components/schemas/sensorsdata.horizon.v1.EqlBasedRuleExpression"
+          },
+          "custom_based_rule" : {
+            "$ref" : "#/components/schemas/sensorsdata.horizon.v1.CustomBasedRuleExpression"
+          },
+          "loading_based_rule" : {
+            "$ref" : "#/components/schemas/sensorsdata.horizon.v1.LoadingBasedRuleExpression"
+          },
+          "segment_based_rule" : {
+            "$ref" : "#/components/schemas/sensorsdata.horizon.v1.SegmentBasedRuleExpression"
+          },
+          "basic_measure_based_rule" : {
+            "$ref" : "#/components/schemas/sensorsdata.horizon.v1.BasicMeasureBasedRuleExpression"
+          },
+          "rfm_based_rule" : {
+            "$ref" : "#/components/schemas/sensorsdata.horizon.v1.RfmBasedRuleExpression"
+          },
+          "virtual" : {
+            "description" : "是否为虚拟标签，虚拟标签只有特殊场景才会使用，正常情况都是非虚拟标签",
+            "example" : false,
+            "type" : "boolean"
+          },
+          "time_zone" : {
+            "description" : "规则时区, 设置之后事件规则中 time 及 时间类型事件属性计算时会相对服务器时区发生偏移, 数据样例：UTC+11:00",
+            "type" : "string"
+          },
+          "segment_filter" : {
+            "$ref" : "#/components/schemas/sensorsdata.horizon.v1.SegmentRuleExpression"
+          },
+          "filter_segment_at_last" : {
+            "description" : "设置分群过滤作用位置\n 1、默认 false 表示先过滤实体群, 然后再计算标签值. 以基础指标值选择百分比划分为例, 按照设置的过滤筛选出对应的实体群, 然后获取对应实体的事件数据计算指标按照百分比划分得出标签值.\n 2、设置 true 表示先计算标签值, 然后过滤实体群. 以基础指标值选择百分比划分为例, 先使用全量用户的指定事件数据计算指标按照百分比划分得出标签值之后, 再过滤出筛选的实体群标签值.\n 当前 仅实现了默认 false 的情况, true 暂不支持",
+            "example" : false,
+            "type" : "boolean"
+          },
+          "entity_set_rules" : {
+            "description" : "实体范围数组, 实体范围之间的关系为 \"OR/或\" 关系\n 保存规则的时候, SegmentRule 只需要填充 id\n 查询返回的时候, gRPC 会返回 id、display_name、expression、version、rule_available、delete_flag",
+            "items" : {
+              "$ref" : "#/components/schemas/sensorsdata.horizon.v1.SegmentRule"
+            },
+            "type" : "array"
+          },
+          "version" : {
+            "description" : "标签规则版本, 从 sps 升级带上来的规则为 1 (QE 和 老PB), 在 horizon 新组件创建出来的为 2",
+            "example" : 2,
+            "format" : "int32",
+            "type" : "integer"
+          },
+          "used_fields" : {
+            "description" : "规则引用到的字段",
+            "example" : "[\"user.id\"]",
+            "items" : {
+              "type" : "string"
+            },
+            "type" : "array"
+          }
+        },
+        "title" : "TagRuleExpression",
+        "type" : "object"
+      },
+      "sensorsdata.horizon.v1.RfmBasedRuleExpression.LayerParamsEntry" : {
+        "description" : "",
+        "properties" : {
+          "key" : {
+            "description" : "",
+            "type" : "string"
+          },
+          "value" : {
+            "description" : "",
+            "type" : "string"
+          }
+        },
+        "title" : "LayerParamsEntry",
+        "type" : "object"
+      },
+      "sensorsdata.horizon.v1.GetTagQuerySqlResponseHttpApiResult" : {
+        "properties" : {
+          "code" : {
+            "type" : "string"
+          },
+          "message" : {
+            "type" : "string"
+          },
+          "request_id" : {
+            "type" : "string"
+          },
+          "data" : {
+            "$ref" : "#/components/schemas/sensorsdata.horizon.v1.GetTagQuerySqlResponse"
+          },
+          "error_info" : {
+            "$ref" : "#/components/schemas/sensorsdata.common.ErrorInfo"
+          }
+        },
+        "title" : "sensorsdata.horizon.v1.GetTagQuerySqlResponseHttpApiResult",
+        "type" : "object"
+      },
+      "sensorsdata.horizon.v1.TagTaskReport.TagLoadingReport" : {
+        "description" : "",
+        "properties" : {
+          "total_line_count" : {
+            "description" : "上传文件总行数，导入专用字段",
+            "example" : 1000000,
+            "format" : "int64",
+            "type" : "integer"
+          },
+          "valid_line_count" : {
+            "description" : "有效上传数据行数，导入专用字段",
+            "example" : 999999,
+            "format" : "int64",
+            "type" : "integer"
+          },
+          "distinct_line_count" : {
+            "description" : "去重后的上传数据行数，导入专用字段",
+            "format" : "int64",
+            "type" : "integer"
+          },
+          "matched_property_count" : {
+            "description" : "匹配到实体的属性值总数",
+            "format" : "int64",
+            "type" : "integer"
+          },
+          "unmatched_property_count" : {
+            "description" : "未匹配到实体的属性值总数",
+            "format" : "int64",
+            "type" : "integer"
+          },
+          "matched_entity_count" : {
+            "description" : "匹配的实体总数",
+            "format" : "int64",
+            "type" : "integer"
+          }
+        },
+        "title" : "TagLoadingReport",
+        "type" : "object"
+      },
+      "sensorsdata.horizon.v1.ListTagDefinitionsResponseHttpApiResult" : {
+        "properties" : {
+          "code" : {
+            "type" : "string"
+          },
+          "message" : {
+            "type" : "string"
+          },
+          "request_id" : {
+            "type" : "string"
+          },
+          "data" : {
+            "$ref" : "#/components/schemas/sensorsdata.horizon.v1.ListTagDefinitionsResponse"
+          },
+          "error_info" : {
+            "$ref" : "#/components/schemas/sensorsdata.common.ErrorInfo"
+          }
+        },
+        "title" : "sensorsdata.horizon.v1.ListTagDefinitionsResponseHttpApiResult",
+        "type" : "object"
+      },
+      "sensorsdata.horizon.v1.OrderMeasure" : {
+        "description" : "数据目标的原生属性或计算得到的属性",
+        "properties" : {
+          "type" : {
+            "description" : "排序字段类型\n```\n  PLAIN_FIELD: 属性裁剪, 后续废弃不再迭代\n  AGGREGATOR_FIELD: 明细属性指标裁剪，后续废弃不再迭代\n  EQL_MEASURE_FIELD: eql 指标裁剪\n```",
+            "enum" : [ "FIELD_TYPE_UNSPECIFIED", "PLAIN_FIELD", "AGGREGATOR_FIELD", "EQL_MEASURE_FIELD" ],
+            "example" : "EQL_MEASURE_FIELD",
+            "type" : "string"
+          },
+          "plain_field" : {
+            "description" : "当 type = PLAIN_FIELD 时取此值",
+            "example" : "user.$identity_login_id",
+            "type" : "string"
+          },
+          "aggregator_field" : {
+            "$ref" : "#/components/schemas/sensorsdata.horizon.v1.AggregatorField"
+          },
+          "condition" : {
+            "$ref" : "#/components/schemas/sensorsdata.common.CompoundFilterCondition"
+          },
+          "eql_measure" : {
+            "description" : "当 type = EQL_MEASURE_FIELD",
+            "example" : "user.$Events.virtual_event_for_tag.filter_event(\\n  datetime_add(${var:base_time}, -1, 'DAY'),\\n  datetime_add(${var:base_time}, -1, 'DAY')\\n).count()",
+            "type" : "string"
+          }
+        },
+        "title" : "OrderMeasure",
+        "type" : "object"
+      },
+      "sensorsdata.horizon.v1.SegmentRule.CustomParamsEntry" : {
+        "description" : "",
+        "properties" : {
+          "key" : {
+            "description" : "",
+            "type" : "string"
+          },
+          "value" : {
+            "$ref" : "#/components/schemas/sensorsdata.common.Literal"
+          }
+        },
+        "title" : "CustomParamsEntry",
+        "type" : "object"
+      },
+      "sensorsdata.horizon.v1.GetTagImportTaskResponseHttpApiResult" : {
+        "properties" : {
+          "code" : {
+            "type" : "string"
+          },
+          "message" : {
+            "type" : "string"
+          },
+          "request_id" : {
+            "type" : "string"
+          },
+          "data" : {
+            "$ref" : "#/components/schemas/sensorsdata.horizon.v1.GetTagImportTaskResponse"
+          },
+          "error_info" : {
+            "$ref" : "#/components/schemas/sensorsdata.common.ErrorInfo"
+          }
+        },
+        "title" : "sensorsdata.horizon.v1.GetTagImportTaskResponseHttpApiResult",
+        "type" : "object"
+      },
+      "sensorsdata.common.TimePoint.RelativeTimePoint" : {
+        "description" : "",
+        "properties" : {
+          "base_time" : {
+            "description" : "",
+            "type" : "string"
+          },
+          "time_interval" : {
+            "$ref" : "#/components/schemas/sensorsdata.common.TimeInterval"
+          }
+        },
+        "title" : "RelativeTimePoint",
+        "type" : "object"
+      },
+      "sensorsdata.horizon.v1.SqlBasedRuleExpression" : {
+        "description" : "",
+        "properties" : {
+          "sql" : {
+            "description" : "SQL 的结果只取两列, id 和 value",
+            "example" : "select user_id as id, count(1) as value\\nFROM events\\n-- 表示查看最近7日前到昨日的 指定事件名\\nwhere `date` between cast('[baseTime]' as TIMESTAMP) - INTERVAL 7 DAY AND  cast('[baseTime]' as TIMESTAMP)  - INTERVAL 1 DAY AND event=\\\"事件名\\\"\\ngroup by 1",
+            "type" : "string"
+          },
+          "query_options" : {
+            "description" : "执行sql的查询额外参数信息",
+            "items" : {
+              "$ref" : "#/components/schemas/sensorsdata.horizon.v1.SqlBasedRuleExpression.QueryOption"
+            },
+            "type" : "array"
+          }
+        },
+        "title" : "SqlBasedRuleExpression",
+        "type" : "object"
+      },
+      "sensorsdata.horizon.v1.ListTagLabelDefinitionsResponseHttpApiResult" : {
+        "properties" : {
+          "code" : {
+            "type" : "string"
+          },
+          "message" : {
+            "type" : "string"
+          },
+          "request_id" : {
+            "type" : "string"
+          },
+          "data" : {
+            "$ref" : "#/components/schemas/sensorsdata.horizon.v1.ListTagLabelDefinitionsResponse"
+          },
+          "error_info" : {
+            "$ref" : "#/components/schemas/sensorsdata.common.ErrorInfo"
+          }
+        },
+        "title" : "sensorsdata.horizon.v1.ListTagLabelDefinitionsResponseHttpApiResult",
+        "type" : "object"
+      },
+      "sensorsdata.horizon.v1.TagDefinition.CustomParamsEntry" : {
+        "description" : "",
+        "properties" : {
+          "key" : {
+            "description" : "",
+            "type" : "string"
+          },
+          "value" : {
+            "$ref" : "#/components/schemas/sensorsdata.common.Literal"
+          }
+        },
+        "title" : "CustomParamsEntry",
+        "type" : "object"
+      },
+      "sensorsdata.horizon.v1.TagDefinitionSource" : {
+        "description" : "标签来源",
+        "properties" : {
+          "app" : {
+            "description" : "应用名, 填写创建标签的所属应用，",
+            "example" : "SF",
+            "type" : "string"
+          },
+          "category" : {
+            "description" : "一级分类, 创建标签的一级业务分类",
+            "example" : "SF/MERCURY",
+            "type" : "string"
+          }
+        },
+        "title" : "TagDefinitionSource",
+        "type" : "object"
+      },
+      "sensorsdata.horizon.v1.GetLastedTagPartitionResponse.LastedTagPartitionMapEntry" : {
+        "description" : "",
+        "properties" : {
+          "key" : {
+            "description" : "",
+            "type" : "string"
+          },
+          "value" : {
+            "$ref" : "#/components/schemas/sensorsdata.horizon.v1.TagPartition"
+          }
+        },
+        "title" : "LastedTagPartitionMapEntry",
+        "type" : "object"
+      },
+      "sensorsdata.horizon.v1.TagPartition" : {
+        "description" : "",
+        "properties" : {
+          "entity_name" : {
+            "description" : "实体名称",
+            "example" : "user",
+            "type" : "string"
+          },
+          "tag_definition_name" : {
+            "description" : "标签定义 name",
+            "example" : "user_tag_bq1",
+            "type" : "string"
+          },
+          "count" : {
+            "description" : "partition 的人数",
+            "example" : 1000000,
+            "format" : "int64",
+            "type" : "integer"
+          },
+          "base_time" : {
+            "description" : "计算基准时间",
+            "example" : "2025-04-01T16:00:00Z",
+            "format" : "date-time",
+            "type" : "string"
+          },
+          "completed_time" : {
+            "description" : "partition 计算完成时间， 若 partition 不可用, 需要去 task 中获取具体时间",
+            "example" : "2025-04-01T16:10:00Z",
+            "format" : "date-time",
+            "type" : "string"
+          },
+          "status" : {
+            "description" : "partition 状态\n```\nTAG_PARTITION_AVAILABLE: 可用\nTAG_PARTITION_UNAVAILABLE: 不可用\n```",
+            "enum" : [ "TAG_PARTITION_STATUS_UNSPECIFIED", "TAG_PARTITION_AVAILABLE", "TAG_PARTITION_UNAVAILABLE" ],
+            "example" : "TAG_PARTITION_AVAILABLE",
+            "type" : "string"
+          },
+          "layer_counts" : {
+            "description" : "分层人数统计, 仅支持 SEGMENT_BASED 类型的标签",
+            "items" : {
+              "$ref" : "#/components/schemas/sensorsdata.horizon.v1.TagPartition.PartitionLayerCount"
+            },
+            "type" : "array"
+          }
+        },
+        "required" : [ "entity_name" ],
+        "title" : "TagPartition",
+        "type" : "object"
+      },
+      "sensorsdata.horizon.v1.EqlSegmentRuleExpression" : {
+        "description" : "",
+        "properties" : {
+          "eql" : {
+            "description" : "EQL 表达式",
+            "example" : "user.$SegmentMembership.user_segment_t111111.is_not_null()\nand\nuser.user_tag_c4 == '标签值1'\nand\nuser.vip_level in ['高级VIP','普通用户']",
+            "type" : "string"
+          }
+        },
+        "title" : "EqlSegmentRuleExpression",
+        "type" : "object"
+      },
+      "sensorsdata.common.TimeRange" : {
+        "description" : "",
+        "properties" : {
+          "start_time" : {
+            "$ref" : "#/components/schemas/sensorsdata.common.TimePoint"
+          },
+          "end_time" : {
+            "$ref" : "#/components/schemas/sensorsdata.common.TimePoint"
+          }
+        },
+        "title" : "TimeRange",
+        "type" : "object"
+      },
+      "sensorsdata.horizon.v1.EvaluateTagRequest" : {
+        "description" : "",
+        "properties" : {
+          "entity_name" : {
+            "description" : "实体名称",
+            "example" : "user",
+            "type" : "string"
+          },
+          "evaluate_params" : {
+            "description" : "触发标签计算参数",
+            "items" : {
+              "$ref" : "#/components/schemas/sensorsdata.horizon.v1.EvaluateTagRequest.EvaluateTagParam"
+            },
+            "type" : "array"
+          }
+        },
+        "required" : [ "entity_name" ],
+        "title" : "EvaluateTagRequest",
+        "type" : "object"
+      },
+      "sensorsdata.horizon.v1.DeleteTagDefinitionRequest" : {
+        "description" : "",
+        "properties" : {
+          "entity_name" : {
+            "description" : "实体名称",
+            "example" : "user",
+            "type" : "string"
+          },
+          "name" : {
+            "description" : "标签名称",
+            "example" : "user_tag_c1",
+            "type" : "string"
+          },
+          "skip_trash" : {
+            "description" : "是否跳过回收站直接删除，默认为 false",
+            "example" : false,
+            "type" : "boolean"
+          }
+        },
+        "required" : [ "entity_name", "name" ],
+        "title" : "DeleteTagDefinitionRequest",
+        "type" : "object"
+      },
+      "sensorsdata.horizon.v1.ArchiveTagDefinitionRequest" : {
+        "description" : "",
+        "properties" : {
+          "entity_name" : {
+            "description" : "实体名称",
+            "example" : "user",
+            "type" : "string"
+          },
+          "name" : {
+            "description" : "标签名称",
+            "example" : "user_tag_c1",
+            "type" : "string"
+          }
+        },
+        "required" : [ "entity_name", "name" ],
+        "title" : "ArchiveTagDefinitionRequest",
+        "type" : "object"
+      },
+      "sensorsdata.horizon.v1.ListTagPartitionsResponseHttpApiResult" : {
+        "properties" : {
+          "code" : {
+            "type" : "string"
+          },
+          "message" : {
+            "type" : "string"
+          },
+          "request_id" : {
+            "type" : "string"
+          },
+          "data" : {
+            "$ref" : "#/components/schemas/sensorsdata.horizon.v1.ListTagPartitionsResponse"
+          },
+          "error_info" : {
+            "$ref" : "#/components/schemas/sensorsdata.common.ErrorInfo"
+          }
+        },
+        "title" : "sensorsdata.horizon.v1.ListTagPartitionsResponseHttpApiResult",
+        "type" : "object"
+      },
+      "sensorsdata.horizon.v1.EventSequenceSegmentRuleExpression.SimpleEventSequenceSegmentRuleExpression" : {
+        "description" : "",
+        "properties" : {
+          "event_steps" : {
+            "description" : "行为序列规则信息",
+            "items" : {
+              "$ref" : "#/components/schemas/sensorsdata.horizon.v1.EventSequenceSegmentRuleExpression.SimpleEventSequenceSegmentRuleExpression.EventStep"
+            },
+            "type" : "array"
+          },
+          "time_range" : {
+            "$ref" : "#/components/schemas/sensorsdata.common.TimeRange"
+          },
+          "time_window" : {
+            "$ref" : "#/components/schemas/sensorsdata.horizon.v1.EventSequenceSegmentRuleExpression.SimpleEventSequenceSegmentRuleExpression.TimeWindow"
+          }
+        },
+        "title" : "SimpleEventSequenceSegmentRuleExpression",
+        "type" : "object"
+      },
+      "sensorsdata.common.Trigger" : {
+        "description" : "",
+        "properties" : {
+          "trigger_type" : {
+            "description" : "触发类型, 根据触发类型取不同的参数\n```\nMANUAL: 手动触发, 手动触发的任务, $TASK_TIME 为触发时的当前时间\nPERIODIC: 周期触发, 周期触发的任务, $TASK_TIME 为触发时的当前时间\nCRON: cron 表达式触发, cron 表达式触发的任务, $TASK_TIME 为触发时的当前时间\nSTATIC: 静态触发, 静态触发的任务, $TASK_TIME 为静态时间\nDYNAMIC: 动态触发, 动态触发的任务, $TASK_TIME 为动态时间\nSYNC_JOB: 数据同步任务特殊的触发器\n```\n 注意：\n 1. 对于周期调度，$TASK_TIME 为触发时的当前时间\n 2. 对于静态调度，$TASK_TIME 为静态时间\n 3. 对于动态调度，$TASK_TIME 为动态时间\n 4. 对于 cron 表达式调度，$TASK_TIME 为触发时的当前时间\n 5. 对于数据同步任务，$TASK_TIME 为任务执行时间点",
+            "enum" : [ "TRIGGER_TYPE_UNSPECIFIED", "MANUAL", "PERIODIC", "CRON", "STATIC", "DYNAMIC", "SYNC_JOB" ],
+            "example" : "CRON",
+            "type" : "string"
+          },
+          "periodic_trigger" : {
+            "$ref" : "#/components/schemas/sensorsdata.common.PeriodicTrigger"
+          },
+          "cron_trigger" : {
+            "$ref" : "#/components/schemas/sensorsdata.common.CronTrigger"
+          },
+          "static_trigger" : {
+            "$ref" : "#/components/schemas/sensorsdata.common.StaticTrigger"
+          }
+        },
+        "title" : "Trigger",
+        "type" : "object"
+      },
+      "sensorsdata.horizon.v1.GetTagTaskResponse" : {
+        "description" : "",
+        "properties" : {
+          "tasks" : {
+            "description" : "标签计算任务列表",
+            "items" : {
+              "$ref" : "#/components/schemas/sensorsdata.horizon.v1.TagTask"
+            },
+            "type" : "array"
+          }
+        },
+        "title" : "GetTagTaskResponse",
+        "type" : "object"
+      },
+      "sensorsdata.horizon.v1.SegmentBasedRuleExpression" : {
+        "description" : "分层标签规则",
+        "properties" : {
+          "groups" : {
+            "description" : "分层标签规则",
+            "items" : {
+              "$ref" : "#/components/schemas/sensorsdata.horizon.v1.SegmentBasedRuleExpression.SegmentTagEntry"
+            },
+            "type" : "array"
+          }
+        },
+        "title" : "SegmentBasedRuleExpression",
+        "type" : "object"
+      },
+      "sensorsdata.horizon.v1.BasicMeasureBasedRuleExpression" : {
+        "description" : "基础指标值",
+        "properties" : {
+          "bucket_type" : {
+            "description" : "分桶方式\n ```\n DISCRETE 离散值\nPERCENT 百分比\nNUMBER 数值区间\n```",
+            "enum" : [ "BUCKET_TYPE_UNSPECIFIED", "DISCRETE", "PERCENT", "NUMBER" ],
+            "example" : "NUMBER",
+            "type" : "string"
+          },
+          "measure_rule" : {
+            "description" : "measure rule 指标规则, 使用 EQL 表示",
+            "example" : "user.$Events.virtual_event_for_tag.filter_event(\n  datetime_add(${var:base_time}, -1, 'DAY'),\n  datetime_add(${var:base_time}, -1, 'DAY'),\n  (\n    user.$Events.virtual_event_for_tag.$is_login_id == true\n  )\n).count()",
+            "type" : "string"
+          },
+          "values" : {
+            "description" : "定义分层值",
+            "example" : "[\"高附加值人群\", \"中附加值人群\", \"低附加值人群\"]",
+            "items" : {
+              "type" : "string"
+            },
+            "type" : "array"
+          },
+          "buckets" : {
+            "description" : "分桶值",
+            "example" : "[100, 500, 1000]",
+            "items" : {
+              "format" : "double",
+              "type" : "number"
+            },
+            "type" : "array"
+          }
+        },
+        "title" : "BasicMeasureBasedRuleExpression",
+        "type" : "object"
+      },
+      "sensorsdata.horizon.v1.CreateTagDefinitionRequest" : {
+        "description" : "",
+        "properties" : {
+          "project_id" : {
+            "description" : "项目 ID",
+            "example" : 1,
+            "format" : "int32",
+            "type" : "integer"
+          },
+          "definition" : {
+            "$ref" : "#/components/schemas/sensorsdata.horizon.v1.TagDefinition"
+          },
+          "dry_run" : {
+            "description" : "为 true 表示校验功能,创建标签的时候，先用 dry_run=true 校验标签参数是否正确，在用dry_run=false 正式创建标签",
+            "example" : false,
+            "type" : "boolean"
+          },
+          "skip_rule_check" : {
+            "description" : "",
+            "type" : "boolean"
+          }
+        },
+        "required" : [ "definition", "project_id" ],
+        "title" : "CreateTagDefinitionRequest",
+        "type" : "object"
+      },
+      "sensorsdata.horizon.v1.TagLabelDefinitionHttpApiResult" : {
+        "properties" : {
+          "code" : {
+            "type" : "string"
+          },
+          "message" : {
+            "type" : "string"
+          },
+          "request_id" : {
+            "type" : "string"
+          },
+          "data" : {
+            "$ref" : "#/components/schemas/sensorsdata.horizon.v1.TagLabelDefinition"
+          },
+          "error_info" : {
+            "$ref" : "#/components/schemas/sensorsdata.common.ErrorInfo"
+          }
+        },
+        "title" : "sensorsdata.horizon.v1.TagLabelDefinitionHttpApiResult",
+        "type" : "object"
+      },
+      "sensorsdata.horizon.v1.TagPartition.PartitionLayerCount" : {
+        "description" : "",
+        "properties" : {
+          "layer" : {
+            "description" : "分区",
+            "example" : "分层一",
+            "type" : "string"
+          },
+          "count" : {
+            "description" : "分区对应的人数",
+            "example" : 32000,
+            "format" : "int64",
+            "type" : "integer"
+          }
+        },
+        "title" : "PartitionLayerCount",
+        "type" : "object"
+      },
+      "sensorsdata.horizon.v1.TagTask" : {
+        "description" : "标签计算任务",
+        "properties" : {
+          "id" : {
+            "description" : "任务 ID",
+            "example" : 123,
+            "format" : "int32",
+            "type" : "integer"
+          },
+          "status" : {
+            "description" : "任务状态\n```\nTAG_PREPARING: 计算未就绪状态, 等待中.\nTAG_WAITING_DATA: 等待依赖的数据\nTAG_COMPUTING: 计算中\nTAG_SUCCESS: 成功\nTAG_FAILED: 失败\nTAG_TASK_CANCELLED: 取消\n```",
+            "enum" : [ "TAG_TASK_STATUS_UNSPECIFIED", "TAG_PREPARING", "TAG_WAITING_DATA", "TAG_COMPUTING", "TAG_SUCCESS", "TAG_FAILED", "TAG_TASK_CANCELLED" ],
+            "example" : "TAG_COMPUTING",
+            "type" : "string"
+          },
+          "entity_name" : {
+            "description" : "实体名称",
+            "example" : "user",
+            "type" : "string"
+          },
+          "tag_definition_name" : {
+            "description" : "标签定义 name",
+            "example" : "user_tag_bq1",
+            "type" : "string"
+          },
+          "base_time" : {
+            "description" : "基准时间,0时区0点事件，如一下时间表示 北京时间4月2日0点",
+            "example" : "2025-04-01T16:00:00Z",
+            "format" : "date-time",
+            "type" : "string"
+          },
+          "tag_task_params" : {
+            "additionalProperties" : {
+              "$ref" : "#/components/schemas/sensorsdata.common.Literal"
+            },
+            "description" : "任务计算参数，用于存放计算任务相关参数, 比如文件地址, 默认不返回",
+            "type" : "object"
+          },
+          "failure_detail" : {
+            "$ref" : "#/components/schemas/sensorsdata.horizon.v1.TagTask.TagTaskFailureDetail"
+          },
+          "tag_task_report" : {
+            "$ref" : "#/components/schemas/sensorsdata.horizon.v1.TagTaskReport"
+          },
+          "start_time" : {
+            "description" : "任务起始时间，以下时间表示查询 北京时间 2025-04-02",
+            "example" : "2025-04-01T16:00:00Z",
+            "format" : "date-time",
+            "type" : "string"
+          },
+          "end_time" : {
+            "description" : "任务结束时间，以下时间表示查询 北京时间 2025-04-03",
+            "example" : "2025-04-02T16:00:00Z",
+            "format" : "date-time",
+            "type" : "string"
+          },
+          "failed_times" : {
+            "description" : "任务失败次数",
+            "example" : 0,
+            "format" : "int32",
+            "type" : "integer"
+          },
+          "create_time" : {
+            "description" : "创建时间",
+            "example" : "2025-04-01T16:00:00Z",
+            "format" : "date-time",
+            "type" : "string"
+          },
+          "update_time" : {
+            "description" : "最近一次修改时间",
+            "example" : "2025-04-01T16:00:00Z",
+            "format" : "date-time",
+            "type" : "string"
+          }
+        },
+        "required" : [ "entity_name" ],
+        "title" : "TagTask",
+        "type" : "object"
+      },
+      "sensorsdata.horizon.v1.TagDefinition" : {
+        "description" : "标签定义，包涵规则和调度定义",
+        "properties" : {
+          "entity_name" : {
+            "description" : "实体名称",
+            "example" : "user",
+            "type" : "string"
+          },
+          "name" : {
+            "description" : "名称唯一标识, 格式为 {entity_name}_tag_{custom}\n 同一实体下， 标签名称不能重复",
+            "example" : "user_tag_bq1",
+            "type" : "string"
+          },
+          "display_name" : {
+            "description" : "显示名",
+            "example" : "我的标签",
+            "type" : "string"
+          },
+          "comment" : {
+            "description" : "描述",
+            "example" : "我的标签描述",
+            "type" : "string"
+          },
+          "data_type" : {
+            "description" : "数据类型\n ```\n BOOL = 1;       // 对应取值 bool_value\n INT = 2;        // 对应取值 int_value\n NUMBER = 3;     // 对应取值 number_value\n STRING = 4;     // 对应取值 string_value\n LIST = 5;       // 对应取值 list_value\n DATETIME = 6;   // 对应取值 datetime_value\n // 添加 infinity v2 有的 DATE， BIGINT 和 DECIMAL 字段\n DATE = 7;       // 对应取值 date_value\n BIGINT = 8;     // 对应取值 bigint_value\n DECIMAL = 9;    // 对应取值 decimal_value\n ```",
+            "enum" : [ "DATA_TYPE_UNSPECIFIED", "BOOL", "INT", "NUMBER", "STRING", "LIST", "DATETIME", "DATE", "BIGINT", "DECIMAL" ],
+            "example" : "STRING",
+            "type" : "string"
+          },
+          "expression" : {
+            "$ref" : "#/components/schemas/sensorsdata.horizon.v1.TagRuleExpression"
+          },
+          "current_rule_available" : {
+            "description" : "当前规则是否可用, 获取标签信息的时候返回使用，不支持创建更新",
+            "type" : "boolean"
+          },
+          "rule_version" : {
+            "description" : "当前规则版本号",
+            "format" : "int32",
+            "type" : "integer"
+          },
+          "visible" : {
+            "description" : "是否可见，默认情况下只给上层应用返回可见的标签，如需获取不可见的标签需特殊指定\n 设置 true 相当于全局可见，如果只是想使用标签能力，无需让其他业务产品都可见请设置 false",
+            "example" : true,
+            "type" : "boolean"
+          },
+          "managed" : {
+            "description" : "受管理的, false 表示在管理页面上不可管理, true 表示在管理页面上可以管理",
+            "example" : true,
+            "type" : "boolean"
+          },
+          "trigger" : {
+            "$ref" : "#/components/schemas/sensorsdata.common.Trigger"
+          },
+          "custom_params" : {
+            "additionalProperties" : {
+              "$ref" : "#/components/schemas/sensorsdata.common.Literal"
+            },
+            "description" : "业务方自定义的 kv 结构参数\n 是否忽略依赖检查，默认不忽略 ignore_dependency_check:bool",
+            "type" : "object"
+          },
+          "labels" : {
+            "description" : "标签扩展属性信息",
+            "items" : {
+              "$ref" : "#/components/schemas/sensorsdata.horizon.v1.TagLabel"
+            },
+            "type" : "array"
+          },
+          "status" : {
+            "description" : "标签状态\n```\nTAG_NEW 待审批新建状态，（此时标签必须为不可见状态，且无 field 联动信息,openApi 创建的不要使用）\nTAG_ACTIVE 激活状态， openApi创建的标签使用这个状态\nTAG_SUSPENDED 暂停状态\nTAG_DELETE_REQUESTED 删除状态\nTAG_ARCHIVED 归档状态\n 状态流转\nTAG_NEW --审批通过--> TAG_ACTIVE\nTAG_ACTIVE（可跳过审批直接创建） <-暂停/开始-> TAG_SUSPENDED\nTAG_ACTIVE <-回收站-> TAG_DELETE_REQUESTED\nTAG_SUSPENDED <-回收站-> TAG_DELETE_REQUESTED\n```",
+            "enum" : [ "TAG_STATUS_UNSPECIFIED", "TAG_NEW", "TAG_ACTIVE", "TAG_SUSPENDED", "TAG_DELETE_REQUESTED", "TAG_ARCHIVED" ],
+            "example" : "TAG_ACTIVE",
+            "type" : "string"
+          },
+          "created_by" : {
+            "description" : "标签创建来源,废弃，请使用source字段",
+            "example" : "SA",
+            "type" : "string"
+          },
+          "create_type" : {
+            "description" : "标签创建方式\n```\nTAG_CUSTOMIZED_RULE 自定义标签值(分层标签)\nTAG_GENERAL_RULE_DISTRIBUTION 基础指标值\nTAG_PREFERENCE_RULE 事件偏好属性\nTAG_FIRST_LAST_RULE 首末次特征\nTAG_DISTRIBUTION_RULE 行为分布结果\nTAG_RFM_TAG RFM标签\nTAG_UPLOAD 导入创建\nTAG_SQL SQL 创建\nTAG_EQL  EQL 创建\nQUERY_RESULT 结果保存\nTAG_OPERATION_RULE 运算标签\n```",
+            "example" : "TAG_CUSTOMIZED_RULE",
+            "type" : "string"
+          },
+          "storage_settings" : {
+            "$ref" : "#/components/schemas/sensorsdata.horizon.v1.TagStorageSettings"
+          },
+          "alarm_config" : {
+            "$ref" : "#/components/schemas/sensorsdata.horizon.v1.TagAlarmConfig"
+          },
+          "creator_id" : {
+            "description" : "创建人 id",
+            "type" : "string"
+          },
+          "modifier_id" : {
+            "description" : "最近一次修改人 id",
+            "type" : "string"
+          },
+          "create_time" : {
+            "description" : "创建时间",
+            "format" : "date-time",
+            "type" : "string"
+          },
+          "update_time" : {
+            "description" : "最近一次修改时间",
+            "format" : "date-time",
+            "type" : "string"
+          },
+          "delete_time" : {
+            "description" : "进入回收站时间",
+            "format" : "date-time",
+            "type" : "string"
+          },
+          "archive_time" : {
+            "description" : "归档时间",
+            "format" : "date-time",
+            "type" : "string"
+          },
+          "delete_account_id" : {
+            "description" : "删除人",
+            "type" : "string"
+          },
+          "archive_account_id" : {
+            "description" : "归档人",
+            "type" : "string"
+          },
+          "source" : {
+            "$ref" : "#/components/schemas/sensorsdata.horizon.v1.TagDefinitionSource"
+          }
+        },
+        "required" : [ "create_type", "entity_name", "name" ],
+        "title" : "TagDefinition",
+        "type" : "object"
+      },
+      "sensorsdata.horizon.v1.RecoverTagDefinitionRequest" : {
+        "description" : "",
+        "properties" : {
+          "entity_name" : {
+            "description" : "实体名称",
+            "example" : "user",
+            "type" : "string"
+          },
+          "name" : {
+            "description" : "需要从回收站还原的标签名称",
+            "example" : "user_tag_c1",
+            "type" : "string"
+          },
+          "destination_parent" : {
+            "description" : "恢复到的目录。若目录不存在或已删除，操作不会成功。\n 若不传该参数，则恢复到删除前的目录。若之前的目录不存在，则操作不成功。",
+            "type" : "string"
+          }
+        },
+        "required" : [ "entity_name", "name" ],
+        "title" : "RecoverTagDefinitionRequest",
+        "type" : "object"
+      },
+      "sensorsdata.common.FilterCondition" : {
+        "description" : "单个过滤条件",
+        "properties" : {
+          "function" : {
+            "description" : "过滤条件的判断函数",
+            "enum" : [ "PREDICATE_FUNCTION_TYPE_UNSPECIFIED", "IS_SET", "IS_NOT_SET", "EQUAL", "NOT_EQUAL", "IN", "NOT_IN", "LESS", "LESS_EQUAL", "GREATER", "GREATER_EQUAL", "BETWEEN", "RIGHT_OPEN_BETWEEN", "HASH_BETWEEN", "LEFT_OPEN_BETWEEN", "OPEN_BETWEEN", "IS_TRUE", "IS_FALSE", "CONTAIN", "NOT_CONTAIN", "IS_EMPTY", "IS_NOT_EMPTY", "RLIKE", "NOT_RLIKE", "INCLUDE", "NOT_INCLUDE", "ABSOLUTE_BETWEEN", "RELATIVE_WITHIN", "RELATIVE_BETWEEN", "RELATIVE_EVENT_TIME", "RELATIVE_BEFORE", "INTERSECTS", "NOT_INTERSECTS", "SUBSET_OF", "NOT_SUBSET_OF", "SUPERSET_OF", "NOT_SUPERSET_OF" ],
+            "example" : "EQUAL",
+            "type" : "string"
+          },
+          "params" : {
+            "description" : "函数的参数",
+            "items" : {
+              "$ref" : "#/components/schemas/sensorsdata.common.PredicateFunctionParam"
+            },
+            "type" : "array"
+          },
+          "index" : {
+            "description" : "当前筛选条件所处的位置下标，主要为了保证前端展示顺序的稳定",
+            "example" : 10,
+            "format" : "int32",
+            "type" : "integer"
+          }
+        },
+        "title" : "FilterCondition",
+        "type" : "object"
+      },
+      "sensorsdata.horizon.v1.RfmBasedRuleExpression.RfmFactor" : {
+        "description" : "R,F,M 因子 指标定义规则 + 分层规则",
+        "properties" : {
+          "factor_eql" : {
+            "description" : "指标计算规则",
+            "type" : "string"
+          },
+          "factor_group_rules" : {
+            "description" : "分层定义规则, 高｜低",
+            "items" : {
+              "$ref" : "#/components/schemas/sensorsdata.horizon.v1.RfmBasedRuleExpression.RfmFactor.RfmFactorGroupRule"
+            },
+            "type" : "array"
+          }
+        },
+        "title" : "RfmFactor",
+        "type" : "object"
+      },
+      "sensorsdata.horizon.v1.GetLastedTagPartitionResponseHttpApiResult" : {
+        "properties" : {
+          "code" : {
+            "type" : "string"
+          },
+          "message" : {
+            "type" : "string"
+          },
+          "request_id" : {
+            "type" : "string"
+          },
+          "data" : {
+            "$ref" : "#/components/schemas/sensorsdata.horizon.v1.GetLastedTagPartitionResponse"
+          },
+          "error_info" : {
+            "$ref" : "#/components/schemas/sensorsdata.common.ErrorInfo"
+          }
+        },
+        "title" : "sensorsdata.horizon.v1.GetLastedTagPartitionResponseHttpApiResult",
+        "type" : "object"
+      },
+      "sensorsdata.horizon.v1.EventSequenceSegmentRuleExpression.SimpleEventSequenceSegmentRuleExpression.EventStep" : {
+        "description" : "",
+        "properties" : {
+          "event_name" : {
+            "description" : "事件名称",
+            "example" : "user.$Events.AppStart",
+            "type" : "string"
+          },
+          "condition" : {
+            "$ref" : "#/components/schemas/sensorsdata.common.CompoundFilterCondition"
+          }
+        },
+        "title" : "EventStep",
+        "type" : "object"
+      },
+      "sensorsdata.horizon.v1.TagTaskReport" : {
+        "description" : "任务计算结果",
+        "properties" : {
+          "count" : {
+            "description" : "总行数",
+            "format" : "int64",
+            "type" : "integer"
+          },
+          "tag_loading_report" : {
+            "$ref" : "#/components/schemas/sensorsdata.horizon.v1.TagTaskReport.TagLoadingReport"
+          },
+          "extend_report_info" : {
+            "additionalProperties" : {
+              "description" : "",
+              "type" : "string"
+            },
+            "description" : "标签值信息\n TagValueReport tag_value_report = 5 [deprecated = true];\n 后续报表会比较多，是一个变化的点，这里使用 map 结构",
+            "type" : "object"
+          }
+        },
+        "title" : "TagTaskReport",
+        "type" : "object"
+      },
+      "sensorsdata.horizon.v1.SqlSegmentRuleExpression" : {
+        "description" : "",
+        "properties" : {
+          "sql" : {
+            "description" : "SQL 的结果只取一列 user_id",
+            "example" : "select user_id as id from user where user_id > 100",
+            "type" : "string"
+          },
+          "query_options" : {
+            "description" : "SQL 执行的选项",
+            "example" : "{\"option\":\"TIMEOUT\",\"value\":\"120\"}",
+            "items" : {
+              "$ref" : "#/components/schemas/sensorsdata.horizon.v1.SqlSegmentRuleExpression.QueryOption"
+            },
+            "type" : "array"
+          }
+        },
+        "title" : "SqlSegmentRuleExpression",
+        "type" : "object"
+      },
+      "sensorsdata.common.CompoundFilterCondition" : {
+        "description" : "复合过滤条件，用于描述 condition 或 compound_filter 之间的关系",
+        "properties" : {
+          "operator" : {
+            "description" : "逻辑运算法",
+            "enum" : [ "LOGICAL_OPERATOR_UNSPECIFIED", "AND", "OR" ],
+            "example" : "AND",
+            "type" : "string"
+          },
+          "conditions" : {
+            "description" : "过滤条件列表，只有最后一级才有",
+            "items" : {
+              "$ref" : "#/components/schemas/sensorsdata.common.FilterCondition"
+            },
+            "type" : "array"
+          },
+          "compound_conditions" : {
+            "description" : "嵌套的下一级复合过滤条件",
+            "items" : {
+              "$ref" : "#/components/schemas/sensorsdata.common.CompoundFilterCondition"
+            },
+            "type" : "array"
+          },
+          "index" : {
+            "description" : "当前筛选条件所处的位置下标，主要为了保证前端展示顺序的稳定",
+            "example" : 10,
+            "format" : "int32",
+            "type" : "integer"
+          }
+        },
+        "title" : "CompoundFilterCondition",
+        "type" : "object"
+      },
+      "sensorsdata.horizon.v1.SegmentRule" : {
+        "description" : "",
+        "properties" : {
+          "entity_name" : {
+            "description" : "",
+            "type" : "string"
+          },
+          "name" : {
+            "description" : "",
+            "type" : "string"
+          },
+          "display_name" : {
+            "description" : "",
+            "type" : "string"
+          },
+          "comment" : {
+            "description" : "",
+            "type" : "string"
+          },
+          "id" : {
+            "description" : "",
+            "format" : "int32",
+            "type" : "integer"
+          },
+          "status" : {
+            "description" : "",
+            "enum" : [ "STATUS_UNSPECIFIED", "ACTIVE", "INACTIVE", "DELETE_REQUESTED" ],
+            "type" : "string"
+          },
+          "expression" : {
+            "$ref" : "#/components/schemas/sensorsdata.horizon.v1.SegmentRuleExpression"
+          },
+          "version" : {
+            "description" : "",
+            "type" : "string"
+          },
+          "rule_available" : {
+            "description" : "",
+            "type" : "boolean"
+          },
+          "created_by" : {
+            "description" : "",
+            "type" : "string"
+          },
+          "custom_params" : {
+            "additionalProperties" : {
+              "$ref" : "#/components/schemas/sensorsdata.common.Literal"
+            },
+            "description" : "",
+            "type" : "object"
+          },
+          "creator_id" : {
+            "description" : "",
+            "type" : "string"
+          },
+          "modifier_id" : {
+            "description" : "",
+            "type" : "string"
+          },
+          "create_time" : {
+            "description" : "",
+            "format" : "date-time",
+            "type" : "string"
+          },
+          "update_time" : {
+            "description" : "",
+            "format" : "date-time",
+            "type" : "string"
+          },
+          "type" : {
+            "description" : "",
+            "enum" : [ "TYPE_UNSPECIFIED", "SEGMENT_DEFINITION_RULE", "ENTITY_SET_RULE" ],
+            "type" : "string"
+          },
+          "read_only" : {
+            "description" : "",
+            "type" : "boolean"
+          },
+          "delete_flag" : {
+            "description" : "",
+            "format" : "int64",
+            "type" : "integer"
+          }
+        },
+        "required" : [ "entity_name", "expression" ],
+        "title" : "SegmentRule",
+        "type" : "object"
+      },
+      "sensorsdata.horizon.v1.UpdateTagSchedulerStatusRequest" : {
+        "description" : "",
+        "properties" : {
+          "entity_name" : {
+            "description" : "实体名称",
+            "example" : "user",
+            "type" : "string"
+          },
+          "tag_name" : {
+            "description" : "标签名称",
+            "example" : "user_tag_c1",
+            "type" : "string"
+          },
+          "status" : {
+            "description" : "指定状态， 只能由 TAG_ACTIVE -> TAG_SUSPENDED 或者 TAG_SUSPENDED -> TAG_ACTIVE",
+            "enum" : [ "TAG_STATUS_UNSPECIFIED", "TAG_NEW", "TAG_ACTIVE", "TAG_SUSPENDED", "TAG_DELETE_REQUESTED", "TAG_ARCHIVED" ],
+            "example" : "TAG_SUSPENDED",
+            "type" : "string"
+          }
+        },
+        "required" : [ "entity_name", "tag_name" ],
+        "title" : "UpdateTagSchedulerStatusRequest",
+        "type" : "object"
+      },
+      "sensorsdata.horizon.v1.TagStorageSettings" : {
+        "description" : "标签存储设置",
+        "properties" : {
+          "version_count" : {
+            "description" : "标签版本数量，默认值为 100",
+            "example" : 100,
+            "format" : "int32",
+            "type" : "integer"
+          }
+        },
+        "title" : "TagStorageSettings",
+        "type" : "object"
+      },
+      "sensorsdata.horizon.v1.ListTagDefinitionsRequest" : {
+        "description" : "",
+        "properties" : {
+          "page_size" : {
+            "description" : "查询的分页大小，如果page=-1，page_size 非比传，其他情况要求必须大于 0",
+            "example" : 100,
+            "format" : "int32",
+            "type" : "integer"
+          },
+          "page" : {
+            "description" : "查询的页号，-1 表示不分页，其他情况要求必须大于 0",
+            "example" : 1,
+            "format" : "int32",
+            "type" : "integer"
+          },
+          "project_id" : {
+            "description" : "项目 ID",
+            "example" : 1,
+            "format" : "int32",
+            "type" : "integer"
+          },
+          "entity_name" : {
+            "description" : "实体名称",
+            "example" : "user",
+            "type" : "string"
+          },
+          "tag_names" : {
+            "description" : "标签名称列表，非必传",
+            "example" : "[\"user_tag1\", \"user_tag2\"]",
+            "items" : {
+              "type" : "string"
+            },
+            "type" : "array"
+          },
+          "show_deleted" : {
+            "description" : "是否返回回收站的标签",
+            "example" : false,
+            "type" : "boolean"
+          },
+          "show_invisible" : {
+            "description" : "是否返回不可见的标签， 默认情况下只返回可见的比标签",
+            "example" : true,
+            "type" : "boolean"
+          },
+          "label_filters" : {
+            "description" : "扩展属性过滤条件,按照过滤条件中的扩展属性名与扩展属性值进行过滤",
+            "example" : "{\"label_name\": \"extend_name1\", \"label_values\": [\"label_value\"]}",
+            "items" : {
+              "$ref" : "#/components/schemas/sensorsdata.horizon.v1.TagLabel"
+            },
+            "type" : "array"
+          },
+          "create_types" : {
+            "description" : "按照标签创建方式过滤",
+            "example" : "[\"TAG_CUSTOMIZED_RULE\"]",
+            "items" : {
+              "type" : "string"
+            },
+            "type" : "array"
+          }
+        },
+        "required" : [ "entity_name", "page", "project_id" ],
+        "title" : "ListTagDefinitionsRequest",
+        "type" : "object"
+      },
+      "sensorsdata.horizon.v1.RankField" : {
+        "description" : "",
+        "properties" : {
+          "type" : {
+            "description" : "排序类型\n```\n  SHUFFLE_RANK: 随机值的排序值为序列号\n  PERCENT_SHUFFLE_RANK: 随机值的排序百分比为序列号，如：0.1 表示该随机值在所有值中的位次为前百分之十\n  ORDER_RANK: orders 排序值为序列号\n  PERCENT_ORDER_RANK: orders 排序值的排序百分比为序列号，如：0.1 表示根据 order 排序的序号值在所有值中的位次为前百分之十\n```",
+            "enum" : [ "RANK_TYPE_UNSPECIFIED", "SHUFFLE_RANK", "PERCENT_SHUFFLE_RANK", "ORDER_RANK", "PERCENT_ORDER_RANK" ],
+            "example" : "SHUFFLE_RANK",
+            "type" : "string"
+          },
+          "orders" : {
+            "description" : "排序字段信息",
+            "items" : {
+              "$ref" : "#/components/schemas/sensorsdata.horizon.v1.Order"
+            },
+            "type" : "array"
+          }
+        },
+        "title" : "RankField",
+        "type" : "object"
+      },
+      "sensorsdata.horizon.v1.EvaluateTagRequest.EvaluateTagParam.TagTaskParamsEntry" : {
+        "description" : "",
+        "properties" : {
+          "key" : {
+            "description" : "",
+            "type" : "string"
+          },
+          "value" : {
+            "$ref" : "#/components/schemas/sensorsdata.common.Literal"
+          }
+        },
+        "title" : "TagTaskParamsEntry",
+        "type" : "object"
+      },
+      "sensorsdata.horizon.v1.EvaluateTagRequest.EvaluateTagParam" : {
+        "description" : "标签计算参数",
+        "properties" : {
+          "tag_definition_name" : {
+            "description" : "标签定义名",
+            "example" : "user_tag_c1",
+            "type" : "string"
+          },
+          "tag_task_params" : {
+            "additionalProperties" : {
+              "$ref" : "#/components/schemas/sensorsdata.common.Literal"
+            },
+            "description" : "标签计算需要的参数\n```\ndependency_check_param 忽略依赖检查，value可以传，只要有该key就会忽略检查\nLOADING_FILE_KEY 导入分群类型时候，触发计算使用的文件，只支持hdfs文件路径。（不推荐使用）\nLOADING_FILE_TOKEN 导入分群类型时候，触发计算的时候通过 file-service 接口上传文件生成的token。 该接口从 SA 302套餐，horizon 1.3.4 版本开始支持\nLOADING_DATA_FORMAT 导入文件内容格式， 支持 LINE_OF_DISTINCT_ID 只有标签数据类型为boolean类型的时候支持，默认标签值都是true\n                                        CSV_FILE 第一列是用户标识，第二列是标签值，用逗号分隔\n                                        JSON     json的格式是 {\"distinct_id\": \"用户标识如手机号\", \"value\": \"tag_value\"}\n```",
+            "example" : {
+              "LOADING_FILE_TOKEN" : {
+                "data_type" : "STRING",
+                "string_value" : "199b2c74c22f40b0a632e407a0872b00"
+              },
+              "LOADING_DATA_FORMAT" : {
+                "data_type" : "STRING",
+                "string_value" : "JSON"
+              },
+              "dependency_check_param" : {
+                "data_type" : "BOOL",
+                "bool_value" : "true"
+              }
+            },
+            "type" : "object"
+          },
+          "base_time" : {
+            "description" : "计算的基准时间\n 计算的基准时间， 必须是 2023-01-01T00:00:00Z 格式的时间戳",
+            "example" : "2023-01-01T16:00:00Z",
+            "format" : "date-time",
+            "type" : "string"
+          }
+        },
+        "required" : [ "base_time", "tag_definition_name" ],
+        "title" : "EvaluateTagParam",
+        "type" : "object"
+      },
+      "sensorsdata.horizon.v1.RecoverArchivedTagDefinitionRequest" : {
+        "description" : "",
+        "properties" : {
+          "entity_name" : {
+            "description" : "实体名称",
+            "example" : "user",
+            "type" : "string"
+          },
+          "name" : {
+            "description" : "标签名称",
+            "example" : "user_tag_c1",
+            "type" : "string"
+          },
+          "destination_parent" : {
+            "description" : "恢复到的目录。若目录不存在或已删除，操作不会成功。\n 若不传该参数，则恢复到删除前的目录。若之前的目录不存在，则操作不成功。",
+            "type" : "string"
+          }
+        },
+        "required" : [ "entity_name", "name" ],
+        "title" : "RecoverArchivedTagDefinitionRequest",
+        "type" : "object"
+      },
+      "sensorsdata.horizon.v1.SubmitTagImportTaskResponseHttpApiResult" : {
+        "properties" : {
+          "code" : {
+            "type" : "string"
+          },
+          "message" : {
+            "type" : "string"
+          },
+          "request_id" : {
+            "type" : "string"
+          },
+          "data" : {
+            "$ref" : "#/components/schemas/sensorsdata.horizon.v1.SubmitTagImportTaskResponse"
+          },
+          "error_info" : {
+            "$ref" : "#/components/schemas/sensorsdata.common.ErrorInfo"
+          }
+        },
+        "title" : "sensorsdata.horizon.v1.SubmitTagImportTaskResponseHttpApiResult",
+        "type" : "object"
+      },
+      "sensorsdata.horizon.v1.ListTagDefinitionSourceResponseHttpApiResult" : {
+        "properties" : {
+          "code" : {
+            "type" : "string"
+          },
+          "message" : {
+            "type" : "string"
+          },
+          "request_id" : {
+            "type" : "string"
+          },
+          "data" : {
+            "$ref" : "#/components/schemas/sensorsdata.horizon.v1.ListTagDefinitionSourceResponse"
+          },
+          "error_info" : {
+            "$ref" : "#/components/schemas/sensorsdata.common.ErrorInfo"
+          }
+        },
+        "title" : "sensorsdata.horizon.v1.ListTagDefinitionSourceResponseHttpApiResult",
+        "type" : "object"
+      },
+      "sensorsdata.horizon.v1.ListTagPartitionsRequest" : {
+        "description" : "",
+        "properties" : {
+          "entity_name" : {
+            "description" : "一次只能查一个 entity",
+            "example" : "user",
+            "type" : "string"
+          },
+          "tag_name" : {
+            "description" : "标签名称",
+            "example" : "user_tag_c1",
+            "type" : "string"
+          },
+          "start_time" : {
+            "description" : "查询partition的开始时间",
+            "example" : "2023-01-01T16:00:00Z",
+            "format" : "date-time",
+            "type" : "string"
+          },
+          "end_time" : {
+            "description" : "查询partition的结束时间",
+            "example" : "2023-01-02T16:00:00Z",
+            "format" : "date-time",
+            "type" : "string"
+          },
+          "base_time_list" : {
+            "description" : "用于获取指定的 base_time 信息\n protolint:disable:next REPEATED_FIELD_NAMES_PLURALIZED",
+            "items" : {
+              "description" : "google.protobuf.Timestamp 按照 rfc 3399",
+              "format" : "date-time",
+              "type" : "string"
+            },
+            "type" : "array"
+          },
+          "limit" : {
+            "description" : "默认使用 base_time 排序",
+            "format" : "int32",
+            "type" : "integer"
+          }
+        },
+        "title" : "ListTagPartitionsRequest",
+        "type" : "object"
+      },
+      "sensorsdata.horizon.v1.LoadingSegmentRuleExpression" : {
+        "description" : "",
+        "properties" : {
+          "matched_field" : {
+            "description" : "匹配字段, 文件放在任务中，规则中没有文件信息",
+            "example" : "user.$identity_login_id",
+            "type" : "string"
+          },
+          "sync_flag" : {
+            "description" : "导入的用户不在实体中，是否通过到实体表。如导入列表中有个 用户标识=【新增用户1】不在用户表， 这个参数可以控制是否将【新增用户1】 通过到用户表",
+            "example" : false,
+            "type" : "boolean"
+          },
+          "loading_type" : {
+            "description" : "导入类型，\n ```\n TAG_LOADING_TYPE_OVERWRITE: 覆盖模式\n TAG_LOADING_TYPE_INCREMENT: 增量模式\n ```",
+            "enum" : [ "LOADING_TYPE_UNSPECIFIED", "LOADING_TYPE_OVERWRITE", "LOADING_TYPE_INCREMENT" ],
+            "example" : "TAG_LOADING_TYPE_OVERWRITE",
+            "type" : "string"
+          }
+        },
+        "title" : "LoadingSegmentRuleExpression",
+        "type" : "object"
+      },
+      "sensorsdata.horizon.v1.GetTagTaskUsedDataResourceResponseHttpApiResult" : {
+        "properties" : {
+          "code" : {
+            "type" : "string"
+          },
+          "message" : {
+            "type" : "string"
+          },
+          "request_id" : {
+            "type" : "string"
+          },
+          "data" : {
+            "$ref" : "#/components/schemas/sensorsdata.horizon.v1.GetTagTaskUsedDataResourceResponse"
+          },
+          "error_info" : {
+            "$ref" : "#/components/schemas/sensorsdata.common.ErrorInfo"
+          }
+        },
+        "title" : "sensorsdata.horizon.v1.GetTagTaskUsedDataResourceResponseHttpApiResult",
+        "type" : "object"
+      },
+      "sensorsdata.common.Literal" : {
+        "description" : "",
+        "properties" : {
+          "data_type" : {
+            "description" : "",
+            "enum" : [ "DATA_TYPE_UNSPECIFIED", "BOOL", "INT", "NUMBER", "STRING", "LIST", "DATETIME", "DATE", "BIGINT", "DECIMAL" ],
+            "type" : "string"
+          },
+          "bool_value" : {
+            "description" : "",
+            "type" : "boolean"
+          },
+          "int_value" : {
+            "description" : "",
+            "format" : "int64",
+            "type" : "integer"
+          },
+          "number_value" : {
+            "description" : "",
+            "format" : "double",
+            "type" : "number"
+          },
+          "string_value" : {
+            "description" : "",
+            "type" : "string"
+          },
+          "list_value" : {
+            "description" : "",
+            "items" : {
+              "type" : "string"
+            },
+            "type" : "array"
+          },
+          "datetime_value" : {
+            "description" : "",
+            "format" : "date-time",
+            "type" : "string"
+          },
+          "date_value" : {
+            "description" : "",
+            "type" : "string"
+          },
+          "bigint_value" : {
+            "description" : "",
+            "format" : "int64",
+            "type" : "integer"
+          },
+          "decimal_value" : {
+            "description" : "",
+            "type" : "string"
+          }
+        },
+        "title" : "Literal",
+        "type" : "object"
+      },
+      "sensorsdata.horizon.v1.ListTagDefinitionPublicTableInfoResponseHttpApiResult" : {
+        "properties" : {
+          "code" : {
+            "type" : "string"
+          },
+          "message" : {
+            "type" : "string"
+          },
+          "request_id" : {
+            "type" : "string"
+          },
+          "data" : {
+            "$ref" : "#/components/schemas/sensorsdata.horizon.v1.ListTagDefinitionPublicTableInfoResponse"
+          },
+          "error_info" : {
+            "$ref" : "#/components/schemas/sensorsdata.common.ErrorInfo"
+          }
+        },
+        "title" : "sensorsdata.horizon.v1.ListTagDefinitionPublicTableInfoResponseHttpApiResult",
+        "type" : "object"
+      },
+      "sensorsdata.horizon.v1.TagTask.TagTaskParamsEntry" : {
+        "description" : "",
+        "properties" : {
+          "key" : {
+            "description" : "",
+            "type" : "string"
+          },
+          "value" : {
+            "$ref" : "#/components/schemas/sensorsdata.common.Literal"
+          }
+        },
+        "title" : "TagTaskParamsEntry",
+        "type" : "object"
+      },
+      "sensorsdata.common.ErrorCause" : {
+        "properties" : {
+          "error_cause" : {
+            "description" : "致错原因1",
+            "example" : "参数异常1",
+            "type" : "string"
+          },
+          "action_suggestion" : {
+            "description" : "操作建议，针对该原因，建议的解决方式",
+            "example" : "检测入参的数据类型1",
+            "type" : "string"
+          }
+        },
+        "title" : "ErrorCause",
+        "type" : "object"
+      },
+      "sensorsdata.common.ErrorInfo" : {
+        "properties" : {
+          "code" : {
+            "description" : "具体的错误码",
+            "example" : "XX-D-F-2-1",
+            "type" : "string"
+          },
+          "description" : {
+            "description" : "错误描述",
+            "example" : "前端参数校验异常,PARAMETER_FORMAT_ERROR(quantiles=[10, -90] is not include [0, 100])",
+            "type" : "string"
+          },
+          "system_response" : {
+            "description" : "致错的可能原因列表",
+            "example" : "系统终止了查询处理",
+            "type" : "string"
+          },
+          "error_causes" : {
+            "items" : {
+              "$ref" : "#/components/schemas/sensorsdata.common.ErrorCause"
+            },
+            "type" : "array"
+          },
+          "context" : {
+            "$ref" : "#/components/schemas/sensorsdata.common.ErrorContext"
+          }
+        },
+        "title" : "ErrorInfo",
+        "type" : "object"
+      },
+      "sensorsdata.horizon.v1.GetTagDefinitionRequest" : {
+        "description" : "",
+        "properties" : {
+          "project_id" : {
+            "description" : "项目 ID",
+            "example" : 1,
+            "format" : "int32",
+            "type" : "integer"
+          },
+          "entity_name" : {
+            "description" : "实体名称",
+            "example" : "user",
+            "type" : "string"
+          },
+          "name" : {
+            "description" : "标签名称",
+            "example" : "user_tag_c1",
+            "type" : "string"
+          },
+          "show_deleted" : {
+            "description" : "是否返回回收站的标签",
+            "example" : false,
+            "type" : "boolean"
+          }
+        },
+        "required" : [ "entity_name", "name", "project_id" ],
+        "title" : "GetTagDefinitionRequest",
+        "type" : "object"
+      },
+      "sensorsdata.horizon.v1.GetTagTaskRequest" : {
+        "description" : "",
+        "properties" : {
+          "entity_name" : {
+            "description" : "实体名称",
+            "example" : "user",
+            "type" : "string"
+          },
+          "tag_name" : {
+            "description" : "标签名称",
+            "example" : "user_tag_c1",
+            "type" : "string"
+          },
+          "fetch_all" : {
+            "description" : "默认为 false，如果为 false，则返回每个基准时间的最后一次 task 记录\n 如果为 true，则返回每个基准时间的所有 task 记录",
+            "example" : false,
+            "type" : "boolean"
+          },
+          "start_time" : {
+            "description" : "查询的基准时间的起始时间，必填",
+            "example" : "2025-01-01T16:00:00Z",
+            "format" : "date-time",
+            "type" : "string"
+          },
+          "end_time" : {
+            "description" : "查询的基准时间的结束时间，必填",
+            "example" : "2025-04-01T16:00:00Z",
+            "format" : "date-time",
+            "type" : "string"
+          },
+          "base_time_list" : {
+            "description" : "与 start_time 和 end_time 互斥，如果不为空，优选使用 base_time_list 查询",
+            "example" : "[\"2024-12-31T16:00:00Z\", \"2024-01-01T16:00:00Z\"]",
+            "items" : {
+              "description" : "google.protobuf.Timestamp 按照 rfc 3399",
+              "format" : "date-time",
+              "type" : "string"
+            },
+            "type" : "array"
+          }
+        },
+        "required" : [ "end_time", "entity_name", "start_time", "tag_name" ],
+        "title" : "GetTagTaskRequest",
+        "type" : "object"
+      },
+      "sensorsdata.common.TimeInterval" : {
+        "description" : "",
+        "properties" : {
+          "size" : {
+            "description" : "",
+            "format" : "int32",
+            "type" : "integer"
+          },
+          "unit" : {
+            "description" : "",
+            "enum" : [ "DATE_TIME_UNIT_UNSPECIFIED", "MILLISECOND", "SECOND", "MINUTE", "HOUR", "DAY", "WEEK", "MONTH", "YEAR" ],
+            "type" : "string"
+          }
+        },
+        "title" : "TimeInterval",
+        "type" : "object"
+      },
+      "sensorsdata.horizon.v1.TagLabel" : {
+        "description" : "标签扩展属性信息",
+        "properties" : {
+          "label_name" : {
+            "description" : "扩展属性的英文名",
+            "example" : "tag_label_name1",
+            "type" : "string"
+          },
+          "label_display_name" : {
+            "description" : "扩展属性显示名",
+            "example" : "标签扩展属性1",
+            "type" : "string"
+          },
+          "label_type" : {
+            "description" : "扩展属性类型",
+            "enum" : [ "TAG_LABEL_TYPE_UNSPECIFIED", "SINGLE_ENUM", "MULTI_ENUM", "INPUT_TEXT", "INPUT_DATE" ],
+            "example" : "SINGLE_ENUM",
+            "type" : "string"
+          },
+          "label_values" : {
+            "description" : "扩展属性值",
+            "example" : "[\"标签自定义属性值1\"]",
+            "items" : {
+              "type" : "string"
+            },
+            "type" : "array"
+          }
+        },
+        "title" : "TagLabel",
+        "type" : "object"
+      },
+      "sensorsdata.horizon.v1.AggregatorField" : {
+        "description" : "",
+        "properties" : {
+          "aggregator" : {
+            "description" : "聚合类型\n```\n  COUNT: 计数\n  SUM: 求和\n  AVG: 平均值\n  MIN: 最小值\n  MAX: 最大值\n```",
+            "enum" : [ "AGGREGATOR_TYPE_UNSPECIFIED", "COUNT", "AVG", "MAX", "MIN", "SUM", "UNIQUE_COUNT", "UNIQUE_AVG", "BOUNCE_RATE", "EXIT_RATE", "UNIQUE_COUNT_APPROX", "COUNT_PERCENT", "RANK_ASC", "RANK_DESC", "PERCENT_RANK_ASC", "PERCENT_RANK_DESC", "SESSION_COUNT", "FIRST_TIME", "LAST_TIME", "FIRST_TIME_INTERVAL", "LAST_TIME_INTERVAL", "GROUP_CONCAT", "UNIQUE_COUNT_BITMAP", "UNIQUE_COUNT_APPROX_ORDINARY", "COUNT_DISTINCT", "LTV", "LTV_AVG", "COUNT_RANK", "AVG_RANK", "MAX_RANK", "MIN_RANK", "SUM_RANK", "COUNT_RANK_ASC", "COUNT_RANK_DESC", "COUNT_PERCENT_RANK_ASC", "COUNT_PERCENT_RANK_DESC", "AVG_RANK_ASC", "AVG_RANK_DESC", "AVG_PERCENT_RANK_ASC", "AVG_PERCENT_RANK_DESC", "MAX_RANK_ASC", "MAX_RANK_DESC", "MAX_PERCENT_RANK_ASC", "MAX_PERCENT_RANK_DESC", "MIN_RANK_ASC", "MIN_RANK_DESC", "MIN_PERCENT_RANK_ASC", "MIN_PERCENT_RANK_DESC", "SUM_RANK_ASC", "SUM_RANK_DESC", "SUM_PERCENT_RANK_ASC", "SUM_PERCENT_RANK_DESC" ],
+            "example" : "SUM",
+            "type" : "string"
+          },
+          "field" : {
+            "description" : "聚合字段",
+            "example" : "user.$Events.$AppStart.$duration",
+            "type" : "string"
+          }
+        },
+        "title" : "AggregatorField",
+        "type" : "object"
+      },
+      "sensorsdata.horizon.v1.TagAlarmConfig" : {
+        "description" : "标签报警配置",
+        "properties" : {
+          "enable" : {
+            "description" : "是否启用",
+            "example" : true,
+            "type" : "boolean"
+          },
+          "alarm_rules" : {
+            "description" : "报警规则配置",
+            "items" : {
+              "$ref" : "#/components/schemas/sensorsdata.horizon.v1.TagAlarmConfig.AlarmRule"
+            },
+            "type" : "array"
+          }
+        },
+        "title" : "TagAlarmConfig",
+        "type" : "object"
+      },
+      "sensorsdata.horizon.v1.TagDefinitionHttpApiResult" : {
+        "properties" : {
+          "code" : {
+            "type" : "string"
+          },
+          "message" : {
+            "type" : "string"
+          },
+          "request_id" : {
+            "type" : "string"
+          },
+          "data" : {
+            "$ref" : "#/components/schemas/sensorsdata.horizon.v1.TagDefinition"
+          },
+          "error_info" : {
+            "$ref" : "#/components/schemas/sensorsdata.common.ErrorInfo"
+          }
+        },
+        "title" : "sensorsdata.horizon.v1.TagDefinitionHttpApiResult",
+        "type" : "object"
+      }
+    }
+  },
+  "x-sd-openapi-service-name" : "Tag",
+  "x-sd-openapi-service-name-hyphen" : "tag",
+  "x-sd-openapi-app-name" : "horizon",
+  "x-sd-openapi-service-name-zh_cn" : "标签管理",
+  "x-original-swagger-version" : "2.0"
+}

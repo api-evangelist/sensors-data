@@ -1,0 +1,272 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "神策分析"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "获取所有的概览分组信息",
+        "type": "http"
+      },
+      "http": {
+        "method": "GET",
+        "url": "/api/v3/analytics/v1/dashboard/navigation",
+        "headers": [
+          {
+            "name": "api-key",
+            "value": ""
+          },
+          {
+            "name": "sensorsdata-project",
+            "value": ""
+          }
+        ],
+        "params": [
+          {
+            "name": "type",
+            "value": "PRIVATE",
+            "type": "query",
+            "description": "概览类型"
+          },
+          {
+            "name": "request_id",
+            "value": "12345696321548954",
+            "type": "query",
+            "description": "本次请求 ID, 方便后续追踪问题"
+          }
+        ]
+      },
+      "docs": "获取所有的概览分组信息"
+    },
+    {
+      "info": {
+        "name": "获取所有基础数据概览数据",
+        "type": "http"
+      },
+      "http": {
+        "method": "GET",
+        "url": "/api/v3/analytics/v1/dashboard/lego",
+        "headers": [
+          {
+            "name": "api-key",
+            "value": ""
+          },
+          {
+            "name": "sensorsdata-project",
+            "value": ""
+          }
+        ]
+      },
+      "docs": "获取所有基础数据概览数据"
+    },
+    {
+      "info": {
+        "name": "获取单个概览详情",
+        "type": "http"
+      },
+      "http": {
+        "method": "GET",
+        "url": "/api/v3/analytics/v1/dashboard/detail",
+        "headers": [
+          {
+            "name": "api-key",
+            "value": ""
+          },
+          {
+            "name": "sensorsdata-project",
+            "value": ""
+          }
+        ],
+        "params": [
+          {
+            "name": "id",
+            "value": "1",
+            "type": "query",
+            "description": "概览 ID"
+          },
+          {
+            "name": "request_id",
+            "value": "12345696321548954",
+            "type": "query",
+            "description": "本次请求 ID, 方便后续追踪问题"
+          }
+        ]
+      },
+      "docs": "获取单个概览详情"
+    },
+    {
+      "info": {
+        "name": "添加概览分组信息",
+        "type": "http"
+      },
+      "http": {
+        "method": "POST",
+        "url": "/api/v3/analytics/v1/dashboard/navigation/create",
+        "headers": [
+          {
+            "name": "api-key",
+            "value": ""
+          },
+          {
+            "name": "sensorsdata-project",
+            "value": ""
+          }
+        ],
+        "body": {
+          "type": "json",
+          "data": "{}"
+        }
+      },
+      "docs": "添加概览分组信息"
+    },
+    {
+      "info": {
+        "name": "概览分享接口",
+        "type": "http"
+      },
+      "http": {
+        "method": "POST",
+        "url": "/api/v3/analytics/v1/dashboard/share",
+        "headers": [
+          {
+            "name": "api-key",
+            "value": ""
+          },
+          {
+            "name": "sensorsdata-project",
+            "value": ""
+          }
+        ],
+        "body": {
+          "type": "json",
+          "data": "{}"
+        }
+      },
+      "docs": "概览分享接口，可以实现分享和取消概览分享的能力"
+    },
+    {
+      "info": {
+        "name": "获取所有的书签信息",
+        "type": "http"
+      },
+      "http": {
+        "method": "GET",
+        "url": "/api/v3/analytics/v1/dashboard/bookmarks",
+        "headers": [
+          {
+            "name": "api-key",
+            "value": ""
+          },
+          {
+            "name": "sensorsdata-project",
+            "value": ""
+          }
+        ],
+        "params": [
+          {
+            "name": "type",
+            "value": "1",
+            "type": "query",
+            "description": "书签类型，0 私有书签，1 公共书签"
+          },
+          {
+            "name": "has_widget",
+            "value": "true",
+            "type": "query",
+            "description": "是否包含组件类型的书签"
+          },
+          {
+            "name": "has_lego",
+            "value": "true",
+            "type": "query",
+            "description": "是否包含 lego 类型的书签"
+          },
+          {
+            "name": "request_id",
+            "value": "12345696321548954",
+            "type": "query",
+            "description": "本次请求 ID, 方便后续追踪问题"
+          }
+        ]
+      },
+      "docs": "获取所有的书签信息"
+    },
+    {
+      "info": {
+        "name": "创建概览",
+        "type": "http"
+      },
+      "http": {
+        "method": "POST",
+        "url": "/api/v3/analytics/v1/dashboard/create",
+        "headers": [
+          {
+            "name": "api-key",
+            "value": ""
+          },
+          {
+            "name": "sensorsdata-project",
+            "value": ""
+          }
+        ],
+        "body": {
+          "type": "json",
+          "data": "{}"
+        }
+      },
+      "docs": "创建概览"
+    },
+    {
+      "info": {
+        "name": "向已有概览批量追加书签草稿",
+        "type": "http"
+      },
+      "http": {
+        "method": "POST",
+        "url": "/api/v3/analytics/v1/dashboard/bookmarks/add",
+        "headers": [
+          {
+            "name": "api-key",
+            "value": ""
+          },
+          {
+            "name": "sensorsdata-project",
+            "value": ""
+          }
+        ],
+        "body": {
+          "type": "json",
+          "data": "{}"
+        }
+      },
+      "docs": "向已有概览批量追加书签草稿"
+    },
+    {
+      "info": {
+        "name": "全量更新概览及其包含的书签",
+        "type": "http"
+      },
+      "http": {
+        "method": "POST",
+        "url": "/api/v3/analytics/v1/dashboard/update",
+        "headers": [
+          {
+            "name": "api-key",
+            "value": ""
+          },
+          {
+            "name": "sensorsdata-project",
+            "value": ""
+          }
+        ],
+        "body": {
+          "type": "json",
+          "data": "{}"
+        }
+      },
+      "docs": "全量更新概览及其包含的书签"
+    }
+  ],
+  "bundled": true
+}

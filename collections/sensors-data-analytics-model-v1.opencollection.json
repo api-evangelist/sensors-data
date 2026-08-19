@@ -1,0 +1,605 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "神策分析"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "查询事件分析报告",
+        "type": "http"
+      },
+      "http": {
+        "method": "POST",
+        "url": "/api/v3/analytics/v1/model/segmentation/report",
+        "headers": [
+          {
+            "name": "api-key",
+            "value": ""
+          },
+          {
+            "name": "sensorsdata-project",
+            "value": ""
+          }
+        ],
+        "body": {
+          "type": "json",
+          "data": "{}"
+        }
+      },
+      "docs": "查询事件分析报告"
+    },
+    {
+      "info": {
+        "name": "查询漏斗分析报告",
+        "type": "http"
+      },
+      "http": {
+        "method": "POST",
+        "url": "/api/v3/analytics/v1/model/funnel/report",
+        "headers": [
+          {
+            "name": "api-key",
+            "value": ""
+          },
+          {
+            "name": "sensorsdata-project",
+            "value": ""
+          }
+        ],
+        "body": {
+          "type": "json",
+          "data": "{}"
+        }
+      },
+      "docs": "查询漏斗分析报告"
+    },
+    {
+      "info": {
+        "name": "查询留存分析报告",
+        "type": "http"
+      },
+      "http": {
+        "method": "POST",
+        "url": "/api/v3/analytics/v1/model/retention/report",
+        "headers": [
+          {
+            "name": "api-key",
+            "value": ""
+          },
+          {
+            "name": "sensorsdata-project",
+            "value": ""
+          }
+        ],
+        "body": {
+          "type": "json",
+          "data": "{}"
+        }
+      },
+      "docs": "查询留存分析报告"
+    },
+    {
+      "info": {
+        "name": "查询间隔分析报告",
+        "type": "http"
+      },
+      "http": {
+        "method": "POST",
+        "url": "/api/v3/analytics/v1/model/interval/report",
+        "headers": [
+          {
+            "name": "api-key",
+            "value": ""
+          },
+          {
+            "name": "sensorsdata-project",
+            "value": ""
+          }
+        ],
+        "body": {
+          "type": "json",
+          "data": "{}"
+        }
+      },
+      "docs": "查询间隔分析报告"
+    },
+    {
+      "info": {
+        "name": "查询分布分析报告",
+        "type": "http"
+      },
+      "http": {
+        "method": "POST",
+        "url": "/api/v3/analytics/v1/model/addiction/report",
+        "headers": [
+          {
+            "name": "api-key",
+            "value": ""
+          },
+          {
+            "name": "sensorsdata-project",
+            "value": ""
+          }
+        ],
+        "body": {
+          "type": "json",
+          "data": "{}"
+        }
+      },
+      "docs": "查询分布分析报告"
+    },
+    {
+      "info": {
+        "name": "查询用户路径分析报告",
+        "type": "http"
+      },
+      "http": {
+        "method": "POST",
+        "url": "/api/v3/analytics/v1/model/path/analytics/report",
+        "headers": [
+          {
+            "name": "api-key",
+            "value": ""
+          },
+          {
+            "name": "sensorsdata-project",
+            "value": ""
+          }
+        ],
+        "body": {
+          "type": "json",
+          "data": "{}"
+        }
+      },
+      "docs": "查询用户路径分析报告"
+    },
+    {
+      "info": {
+        "name": "查询属性分析报告",
+        "type": "http"
+      },
+      "http": {
+        "method": "POST",
+        "url": "/api/v3/analytics/v1/model/user-analytics/report",
+        "headers": [
+          {
+            "name": "api-key",
+            "value": ""
+          },
+          {
+            "name": "sensorsdata-project",
+            "value": ""
+          }
+        ],
+        "body": {
+          "type": "json",
+          "data": "{}"
+        }
+      },
+      "docs": "查询属性分析报告"
+    },
+    {
+      "info": {
+        "name": "查询归因分析报告",
+        "type": "http"
+      },
+      "http": {
+        "method": "POST",
+        "url": "/api/v3/analytics/v1/model/attribution/report",
+        "headers": [
+          {
+            "name": "api-key",
+            "value": ""
+          },
+          {
+            "name": "sensorsdata-project",
+            "value": ""
+          }
+        ],
+        "body": {
+          "type": "json",
+          "data": "{}"
+        }
+      },
+      "docs": "查询归因分析报告"
+    },
+    {
+      "info": {
+        "name": "查询 LTV 分析报告",
+        "type": "http"
+      },
+      "http": {
+        "method": "POST",
+        "url": "/api/v3/analytics/v1/model/ltv/report",
+        "headers": [
+          {
+            "name": "api-key",
+            "value": ""
+          },
+          {
+            "name": "sensorsdata-project",
+            "value": ""
+          }
+        ],
+        "body": {
+          "type": "json",
+          "data": "{}"
+        }
+      },
+      "docs": "查询 LTV 分析报告"
+    },
+    {
+      "info": {
+        "name": "查询 SESSION 分析报告",
+        "type": "http"
+      },
+      "http": {
+        "method": "POST",
+        "url": "/api/v3/analytics/v1/model/session/report",
+        "headers": [
+          {
+            "name": "api-key",
+            "value": ""
+          },
+          {
+            "name": "sensorsdata-project",
+            "value": ""
+          }
+        ],
+        "body": {
+          "type": "json",
+          "data": "{}"
+        }
+      },
+      "docs": "查询 SESSION 分析报告"
+    },
+    {
+      "info": {
+        "name": "查询事件分析用户明细",
+        "type": "http"
+      },
+      "http": {
+        "method": "POST",
+        "url": "/api/v3/analytics/v1/model/segmentation/users",
+        "headers": [
+          {
+            "name": "api-key",
+            "value": ""
+          },
+          {
+            "name": "sensorsdata-project",
+            "value": ""
+          }
+        ],
+        "body": {
+          "type": "json",
+          "data": "{}"
+        }
+      },
+      "docs": "查询事件分析用户明细"
+    },
+    {
+      "info": {
+        "name": "查询 session 分析用户明细",
+        "type": "http"
+      },
+      "http": {
+        "method": "POST",
+        "url": "/api/v3/analytics/v1/model/session/users",
+        "headers": [
+          {
+            "name": "api-key",
+            "value": ""
+          },
+          {
+            "name": "sensorsdata-project",
+            "value": ""
+          }
+        ],
+        "body": {
+          "type": "json",
+          "data": "{}"
+        }
+      },
+      "docs": "查询 session 分析用户明细"
+    },
+    {
+      "info": {
+        "name": "查询漏斗分析用户明细",
+        "type": "http"
+      },
+      "http": {
+        "method": "POST",
+        "url": "/api/v3/analytics/v1/model/funnel/users",
+        "headers": [
+          {
+            "name": "api-key",
+            "value": ""
+          },
+          {
+            "name": "sensorsdata-project",
+            "value": ""
+          }
+        ],
+        "body": {
+          "type": "json",
+          "data": "{}"
+        }
+      },
+      "docs": "查询漏斗分析用户明细"
+    },
+    {
+      "info": {
+        "name": "查询留存分析用户明细",
+        "type": "http"
+      },
+      "http": {
+        "method": "POST",
+        "url": "/api/v3/analytics/v1/model/retention/users",
+        "headers": [
+          {
+            "name": "api-key",
+            "value": ""
+          },
+          {
+            "name": "sensorsdata-project",
+            "value": ""
+          }
+        ],
+        "body": {
+          "type": "json",
+          "data": "{}"
+        }
+      },
+      "docs": "查询留存分析用户明细"
+    },
+    {
+      "info": {
+        "name": "查询分布分析用户明细",
+        "type": "http"
+      },
+      "http": {
+        "method": "POST",
+        "url": "/api/v3/analytics/v1/model/addiction/users",
+        "headers": [
+          {
+            "name": "api-key",
+            "value": ""
+          },
+          {
+            "name": "sensorsdata-project",
+            "value": ""
+          }
+        ],
+        "body": {
+          "type": "json",
+          "data": "{}"
+        }
+      },
+      "docs": "查询分布分析用户明细"
+    },
+    {
+      "info": {
+        "name": "查询用户路径分析用户明细",
+        "type": "http"
+      },
+      "http": {
+        "method": "POST",
+        "url": "/api/v3/analytics/v1/model/user-path/users",
+        "headers": [
+          {
+            "name": "api-key",
+            "value": ""
+          },
+          {
+            "name": "sensorsdata-project",
+            "value": ""
+          }
+        ],
+        "body": {
+          "type": "json",
+          "data": "{}"
+        }
+      },
+      "docs": "查询用户路径分析用户明细"
+    },
+    {
+      "info": {
+        "name": "查询 LTV 分析用户明细",
+        "type": "http"
+      },
+      "http": {
+        "method": "POST",
+        "url": "/api/v3/analytics/v1/model/ltv/users",
+        "headers": [
+          {
+            "name": "api-key",
+            "value": ""
+          },
+          {
+            "name": "sensorsdata-project",
+            "value": ""
+          }
+        ],
+        "body": {
+          "type": "json",
+          "data": "{}"
+        }
+      },
+      "docs": "查询 LTV 分析用户明细"
+    },
+    {
+      "info": {
+        "name": "查询用户列表明细",
+        "type": "http"
+      },
+      "http": {
+        "method": "POST",
+        "url": "/api/v3/analytics/v1/model/user/list",
+        "headers": [
+          {
+            "name": "api-key",
+            "value": ""
+          },
+          {
+            "name": "sensorsdata-project",
+            "value": ""
+          }
+        ],
+        "body": {
+          "type": "json",
+          "data": "{}"
+        }
+      },
+      "docs": "查询用户列表明细"
+    },
+    {
+      "info": {
+        "name": "自定义 sql 查询",
+        "type": "http"
+      },
+      "http": {
+        "method": "POST",
+        "url": "/api/v3/analytics/v1/model/sql/query",
+        "headers": [
+          {
+            "name": "api-key",
+            "value": ""
+          },
+          {
+            "name": "sensorsdata-project",
+            "value": ""
+          }
+        ],
+        "body": {
+          "type": "json",
+          "data": "{}"
+        }
+      },
+      "docs": "自定义 sql 查询"
+    },
+    {
+      "info": {
+        "name": "用户行为列表查询",
+        "type": "http"
+      },
+      "http": {
+        "method": "POST",
+        "url": "/api/v3/analytics/v1/model/user/behavior",
+        "headers": [
+          {
+            "name": "api-key",
+            "value": ""
+          },
+          {
+            "name": "sensorsdata-project",
+            "value": ""
+          }
+        ],
+        "body": {
+          "type": "json",
+          "data": "{}"
+        }
+      },
+      "docs": "用户行为列表查询"
+    },
+    {
+      "info": {
+        "name": "rfm分析查询",
+        "type": "http"
+      },
+      "http": {
+        "method": "POST",
+        "url": "/api/v3/analytics/v1/model/rfm/report",
+        "headers": [
+          {
+            "name": "api-key",
+            "value": ""
+          },
+          {
+            "name": "sensorsdata-project",
+            "value": ""
+          }
+        ],
+        "body": {
+          "type": "json",
+          "data": "{}"
+        }
+      },
+      "docs": "rfm分析查询"
+    },
+    {
+      "info": {
+        "name": "获取全量 session 列表",
+        "type": "http"
+      },
+      "http": {
+        "method": "GET",
+        "url": "/api/v3/analytics/v1/model/session/list",
+        "headers": [
+          {
+            "name": "api-key",
+            "value": ""
+          },
+          {
+            "name": "sensorsdata-project",
+            "value": ""
+          }
+        ]
+      },
+      "docs": "获取全量 session 列表"
+    },
+    {
+      "info": {
+        "name": "创建 session",
+        "type": "http"
+      },
+      "http": {
+        "method": "POST",
+        "url": "/api/v3/analytics/v1/model/session/create",
+        "headers": [
+          {
+            "name": "api-key",
+            "value": ""
+          },
+          {
+            "name": "sensorsdata-project",
+            "value": ""
+          }
+        ],
+        "body": {
+          "type": "json",
+          "data": "{}"
+        }
+      },
+      "docs": "创建 session"
+    },
+    {
+      "info": {
+        "name": "更新 session",
+        "type": "http"
+      },
+      "http": {
+        "method": "POST",
+        "url": "/api/v3/analytics/v1/model/session/update",
+        "headers": [
+          {
+            "name": "api-key",
+            "value": ""
+          },
+          {
+            "name": "sensorsdata-project",
+            "value": ""
+          }
+        ],
+        "body": {
+          "type": "json",
+          "data": "{}"
+        }
+      },
+      "docs": "更新 session"
+    }
+  ],
+  "bundled": true
+}

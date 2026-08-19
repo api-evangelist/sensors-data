@@ -1,0 +1,53 @@
+generated: '2026-08-13'
+method: searched
+source: https://docs.sensorsdata.com/sa/docs/about_open_api
+limit_count: 0
+published_limits: false
+response_headers: []
+retry_after: false
+status_on_exhaustion: null
+limits: []
+detail: >-
+  No rate limits are published for the Sensors Data OpenAPI. The overview, authentication
+  and interface manual pages state nothing about QPS, request quotas, burst allowances or
+  throttling behaviour, and none of the 252 published operations documents a 429 response
+  or any X-RateLimit-* / RateLimit-* / Retry-After header. This is consistent with the
+  delivery model: the API runs inside the customer's own cluster, so throughput is bounded
+  by the capacity the customer bought rather than by a vendor-published quota.
+quota_endpoints:
+  note: >-
+    What Sensors Data DOES ship is the inverse of a rate-limit header — explicit
+    quota-read operations that let a client check its own headroom BEFORE it writes. These
+    are business-resource quotas (how many attributes/audiences/tags a project may hold),
+    not request-rate quotas.
+  operations:
+    - operationId: QueryQuota
+      method: GET
+      path: /express-attribute/quota/query
+      spec: openapi/sensors-data-focus-express-attribute-v1-openapi.yml
+      scope: real-time entity attributes per project
+    - operationId: QueryQuota
+      method: GET
+      path: /express-audience-meta/quota/query
+      spec: openapi/sensors-data-focus-express-audience-meta-v1-openapi.yml
+      scope: audience filter rules per project
+    - operationId: QueryRealTimeTagQuota
+      method: POST
+      path: /real-time-tag/quota/query
+      spec: openapi/sensors-data-focus-real-time-tag-v1-openapi.yml
+      scope: real-time tags per project
+documented_throughput_guidance:
+  - surface: Sensors Focus webhook delivery
+    statement: >-
+      "Webhook itself makes no timeliness guarantee." Triggers are micro-batched into a
+      single request to raise throughput, which introduces several seconds of latency.
+      High-volume batch plans and sub-second requirements are both directed to sales
+      engineering rather than to a documented limit.
+    source: https://manual.sensorsdata.cn/sf/docs/webhook_integration
+evidence:
+  - url: https://docs.sensorsdata.com/sa/docs/about_open_api
+    status: 200
+  - url: https://docs.sensorsdata.com/sa/docs/open_api_authentication
+    status: 200
+  - url: https://manual.sensorsdata.cn/sf/docs/webhook_integration
+    status: 200

@@ -1,0 +1,812 @@
+{
+  "item": [
+    {
+      "id": "ad957ced-c08e-488b-a271-6c0fe14b0c80",
+      "name": "创建一个分群引用受众",
+      "request": {
+        "name": "创建一个分群引用受众",
+        "description": {
+          "content": "创建一个分群引用受众",
+          "type": "text/plain"
+        },
+        "url": {
+          "path": [
+            "express-audience-meta",
+            "rule",
+            "user-group-ref",
+            "create"
+          ],
+          "host": [
+            "{{baseUrl}}"
+          ],
+          "query": [],
+          "variable": []
+        },
+        "header": [
+          {
+            "disabled": false,
+            "description": "(Required) 全局唯一的密钥，用于验证和授权访问 API 接口",
+            "key": "api-key",
+            "value": "<string>"
+          },
+          {
+            "disabled": false,
+            "description": "(Required) 项目名, 指定请求所属项目",
+            "key": "sensorsdata-project",
+            "value": "<string>"
+          },
+          {
+            "disabled": false,
+            "description": "(Required) 租户 ID, 用于请求所属租户",
+            "key": "X-Organization-Id",
+            "value": "<string>"
+          },
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          },
+          {
+            "key": "Accept",
+            "value": "application/json"
+          }
+        ],
+        "method": "POST",
+        "auth": null,
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"user_group_name\": \"<string>\",\n  \"audience_biz_id\": \"<string>\",\n  \"audience_biz_name\": \"<string>\"\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        }
+      },
+      "response": [
+        {
+          "id": "db6a7a38-cb84-4f59-a961-969e42413752",
+          "name": "sensorsdata.focus.v1.CreateAudienceFilterRuleResponse",
+          "originalRequest": {
+            "url": {
+              "path": [
+                "express-audience-meta",
+                "rule",
+                "user-group-ref",
+                "create"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "disabled": false,
+                "description": "(Required) 全局唯一的密钥，用于验证和授权访问 API 接口",
+                "key": "api-key",
+                "value": "<string>"
+              },
+              {
+                "disabled": false,
+                "description": "(Required) 项目名, 指定请求所属项目",
+                "key": "sensorsdata-project",
+                "value": "<string>"
+              },
+              {
+                "disabled": false,
+                "description": "(Required) 租户 ID, 用于请求所属租户",
+                "key": "X-Organization-Id",
+                "value": "<string>"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"user_group_name\": \"<string>\",\n  \"audience_biz_id\": \"<string>\",\n  \"audience_biz_name\": \"<string>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "status": "Internal Server Error",
+          "code": 500,
+          "header": [
+            {
+              "key": "Content-Type",
+              "value": "application/json"
+            }
+          ],
+          "body": "{\n  \"code\": \"SUCCESS\",\n  \"data\": {\n    \"audience_filter_rule\": {\n      \"rule_detail\": {\n        \"definition_v1\": {\n          \"user_group_reference_rule_v1\": {},\n          \"batch_rule_v1\": {\n            \"groups\": [\n              {\n                \"profile_dimension_user_group\": {\n                  \"dimension_table\": {\n                    \"predicates\": {\n                      \"simple_predicates\": [\n                        {\n                          \"measures\": [\n                            {\n                              \"sub_dimension_measure\": {}\n                            }\n                          ]\n                        }\n                      ]\n                    }\n                  }\n                },\n                \"event_measure_user_group\": {\n                  \"events\": {\n                    \"condition\": {\n                      \"index\": 10,\n                      \"conditions\": [\n                        {\n                          \"function\": \"EQUAL\",\n                          \"index\": 10,\n                          \"params\": [\n                            {\n                              \"expression\": \"user.p1/user.p2+user.p3\",\n                              \"field\": \"#ResourceId\",\n                              \"variable\": \"$ENTRY_TIME\",\n                              \"value\": {},\n                              \"param_type\": \"FIELD\"\n                            }\n                          ]\n                        }\n                      ],\n                      \"operator\": \"AND\"\n                    },\n                    \"time_range\": {\n                      \"start_time\": {\n                        \"relative_time\": {\n                          \"time_interval\": {}\n                        }\n                      }\n                    }\n                  }\n                },\n                \"group_expression_user_group\": {},\n                \"external_measure_user_group\": {\n                  \"rows\": {}\n                },\n                \"pql_user_group\": {},\n                \"external_profile_user_group\": {},\n                \"event_compound_measure_user_group\": {\n                  \"measure\": {\n                    \"measures\": [\n                      {}\n                    ]\n                  }\n                },\n                \"event_sequence_user_group\": {\n                  \"event_steps\": [\n                    {}\n                  ]\n                },\n                \"sql_user_group\": {\n                  \"query_options\": [\n                    {}\n                  ]\n                },\n                \"profile_user_group\": {}\n              }\n            ],\n            \"tailor\": {\n              \"rank_field\": {\n                \"orders\": [\n                  {\n                    \"measure\": {\n                      \"aggregator_field\": {}\n                    }\n                  }\n                ]\n              }\n            },\n            \"sort_info\": {}\n          },\n          \"realtime_mark_rule_v1\": {},\n          \"audience_rule_detail_param\": {\n            \"segment_rule_expression\": {\n              \"eql_segment_rule\": {\n                \"eql\": \"user.$SegmentMembership.user_segment_t111111.is_not_null()\\nand\\nuser.user_tag_c4 == '标签值1'\\nand\\nuser.vip_level in ['高级VIP','普通用户']\"\n              },\n              \"entity_set_rules\": [\n                {}\n              ],\n              \"used_fields\": [\n                \"user.id\"\n              ],\n              \"sql_segment_rule\": {\n                \"query_options\": {\n                  \"option\": \"TIMEOUT\",\n                  \"value\": \"120\"\n                },\n                \"sql\": \"select user_id as id from user where user_id > 100\"\n              },\n              \"loading_segment_rule\": {\n                \"matched_field\": \"user.$identity_login_id\",\n                \"sync_flag\": false,\n                \"loading_type\": \"TAG_LOADING_TYPE_OVERWRITE\"\n              },\n              \"custom_rule\": {},\n              \"event_sequence_rule\": {\n                \"simple_event_sequences\": [\n                  {\n                    \"time_window\": {\n                      \"unit\": \"DAY\"\n                    },\n                    \"time_range\": {\n                      \"start_time\": {\n                        \"type\": \"RELATIVE\",\n                        \"trunc_unit\": \"DAY\",\n                        \"base_time\": \"$TASK_TIME\",\n                        \"time_interval\": -7\n                      },\n                      \"end_time\": {\n                        \"type\": \"RELATIVE\",\n                        \"trunc_unit\": \"DAY\",\n                        \"base_time\": \"$TASK_TIME\",\n                        \"time_interval\": -1\n                      }\n                    },\n                    \"event_steps\": [\n                      {\n                        \"condition\": {\n                          \"operator\": \"AND\",\n                          \"conditions\": [\n                            {\n                              \"function\": \"IS_TRUE\",\n                              \"params\": [\n                                {\n                                  \"param_type\": \"FIELD\",\n                                  \"field\": \"user.$Events.$AppStart.$is_login_id\"\n                                }\n                              ]\n                            }\n                          ]\n                        },\n                        \"event_name\": \"user.$Events.AppStart\"\n                      }\n                    ]\n                  }\n                ],\n                \"operator\": \"UNION\"\n              },\n              \"tailor\": {\n                \"function\": \"LESS_EQUAL\",\n                \"rank_field\": {\n                  \"type\": \"PERCENT_ORDER_RANK\",\n                  \"orders\": [\n                    {\n                      \"measure\": {\n                        \"type\": \"EQL_MEASURE_FIELD\",\n                        \"eql_measure\": \"user.$Events.virtual_event_for_tag.filter_event(\\n  datetime_add(${var:base_time}, -1, 'DAY'),\\n  datetime_add(${var:base_time}, -1, 'DAY')\\n).count()\"\n                      },\n                      \"is_asc\": false\n                    }\n                  ]\n                },\n                \"params\": [\n                  {\n                    \"param_type\": \"VALUE\",\n                    \"value\": {\n                      \"data_type\": \"NUMBER\",\n                      \"number_value\": 0.1\n                    }\n                  }\n                ]\n              },\n              \"type\": \"SQL_BASED\",\n              \"version\": 2,\n              \"group_expression_rule\": {\n                \"group_expression\": \"$1-$2\"\n              }\n            }\n          }\n        }\n      },\n      \"schedule_conf\": {\n        \"other_trigger\": {\n          \"cron_trigger\": {}\n        },\n        \"first_trigger\": {}\n      }\n    }\n  },\n  \"request_id\": \"1\"\n}",
+          "cookie": [],
+          "_postman_previewlanguage": "json"
+        }
+      ],
+      "event": [],
+      "protocolProfileBehavior": {
+        "disableBodyPruning": true
+      }
+    },
+    {
+      "id": "ac08a511-f9a7-46bb-b197-6e62dc5043aa",
+      "name": "创建一个实时标记受众",
+      "request": {
+        "name": "创建一个实时标记受众",
+        "description": {
+          "content": "创建一个实时标记受众",
+          "type": "text/plain"
+        },
+        "url": {
+          "path": [
+            "express-audience-meta",
+            "rule",
+            "realtime-mark",
+            "create"
+          ],
+          "host": [
+            "{{baseUrl}}"
+          ],
+          "query": [],
+          "variable": []
+        },
+        "header": [
+          {
+            "disabled": false,
+            "description": "(Required) 全局唯一的密钥，用于验证和授权访问 API 接口",
+            "key": "api-key",
+            "value": "<string>"
+          },
+          {
+            "disabled": false,
+            "description": "(Required) 项目名, 指定请求所属项目",
+            "key": "sensorsdata-project",
+            "value": "<string>"
+          },
+          {
+            "disabled": false,
+            "description": "(Required) 租户 ID, 用于请求所属租户",
+            "key": "X-Organization-Id",
+            "value": "<string>"
+          },
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          },
+          {
+            "key": "Accept",
+            "value": "application/json"
+          }
+        ],
+        "method": "POST",
+        "auth": null,
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"rule_name\": \"<string>\",\n  \"audience_biz_id\": \"<string>\"\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        }
+      },
+      "response": [
+        {
+          "id": "644f0d9d-8e1f-4bcf-8d76-f7bc5c62a9f4",
+          "name": "sensorsdata.focus.v1.CreateAudienceFilterRuleResponse",
+          "originalRequest": {
+            "url": {
+              "path": [
+                "express-audience-meta",
+                "rule",
+                "realtime-mark",
+                "create"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "disabled": false,
+                "description": "(Required) 全局唯一的密钥，用于验证和授权访问 API 接口",
+                "key": "api-key",
+                "value": "<string>"
+              },
+              {
+                "disabled": false,
+                "description": "(Required) 项目名, 指定请求所属项目",
+                "key": "sensorsdata-project",
+                "value": "<string>"
+              },
+              {
+                "disabled": false,
+                "description": "(Required) 租户 ID, 用于请求所属租户",
+                "key": "X-Organization-Id",
+                "value": "<string>"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"rule_name\": \"<string>\",\n  \"audience_biz_id\": \"<string>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "status": "Internal Server Error",
+          "code": 500,
+          "header": [
+            {
+              "key": "Content-Type",
+              "value": "application/json"
+            }
+          ],
+          "body": "{\n  \"code\": \"SUCCESS\",\n  \"data\": {\n    \"audience_filter_rule\": {\n      \"rule_detail\": {\n        \"definition_v1\": {\n          \"user_group_reference_rule_v1\": {},\n          \"batch_rule_v1\": {\n            \"groups\": [\n              {\n                \"profile_dimension_user_group\": {\n                  \"dimension_table\": {\n                    \"predicates\": {\n                      \"simple_predicates\": [\n                        {\n                          \"measures\": [\n                            {\n                              \"sub_dimension_measure\": {}\n                            }\n                          ]\n                        }\n                      ]\n                    }\n                  }\n                },\n                \"event_measure_user_group\": {\n                  \"events\": {\n                    \"condition\": {\n                      \"index\": 10,\n                      \"conditions\": [\n                        {\n                          \"function\": \"EQUAL\",\n                          \"index\": 10,\n                          \"params\": [\n                            {\n                              \"expression\": \"user.p1/user.p2+user.p3\",\n                              \"field\": \"#ResourceId\",\n                              \"variable\": \"$ENTRY_TIME\",\n                              \"value\": {},\n                              \"param_type\": \"FIELD\"\n                            }\n                          ]\n                        }\n                      ],\n                      \"operator\": \"AND\"\n                    },\n                    \"time_range\": {\n                      \"start_time\": {\n                        \"relative_time\": {\n                          \"time_interval\": {}\n                        }\n                      }\n                    }\n                  }\n                },\n                \"group_expression_user_group\": {},\n                \"external_measure_user_group\": {\n                  \"rows\": {}\n                },\n                \"pql_user_group\": {},\n                \"external_profile_user_group\": {},\n                \"event_compound_measure_user_group\": {\n                  \"measure\": {\n                    \"measures\": [\n                      {}\n                    ]\n                  }\n                },\n                \"event_sequence_user_group\": {\n                  \"event_steps\": [\n                    {}\n                  ]\n                },\n                \"sql_user_group\": {\n                  \"query_options\": [\n                    {}\n                  ]\n                },\n                \"profile_user_group\": {}\n              }\n            ],\n            \"tailor\": {\n              \"rank_field\": {\n                \"orders\": [\n                  {\n                    \"measure\": {\n                      \"aggregator_field\": {}\n                    }\n                  }\n                ]\n              }\n            },\n            \"sort_info\": {}\n          },\n          \"realtime_mark_rule_v1\": {},\n          \"audience_rule_detail_param\": {\n            \"segment_rule_expression\": {\n              \"eql_segment_rule\": {\n                \"eql\": \"user.$SegmentMembership.user_segment_t111111.is_not_null()\\nand\\nuser.user_tag_c4 == '标签值1'\\nand\\nuser.vip_level in ['高级VIP','普通用户']\"\n              },\n              \"entity_set_rules\": [\n                {}\n              ],\n              \"used_fields\": [\n                \"user.id\"\n              ],\n              \"sql_segment_rule\": {\n                \"query_options\": {\n                  \"option\": \"TIMEOUT\",\n                  \"value\": \"120\"\n                },\n                \"sql\": \"select user_id as id from user where user_id > 100\"\n              },\n              \"loading_segment_rule\": {\n                \"matched_field\": \"user.$identity_login_id\",\n                \"sync_flag\": false,\n                \"loading_type\": \"TAG_LOADING_TYPE_OVERWRITE\"\n              },\n              \"custom_rule\": {},\n              \"event_sequence_rule\": {\n                \"simple_event_sequences\": [\n                  {\n                    \"time_window\": {\n                      \"unit\": \"DAY\"\n                    },\n                    \"time_range\": {\n                      \"start_time\": {\n                        \"type\": \"RELATIVE\",\n                        \"trunc_unit\": \"DAY\",\n                        \"base_time\": \"$TASK_TIME\",\n                        \"time_interval\": -7\n                      },\n                      \"end_time\": {\n                        \"type\": \"RELATIVE\",\n                        \"trunc_unit\": \"DAY\",\n                        \"base_time\": \"$TASK_TIME\",\n                        \"time_interval\": -1\n                      }\n                    },\n                    \"event_steps\": [\n                      {\n                        \"condition\": {\n                          \"operator\": \"AND\",\n                          \"conditions\": [\n                            {\n                              \"function\": \"IS_TRUE\",\n                              \"params\": [\n                                {\n                                  \"param_type\": \"FIELD\",\n                                  \"field\": \"user.$Events.$AppStart.$is_login_id\"\n                                }\n                              ]\n                            }\n                          ]\n                        },\n                        \"event_name\": \"user.$Events.AppStart\"\n                      }\n                    ]\n                  }\n                ],\n                \"operator\": \"UNION\"\n              },\n              \"tailor\": {\n                \"function\": \"LESS_EQUAL\",\n                \"rank_field\": {\n                  \"type\": \"PERCENT_ORDER_RANK\",\n                  \"orders\": [\n                    {\n                      \"measure\": {\n                        \"type\": \"EQL_MEASURE_FIELD\",\n                        \"eql_measure\": \"user.$Events.virtual_event_for_tag.filter_event(\\n  datetime_add(${var:base_time}, -1, 'DAY'),\\n  datetime_add(${var:base_time}, -1, 'DAY')\\n).count()\"\n                      },\n                      \"is_asc\": false\n                    }\n                  ]\n                },\n                \"params\": [\n                  {\n                    \"param_type\": \"VALUE\",\n                    \"value\": {\n                      \"data_type\": \"NUMBER\",\n                      \"number_value\": 0.1\n                    }\n                  }\n                ]\n              },\n              \"type\": \"SQL_BASED\",\n              \"version\": 2,\n              \"group_expression_rule\": {\n                \"group_expression\": \"$1-$2\"\n              }\n            }\n          }\n        }\n      },\n      \"schedule_conf\": {\n        \"other_trigger\": {\n          \"cron_trigger\": {}\n        },\n        \"first_trigger\": {}\n      }\n    }\n  },\n  \"request_id\": \"1\"\n}",
+          "cookie": [],
+          "_postman_previewlanguage": "json"
+        }
+      ],
+      "event": [],
+      "protocolProfileBehavior": {
+        "disableBodyPruning": true
+      }
+    },
+    {
+      "id": "8716ea50-0b66-46ab-90e1-2a6302f5ae73",
+      "name": "关闭一条受众服务",
+      "request": {
+        "name": "关闭一条受众服务",
+        "description": {
+          "content": "关闭一条受众服务",
+          "type": "text/plain"
+        },
+        "url": {
+          "path": [
+            "express-audience-meta",
+            "rule",
+            "terminate"
+          ],
+          "host": [
+            "{{baseUrl}}"
+          ],
+          "query": [],
+          "variable": []
+        },
+        "header": [
+          {
+            "disabled": false,
+            "description": "(Required) 全局唯一的密钥，用于验证和授权访问 API 接口",
+            "key": "api-key",
+            "value": "<string>"
+          },
+          {
+            "disabled": false,
+            "description": "(Required) 项目名, 指定请求所属项目",
+            "key": "sensorsdata-project",
+            "value": "<string>"
+          },
+          {
+            "disabled": false,
+            "description": "(Required) 租户 ID, 用于请求所属租户",
+            "key": "X-Organization-Id",
+            "value": "<string>"
+          },
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          },
+          {
+            "key": "Accept",
+            "value": "application/json"
+          }
+        ],
+        "method": "POST",
+        "auth": null,
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"audience_biz_id\": \"<string>\"\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        }
+      },
+      "response": [
+        {
+          "id": "a6e24791-a894-49c6-81d4-9c5f8dd9bb61",
+          "name": "sensorsdata.focus.v1.TerminateAudienceFilterRuleResponse",
+          "originalRequest": {
+            "url": {
+              "path": [
+                "express-audience-meta",
+                "rule",
+                "terminate"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "disabled": false,
+                "description": "(Required) 全局唯一的密钥，用于验证和授权访问 API 接口",
+                "key": "api-key",
+                "value": "<string>"
+              },
+              {
+                "disabled": false,
+                "description": "(Required) 项目名, 指定请求所属项目",
+                "key": "sensorsdata-project",
+                "value": "<string>"
+              },
+              {
+                "disabled": false,
+                "description": "(Required) 租户 ID, 用于请求所属租户",
+                "key": "X-Organization-Id",
+                "value": "<string>"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"audience_biz_id\": \"<string>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "status": "Internal Server Error",
+          "code": 500,
+          "header": [
+            {
+              "key": "Content-Type",
+              "value": "application/json"
+            }
+          ],
+          "body": "{\n  \"code\": \"SUCCESS\",\n  \"data\": {},\n  \"request_id\": \"1\"\n}",
+          "cookie": [],
+          "_postman_previewlanguage": "json"
+        }
+      ],
+      "event": [],
+      "protocolProfileBehavior": {
+        "disableBodyPruning": true
+      }
+    },
+    {
+      "id": "0f357e3b-d859-41a8-9ef6-6f82d088b963",
+      "name": "查看受众信息",
+      "request": {
+        "name": "查看受众信息",
+        "description": {
+          "content": "查看受众信息",
+          "type": "text/plain"
+        },
+        "url": {
+          "path": [
+            "express-audience-meta",
+            "rule",
+            "query"
+          ],
+          "host": [
+            "{{baseUrl}}"
+          ],
+          "query": [],
+          "variable": []
+        },
+        "header": [
+          {
+            "disabled": false,
+            "description": "(Required) 全局唯一的密钥，用于验证和授权访问 API 接口",
+            "key": "api-key",
+            "value": "<string>"
+          },
+          {
+            "disabled": false,
+            "description": "(Required) 项目名, 指定请求所属项目",
+            "key": "sensorsdata-project",
+            "value": "<string>"
+          },
+          {
+            "disabled": false,
+            "description": "(Required) 租户 ID, 用于请求所属租户",
+            "key": "X-Organization-Id",
+            "value": "<string>"
+          },
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          },
+          {
+            "key": "Accept",
+            "value": "application/json"
+          }
+        ],
+        "method": "POST",
+        "auth": null,
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"query_type\": \"<string>\",\n  \"audience_biz_ids\": [\n    \"<string>\",\n    \"<string>\"\n  ]\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        }
+      },
+      "response": [
+        {
+          "id": "23920a4b-bf3d-48c0-8289-a7f29d87391c",
+          "name": "sensorsdata.focus.v1.QueryAudienceFilterRuleResponse",
+          "originalRequest": {
+            "url": {
+              "path": [
+                "express-audience-meta",
+                "rule",
+                "query"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "disabled": false,
+                "description": "(Required) 全局唯一的密钥，用于验证和授权访问 API 接口",
+                "key": "api-key",
+                "value": "<string>"
+              },
+              {
+                "disabled": false,
+                "description": "(Required) 项目名, 指定请求所属项目",
+                "key": "sensorsdata-project",
+                "value": "<string>"
+              },
+              {
+                "disabled": false,
+                "description": "(Required) 租户 ID, 用于请求所属租户",
+                "key": "X-Organization-Id",
+                "value": "<string>"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"query_type\": \"<string>\",\n  \"audience_biz_ids\": [\n    \"<string>\",\n    \"<string>\"\n  ]\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "status": "Internal Server Error",
+          "code": 500,
+          "header": [
+            {
+              "key": "Content-Type",
+              "value": "application/json"
+            }
+          ],
+          "body": "{\n  \"code\": \"SUCCESS\",\n  \"data\": {\n    \"rules\": [\n      {\n        \"audience_batch_rule\": {},\n        \"audience_realtime_rule\": {},\n        \"audience_instant_rule\": {},\n        \"relations\": [\n          {}\n        ],\n        \"audience_user_group_reference_rule\": {}\n      }\n    ]\n  },\n  \"request_id\": \"1\"\n}",
+          "cookie": [],
+          "_postman_previewlanguage": "json"
+        }
+      ],
+      "event": [],
+      "protocolProfileBehavior": {
+        "disableBodyPruning": true
+      }
+    },
+    {
+      "id": "1c9a1408-3173-4b15-b6ad-6e5573fe2224",
+      "name": "查询Quota",
+      "request": {
+        "name": "查询Quota",
+        "description": {
+          "content": "查询Quota",
+          "type": "text/plain"
+        },
+        "url": {
+          "path": [
+            "express-audience-meta",
+            "quota",
+            "query"
+          ],
+          "host": [
+            "{{baseUrl}}"
+          ],
+          "query": [
+            {
+              "disabled": false,
+              "key": "quota_type",
+              "value": "<string>",
+              "description": "AudienceQuotaType枚举定义\n - BATCH_QUOTA   批受众的额度\n - REALTIME_QUOTA   实时受众的额度\n - INSTANT_QUOTA   即时受众的额度"
+            },
+            {
+              "disabled": false,
+              "key": "product",
+              "value": "<string>",
+              "description": "产品线：SF或ACTIVATION. 默认为ACTIVATION, 即openapi的quota"
+            }
+          ],
+          "variable": []
+        },
+        "header": [
+          {
+            "disabled": false,
+            "description": "(Required) 全局唯一的密钥，用于验证和授权访问 API 接口",
+            "key": "api-key",
+            "value": "<string>"
+          },
+          {
+            "disabled": false,
+            "description": "(Required) 项目名, 指定请求所属项目",
+            "key": "sensorsdata-project",
+            "value": "<string>"
+          },
+          {
+            "disabled": false,
+            "description": "(Required) 租户 ID, 用于请求所属租户",
+            "key": "X-Organization-Id",
+            "value": "<string>"
+          },
+          {
+            "key": "Accept",
+            "value": "application/json"
+          }
+        ],
+        "method": "GET",
+        "auth": null
+      },
+      "response": [
+        {
+          "id": "3110f3bc-651f-4058-848f-b18b7e5dc671",
+          "name": "sensorsdata.focus.v1.QueryQuotaResponse",
+          "originalRequest": {
+            "url": {
+              "path": [
+                "express-audience-meta",
+                "quota",
+                "query"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "key": "quota_type",
+                  "value": "<string>"
+                },
+                {
+                  "key": "product",
+                  "value": "<string>"
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "disabled": false,
+                "description": "(Required) 全局唯一的密钥，用于验证和授权访问 API 接口",
+                "key": "api-key",
+                "value": "<string>"
+              },
+              {
+                "disabled": false,
+                "description": "(Required) 项目名, 指定请求所属项目",
+                "key": "sensorsdata-project",
+                "value": "<string>"
+              },
+              {
+                "disabled": false,
+                "description": "(Required) 租户 ID, 用于请求所属租户",
+                "key": "X-Organization-Id",
+                "value": "<string>"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "body": {}
+          },
+          "status": "Internal Server Error",
+          "code": 500,
+          "header": [
+            {
+              "key": "Content-Type",
+              "value": "application/json"
+            }
+          ],
+          "body": "{\n  \"code\": \"SUCCESS\",\n  \"data\": {\n    \"used_count\": 2,\n    \"remained_count\": 8\n  },\n  \"request_id\": \"1\"\n}",
+          "cookie": [],
+          "_postman_previewlanguage": "json"
+        }
+      ],
+      "event": [],
+      "protocolProfileBehavior": {
+        "disableBodyPruning": true
+      }
+    },
+    {
+      "id": "4cb66a0f-8483-4db0-b11c-340afaa226cb",
+      "name": "修改受众调度时间",
+      "request": {
+        "name": "修改受众调度时间",
+        "description": {
+          "content": "修改受众调度时间",
+          "type": "text/plain"
+        },
+        "url": {
+          "path": [
+            "express-audience-meta",
+            "rule",
+            "modify"
+          ],
+          "host": [
+            "{{baseUrl}}"
+          ],
+          "query": [],
+          "variable": []
+        },
+        "header": [
+          {
+            "disabled": false,
+            "description": "(Required) 全局唯一的密钥，用于验证和授权访问 API 接口",
+            "key": "api-key",
+            "value": "<string>"
+          },
+          {
+            "disabled": false,
+            "description": "(Required) 项目名, 指定请求所属项目",
+            "key": "sensorsdata-project",
+            "value": "<string>"
+          },
+          {
+            "disabled": false,
+            "description": "(Required) 租户 ID, 用于请求所属租户",
+            "key": "X-Organization-Id",
+            "value": "<string>"
+          },
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          },
+          {
+            "key": "Accept",
+            "value": "application/json"
+          }
+        ],
+        "method": "POST",
+        "auth": null,
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"project_ref_id\": \"<integer>\",\n  \"audience_biz_id\": \"<string>\",\n  \"schedule_start_date\": \"<string>\",\n  \"schedule_end_date\": \"<string>\"\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        }
+      },
+      "response": [
+        {
+          "id": "0cacd3eb-87d8-46dd-a722-a052c322da75",
+          "name": "sensorsdata.focus.v1.ModifyAudienceRuleResponce",
+          "originalRequest": {
+            "url": {
+              "path": [
+                "express-audience-meta",
+                "rule",
+                "modify"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "disabled": false,
+                "description": "(Required) 全局唯一的密钥，用于验证和授权访问 API 接口",
+                "key": "api-key",
+                "value": "<string>"
+              },
+              {
+                "disabled": false,
+                "description": "(Required) 项目名, 指定请求所属项目",
+                "key": "sensorsdata-project",
+                "value": "<string>"
+              },
+              {
+                "disabled": false,
+                "description": "(Required) 租户 ID, 用于请求所属租户",
+                "key": "X-Organization-Id",
+                "value": "<string>"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"project_ref_id\": \"<integer>\",\n  \"audience_biz_id\": \"biz_2\",\n  \"schedule_start_date\": \"2023-11-09T16:00:00Z\",\n  \"schedule_end_date\": \"2023-11-09T16:00:00Z\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "status": "Internal Server Error",
+          "code": 500,
+          "header": [
+            {
+              "key": "Content-Type",
+              "value": "application/json"
+            }
+          ],
+          "body": "{\n  \"code\": \"SUCCESS\",\n  \"data\": {\n    \"success\": true\n  },\n  \"request_id\": \"1\"\n}",
+          "cookie": [],
+          "_postman_previewlanguage": "json"
+        }
+      ],
+      "event": [],
+      "protocolProfileBehavior": {
+        "disableBodyPruning": true
+      }
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "/api/v3/focus/v1",
+      "key": "baseUrl"
+    }
+  ],
+  "info": {
+    "_postman_id": "aa1a50f0-6d90-4c7d-bf6e-610103601510",
+    "name": "神策智能运营",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "受众引擎元数据服务OpenAPI服务",
+      "type": "text/plain"
+    }
+  }
+}

@@ -1,0 +1,61 @@
+generated: '2026-08-13'
+method: derived
+source: openapi/_original/ (29 specs, 252 operations) + https://docs.sensorsdata.com/sa/docs/about_open_api
+format: proprietary-envelope
+rfc9457: false
+content_type: application/json
+summary: >-
+  Sensors Data does not signal failure with HTTP status codes in its published contracts.
+  Every one of the 252 operations declares exactly ONE response — `default` — and errors
+  are carried inside the same JSON envelope as successes. A client cannot branch on status;
+  it must read envelope.code and compare it to "SUCCESS".
+
+envelope:
+  fields:
+    code:
+      type: string
+      description: outcome token. "SUCCESS" means the call worked; any other value is a failure.
+      success_value: SUCCESS
+    message:
+      type: string
+      description: human-readable failure reason (Chinese in the deployed product).
+    data:
+      type: object
+      description: payload on success; null or absent on failure.
+    request_id:
+      type: string
+      description: correlation id to quote when escalating a failure to support.
+
+problem_types: []
+problem_type_count: 0
+coverage_note: >-
+  DERIVED ZERO, not "none exist". The specs model no error responses at all, and Sensors
+  Data publishes no public error-code reference page for the v3 OpenAPI — the code
+  vocabulary is only observable against a running cluster, which is customer-owned. What IS
+  published, and captured here, is the envelope contract and the success test.
+
+observed_error_shapes:
+  - surface: OpenAPI manual service (manual.sensorsdata.cn/openapi/api/v1)
+    example: '{"code":-4,"message":"参数错误，file_name 不能为空","data":null}'
+    observed: '2026-08-13'
+    note: >-
+      A live, unauthenticated 200 response carrying a NEGATIVE integer code and a Chinese
+      message on a missing required parameter. Recorded because it is real evidence of the
+      failure shape, but this is the documentation service, not the product OpenAPI — the
+      product envelope uses string codes ("SUCCESS"). Do not treat -4 as a product error code.
+  - surface: Sensors Focus webhook callback (provider -> customer)
+    example: '[{"succeed": true}, {"succeed": false, "fail_reason": "..."}]'
+    direction: the response the CUSTOMER returns to Sensors Data
+    rules:
+      - HTTP 200 with no body = every entry in the batch succeeded
+      - HTTP 200 with a body = per-entry succeed/fail_reason list, index-aligned to the request
+      - any non-200 status = the whole batch is treated as failed
+    source: https://manual.sensorsdata.cn/sf/docs/webhook_integration
+
+remediation_guidance:
+  - Never treat HTTP 200 as success. Parse the body and test code == "SUCCESS".
+  - Log request_id on every call; it is the only handle support can trace.
+  - >-
+    Because no error taxonomy is published, treat any non-SUCCESS code as non-retryable
+    until proven otherwise — there is no documented distinction between transient and
+    permanent failures.

@@ -1,0 +1,60 @@
+generated: '2026-08-13'
+method: searched
+source: https://www.sensorsdata.cn/trust/compliance.html
+trust_center:
+  published: true
+  urls:
+    - url: https://www.sensorsdata.cn/trust/compliance.html
+      status: 200
+      title: 合规承诺 — Compliance commitments
+    - url: https://www.sensorsdata.cn/trust/security.html
+      status: 200
+      title: 安全构建 — Security program
+    - url: https://www.sensorsdata.cn/trust/privacy.html
+      status: 200
+      title: Privacy
+    - url: https://www.sensorsdata.cn/trust/faq.html
+      status: 200
+      title: FAQ
+  language: zh-CN
+  note: >-
+    The trust centre lives on the Chinese domain (sensorsdata.cn). The English site
+    (sensorsdata.com) does not carry an equivalent page, so an English-language reader will
+    not find this program from the .com entry point.
+certifications:
+  - name: 网络安全等级保护三级 (MLPS Level 3)
+    standard: GB/T 22239-2019
+    scope: Sensors Analytics Cloud and Sensors Marketing Cloud
+  - name: ISO/IEC 27001
+  - name: ISO/IEC 27701
+  - name: ISO 9001
+  - name: CMMI Level 3
+  - name: SDK 安全专项测评 (CAICT SDK security assessment)
+security_program:
+  secure_development_lifecycle: true
+  third_party_penetration_testing: true
+  crowdsourced_testing: true
+  red_team_exercises: true
+  access_control: role-based, least-privilege, fully logged for internal and external audit
+  customer_data_access: >-
+    Staff do not access customer data without customer authorization; access is granted
+    temporarily for troubleshooting, monitored, and revoked on closure.
+  incident_response: >-
+    Documented incident-response process with post-incident review and customer
+    notification for personal-information incidents.
+  vulnerability_management: >-
+    Documented internal/external vulnerability and threat-intelligence monitoring with
+    owner-assigned, time-bound, visible lifecycle handling.
+  data_protection:
+    collection: consent-based, minimum-necessary
+    transit: link encryption or payload encryption
+    at_rest: encryption on ingest
+    sharing: minimisation, masking, watermarking
+    deletion: bulk event deletion and per-user-ID deletion
+evidence_documents_public: false
+note: >-
+  A vulnerability-management PROGRAM is described, but no disclosure channel is published —
+  no security.txt on any host, no security@ contact on the trust centre, no bug-bounty
+  program on HackerOne, Bugcrowd or Intigriti. A researcher who finds a bug in a Sensors
+  Data product has no published route to report it. No Security / VulnerabilityDisclosure
+  pointer is emitted, because none is earned.

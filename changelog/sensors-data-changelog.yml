@@ -1,0 +1,63 @@
+generated: '2026-08-13'
+method: searched
+source: https://manual.sensorsdata.cn/sa/docs/update_log
+docs: https://manual.sensorsdata.cn/sa/docs/update_log
+scheme: two-digit product release train (major.minor) with three-digit maintenance releases (major.minor.patch)
+product: Sensors Analytics (神策分析)
+current_version: '3.0'
+current_maintenance: 3.0.5
+cadence: >-
+  Roughly two two-digit releases per year through 2022, slowing to one major train (3.0)
+  since July 2023, with three-digit maintenance releases carrying the feature work since.
+covers: 2015-07-01 through the 3.0.x train
+note: >-
+  Sensors Data publishes a dated release log per product. The OpenAPI contracts are
+  versioned separately from the product (see conventions/), so a product release does not
+  necessarily change the API surface — but the OpenAPI manual ships a spec set per
+  three-digit release, which is how the 29 harvested specs are dated to 3.0.5 / 4.5.3 /
+  1.3.7 / 1.5.5.
+entries:
+  - version: '3.0'
+    date: '2023-07-30'
+    breaking: unknown
+    highlights: >-
+      Current major train. Later three-digit releases add multi-dimensional analysis
+      (3.0.3), chart-to-report jump with bound filters (3.0.2), and the 3.0.5 OpenAPI set
+      harvested into openapi/.
+  - version: '2.5'
+    date: '2022-12-30'
+  - version: '2.4'
+    date: '2022-06-01'
+  - version: '2.3'
+    date: '2021-08-09'
+  - version: '2.2'
+    date: '2021-01-27'
+  - version: '2.1'
+    date: '2020-10-08'
+  - version: '2.0'
+    date: '2020-05-19'
+  - version: '1.17'
+    date: '2020-03-10'
+  - version: '1.16'
+    date: '2019-11-21'
+  - version: '1.15'
+    date: '2019-07-15'
+maintenance_logs:
+  - version: 3.0.3
+    url: https://manual.sensorsdata.cn/sa/docs/sa303_update_log
+  - version: 3.0.2
+    url: https://manual.sensorsdata.cn/sa/docs/sa302_update_log/v0300
+other_product_logs:
+  - product: Sensors Focus (神策智能运营)
+    url: https://manual.sensorsdata.cn/sf/docs/release_notes/v0304
+  - product: Sensors A/B Testing
+    url: https://manual.sensorsdata.cn/abtesting/docs/abtesting_productlog
+spec_release_trains:
+  analytics: 2.5.0 -> 3.0.5 (11 published spec sets)
+  focus: 4.4.5 -> 4.5.3 (6 published spec sets)
+  horizon: 1.3.1 -> 1.3.7 (6 published spec sets)
+  portal: 1.4.0 -> 1.5.5 (9 published spec sets)
+  source: https://manual.sensorsdata.cn/openapi/api/v1/openapi_tree
+  note: >-
+    The OpenAPI manual serves every historical spec set, not just the current one, so a
+    consumer can diff two releases of the same service. 196 spec files are addressable.

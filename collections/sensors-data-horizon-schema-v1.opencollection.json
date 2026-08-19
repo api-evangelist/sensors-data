@@ -1,0 +1,334 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "神策数界"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "获取事件定义列表",
+        "type": "http"
+      },
+      "http": {
+        "method": "POST",
+        "url": "/api/v3/horizon/v1/schema/event/list",
+        "headers": [
+          {
+            "name": "api-key",
+            "value": ""
+          },
+          {
+            "name": "sensorsdata-project",
+            "value": ""
+          }
+        ],
+        "body": {
+          "type": "json",
+          "data": "{}"
+        }
+      },
+      "docs": "获取事件定义列表\n```\n  curl -X POST 'http://{host}:{port}/api/v3/horizon/v1/schema/event/list' \\\n    -H 'Accept: application/json' \\\n    -H 'Content-Type: application/json' \\\n    -H 'api-key: {apiKey}' \\\n    -H 'sensorsdata-project: {projectName}' \\\n    -d '{\"expand\": \"custom_params\",\"page_size\": 1\n    }'\n  返回值示例:\n  {\n      \"code\": \"SUCCESS\",\n      \"request_id\": \"111439553289fbce04c278b6db07656c\",\n      \"data\": {\n          \"schemas\": [\n              {\n                  \"project_id\": 1,\n                 "
+    },
+    {
+      "info": {
+        "name": "获取事件定义",
+        "type": "http"
+      },
+      "http": {
+        "method": "POST",
+        "url": "/api/v3/horizon/v1/schema/event/get",
+        "headers": [
+          {
+            "name": "api-key",
+            "value": ""
+          },
+          {
+            "name": "sensorsdata-project",
+            "value": ""
+          }
+        ],
+        "body": {
+          "type": "json",
+          "data": "{}"
+        }
+      },
+      "docs": "获取事件定义\n```\n  curl -X POST 'http://{host}:{port}/api/v3/horizon/v1/schema/event/get' \\\n    -H 'Accept: application/json' \\\n    -H 'Content-Type: application/json' \\\n    -H 'api-key: {apiKey}' \\\n    -H 'sensorsdata-project: {projectName}' \\\n    -d '{\"expand\": \"custom_params\",\"original_name\": \"ViewProduct\"}'\n  返回值示例：\n  {\n    \"code\": \"SUCCESS\",\n    \"request_id\": \"11154529714df4438627873ae61ad15e\",\n    \"data\": {\n        \"visible\": true,\n        \"builtin\": false,\n        \"schema_class\": \"EVENT\",\n     "
+    },
+    {
+      "info": {
+        "name": "创建事件定义",
+        "type": "http"
+      },
+      "http": {
+        "method": "POST",
+        "url": "/api/v3/horizon/v1/schema/event/create",
+        "headers": [
+          {
+            "name": "api-key",
+            "value": ""
+          },
+          {
+            "name": "sensorsdata-project",
+            "value": ""
+          }
+        ],
+        "body": {
+          "type": "json",
+          "data": "{}"
+        }
+      },
+      "docs": "创建事件定义\n```\n  curl -X POST 'http://{host}:{port}/api/v3/horizon/v1/schema/event/create' \\\n    -H 'Content-Type: application/json' \\\n    -H 'api-key: {apiKey}' \\\n    -H 'sensorsdata-project: {projectName}' \\\n    -d '{\n    \"physical_schema_name\": \"events\",\n    \"schemas\": [\n      {\n        \"original_name\": \"buttonclick\",\n        \"display_name\": \"buttonclick\",\n        \"custom_params\": {\n          \"meta_desc\": \"备注\",\n          \"meta_trigger_action_desc\": \"aaa\"\n        },\n        \"statistics\": {\n       "
+    },
+    {
+      "info": {
+        "name": "更新事件定义",
+        "type": "http"
+      },
+      "http": {
+        "method": "POST",
+        "url": "/api/v3/horizon/v1/schema/event/update",
+        "headers": [
+          {
+            "name": "api-key",
+            "value": ""
+          },
+          {
+            "name": "sensorsdata-project",
+            "value": ""
+          }
+        ],
+        "body": {
+          "type": "json",
+          "data": "{}"
+        }
+      },
+      "docs": "更新事件定义\n```\n  curl -X POST 'http://{host}:{port}/api/v3/horizon/v1/schema/event/update' \\\n    -H 'Content-Type: application/json' \\\n    -H 'api-key: {api_key}' \\\n    -H 'sensorsdata-project: {projectName}' \\\n    -d '{\n      \"schema\": {\n      \"name\": \"events.buttonclick\",\n      \"display_name\": \"test\"\n    },\n    \"update_mask\": \"display_name\"\n  }'\n  返回值示例：\n  {\n    \"code\": \"SUCCESS\",\n    \"request_id\": \"11164928bb5f4702fcd21875da74dfd4\",\n    \"data\": {\n        \"visible\": true,\n        \"builtin\": false,"
+    },
+    {
+      "info": {
+        "name": "获取事件属性",
+        "type": "http"
+      },
+      "http": {
+        "method": "POST",
+        "url": "/api/v3/horizon/v1/schema/event/field/list",
+        "headers": [
+          {
+            "name": "api-key",
+            "value": ""
+          },
+          {
+            "name": "sensorsdata-project",
+            "value": ""
+          }
+        ],
+        "body": {
+          "type": "json",
+          "data": "{}"
+        }
+      },
+      "docs": "获取事件属性\n```\n  curl -X POST 'http://{host}:{port}/api/v3/horizon/v1/schema/event/field/list' \\\n  -H 'Content-Type: application/json' \\\n  -H 'api-key: {api_key}' \\\n  -H 'sensorsdata-project: {projectName}' \\\n  -d '{\n  \"schema_name\": \"events.buttonclick\"\n  }'\n  返回值示例：\n  {\n    \"code\": \"SUCCESS\",\n    \"request_id\": \"11171105110d11d01f2f2fd41f60f4e7\",\n    \"data\": {\n        \"fields\": [\n            {\n                \"name\": \"user_id\",\n                \"display_name\": \"user_id\",\n                \"data_type\":"
+    },
+    {
+      "info": {
+        "name": "获取属性列表",
+        "type": "http"
+      },
+      "http": {
+        "method": "POST",
+        "url": "/api/v3/horizon/v1/schema/field/list",
+        "headers": [
+          {
+            "name": "api-key",
+            "value": ""
+          },
+          {
+            "name": "sensorsdata-project",
+            "value": ""
+          }
+        ],
+        "body": {
+          "type": "json",
+          "data": "{}"
+        }
+      },
+      "docs": "获取属性列表\n```\n  curl -X POST 'http://{host}:{port}/api/v3/horizon/v1/schema/field/list' \\\n    -H 'Content-Type: application/json' \\\n    -H 'api-key: {api_key}' \\\n    -H 'sensorsdata-project: {projectName}' \\\n    -d '{\n    \"schema_name\": \"items\",\n    \"expand\": \"custom_params,data_mapping,view_data_source\",\n    \"page_size\": 1\n  }'\n  返回值示例：\n  {\n    \"code\": \"SUCCESS\",\n    \"request_id\": \"111727233b327426b628b0b72d088cc0\",\n    \"data\": {\n        \"fields\": [\n            {\n                \"name\": \"$create_t"
+    },
+    {
+      "info": {
+        "name": "获取属性信息",
+        "type": "http"
+      },
+      "http": {
+        "method": "POST",
+        "url": "/api/v3/horizon/v1/schema/field/get",
+        "headers": [
+          {
+            "name": "api-key",
+            "value": ""
+          },
+          {
+            "name": "sensorsdata-project",
+            "value": ""
+          }
+        ],
+        "body": {
+          "type": "json",
+          "data": "{}"
+        }
+      },
+      "docs": "获取属性信息\n```\n  curl -X POST 'http://{host}:{port}/api/v3/horizon/v1/schema/field/get' \\\n    -H 'Content-Type: application/json' \\\n    -H 'api-key: {api_key}' \\\n    -H 'sensorsdata-project: {projectName}' \\\n    -d '{\n    \"schema_name\": \"events\",\n    \"field_name\": \"event_id\",\n    \"expand\": \"custom_params,data_mapping,view_data_source,unit\"\n  }'\n  返回值示例：\n  {\n    \"code\": \"SUCCESS\",\n    \"request_id\": \"11174157af1a20e42523a79622bd015c\",\n    \"data\": {\n        \"visible\": false,\n        \"has_dict\": false,\n"
+    },
+    {
+      "info": {
+        "name": "批量创建属性",
+        "type": "http"
+      },
+      "http": {
+        "method": "POST",
+        "url": "/api/v3/horizon/v1/schema/field/batch-create",
+        "headers": [
+          {
+            "name": "api-key",
+            "value": ""
+          },
+          {
+            "name": "sensorsdata-project",
+            "value": ""
+          }
+        ],
+        "body": {
+          "type": "json",
+          "data": "{}"
+        }
+      },
+      "docs": "批量创建属性\n```\n  curl -X POST 'http://{host}:{port}/api/v3/horizon/v1/schema/field/batch-create' \\\n    -H 'Content-Type: application/json' \\\n    -H 'api-key: {api_key}' \\\n    -H 'sensorsdata-project: {projectName}' \\\n    -d '{\n    \"fields\": [\n      {\n        \"schema_name\": \"events\",\n        \"field\": {\n          \"name\": \"product_id\",\n          \"display_name\": \"product_id\",\n          \"data_type\": {\n            \"type\": \"STRING\"\n          },\n          \"data_mapping\": {\n            \"source_type\": \"MAIN_T"
+    },
+    {
+      "info": {
+        "name": "更新属性\n 支持修改 display_name,unit,custom_param,visible,enable,has_data,required,data_type,view_data_source,dict\n 支持更新维度字典",
+        "type": "http"
+      },
+      "http": {
+        "method": "POST",
+        "url": "/api/v3/horizon/v1/schema/field/update",
+        "headers": [
+          {
+            "name": "api-key",
+            "value": ""
+          },
+          {
+            "name": "sensorsdata-project",
+            "value": ""
+          }
+        ],
+        "body": {
+          "type": "json",
+          "data": "{}"
+        }
+      },
+      "docs": "更新属性\n```\n  curl -X POST 'http://{host}:{port}/api/v3/horizon/v1/schema/field/update' \\\n    -H 'Content-Type: application/json' \\\n    -H 'api-key: {api_key}' \\\n    -H 'sensorsdata-project: {projectName}' \\\n    -d '{\n    \"schema_name\": \"events\",\n    \"field\": {\n      \"name\": \"product_id\",\n      \"display_name\": \"test\",\n      \"custom_params\": {\n        \"meta_desc\": \"备注\"\n      }\n    },\n    \"update_mask\": \"display_name,custom_params\"\n}'\n  返回值示例：\n  {\n    \"code\": \"SUCCESS\",\n    \"request_id\": \"1210192666f"
+    },
+    {
+      "info": {
+        "name": "查询 Schema 关联的 Table",
+        "type": "http"
+      },
+      "http": {
+        "method": "POST",
+        "url": "/api/v3/horizon/v1/schema/extended-table/list",
+        "headers": [
+          {
+            "name": "api-key",
+            "value": ""
+          },
+          {
+            "name": "sensorsdata-project",
+            "value": ""
+          }
+        ],
+        "body": {
+          "type": "json",
+          "data": "{}"
+        }
+      },
+      "docs": "查询 Schema 关联的 Table\n```\n  curl -X POST 'http://{host}:{port}/api/v3/horizon/v1/schema/extended-table/list' \\\n    -H 'Content-Type: application/json' \\\n    -H 'api-key: {api_key}' \\\n    -H 'sensorsdata-project: {projectName}' \\\n    -d '{\n    \"schema_names\": [\"events\"]\n  }'\n  返回值示例：\n  {\n    \"code\": \"SUCCESS\",\n    \"request_id\": \"1210530786ea1e0e61e51918c5bbb3fd\",\n    \"data\": {\n        \"extended_tables\": [\n            {\n                \"extended_table_id\": \"users\",\n                \"schema_name\": \"ev"
+    },
+    {
+      "info": {
+        "name": "创建维度表关联关系",
+        "type": "http"
+      },
+      "http": {
+        "method": "POST",
+        "url": "/api/v3/horizon/v1/schema/extended-table/batch-create",
+        "headers": [
+          {
+            "name": "api-key",
+            "value": ""
+          },
+          {
+            "name": "sensorsdata-project",
+            "value": ""
+          }
+        ],
+        "body": {
+          "type": "json",
+          "data": "{}"
+        }
+      },
+      "docs": "创建维度表关联关系，只能对物理 Schema 进行创建\n```\n  curl -X POST 'http://{host}:{port}/api/v3/horizon/v1/schema/extended-table/batch-create' \\\n    -H 'Content-Type: application/json' \\\n    -H 'api-key: {api_key}' \\\n    -H 'sensorsdata-project: {projectName}' \\\n    -d '{\n    \"extended_tables\": [\n      {\n        \"extended_table_id\": \"test_table\",\n        \"schema_name\": \"events\",\n        \"db_name\": \"horizon_workspace_default_1\",\n        \"table_name\": \"one_test_table\",\n        \"display_name\": \"test_table\",\n        \"j"
+    },
+    {
+      "info": {
+        "name": "更新 SchemaExtendedTable",
+        "type": "http"
+      },
+      "http": {
+        "method": "POST",
+        "url": "/api/v3/horizon/v1/schema/extended-table/update",
+        "headers": [
+          {
+            "name": "api-key",
+            "value": ""
+          },
+          {
+            "name": "sensorsdata-project",
+            "value": ""
+          }
+        ],
+        "body": {
+          "type": "json",
+          "data": "{}"
+        }
+      },
+      "docs": "更新 SchemaExtendedTable\n```\n  curl -X POST 'http://{host}:{port}/api/v3/horizon/v1/schema/extended-table/update' \\\n    -H 'Content-Type: application/json' \\\n    -H 'api-key: {api_key}' \\\n    -H 'sensorsdata-project: {projectName}' \\\n    -d '{\n    \"extended_table\": {\n      \"extended_table_id\": \"users\",\n      \"schema_name\": \"events\",\n      \"display_name\": \"users\"\n    },\n    \"update_mask\": \"display_name\"\n  }'\n  返回值示例：\n  {\n    \"code\": \"SUCCESS\",\n    \"request_id\": \"121205198723e4f1134fc1d2a117ae9e\",\n "
+    },
+    {
+      "info": {
+        "name": "获取用户表/事件表元信息",
+        "type": "http"
+      },
+      "http": {
+        "method": "POST",
+        "url": "/api/v3/horizon/v1/schema/get",
+        "headers": [
+          {
+            "name": "api-key",
+            "value": ""
+          },
+          {
+            "name": "sensorsdata-project",
+            "value": ""
+          }
+        ],
+        "body": {
+          "type": "json",
+          "data": "{}"
+        }
+      },
+      "docs": "获取用户表/事件表元信息\n```\n  curl -X POST 'http://{host}:{port}/api/v3/horizon/v1/schema/get' \\\n    -H 'Content-Type: application/json' \\\n    -H 'api-key: {api_key}' \\\n    -H 'sensorsdata-project: {projectName}' \\\n    -d '{\n    \"name\": \"users\",\n    \"expand\": \"data_mapping\"\n  }'\n  返回示例值：\n  {\n    \"code\": \"SUCCESS\",\n    \"request_id\": \"121209562976bb3116f47e046d2a0762\",\n    \"data\": {\n        \"visible\": true,\n        \"data_mapping\": {\n            \"view_table\": {\n                \"db_name\": \"horizon_default_1\",\n"
+    }
+  ],
+  "bundled": true
+}

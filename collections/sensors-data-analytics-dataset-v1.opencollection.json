@@ -1,0 +1,194 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "神策分析"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "查询业务模型详情信息",
+        "type": "http"
+      },
+      "http": {
+        "method": "GET",
+        "url": "/api/v3/analytics/v1/dataset/detail",
+        "headers": [
+          {
+            "name": "api-key",
+            "value": ""
+          },
+          {
+            "name": "sensorsdata-project",
+            "value": ""
+          }
+        ],
+        "params": [
+          {
+            "name": "dataset_id",
+            "value": "1",
+            "type": "query",
+            "description": "业务模型ID"
+          },
+          {
+            "name": "model_type",
+            "value": "",
+            "type": "query",
+            "description": "业务模型形态，默认值为，如果支持模型态则默认为模型态，否则为二维表形态"
+          }
+        ]
+      },
+      "docs": "查询业务模型详情信息接口"
+    },
+    {
+      "info": {
+        "name": "获取业务模型列表",
+        "type": "http"
+      },
+      "http": {
+        "method": "POST",
+        "url": "/api/v3/analytics/v1/dataset/detail_list",
+        "headers": [
+          {
+            "name": "api-key",
+            "value": ""
+          },
+          {
+            "name": "sensorsdata-project",
+            "value": ""
+          }
+        ],
+        "body": {
+          "type": "json",
+          "data": "{}"
+        }
+      },
+      "docs": "获取业务模型列表"
+    },
+    {
+      "info": {
+        "name": "获取业务模型分组列表",
+        "type": "http"
+      },
+      "http": {
+        "method": "GET",
+        "url": "/api/v3/analytics/v1/dataset/group/list",
+        "headers": [
+          {
+            "name": "api-key",
+            "value": ""
+          },
+          {
+            "name": "sensorsdata-project",
+            "value": ""
+          }
+        ]
+      },
+      "docs": "获取业务模型分组列表接口"
+    },
+    {
+      "info": {
+        "name": "通过 Sql 查询业务模型数据",
+        "type": "http"
+      },
+      "http": {
+        "method": "POST",
+        "url": "/api/v3/analytics/v1/dataset/table/sql_query",
+        "headers": [
+          {
+            "name": "api-key",
+            "value": ""
+          },
+          {
+            "name": "sensorsdata-project",
+            "value": ""
+          }
+        ],
+        "body": {
+          "type": "json",
+          "data": "{}"
+        }
+      },
+      "docs": "Sql 查询二维表模式下的业务模型数据接口,包含实时 sql, 不支持拼表业务模型查询"
+    },
+    {
+      "info": {
+        "name": "通过指标维度规则查询业务模型数据",
+        "type": "http"
+      },
+      "http": {
+        "method": "POST",
+        "url": "/api/v3/analytics/v1/dataset/model/query",
+        "headers": [
+          {
+            "name": "api-key",
+            "value": ""
+          },
+          {
+            "name": "sensorsdata-project",
+            "value": ""
+          }
+        ],
+        "body": {
+          "type": "json",
+          "data": "{}"
+        }
+      },
+      "docs": "查询二维表，预聚合，明细模式等的业务模型数据接口，其中二维表中不支持拼表查询"
+    },
+    {
+      "info": {
+        "name": "刷新指定业务模型数据",
+        "type": "http"
+      },
+      "http": {
+        "method": "POST",
+        "url": "/api/v3/analytics/v1/dataset/refresh",
+        "headers": [
+          {
+            "name": "api-key",
+            "value": ""
+          },
+          {
+            "name": "sensorsdata-project",
+            "value": ""
+          }
+        ],
+        "body": {
+          "type": "json",
+          "data": "{}"
+        }
+      },
+      "docs": "刷新业务模型接口, 其中不支持拼表，外部数据表和实时的业务模型刷新"
+    },
+    {
+      "info": {
+        "name": "查询业务模型调度任务执行状态",
+        "type": "http"
+      },
+      "http": {
+        "method": "GET",
+        "url": "/api/v3/analytics/v1/dataset/sync_task_detail",
+        "headers": [
+          {
+            "name": "api-key",
+            "value": ""
+          },
+          {
+            "name": "sensorsdata-project",
+            "value": ""
+          }
+        ],
+        "params": [
+          {
+            "name": "sync_task_id",
+            "value": "1",
+            "type": "query",
+            "description": "同步任务ID"
+          }
+        ]
+      },
+      "docs": "查询业务模型调度任务执行状态"
+    }
+  ],
+  "bundled": true
+}

@@ -1,0 +1,968 @@
+{
+  "openapi" : "3.0.1",
+  "info" : {
+    "description" : "资源位相关接口",
+    "title" : "神策智能运营",
+    "version" : ""
+  },
+  "servers" : [ {
+    "url" : "/api/v3/focus/v1"
+  } ],
+  "paths" : {
+    "/web-sections/list" : {
+      "post" : {
+        "description" : "获取资源位列表, 不传分页参数时, 默认查前10条, 单次查询最大支持200条",
+        "operationId" : "WebListSection",
+        "parameters" : [ {
+          "description" : "全局唯一的密钥，用于验证和授权访问 API 接口",
+          "in" : "header",
+          "name" : "api-key",
+          "required" : true,
+          "schema" : {
+            "type" : "string"
+          }
+        }, {
+          "description" : "项目名, 指定请求所属项目",
+          "in" : "header",
+          "name" : "sensorsdata-project",
+          "required" : true,
+          "schema" : {
+            "type" : "string"
+          }
+        }, {
+          "description" : "租户 ID, 用于请求所属租户",
+          "in" : "header",
+          "name" : "X-Organization-Id",
+          "required" : true,
+          "schema" : {
+            "type" : "string"
+          }
+        } ],
+        "requestBody" : {
+          "content" : {
+            "application/json" : {
+              "schema" : {
+                "$ref" : "#/components/schemas/sensorsdata.focus.v1.WebListSectionRequest"
+              }
+            }
+          },
+          "description" : "请求资源位列表的请求体",
+          "required" : false
+        },
+        "responses" : {
+          "default" : {
+            "content" : {
+              "application/json" : {
+                "example" : {
+                  "code" : "SUCCESS",
+                  "data" : {
+                    "page_filter" : { },
+                    "sections" : [ { } ]
+                  },
+                  "request_id" : "1"
+                },
+                "schema" : {
+                  "$ref" : "#/components/schemas/sensorsdata.focus.v1.WebListSectionResponseHttpApiResult"
+                }
+              }
+            },
+            "description" : "sensorsdata.focus.v1.WebListSectionResponse"
+          }
+        },
+        "summary" : "获取资源位列表",
+        "x-sd-openapi" : {
+          "responseClass" : "com.sensorsdata.focus.v1.WebListSectionResponse",
+          "isServerStreaming" : false,
+          "requestClass" : "com.sensorsdata.focus.v1.WebListSectionRequest",
+          "grpcServiceBase" : "com.sensorsdata.focus.v1.WebSectionsServiceGrpc.WebSectionsServiceImplBase",
+          "internalDesc" : "classes in template for grpc service dynamic invoking",
+          "isClientStreaming" : false
+        },
+        "x-codegen-request-body-name" : "WebListSectionRequest"
+      }
+    },
+    "/web-sections/get" : {
+      "get" : {
+        "description" : "获取单个资源位",
+        "operationId" : "WebGetSection",
+        "parameters" : [ {
+          "description" : "全局唯一的密钥，用于验证和授权访问 API 接口",
+          "in" : "header",
+          "name" : "api-key",
+          "required" : true,
+          "schema" : {
+            "type" : "string"
+          }
+        }, {
+          "description" : "项目名, 指定请求所属项目",
+          "in" : "header",
+          "name" : "sensorsdata-project",
+          "required" : true,
+          "schema" : {
+            "type" : "string"
+          }
+        }, {
+          "description" : "租户 ID, 用于请求所属租户",
+          "in" : "header",
+          "name" : "X-Organization-Id",
+          "required" : true,
+          "schema" : {
+            "type" : "string"
+          }
+        }, {
+          "description" : "资源位ID, 必填字段",
+          "in" : "query",
+          "name" : "section_id",
+          "required" : true,
+          "schema" : {
+            "type" : "string"
+          }
+        } ],
+        "responses" : {
+          "default" : {
+            "content" : {
+              "application/json" : {
+                "example" : {
+                  "code" : "SUCCESS",
+                  "data" : {
+                    "section" : {
+                      "created_by" : { }
+                    }
+                  },
+                  "request_id" : "1"
+                },
+                "schema" : {
+                  "$ref" : "#/components/schemas/sensorsdata.focus.v1.WebGetSectionResponseHttpApiResult"
+                }
+              }
+            },
+            "description" : "sensorsdata.focus.v1.WebGetSectionResponse"
+          }
+        },
+        "summary" : "获取单个资源位",
+        "x-sd-openapi" : {
+          "responseClass" : "com.sensorsdata.focus.v1.WebGetSectionResponse",
+          "isServerStreaming" : false,
+          "requestClass" : "com.sensorsdata.focus.v1.WebGetSectionRequest",
+          "grpcServiceBase" : "com.sensorsdata.focus.v1.WebSectionsServiceGrpc.WebSectionsServiceImplBase",
+          "internalDesc" : "classes in template for grpc service dynamic invoking",
+          "isClientStreaming" : false
+        }
+      }
+    },
+    "/web-sections/strategy-version/list" : {
+      "post" : {
+        "description" : "获取资源位运营策略版本列表, 不传分页参数时, 默认查前10条, 单次查询最大支持200条",
+        "operationId" : "WebListSectionStrategyVersions",
+        "parameters" : [ {
+          "description" : "全局唯一的密钥，用于验证和授权访问 API 接口",
+          "in" : "header",
+          "name" : "api-key",
+          "required" : true,
+          "schema" : {
+            "type" : "string"
+          }
+        }, {
+          "description" : "项目名, 指定请求所属项目",
+          "in" : "header",
+          "name" : "sensorsdata-project",
+          "required" : true,
+          "schema" : {
+            "type" : "string"
+          }
+        }, {
+          "description" : "租户 ID, 用于请求所属租户",
+          "in" : "header",
+          "name" : "X-Organization-Id",
+          "required" : true,
+          "schema" : {
+            "type" : "string"
+          }
+        } ],
+        "requestBody" : {
+          "content" : {
+            "application/json" : {
+              "schema" : {
+                "$ref" : "#/components/schemas/sensorsdata.focus.v1.WebListSectionStrategyVersionRequest"
+              }
+            }
+          },
+          "description" : "获取资源位运营策略列表请求体",
+          "required" : false
+        },
+        "responses" : {
+          "default" : {
+            "content" : {
+              "application/json" : {
+                "example" : {
+                  "code" : "SUCCESS",
+                  "data" : {
+                    "page_filter" : { },
+                    "strategy_versions" : [ { } ]
+                  },
+                  "request_id" : "1"
+                },
+                "schema" : {
+                  "$ref" : "#/components/schemas/sensorsdata.focus.v1.WebListSectionStrategyVersionResponseHttpApiResult"
+                }
+              }
+            },
+            "description" : "sensorsdata.focus.v1.WebListSectionStrategyVersionResponse"
+          }
+        },
+        "summary" : "获取资源位运营策略版本列表",
+        "x-sd-openapi" : {
+          "responseClass" : "com.sensorsdata.focus.v1.WebListSectionStrategyVersionResponse",
+          "isServerStreaming" : false,
+          "requestClass" : "com.sensorsdata.focus.v1.WebListSectionStrategyVersionRequest",
+          "grpcServiceBase" : "com.sensorsdata.focus.v1.WebSectionsServiceGrpc.WebSectionsServiceImplBase",
+          "internalDesc" : "classes in template for grpc service dynamic invoking",
+          "isClientStreaming" : false
+        },
+        "x-codegen-request-body-name" : "WebListSectionStrategyVersionRequest"
+      }
+    },
+    "/web-sections/strategy-version/get" : {
+      "get" : {
+        "description" : "获取单个资源位策略版本配置",
+        "operationId" : "WebGetSectionStrategyVersion",
+        "parameters" : [ {
+          "description" : "全局唯一的密钥，用于验证和授权访问 API 接口",
+          "in" : "header",
+          "name" : "api-key",
+          "required" : true,
+          "schema" : {
+            "type" : "string"
+          }
+        }, {
+          "description" : "项目名, 指定请求所属项目",
+          "in" : "header",
+          "name" : "sensorsdata-project",
+          "required" : true,
+          "schema" : {
+            "type" : "string"
+          }
+        }, {
+          "description" : "租户 ID, 用于请求所属租户",
+          "in" : "header",
+          "name" : "X-Organization-Id",
+          "required" : true,
+          "schema" : {
+            "type" : "string"
+          }
+        }, {
+          "description" : "资源位策略版本ID",
+          "in" : "query",
+          "name" : "version_id",
+          "required" : true,
+          "schema" : {
+            "format" : "int32",
+            "type" : "integer"
+          }
+        } ],
+        "responses" : {
+          "default" : {
+            "content" : {
+              "application/json" : {
+                "example" : {
+                  "code" : "SUCCESS",
+                  "data" : {
+                    "strategy_version" : {
+                      "carousel_material_config" : {
+                        "experiment_config" : {
+                          "experiment_groups" : [ {
+                            "material_content" : {
+                              "material_items" : [ { } ]
+                            },
+                            "experiment_info" : { }
+                          } ]
+                        }
+                      },
+                      "created_by" : { }
+                    }
+                  },
+                  "request_id" : "1"
+                },
+                "schema" : {
+                  "$ref" : "#/components/schemas/sensorsdata.focus.v1.WebGetSectionStrategyVersionResponseHttpApiResult"
+                }
+              }
+            },
+            "description" : "sensorsdata.focus.v1.WebGetSectionStrategyVersionResponse"
+          }
+        },
+        "summary" : "获取单个资源位策略版本配置",
+        "x-sd-openapi" : {
+          "responseClass" : "com.sensorsdata.focus.v1.WebGetSectionStrategyVersionResponse",
+          "isServerStreaming" : false,
+          "requestClass" : "com.sensorsdata.focus.v1.WebGetSectionStrategyVersionRequest",
+          "grpcServiceBase" : "com.sensorsdata.focus.v1.WebSectionsServiceGrpc.WebSectionsServiceImplBase",
+          "internalDesc" : "classes in template for grpc service dynamic invoking",
+          "isClientStreaming" : false
+        }
+      }
+    }
+  },
+  "components" : {
+    "schemas" : {
+      "sensorsdata.focus.v1.web.section.WebSectionStrategyVersion.ExperimentBaseInfo" : {
+        "description" : "试验基础信息",
+        "properties" : {
+          "experiment_name" : {
+            "description" : "试验名称",
+            "type" : "string"
+          },
+          "is_control_group" : {
+            "description" : "是否对照组",
+            "type" : "boolean"
+          },
+          "ratio" : {
+            "description" : "试验流量占比",
+            "format" : "int32",
+            "type" : "integer"
+          }
+        },
+        "title" : "ExperimentBaseInfo",
+        "type" : "object"
+      },
+      "sensorsdata.common.HttpApiResult" : {
+        "properties" : {
+          "code" : {
+            "type" : "string"
+          },
+          "message" : {
+            "type" : "string"
+          },
+          "request_id" : {
+            "type" : "string"
+          },
+          "data" : {
+            "properties" : { },
+            "type" : "object"
+          },
+          "error_info" : {
+            "$ref" : "#/components/schemas/sensorsdata.common.ErrorInfo"
+          }
+        },
+        "title" : "HttpApiResult",
+        "type" : "object"
+      },
+      "sensorsdata.focus.v1.WebGetSectionStrategyVersionResponseHttpApiResult" : {
+        "properties" : {
+          "code" : {
+            "type" : "string"
+          },
+          "message" : {
+            "type" : "string"
+          },
+          "request_id" : {
+            "type" : "string"
+          },
+          "data" : {
+            "$ref" : "#/components/schemas/sensorsdata.focus.v1.WebGetSectionStrategyVersionResponse"
+          },
+          "error_info" : {
+            "$ref" : "#/components/schemas/sensorsdata.common.ErrorInfo"
+          }
+        },
+        "title" : "sensorsdata.focus.v1.WebGetSectionStrategyVersionResponseHttpApiResult",
+        "type" : "object"
+      },
+      "sensorsdata.focus.v1.WebSectionBaseInfo" : {
+        "description" : "资源位的配置信息",
+        "properties" : {
+          "section_id" : {
+            "description" : "资源位ID",
+            "type" : "string"
+          },
+          "cname" : {
+            "description" : "显示名称",
+            "type" : "string"
+          },
+          "type" : {
+            "description" : "资源位类型, FEED:列表资源位, CAROUSEL:轮播资源位, POPUP:弹窗资源位",
+            "enum" : [ "TYPE_UNSPECIFIED", "FEED", "CAROUSEL", "POPUP" ],
+            "type" : "string"
+          },
+          "create_time" : {
+            "description" : "资源位创建时间",
+            "type" : "string"
+          }
+        },
+        "title" : "WebSectionBaseInfo",
+        "type" : "object"
+      },
+      "sensorsdata.focus.v1.WebGetSectionStrategyVersionResponse" : {
+        "description" : "请求资源位策略版本的响应体",
+        "properties" : {
+          "strategy_version" : {
+            "$ref" : "#/components/schemas/sensorsdata.focus.v1.web.section.WebSectionStrategyVersion"
+          }
+        },
+        "title" : "WebGetSectionStrategyVersionResponse",
+        "type" : "object"
+      },
+      "sensorsdata.focus.v1.web.section.WebSection" : {
+        "description" : "资源位的配置信息",
+        "properties" : {
+          "section_id" : {
+            "description" : "资源位ID",
+            "type" : "string"
+          },
+          "cname" : {
+            "description" : "显示名称",
+            "type" : "string"
+          },
+          "remark" : {
+            "description" : "备注",
+            "type" : "string"
+          },
+          "type" : {
+            "description" : "资源位类型, FEED:列表资源位, CAROUSEL:轮播资源位, POPUP:弹窗资源位",
+            "enum" : [ "TYPE_UNSPECIFIED", "FEED", "CAROUSEL", "POPUP" ],
+            "type" : "string"
+          },
+          "created_by" : {
+            "$ref" : "#/components/schemas/sensorsdata.focus.v1.web.AccountInfo"
+          },
+          "create_time" : {
+            "description" : "资源位创建时间",
+            "type" : "string"
+          }
+        },
+        "title" : "WebSection",
+        "type" : "object"
+      },
+      "sensorsdata.common.ErrorContext" : {
+        "description" : "发生错误时，系统快照信息",
+        "properties" : {
+          "origin_stack" : {
+            "description" : "上游异常的 stack，由系统截获",
+            "type" : "string"
+          },
+          "origin_cause" : {
+            "description" : "上游异常的 cause by，由系统截获",
+            "type" : "string"
+          },
+          "origin_code" : {
+            "description" : "上游异常的错误简码",
+            "type" : "string"
+          },
+          "origin_complete_code" : {
+            "description" : "上游异常的完整错误码",
+            "type" : "string"
+          },
+          "error_extend_desc" : {
+            "description" : "本次异常的辅助说明，可传入",
+            "type" : "string"
+          }
+        },
+        "title" : "ErrorContext",
+        "type" : "object"
+      },
+      "sensorsdata.focus.v1.WebListSectionStrategyVersionRequest" : {
+        "description" : "获取资源位运营策略列表请求体",
+        "properties" : {
+          "page_filter" : {
+            "$ref" : "#/components/schemas/sensorsdata.focus.v1.web.PageFilter"
+          },
+          "section_id" : {
+            "description" : "资源位ID, 必填字段",
+            "type" : "string"
+          },
+          "statuses" : {
+            "description" : "策略状态, CONFIGURING:配置中, ONLINE:已上线, TO_BE_ONLINE:待上线, OFFLINE:已下线, DISCARD:已废弃, 可选字段",
+            "items" : {
+              "enum" : [ "STATUS_UNSPECIFIED", "CONFIGURING", "ONLINE", "TO_BE_ONLINE", "OFFLINE", "DISCARD" ],
+              "type" : "string"
+            },
+            "type" : "array"
+          }
+        },
+        "title" : "WebListSectionStrategyVersionRequest",
+        "type" : "object"
+      },
+      "sensorsdata.focus.v1.web.section.WebSectionStrategyVersion.CarouselMaterialItem" : {
+        "description" : "物料内容项",
+        "properties" : {
+          "name" : {
+            "description" : "物料参数名称",
+            "type" : "string"
+          },
+          "cname" : {
+            "description" : "物料参数显示名",
+            "type" : "string"
+          },
+          "value" : {
+            "description" : "物料参数值",
+            "type" : "string"
+          }
+        },
+        "title" : "CarouselMaterialItem",
+        "type" : "object"
+      },
+      "sensorsdata.focus.v1.WebGetSectionResponse" : {
+        "description" : "请求资源位的响应体",
+        "properties" : {
+          "section" : {
+            "$ref" : "#/components/schemas/sensorsdata.focus.v1.web.section.WebSection"
+          }
+        },
+        "title" : "WebGetSectionResponse",
+        "type" : "object"
+      },
+      "sensorsdata.focus.v1.WebGetSectionStrategyVersionRequest" : {
+        "description" : "请求资源位策略版本的请求体",
+        "properties" : {
+          "version_id" : {
+            "description" : "资源位策略版本ID",
+            "format" : "int32",
+            "type" : "integer"
+          }
+        },
+        "required" : [ "version_id" ],
+        "title" : "WebGetSectionStrategyVersionRequest",
+        "type" : "object"
+      },
+      "sensorsdata.focus.v1.web.section.WebSectionStrategyVersion.CarouselExperimentConfig" : {
+        "description" : "试验配置",
+        "properties" : {
+          "experiment_groups" : {
+            "description" : "试验组列表",
+            "items" : {
+              "$ref" : "#/components/schemas/sensorsdata.focus.v1.web.section.WebSectionStrategyVersion.CarouselExperimentGroupInfo"
+            },
+            "type" : "array"
+          }
+        },
+        "title" : "CarouselExperimentConfig",
+        "type" : "object"
+      },
+      "sensorsdata.focus.v1.WebListSectionResponseHttpApiResult" : {
+        "properties" : {
+          "code" : {
+            "type" : "string"
+          },
+          "message" : {
+            "type" : "string"
+          },
+          "request_id" : {
+            "type" : "string"
+          },
+          "data" : {
+            "$ref" : "#/components/schemas/sensorsdata.focus.v1.WebListSectionResponse"
+          },
+          "error_info" : {
+            "$ref" : "#/components/schemas/sensorsdata.common.ErrorInfo"
+          }
+        },
+        "title" : "sensorsdata.focus.v1.WebListSectionResponseHttpApiResult",
+        "type" : "object"
+      },
+      "sensorsdata.focus.v1.WebListSectionRequest" : {
+        "description" : "请求资源位列表的请求体",
+        "properties" : {
+          "page_filter" : {
+            "$ref" : "#/components/schemas/sensorsdata.focus.v1.web.PageFilter"
+          },
+          "type" : {
+            "description" : "资源位类型, FEED:列表资源位, CAROUSEL:轮播资源位, POPUP:弹窗资源位, 必填字段",
+            "enum" : [ "TYPE_UNSPECIFIED", "FEED", "CAROUSEL", "POPUP" ],
+            "type" : "string"
+          }
+        },
+        "title" : "WebListSectionRequest",
+        "type" : "object"
+      },
+      "sensorsdata.focus.v1.web.PageFilter" : {
+        "description" : "分页信息",
+        "properties" : {
+          "limit" : {
+            "description" : "每页大小",
+            "format" : "int32",
+            "type" : "integer"
+          },
+          "offset" : {
+            "description" : "偏移量",
+            "format" : "int32",
+            "type" : "integer"
+          },
+          "total" : {
+            "description" : "总数",
+            "format" : "int32",
+            "type" : "integer"
+          }
+        },
+        "title" : "PageFilter",
+        "type" : "object"
+      },
+      "sensorsdata.focus.v1.web.section.WebSectionStrategyVersion.CarouselExperimentGroupInfo" : {
+        "description" : "试验组信息",
+        "properties" : {
+          "experiment_info" : {
+            "$ref" : "#/components/schemas/sensorsdata.focus.v1.web.section.WebSectionStrategyVersion.ExperimentBaseInfo"
+          },
+          "trigger" : {
+            "description" : "是否触发, 值为 false 时, 物料内容为空",
+            "type" : "boolean"
+          },
+          "material_content" : {
+            "$ref" : "#/components/schemas/sensorsdata.focus.v1.web.section.WebSectionStrategyVersion.CarouselMaterialContent"
+          }
+        },
+        "title" : "CarouselExperimentGroupInfo",
+        "type" : "object"
+      },
+      "sensorsdata.focus.v1.web.AccountInfo" : {
+        "description" : "用户信息",
+        "properties" : {
+          "user_name" : {
+            "description" : "用户名",
+            "type" : "string"
+          },
+          "user_id" : {
+            "description" : "用户 id",
+            "format" : "int64",
+            "type" : "integer"
+          },
+          "user_cname" : {
+            "description" : "用户显示名",
+            "type" : "string"
+          }
+        },
+        "title" : "AccountInfo",
+        "type" : "object"
+      },
+      "sensorsdata.focus.v1.WebGetSectionResponseHttpApiResult" : {
+        "properties" : {
+          "code" : {
+            "type" : "string"
+          },
+          "message" : {
+            "type" : "string"
+          },
+          "request_id" : {
+            "type" : "string"
+          },
+          "data" : {
+            "$ref" : "#/components/schemas/sensorsdata.focus.v1.WebGetSectionResponse"
+          },
+          "error_info" : {
+            "$ref" : "#/components/schemas/sensorsdata.common.ErrorInfo"
+          }
+        },
+        "title" : "sensorsdata.focus.v1.WebGetSectionResponseHttpApiResult",
+        "type" : "object"
+      },
+      "sensorsdata.focus.v1.WebListSectionResponse" : {
+        "description" : "请求资源位列表的响应体",
+        "properties" : {
+          "page_filter" : {
+            "$ref" : "#/components/schemas/sensorsdata.focus.v1.web.PageFilter"
+          },
+          "sections" : {
+            "description" : "资源位列表",
+            "items" : {
+              "$ref" : "#/components/schemas/sensorsdata.focus.v1.WebSectionBaseInfo"
+            },
+            "type" : "array"
+          }
+        },
+        "title" : "WebListSectionResponse",
+        "type" : "object"
+      },
+      "sensorsdata.common.ErrorCause" : {
+        "properties" : {
+          "error_cause" : {
+            "description" : "致错原因1",
+            "example" : "参数异常1",
+            "type" : "string"
+          },
+          "action_suggestion" : {
+            "description" : "操作建议，针对该原因，建议的解决方式",
+            "example" : "检测入参的数据类型1",
+            "type" : "string"
+          }
+        },
+        "title" : "ErrorCause",
+        "type" : "object"
+      },
+      "sensorsdata.focus.v1.WebListSectionStrategyVersionResponse" : {
+        "description" : "获取资源位运营策略列表响应体",
+        "properties" : {
+          "page_filter" : {
+            "$ref" : "#/components/schemas/sensorsdata.focus.v1.web.PageFilter"
+          },
+          "strategy_versions" : {
+            "description" : "资源位策略版本列表",
+            "items" : {
+              "$ref" : "#/components/schemas/sensorsdata.focus.v1.WebSectionStrategyVersionBaseInfo"
+            },
+            "type" : "array"
+          }
+        },
+        "title" : "WebListSectionStrategyVersionResponse",
+        "type" : "object"
+      },
+      "sensorsdata.common.ErrorInfo" : {
+        "properties" : {
+          "code" : {
+            "description" : "具体的错误码",
+            "example" : "XX-D-F-2-1",
+            "type" : "string"
+          },
+          "description" : {
+            "description" : "错误描述",
+            "example" : "前端参数校验异常,PARAMETER_FORMAT_ERROR(quantiles=[10, -90] is not include [0, 100])",
+            "type" : "string"
+          },
+          "system_response" : {
+            "description" : "致错的可能原因列表",
+            "example" : "系统终止了查询处理",
+            "type" : "string"
+          },
+          "error_causes" : {
+            "items" : {
+              "$ref" : "#/components/schemas/sensorsdata.common.ErrorCause"
+            },
+            "type" : "array"
+          },
+          "context" : {
+            "$ref" : "#/components/schemas/sensorsdata.common.ErrorContext"
+          }
+        },
+        "title" : "ErrorInfo",
+        "type" : "object"
+      },
+      "sensorsdata.focus.v1.WebGetSectionRequest" : {
+        "description" : "请求资源位的请求体",
+        "properties" : {
+          "section_id" : {
+            "description" : "资源位ID, 必填字段",
+            "type" : "string"
+          }
+        },
+        "required" : [ "section_id" ],
+        "title" : "WebGetSectionRequest",
+        "type" : "object"
+      },
+      "sensorsdata.focus.v1.web.section.WebSectionStrategyVersion" : {
+        "description" : "资源位策略配置",
+        "properties" : {
+          "section_id" : {
+            "description" : "资源位ID",
+            "type" : "string"
+          },
+          "strategy_id" : {
+            "description" : "策略ID",
+            "format" : "int32",
+            "type" : "integer"
+          },
+          "version_id" : {
+            "description" : "版本ID",
+            "format" : "int32",
+            "type" : "integer"
+          },
+          "cname" : {
+            "description" : "显示名称",
+            "type" : "string"
+          },
+          "remark" : {
+            "description" : "备注",
+            "type" : "string"
+          },
+          "default_strategy" : {
+            "description" : "是否是默认策略, 默认策略不存在优先级",
+            "type" : "boolean"
+          },
+          "position" : {
+            "description" : "策略位置",
+            "format" : "int32",
+            "type" : "integer"
+          },
+          "priority" : {
+            "description" : "策略优先级",
+            "format" : "int32",
+            "type" : "integer"
+          },
+          "type" : {
+            "description" : "资源位策略类型, CAROUSEL:轮播策略, FEED:物品策略, POPUP:弹窗策略, STICKY:置顶策略",
+            "enum" : [ "TYPE_UNSPECIFIED", "CAROUSEL", "FEED", "POPUP", "STICKY" ],
+            "type" : "string"
+          },
+          "status" : {
+            "description" : "资源位策略状态, CONFIGURING:配置中, ONLINE:已上线, TO_BE_ONLINE:待上线, OFFLINE:已下线, DISCARD:已废弃",
+            "enum" : [ "STATUS_UNSPECIFIED", "CONFIGURING", "ONLINE", "TO_BE_ONLINE", "OFFLINE", "DISCARD" ],
+            "type" : "string"
+          },
+          "online_mode" : {
+            "description" : "上线模式, IMMEDIATE_ONLINE:立即上线, TIMING_ONLINE:定时上线",
+            "enum" : [ "ONLINE_MODE_UNSPECIFIED", "IMMEDIATE_ONLINE", "TIMING_ONLINE" ],
+            "type" : "string"
+          },
+          "online_time" : {
+            "description" : "上线时间, 仅当定时上线或策略已上线时有值, 格式 yyyy-MM-dd HH:mm:ss",
+            "type" : "string"
+          },
+          "offline_mode" : {
+            "description" : "下线模式, NEVER_OFFLINE:一直在线, TIMING_OFFLINE:定时下线",
+            "enum" : [ "OFFLINE_MODE_UNSPECIFIED", "NEVER_OFFLINE", "TIMING_OFFLINE" ],
+            "type" : "string"
+          },
+          "offline_time" : {
+            "description" : "下线时间, 仅当定时下线或策略已下线时有值, 格式 yyyy-MM-dd HH:mm:ss",
+            "type" : "string"
+          },
+          "created_by" : {
+            "$ref" : "#/components/schemas/sensorsdata.focus.v1.web.AccountInfo"
+          },
+          "carousel_material_config" : {
+            "$ref" : "#/components/schemas/sensorsdata.focus.v1.web.section.WebSectionStrategyVersion.CarouselMaterialConfig"
+          },
+          "create_time" : {
+            "description" : "策略版本创建时间, 格式 yyyy-MM-dd HH:mm:ss",
+            "type" : "string"
+          },
+          "last_update_time" : {
+            "description" : "最近一次更新时间, 格式 yyyy-MM-dd HH:mm:ss",
+            "type" : "string"
+          }
+        },
+        "title" : "WebSectionStrategyVersion",
+        "type" : "object"
+      },
+      "sensorsdata.focus.v1.WebSectionStrategyVersionBaseInfo" : {
+        "description" : "资源位策略基础信息",
+        "properties" : {
+          "section_id" : {
+            "description" : "资源位ID",
+            "type" : "string"
+          },
+          "strategy_id" : {
+            "description" : "策略ID",
+            "format" : "int32",
+            "type" : "integer"
+          },
+          "version_id" : {
+            "description" : "版本ID",
+            "format" : "int32",
+            "type" : "integer"
+          },
+          "cname" : {
+            "description" : "显示名称",
+            "type" : "string"
+          },
+          "default_strategy" : {
+            "description" : "是否是默认策略, 默认策略不存在优先级",
+            "type" : "boolean"
+          },
+          "position" : {
+            "description" : "策略位置",
+            "format" : "int32",
+            "type" : "integer"
+          },
+          "priority" : {
+            "description" : "策略优先级",
+            "format" : "int32",
+            "type" : "integer"
+          },
+          "type" : {
+            "description" : "资源位策略类型, CAROUSEL:轮播策略, FEED:物品策略, POPUP:弹窗策略, STICKY:置顶策略",
+            "enum" : [ "TYPE_UNSPECIFIED", "CAROUSEL", "FEED", "POPUP", "STICKY" ],
+            "type" : "string"
+          },
+          "status" : {
+            "description" : "资源位策略状态, CONFIGURING:配置中, ONLINE:已上线, TO_BE_ONLINE:待上线, OFFLINE:已下线, DISCARD:已废弃",
+            "enum" : [ "STATUS_UNSPECIFIED", "CONFIGURING", "ONLINE", "TO_BE_ONLINE", "OFFLINE", "DISCARD" ],
+            "type" : "string"
+          },
+          "online_mode" : {
+            "description" : "上线模式, IMMEDIATE_ONLINE:立即上线, TIMING_ONLINE:定时上线",
+            "enum" : [ "ONLINE_MODE_UNSPECIFIED", "IMMEDIATE_ONLINE", "TIMING_ONLINE" ],
+            "type" : "string"
+          },
+          "online_time" : {
+            "description" : "上线时间, 仅当定时上线或策略已上线时有值, 格式 yyyy-MM-dd HH:mm:ss",
+            "type" : "string"
+          },
+          "offline_mode" : {
+            "description" : "下线模式, NEVER_OFFLINE:一直在线, TIMING_OFFLINE:定时下线",
+            "enum" : [ "OFFLINE_MODE_UNSPECIFIED", "NEVER_OFFLINE", "TIMING_OFFLINE" ],
+            "type" : "string"
+          },
+          "offline_time" : {
+            "description" : "下线时间, 仅当定时下线或策略已下线时有值, 格式 yyyy-MM-dd HH:mm:ss",
+            "type" : "string"
+          },
+          "create_time" : {
+            "description" : "策略版本创建时间, 格式 yyyy-MM-dd HH:mm:ss",
+            "type" : "string"
+          },
+          "last_update_time" : {
+            "description" : "最近一次更新时间, 格式 yyyy-MM-dd HH:mm:ss",
+            "type" : "string"
+          }
+        },
+        "title" : "WebSectionStrategyVersionBaseInfo",
+        "type" : "object"
+      },
+      "sensorsdata.focus.v1.WebListSectionStrategyVersionResponseHttpApiResult" : {
+        "properties" : {
+          "code" : {
+            "type" : "string"
+          },
+          "message" : {
+            "type" : "string"
+          },
+          "request_id" : {
+            "type" : "string"
+          },
+          "data" : {
+            "$ref" : "#/components/schemas/sensorsdata.focus.v1.WebListSectionStrategyVersionResponse"
+          },
+          "error_info" : {
+            "$ref" : "#/components/schemas/sensorsdata.common.ErrorInfo"
+          }
+        },
+        "title" : "sensorsdata.focus.v1.WebListSectionStrategyVersionResponseHttpApiResult",
+        "type" : "object"
+      },
+      "sensorsdata.focus.v1.web.section.WebSectionStrategyVersion.CarouselMaterialConfig" : {
+        "description" : "",
+        "properties" : {
+          "enable_experiment" : {
+            "description" : "是否开启试验",
+            "type" : "boolean"
+          },
+          "experiment_config" : {
+            "$ref" : "#/components/schemas/sensorsdata.focus.v1.web.section.WebSectionStrategyVersion.CarouselExperimentConfig"
+          },
+          "material_content" : {
+            "$ref" : "#/components/schemas/sensorsdata.focus.v1.web.section.WebSectionStrategyVersion.CarouselMaterialContent"
+          }
+        },
+        "title" : "CarouselMaterialConfig",
+        "type" : "object"
+      },
+      "sensorsdata.focus.v1.web.section.WebSectionStrategyVersion.CarouselMaterialContent" : {
+        "description" : "物料内容",
+        "properties" : {
+          "material_items" : {
+            "description" : "物料内容项",
+            "items" : {
+              "$ref" : "#/components/schemas/sensorsdata.focus.v1.web.section.WebSectionStrategyVersion.CarouselMaterialItem"
+            },
+            "type" : "array"
+          }
+        },
+        "title" : "CarouselMaterialContent",
+        "type" : "object"
+      }
+    }
+  },
+  "x-sd-openapi-service-name" : "WebSections",
+  "x-sd-openapi-service-name-hyphen" : "web-sections",
+  "x-sd-openapi-app-name" : "focus",
+  "x-sd-openapi-service-name-zh_cn" : "资源位运营",
+  "x-original-swagger-version" : "2.0"
+}

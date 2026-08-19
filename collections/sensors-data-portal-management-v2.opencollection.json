@@ -1,0 +1,382 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "神策业务门户"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "获取操作日志列表",
+        "type": "http"
+      },
+      "http": {
+        "method": "GET",
+        "url": "/api/v3/portal/v2/management/behavior/list",
+        "headers": [
+          {
+            "name": "api-key",
+            "value": ""
+          },
+          {
+            "name": "sensorsdata-project",
+            "value": ""
+          }
+        ],
+        "params": [
+          {
+            "name": "project_id",
+            "value": "1",
+            "type": "query",
+            "description": "项目 id"
+          },
+          {
+            "name": "operation_start_time",
+            "value": "2022-01-01 00:00:00",
+            "type": "query",
+            "description": "日志开始时间，日期格式：yyyy-MM-dd HH:mm:ss"
+          },
+          {
+            "name": "operation_end_time",
+            "value": "2022-01-01 00:00:00",
+            "type": "query",
+            "description": "日志结束时间，日期格式：yyyy-MM-dd HH:mm:ss"
+          },
+          {
+            "name": "page_index",
+            "value": "1",
+            "type": "query",
+            "description": "当前访问页号，默认值：1"
+          },
+          {
+            "name": "page_size",
+            "value": "20",
+            "type": "query",
+            "description": "单页返回最大记录数，默认值：20，取值范围：1-100"
+          },
+          {
+            "name": "module",
+            "value": "passport",
+            "type": "query",
+            "description": "功能模块，该字段由 sbp_behavior_define.module 定义"
+          },
+          {
+            "name": "user_name",
+            "value": "zhang_san",
+            "type": "query",
+            "description": "用户名，指定时查询当前用户名的操作日志，若没有指定 user_name，该字段会被忽略"
+          },
+          {
+            "name": "ip",
+            "value": "182.150.28.141",
+            "type": "query",
+            "description": "ip地址，指定时查询该ip地址的操作记录，若没有指定 ip，该字段会被忽略"
+          },
+          {
+            "name": "sort_order",
+            "value": "asc",
+            "type": "query",
+            "description": "排序，升序还是降序，为空默认为降序，asc：升序，desc：降序"
+          }
+        ],
+        "body": {
+          "type": "json",
+          "data": "{}"
+        }
+      },
+      "docs": "获取操作日志列表；为了方便于加载不同项目操作日志的数据，需要在请求参数中携带项目 ID，如果请求头携带了 sensorsdata-project 或者在请求参数中携带了 project 参数，会被忽略掉；该接口支持翻页，每页最多返回 100 条记录"
+    },
+    {
+      "info": {
+        "name": "获取操作日志定义列表",
+        "type": "http"
+      },
+      "http": {
+        "method": "GET",
+        "url": "/api/v3/portal/v2/management/behavior/define/list",
+        "headers": [
+          {
+            "name": "api-key",
+            "value": ""
+          },
+          {
+            "name": "sensorsdata-project",
+            "value": ""
+          }
+        ],
+        "params": [
+          {
+            "name": "page_index",
+            "value": "1",
+            "type": "query",
+            "description": "当前访问页号，默认值：1"
+          },
+          {
+            "name": "page_size",
+            "value": "20",
+            "type": "query",
+            "description": "单页返回最大记录数，默认值：20，取值范围：1-100"
+          },
+          {
+            "name": "product",
+            "value": "SBP",
+            "type": "query",
+            "description": "声明该「操作日志定义」的产品线"
+          }
+        ]
+      },
+      "docs": "获取操作日志定义列表；该接口支持翻页，每页最多返回 100 条记录"
+    },
+    {
+      "info": {
+        "name": "查询 OpenAPI 调用日志",
+        "type": "http"
+      },
+      "http": {
+        "method": "GET",
+        "url": "/api/v3/portal/v2/management/openapi/log/list",
+        "headers": [
+          {
+            "name": "api-key",
+            "value": ""
+          },
+          {
+            "name": "sensorsdata-project",
+            "value": ""
+          }
+        ],
+        "params": [
+          {
+            "name": "call_time_start",
+            "value": "1711324800000",
+            "type": "query",
+            "description": "调用开始时间，Unix 时间戳，单位毫秒"
+          },
+          {
+            "name": "call_time_end",
+            "value": "1711411200000",
+            "type": "query",
+            "description": "调用结束时间，Unix 时间戳，单位毫秒"
+          },
+          {
+            "name": "project_id",
+            "value": "1",
+            "type": "query",
+            "description": "项目 id"
+          },
+          {
+            "name": "account_id",
+            "value": "10001",
+            "type": "query",
+            "description": "账号 id"
+          },
+          {
+            "name": "module",
+            "value": "event",
+            "type": "query",
+            "description": "所属功能模块"
+          },
+          {
+            "name": "request_id",
+            "value": "req-20260325-0001",
+            "type": "query",
+            "description": "请求 id"
+          },
+          {
+            "name": "api_key_id",
+            "value": "1",
+            "type": "query",
+            "description": "API Key ID"
+          },
+          {
+            "name": "api_key_name",
+            "value": "server-token",
+            "type": "query",
+            "description": "API Key 名称"
+          },
+          {
+            "name": "page_num",
+            "value": "1",
+            "type": "query",
+            "description": "页码，从 1 开始"
+          },
+          {
+            "name": "page_size",
+            "value": "20",
+            "type": "query",
+            "description": "每页返回条数"
+          }
+        ]
+      },
+      "docs": "查询指定条件下的 OpenAPI 调用日志分页结果，仅支持管理员调用"
+    },
+    {
+      "info": {
+        "name": "获取项目列表",
+        "type": "http"
+      },
+      "http": {
+        "method": "GET",
+        "url": "/api/v3/portal/v2/management/project/list",
+        "headers": [
+          {
+            "name": "api-key",
+            "value": ""
+          },
+          {
+            "name": "sensorsdata-project",
+            "value": ""
+          }
+        ],
+        "params": [
+          {
+            "name": "product_name",
+            "value": "SA",
+            "type": "query",
+            "description": "产品名称，指定该参数则获取的项目信息为该产品下能够访问的项目列表"
+          }
+        ]
+      },
+      "docs": "获取当前账号已启用的项目信息和项目配置"
+    },
+    {
+      "info": {
+        "name": "查询通过id或name查询项目信息",
+        "type": "http"
+      },
+      "http": {
+        "method": "GET",
+        "url": "/api/v3/portal/v2/management/project/get",
+        "headers": [
+          {
+            "name": "api-key",
+            "value": ""
+          },
+          {
+            "name": "sensorsdata-project",
+            "value": ""
+          }
+        ],
+        "params": [
+          {
+            "name": "project_id",
+            "value": "2",
+            "type": "query",
+            "description": "项目 id"
+          },
+          {
+            "name": "project_name",
+            "value": "default",
+            "type": "query",
+            "description": "项目名称"
+          }
+        ]
+      },
+      "docs": "获取项目的详细信息"
+    },
+    {
+      "info": {
+        "name": "查询通过id查询账号绑定的项目",
+        "type": "http"
+      },
+      "http": {
+        "method": "GET",
+        "url": "/api/v3/portal/v2/management/project/get-by-account-id",
+        "headers": [
+          {
+            "name": "api-key",
+            "value": ""
+          },
+          {
+            "name": "sensorsdata-project",
+            "value": ""
+          }
+        ],
+        "params": [
+          {
+            "name": "account_id",
+            "value": "1",
+            "type": "query",
+            "description": "账号 id"
+          }
+        ]
+      },
+      "docs": "获取账号绑定的项目"
+    },
+    {
+      "info": {
+        "name": "发送站内消息",
+        "type": "http"
+      },
+      "http": {
+        "method": "POST",
+        "url": "/api/v3/portal/v2/management/notice/send",
+        "headers": [
+          {
+            "name": "api-key",
+            "value": ""
+          },
+          {
+            "name": "sensorsdata-project",
+            "value": ""
+          }
+        ],
+        "body": {
+          "type": "json",
+          "data": "{}"
+        }
+      },
+      "docs": "发送站内消息，支持发送给项目下指定的用户列表或者发送给某一项目下的所有用户；使用该接口发送的消息可以在神策系统右上角的「消息通知」处查看"
+    },
+    {
+      "info": {
+        "name": "查询私有端的版本信息",
+        "type": "http"
+      },
+      "http": {
+        "method": "GET",
+        "url": "/api/v3/portal/v2/management/product/versions",
+        "headers": [
+          {
+            "name": "api-key",
+            "value": ""
+          },
+          {
+            "name": "sensorsdata-project",
+            "value": ""
+          }
+        ]
+      },
+      "docs": "查询私有端的版本信息"
+    },
+    {
+      "info": {
+        "name": "查询私有端的所有授权组件信息",
+        "type": "http"
+      },
+      "http": {
+        "method": "GET",
+        "url": "/api/v3/portal/v2/management/license/product",
+        "headers": [
+          {
+            "name": "api-key",
+            "value": ""
+          },
+          {
+            "name": "sensorsdata-project",
+            "value": ""
+          }
+        ],
+        "params": [
+          {
+            "name": "product_name",
+            "value": "SBP",
+            "type": "query",
+            "description": "产品线名称"
+          }
+        ]
+      },
+      "docs": "查询私有端的所有授权组件信息（主要包括版本信息和授权情况）"
+    }
+  ],
+  "bundled": true
+}

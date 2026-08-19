@@ -1,0 +1,407 @@
+openapi: 3.0.1
+info:
+  description: 属性在线查询服务，提供标签查询接口
+  title: 神策智能运营
+  version: ''
+servers:
+- url: /api/v3/focus/v1
+paths:
+  /express-attribute-online/batch-get:
+    post:
+      description: 支持批量用户ID或其他业务ID.需要确保属性处于订阅状态
+      operationId: GetEntityAttributesByEntityIdList
+      parameters:
+      - description: 全局唯一的密钥，用于验证和授权访问 API 接口
+        in: header
+        name: api-key
+        required: true
+        schema:
+          type: string
+      - description: 项目名, 指定请求所属项目
+        in: header
+        name: sensorsdata-project
+        required: true
+        schema:
+          type: string
+      - description: 租户 ID, 用于请求所属租户
+        in: header
+        name: X-Organization-Id
+        required: true
+        schema:
+          type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/sensorsdata.focus.v1.GetEntityAttributesByEntityIdListRequest'
+        required: false
+      responses:
+        default:
+          content:
+            application/json:
+              example:
+                code: SUCCESS
+                data:
+                  audience_entities:
+                  - entity_name: user
+                    entity_id: {}
+                    audience_entity_attributes:
+                    - value: {}
+                request_id: '1'
+              schema:
+                $ref: '#/components/schemas/sensorsdata.focus.v1.GetEntityAttributesByEntityIdListResponseHttpApiResult'
+          description: sensorsdata.focus.v1.GetEntityAttributesByEntityIdListResponse
+      summary: 批量用户获取多属性/标签值
+      x-sd-openapi:
+        responseClass: com.sensorsdata.focus.v1.GetEntityAttributesByEntityIdListResponse
+        isServerStreaming: false
+        requestClass: com.sensorsdata.focus.v1.GetEntityAttributesByEntityIdListRequest
+        grpcServiceBase: com.sensorsdata.focus.v1.ExpressAttributeOnlineServiceGrpc.ExpressAttributeOnlineServiceImplBase
+        internalDesc: classes in template for grpc service dynamic invoking
+        isClientStreaming: false
+      x-codegen-request-body-name: GetEntityAttributesByEntityIdListRequest
+  /express-attribute-online/get:
+    post:
+      description: 支持批量用户ID或其他业务ID.需要确保属性处于订阅状态
+      operationId: GetEntityAttributesByEntityId
+      parameters:
+      - description: 全局唯一的密钥，用于验证和授权访问 API 接口
+        in: header
+        name: api-key
+        required: true
+        schema:
+          type: string
+      - description: 项目名, 指定请求所属项目
+        in: header
+        name: sensorsdata-project
+        required: true
+        schema:
+          type: string
+      - description: 租户 ID, 用于请求所属租户
+        in: header
+        name: X-Organization-Id
+        required: true
+        schema:
+          type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/sensorsdata.focus.v1.GetEntityAttributesByEntityIdRequest'
+        required: false
+      responses:
+        default:
+          content:
+            application/json:
+              example:
+                code: SUCCESS
+                data:
+                  audience_entity:
+                    entity_name: user
+                    entity_id: {}
+                    audience_entity_attributes:
+                    - value: {}
+                request_id: '1'
+              schema:
+                $ref: '#/components/schemas/sensorsdata.focus.v1.GetEntityAttributesByEntityIdResponseHttpApiResult'
+          description: sensorsdata.focus.v1.GetEntityAttributesByEntityIdResponse
+      summary: 单个用户获取多属性/标签值
+      x-sd-openapi:
+        responseClass: com.sensorsdata.focus.v1.GetEntityAttributesByEntityIdResponse
+        isServerStreaming: false
+        requestClass: com.sensorsdata.focus.v1.GetEntityAttributesByEntityIdRequest
+        grpcServiceBase: com.sensorsdata.focus.v1.ExpressAttributeOnlineServiceGrpc.ExpressAttributeOnlineServiceImplBase
+        internalDesc: classes in template for grpc service dynamic invoking
+        isClientStreaming: false
+      x-codegen-request-body-name: GetEntityAttributesByEntityIdRequest
+components:
+  schemas:
+    sensorsdata.focus.v1.express.audience.open.AudienceEntityCommonId:
+      description: ''
+      properties:
+        data_type:
+          description: 取值的数据类型，必传
+          enum:
+          - INT
+          - STRING
+          type: string
+        int_value:
+          description: int_value与string_value只设置其中一个（例如：item_id为string类型，user_id为long类型）
+          format: int64
+          type: integer
+        string_value:
+          description: int_value与string_value只设置其中一个（例如：item_id为string类型，user_id为long类型）
+          type: string
+      title: AudienceEntityCommonId
+      type: object
+    sensorsdata.focus.v1.express.audience.open.AudienceEntityId.IdentityIdMapEntry:
+      description: ''
+      properties:
+        key:
+          description: ''
+          type: string
+        value:
+          description: ''
+          type: string
+      title: IdentityIdMapEntry
+      type: object
+    sensorsdata.common.Literal:
+      description: ''
+      properties:
+        data_type:
+          description: ''
+          enum:
+          - DATA_TYPE_UNSPECIFIED
+          - BOOL
+          - INT
+          - NUMBER
+          - STRING
+          - LIST
+          - DATETIME
+          - DATE
+          - BIGINT
+          - DECIMAL
+          type: string
+        bool_value:
+          description: ''
+          type: boolean
+        int_value:
+          description: ''
+          format: int64
+          type: integer
+        number_value:
+          description: ''
+          format: double
+          type: number
+        string_value:
+          description: ''
+          type: string
+        list_value:
+          description: ''
+          items:
+            type: string
+          type: array
+        datetime_value:
+          description: ''
+          format: date-time
+          type: string
+        date_value:
+          description: ''
+          type: string
+        bigint_value:
+          description: ''
+          format: int64
+          type: integer
+        decimal_value:
+          description: ''
+          type: string
+      title: Literal
+      type: object
+    sensorsdata.focus.v1.express.audience.open.AudienceEntityId:
+      description: 通用的实体ID结构
+      properties:
+        entity_name:
+          description: 实体名，不传默认为user实体
+          example: user
+          type: string
+        identity_id_map:
+          additionalProperties:
+            description: ''
+            type: string
+          description: '业务主键map，key: id_name(业务id字段名), value: id_value（具体的id值）; id_name，如 distinct_id,
+            first_id, second_id, $identity_mobile等；identity_id_map 与 entity_id 只需设置其中一个，如果同时设置则以 entity_id
+            为准'
+          type: object
+        entity_id:
+          $ref: '#/components/schemas/sensorsdata.focus.v1.express.audience.open.AudienceEntityCommonId'
+      title: AudienceEntityId
+      type: object
+    sensorsdata.common.HttpApiResult:
+      properties:
+        code:
+          type: string
+        message:
+          type: string
+        request_id:
+          type: string
+        data:
+          properties: {}
+          type: object
+        error_info:
+          $ref: '#/components/schemas/sensorsdata.common.ErrorInfo'
+      title: HttpApiResult
+      type: object
+    sensorsdata.focus.v1.express.audience.open.AudienceEntityAttribute:
+      description: 通用的实体属性值结构
+      properties:
+        name:
+          description: 属性名
+          type: string
+        value:
+          $ref: '#/components/schemas/sensorsdata.common.Literal'
+        error_msg:
+          description: 结果状态信息描述
+          enum:
+          - SUCCESS
+          - UNSUBSCRIBE
+          - NO_PERMISSION
+          - NOT_READY
+          - UNAVAILABLE
+          type: string
+      title: AudienceEntityAttribute
+      type: object
+    sensorsdata.focus.v1.GetEntityAttributesByEntityIdListRequest:
+      description: ''
+      properties:
+        entity_name:
+          description: 实体名，不传默认为user实体；一次查询只能查询一个实体，不能同时查询多个实体。
+          type: string
+        audience_entity_ids:
+          description: 要查询的实体ID列表
+          items:
+            $ref: '#/components/schemas/sensorsdata.focus.v1.express.audience.open.AudienceEntityId'
+          type: array
+        attribute_names:
+          description: 需要获取的属性名列表
+          example: '[''first_id'', ''second_id'', ''$identity_mobile'']'
+          items:
+            type: string
+          type: array
+      title: GetEntityAttributesByEntityIdListRequest
+      type: object
+    sensorsdata.focus.v1.GetEntityAttributesByEntityIdListResponse:
+      description: ''
+      properties:
+        audience_entities:
+          description: 实体属性值集合列表
+          items:
+            $ref: '#/components/schemas/sensorsdata.focus.v1.express.audience.open.AudienceEntity'
+          type: array
+      title: GetEntityAttributesByEntityIdListResponse
+      type: object
+    sensorsdata.focus.v1.express.audience.open.AudienceEntity:
+      description: 通用的实体定义
+      properties:
+        entity_id:
+          $ref: '#/components/schemas/sensorsdata.focus.v1.express.audience.open.AudienceEntityCommonId'
+        entity_name:
+          description: 实体名
+          example: user
+          type: string
+        audience_entity_attributes:
+          description: 实体属性值列表
+          items:
+            $ref: '#/components/schemas/sensorsdata.focus.v1.express.audience.open.AudienceEntityAttribute'
+          type: array
+      title: AudienceEntity
+      type: object
+    sensorsdata.common.ErrorCause:
+      properties:
+        error_cause:
+          description: 致错原因1
+          example: 参数异常1
+          type: string
+        action_suggestion:
+          description: 操作建议，针对该原因，建议的解决方式
+          example: 检测入参的数据类型1
+          type: string
+      title: ErrorCause
+      type: object
+    sensorsdata.common.ErrorContext:
+      description: 发生错误时，系统快照信息
+      properties:
+        origin_stack:
+          description: 上游异常的 stack，由系统截获
+          type: string
+        origin_cause:
+          description: 上游异常的 cause by，由系统截获
+          type: string
+        origin_code:
+          description: 上游异常的错误简码
+          type: string
+        origin_complete_code:
+          description: 上游异常的完整错误码
+          type: string
+        error_extend_desc:
+          description: 本次异常的辅助说明，可传入
+          type: string
+      title: ErrorContext
+      type: object
+    sensorsdata.focus.v1.GetEntityAttributesByEntityIdRequest:
+      description: ''
+      properties:
+        entity_name:
+          description: 实体名，不传默认为user实体
+          type: string
+        audience_entity_id:
+          $ref: '#/components/schemas/sensorsdata.focus.v1.express.audience.open.AudienceEntityId'
+        attribute_names:
+          description: 需要获取的属性名列表
+          example: '[''first_id'', ''second_id'', ''$identity_mobile'']'
+          items:
+            type: string
+          type: array
+      title: GetEntityAttributesByEntityIdRequest
+      type: object
+    sensorsdata.common.ErrorInfo:
+      properties:
+        code:
+          description: 具体的错误码
+          example: XX-D-F-2-1
+          type: string
+        description:
+          description: 错误描述
+          example: 前端参数校验异常,PARAMETER_FORMAT_ERROR(quantiles=[10, -90] is not include [0, 100])
+          type: string
+        system_response:
+          description: 致错的可能原因列表
+          example: 系统终止了查询处理
+          type: string
+        error_causes:
+          items:
+            $ref: '#/components/schemas/sensorsdata.common.ErrorCause'
+          type: array
+        context:
+          $ref: '#/components/schemas/sensorsdata.common.ErrorContext'
+      title: ErrorInfo
+      type: object
+    sensorsdata.focus.v1.GetEntityAttributesByEntityIdResponseHttpApiResult:
+      properties:
+        code:
+          type: string
+        message:
+          type: string
+        request_id:
+          type: string
+        data:
+          $ref: '#/components/schemas/sensorsdata.focus.v1.GetEntityAttributesByEntityIdResponse'
+        error_info:
+          $ref: '#/components/schemas/sensorsdata.common.ErrorInfo'
+      title: sensorsdata.focus.v1.GetEntityAttributesByEntityIdResponseHttpApiResult
+      type: object
+    sensorsdata.focus.v1.GetEntityAttributesByEntityIdListResponseHttpApiResult:
+      properties:
+        code:
+          type: string
+        message:
+          type: string
+        request_id:
+          type: string
+        data:
+          $ref: '#/components/schemas/sensorsdata.focus.v1.GetEntityAttributesByEntityIdListResponse'
+        error_info:
+          $ref: '#/components/schemas/sensorsdata.common.ErrorInfo'
+      title: sensorsdata.focus.v1.GetEntityAttributesByEntityIdListResponseHttpApiResult
+      type: object
+    sensorsdata.focus.v1.GetEntityAttributesByEntityIdResponse:
+      description: ''
+      properties:
+        audience_entity:
+          $ref: '#/components/schemas/sensorsdata.focus.v1.express.audience.open.AudienceEntity'
+      title: GetEntityAttributesByEntityIdResponse
+      type: object
+x-sd-openapi-service-name: ExpressAttributeOnline
+x-sd-openapi-service-name-hyphen: express-attribute-online
+x-sd-openapi-app-name: focus
+x-sd-openapi-service-name-zh_cn: 属性-在线接口
+x-original-swagger-version: '2.0'

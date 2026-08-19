@@ -1,0 +1,309 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "神策数界"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "获取分群列表",
+        "type": "http"
+      },
+      "http": {
+        "method": "POST",
+        "url": "/api/v3/horizon/v1/segment/definition/list",
+        "headers": [
+          {
+            "name": "api-key",
+            "value": ""
+          },
+          {
+            "name": "sensorsdata-project",
+            "value": ""
+          }
+        ],
+        "body": {
+          "type": "json",
+          "data": "{}"
+        }
+      },
+      "docs": "获取分群列表\n```\ncurl -X POST \"http://{host}:{port}/api/v3/horizon/v1/segment/definition/list\" \\\n  -H \"Accept: application/json\" \\\n  -H \"Content-Type: application/json\" \\\n  -H \"sensorsdata-project: {projectName}\" \\\n  -H \"api-key: {apiKey}\" \\\n  -d '{\"entity_name\":\"user\",\"segment_definition_names\":[\"user_segment_t\",\"user_segment_c001\"],\"segment_definition_fuzzy_name\":\"segment_c\",\"create_time_range\":{\"start_time\":\"2025-04-01T00:00:00Z\",\"end_time\":\"2025-04-30T23:59:59Z\"},\"has_valid_segment\":true,\"show_inv"
+    },
+    {
+      "info": {
+        "name": "获取分群信息",
+        "type": "http"
+      },
+      "http": {
+        "method": "POST",
+        "url": "/api/v3/horizon/v1/segment/definition/get",
+        "headers": [
+          {
+            "name": "api-key",
+            "value": ""
+          },
+          {
+            "name": "sensorsdata-project",
+            "value": ""
+          }
+        ],
+        "body": {
+          "type": "json",
+          "data": "{}"
+        }
+      },
+      "docs": "获取分群信息\n```\ncurl -X POST \"http://{host}:{port}/api/v3/horizon/v1/segment/definition/get\" \\\n  -H \"Accept: application/json\" \\\n  -H \"Content-Type: application/json\" \\\n  -H \"sensorsdata-project: {projectName}\" \\\n  -H \"api-key: {apiKey}\" \\\n  -d '{\"entity_name\":\"user\",\"name\":\"user_segment_t\"}'\n 返回示例：\n{\"code\":\"SUCCESS\",\"request_id\":\"2914451801921dbc95dc8cceff783fd4\",\"data\":{\"visible\":true,\"create_time\":\"2025-04-23T09:17:20.397Z\",\"entity_name\":\"user\",\"create_type\":\"CUSTOMIZED_RULE\",\"trigger\":{\"trigger_t"
+    },
+    {
+      "info": {
+        "name": "创建分群",
+        "type": "http"
+      },
+      "http": {
+        "method": "POST",
+        "url": "/api/v3/horizon/v1/segment/definition/create-with-rule",
+        "headers": [
+          {
+            "name": "api-key",
+            "value": ""
+          },
+          {
+            "name": "sensorsdata-project",
+            "value": ""
+          }
+        ],
+        "body": {
+          "type": "json",
+          "data": "{}"
+        }
+      },
+      "docs": "创建分群\n```\ncurl -X POST \"http://{host}:{port}/api/v3/horizon/v1/segment/definition/create-with-rule\" \\\n  -H \"Accept: application/json\" \\\n  -H \"Content-Type: application/json\" \\\n  -H \"sensorsdata-project: {projectName}\" \\\n  -H \"api-key: {apiKey}\" \\\n  -d '{\"segment_definition\":{\"entity_name\":\"user\",\"name\":\"user_segment_wdfq1\",\"display_name\":\"我的分群1\",\"comment\":\"备注信息\",\"segment_rule_ref\":{\"expression\":{\"type\":\"LOADING_BASED\",\"loading_segment_rule\":{\"matched_field\":\"user.$identity_login_id\",\"sync_flag\":f"
+    },
+    {
+      "info": {
+        "name": "编辑分群",
+        "type": "http"
+      },
+      "http": {
+        "method": "POST",
+        "url": "/api/v3/horizon/v1/segment/definition/update-with-rule",
+        "headers": [
+          {
+            "name": "api-key",
+            "value": ""
+          },
+          {
+            "name": "sensorsdata-project",
+            "value": ""
+          }
+        ],
+        "body": {
+          "type": "json",
+          "data": "{}"
+        }
+      },
+      "docs": "编辑分群\n```\ncurl -X POST \"http://{host}:{port}/api/v3/horizon/v1/segment/definition/update-with-rule\" \\\n  -H \"Accept: application/json\" \\\n  -H \"Content-Type: application/json\" \\\n  -H \"sensorsdata-project: {projectName}\" \\\n  -H \"api-key: {apiKey}\" \\\n  -d '{\"segment_definition\":{\"entity_name\":\"user\",\"name\":\"user_segment_wdfq1\",\"display_name\":\"我的分群1_修改\",\"comment\":\"备注信息_修改\",\"segment_rule_ref\":{\"expression\":{\"type\":\"LOADING_BASED\",\"loading_segment_rule\":{\"matched_field\":\"user.name\",\"sync_flag\":false,\"lo"
+    },
+    {
+      "info": {
+        "name": "删除分群",
+        "type": "http"
+      },
+      "http": {
+        "method": "POST",
+        "url": "/api/v3/horizon/v1/segment/definition/delete",
+        "headers": [
+          {
+            "name": "api-key",
+            "value": ""
+          },
+          {
+            "name": "sensorsdata-project",
+            "value": ""
+          }
+        ],
+        "body": {
+          "type": "json",
+          "data": "{}"
+        }
+      },
+      "docs": "删除分群\n```\ncurl -X POST \"http://{host}:{port}/api/v3/horizon/v1/segment/definition/delete\" \\\n  -H \"Accept: application/json\" \\\n  -H \"Content-Type: application/json\" \\\n  -H \"sensorsdata-project: {projectName}\" \\\n  -H \"api-key: {apiKey}\" \\\n  -d '{ \"entity_name\": \"user\",\n        \"name\": \"user_segment_wdfq1\"\n  }'\n 返回示例：\n{\n    \"code\": \"SUCCESS\",\n    \"request_id\": \"18115057aa85bb6c55b1d02a940fe692\",\n    \"data\": {}\n}\n```"
+    },
+    {
+      "info": {
+        "name": "恢复被删除分群",
+        "type": "http"
+      },
+      "http": {
+        "method": "POST",
+        "url": "/api/v3/horizon/v1/segment/definition/recover",
+        "headers": [
+          {
+            "name": "api-key",
+            "value": ""
+          },
+          {
+            "name": "sensorsdata-project",
+            "value": ""
+          }
+        ],
+        "body": {
+          "type": "json",
+          "data": "{}"
+        }
+      },
+      "docs": "恢复被删除分群\n```\ncurl -X POST \"http://{host}:{port}/api/v3/horizon/v1/segment/definition/recover\" \\\n  -H \"Accept: application/json\" \\\n  -H \"Content-Type: application/json\" \\\n  -H \"sensorsdata-project: {projectName}\" \\\n  -H \"api-key: {apiKey}\" \\\n  -d '{ \"entity_name\": \"user\",\n        \"name\": \"user_segment_wdfq1\"\n  }'\n 返回示例：\n{\n    \"code\": \"SUCCESS\",\n    \"request_id\": \"181155401d5eef23e64654ecf04f2f8c\",\n    \"data\": {\n        \"visible\": true,\n        \"create_time\": \"2025-06-18T03:46:47.876Z\",\n        \"en"
+    },
+    {
+      "info": {
+        "name": "更新调度状态",
+        "type": "http"
+      },
+      "http": {
+        "method": "POST",
+        "url": "/api/v3/horizon/v1/segment/definition/status/update",
+        "headers": [
+          {
+            "name": "api-key",
+            "value": ""
+          },
+          {
+            "name": "sensorsdata-project",
+            "value": ""
+          }
+        ],
+        "body": {
+          "type": "json",
+          "data": "{}"
+        }
+      },
+      "docs": "更新例行分群的调度状态\n```\ncurl -X POST \"http://{host}:{port}/api/v3/horizon/v1/segment/definition/status/update\" \\\n  -H \"Accept: application/json\" \\\n  -H \"Content-Type: application/json\" \\\n  -H \"sensorsdata-project: {projectName}\" \\\n  -H \"api-key: {apiKey}\" \\\n  -d '{\"entity_name\":\"user\",\"name\":\"user_segment_wdfq1\",\"status\":\"SUSPENDED\"}'\n```"
+    },
+    {
+      "info": {
+        "name": "触发分群计算",
+        "type": "http"
+      },
+      "http": {
+        "method": "POST",
+        "url": "/api/v3/horizon/v1/segment/definition/evaluate",
+        "headers": [
+          {
+            "name": "api-key",
+            "value": ""
+          },
+          {
+            "name": "sensorsdata-project",
+            "value": ""
+          }
+        ],
+        "body": {
+          "type": "json",
+          "data": "{}"
+        }
+      },
+      "docs": "触发分群计算\n```\ncurl -X POST 'http://{host}:{port}/api/v3/horizon/v1/segment/definition/evaluate' \\\n-H \"Accept: application/json\" \\\n  -H \"Content-Type: application/json\" \\\n  -H \"sensorsdata-project: {projectName}\" \\\n  -H \"api-key: {apiKey}\" \\\n  -d '{\n    \"entity_name\": \"user\",\n    \"evaluate_params\": [{\n        \"segment_definition_name\": \"user_segment_t\",\n        \"base_time\": \"2025-04-27T16:00:00Z\"\n    }]\n}'\n```"
+    },
+    {
+      "info": {
+        "name": "获取分群定义关联的分群包元素",
+        "type": "http"
+      },
+      "http": {
+        "method": "POST",
+        "url": "/api/v3/horizon/v1/segment/item/list",
+        "headers": [
+          {
+            "name": "api-key",
+            "value": ""
+          },
+          {
+            "name": "sensorsdata-project",
+            "value": ""
+          }
+        ],
+        "body": {
+          "type": "json",
+          "data": "{}"
+        }
+      },
+      "docs": "获取计算出来的分群包信息列表\n```\ncurl -X POST \"http://{host}:{port}/api/v3/horizon/v1/segment/item/list\" \\\n  -H \"Accept: application/json\" \\\n  -H \"Content-Type: application/json\" \\\n  -H \"sensorsdata-project: {projectName}\" \\\n  -H \"api-key: {apiKey}\" \\\n  -d '{\"entity_name\":\"user\",\"definition_name\":\"user_segment_t\",\"limit\":5,\"segment_ready\":true}'\n 返回值示例：\n{\"code\":\"SUCCESS\",\"request_id\":\"301030287ccb2a91d6c7fefa78065f25\",\"data\":{\"items\":[{\"base_time\":\"2025-04-22T16:00:00Z\",\"segment_name\":\"user_user_segment_t_42_"
+    },
+    {
+      "info": {
+        "name": "获取最新分群包元素",
+        "type": "http"
+      },
+      "http": {
+        "method": "POST",
+        "url": "/api/v3/horizon/v1/segment/latest-item/get",
+        "headers": [
+          {
+            "name": "api-key",
+            "value": ""
+          },
+          {
+            "name": "sensorsdata-project",
+            "value": ""
+          }
+        ],
+        "body": {
+          "type": "json",
+          "data": "{}"
+        }
+      },
+      "docs": "获取分群对应最新分群包元素\n```\ncurl -X POST \"http://{host}:{port}/api/v3/horizon/v1/segment/latest-item/get\" \\\n  -H \"Accept: application/json\" \\\n  -H \"Content-Type: application/json\" \\\n  -H \"sensorsdata-project: {projectName}\" \\\n  -H \"api-key: {apiKey}\" \\\n  -d '{\"entity_name\":\"user\",\"definition_names\":[\"user_segment_t\",\"user_segment_wdfq1\"],\"segment_ready\":true}'\n 返回值示例：\n{\"code\":\"SUCCESS\",\"request_id\":\"30104727710d6fa19eb7b5aa76b92e90\",\"data\":{\"lasted_segment_item_map\":{\"user_segment_t\":{\"base_time\":\"2025-04"
+    },
+    {
+      "info": {
+        "name": "获取分群任务状态",
+        "type": "http"
+      },
+      "http": {
+        "method": "POST",
+        "url": "/api/v3/horizon/v1/segment/task/get",
+        "headers": [
+          {
+            "name": "api-key",
+            "value": ""
+          },
+          {
+            "name": "sensorsdata-project",
+            "value": ""
+          }
+        ],
+        "body": {
+          "type": "json",
+          "data": "{}"
+        }
+      },
+      "docs": "获取分群任务状态\n```\n  curl -X POST \"http://{host}:{port}/api/v3/horizon/v1/segment/task/get\" \\\n    -H \"Accept: application/json\" \\\n    -H \"Content-Type: application/json\" \\\n    -H \"sensorsdata-project: {projectName}\" \\\n    -H \"api-key: {apiKey}\" \\\n    -d '{\"entity_name\":\"user\",\"definition_name\":\"user_segment_t\",\"base_time_list\":[\"2025-04-22T16:00:00Z\",\"2025-04-27T16:00:00Z\"],\"fetch_all\":false}'\n 返回值示例：\n {\"code\":\"SUCCESS\",\"request_id\":\"30110749a909652f7e7a5bd6b6753f5a\",\"data\":{\"tasks\":[{\"id\":165,\"segmen"
+    },
+    {
+      "info": {
+        "name": "停止分群任务",
+        "type": "http"
+      },
+      "http": {
+        "method": "POST",
+        "url": "/api/v3/horizon/v1/segment/task/cancel",
+        "headers": [
+          {
+            "name": "api-key",
+            "value": ""
+          },
+          {
+            "name": "sensorsdata-project",
+            "value": ""
+          }
+        ],
+        "body": {
+          "type": "json",
+          "data": "{}"
+        }
+      },
+      "docs": "停止分群任务\n```\ncurl -X POST \"http://{host}:{port}/api/v3/horizon/v1/segment/task/cancel\" \\\n  -H \"Accept: application/json\" \\\n  -H \"Content-Type: application/json\" \\\n  -H \"sensorsdata-project: {projectName}\" \\\n  -H \"api-key: {apiKey}\" \\\n  -d '{\"task_ids\":[4121],\"sync\":\"false\",\"sync_timeout_seconds\":30}'\n```"
+    }
+  ],
+  "bundled": true
+}

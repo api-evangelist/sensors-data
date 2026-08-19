@@ -1,0 +1,1566 @@
+{
+  "item": [
+    {
+      "id": "1168ee87-08cb-4097-ac79-51b90f291888",
+      "name": "获取事件定义列表",
+      "request": {
+        "name": "获取事件定义列表",
+        "description": {
+          "content": "获取事件定义列表\n```\n  curl -X POST 'http://{host}:{port}/api/v3/horizon/v1/schema/event/list' \\\n    -H 'Accept: application/json' \\\n    -H 'Content-Type: application/json' \\\n    -H 'api-key: {apiKey}' \\\n    -H 'sensorsdata-project: {projectName}' \\\n    -d '{\"expand\": \"custom_params\",\"page_size\": 1\n    }'\n  返回值示例:\n  {\n      \"code\": \"SUCCESS\",\n      \"request_id\": \"111439553289fbce04c278b6db07656c\",\n      \"data\": {\n          \"schemas\": [\n              {\n                  \"project_id\": 1,\n                  \"name\": \"events.ViewProduct\",\n                  \"display_name\": \"ViewProduct\",\n                  \"type\": \"LOGICAL\",\n                  \"schema_class\": \"EVENT\",\n                  \"schema_display_type\": \"BASIC\",\n                  \"original_name\": \"ViewProduct\",\n                  \"builtin\": false,\n                  \"has_data\": true,\n                  \"visible\": true,\n                  \"enable\": true,\n                  \"custom_params\": {\n                      \"meta_schema_mapping_condition\": \"{\\\"operator\\\":\\\"AND\\\",\\\"conditions\\\":[{\\\"function\\\":\\\"EQUAL\\\",\\\"params\\\":[{\\\"param_type\\\":\\\"FIELD\\\",\\\"field\\\":\\\"event_id\\\"},{\\\"param_type\\\":\\\"VALUE\\\",\\\"value\\\":{\\\"data_type\\\":\\\"INT\\\",\\\"int_value\\\":\\\"6\\\"}}]}]}\"\n                  },\n                  \"fields\": [],\n                  \"version\": 3,\n                  \"legacy_id\": 6,\n                  \"schema_data_mapping_type\": \"SCHEMA_DATA_MAPPING_TYPE_UNSPECIFIED\"\n              }\n          ],\n          \"total_size\": 6,\n          \"has_next\": true\n      }\n  }\n```",
+          "type": "text/plain"
+        },
+        "url": {
+          "path": [
+            "schema",
+            "event",
+            "list"
+          ],
+          "host": [
+            "{{baseUrl}}"
+          ],
+          "query": [],
+          "variable": []
+        },
+        "header": [
+          {
+            "disabled": false,
+            "description": "(Required) 全局唯一的密钥，用于验证和授权访问 API 接口",
+            "key": "api-key",
+            "value": "<string>"
+          },
+          {
+            "disabled": false,
+            "description": "(Required) 项目名, 指定请求所属项目",
+            "key": "sensorsdata-project",
+            "value": "<string>"
+          },
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          },
+          {
+            "key": "Accept",
+            "value": "application/json"
+          }
+        ],
+        "method": "POST",
+        "auth": null,
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"physical_schema_name\": \"<string>\",\n  \"project_id\": \"<integer>\",\n  \"schema_type\": \"<string>\",\n  \"contain_field_names\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"display_names\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"expand\": \"<string>\",\n  \"page\": \"<integer>\",\n  \"page_size\": \"<integer>\"\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        }
+      },
+      "response": [
+        {
+          "id": "39ef2fc4-2dc9-4fa6-8ddd-ac56a5c1dfce",
+          "name": "sensorsdata.horizon.v1.ListLogicalSchemasResponse",
+          "originalRequest": {
+            "url": {
+              "path": [
+                "schema",
+                "event",
+                "list"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "disabled": false,
+                "description": "(Required) 全局唯一的密钥，用于验证和授权访问 API 接口",
+                "key": "api-key",
+                "value": "<string>"
+              },
+              {
+                "disabled": false,
+                "description": "(Required) 项目名, 指定请求所属项目",
+                "key": "sensorsdata-project",
+                "value": "<string>"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"physical_schema_name\": \"<string>\",\n  \"project_id\": \"<integer>\",\n  \"schema_type\": \"LOGICAL\",\n  \"contain_field_names\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"display_names\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"expand\": \"<string>\",\n  \"page\": \"<integer>\",\n  \"page_size\": \"<integer>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "status": "Internal Server Error",
+          "code": 500,
+          "header": [
+            {
+              "key": "Content-Type",
+              "value": "application/json"
+            }
+          ],
+          "body": "{\n  \"code\": \"SUCCESS\",\n  \"data\": {\n    \"schemas\": [\n      {\n        \"has_data\": false,\n        \"mapping\": {\n          \"condition\": {\n            \"index\": 10,\n            \"conditions\": [\n              {\n                \"function\": \"EQUAL\",\n                \"index\": 10,\n                \"params\": [\n                  {\n                    \"expression\": \"user.p1/user.p2+user.p3\",\n                    \"field\": \"#ResourceId\",\n                    \"time_point\": {\n                      \"relative_time\": {\n                        \"time_interval\": {}\n                      }\n                    },\n                    \"variable\": \"$ENTRY_TIME\",\n                    \"value\": {},\n                    \"param_type\": \"FIELD\"\n                  }\n                ]\n              }\n            ],\n            \"operator\": \"AND\"\n          }\n        },\n        \"visible\": \"true\",\n        \"data_mapping\": {\n          \"view_table\": {},\n          \"extended_tables\": [\n            {\n              \"access_info\": {}\n            }\n          ]\n        },\n        \"schema_data_mapping_type\": \"BUILTIN_TABLE\",\n        \"enable\": \"true\",\n        \"schema_display_type\": \"BASIC\",\n        \"type\": \"PHYSICAL\",\n        \"fields\": [\n          {\n            \"unit\": {},\n            \"data_mapping\": {\n              \"extended_column\": {}\n            },\n            \"data_type\": {\n              \"type\": \"STRING\"\n            },\n            \"view_data_source\": {\n              \"inline_expression\": {},\n              \"view_column_source_data\": {},\n              \"complex_expression\": {}\n            },\n            \"object_fields\": [\n              {}\n            ]\n          }\n        ],\n        \"statistics\": {\n          \"track_platforms\": [\n            {}\n          ]\n        }\n      }\n    ]\n  },\n  \"request_id\": \"1\"\n}",
+          "cookie": [],
+          "_postman_previewlanguage": "json"
+        }
+      ],
+      "event": [],
+      "protocolProfileBehavior": {
+        "disableBodyPruning": true
+      }
+    },
+    {
+      "id": "2938576f-88a4-487f-abc5-ca78388a5991",
+      "name": "获取事件定义",
+      "request": {
+        "name": "获取事件定义",
+        "description": {
+          "content": "获取事件定义\n```\n  curl -X POST 'http://{host}:{port}/api/v3/horizon/v1/schema/event/get' \\\n    -H 'Accept: application/json' \\\n    -H 'Content-Type: application/json' \\\n    -H 'api-key: {apiKey}' \\\n    -H 'sensorsdata-project: {projectName}' \\\n    -d '{\"expand\": \"custom_params\",\"original_name\": \"ViewProduct\"}'\n  返回值示例：\n  {\n    \"code\": \"SUCCESS\",\n    \"request_id\": \"11154529714df4438627873ae61ad15e\",\n    \"data\": {\n        \"visible\": true,\n        \"builtin\": false,\n        \"schema_class\": \"EVENT\",\n        \"schema_display_type\": \"BASIC\",\n        \"display_name\": \"ViewProduct\",\n        \"type\": \"LOGICAL\",\n        \"version\": 3,\n        \"has_data\": true,\n        \"custom_params\": {\n            \"meta_schema_mapping_condition\": \"{\\\"operator\\\":\\\"AND\\\",\\\"conditions\\\":[{\\\"function\\\":\\\"EQUAL\\\",\\\"params\\\":[{\\\"param_type\\\":\\\"FIELD\\\",\\\"field\\\":\\\"event_id\\\"},{\\\"param_type\\\":\\\"VALUE\\\",\\\"value\\\":{\\\"data_type\\\":\\\"INT\\\",\\\"int_value\\\":\\\"6\\\"}}]}]}\"\n        },\n        \"project_id\": 1,\n        \"schema_data_mapping_type\": \"SCHEMA_DATA_MAPPING_TYPE_UNSPECIFIED\",\n        \"enable\": true,\n        \"original_name\": \"ViewProduct\",\n        \"name\": \"events.ViewProduct\",\n        \"legacy_id\": 6,\n        \"fields\": []\n    }\n  }\n```",
+          "type": "text/plain"
+        },
+        "url": {
+          "path": [
+            "schema",
+            "event",
+            "get"
+          ],
+          "host": [
+            "{{baseUrl}}"
+          ],
+          "query": [],
+          "variable": []
+        },
+        "header": [
+          {
+            "disabled": false,
+            "description": "(Required) 全局唯一的密钥，用于验证和授权访问 API 接口",
+            "key": "api-key",
+            "value": "<string>"
+          },
+          {
+            "disabled": false,
+            "description": "(Required) 项目名, 指定请求所属项目",
+            "key": "sensorsdata-project",
+            "value": "<string>"
+          },
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          },
+          {
+            "key": "Accept",
+            "value": "application/json"
+          }
+        ],
+        "method": "POST",
+        "auth": null,
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"original_name\": \"<string>\",\n  \"physical_schema_name\": \"<string>\",\n  \"project_id\": \"<integer>\",\n  \"expand\": \"<string>\"\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        }
+      },
+      "response": [
+        {
+          "id": "f9d4b880-a3e2-4d93-8e7d-6ec0f3755fb3",
+          "name": "sensorsdata.horizon.v1.Schema",
+          "originalRequest": {
+            "url": {
+              "path": [
+                "schema",
+                "event",
+                "get"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "disabled": false,
+                "description": "(Required) 全局唯一的密钥，用于验证和授权访问 API 接口",
+                "key": "api-key",
+                "value": "<string>"
+              },
+              {
+                "disabled": false,
+                "description": "(Required) 项目名, 指定请求所属项目",
+                "key": "sensorsdata-project",
+                "value": "<string>"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"original_name\": \"<string>\",\n  \"physical_schema_name\": \"<string>\",\n  \"project_id\": \"<integer>\",\n  \"expand\": \"<string>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "status": "Internal Server Error",
+          "code": 500,
+          "header": [
+            {
+              "key": "Content-Type",
+              "value": "application/json"
+            }
+          ],
+          "body": "{\n  \"code\": \"SUCCESS\",\n  \"data\": {\n    \"has_data\": false,\n    \"mapping\": {\n      \"condition\": {\n        \"index\": 10,\n        \"conditions\": [\n          {\n            \"function\": \"EQUAL\",\n            \"index\": 10,\n            \"params\": [\n              {\n                \"expression\": \"user.p1/user.p2+user.p3\",\n                \"field\": \"#ResourceId\",\n                \"time_point\": {\n                  \"relative_time\": {\n                    \"time_interval\": {}\n                  }\n                },\n                \"variable\": \"$ENTRY_TIME\",\n                \"value\": {},\n                \"param_type\": \"FIELD\"\n              }\n            ]\n          }\n        ],\n        \"operator\": \"AND\"\n      }\n    },\n    \"visible\": \"true\",\n    \"data_mapping\": {\n      \"view_table\": {},\n      \"extended_tables\": [\n        {\n          \"access_info\": {}\n        }\n      ]\n    },\n    \"schema_data_mapping_type\": \"BUILTIN_TABLE\",\n    \"enable\": \"true\",\n    \"schema_display_type\": \"BASIC\",\n    \"type\": \"PHYSICAL\",\n    \"fields\": [\n      {\n        \"unit\": {},\n        \"data_mapping\": {\n          \"extended_column\": {}\n        },\n        \"data_type\": {\n          \"type\": \"STRING\"\n        },\n        \"view_data_source\": {\n          \"inline_expression\": {},\n          \"view_column_source_data\": {},\n          \"complex_expression\": {}\n        },\n        \"object_fields\": [\n          {}\n        ]\n      }\n    ],\n    \"statistics\": {\n      \"track_platforms\": [\n        {}\n      ]\n    }\n  },\n  \"request_id\": \"1\"\n}",
+          "cookie": [],
+          "_postman_previewlanguage": "json"
+        }
+      ],
+      "event": [],
+      "protocolProfileBehavior": {
+        "disableBodyPruning": true
+      }
+    },
+    {
+      "id": "cf8d1458-a414-4885-b0b3-e6b3c5c27a2e",
+      "name": "创建事件定义",
+      "request": {
+        "name": "创建事件定义",
+        "description": {
+          "content": "创建事件定义\n```\n  curl -X POST 'http://{host}:{port}/api/v3/horizon/v1/schema/event/create' \\\n    -H 'Content-Type: application/json' \\\n    -H 'api-key: {apiKey}' \\\n    -H 'sensorsdata-project: {projectName}' \\\n    -d '{\n    \"physical_schema_name\": \"events\",\n    \"schemas\": [\n      {\n        \"original_name\": \"buttonclick\",\n        \"display_name\": \"buttonclick\",\n        \"custom_params\": {\n          \"meta_desc\": \"备注\",\n          \"meta_trigger_action_desc\": \"aaa\"\n        },\n        \"statistics\": {\n          \"track_platforms\": [\n            {\n              \"platform\": \"ANDROID\",\n              \"has_data\": false\n            },\n            {\n              \"platform\": \"IOS\",\n              \"has_data\": false\n            }\n          ]\n        }\n      }\n    ]\n   }'\n  返回值示例：\n  {\n    \"code\": \"SUCCESS\",\n    \"request_id\": \"1115555389cba16b5b816e0514fd338d\",\n    \"data\": {}\n  }\n```",
+          "type": "text/plain"
+        },
+        "url": {
+          "path": [
+            "schema",
+            "event",
+            "create"
+          ],
+          "host": [
+            "{{baseUrl}}"
+          ],
+          "query": [],
+          "variable": []
+        },
+        "header": [
+          {
+            "disabled": false,
+            "description": "(Required) 全局唯一的密钥，用于验证和授权访问 API 接口",
+            "key": "api-key",
+            "value": "<string>"
+          },
+          {
+            "disabled": false,
+            "description": "(Required) 项目名, 指定请求所属项目",
+            "key": "sensorsdata-project",
+            "value": "<string>"
+          },
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          },
+          {
+            "key": "Accept",
+            "value": "application/json"
+          }
+        ],
+        "method": "POST",
+        "auth": null,
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"physical_schema_name\": \"<string>\",\n  \"project_id\": \"<integer>\",\n  \"schemas\": [\n    {\n      \"original_name\": \"<string>\",\n      \"schema_class\": \"<string>\",\n      \"type\": \"<string>\",\n      \"project_id\": \"<integer>\",\n      \"name\": \"<string>\",\n      \"display_name\": \"<string>\",\n      \"schema_display_type\": \"<string>\",\n      \"builtin\": \"<boolean>\",\n      \"has_data\": \"<boolean>\",\n      \"visible\": \"<boolean>\",\n      \"enable\": \"<boolean>\",\n      \"mapping\": {\n        \"target_schema_name\": \"<string>\",\n        \"condition\": {\n          \"operator\": \"<string>\",\n          \"conditions\": [\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          ],\n          \"compound_conditions\": [\n            {\n              \"value\": \"<Circular reference to #/components/schemas/sensorsdata.common.CompoundFilterCondition detected>\"\n            },\n            {\n              \"value\": \"<Circular reference to #/components/schemas/sensorsdata.common.CompoundFilterCondition detected>\"\n            }\n          ],\n          \"index\": \"<integer>\"\n        },\n        \"raw_condition\": {\n          \"operator\": \"<string>\",\n          \"conditions\": [\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          ],\n          \"compound_conditions\": [\n            {\n              \"value\": \"<Circular reference to #/components/schemas/sensorsdata.common.CompoundFilterCondition detected>\"\n            },\n            {\n              \"value\": \"<Circular reference to #/components/schemas/sensorsdata.common.CompoundFilterCondition detected>\"\n            }\n          ],\n          \"index\": \"<integer>\"\n        }\n      },\n      \"data_mapping\": {\n        \"view_table\": {\n          \"db_name\": \"<string>\",\n          \"table_name\": \"<string>\",\n          \"condition\": \"<string>\"\n        },\n        \"main_table\": {\n          \"db_name\": \"<string>\",\n          \"table_name\": \"<string>\",\n          \"condition\": \"<string>\"\n        },\n        \"extended_tables\": [\n          {\n            \"db_name\": \"<string>\",\n            \"extended_table_id\": \"<string>\",\n            \"join_on_expression\": \"<string>\",\n            \"schema_name\": \"<string>\",\n            \"table_name\": \"<string>\",\n            \"table_display_type\": \"<string>\",\n            \"display_name\": \"<string>\",\n            \"join_key_columns\": [\n              {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            ],\n            \"join_mode\": \"<string>\",\n            \"access_info\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          },\n          {\n            \"db_name\": \"<string>\",\n            \"extended_table_id\": \"<string>\",\n            \"join_on_expression\": \"<string>\",\n            \"schema_name\": \"<string>\",\n            \"table_name\": \"<string>\",\n            \"table_display_type\": \"<string>\",\n            \"display_name\": \"<string>\",\n            \"join_key_columns\": [\n              {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            ],\n            \"join_mode\": \"<string>\",\n            \"access_info\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          }\n        ]\n      },\n      \"schema_data_mapping_type\": \"<string>\",\n      \"custom_params\": {\n        \"key_0\": \"<string>\"\n      },\n      \"fields\": [\n        {\n          \"created_by\": \"<string>\",\n          \"data_type\": {\n            \"type\": \"<string>\",\n            \"number_decimal_precision\": \"<integer>\",\n            \"number_decimal_scale\": \"<integer>\"\n          },\n          \"name\": \"<string>\",\n          \"display_name\": \"<string>\",\n          \"field_display_type\": \"<string>\",\n          \"builtin\": \"<boolean>\",\n          \"has_data\": \"<boolean>\",\n          \"has_dict\": \"<boolean>\",\n          \"visible\": \"<boolean>\",\n          \"enable\": \"<boolean>\",\n          \"subscribable\": \"<boolean>\",\n          \"primary_identity\": \"<boolean>\",\n          \"identity\": \"<boolean>\",\n          \"required\": \"<boolean>\",\n          \"data_versioned\": \"<boolean>\",\n          \"data_version_form\": \"<string>\",\n          \"pii\": \"<boolean>\",\n          \"data_mapping\": {\n            \"view_column_name\": \"<string>\",\n            \"source_type\": \"<string>\",\n            \"extended_column\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          },\n          \"view_data_source\": {\n            \"field_name\": \"<string>\",\n            \"view_column_source_data\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"complex_expression\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"inline_expression\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"version\": \"<integer>\"\n          },\n          \"custom_params\": {\n            \"key_0\": \"<string>\",\n            \"key_1\": \"<string>\",\n            \"key_2\": \"<string>\"\n          },\n          \"unit\": {\n            \"display_name\": \"<string>\",\n            \"name\": \"<string>\",\n            \"builtin\": \"<boolean>\",\n            \"data_type\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"base\": \"<integer>\",\n            \"unit_group_name\": \"<string>\",\n            \"unit_group_display_name\": \"<string>\",\n            \"access_info\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          },\n          \"object_fields\": [\n            {\n              \"name\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"display_name\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"data_type\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"description\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            },\n            {\n              \"name\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"display_name\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"data_type\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"description\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            }\n          ],\n          \"version\": \"<integer>\",\n          \"access_info\": {\n            \"creator_id\": \"<string>\",\n            \"modifier_id\": \"<string>\",\n            \"create_time\": \"<dateTime>\",\n            \"update_time\": \"<dateTime>\"\n          },\n          \"legacy_id\": \"<integer>\"\n        },\n        {\n          \"created_by\": \"<string>\",\n          \"data_type\": {\n            \"type\": \"<string>\",\n            \"number_decimal_precision\": \"<integer>\",\n            \"number_decimal_scale\": \"<integer>\"\n          },\n          \"name\": \"<string>\",\n          \"display_name\": \"<string>\",\n          \"field_display_type\": \"<string>\",\n          \"builtin\": \"<boolean>\",\n          \"has_data\": \"<boolean>\",\n          \"has_dict\": \"<boolean>\",\n          \"visible\": \"<boolean>\",\n          \"enable\": \"<boolean>\",\n          \"subscribable\": \"<boolean>\",\n          \"primary_identity\": \"<boolean>\",\n          \"identity\": \"<boolean>\",\n          \"required\": \"<boolean>\",\n          \"data_versioned\": \"<boolean>\",\n          \"data_version_form\": \"<string>\",\n          \"pii\": \"<boolean>\",\n          \"data_mapping\": {\n            \"view_column_name\": \"<string>\",\n            \"source_type\": \"<string>\",\n            \"extended_column\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          },\n          \"view_data_source\": {\n            \"field_name\": \"<string>\",\n            \"view_column_source_data\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"complex_expression\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"inline_expression\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"version\": \"<integer>\"\n          },\n          \"custom_params\": {\n            \"key_0\": \"<string>\",\n            \"key_1\": \"<string>\"\n          },\n          \"unit\": {\n            \"display_name\": \"<string>\",\n            \"name\": \"<string>\",\n            \"builtin\": \"<boolean>\",\n            \"data_type\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"base\": \"<integer>\",\n            \"unit_group_name\": \"<string>\",\n            \"unit_group_display_name\": \"<string>\",\n            \"access_info\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          },\n          \"object_fields\": [\n            {\n              \"name\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"display_name\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"data_type\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"description\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            },\n            {\n              \"name\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"display_name\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"data_type\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"description\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            }\n          ],\n          \"version\": \"<integer>\",\n          \"access_info\": {\n            \"creator_id\": \"<string>\",\n            \"modifier_id\": \"<string>\",\n            \"create_time\": \"<dateTime>\",\n            \"update_time\": \"<dateTime>\"\n          },\n          \"legacy_id\": \"<integer>\"\n        }\n      ],\n      \"version\": \"<integer>\",\n      \"access_info\": {\n        \"creator_id\": \"<string>\",\n        \"modifier_id\": \"<string>\",\n        \"create_time\": \"<dateTime>\",\n        \"update_time\": \"<dateTime>\"\n      },\n      \"statistics\": {\n        \"last_30_day_count\": \"<long>\",\n        \"track_platforms\": [\n          {\n            \"platform\": \"<string>\",\n            \"has_data\": \"<boolean>\"\n          },\n          {\n            \"platform\": \"<string>\",\n            \"has_data\": \"<boolean>\"\n          }\n        ],\n        \"access_info\": {\n          \"creator_id\": \"<string>\",\n          \"modifier_id\": \"<string>\",\n          \"create_time\": \"<dateTime>\",\n          \"update_time\": \"<dateTime>\"\n        }\n      },\n      \"legacy_id\": \"<integer>\"\n    },\n    {\n      \"original_name\": \"<string>\",\n      \"schema_class\": \"<string>\",\n      \"type\": \"<string>\",\n      \"project_id\": \"<integer>\",\n      \"name\": \"<string>\",\n      \"display_name\": \"<string>\",\n      \"schema_display_type\": \"<string>\",\n      \"builtin\": \"<boolean>\",\n      \"has_data\": \"<boolean>\",\n      \"visible\": \"<boolean>\",\n      \"enable\": \"<boolean>\",\n      \"mapping\": {\n        \"target_schema_name\": \"<string>\",\n        \"condition\": {\n          \"operator\": \"<string>\",\n          \"conditions\": [\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          ],\n          \"compound_conditions\": [\n            {\n              \"value\": \"<Circular reference to #/components/schemas/sensorsdata.common.CompoundFilterCondition detected>\"\n            },\n            {\n              \"value\": \"<Circular reference to #/components/schemas/sensorsdata.common.CompoundFilterCondition detected>\"\n            }\n          ],\n          \"index\": \"<integer>\"\n        },\n        \"raw_condition\": {\n          \"operator\": \"<string>\",\n          \"conditions\": [\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          ],\n          \"compound_conditions\": [\n            {\n              \"value\": \"<Circular reference to #/components/schemas/sensorsdata.common.CompoundFilterCondition detected>\"\n            },\n            {\n              \"value\": \"<Circular reference to #/components/schemas/sensorsdata.common.CompoundFilterCondition detected>\"\n            }\n          ],\n          \"index\": \"<integer>\"\n        }\n      },\n      \"data_mapping\": {\n        \"view_table\": {\n          \"db_name\": \"<string>\",\n          \"table_name\": \"<string>\",\n          \"condition\": \"<string>\"\n        },\n        \"main_table\": {\n          \"db_name\": \"<string>\",\n          \"table_name\": \"<string>\",\n          \"condition\": \"<string>\"\n        },\n        \"extended_tables\": [\n          {\n            \"db_name\": \"<string>\",\n            \"extended_table_id\": \"<string>\",\n            \"join_on_expression\": \"<string>\",\n            \"schema_name\": \"<string>\",\n            \"table_name\": \"<string>\",\n            \"table_display_type\": \"<string>\",\n            \"display_name\": \"<string>\",\n            \"join_key_columns\": [\n              {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            ],\n            \"join_mode\": \"<string>\",\n            \"access_info\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          },\n          {\n            \"db_name\": \"<string>\",\n            \"extended_table_id\": \"<string>\",\n            \"join_on_expression\": \"<string>\",\n            \"schema_name\": \"<string>\",\n            \"table_name\": \"<string>\",\n            \"table_display_type\": \"<string>\",\n            \"display_name\": \"<string>\",\n            \"join_key_columns\": [\n              {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            ],\n            \"join_mode\": \"<string>\",\n            \"access_info\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          }\n        ]\n      },\n      \"schema_data_mapping_type\": \"<string>\",\n      \"custom_params\": {\n        \"key_0\": \"<string>\",\n        \"key_1\": \"<string>\"\n      },\n      \"fields\": [\n        {\n          \"created_by\": \"<string>\",\n          \"data_type\": {\n            \"type\": \"<string>\",\n            \"number_decimal_precision\": \"<integer>\",\n            \"number_decimal_scale\": \"<integer>\"\n          },\n          \"name\": \"<string>\",\n          \"display_name\": \"<string>\",\n          \"field_display_type\": \"<string>\",\n          \"builtin\": \"<boolean>\",\n          \"has_data\": \"<boolean>\",\n          \"has_dict\": \"<boolean>\",\n          \"visible\": \"<boolean>\",\n          \"enable\": \"<boolean>\",\n          \"subscribable\": \"<boolean>\",\n          \"primary_identity\": \"<boolean>\",\n          \"identity\": \"<boolean>\",\n          \"required\": \"<boolean>\",\n          \"data_versioned\": \"<boolean>\",\n          \"data_version_form\": \"<string>\",\n          \"pii\": \"<boolean>\",\n          \"data_mapping\": {\n            \"view_column_name\": \"<string>\",\n            \"source_type\": \"<string>\",\n            \"extended_column\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          },\n          \"view_data_source\": {\n            \"field_name\": \"<string>\",\n            \"view_column_source_data\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"complex_expression\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"inline_expression\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"version\": \"<integer>\"\n          },\n          \"custom_params\": {\n            \"key_0\": \"<string>\",\n            \"key_1\": \"<string>\",\n            \"key_2\": \"<string>\",\n            \"key_3\": \"<string>\",\n            \"key_4\": \"<string>\"\n          },\n          \"unit\": {\n            \"display_name\": \"<string>\",\n            \"name\": \"<string>\",\n            \"builtin\": \"<boolean>\",\n            \"data_type\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"base\": \"<integer>\",\n            \"unit_group_name\": \"<string>\",\n            \"unit_group_display_name\": \"<string>\",\n            \"access_info\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          },\n          \"object_fields\": [\n            {\n              \"name\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"display_name\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"data_type\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"description\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            },\n            {\n              \"name\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"display_name\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"data_type\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"description\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            }\n          ],\n          \"version\": \"<integer>\",\n          \"access_info\": {\n            \"creator_id\": \"<string>\",\n            \"modifier_id\": \"<string>\",\n            \"create_time\": \"<dateTime>\",\n            \"update_time\": \"<dateTime>\"\n          },\n          \"legacy_id\": \"<integer>\"\n        },\n        {\n          \"created_by\": \"<string>\",\n          \"data_type\": {\n            \"type\": \"<string>\",\n            \"number_decimal_precision\": \"<integer>\",\n            \"number_decimal_scale\": \"<integer>\"\n          },\n          \"name\": \"<string>\",\n          \"display_name\": \"<string>\",\n          \"field_display_type\": \"<string>\",\n          \"builtin\": \"<boolean>\",\n          \"has_data\": \"<boolean>\",\n          \"has_dict\": \"<boolean>\",\n          \"visible\": \"<boolean>\",\n          \"enable\": \"<boolean>\",\n          \"subscribable\": \"<boolean>\",\n          \"primary_identity\": \"<boolean>\",\n          \"identity\": \"<boolean>\",\n          \"required\": \"<boolean>\",\n          \"data_versioned\": \"<boolean>\",\n          \"data_version_form\": \"<string>\",\n          \"pii\": \"<boolean>\",\n          \"data_mapping\": {\n            \"view_column_name\": \"<string>\",\n            \"source_type\": \"<string>\",\n            \"extended_column\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          },\n          \"view_data_source\": {\n            \"field_name\": \"<string>\",\n            \"view_column_source_data\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"complex_expression\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"inline_expression\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"version\": \"<integer>\"\n          },\n          \"custom_params\": {\n            \"key_0\": \"<string>\",\n            \"key_1\": \"<string>\"\n          },\n          \"unit\": {\n            \"display_name\": \"<string>\",\n            \"name\": \"<string>\",\n            \"builtin\": \"<boolean>\",\n            \"data_type\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"base\": \"<integer>\",\n            \"unit_group_name\": \"<string>\",\n            \"unit_group_display_name\": \"<string>\",\n            \"access_info\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          },\n          \"object_fields\": [\n            {\n              \"name\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"display_name\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"data_type\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"description\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            },\n            {\n              \"name\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"display_name\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"data_type\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"description\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            }\n          ],\n          \"version\": \"<integer>\",\n          \"access_info\": {\n            \"creator_id\": \"<string>\",\n            \"modifier_id\": \"<string>\",\n            \"create_time\": \"<dateTime>\",\n            \"update_time\": \"<dateTime>\"\n          },\n          \"legacy_id\": \"<integer>\"\n        }\n      ],\n      \"version\": \"<integer>\",\n      \"access_info\": {\n        \"creator_id\": \"<string>\",\n        \"modifier_id\": \"<string>\",\n        \"create_time\": \"<dateTime>\",\n        \"update_time\": \"<dateTime>\"\n      },\n      \"statistics\": {\n        \"last_30_day_count\": \"<long>\",\n        \"track_platforms\": [\n          {\n            \"platform\": \"<string>\",\n            \"has_data\": \"<boolean>\"\n          },\n          {\n            \"platform\": \"<string>\",\n            \"has_data\": \"<boolean>\"\n          }\n        ],\n        \"access_info\": {\n          \"creator_id\": \"<string>\",\n          \"modifier_id\": \"<string>\",\n          \"create_time\": \"<dateTime>\",\n          \"update_time\": \"<dateTime>\"\n        }\n      },\n      \"legacy_id\": \"<integer>\"\n    }\n  ]\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        }
+      },
+      "response": [
+        {
+          "id": "880a791b-b043-47d6-b692-aa5df7979c3a",
+          "originalRequest": {
+            "url": {
+              "path": [
+                "schema",
+                "event",
+                "create"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "disabled": false,
+                "description": "(Required) 全局唯一的密钥，用于验证和授权访问 API 接口",
+                "key": "api-key",
+                "value": "<string>"
+              },
+              {
+                "disabled": false,
+                "description": "(Required) 项目名, 指定请求所属项目",
+                "key": "sensorsdata-project",
+                "value": "<string>"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"physical_schema_name\": \"<string>\",\n  \"project_id\": \"<integer>\",\n  \"schemas\": [\n    {\n      \"original_name\": \"<string>\",\n      \"schema_class\": \"<string>\",\n      \"type\": \"PHYSICAL\",\n      \"project_id\": \"<integer>\",\n      \"name\": \"<string>\",\n      \"display_name\": \"<string>\",\n      \"schema_display_type\": \"BASIC\",\n      \"builtin\": \"<boolean>\",\n      \"has_data\": false,\n      \"visible\": true,\n      \"enable\": true,\n      \"mapping\": {\n        \"target_schema_name\": \"<string>\",\n        \"condition\": {\n          \"operator\": \"AND\",\n          \"conditions\": [\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          ],\n          \"compound_conditions\": [\n            {\n              \"value\": \"<Circular reference to #/components/schemas/sensorsdata.common.CompoundFilterCondition detected>\"\n            },\n            {\n              \"value\": \"<Circular reference to #/components/schemas/sensorsdata.common.CompoundFilterCondition detected>\"\n            }\n          ],\n          \"index\": 10\n        },\n        \"raw_condition\": {\n          \"operator\": \"AND\",\n          \"conditions\": [\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          ],\n          \"compound_conditions\": [\n            {\n              \"value\": \"<Circular reference to #/components/schemas/sensorsdata.common.CompoundFilterCondition detected>\"\n            },\n            {\n              \"value\": \"<Circular reference to #/components/schemas/sensorsdata.common.CompoundFilterCondition detected>\"\n            }\n          ],\n          \"index\": 10\n        }\n      },\n      \"data_mapping\": {\n        \"view_table\": {\n          \"db_name\": \"<string>\",\n          \"table_name\": \"<string>\",\n          \"condition\": \"<string>\"\n        },\n        \"main_table\": {\n          \"db_name\": \"<string>\",\n          \"table_name\": \"<string>\",\n          \"condition\": \"<string>\"\n        },\n        \"extended_tables\": [\n          {\n            \"db_name\": \"<string>\",\n            \"extended_table_id\": \"<string>\",\n            \"join_on_expression\": \"<string>\",\n            \"schema_name\": \"<string>\",\n            \"table_name\": \"<string>\",\n            \"table_display_type\": \"<string>\",\n            \"display_name\": \"<string>\",\n            \"join_key_columns\": [\n              {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            ],\n            \"join_mode\": \"<string>\",\n            \"access_info\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          },\n          {\n            \"db_name\": \"<string>\",\n            \"extended_table_id\": \"<string>\",\n            \"join_on_expression\": \"<string>\",\n            \"schema_name\": \"<string>\",\n            \"table_name\": \"<string>\",\n            \"table_display_type\": \"<string>\",\n            \"display_name\": \"<string>\",\n            \"join_key_columns\": [\n              {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            ],\n            \"join_mode\": \"<string>\",\n            \"access_info\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          }\n        ]\n      },\n      \"schema_data_mapping_type\": \"BUILTIN_TABLE\",\n      \"custom_params\": {\n        \"key_0\": \"<string>\"\n      },\n      \"fields\": [\n        {\n          \"created_by\": \"<string>\",\n          \"data_type\": {\n            \"type\": \"STRING\",\n            \"number_decimal_precision\": \"<integer>\",\n            \"number_decimal_scale\": \"<integer>\"\n          },\n          \"name\": \"<string>\",\n          \"display_name\": \"<string>\",\n          \"field_display_type\": \"<string>\",\n          \"builtin\": \"<boolean>\",\n          \"has_data\": \"<boolean>\",\n          \"has_dict\": \"<boolean>\",\n          \"visible\": \"<boolean>\",\n          \"enable\": \"<boolean>\",\n          \"subscribable\": \"<boolean>\",\n          \"primary_identity\": \"<boolean>\",\n          \"identity\": \"<boolean>\",\n          \"required\": \"<boolean>\",\n          \"data_versioned\": \"<boolean>\",\n          \"data_version_form\": \"<string>\",\n          \"pii\": \"<boolean>\",\n          \"data_mapping\": {\n            \"view_column_name\": \"<string>\",\n            \"source_type\": \"<string>\",\n            \"extended_column\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          },\n          \"view_data_source\": {\n            \"field_name\": \"<string>\",\n            \"view_column_source_data\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"complex_expression\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"inline_expression\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"version\": \"<integer>\"\n          },\n          \"custom_params\": {\n            \"key_0\": \"<string>\"\n          },\n          \"unit\": {\n            \"display_name\": \"<string>\",\n            \"name\": \"<string>\",\n            \"builtin\": \"<boolean>\",\n            \"data_type\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"base\": \"<integer>\",\n            \"unit_group_name\": \"<string>\",\n            \"unit_group_display_name\": \"<string>\",\n            \"access_info\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          },\n          \"object_fields\": [\n            {\n              \"name\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"display_name\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"data_type\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"description\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            },\n            {\n              \"name\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"display_name\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"data_type\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"description\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            }\n          ],\n          \"version\": \"<integer>\",\n          \"access_info\": {\n            \"creator_id\": \"<string>\",\n            \"modifier_id\": \"<string>\",\n            \"create_time\": \"<dateTime>\",\n            \"update_time\": \"<dateTime>\"\n          },\n          \"legacy_id\": \"<integer>\"\n        },\n        {\n          \"created_by\": \"<string>\",\n          \"data_type\": {\n            \"type\": \"STRING\",\n            \"number_decimal_precision\": \"<integer>\",\n            \"number_decimal_scale\": \"<integer>\"\n          },\n          \"name\": \"<string>\",\n          \"display_name\": \"<string>\",\n          \"field_display_type\": \"<string>\",\n          \"builtin\": \"<boolean>\",\n          \"has_data\": \"<boolean>\",\n          \"has_dict\": \"<boolean>\",\n          \"visible\": \"<boolean>\",\n          \"enable\": \"<boolean>\",\n          \"subscribable\": \"<boolean>\",\n          \"primary_identity\": \"<boolean>\",\n          \"identity\": \"<boolean>\",\n          \"required\": \"<boolean>\",\n          \"data_versioned\": \"<boolean>\",\n          \"data_version_form\": \"<string>\",\n          \"pii\": \"<boolean>\",\n          \"data_mapping\": {\n            \"view_column_name\": \"<string>\",\n            \"source_type\": \"<string>\",\n            \"extended_column\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          },\n          \"view_data_source\": {\n            \"field_name\": \"<string>\",\n            \"view_column_source_data\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"complex_expression\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"inline_expression\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"version\": \"<integer>\"\n          },\n          \"custom_params\": {\n            \"key_0\": \"<string>\"\n          },\n          \"unit\": {\n            \"display_name\": \"<string>\",\n            \"name\": \"<string>\",\n            \"builtin\": \"<boolean>\",\n            \"data_type\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"base\": \"<integer>\",\n            \"unit_group_name\": \"<string>\",\n            \"unit_group_display_name\": \"<string>\",\n            \"access_info\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          },\n          \"object_fields\": [\n            {\n              \"name\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"display_name\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"data_type\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"description\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            },\n            {\n              \"name\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"display_name\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"data_type\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"description\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            }\n          ],\n          \"version\": \"<integer>\",\n          \"access_info\": {\n            \"creator_id\": \"<string>\",\n            \"modifier_id\": \"<string>\",\n            \"create_time\": \"<dateTime>\",\n            \"update_time\": \"<dateTime>\"\n          },\n          \"legacy_id\": \"<integer>\"\n        }\n      ],\n      \"version\": \"<integer>\",\n      \"access_info\": {\n        \"creator_id\": \"<string>\",\n        \"modifier_id\": \"<string>\",\n        \"create_time\": \"<dateTime>\",\n        \"update_time\": \"<dateTime>\"\n      },\n      \"statistics\": {\n        \"last_30_day_count\": \"<long>\",\n        \"track_platforms\": [\n          {\n            \"platform\": \"<string>\",\n            \"has_data\": \"<boolean>\"\n          },\n          {\n            \"platform\": \"<string>\",\n            \"has_data\": \"<boolean>\"\n          }\n        ],\n        \"access_info\": {\n          \"creator_id\": \"<string>\",\n          \"modifier_id\": \"<string>\",\n          \"create_time\": \"<dateTime>\",\n          \"update_time\": \"<dateTime>\"\n        }\n      },\n      \"legacy_id\": \"<integer>\"\n    },\n    {\n      \"original_name\": \"<string>\",\n      \"schema_class\": \"<string>\",\n      \"type\": \"PHYSICAL\",\n      \"project_id\": \"<integer>\",\n      \"name\": \"<string>\",\n      \"display_name\": \"<string>\",\n      \"schema_display_type\": \"BASIC\",\n      \"builtin\": \"<boolean>\",\n      \"has_data\": false,\n      \"visible\": true,\n      \"enable\": true,\n      \"mapping\": {\n        \"target_schema_name\": \"<string>\",\n        \"condition\": {\n          \"operator\": \"AND\",\n          \"conditions\": [\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          ],\n          \"compound_conditions\": [\n            {\n              \"value\": \"<Circular reference to #/components/schemas/sensorsdata.common.CompoundFilterCondition detected>\"\n            },\n            {\n              \"value\": \"<Circular reference to #/components/schemas/sensorsdata.common.CompoundFilterCondition detected>\"\n            }\n          ],\n          \"index\": 10\n        },\n        \"raw_condition\": {\n          \"operator\": \"AND\",\n          \"conditions\": [\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          ],\n          \"compound_conditions\": [\n            {\n              \"value\": \"<Circular reference to #/components/schemas/sensorsdata.common.CompoundFilterCondition detected>\"\n            },\n            {\n              \"value\": \"<Circular reference to #/components/schemas/sensorsdata.common.CompoundFilterCondition detected>\"\n            }\n          ],\n          \"index\": 10\n        }\n      },\n      \"data_mapping\": {\n        \"view_table\": {\n          \"db_name\": \"<string>\",\n          \"table_name\": \"<string>\",\n          \"condition\": \"<string>\"\n        },\n        \"main_table\": {\n          \"db_name\": \"<string>\",\n          \"table_name\": \"<string>\",\n          \"condition\": \"<string>\"\n        },\n        \"extended_tables\": [\n          {\n            \"db_name\": \"<string>\",\n            \"extended_table_id\": \"<string>\",\n            \"join_on_expression\": \"<string>\",\n            \"schema_name\": \"<string>\",\n            \"table_name\": \"<string>\",\n            \"table_display_type\": \"<string>\",\n            \"display_name\": \"<string>\",\n            \"join_key_columns\": [\n              {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            ],\n            \"join_mode\": \"<string>\",\n            \"access_info\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          },\n          {\n            \"db_name\": \"<string>\",\n            \"extended_table_id\": \"<string>\",\n            \"join_on_expression\": \"<string>\",\n            \"schema_name\": \"<string>\",\n            \"table_name\": \"<string>\",\n            \"table_display_type\": \"<string>\",\n            \"display_name\": \"<string>\",\n            \"join_key_columns\": [\n              {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            ],\n            \"join_mode\": \"<string>\",\n            \"access_info\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          }\n        ]\n      },\n      \"schema_data_mapping_type\": \"BUILTIN_TABLE\",\n      \"custom_params\": {\n        \"key_0\": \"<string>\",\n        \"key_1\": \"<string>\",\n        \"key_2\": \"<string>\"\n      },\n      \"fields\": [\n        {\n          \"created_by\": \"<string>\",\n          \"data_type\": {\n            \"type\": \"STRING\",\n            \"number_decimal_precision\": \"<integer>\",\n            \"number_decimal_scale\": \"<integer>\"\n          },\n          \"name\": \"<string>\",\n          \"display_name\": \"<string>\",\n          \"field_display_type\": \"<string>\",\n          \"builtin\": \"<boolean>\",\n          \"has_data\": \"<boolean>\",\n          \"has_dict\": \"<boolean>\",\n          \"visible\": \"<boolean>\",\n          \"enable\": \"<boolean>\",\n          \"subscribable\": \"<boolean>\",\n          \"primary_identity\": \"<boolean>\",\n          \"identity\": \"<boolean>\",\n          \"required\": \"<boolean>\",\n          \"data_versioned\": \"<boolean>\",\n          \"data_version_form\": \"<string>\",\n          \"pii\": \"<boolean>\",\n          \"data_mapping\": {\n            \"view_column_name\": \"<string>\",\n            \"source_type\": \"<string>\",\n            \"extended_column\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          },\n          \"view_data_source\": {\n            \"field_name\": \"<string>\",\n            \"view_column_source_data\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"complex_expression\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"inline_expression\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"version\": \"<integer>\"\n          },\n          \"custom_params\": {\n            \"key_0\": \"<string>\",\n            \"key_1\": \"<string>\",\n            \"key_2\": \"<string>\"\n          },\n          \"unit\": {\n            \"display_name\": \"<string>\",\n            \"name\": \"<string>\",\n            \"builtin\": \"<boolean>\",\n            \"data_type\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"base\": \"<integer>\",\n            \"unit_group_name\": \"<string>\",\n            \"unit_group_display_name\": \"<string>\",\n            \"access_info\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          },\n          \"object_fields\": [\n            {\n              \"name\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"display_name\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"data_type\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"description\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            },\n            {\n              \"name\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"display_name\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"data_type\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"description\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            }\n          ],\n          \"version\": \"<integer>\",\n          \"access_info\": {\n            \"creator_id\": \"<string>\",\n            \"modifier_id\": \"<string>\",\n            \"create_time\": \"<dateTime>\",\n            \"update_time\": \"<dateTime>\"\n          },\n          \"legacy_id\": \"<integer>\"\n        },\n        {\n          \"created_by\": \"<string>\",\n          \"data_type\": {\n            \"type\": \"STRING\",\n            \"number_decimal_precision\": \"<integer>\",\n            \"number_decimal_scale\": \"<integer>\"\n          },\n          \"name\": \"<string>\",\n          \"display_name\": \"<string>\",\n          \"field_display_type\": \"<string>\",\n          \"builtin\": \"<boolean>\",\n          \"has_data\": \"<boolean>\",\n          \"has_dict\": \"<boolean>\",\n          \"visible\": \"<boolean>\",\n          \"enable\": \"<boolean>\",\n          \"subscribable\": \"<boolean>\",\n          \"primary_identity\": \"<boolean>\",\n          \"identity\": \"<boolean>\",\n          \"required\": \"<boolean>\",\n          \"data_versioned\": \"<boolean>\",\n          \"data_version_form\": \"<string>\",\n          \"pii\": \"<boolean>\",\n          \"data_mapping\": {\n            \"view_column_name\": \"<string>\",\n            \"source_type\": \"<string>\",\n            \"extended_column\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          },\n          \"view_data_source\": {\n            \"field_name\": \"<string>\",\n            \"view_column_source_data\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"complex_expression\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"inline_expression\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"version\": \"<integer>\"\n          },\n          \"custom_params\": {\n            \"key_0\": \"<string>\",\n            \"key_1\": \"<string>\",\n            \"key_2\": \"<string>\"\n          },\n          \"unit\": {\n            \"display_name\": \"<string>\",\n            \"name\": \"<string>\",\n            \"builtin\": \"<boolean>\",\n            \"data_type\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"base\": \"<integer>\",\n            \"unit_group_name\": \"<string>\",\n            \"unit_group_display_name\": \"<string>\",\n            \"access_info\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          },\n          \"object_fields\": [\n            {\n              \"name\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"display_name\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"data_type\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"description\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            },\n            {\n              \"name\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"display_name\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"data_type\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"description\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            }\n          ],\n          \"version\": \"<integer>\",\n          \"access_info\": {\n            \"creator_id\": \"<string>\",\n            \"modifier_id\": \"<string>\",\n            \"create_time\": \"<dateTime>\",\n            \"update_time\": \"<dateTime>\"\n          },\n          \"legacy_id\": \"<integer>\"\n        }\n      ],\n      \"version\": \"<integer>\",\n      \"access_info\": {\n        \"creator_id\": \"<string>\",\n        \"modifier_id\": \"<string>\",\n        \"create_time\": \"<dateTime>\",\n        \"update_time\": \"<dateTime>\"\n      },\n      \"statistics\": {\n        \"last_30_day_count\": \"<long>\",\n        \"track_platforms\": [\n          {\n            \"platform\": \"<string>\",\n            \"has_data\": \"<boolean>\"\n          },\n          {\n            \"platform\": \"<string>\",\n            \"has_data\": \"<boolean>\"\n          }\n        ],\n        \"access_info\": {\n          \"creator_id\": \"<string>\",\n          \"modifier_id\": \"<string>\",\n          \"create_time\": \"<dateTime>\",\n          \"update_time\": \"<dateTime>\"\n        }\n      },\n      \"legacy_id\": \"<integer>\"\n    }\n  ]\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "status": "Internal Server Error",
+          "code": 500,
+          "header": [
+            {
+              "key": "Content-Type",
+              "value": "application/json"
+            }
+          ],
+          "body": "{\n  \"code\": \"SUCCESS\",\n  \"data\": {},\n  \"request_id\": \"1\"\n}",
+          "cookie": [],
+          "_postman_previewlanguage": "json"
+        }
+      ],
+      "event": [],
+      "protocolProfileBehavior": {
+        "disableBodyPruning": true
+      }
+    },
+    {
+      "id": "02e27d6e-c3d5-4596-af86-01e98dc8ed27",
+      "name": "更新事件定义",
+      "request": {
+        "name": "更新事件定义",
+        "description": {
+          "content": "更新事件定义\n```\n  curl -X POST 'http://{host}:{port}/api/v3/horizon/v1/schema/event/update' \\\n    -H 'Content-Type: application/json' \\\n    -H 'api-key: {api_key}' \\\n    -H 'sensorsdata-project: {projectName}' \\\n    -d '{\n      \"schema\": {\n      \"name\": \"events.buttonclick\",\n      \"display_name\": \"test\"\n    },\n    \"update_mask\": \"display_name\"\n  }'\n  返回值示例：\n  {\n    \"code\": \"SUCCESS\",\n    \"request_id\": \"11164928bb5f4702fcd21875da74dfd4\",\n    \"data\": {\n        \"visible\": true,\n        \"builtin\": false,\n        \"schema_class\": \"EVENT\",\n        \"schema_display_type\": \"BASIC\",\n        \"display_name\": \"test\",\n        \"type\": \"LOGICAL\",\n        \"version\": 2,\n        \"has_data\": false,\n        \"custom_params\": {},\n        \"project_id\": 1,\n        \"schema_data_mapping_type\": \"SCHEMA_DATA_MAPPING_TYPE_UNSPECIFIED\",\n        \"enable\": true,\n        \"original_name\": \"buttonclick\",\n        \"name\": \"events.buttonclick\",\n        \"legacy_id\": 37,\n        \"fields\": []\n    }\n  }\n```",
+          "type": "text/plain"
+        },
+        "url": {
+          "path": [
+            "schema",
+            "event",
+            "update"
+          ],
+          "host": [
+            "{{baseUrl}}"
+          ],
+          "query": [],
+          "variable": []
+        },
+        "header": [
+          {
+            "disabled": false,
+            "description": "(Required) 全局唯一的密钥，用于验证和授权访问 API 接口",
+            "key": "api-key",
+            "value": "<string>"
+          },
+          {
+            "disabled": false,
+            "description": "(Required) 项目名, 指定请求所属项目",
+            "key": "sensorsdata-project",
+            "value": "<string>"
+          },
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          },
+          {
+            "key": "Accept",
+            "value": "application/json"
+          }
+        ],
+        "method": "POST",
+        "auth": null,
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"project_id\": \"<integer>\",\n  \"schema\": {\n    \"original_name\": \"<string>\",\n    \"schema_class\": \"<string>\",\n    \"type\": \"<string>\",\n    \"project_id\": \"<integer>\",\n    \"name\": \"<string>\",\n    \"display_name\": \"<string>\",\n    \"schema_display_type\": \"<string>\",\n    \"builtin\": \"<boolean>\",\n    \"has_data\": \"<boolean>\",\n    \"visible\": \"<boolean>\",\n    \"enable\": \"<boolean>\",\n    \"mapping\": {\n      \"target_schema_name\": \"<string>\",\n      \"condition\": {\n        \"operator\": \"<string>\",\n        \"conditions\": [\n          {\n            \"function\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"params\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"index\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          },\n          {\n            \"function\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"params\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"index\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          }\n        ],\n        \"compound_conditions\": [\n          {\n            \"value\": \"<Circular reference to #/components/schemas/sensorsdata.common.CompoundFilterCondition detected>\"\n          },\n          {\n            \"value\": \"<Circular reference to #/components/schemas/sensorsdata.common.CompoundFilterCondition detected>\"\n          }\n        ],\n        \"index\": \"<integer>\"\n      },\n      \"raw_condition\": {\n        \"operator\": \"<string>\",\n        \"conditions\": [\n          {\n            \"function\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"params\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"index\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          },\n          {\n            \"function\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"params\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"index\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          }\n        ],\n        \"compound_conditions\": [\n          {\n            \"value\": \"<Circular reference to #/components/schemas/sensorsdata.common.CompoundFilterCondition detected>\"\n          },\n          {\n            \"value\": \"<Circular reference to #/components/schemas/sensorsdata.common.CompoundFilterCondition detected>\"\n          }\n        ],\n        \"index\": \"<integer>\"\n      }\n    },\n    \"data_mapping\": {\n      \"view_table\": {\n        \"db_name\": \"<string>\",\n        \"table_name\": \"<string>\",\n        \"condition\": \"<string>\"\n      },\n      \"main_table\": {\n        \"db_name\": \"<string>\",\n        \"table_name\": \"<string>\",\n        \"condition\": \"<string>\"\n      },\n      \"extended_tables\": [\n        {\n          \"db_name\": \"<string>\",\n          \"extended_table_id\": \"<string>\",\n          \"join_on_expression\": \"<string>\",\n          \"schema_name\": \"<string>\",\n          \"table_name\": \"<string>\",\n          \"table_display_type\": \"<string>\",\n          \"display_name\": \"<string>\",\n          \"join_key_columns\": [\n            \"<string>\",\n            \"<string>\"\n          ],\n          \"join_mode\": \"<string>\",\n          \"access_info\": {\n            \"creator_id\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"modifier_id\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"create_time\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"update_time\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          }\n        },\n        {\n          \"db_name\": \"<string>\",\n          \"extended_table_id\": \"<string>\",\n          \"join_on_expression\": \"<string>\",\n          \"schema_name\": \"<string>\",\n          \"table_name\": \"<string>\",\n          \"table_display_type\": \"<string>\",\n          \"display_name\": \"<string>\",\n          \"join_key_columns\": [\n            \"<string>\",\n            \"<string>\"\n          ],\n          \"join_mode\": \"<string>\",\n          \"access_info\": {\n            \"creator_id\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"modifier_id\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"create_time\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"update_time\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          }\n        }\n      ]\n    },\n    \"schema_data_mapping_type\": \"<string>\",\n    \"custom_params\": {\n      \"key_0\": \"<string>\",\n      \"key_1\": \"<string>\",\n      \"key_2\": \"<string>\"\n    },\n    \"fields\": [\n      {\n        \"created_by\": \"<string>\",\n        \"data_type\": {\n          \"type\": \"<string>\",\n          \"number_decimal_precision\": \"<integer>\",\n          \"number_decimal_scale\": \"<integer>\"\n        },\n        \"name\": \"<string>\",\n        \"display_name\": \"<string>\",\n        \"field_display_type\": \"<string>\",\n        \"builtin\": \"<boolean>\",\n        \"has_data\": \"<boolean>\",\n        \"has_dict\": \"<boolean>\",\n        \"visible\": \"<boolean>\",\n        \"enable\": \"<boolean>\",\n        \"subscribable\": \"<boolean>\",\n        \"primary_identity\": \"<boolean>\",\n        \"identity\": \"<boolean>\",\n        \"required\": \"<boolean>\",\n        \"data_versioned\": \"<boolean>\",\n        \"data_version_form\": \"<string>\",\n        \"pii\": \"<boolean>\",\n        \"data_mapping\": {\n          \"view_column_name\": \"<string>\",\n          \"source_type\": \"<string>\",\n          \"extended_column\": {\n            \"extended_table_id\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"column_name\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"version_column\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          }\n        },\n        \"view_data_source\": {\n          \"field_name\": \"<string>\",\n          \"view_column_source_data\": {\n            \"extended_table_id\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"extended_table_condition\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"column_name\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"alias_view_name\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          },\n          \"complex_expression\": {\n            \"expression\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"extended_table_ids\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"related_mode\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          },\n          \"inline_expression\": {\n            \"expression\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"related_mode\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          },\n          \"version\": \"<integer>\"\n        },\n        \"custom_params\": {\n          \"key_0\": \"<string>\",\n          \"key_1\": \"<string>\"\n        },\n        \"unit\": {\n          \"display_name\": \"<string>\",\n          \"name\": \"<string>\",\n          \"builtin\": \"<boolean>\",\n          \"data_type\": {\n            \"type\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"number_decimal_precision\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"number_decimal_scale\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          },\n          \"base\": \"<integer>\",\n          \"unit_group_name\": \"<string>\",\n          \"unit_group_display_name\": \"<string>\",\n          \"access_info\": {\n            \"creator_id\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"modifier_id\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"create_time\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"update_time\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          }\n        },\n        \"object_fields\": [\n          {\n            \"name\": \"<string>\",\n            \"display_name\": \"<string>\",\n            \"data_type\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"description\": \"<string>\"\n          },\n          {\n            \"name\": \"<string>\",\n            \"display_name\": \"<string>\",\n            \"data_type\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"description\": \"<string>\"\n          }\n        ],\n        \"version\": \"<integer>\",\n        \"access_info\": {\n          \"creator_id\": \"<string>\",\n          \"modifier_id\": \"<string>\",\n          \"create_time\": \"<dateTime>\",\n          \"update_time\": \"<dateTime>\"\n        },\n        \"legacy_id\": \"<integer>\"\n      },\n      {\n        \"created_by\": \"<string>\",\n        \"data_type\": {\n          \"type\": \"<string>\",\n          \"number_decimal_precision\": \"<integer>\",\n          \"number_decimal_scale\": \"<integer>\"\n        },\n        \"name\": \"<string>\",\n        \"display_name\": \"<string>\",\n        \"field_display_type\": \"<string>\",\n        \"builtin\": \"<boolean>\",\n        \"has_data\": \"<boolean>\",\n        \"has_dict\": \"<boolean>\",\n        \"visible\": \"<boolean>\",\n        \"enable\": \"<boolean>\",\n        \"subscribable\": \"<boolean>\",\n        \"primary_identity\": \"<boolean>\",\n        \"identity\": \"<boolean>\",\n        \"required\": \"<boolean>\",\n        \"data_versioned\": \"<boolean>\",\n        \"data_version_form\": \"<string>\",\n        \"pii\": \"<boolean>\",\n        \"data_mapping\": {\n          \"view_column_name\": \"<string>\",\n          \"source_type\": \"<string>\",\n          \"extended_column\": {\n            \"extended_table_id\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"column_name\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"version_column\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          }\n        },\n        \"view_data_source\": {\n          \"field_name\": \"<string>\",\n          \"view_column_source_data\": {\n            \"extended_table_id\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"extended_table_condition\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"column_name\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"alias_view_name\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          },\n          \"complex_expression\": {\n            \"expression\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"extended_table_ids\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"related_mode\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          },\n          \"inline_expression\": {\n            \"expression\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"related_mode\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          },\n          \"version\": \"<integer>\"\n        },\n        \"custom_params\": {\n          \"key_0\": \"<string>\"\n        },\n        \"unit\": {\n          \"display_name\": \"<string>\",\n          \"name\": \"<string>\",\n          \"builtin\": \"<boolean>\",\n          \"data_type\": {\n            \"type\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"number_decimal_precision\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"number_decimal_scale\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          },\n          \"base\": \"<integer>\",\n          \"unit_group_name\": \"<string>\",\n          \"unit_group_display_name\": \"<string>\",\n          \"access_info\": {\n            \"creator_id\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"modifier_id\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"create_time\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"update_time\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          }\n        },\n        \"object_fields\": [\n          {\n            \"name\": \"<string>\",\n            \"display_name\": \"<string>\",\n            \"data_type\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"description\": \"<string>\"\n          },\n          {\n            \"name\": \"<string>\",\n            \"display_name\": \"<string>\",\n            \"data_type\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"description\": \"<string>\"\n          }\n        ],\n        \"version\": \"<integer>\",\n        \"access_info\": {\n          \"creator_id\": \"<string>\",\n          \"modifier_id\": \"<string>\",\n          \"create_time\": \"<dateTime>\",\n          \"update_time\": \"<dateTime>\"\n        },\n        \"legacy_id\": \"<integer>\"\n      }\n    ],\n    \"version\": \"<integer>\",\n    \"access_info\": {\n      \"creator_id\": \"<string>\",\n      \"modifier_id\": \"<string>\",\n      \"create_time\": \"<dateTime>\",\n      \"update_time\": \"<dateTime>\"\n    },\n    \"statistics\": {\n      \"last_30_day_count\": \"<long>\",\n      \"track_platforms\": [\n        {\n          \"platform\": \"<string>\",\n          \"has_data\": \"<boolean>\"\n        },\n        {\n          \"platform\": \"<string>\",\n          \"has_data\": \"<boolean>\"\n        }\n      ],\n      \"access_info\": {\n        \"creator_id\": \"<string>\",\n        \"modifier_id\": \"<string>\",\n        \"create_time\": \"<dateTime>\",\n        \"update_time\": \"<dateTime>\"\n      }\n    },\n    \"legacy_id\": \"<integer>\"\n  },\n  \"update_mask\": \"<string>\"\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        }
+      },
+      "response": [
+        {
+          "id": "e093b244-5d48-4f33-aa09-86edb4410238",
+          "name": "sensorsdata.horizon.v1.Schema",
+          "originalRequest": {
+            "url": {
+              "path": [
+                "schema",
+                "event",
+                "update"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "disabled": false,
+                "description": "(Required) 全局唯一的密钥，用于验证和授权访问 API 接口",
+                "key": "api-key",
+                "value": "<string>"
+              },
+              {
+                "disabled": false,
+                "description": "(Required) 项目名, 指定请求所属项目",
+                "key": "sensorsdata-project",
+                "value": "<string>"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"project_id\": \"<integer>\",\n  \"schema\": {\n    \"original_name\": \"<string>\",\n    \"schema_class\": \"<string>\",\n    \"type\": \"PHYSICAL\",\n    \"project_id\": \"<integer>\",\n    \"name\": \"<string>\",\n    \"display_name\": \"<string>\",\n    \"schema_display_type\": \"BASIC\",\n    \"builtin\": \"<boolean>\",\n    \"has_data\": false,\n    \"visible\": true,\n    \"enable\": true,\n    \"mapping\": {\n      \"target_schema_name\": \"<string>\",\n      \"condition\": {\n        \"operator\": \"AND\",\n        \"conditions\": [\n          {\n            \"function\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"params\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"index\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          },\n          {\n            \"function\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"params\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"index\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          }\n        ],\n        \"compound_conditions\": [\n          {\n            \"value\": \"<Circular reference to #/components/schemas/sensorsdata.common.CompoundFilterCondition detected>\"\n          },\n          {\n            \"value\": \"<Circular reference to #/components/schemas/sensorsdata.common.CompoundFilterCondition detected>\"\n          }\n        ],\n        \"index\": 10\n      },\n      \"raw_condition\": {\n        \"operator\": \"AND\",\n        \"conditions\": [\n          {\n            \"function\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"params\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"index\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          },\n          {\n            \"function\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"params\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"index\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          }\n        ],\n        \"compound_conditions\": [\n          {\n            \"value\": \"<Circular reference to #/components/schemas/sensorsdata.common.CompoundFilterCondition detected>\"\n          },\n          {\n            \"value\": \"<Circular reference to #/components/schemas/sensorsdata.common.CompoundFilterCondition detected>\"\n          }\n        ],\n        \"index\": 10\n      }\n    },\n    \"data_mapping\": {\n      \"view_table\": {\n        \"db_name\": \"<string>\",\n        \"table_name\": \"<string>\",\n        \"condition\": \"<string>\"\n      },\n      \"main_table\": {\n        \"db_name\": \"<string>\",\n        \"table_name\": \"<string>\",\n        \"condition\": \"<string>\"\n      },\n      \"extended_tables\": [\n        {\n          \"db_name\": \"<string>\",\n          \"extended_table_id\": \"<string>\",\n          \"join_on_expression\": \"<string>\",\n          \"schema_name\": \"<string>\",\n          \"table_name\": \"<string>\",\n          \"table_display_type\": \"<string>\",\n          \"display_name\": \"<string>\",\n          \"join_key_columns\": [\n            \"<string>\",\n            \"<string>\"\n          ],\n          \"join_mode\": \"<string>\",\n          \"access_info\": {\n            \"creator_id\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"modifier_id\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"create_time\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"update_time\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          }\n        },\n        {\n          \"db_name\": \"<string>\",\n          \"extended_table_id\": \"<string>\",\n          \"join_on_expression\": \"<string>\",\n          \"schema_name\": \"<string>\",\n          \"table_name\": \"<string>\",\n          \"table_display_type\": \"<string>\",\n          \"display_name\": \"<string>\",\n          \"join_key_columns\": [\n            \"<string>\",\n            \"<string>\"\n          ],\n          \"join_mode\": \"<string>\",\n          \"access_info\": {\n            \"creator_id\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"modifier_id\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"create_time\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"update_time\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          }\n        }\n      ]\n    },\n    \"schema_data_mapping_type\": \"BUILTIN_TABLE\",\n    \"custom_params\": {\n      \"key_0\": \"<string>\",\n      \"key_1\": \"<string>\",\n      \"key_2\": \"<string>\",\n      \"key_3\": \"<string>\"\n    },\n    \"fields\": [\n      {\n        \"created_by\": \"<string>\",\n        \"data_type\": {\n          \"type\": \"STRING\",\n          \"number_decimal_precision\": \"<integer>\",\n          \"number_decimal_scale\": \"<integer>\"\n        },\n        \"name\": \"<string>\",\n        \"display_name\": \"<string>\",\n        \"field_display_type\": \"<string>\",\n        \"builtin\": \"<boolean>\",\n        \"has_data\": \"<boolean>\",\n        \"has_dict\": \"<boolean>\",\n        \"visible\": \"<boolean>\",\n        \"enable\": \"<boolean>\",\n        \"subscribable\": \"<boolean>\",\n        \"primary_identity\": \"<boolean>\",\n        \"identity\": \"<boolean>\",\n        \"required\": \"<boolean>\",\n        \"data_versioned\": \"<boolean>\",\n        \"data_version_form\": \"<string>\",\n        \"pii\": \"<boolean>\",\n        \"data_mapping\": {\n          \"view_column_name\": \"<string>\",\n          \"source_type\": \"<string>\",\n          \"extended_column\": {\n            \"extended_table_id\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"column_name\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"version_column\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          }\n        },\n        \"view_data_source\": {\n          \"field_name\": \"<string>\",\n          \"view_column_source_data\": {\n            \"extended_table_id\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"extended_table_condition\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"column_name\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"alias_view_name\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          },\n          \"complex_expression\": {\n            \"expression\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"extended_table_ids\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"related_mode\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          },\n          \"inline_expression\": {\n            \"expression\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"related_mode\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          },\n          \"version\": \"<integer>\"\n        },\n        \"custom_params\": {\n          \"key_0\": \"<string>\"\n        },\n        \"unit\": {\n          \"display_name\": \"<string>\",\n          \"name\": \"<string>\",\n          \"builtin\": \"<boolean>\",\n          \"data_type\": {\n            \"type\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"number_decimal_precision\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"number_decimal_scale\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          },\n          \"base\": \"<integer>\",\n          \"unit_group_name\": \"<string>\",\n          \"unit_group_display_name\": \"<string>\",\n          \"access_info\": {\n            \"creator_id\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"modifier_id\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"create_time\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"update_time\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          }\n        },\n        \"object_fields\": [\n          {\n            \"name\": \"<string>\",\n            \"display_name\": \"<string>\",\n            \"data_type\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"description\": \"<string>\"\n          },\n          {\n            \"name\": \"<string>\",\n            \"display_name\": \"<string>\",\n            \"data_type\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"description\": \"<string>\"\n          }\n        ],\n        \"version\": \"<integer>\",\n        \"access_info\": {\n          \"creator_id\": \"<string>\",\n          \"modifier_id\": \"<string>\",\n          \"create_time\": \"<dateTime>\",\n          \"update_time\": \"<dateTime>\"\n        },\n        \"legacy_id\": \"<integer>\"\n      },\n      {\n        \"created_by\": \"<string>\",\n        \"data_type\": {\n          \"type\": \"STRING\",\n          \"number_decimal_precision\": \"<integer>\",\n          \"number_decimal_scale\": \"<integer>\"\n        },\n        \"name\": \"<string>\",\n        \"display_name\": \"<string>\",\n        \"field_display_type\": \"<string>\",\n        \"builtin\": \"<boolean>\",\n        \"has_data\": \"<boolean>\",\n        \"has_dict\": \"<boolean>\",\n        \"visible\": \"<boolean>\",\n        \"enable\": \"<boolean>\",\n        \"subscribable\": \"<boolean>\",\n        \"primary_identity\": \"<boolean>\",\n        \"identity\": \"<boolean>\",\n        \"required\": \"<boolean>\",\n        \"data_versioned\": \"<boolean>\",\n        \"data_version_form\": \"<string>\",\n        \"pii\": \"<boolean>\",\n        \"data_mapping\": {\n          \"view_column_name\": \"<string>\",\n          \"source_type\": \"<string>\",\n          \"extended_column\": {\n            \"extended_table_id\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"column_name\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"version_column\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          }\n        },\n        \"view_data_source\": {\n          \"field_name\": \"<string>\",\n          \"view_column_source_data\": {\n            \"extended_table_id\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"extended_table_condition\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"column_name\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"alias_view_name\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          },\n          \"complex_expression\": {\n            \"expression\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"extended_table_ids\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"related_mode\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          },\n          \"inline_expression\": {\n            \"expression\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"related_mode\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          },\n          \"version\": \"<integer>\"\n        },\n        \"custom_params\": {\n          \"key_0\": \"<string>\"\n        },\n        \"unit\": {\n          \"display_name\": \"<string>\",\n          \"name\": \"<string>\",\n          \"builtin\": \"<boolean>\",\n          \"data_type\": {\n            \"type\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"number_decimal_precision\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"number_decimal_scale\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          },\n          \"base\": \"<integer>\",\n          \"unit_group_name\": \"<string>\",\n          \"unit_group_display_name\": \"<string>\",\n          \"access_info\": {\n            \"creator_id\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"modifier_id\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"create_time\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"update_time\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          }\n        },\n        \"object_fields\": [\n          {\n            \"name\": \"<string>\",\n            \"display_name\": \"<string>\",\n            \"data_type\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"description\": \"<string>\"\n          },\n          {\n            \"name\": \"<string>\",\n            \"display_name\": \"<string>\",\n            \"data_type\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"description\": \"<string>\"\n          }\n        ],\n        \"version\": \"<integer>\",\n        \"access_info\": {\n          \"creator_id\": \"<string>\",\n          \"modifier_id\": \"<string>\",\n          \"create_time\": \"<dateTime>\",\n          \"update_time\": \"<dateTime>\"\n        },\n        \"legacy_id\": \"<integer>\"\n      }\n    ],\n    \"version\": \"<integer>\",\n    \"access_info\": {\n      \"creator_id\": \"<string>\",\n      \"modifier_id\": \"<string>\",\n      \"create_time\": \"<dateTime>\",\n      \"update_time\": \"<dateTime>\"\n    },\n    \"statistics\": {\n      \"last_30_day_count\": \"<long>\",\n      \"track_platforms\": [\n        {\n          \"platform\": \"<string>\",\n          \"has_data\": \"<boolean>\"\n        },\n        {\n          \"platform\": \"<string>\",\n          \"has_data\": \"<boolean>\"\n        }\n      ],\n      \"access_info\": {\n        \"creator_id\": \"<string>\",\n        \"modifier_id\": \"<string>\",\n        \"create_time\": \"<dateTime>\",\n        \"update_time\": \"<dateTime>\"\n      }\n    },\n    \"legacy_id\": \"<integer>\"\n  },\n  \"update_mask\": \"<string>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "status": "Internal Server Error",
+          "code": 500,
+          "header": [
+            {
+              "key": "Content-Type",
+              "value": "application/json"
+            }
+          ],
+          "body": "{\n  \"code\": \"SUCCESS\",\n  \"data\": {\n    \"has_data\": false,\n    \"mapping\": {\n      \"condition\": {\n        \"index\": 10,\n        \"conditions\": [\n          {\n            \"function\": \"EQUAL\",\n            \"index\": 10,\n            \"params\": [\n              {\n                \"expression\": \"user.p1/user.p2+user.p3\",\n                \"field\": \"#ResourceId\",\n                \"time_point\": {\n                  \"relative_time\": {\n                    \"time_interval\": {}\n                  }\n                },\n                \"variable\": \"$ENTRY_TIME\",\n                \"value\": {},\n                \"param_type\": \"FIELD\"\n              }\n            ]\n          }\n        ],\n        \"operator\": \"AND\"\n      }\n    },\n    \"visible\": \"true\",\n    \"data_mapping\": {\n      \"view_table\": {},\n      \"extended_tables\": [\n        {\n          \"access_info\": {}\n        }\n      ]\n    },\n    \"schema_data_mapping_type\": \"BUILTIN_TABLE\",\n    \"enable\": \"true\",\n    \"schema_display_type\": \"BASIC\",\n    \"type\": \"PHYSICAL\",\n    \"fields\": [\n      {\n        \"unit\": {},\n        \"data_mapping\": {\n          \"extended_column\": {}\n        },\n        \"data_type\": {\n          \"type\": \"STRING\"\n        },\n        \"view_data_source\": {\n          \"inline_expression\": {},\n          \"view_column_source_data\": {},\n          \"complex_expression\": {}\n        },\n        \"object_fields\": [\n          {}\n        ]\n      }\n    ],\n    \"statistics\": {\n      \"track_platforms\": [\n        {}\n      ]\n    }\n  },\n  \"request_id\": \"1\"\n}",
+          "cookie": [],
+          "_postman_previewlanguage": "json"
+        }
+      ],
+      "event": [],
+      "protocolProfileBehavior": {
+        "disableBodyPruning": true
+      }
+    },
+    {
+      "id": "e59b46f6-976b-4f66-b15c-442bfa502a03",
+      "name": "获取事件属性",
+      "request": {
+        "name": "获取事件属性",
+        "description": {
+          "content": "获取事件属性\n```\n  curl -X POST 'http://{host}:{port}/api/v3/horizon/v1/schema/event/field/list' \\\n  -H 'Content-Type: application/json' \\\n  -H 'api-key: {api_key}' \\\n  -H 'sensorsdata-project: {projectName}' \\\n  -d '{\n  \"schema_name\": \"events.buttonclick\"\n  }'\n  返回值示例：\n  {\n    \"code\": \"SUCCESS\",\n    \"request_id\": \"11171105110d11d01f2f2fd41f60f4e7\",\n    \"data\": {\n        \"fields\": [\n            {\n                \"name\": \"user_id\",\n                \"display_name\": \"user_id\",\n                \"data_type\": {\n                    \"type\": \"BIGINT\",\n                    \"element_data_types\": \"DATA_TYPE_UNSPECIFIED\"\n                },\n                \"field_display_type\": \"BASIC\",\n                \"created_by\": \"sensorsdata.horizon.identity\",\n                \"builtin\": true,\n                \"has_data\": false,\n                \"has_dict\": false,\n                \"visible\": true,\n                \"enable\": true,\n                \"identity\": false,\n                \"primary_identity\": false,\n                \"required\": true,\n                \"subscribable\": true,\n                \"data_versioned\": false,\n                \"data_version_form\": \"FIELD_VERSION_LEVEL_UNSPECIFIED\",\n                \"custom_params\": {},\n                \"object_fields\": [],\n                \"version\": 1,\n                \"legacy_id\": 22\n            }, ...\n        ]\n    }\n  }\n```",
+          "type": "text/plain"
+        },
+        "url": {
+          "path": [
+            "schema",
+            "event",
+            "field",
+            "list"
+          ],
+          "host": [
+            "{{baseUrl}}"
+          ],
+          "query": [],
+          "variable": []
+        },
+        "header": [
+          {
+            "disabled": false,
+            "description": "(Required) 全局唯一的密钥，用于验证和授权访问 API 接口",
+            "key": "api-key",
+            "value": "<string>"
+          },
+          {
+            "disabled": false,
+            "description": "(Required) 项目名, 指定请求所属项目",
+            "key": "sensorsdata-project",
+            "value": "<string>"
+          },
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          },
+          {
+            "key": "Accept",
+            "value": "application/json"
+          }
+        ],
+        "method": "POST",
+        "auth": null,
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"project_id\": \"<integer>\",\n  \"schema_name\": \"<string>\",\n  \"field_names\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"field_display_names\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"expand\": \"<string>\"\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        }
+      },
+      "response": [
+        {
+          "id": "54f1e05c-1f0c-4f57-8ce9-0b3bc19c20ab",
+          "name": "sensorsdata.horizon.v1.ListSchemaFieldsResponse",
+          "originalRequest": {
+            "url": {
+              "path": [
+                "schema",
+                "event",
+                "field",
+                "list"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "disabled": false,
+                "description": "(Required) 全局唯一的密钥，用于验证和授权访问 API 接口",
+                "key": "api-key",
+                "value": "<string>"
+              },
+              {
+                "disabled": false,
+                "description": "(Required) 项目名, 指定请求所属项目",
+                "key": "sensorsdata-project",
+                "value": "<string>"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"project_id\": \"<integer>\",\n  \"schema_name\": \"<string>\",\n  \"field_names\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"field_display_names\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"expand\": \"<string>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "status": "Internal Server Error",
+          "code": 500,
+          "header": [
+            {
+              "key": "Content-Type",
+              "value": "application/json"
+            }
+          ],
+          "body": "{\n  \"code\": \"SUCCESS\",\n  \"data\": {\n    \"fields\": [\n      {\n        \"unit\": {},\n        \"data_mapping\": {\n          \"extended_column\": {}\n        },\n        \"data_type\": {\n          \"type\": \"STRING\"\n        },\n        \"view_data_source\": {\n          \"inline_expression\": {},\n          \"view_column_source_data\": {},\n          \"complex_expression\": {}\n        },\n        \"object_fields\": [\n          {}\n        ]\n      }\n    ]\n  },\n  \"request_id\": \"1\"\n}",
+          "cookie": [],
+          "_postman_previewlanguage": "json"
+        }
+      ],
+      "event": [],
+      "protocolProfileBehavior": {
+        "disableBodyPruning": true
+      }
+    },
+    {
+      "id": "03da1644-106d-47bf-bece-d8fc2a61f8ac",
+      "name": "获取属性列表",
+      "request": {
+        "name": "获取属性列表",
+        "description": {
+          "content": "获取属性列表\n```\n  curl -X POST 'http://{host}:{port}/api/v3/horizon/v1/schema/field/list' \\\n    -H 'Content-Type: application/json' \\\n    -H 'api-key: {api_key}' \\\n    -H 'sensorsdata-project: {projectName}' \\\n    -d '{\n    \"schema_name\": \"items\",\n    \"expand\": \"custom_params,data_mapping,view_data_source\",\n    \"page_size\": 1\n  }'\n  返回值示例：\n  {\n    \"code\": \"SUCCESS\",\n    \"request_id\": \"111727233b327426b628b0b72d088cc0\",\n    \"data\": {\n        \"fields\": [\n            {\n                \"name\": \"$create_time\",\n                \"display_name\": \"$create_time\",\n                \"data_type\": {\n                    \"type\": \"NUMBER\",\n                    \"element_data_types\": \"DATA_TYPE_UNSPECIFIED\"\n                },\n                \"field_display_type\": \"BASIC\",\n                \"created_by\": \"sensorsdata.horizon.meta\",\n                \"builtin\": true,\n                \"has_data\": false,\n                \"has_dict\": false,\n                \"visible\": false,\n                \"enable\": true,\n                \"identity\": false,\n                \"primary_identity\": false,\n                \"required\": false,\n                \"subscribable\": true,\n                \"data_versioned\": false,\n                \"data_version_form\": \"FIELD_VERSION_LEVEL_UNSPECIFIED\",\n                \"custom_params\": {},\n                \"object_fields\": [],\n                \"version\": 1,\n                \"legacy_id\": 25\n            }, ...\n        ]\n    }\n  }\n```",
+          "type": "text/plain"
+        },
+        "url": {
+          "path": [
+            "schema",
+            "field",
+            "list"
+          ],
+          "host": [
+            "{{baseUrl}}"
+          ],
+          "query": [],
+          "variable": []
+        },
+        "header": [
+          {
+            "disabled": false,
+            "description": "(Required) 全局唯一的密钥，用于验证和授权访问 API 接口",
+            "key": "api-key",
+            "value": "<string>"
+          },
+          {
+            "disabled": false,
+            "description": "(Required) 项目名, 指定请求所属项目",
+            "key": "sensorsdata-project",
+            "value": "<string>"
+          },
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          },
+          {
+            "key": "Accept",
+            "value": "application/json"
+          }
+        ],
+        "method": "POST",
+        "auth": null,
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"project_id\": \"<integer>\",\n  \"schema_name\": \"<string>\",\n  \"field_names\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"field_display_names\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"expand\": \"<string>\"\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        }
+      },
+      "response": [
+        {
+          "id": "04bb4ef3-9ad9-4103-945a-5eb260d0be7d",
+          "name": "sensorsdata.horizon.v1.ListSchemaFieldsResponse",
+          "originalRequest": {
+            "url": {
+              "path": [
+                "schema",
+                "field",
+                "list"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "disabled": false,
+                "description": "(Required) 全局唯一的密钥，用于验证和授权访问 API 接口",
+                "key": "api-key",
+                "value": "<string>"
+              },
+              {
+                "disabled": false,
+                "description": "(Required) 项目名, 指定请求所属项目",
+                "key": "sensorsdata-project",
+                "value": "<string>"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"project_id\": \"<integer>\",\n  \"schema_name\": \"<string>\",\n  \"field_names\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"field_display_names\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"expand\": \"<string>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "status": "Internal Server Error",
+          "code": 500,
+          "header": [
+            {
+              "key": "Content-Type",
+              "value": "application/json"
+            }
+          ],
+          "body": "{\n  \"code\": \"SUCCESS\",\n  \"data\": {\n    \"fields\": [\n      {\n        \"unit\": {},\n        \"data_mapping\": {\n          \"extended_column\": {}\n        },\n        \"data_type\": {\n          \"type\": \"STRING\"\n        },\n        \"view_data_source\": {\n          \"inline_expression\": {},\n          \"view_column_source_data\": {},\n          \"complex_expression\": {}\n        },\n        \"object_fields\": [\n          {}\n        ]\n      }\n    ]\n  },\n  \"request_id\": \"1\"\n}",
+          "cookie": [],
+          "_postman_previewlanguage": "json"
+        }
+      ],
+      "event": [],
+      "protocolProfileBehavior": {
+        "disableBodyPruning": true
+      }
+    },
+    {
+      "id": "e08285aa-8e1d-421c-818a-ce281f1a859d",
+      "name": "获取属性信息",
+      "request": {
+        "name": "获取属性信息",
+        "description": {
+          "content": "获取属性信息\n```\n  curl -X POST 'http://{host}:{port}/api/v3/horizon/v1/schema/field/get' \\\n    -H 'Content-Type: application/json' \\\n    -H 'api-key: {api_key}' \\\n    -H 'sensorsdata-project: {projectName}' \\\n    -d '{\n    \"schema_name\": \"events\",\n    \"field_name\": \"event_id\",\n    \"expand\": \"custom_params,data_mapping,view_data_source,unit\"\n  }'\n  返回值示例：\n  {\n    \"code\": \"SUCCESS\",\n    \"request_id\": \"11174157af1a20e42523a79622bd015c\",\n    \"data\": {\n        \"visible\": false,\n        \"has_dict\": false,\n        \"builtin\": true,\n        \"primary_identity\": false,\n        \"object_fields\": [],\n        \"display_name\": \"event_id\",\n        \"created_by\": \"sensorsdata.horizon.meta\",\n        \"version\": 2,\n        \"required\": false,\n        \"field_display_type\": \"BASIC\",\n        \"has_data\": true,\n        \"data_version_form\": \"FIELD_VERSION_LEVEL_UNSPECIFIED\",\n        \"custom_params\": {},\n        \"data_versioned\": false,\n        \"enable\": true,\n        \"identity\": false,\n        \"name\": \"event_id\",\n        \"data_type\": {\n            \"type\": \"INT\",\n            \"element_data_types\": \"DATA_TYPE_UNSPECIFIED\"\n        },\n        \"legacy_id\": 8,\n        \"subscribable\": true\n    }\n  }\n```",
+          "type": "text/plain"
+        },
+        "url": {
+          "path": [
+            "schema",
+            "field",
+            "get"
+          ],
+          "host": [
+            "{{baseUrl}}"
+          ],
+          "query": [],
+          "variable": []
+        },
+        "header": [
+          {
+            "disabled": false,
+            "description": "(Required) 全局唯一的密钥，用于验证和授权访问 API 接口",
+            "key": "api-key",
+            "value": "<string>"
+          },
+          {
+            "disabled": false,
+            "description": "(Required) 项目名, 指定请求所属项目",
+            "key": "sensorsdata-project",
+            "value": "<string>"
+          },
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          },
+          {
+            "key": "Accept",
+            "value": "application/json"
+          }
+        ],
+        "method": "POST",
+        "auth": null,
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"field_name\": \"<string>\",\n  \"project_id\": \"<integer>\",\n  \"schema_name\": \"<string>\",\n  \"expand\": \"<string>\"\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        }
+      },
+      "response": [
+        {
+          "id": "d5f87990-c925-4adb-b3f9-3e8c6caa7417",
+          "name": "sensorsdata.horizon.v1.Field",
+          "originalRequest": {
+            "url": {
+              "path": [
+                "schema",
+                "field",
+                "get"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "disabled": false,
+                "description": "(Required) 全局唯一的密钥，用于验证和授权访问 API 接口",
+                "key": "api-key",
+                "value": "<string>"
+              },
+              {
+                "disabled": false,
+                "description": "(Required) 项目名, 指定请求所属项目",
+                "key": "sensorsdata-project",
+                "value": "<string>"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"field_name\": \"event_id\",\n  \"project_id\": \"<integer>\",\n  \"schema_name\": \"<string>\",\n  \"expand\": \"\\\"custom_params,data_mapping,view_data_source,unit\\\"\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "status": "Internal Server Error",
+          "code": 500,
+          "header": [
+            {
+              "key": "Content-Type",
+              "value": "application/json"
+            }
+          ],
+          "body": "{\n  \"code\": \"SUCCESS\",\n  \"data\": {\n    \"unit\": {},\n    \"data_mapping\": {\n      \"extended_column\": {}\n    },\n    \"data_type\": {\n      \"type\": \"STRING\"\n    },\n    \"view_data_source\": {\n      \"inline_expression\": {},\n      \"view_column_source_data\": {},\n      \"complex_expression\": {}\n    },\n    \"object_fields\": [\n      {}\n    ]\n  },\n  \"request_id\": \"1\"\n}",
+          "cookie": [],
+          "_postman_previewlanguage": "json"
+        }
+      ],
+      "event": [],
+      "protocolProfileBehavior": {
+        "disableBodyPruning": true
+      }
+    },
+    {
+      "id": "b35bb2d0-f0ce-41f3-9274-8edb5a1593ad",
+      "name": "批量创建属性",
+      "request": {
+        "name": "批量创建属性",
+        "description": {
+          "content": "批量创建属性\n```\n  curl -X POST 'http://{host}:{port}/api/v3/horizon/v1/schema/field/batch-create' \\\n    -H 'Content-Type: application/json' \\\n    -H 'api-key: {api_key}' \\\n    -H 'sensorsdata-project: {projectName}' \\\n    -d '{\n    \"fields\": [\n      {\n        \"schema_name\": \"events\",\n        \"field\": {\n          \"name\": \"product_id\",\n          \"display_name\": \"product_id\",\n          \"data_type\": {\n            \"type\": \"STRING\"\n          },\n          \"data_mapping\": {\n            \"source_type\": \"MAIN_TABLE_COLUMN\"\n          },\n          \"custom_params\": {\n            \"meta_desc\": \"备注\"\n          }\n        }\n      }\n    ]\n   }'\n  返回值示例：\n  {\n    \"code\": \"SUCCESS\",\n    \"request_id\": \"11184302633b26d1accbe76da891b2f6\",\n    \"data\": {}\n  }\n```\n 批量创建属性\n 命名规则 `^[a-zA-Z_$][a-zA-Z\\d_$]{0,99}$`\n 不允许创建以下保留字段及包含保留前缀的字段\n - 保留字段\n   - 公共保留字段\n     - distinct_id, original_id, time, properties, id, first_id, second_id, users, events, event, user_id, date, datetime\n   - SchemaClass = EVENT\n     - 公共保留字段以及 event_id, event_bucket, day, week_id, month_id, _offset, sampling_group\n   - SchemaClass = USER\n     - 公共保留字段以及 _offset, first_id_type, second_id_type, generated_from, merged_to\n   - SchemaClass = ITEM\n     - 公共保留字段以及 item_type, item_id\n - 保留前缀\n   - user_tag, user_group, $identity_, identity_, segment_ (可以创建 $ 开头的属性)",
+          "type": "text/plain"
+        },
+        "url": {
+          "path": [
+            "schema",
+            "field",
+            "batch-create"
+          ],
+          "host": [
+            "{{baseUrl}}"
+          ],
+          "query": [],
+          "variable": []
+        },
+        "header": [
+          {
+            "disabled": false,
+            "description": "(Required) 全局唯一的密钥，用于验证和授权访问 API 接口",
+            "key": "api-key",
+            "value": "<string>"
+          },
+          {
+            "disabled": false,
+            "description": "(Required) 项目名, 指定请求所属项目",
+            "key": "sensorsdata-project",
+            "value": "<string>"
+          },
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          },
+          {
+            "key": "Accept",
+            "value": "application/json"
+          }
+        ],
+        "method": "POST",
+        "auth": null,
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"fields\": [\n    {\n      \"field\": {\n        \"created_by\": \"<string>\",\n        \"data_type\": {\n          \"type\": \"<string>\",\n          \"number_decimal_precision\": \"<integer>\",\n          \"number_decimal_scale\": \"<integer>\"\n        },\n        \"name\": \"<string>\",\n        \"display_name\": \"<string>\",\n        \"field_display_type\": \"<string>\",\n        \"builtin\": \"<boolean>\",\n        \"has_data\": \"<boolean>\",\n        \"has_dict\": \"<boolean>\",\n        \"visible\": \"<boolean>\",\n        \"enable\": \"<boolean>\",\n        \"subscribable\": \"<boolean>\",\n        \"primary_identity\": \"<boolean>\",\n        \"identity\": \"<boolean>\",\n        \"required\": \"<boolean>\",\n        \"data_versioned\": \"<boolean>\",\n        \"data_version_form\": \"<string>\",\n        \"pii\": \"<boolean>\",\n        \"data_mapping\": {\n          \"view_column_name\": \"<string>\",\n          \"source_type\": \"<string>\",\n          \"extended_column\": {\n            \"extended_table_id\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"column_name\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"version_column\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          }\n        },\n        \"view_data_source\": {\n          \"field_name\": \"<string>\",\n          \"view_column_source_data\": {\n            \"extended_table_id\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"extended_table_condition\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"column_name\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"alias_view_name\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          },\n          \"complex_expression\": {\n            \"expression\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"extended_table_ids\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"related_mode\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          },\n          \"inline_expression\": {\n            \"expression\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"related_mode\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          },\n          \"version\": \"<integer>\"\n        },\n        \"custom_params\": {\n          \"key_0\": \"<string>\",\n          \"key_1\": \"<string>\"\n        },\n        \"unit\": {\n          \"display_name\": \"<string>\",\n          \"name\": \"<string>\",\n          \"builtin\": \"<boolean>\",\n          \"data_type\": {\n            \"type\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"number_decimal_precision\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"number_decimal_scale\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          },\n          \"base\": \"<integer>\",\n          \"unit_group_name\": \"<string>\",\n          \"unit_group_display_name\": \"<string>\",\n          \"access_info\": {\n            \"creator_id\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"modifier_id\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"create_time\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"update_time\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          }\n        },\n        \"object_fields\": [\n          {\n            \"name\": \"<string>\",\n            \"display_name\": \"<string>\",\n            \"data_type\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"description\": \"<string>\"\n          },\n          {\n            \"name\": \"<string>\",\n            \"display_name\": \"<string>\",\n            \"data_type\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"description\": \"<string>\"\n          }\n        ],\n        \"version\": \"<integer>\",\n        \"access_info\": {\n          \"creator_id\": \"<string>\",\n          \"modifier_id\": \"<string>\",\n          \"create_time\": \"<dateTime>\",\n          \"update_time\": \"<dateTime>\"\n        },\n        \"legacy_id\": \"<integer>\"\n      },\n      \"schema_name\": \"<string>\",\n      \"dimension_dict\": {\n        \"dict\": {\n          \"key_0\": \"<string>\",\n          \"key_1\": \"<string>\",\n          \"key_2\": \"<string>\"\n        },\n        \"upload_mode\": \"<string>\"\n      }\n    },\n    {\n      \"field\": {\n        \"created_by\": \"<string>\",\n        \"data_type\": {\n          \"type\": \"<string>\",\n          \"number_decimal_precision\": \"<integer>\",\n          \"number_decimal_scale\": \"<integer>\"\n        },\n        \"name\": \"<string>\",\n        \"display_name\": \"<string>\",\n        \"field_display_type\": \"<string>\",\n        \"builtin\": \"<boolean>\",\n        \"has_data\": \"<boolean>\",\n        \"has_dict\": \"<boolean>\",\n        \"visible\": \"<boolean>\",\n        \"enable\": \"<boolean>\",\n        \"subscribable\": \"<boolean>\",\n        \"primary_identity\": \"<boolean>\",\n        \"identity\": \"<boolean>\",\n        \"required\": \"<boolean>\",\n        \"data_versioned\": \"<boolean>\",\n        \"data_version_form\": \"<string>\",\n        \"pii\": \"<boolean>\",\n        \"data_mapping\": {\n          \"view_column_name\": \"<string>\",\n          \"source_type\": \"<string>\",\n          \"extended_column\": {\n            \"extended_table_id\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"column_name\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"version_column\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          }\n        },\n        \"view_data_source\": {\n          \"field_name\": \"<string>\",\n          \"view_column_source_data\": {\n            \"extended_table_id\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"extended_table_condition\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"column_name\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"alias_view_name\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          },\n          \"complex_expression\": {\n            \"expression\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"extended_table_ids\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"related_mode\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          },\n          \"inline_expression\": {\n            \"expression\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"related_mode\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          },\n          \"version\": \"<integer>\"\n        },\n        \"custom_params\": {\n          \"key_0\": \"<string>\"\n        },\n        \"unit\": {\n          \"display_name\": \"<string>\",\n          \"name\": \"<string>\",\n          \"builtin\": \"<boolean>\",\n          \"data_type\": {\n            \"type\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"number_decimal_precision\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"number_decimal_scale\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          },\n          \"base\": \"<integer>\",\n          \"unit_group_name\": \"<string>\",\n          \"unit_group_display_name\": \"<string>\",\n          \"access_info\": {\n            \"creator_id\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"modifier_id\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"create_time\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"update_time\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          }\n        },\n        \"object_fields\": [\n          {\n            \"name\": \"<string>\",\n            \"display_name\": \"<string>\",\n            \"data_type\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"description\": \"<string>\"\n          },\n          {\n            \"name\": \"<string>\",\n            \"display_name\": \"<string>\",\n            \"data_type\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"description\": \"<string>\"\n          }\n        ],\n        \"version\": \"<integer>\",\n        \"access_info\": {\n          \"creator_id\": \"<string>\",\n          \"modifier_id\": \"<string>\",\n          \"create_time\": \"<dateTime>\",\n          \"update_time\": \"<dateTime>\"\n        },\n        \"legacy_id\": \"<integer>\"\n      },\n      \"schema_name\": \"<string>\",\n      \"dimension_dict\": {\n        \"dict\": {\n          \"key_0\": \"<string>\",\n          \"key_1\": \"<string>\"\n        },\n        \"upload_mode\": \"<string>\"\n      }\n    }\n  ],\n  \"project_id\": \"<integer>\"\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        }
+      },
+      "response": [
+        {
+          "id": "53e6756a-5d6c-4a18-90ad-8f3e4bcb3b0d",
+          "name": "sensorsdata.horizon.v1.BatchCreateSchemaFieldsResponse",
+          "originalRequest": {
+            "url": {
+              "path": [
+                "schema",
+                "field",
+                "batch-create"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "disabled": false,
+                "description": "(Required) 全局唯一的密钥，用于验证和授权访问 API 接口",
+                "key": "api-key",
+                "value": "<string>"
+              },
+              {
+                "disabled": false,
+                "description": "(Required) 项目名, 指定请求所属项目",
+                "key": "sensorsdata-project",
+                "value": "<string>"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"fields\": [\n    {\n      \"field\": {\n        \"created_by\": \"<string>\",\n        \"data_type\": {\n          \"type\": \"STRING\",\n          \"number_decimal_precision\": \"<integer>\",\n          \"number_decimal_scale\": \"<integer>\"\n        },\n        \"name\": \"<string>\",\n        \"display_name\": \"<string>\",\n        \"field_display_type\": \"<string>\",\n        \"builtin\": \"<boolean>\",\n        \"has_data\": \"<boolean>\",\n        \"has_dict\": \"<boolean>\",\n        \"visible\": \"<boolean>\",\n        \"enable\": \"<boolean>\",\n        \"subscribable\": \"<boolean>\",\n        \"primary_identity\": \"<boolean>\",\n        \"identity\": \"<boolean>\",\n        \"required\": \"<boolean>\",\n        \"data_versioned\": \"<boolean>\",\n        \"data_version_form\": \"<string>\",\n        \"pii\": \"<boolean>\",\n        \"data_mapping\": {\n          \"view_column_name\": \"<string>\",\n          \"source_type\": \"<string>\",\n          \"extended_column\": {\n            \"extended_table_id\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"column_name\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"version_column\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          }\n        },\n        \"view_data_source\": {\n          \"field_name\": \"<string>\",\n          \"view_column_source_data\": {\n            \"extended_table_id\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"extended_table_condition\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"column_name\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"alias_view_name\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          },\n          \"complex_expression\": {\n            \"expression\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"extended_table_ids\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"related_mode\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          },\n          \"inline_expression\": {\n            \"expression\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"related_mode\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          },\n          \"version\": \"<integer>\"\n        },\n        \"custom_params\": {\n          \"key_0\": \"<string>\"\n        },\n        \"unit\": {\n          \"display_name\": \"<string>\",\n          \"name\": \"<string>\",\n          \"builtin\": \"<boolean>\",\n          \"data_type\": {\n            \"type\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"number_decimal_precision\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"number_decimal_scale\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          },\n          \"base\": \"<integer>\",\n          \"unit_group_name\": \"<string>\",\n          \"unit_group_display_name\": \"<string>\",\n          \"access_info\": {\n            \"creator_id\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"modifier_id\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"create_time\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"update_time\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          }\n        },\n        \"object_fields\": [\n          {\n            \"name\": \"<string>\",\n            \"display_name\": \"<string>\",\n            \"data_type\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"description\": \"<string>\"\n          },\n          {\n            \"name\": \"<string>\",\n            \"display_name\": \"<string>\",\n            \"data_type\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"description\": \"<string>\"\n          }\n        ],\n        \"version\": \"<integer>\",\n        \"access_info\": {\n          \"creator_id\": \"<string>\",\n          \"modifier_id\": \"<string>\",\n          \"create_time\": \"<dateTime>\",\n          \"update_time\": \"<dateTime>\"\n        },\n        \"legacy_id\": \"<integer>\"\n      },\n      \"schema_name\": \"<string>\",\n      \"dimension_dict\": {\n        \"dict\": {\n          \"key_0\": \"<string>\"\n        },\n        \"upload_mode\": \"OVERWRITE\"\n      }\n    },\n    {\n      \"field\": {\n        \"created_by\": \"<string>\",\n        \"data_type\": {\n          \"type\": \"STRING\",\n          \"number_decimal_precision\": \"<integer>\",\n          \"number_decimal_scale\": \"<integer>\"\n        },\n        \"name\": \"<string>\",\n        \"display_name\": \"<string>\",\n        \"field_display_type\": \"<string>\",\n        \"builtin\": \"<boolean>\",\n        \"has_data\": \"<boolean>\",\n        \"has_dict\": \"<boolean>\",\n        \"visible\": \"<boolean>\",\n        \"enable\": \"<boolean>\",\n        \"subscribable\": \"<boolean>\",\n        \"primary_identity\": \"<boolean>\",\n        \"identity\": \"<boolean>\",\n        \"required\": \"<boolean>\",\n        \"data_versioned\": \"<boolean>\",\n        \"data_version_form\": \"<string>\",\n        \"pii\": \"<boolean>\",\n        \"data_mapping\": {\n          \"view_column_name\": \"<string>\",\n          \"source_type\": \"<string>\",\n          \"extended_column\": {\n            \"extended_table_id\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"column_name\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"version_column\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          }\n        },\n        \"view_data_source\": {\n          \"field_name\": \"<string>\",\n          \"view_column_source_data\": {\n            \"extended_table_id\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"extended_table_condition\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"column_name\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"alias_view_name\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          },\n          \"complex_expression\": {\n            \"expression\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"extended_table_ids\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"related_mode\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          },\n          \"inline_expression\": {\n            \"expression\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"related_mode\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          },\n          \"version\": \"<integer>\"\n        },\n        \"custom_params\": {\n          \"key_0\": \"<string>\",\n          \"key_1\": \"<string>\",\n          \"key_2\": \"<string>\",\n          \"key_3\": \"<string>\"\n        },\n        \"unit\": {\n          \"display_name\": \"<string>\",\n          \"name\": \"<string>\",\n          \"builtin\": \"<boolean>\",\n          \"data_type\": {\n            \"type\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"number_decimal_precision\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"number_decimal_scale\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          },\n          \"base\": \"<integer>\",\n          \"unit_group_name\": \"<string>\",\n          \"unit_group_display_name\": \"<string>\",\n          \"access_info\": {\n            \"creator_id\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"modifier_id\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"create_time\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"update_time\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          }\n        },\n        \"object_fields\": [\n          {\n            \"name\": \"<string>\",\n            \"display_name\": \"<string>\",\n            \"data_type\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"description\": \"<string>\"\n          },\n          {\n            \"name\": \"<string>\",\n            \"display_name\": \"<string>\",\n            \"data_type\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"description\": \"<string>\"\n          }\n        ],\n        \"version\": \"<integer>\",\n        \"access_info\": {\n          \"creator_id\": \"<string>\",\n          \"modifier_id\": \"<string>\",\n          \"create_time\": \"<dateTime>\",\n          \"update_time\": \"<dateTime>\"\n        },\n        \"legacy_id\": \"<integer>\"\n      },\n      \"schema_name\": \"<string>\",\n      \"dimension_dict\": {\n        \"dict\": {\n          \"key_0\": \"<string>\"\n        },\n        \"upload_mode\": \"OVERWRITE\"\n      }\n    }\n  ],\n  \"project_id\": \"<integer>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "status": "Internal Server Error",
+          "code": 500,
+          "header": [
+            {
+              "key": "Content-Type",
+              "value": "application/json"
+            }
+          ],
+          "body": "{\n  \"code\": \"SUCCESS\",\n  \"data\": {},\n  \"request_id\": \"1\"\n}",
+          "cookie": [],
+          "_postman_previewlanguage": "json"
+        }
+      ],
+      "event": [],
+      "protocolProfileBehavior": {
+        "disableBodyPruning": true
+      }
+    },
+    {
+      "id": "085bc087-378d-46e4-b29f-e1fbddd27b45",
+      "name": "更新属性\n 支持修改 display_name,unit,custom_param,visible,enable,has_data,required,data_type,view_data_source,dict\n 支持更新维度字典",
+      "request": {
+        "name": "更新属性\n 支持修改 display_name,unit,custom_param,visible,enable,has_data,required,data_type,view_data_source,dict\n 支持更新维度字典",
+        "description": {
+          "content": "更新属性\n```\n  curl -X POST 'http://{host}:{port}/api/v3/horizon/v1/schema/field/update' \\\n    -H 'Content-Type: application/json' \\\n    -H 'api-key: {api_key}' \\\n    -H 'sensorsdata-project: {projectName}' \\\n    -d '{\n    \"schema_name\": \"events\",\n    \"field\": {\n      \"name\": \"product_id\",\n      \"display_name\": \"test\",\n      \"custom_params\": {\n        \"meta_desc\": \"备注\"\n      }\n    },\n    \"update_mask\": \"display_name,custom_params\"\n}'\n  返回值示例：\n  {\n    \"code\": \"SUCCESS\",\n    \"request_id\": \"1210192666fd2dcf558ae476758ade5e\",\n    \"data\": {\n        \"visible\": true,\n        \"has_dict\": false,\n        \"builtin\": false,\n        \"primary_identity\": false,\n        \"object_fields\": [],\n        \"display_name\": \"test\",\n        \"created_by\": \"\",\n        \"version\": 2,\n        \"required\": false,\n        \"field_display_type\": \"BASIC\",\n        \"has_data\": false,\n        \"data_version_form\": \"FIELD_VERSION_LEVEL_UNSPECIFIED\",\n        \"custom_params\": {},\n        \"data_versioned\": false,\n        \"enable\": true,\n        \"identity\": false,\n        \"name\": \"product_id\",\n        \"data_type\": {\n            \"type\": \"STRING\",\n            \"element_data_types\": \"DATA_TYPE_UNSPECIFIED\"\n        },\n        \"legacy_id\": 170,\n        \"subscribable\": true\n    }\n  }\n```",
+          "type": "text/plain"
+        },
+        "url": {
+          "path": [
+            "schema",
+            "field",
+            "update"
+          ],
+          "host": [
+            "{{baseUrl}}"
+          ],
+          "query": [],
+          "variable": []
+        },
+        "header": [
+          {
+            "disabled": false,
+            "description": "(Required) 全局唯一的密钥，用于验证和授权访问 API 接口",
+            "key": "api-key",
+            "value": "<string>"
+          },
+          {
+            "disabled": false,
+            "description": "(Required) 项目名, 指定请求所属项目",
+            "key": "sensorsdata-project",
+            "value": "<string>"
+          },
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          },
+          {
+            "key": "Accept",
+            "value": "application/json"
+          }
+        ],
+        "method": "POST",
+        "auth": null,
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"field\": {\n    \"created_by\": \"<string>\",\n    \"data_type\": {\n      \"type\": \"<string>\",\n      \"number_decimal_precision\": \"<integer>\",\n      \"number_decimal_scale\": \"<integer>\"\n    },\n    \"name\": \"<string>\",\n    \"display_name\": \"<string>\",\n    \"field_display_type\": \"<string>\",\n    \"builtin\": \"<boolean>\",\n    \"has_data\": \"<boolean>\",\n    \"has_dict\": \"<boolean>\",\n    \"visible\": \"<boolean>\",\n    \"enable\": \"<boolean>\",\n    \"subscribable\": \"<boolean>\",\n    \"primary_identity\": \"<boolean>\",\n    \"identity\": \"<boolean>\",\n    \"required\": \"<boolean>\",\n    \"data_versioned\": \"<boolean>\",\n    \"data_version_form\": \"<string>\",\n    \"pii\": \"<boolean>\",\n    \"data_mapping\": {\n      \"view_column_name\": \"<string>\",\n      \"source_type\": \"<string>\",\n      \"extended_column\": {\n        \"extended_table_id\": \"<string>\",\n        \"column_name\": \"<string>\",\n        \"version_column\": \"<string>\"\n      }\n    },\n    \"view_data_source\": {\n      \"field_name\": \"<string>\",\n      \"view_column_source_data\": {\n        \"extended_table_id\": \"<string>\",\n        \"extended_table_condition\": \"<string>\",\n        \"column_name\": \"<string>\",\n        \"alias_view_name\": \"<string>\"\n      },\n      \"complex_expression\": {\n        \"expression\": \"<string>\",\n        \"extended_table_ids\": [\n          \"<string>\",\n          \"<string>\"\n        ],\n        \"related_mode\": \"<string>\"\n      },\n      \"inline_expression\": {\n        \"expression\": \"<string>\",\n        \"related_mode\": \"<string>\"\n      },\n      \"version\": \"<integer>\"\n    },\n    \"custom_params\": {\n      \"key_0\": \"<string>\"\n    },\n    \"unit\": {\n      \"display_name\": \"<string>\",\n      \"name\": \"<string>\",\n      \"builtin\": \"<boolean>\",\n      \"data_type\": {\n        \"type\": \"<string>\",\n        \"number_decimal_precision\": \"<integer>\",\n        \"number_decimal_scale\": \"<integer>\"\n      },\n      \"base\": \"<integer>\",\n      \"unit_group_name\": \"<string>\",\n      \"unit_group_display_name\": \"<string>\",\n      \"access_info\": {\n        \"creator_id\": \"<string>\",\n        \"modifier_id\": \"<string>\",\n        \"create_time\": \"<dateTime>\",\n        \"update_time\": \"<dateTime>\"\n      }\n    },\n    \"object_fields\": [\n      {\n        \"name\": \"<string>\",\n        \"display_name\": \"<string>\",\n        \"data_type\": {\n          \"type\": \"<string>\",\n          \"number_decimal_precision\": \"<integer>\",\n          \"number_decimal_scale\": \"<integer>\"\n        },\n        \"description\": \"<string>\"\n      },\n      {\n        \"name\": \"<string>\",\n        \"display_name\": \"<string>\",\n        \"data_type\": {\n          \"type\": \"<string>\",\n          \"number_decimal_precision\": \"<integer>\",\n          \"number_decimal_scale\": \"<integer>\"\n        },\n        \"description\": \"<string>\"\n      }\n    ],\n    \"version\": \"<integer>\",\n    \"access_info\": {\n      \"creator_id\": \"<string>\",\n      \"modifier_id\": \"<string>\",\n      \"create_time\": \"<dateTime>\",\n      \"update_time\": \"<dateTime>\"\n    },\n    \"legacy_id\": \"<integer>\"\n  },\n  \"project_id\": \"<integer>\",\n  \"schema_name\": \"<string>\",\n  \"update_mask\": \"<string>\",\n  \"dimension_dict\": {\n    \"dict\": {\n      \"key_0\": \"<string>\"\n    },\n    \"upload_mode\": \"<string>\"\n  }\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        }
+      },
+      "response": [
+        {
+          "id": "88e72900-d56d-435d-a412-bceb51b58ac0",
+          "name": "sensorsdata.horizon.v1.Field",
+          "originalRequest": {
+            "url": {
+              "path": [
+                "schema",
+                "field",
+                "update"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "disabled": false,
+                "description": "(Required) 全局唯一的密钥，用于验证和授权访问 API 接口",
+                "key": "api-key",
+                "value": "<string>"
+              },
+              {
+                "disabled": false,
+                "description": "(Required) 项目名, 指定请求所属项目",
+                "key": "sensorsdata-project",
+                "value": "<string>"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"field\": {\n    \"created_by\": \"<string>\",\n    \"data_type\": {\n      \"type\": \"STRING\",\n      \"number_decimal_precision\": \"<integer>\",\n      \"number_decimal_scale\": \"<integer>\"\n    },\n    \"name\": \"<string>\",\n    \"display_name\": \"<string>\",\n    \"field_display_type\": \"<string>\",\n    \"builtin\": \"<boolean>\",\n    \"has_data\": \"<boolean>\",\n    \"has_dict\": \"<boolean>\",\n    \"visible\": \"<boolean>\",\n    \"enable\": \"<boolean>\",\n    \"subscribable\": \"<boolean>\",\n    \"primary_identity\": \"<boolean>\",\n    \"identity\": \"<boolean>\",\n    \"required\": \"<boolean>\",\n    \"data_versioned\": \"<boolean>\",\n    \"data_version_form\": \"<string>\",\n    \"pii\": \"<boolean>\",\n    \"data_mapping\": {\n      \"view_column_name\": \"<string>\",\n      \"source_type\": \"<string>\",\n      \"extended_column\": {\n        \"extended_table_id\": \"<string>\",\n        \"column_name\": \"<string>\",\n        \"version_column\": \"<string>\"\n      }\n    },\n    \"view_data_source\": {\n      \"field_name\": \"<string>\",\n      \"view_column_source_data\": {\n        \"extended_table_id\": \"<string>\",\n        \"extended_table_condition\": \"<string>\",\n        \"column_name\": \"<string>\",\n        \"alias_view_name\": \"<string>\"\n      },\n      \"complex_expression\": {\n        \"expression\": \"<string>\",\n        \"extended_table_ids\": [\n          \"<string>\",\n          \"<string>\"\n        ],\n        \"related_mode\": \"<string>\"\n      },\n      \"inline_expression\": {\n        \"expression\": \"<string>\",\n        \"related_mode\": \"<string>\"\n      },\n      \"version\": \"<integer>\"\n    },\n    \"custom_params\": {\n      \"key_0\": \"<string>\",\n      \"key_1\": \"<string>\"\n    },\n    \"unit\": {\n      \"display_name\": \"<string>\",\n      \"name\": \"<string>\",\n      \"builtin\": \"<boolean>\",\n      \"data_type\": {\n        \"type\": \"STRING\",\n        \"number_decimal_precision\": \"<integer>\",\n        \"number_decimal_scale\": \"<integer>\"\n      },\n      \"base\": \"<integer>\",\n      \"unit_group_name\": \"<string>\",\n      \"unit_group_display_name\": \"<string>\",\n      \"access_info\": {\n        \"creator_id\": \"<string>\",\n        \"modifier_id\": \"<string>\",\n        \"create_time\": \"<dateTime>\",\n        \"update_time\": \"<dateTime>\"\n      }\n    },\n    \"object_fields\": [\n      {\n        \"name\": \"<string>\",\n        \"display_name\": \"<string>\",\n        \"data_type\": {\n          \"type\": \"STRING\",\n          \"number_decimal_precision\": \"<integer>\",\n          \"number_decimal_scale\": \"<integer>\"\n        },\n        \"description\": \"<string>\"\n      },\n      {\n        \"name\": \"<string>\",\n        \"display_name\": \"<string>\",\n        \"data_type\": {\n          \"type\": \"STRING\",\n          \"number_decimal_precision\": \"<integer>\",\n          \"number_decimal_scale\": \"<integer>\"\n        },\n        \"description\": \"<string>\"\n      }\n    ],\n    \"version\": \"<integer>\",\n    \"access_info\": {\n      \"creator_id\": \"<string>\",\n      \"modifier_id\": \"<string>\",\n      \"create_time\": \"<dateTime>\",\n      \"update_time\": \"<dateTime>\"\n    },\n    \"legacy_id\": \"<integer>\"\n  },\n  \"project_id\": \"<integer>\",\n  \"schema_name\": \"<string>\",\n  \"update_mask\": \"<string>\",\n  \"dimension_dict\": {\n    \"dict\": {\n      \"key_0\": \"<string>\",\n      \"key_1\": \"<string>\"\n    },\n    \"upload_mode\": \"OVERWRITE\"\n  }\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "status": "Internal Server Error",
+          "code": 500,
+          "header": [
+            {
+              "key": "Content-Type",
+              "value": "application/json"
+            }
+          ],
+          "body": "{\n  \"code\": \"SUCCESS\",\n  \"data\": {\n    \"unit\": {},\n    \"data_mapping\": {\n      \"extended_column\": {}\n    },\n    \"data_type\": {\n      \"type\": \"STRING\"\n    },\n    \"view_data_source\": {\n      \"inline_expression\": {},\n      \"view_column_source_data\": {},\n      \"complex_expression\": {}\n    },\n    \"object_fields\": [\n      {}\n    ]\n  },\n  \"request_id\": \"1\"\n}",
+          "cookie": [],
+          "_postman_previewlanguage": "json"
+        }
+      ],
+      "event": [],
+      "protocolProfileBehavior": {
+        "disableBodyPruning": true
+      }
+    },
+    {
+      "id": "e0185973-338d-49ed-bcc0-d2487583977f",
+      "name": "查询 Schema 关联的 Table",
+      "request": {
+        "name": "查询 Schema 关联的 Table",
+        "description": {
+          "content": "查询 Schema 关联的 Table\n```\n  curl -X POST 'http://{host}:{port}/api/v3/horizon/v1/schema/extended-table/list' \\\n    -H 'Content-Type: application/json' \\\n    -H 'api-key: {api_key}' \\\n    -H 'sensorsdata-project: {projectName}' \\\n    -d '{\n    \"schema_names\": [\"events\"]\n  }'\n  返回值示例：\n  {\n    \"code\": \"SUCCESS\",\n    \"request_id\": \"1210530786ea1e0e61e51918c5bbb3fd\",\n    \"data\": {\n        \"extended_tables\": [\n            {\n                \"extended_table_id\": \"users\",\n                \"schema_name\": \"events\",\n                \"db_name\": \"horizon_default_1\",\n                \"table_name\": \"users\",\n                \"table_display_type\": \"\",\n                \"display_name\": \"users\",\n                \"join_on_expression\": \"events.user_id = users.id\",\n                \"join_key_columns\": [\n                    \"id\"\n                ],\n                \"join_mode\": \"LEFT_JOIN\"\n            }\n        ]\n    }\n  }\n```",
+          "type": "text/plain"
+        },
+        "url": {
+          "path": [
+            "schema",
+            "extended-table",
+            "list"
+          ],
+          "host": [
+            "{{baseUrl}}"
+          ],
+          "query": [],
+          "variable": []
+        },
+        "header": [
+          {
+            "disabled": false,
+            "description": "(Required) 全局唯一的密钥，用于验证和授权访问 API 接口",
+            "key": "api-key",
+            "value": "<string>"
+          },
+          {
+            "disabled": false,
+            "description": "(Required) 项目名, 指定请求所属项目",
+            "key": "sensorsdata-project",
+            "value": "<string>"
+          },
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          },
+          {
+            "key": "Accept",
+            "value": "application/json"
+          }
+        ],
+        "method": "POST",
+        "auth": null,
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"project_id\": \"<integer>\",\n  \"schema_names\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"table_display_types\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"expand\": \"<string>\"\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        }
+      },
+      "response": [
+        {
+          "id": "e272b18b-663b-4a4a-9494-ef52e1686379",
+          "name": "sensorsdata.horizon.v1.ListSchemaExtendedTablesResponse",
+          "originalRequest": {
+            "url": {
+              "path": [
+                "schema",
+                "extended-table",
+                "list"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "disabled": false,
+                "description": "(Required) 全局唯一的密钥，用于验证和授权访问 API 接口",
+                "key": "api-key",
+                "value": "<string>"
+              },
+              {
+                "disabled": false,
+                "description": "(Required) 项目名, 指定请求所属项目",
+                "key": "sensorsdata-project",
+                "value": "<string>"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"project_id\": \"<integer>\",\n  \"schema_names\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"table_display_types\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"expand\": \"<string>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "status": "Internal Server Error",
+          "code": 500,
+          "header": [
+            {
+              "key": "Content-Type",
+              "value": "application/json"
+            }
+          ],
+          "body": "{\n  \"code\": \"SUCCESS\",\n  \"data\": {\n    \"extended_tables\": [\n      {\n        \"access_info\": {}\n      }\n    ]\n  },\n  \"request_id\": \"1\"\n}",
+          "cookie": [],
+          "_postman_previewlanguage": "json"
+        }
+      ],
+      "event": [],
+      "protocolProfileBehavior": {
+        "disableBodyPruning": true
+      }
+    },
+    {
+      "id": "6cf1218a-28a6-46d2-bf10-48d0fe9c793f",
+      "name": "创建维度表关联关系",
+      "request": {
+        "name": "创建维度表关联关系",
+        "description": {
+          "content": "创建维度表关联关系，只能对物理 Schema 进行创建\n```\n  curl -X POST 'http://{host}:{port}/api/v3/horizon/v1/schema/extended-table/batch-create' \\\n    -H 'Content-Type: application/json' \\\n    -H 'api-key: {api_key}' \\\n    -H 'sensorsdata-project: {projectName}' \\\n    -d '{\n    \"extended_tables\": [\n      {\n        \"extended_table_id\": \"test_table\",\n        \"schema_name\": \"events\",\n        \"db_name\": \"horizon_workspace_default_1\",\n        \"table_name\": \"one_test_table\",\n        \"display_name\": \"test_table\",\n        \"join_on_expression\": \"events.video_id = one_test_table.id\",\n        \"join_mode\": \"LEFT_JOIN\"\n      }\n    ]\n  }'\n  返回值示例：\n  {\n    \"code\": \"SUCCESS\",\n    \"request_id\": \"121053078680124e06f58555ce009f333\",\n    \"data\": {\n    }\n  }\n```",
+          "type": "text/plain"
+        },
+        "url": {
+          "path": [
+            "schema",
+            "extended-table",
+            "batch-create"
+          ],
+          "host": [
+            "{{baseUrl}}"
+          ],
+          "query": [],
+          "variable": []
+        },
+        "header": [
+          {
+            "disabled": false,
+            "description": "(Required) 全局唯一的密钥，用于验证和授权访问 API 接口",
+            "key": "api-key",
+            "value": "<string>"
+          },
+          {
+            "disabled": false,
+            "description": "(Required) 项目名, 指定请求所属项目",
+            "key": "sensorsdata-project",
+            "value": "<string>"
+          },
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          },
+          {
+            "key": "Accept",
+            "value": "application/json"
+          }
+        ],
+        "method": "POST",
+        "auth": null,
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"extended_tables\": [\n    {\n      \"db_name\": \"<string>\",\n      \"extended_table_id\": \"<string>\",\n      \"join_on_expression\": \"<string>\",\n      \"schema_name\": \"<string>\",\n      \"table_name\": \"<string>\",\n      \"table_display_type\": \"<string>\",\n      \"display_name\": \"<string>\",\n      \"join_key_columns\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"join_mode\": \"<string>\",\n      \"access_info\": {\n        \"creator_id\": \"<string>\",\n        \"modifier_id\": \"<string>\",\n        \"create_time\": \"<dateTime>\",\n        \"update_time\": \"<dateTime>\"\n      }\n    },\n    {\n      \"db_name\": \"<string>\",\n      \"extended_table_id\": \"<string>\",\n      \"join_on_expression\": \"<string>\",\n      \"schema_name\": \"<string>\",\n      \"table_name\": \"<string>\",\n      \"table_display_type\": \"<string>\",\n      \"display_name\": \"<string>\",\n      \"join_key_columns\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"join_mode\": \"<string>\",\n      \"access_info\": {\n        \"creator_id\": \"<string>\",\n        \"modifier_id\": \"<string>\",\n        \"create_time\": \"<dateTime>\",\n        \"update_time\": \"<dateTime>\"\n      }\n    }\n  ],\n  \"project_id\": \"<integer>\"\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        }
+      },
+      "response": [
+        {
+          "id": "47c3b647-83af-422a-b4bd-d63c68e7fe10",
+          "originalRequest": {
+            "url": {
+              "path": [
+                "schema",
+                "extended-table",
+                "batch-create"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "disabled": false,
+                "description": "(Required) 全局唯一的密钥，用于验证和授权访问 API 接口",
+                "key": "api-key",
+                "value": "<string>"
+              },
+              {
+                "disabled": false,
+                "description": "(Required) 项目名, 指定请求所属项目",
+                "key": "sensorsdata-project",
+                "value": "<string>"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"extended_tables\": [\n    {\n      \"db_name\": \"<string>\",\n      \"extended_table_id\": \"<string>\",\n      \"join_on_expression\": \"<string>\",\n      \"schema_name\": \"<string>\",\n      \"table_name\": \"<string>\",\n      \"table_display_type\": \"<string>\",\n      \"display_name\": \"<string>\",\n      \"join_key_columns\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"join_mode\": \"<string>\",\n      \"access_info\": {\n        \"creator_id\": \"<string>\",\n        \"modifier_id\": \"<string>\",\n        \"create_time\": \"<dateTime>\",\n        \"update_time\": \"<dateTime>\"\n      }\n    },\n    {\n      \"db_name\": \"<string>\",\n      \"extended_table_id\": \"<string>\",\n      \"join_on_expression\": \"<string>\",\n      \"schema_name\": \"<string>\",\n      \"table_name\": \"<string>\",\n      \"table_display_type\": \"<string>\",\n      \"display_name\": \"<string>\",\n      \"join_key_columns\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"join_mode\": \"<string>\",\n      \"access_info\": {\n        \"creator_id\": \"<string>\",\n        \"modifier_id\": \"<string>\",\n        \"create_time\": \"<dateTime>\",\n        \"update_time\": \"<dateTime>\"\n      }\n    }\n  ],\n  \"project_id\": \"<integer>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "status": "Internal Server Error",
+          "code": 500,
+          "header": [
+            {
+              "key": "Content-Type",
+              "value": "application/json"
+            }
+          ],
+          "body": "{\n  \"code\": \"SUCCESS\",\n  \"data\": {},\n  \"request_id\": \"1\"\n}",
+          "cookie": [],
+          "_postman_previewlanguage": "json"
+        }
+      ],
+      "event": [],
+      "protocolProfileBehavior": {
+        "disableBodyPruning": true
+      }
+    },
+    {
+      "id": "53613428-ed01-4872-acd9-91ed9ded1a6a",
+      "name": "更新 SchemaExtendedTable",
+      "request": {
+        "name": "更新 SchemaExtendedTable",
+        "description": {
+          "content": "更新 SchemaExtendedTable\n```\n  curl -X POST 'http://{host}:{port}/api/v3/horizon/v1/schema/extended-table/update' \\\n    -H 'Content-Type: application/json' \\\n    -H 'api-key: {api_key}' \\\n    -H 'sensorsdata-project: {projectName}' \\\n    -d '{\n    \"extended_table\": {\n      \"extended_table_id\": \"users\",\n      \"schema_name\": \"events\",\n      \"display_name\": \"users\"\n    },\n    \"update_mask\": \"display_name\"\n  }'\n  返回值示例：\n  {\n    \"code\": \"SUCCESS\",\n    \"request_id\": \"121205198723e4f1134fc1d2a117ae9e\",\n    \"data\": {\n        \"extended_table_id\": \"users\",\n        \"join_mode\": \"LEFT_JOIN\",\n        \"db_name\": \"horizon_default_1\",\n        \"join_on_expression\": \"events.user_id = users.id\",\n        \"join_key_columns\": [\n            \"id\"\n        ],\n        \"schema_name\": \"events\",\n        \"display_name\": \"users\",\n        \"table_name\": \"users\",\n        \"table_display_type\": \"\"\n    }\n  }\n```",
+          "type": "text/plain"
+        },
+        "url": {
+          "path": [
+            "schema",
+            "extended-table",
+            "update"
+          ],
+          "host": [
+            "{{baseUrl}}"
+          ],
+          "query": [],
+          "variable": []
+        },
+        "header": [
+          {
+            "disabled": false,
+            "description": "(Required) 全局唯一的密钥，用于验证和授权访问 API 接口",
+            "key": "api-key",
+            "value": "<string>"
+          },
+          {
+            "disabled": false,
+            "description": "(Required) 项目名, 指定请求所属项目",
+            "key": "sensorsdata-project",
+            "value": "<string>"
+          },
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          },
+          {
+            "key": "Accept",
+            "value": "application/json"
+          }
+        ],
+        "method": "POST",
+        "auth": null,
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"extended_table\": {\n    \"db_name\": \"<string>\",\n    \"extended_table_id\": \"<string>\",\n    \"join_on_expression\": \"<string>\",\n    \"schema_name\": \"<string>\",\n    \"table_name\": \"<string>\",\n    \"table_display_type\": \"<string>\",\n    \"display_name\": \"<string>\",\n    \"join_key_columns\": [\n      \"<string>\",\n      \"<string>\"\n    ],\n    \"join_mode\": \"<string>\",\n    \"access_info\": {\n      \"creator_id\": \"<string>\",\n      \"modifier_id\": \"<string>\",\n      \"create_time\": \"<dateTime>\",\n      \"update_time\": \"<dateTime>\"\n    }\n  },\n  \"project_id\": \"<integer>\",\n  \"update_mask\": \"<string>\"\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        }
+      },
+      "response": [
+        {
+          "id": "42f1c0aa-45fc-4138-9c87-3fa415eec3e2",
+          "name": "sensorsdata.horizon.v1.SchemaExtendedTable",
+          "originalRequest": {
+            "url": {
+              "path": [
+                "schema",
+                "extended-table",
+                "update"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "disabled": false,
+                "description": "(Required) 全局唯一的密钥，用于验证和授权访问 API 接口",
+                "key": "api-key",
+                "value": "<string>"
+              },
+              {
+                "disabled": false,
+                "description": "(Required) 项目名, 指定请求所属项目",
+                "key": "sensorsdata-project",
+                "value": "<string>"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"extended_table\": {\n    \"db_name\": \"<string>\",\n    \"extended_table_id\": \"<string>\",\n    \"join_on_expression\": \"<string>\",\n    \"schema_name\": \"<string>\",\n    \"table_name\": \"<string>\",\n    \"table_display_type\": \"<string>\",\n    \"display_name\": \"<string>\",\n    \"join_key_columns\": [\n      \"<string>\",\n      \"<string>\"\n    ],\n    \"join_mode\": \"<string>\",\n    \"access_info\": {\n      \"creator_id\": \"<string>\",\n      \"modifier_id\": \"<string>\",\n      \"create_time\": \"<dateTime>\",\n      \"update_time\": \"<dateTime>\"\n    }\n  },\n  \"project_id\": \"<integer>\",\n  \"update_mask\": \"<string>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "status": "Internal Server Error",
+          "code": 500,
+          "header": [
+            {
+              "key": "Content-Type",
+              "value": "application/json"
+            }
+          ],
+          "body": "{\n  \"code\": \"SUCCESS\",\n  \"data\": {\n    \"access_info\": {}\n  },\n  \"request_id\": \"1\"\n}",
+          "cookie": [],
+          "_postman_previewlanguage": "json"
+        }
+      ],
+      "event": [],
+      "protocolProfileBehavior": {
+        "disableBodyPruning": true
+      }
+    },
+    {
+      "id": "2699b555-c6df-4472-8f36-58335ad39cec",
+      "name": "获取用户表/事件表元信息",
+      "request": {
+        "name": "获取用户表/事件表元信息",
+        "description": {
+          "content": "获取用户表/事件表元信息\n```\n  curl -X POST 'http://{host}:{port}/api/v3/horizon/v1/schema/get' \\\n    -H 'Content-Type: application/json' \\\n    -H 'api-key: {api_key}' \\\n    -H 'sensorsdata-project: {projectName}' \\\n    -d '{\n    \"name\": \"users\",\n    \"expand\": \"data_mapping\"\n  }'\n  返回示例值：\n  {\n    \"code\": \"SUCCESS\",\n    \"request_id\": \"121209562976bb3116f47e046d2a0762\",\n    \"data\": {\n        \"visible\": true,\n        \"data_mapping\": {\n            \"view_table\": {\n                \"db_name\": \"horizon_default_1\",\n                \"table_name\": \"users\",\n                \"condition\": \"\"\n            },\n            \"main_table\": {\n                \"db_name\": \"horizon_private_default_1\",\n                \"table_name\": \"users\",\n                \"condition\": \"`$is_deleted` is null or `$is_deleted` = 0\"\n            },\n            \"extended_tables\": []\n        },\n        \"builtin\": true,\n        \"schema_class\": \"USER\",\n        \"schema_display_type\": \"BASIC\",\n        \"display_name\": \"用户表\",\n        \"type\": \"PHYSICAL\",\n        \"version\": 3,\n        \"has_data\": true,\n        \"custom_params\": {},\n        \"project_id\": 1,\n        \"schema_data_mapping_type\": \"BUILTIN_TABLE\",\n        \"enable\": true,\n        \"original_name\": \"users\",\n        \"name\": \"users\",\n        \"legacy_id\": 0,\n        \"fields\": []\n    }\n  }\n```",
+          "type": "text/plain"
+        },
+        "url": {
+          "path": [
+            "schema",
+            "get"
+          ],
+          "host": [
+            "{{baseUrl}}"
+          ],
+          "query": [],
+          "variable": []
+        },
+        "header": [
+          {
+            "disabled": false,
+            "description": "(Required) 全局唯一的密钥，用于验证和授权访问 API 接口",
+            "key": "api-key",
+            "value": "<string>"
+          },
+          {
+            "disabled": false,
+            "description": "(Required) 项目名, 指定请求所属项目",
+            "key": "sensorsdata-project",
+            "value": "<string>"
+          },
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          },
+          {
+            "key": "Accept",
+            "value": "application/json"
+          }
+        ],
+        "method": "POST",
+        "auth": null,
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"name\": \"<string>\",\n  \"project_id\": \"<integer>\",\n  \"expand\": \"<string>\"\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        }
+      },
+      "response": [
+        {
+          "id": "d8387d4b-82ac-4433-a6bc-b6f005f1857d",
+          "name": "sensorsdata.horizon.v1.Schema",
+          "originalRequest": {
+            "url": {
+              "path": [
+                "schema",
+                "get"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "disabled": false,
+                "description": "(Required) 全局唯一的密钥，用于验证和授权访问 API 接口",
+                "key": "api-key",
+                "value": "<string>"
+              },
+              {
+                "disabled": false,
+                "description": "(Required) 项目名, 指定请求所属项目",
+                "key": "sensorsdata-project",
+                "value": "<string>"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"name\": \"<string>\",\n  \"project_id\": \"<integer>\",\n  \"expand\": \"<string>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "status": "Internal Server Error",
+          "code": 500,
+          "header": [
+            {
+              "key": "Content-Type",
+              "value": "application/json"
+            }
+          ],
+          "body": "{\n  \"code\": \"SUCCESS\",\n  \"data\": {\n    \"has_data\": false,\n    \"mapping\": {\n      \"condition\": {\n        \"index\": 10,\n        \"conditions\": [\n          {\n            \"function\": \"EQUAL\",\n            \"index\": 10,\n            \"params\": [\n              {\n                \"expression\": \"user.p1/user.p2+user.p3\",\n                \"field\": \"#ResourceId\",\n                \"time_point\": {\n                  \"relative_time\": {\n                    \"time_interval\": {}\n                  }\n                },\n                \"variable\": \"$ENTRY_TIME\",\n                \"value\": {},\n                \"param_type\": \"FIELD\"\n              }\n            ]\n          }\n        ],\n        \"operator\": \"AND\"\n      }\n    },\n    \"visible\": \"true\",\n    \"data_mapping\": {\n      \"view_table\": {},\n      \"extended_tables\": [\n        {\n          \"access_info\": {}\n        }\n      ]\n    },\n    \"schema_data_mapping_type\": \"BUILTIN_TABLE\",\n    \"enable\": \"true\",\n    \"schema_display_type\": \"BASIC\",\n    \"type\": \"PHYSICAL\",\n    \"fields\": [\n      {\n        \"unit\": {},\n        \"data_mapping\": {\n          \"extended_column\": {}\n        },\n        \"data_type\": {\n          \"type\": \"STRING\"\n        },\n        \"view_data_source\": {\n          \"inline_expression\": {},\n          \"view_column_source_data\": {},\n          \"complex_expression\": {}\n        },\n        \"object_fields\": [\n          {}\n        ]\n      }\n    ],\n    \"statistics\": {\n      \"track_platforms\": [\n        {}\n      ]\n    }\n  },\n  \"request_id\": \"1\"\n}",
+          "cookie": [],
+          "_postman_previewlanguage": "json"
+        }
+      ],
+      "event": [],
+      "protocolProfileBehavior": {
+        "disableBodyPruning": true
+      }
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "/api/v3/horizon/v1",
+      "key": "baseUrl"
+    }
+  ],
+  "info": {
+    "_postman_id": "4fa8b22e-c52d-41c3-90ef-5edbd12e399b",
+    "name": "神策数界",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "元数据管理服务",
+      "type": "text/plain"
+    }
+  }
+}

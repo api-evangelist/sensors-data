@@ -1,0 +1,985 @@
+{
+  "item": [
+    {
+      "id": "905a13bc-4575-4d2c-a6eb-3b706a9804fe",
+      "name": "查询漏斗分析报告",
+      "request": {
+        "name": "查询漏斗分析报告",
+        "description": {
+          "content": "查询漏斗分析报告",
+          "type": "text/plain"
+        },
+        "url": {
+          "path": [
+            "model",
+            "funnel",
+            "report"
+          ],
+          "host": [
+            "{{baseUrl}}"
+          ],
+          "query": [],
+          "variable": []
+        },
+        "header": [
+          {
+            "disabled": false,
+            "description": "(Required) 全局唯一的密钥，用于验证和授权访问 API 接口",
+            "key": "api-key",
+            "value": "<string>"
+          },
+          {
+            "disabled": false,
+            "description": "(Required) 项目名, 指定请求所属项目",
+            "key": "sensorsdata-project",
+            "value": "<string>"
+          },
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          },
+          {
+            "key": "Accept",
+            "value": "application/json"
+          }
+        ],
+        "method": "POST",
+        "auth": null,
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"from_date\": \"<string>\",\n  \"to_date\": \"<string>\",\n  \"funnel_define\": {\n    \"max_convert_time\": \"<integer>\",\n    \"comment\": \"<string>\",\n    \"name\": \"<string>\",\n    \"steps\": [\n      {\n        \"event_name\": \"<string>\",\n        \"custom_name\": \"<string>\",\n        \"filter\": {\n          \"conditions\": [\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          ],\n          \"filters\": [\n            {\n              \"value\": \"<Circular reference to #/components/schemas/sensorsdata.analytics.v2.FunnelStepFilter detected>\"\n            },\n            {\n              \"value\": \"<Circular reference to #/components/schemas/sensorsdata.analytics.v2.FunnelStepFilter detected>\"\n            }\n          ],\n          \"relation\": \"<string>\"\n        },\n        \"relevance_field\": \"<string>\",\n        \"step_measures\": [\n          {\n            \"aggregator\": \"<string>\",\n            \"event_name\": \"<string>\",\n            \"measure_name\": \"<string>\",\n            \"field\": \"<string>\"\n          },\n          {\n            \"aggregator\": \"<string>\",\n            \"event_name\": \"<string>\",\n            \"measure_name\": \"<string>\",\n            \"field\": \"<string>\"\n          }\n        ]\n      },\n      {\n        \"event_name\": \"<string>\",\n        \"custom_name\": \"<string>\",\n        \"filter\": {\n          \"conditions\": [\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          ],\n          \"filters\": [\n            {\n              \"value\": \"<Circular reference to #/components/schemas/sensorsdata.analytics.v2.FunnelStepFilter detected>\"\n            },\n            {\n              \"value\": \"<Circular reference to #/components/schemas/sensorsdata.analytics.v2.FunnelStepFilter detected>\"\n            }\n          ],\n          \"relation\": \"<string>\"\n        },\n        \"relevance_field\": \"<string>\",\n        \"step_measures\": [\n          {\n            \"aggregator\": \"<string>\",\n            \"event_name\": \"<string>\",\n            \"measure_name\": \"<string>\",\n            \"field\": \"<string>\"\n          },\n          {\n            \"aggregator\": \"<string>\",\n            \"event_name\": \"<string>\",\n            \"measure_name\": \"<string>\",\n            \"field\": \"<string>\"\n          }\n        ]\n      }\n    ]\n  },\n  \"filter\": {\n    \"render_index\": \"<integer>\",\n    \"conditions\": [\n      {\n        \"render_index\": \"<integer>\",\n        \"field\": \"<string>\",\n        \"function\": \"<string>\"\n      },\n      {\n        \"render_index\": \"<integer>\",\n        \"field\": \"<string>\",\n        \"function\": \"<string>\"\n      }\n    ],\n    \"filters\": [\n      {\n        \"value\": \"<Circular reference to #/components/schemas/sensorsdata.analytics.v2.QueryExtendFilter detected>\"\n      },\n      {\n        \"value\": \"<Circular reference to #/components/schemas/sensorsdata.analytics.v2.QueryExtendFilter detected>\"\n      }\n    ],\n    \"relation\": \"<string>\"\n  },\n  \"by_fields\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"extend_over_end_date\": \"<boolean>\",\n  \"by_field_step\": \"<integer>\",\n  \"sampling_factor\": \"<integer>\",\n  \"request_id\": \"<string>\",\n  \"dashboard_id\": \"<integer>\",\n  \"bookmark_id\": \"<integer>\",\n  \"ignore_cache_expire\": \"<boolean>\",\n  \"trade_day_mode\": \"<boolean>\",\n  \"cache_ignore_seconds\": \"<long>\",\n  \"dashboard_cache_policy\": \"<string>\",\n  \"dashboard_stop_update\": \"<boolean>\",\n  \"use_entire_cache_only\": \"<boolean>\",\n  \"funnel_id\": \"<integer>\",\n  \"funnel_name\": \"<string>\",\n  \"use_cache\": \"<boolean>\",\n  \"arith_rollup\": \"<boolean>\",\n  \"calculation_caliber\": \"<string>\",\n  \"limit\": \"<integer>\",\n  \"bucket_params\": {},\n  \"time_zone_mode\": \"<string>\",\n  \"server_time_zone\": \"<string>\",\n  \"subject_id\": \"<string>\",\n  \"unit\": \"<string>\",\n  \"diversion_mode\": \"<string>\",\n  \"order_type\": \"<string>\",\n  \"compare_from_date\": \"<string>\",\n  \"compare_to_date\": \"<string>\",\n  \"common_user_filter\": {\n    \"render_index\": \"<integer>\",\n    \"conditions\": [\n      {\n        \"render_index\": \"<integer>\",\n        \"field\": \"<string>\",\n        \"function\": \"<string>\"\n      },\n      {\n        \"render_index\": \"<integer>\",\n        \"field\": \"<string>\",\n        \"function\": \"<string>\"\n      }\n    ],\n    \"filters\": [\n      {\n        \"value\": \"<Circular reference to #/components/schemas/sensorsdata.analytics.v2.QueryExtendFilter detected>\"\n      },\n      {\n        \"value\": \"<Circular reference to #/components/schemas/sensorsdata.analytics.v2.QueryExtendFilter detected>\"\n      }\n    ],\n    \"relation\": \"<string>\"\n  }\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        }
+      },
+      "response": [
+        {
+          "id": "e38fa6b0-b676-41d7-890e-5a60658ff91f",
+          "name": "sensorsdata.analytics.v2.FunnelReportResponse",
+          "originalRequest": {
+            "url": {
+              "path": [
+                "model",
+                "funnel",
+                "report"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "disabled": false,
+                "description": "(Required) 全局唯一的密钥，用于验证和授权访问 API 接口",
+                "key": "api-key",
+                "value": "<string>"
+              },
+              {
+                "disabled": false,
+                "description": "(Required) 项目名, 指定请求所属项目",
+                "key": "sensorsdata-project",
+                "value": "<string>"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"from_date\": \"2022-09-29\",\n  \"to_date\": \"2022-09-29\",\n  \"funnel_define\": {\n    \"max_convert_time\": 10080,\n    \"comment\": \"用户转化漏斗\",\n    \"name\": \"转化漏斗\",\n    \"steps\": [\n      {\n        \"event_name\": \"$AppStart\",\n        \"custom_name\": \"启动应用\",\n        \"filter\": {\n          \"conditions\": [\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          ],\n          \"filters\": [\n            {\n              \"value\": \"<Circular reference to #/components/schemas/sensorsdata.analytics.v2.FunnelStepFilter detected>\"\n            },\n            {\n              \"value\": \"<Circular reference to #/components/schemas/sensorsdata.analytics.v2.FunnelStepFilter detected>\"\n            }\n          ],\n          \"relation\": \"AND\"\n        },\n        \"relevance_field\": \"event.$AppStart.$device_id\",\n        \"step_measures\": [\n          {\n            \"aggregator\": \"sum\",\n            \"event_name\": \"$AppClick\",\n            \"measure_name\": \"总金额\",\n            \"field\": \"$money\"\n          },\n          {\n            \"aggregator\": \"sum\",\n            \"event_name\": \"$AppClick\",\n            \"measure_name\": \"总金额\",\n            \"field\": \"$money\"\n          }\n        ]\n      },\n      {\n        \"event_name\": \"$AppStart\",\n        \"custom_name\": \"启动应用\",\n        \"filter\": {\n          \"conditions\": [\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          ],\n          \"filters\": [\n            {\n              \"value\": \"<Circular reference to #/components/schemas/sensorsdata.analytics.v2.FunnelStepFilter detected>\"\n            },\n            {\n              \"value\": \"<Circular reference to #/components/schemas/sensorsdata.analytics.v2.FunnelStepFilter detected>\"\n            }\n          ],\n          \"relation\": \"AND\"\n        },\n        \"relevance_field\": \"event.$AppStart.$device_id\",\n        \"step_measures\": [\n          {\n            \"aggregator\": \"sum\",\n            \"event_name\": \"$AppClick\",\n            \"measure_name\": \"总金额\",\n            \"field\": \"$money\"\n          },\n          {\n            \"aggregator\": \"sum\",\n            \"event_name\": \"$AppClick\",\n            \"measure_name\": \"总金额\",\n            \"field\": \"$money\"\n          }\n        ]\n      }\n    ]\n  },\n  \"filter\": {\n    \"render_index\": 0,\n    \"conditions\": [\n      {\n        \"render_index\": 0,\n        \"field\": \"event.$Anything.country\",\n        \"function\": \"equal\"\n      },\n      {\n        \"render_index\": 0,\n        \"field\": \"event.$Anything.country\",\n        \"function\": \"equal\"\n      }\n    ],\n    \"filters\": [\n      {\n        \"value\": \"<Circular reference to #/components/schemas/sensorsdata.analytics.v2.QueryExtendFilter detected>\"\n      },\n      {\n        \"value\": \"<Circular reference to #/components/schemas/sensorsdata.analytics.v2.QueryExtendFilter detected>\"\n      }\n    ],\n    \"relation\": \"AND\"\n  },\n  \"by_fields\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"extend_over_end_date\": false,\n  \"by_field_step\": \"<integer>\",\n  \"sampling_factor\": 64,\n  \"request_id\": \"12345696321548954\",\n  \"dashboard_id\": \"<integer>\",\n  \"bookmark_id\": \"<integer>\",\n  \"ignore_cache_expire\": true,\n  \"trade_day_mode\": false,\n  \"cache_ignore_seconds\": 3600,\n  \"dashboard_cache_policy\": \"default\",\n  \"dashboard_stop_update\": false,\n  \"use_entire_cache_only\": false,\n  \"funnel_id\": 123,\n  \"funnel_name\": \"用户转化漏斗\",\n  \"use_cache\": false,\n  \"arith_rollup\": true,\n  \"calculation_caliber\": \"count\",\n  \"limit\": 10000,\n  \"bucket_params\": {},\n  \"time_zone_mode\": \"SERVER\",\n  \"server_time_zone\": \"UTC+10:00\",\n  \"subject_id\": \"$country\",\n  \"unit\": \"DAY\",\n  \"diversion_mode\": \"USER_MULTI_GROUP\",\n  \"order_type\": \"asc\",\n  \"compare_from_date\": \"2022-09-22\",\n  \"compare_to_date\": \"2022-09-28\",\n  \"common_user_filter\": {\n    \"render_index\": 0,\n    \"conditions\": [\n      {\n        \"render_index\": 0,\n        \"field\": \"event.$Anything.country\",\n        \"function\": \"equal\"\n      },\n      {\n        \"render_index\": 0,\n        \"field\": \"event.$Anything.country\",\n        \"function\": \"equal\"\n      }\n    ],\n    \"filters\": [\n      {\n        \"value\": \"<Circular reference to #/components/schemas/sensorsdata.analytics.v2.QueryExtendFilter detected>\"\n      },\n      {\n        \"value\": \"<Circular reference to #/components/schemas/sensorsdata.analytics.v2.QueryExtendFilter detected>\"\n      }\n    ],\n    \"relation\": \"AND\"\n  }\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "status": "Internal Server Error",
+          "code": 500,
+          "header": [
+            {
+              "key": "Content-Type",
+              "value": "application/json"
+            }
+          ],
+          "body": "{\n  \"code\": \"SUCCESS\",\n  \"data\": {\n    \"by_value_lists\": [\n      [\n        \"中国\",\n        \"美国\"\n      ],\n      [\n        \"北京\",\n        \"上海\"\n      ]\n    ],\n    \"data_sufficient_update_time\": \"2022-09-29 12:00:00\",\n    \"table_data\": {\n      \"column_meta_lists\": [\n        {\n          \"data_name\": \"date\",\n          \"view_name\": \"日期\",\n          \"data_type\": \"string\"\n        }\n      ],\n      \"cells\": [\n        {\n          \"date\": \"2022-09-29\",\n          \"count\": 100\n        }\n      ],\n      \"compare_cells\": [\n        {\n          \"date\": \"2022-09-28\",\n          \"count\": 90\n        }\n      ]\n    },\n    \"by_fields\": [\n      \"event.$AppStart.$country\"\n    ],\n    \"report_update_time\": \"2022-09-29 12:00:00\",\n    \"truncated\": false,\n    \"sampling_factor\": 64,\n    \"user_tags_partitions\": [\n      {\n        \"tag_name\": \"user_level\",\n        \"tag_c_name\": \"用户等级\"\n      }\n    ],\n    \"data_update_time\": \"2022-09-29 12:00:00\",\n    \"by_field_steps\": [\n      0,\n      0\n    ],\n    \"date_lists\": [\n      \"2022-09-29\",\n      \"2022-09-30\"\n    ],\n    \"statistics\": {\n      \"total_count\": 1000,\n      \"conversion_rate\": 0.5\n    }\n  },\n  \"request_id\": \"1\"\n}",
+          "cookie": [],
+          "_postman_previewlanguage": "json"
+        }
+      ],
+      "event": [],
+      "protocolProfileBehavior": {
+        "disableBodyPruning": true
+      }
+    },
+    {
+      "id": "234609ff-0e40-4400-a2bb-fdbf63cc3468",
+      "name": "查询留存分析报告",
+      "request": {
+        "name": "查询留存分析报告",
+        "description": {
+          "content": "查询留存分析报告",
+          "type": "text/plain"
+        },
+        "url": {
+          "path": [
+            "model",
+            "retention",
+            "report"
+          ],
+          "host": [
+            "{{baseUrl}}"
+          ],
+          "query": [],
+          "variable": []
+        },
+        "header": [
+          {
+            "disabled": false,
+            "description": "(Required) 全局唯一的密钥，用于验证和授权访问 API 接口",
+            "key": "api-key",
+            "value": "<string>"
+          },
+          {
+            "disabled": false,
+            "description": "(Required) 项目名, 指定请求所属项目",
+            "key": "sensorsdata-project",
+            "value": "<string>"
+          },
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          },
+          {
+            "key": "Accept",
+            "value": "application/json"
+          }
+        ],
+        "method": "POST",
+        "auth": null,
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"first_event\": {\n    \"event_name\": \"<string>\",\n    \"filter\": {\n      \"relation\": \"<string>\",\n      \"conditions\": [\n        {\n          \"field\": \"<string>\",\n          \"function\": \"<string>\"\n        },\n        {\n          \"field\": \"<string>\",\n          \"function\": \"<string>\"\n        }\n      ],\n      \"filters\": [\n        {\n          \"value\": \"<Circular reference to #/components/schemas/sensorsdata.analytics.v1.ApiRequestFilter detected>\"\n        },\n        {\n          \"value\": \"<Circular reference to #/components/schemas/sensorsdata.analytics.v1.ApiRequestFilter detected>\"\n        }\n      ]\n    },\n    \"by_field\": \"<string>\",\n    \"relevance_field\": \"<string>\"\n  },\n  \"from_date\": \"<string>\",\n  \"retention_mode\": \"<string>\",\n  \"second_event\": {\n    \"event_name\": \"<string>\",\n    \"filter\": {\n      \"relation\": \"<string>\",\n      \"conditions\": [\n        {\n          \"field\": \"<string>\",\n          \"function\": \"<string>\"\n        },\n        {\n          \"field\": \"<string>\",\n          \"function\": \"<string>\"\n        }\n      ],\n      \"filters\": [\n        {\n          \"value\": \"<Circular reference to #/components/schemas/sensorsdata.analytics.v1.ApiRequestFilter detected>\"\n        },\n        {\n          \"value\": \"<Circular reference to #/components/schemas/sensorsdata.analytics.v1.ApiRequestFilter detected>\"\n        }\n      ]\n    },\n    \"by_field\": \"<string>\",\n    \"relevance_field\": \"<string>\"\n  },\n  \"to_date\": \"<string>\",\n  \"unit\": \"<string>\",\n  \"compare_from_date\": \"<string>\",\n  \"compare_to_date\": \"<string>\",\n  \"diversion_mode\": \"<string>\",\n  \"retention_rate_type\": \"<string>\",\n  \"by_events\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"by_field\": \"<string>\",\n  \"rollup_date\": \"<boolean>\",\n  \"duration\": \"<integer>\",\n  \"filter\": {\n    \"relation\": \"<string>\",\n    \"conditions\": [\n      {\n        \"field\": \"<string>\",\n        \"function\": \"<string>\"\n      },\n      {\n        \"field\": \"<string>\",\n        \"function\": \"<string>\"\n      }\n    ],\n    \"filters\": [\n      {\n        \"value\": \"<Circular reference to #/components/schemas/sensorsdata.analytics.v1.ApiRequestFilter detected>\"\n      },\n      {\n        \"value\": \"<Circular reference to #/components/schemas/sensorsdata.analytics.v1.ApiRequestFilter detected>\"\n      }\n    ]\n  },\n  \"measures\": [\n    {\n      \"event_name\": \"<string>\",\n      \"aggregator\": \"<string>\",\n      \"field\": \"<string>\",\n      \"expression\": \"<string>\",\n      \"expression_filters\": [\n        {\n          \"relation\": \"<string>\",\n          \"conditions\": [\n            {\n              \"field\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"function\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"params\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            },\n            {\n              \"field\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"function\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"params\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            }\n          ],\n          \"filters\": [\n            {\n              \"value\": \"<Circular reference to #/components/schemas/sensorsdata.analytics.v1.ApiRequestFilter detected>\"\n            },\n            {\n              \"value\": \"<Circular reference to #/components/schemas/sensorsdata.analytics.v1.ApiRequestFilter detected>\"\n            }\n          ]\n        },\n        {\n          \"relation\": \"<string>\",\n          \"conditions\": [\n            {\n              \"field\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"function\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"params\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            },\n            {\n              \"field\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"function\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"params\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            }\n          ],\n          \"filters\": [\n            {\n              \"value\": \"<Circular reference to #/components/schemas/sensorsdata.analytics.v1.ApiRequestFilter detected>\"\n            },\n            {\n              \"value\": \"<Circular reference to #/components/schemas/sensorsdata.analytics.v1.ApiRequestFilter detected>\"\n            }\n          ]\n        }\n      ],\n      \"filter\": {\n        \"relation\": \"<string>\",\n        \"conditions\": [\n          {\n            \"field\": \"<string>\",\n            \"function\": \"<string>\",\n            \"params\": [\n              {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            ]\n          },\n          {\n            \"field\": \"<string>\",\n            \"function\": \"<string>\",\n            \"params\": [\n              {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            ]\n          }\n        ],\n        \"filters\": [\n          {\n            \"value\": \"<Circular reference to #/components/schemas/sensorsdata.analytics.v1.ApiRequestFilter detected>\"\n          },\n          {\n            \"value\": \"<Circular reference to #/components/schemas/sensorsdata.analytics.v1.ApiRequestFilter detected>\"\n          }\n        ]\n      },\n      \"name\": \"<string>\",\n      \"events\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"split\": \"<boolean>\",\n      \"profit_rate\": \"<float>\",\n      \"by_session\": \"<boolean>\",\n      \"expression_denominator_without_group\": \"<boolean>\",\n      \"atom_measure_without_group\": \"<boolean>\",\n      \"show_cname\": \"<string>\"\n    },\n    {\n      \"event_name\": \"<string>\",\n      \"aggregator\": \"<string>\",\n      \"field\": \"<string>\",\n      \"expression\": \"<string>\",\n      \"expression_filters\": [\n        {\n          \"relation\": \"<string>\",\n          \"conditions\": [\n            {\n              \"field\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"function\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"params\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            },\n            {\n              \"field\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"function\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"params\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            }\n          ],\n          \"filters\": [\n            {\n              \"value\": \"<Circular reference to #/components/schemas/sensorsdata.analytics.v1.ApiRequestFilter detected>\"\n            },\n            {\n              \"value\": \"<Circular reference to #/components/schemas/sensorsdata.analytics.v1.ApiRequestFilter detected>\"\n            }\n          ]\n        },\n        {\n          \"relation\": \"<string>\",\n          \"conditions\": [\n            {\n              \"field\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"function\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"params\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            },\n            {\n              \"field\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"function\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"params\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            }\n          ],\n          \"filters\": [\n            {\n              \"value\": \"<Circular reference to #/components/schemas/sensorsdata.analytics.v1.ApiRequestFilter detected>\"\n            },\n            {\n              \"value\": \"<Circular reference to #/components/schemas/sensorsdata.analytics.v1.ApiRequestFilter detected>\"\n            }\n          ]\n        }\n      ],\n      \"filter\": {\n        \"relation\": \"<string>\",\n        \"conditions\": [\n          {\n            \"field\": \"<string>\",\n            \"function\": \"<string>\",\n            \"params\": [\n              {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            ]\n          },\n          {\n            \"field\": \"<string>\",\n            \"function\": \"<string>\",\n            \"params\": [\n              {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            ]\n          }\n        ],\n        \"filters\": [\n          {\n            \"value\": \"<Circular reference to #/components/schemas/sensorsdata.analytics.v1.ApiRequestFilter detected>\"\n          },\n          {\n            \"value\": \"<Circular reference to #/components/schemas/sensorsdata.analytics.v1.ApiRequestFilter detected>\"\n          }\n        ]\n      },\n      \"name\": \"<string>\",\n      \"events\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"split\": \"<boolean>\",\n      \"profit_rate\": \"<float>\",\n      \"by_session\": \"<boolean>\",\n      \"expression_denominator_without_group\": \"<boolean>\",\n      \"atom_measure_without_group\": \"<boolean>\",\n      \"show_cname\": \"<string>\"\n    }\n  ],\n  \"user_filter\": {\n    \"relation\": \"<string>\",\n    \"conditions\": [\n      {\n        \"field\": \"<string>\",\n        \"function\": \"<string>\"\n      },\n      {\n        \"field\": \"<string>\",\n        \"function\": \"<string>\"\n      }\n    ],\n    \"filters\": [\n      {\n        \"value\": \"<Circular reference to #/components/schemas/sensorsdata.analytics.v1.ApiRequestFilter detected>\"\n      },\n      {\n        \"value\": \"<Circular reference to #/components/schemas/sensorsdata.analytics.v1.ApiRequestFilter detected>\"\n      }\n    ]\n  },\n  \"common_event_filter\": {\n    \"relation\": \"<string>\",\n    \"conditions\": [\n      {\n        \"field\": \"<string>\",\n        \"function\": \"<string>\"\n      },\n      {\n        \"field\": \"<string>\",\n        \"function\": \"<string>\"\n      }\n    ],\n    \"filters\": [\n      {\n        \"value\": \"<Circular reference to #/components/schemas/sensorsdata.analytics.v1.ApiRequestFilter detected>\"\n      },\n      {\n        \"value\": \"<Circular reference to #/components/schemas/sensorsdata.analytics.v1.ApiRequestFilter detected>\"\n      }\n    ]\n  },\n  \"common_user_filter\": {\n    \"relation\": \"<string>\",\n    \"conditions\": [\n      {\n        \"field\": \"<string>\",\n        \"function\": \"<string>\"\n      },\n      {\n        \"field\": \"<string>\",\n        \"function\": \"<string>\"\n      }\n    ],\n    \"filters\": [\n      {\n        \"value\": \"<Circular reference to #/components/schemas/sensorsdata.analytics.v1.ApiRequestFilter detected>\"\n      },\n      {\n        \"value\": \"<Circular reference to #/components/schemas/sensorsdata.analytics.v1.ApiRequestFilter detected>\"\n      }\n    ]\n  },\n  \"show_zero_day\": \"<string>\",\n  \"include_zero_unit\": \"<boolean>\",\n  \"rate_scale\": \"<string>\",\n  \"last_zero\": \"<boolean>\",\n  \"trade_day_mode\": \"<boolean>\",\n  \"dashboard_id\": \"<integer>\",\n  \"bookmark_id\": \"<integer>\",\n  \"extend_over_end_date\": \"<boolean>\",\n  \"sampling_factor\": \"<integer>\",\n  \"is_wastage\": \"<boolean>\",\n  \"use_cache\": \"<boolean>\",\n  \"request_id\": \"<string>\",\n  \"by_fields\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"rollup\": \"<boolean>\",\n  \"limit\": \"<long>\",\n  \"bucket_params\": {},\n  \"time_zone_mode\": \"<string>\",\n  \"server_time_zone\": \"<string>\",\n  \"subject_id\": \"<string>\",\n  \"by_event\": \"<string>\"\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        }
+      },
+      "response": [
+        {
+          "id": "22f64ea6-928c-4eeb-a028-c32aa002e50a",
+          "name": "sensorsdata.analytics.v2.RetentionReportResponse",
+          "originalRequest": {
+            "url": {
+              "path": [
+                "model",
+                "retention",
+                "report"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "disabled": false,
+                "description": "(Required) 全局唯一的密钥，用于验证和授权访问 API 接口",
+                "key": "api-key",
+                "value": "<string>"
+              },
+              {
+                "disabled": false,
+                "description": "(Required) 项目名, 指定请求所属项目",
+                "key": "sensorsdata-project",
+                "value": "<string>"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"first_event\": {\n    \"event_name\": \"event.$AppClick\",\n    \"filter\": {\n      \"relation\": \"OR\",\n      \"conditions\": [\n        {\n          \"field\": \"<string>\",\n          \"function\": \"<string>\"\n        },\n        {\n          \"field\": \"<string>\",\n          \"function\": \"<string>\"\n        }\n      ],\n      \"filters\": [\n        {\n          \"value\": \"<Circular reference to #/components/schemas/sensorsdata.analytics.v1.ApiRequestFilter detected>\"\n        },\n        {\n          \"value\": \"<Circular reference to #/components/schemas/sensorsdata.analytics.v1.ApiRequestFilter detected>\"\n        }\n      ]\n    },\n    \"by_field\": \"event.$AppClick.country\",\n    \"relevance_field\": \"<string>\"\n  },\n  \"from_date\": \"2022-09-29\",\n  \"retention_mode\": \"SELECTED_RETENTION\",\n  \"second_event\": {\n    \"event_name\": \"event.$AppClick\",\n    \"filter\": {\n      \"relation\": \"OR\",\n      \"conditions\": [\n        {\n          \"field\": \"<string>\",\n          \"function\": \"<string>\"\n        },\n        {\n          \"field\": \"<string>\",\n          \"function\": \"<string>\"\n        }\n      ],\n      \"filters\": [\n        {\n          \"value\": \"<Circular reference to #/components/schemas/sensorsdata.analytics.v1.ApiRequestFilter detected>\"\n        },\n        {\n          \"value\": \"<Circular reference to #/components/schemas/sensorsdata.analytics.v1.ApiRequestFilter detected>\"\n        }\n      ]\n    },\n    \"by_field\": \"event.$AppClick.country\",\n    \"relevance_field\": \"<string>\"\n  },\n  \"to_date\": \"2022-09-29\",\n  \"unit\": \"DAY\",\n  \"compare_from_date\": \"2022-09-22\",\n  \"compare_to_date\": \"2022-09-28\",\n  \"diversion_mode\": \"USER_MULTI_GROUP\",\n  \"retention_rate_type\": \"DISTINCT\",\n  \"by_events\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"by_field\": \"event.$AppClick.$country\",\n  \"rollup_date\": true,\n  \"duration\": 7,\n  \"filter\": {\n    \"relation\": \"OR\",\n    \"conditions\": [\n      {\n        \"field\": \"<string>\",\n        \"function\": \"<string>\"\n      },\n      {\n        \"field\": \"<string>\",\n        \"function\": \"<string>\"\n      }\n    ],\n    \"filters\": [\n      {\n        \"value\": \"<Circular reference to #/components/schemas/sensorsdata.analytics.v1.ApiRequestFilter detected>\"\n      },\n      {\n        \"value\": \"<Circular reference to #/components/schemas/sensorsdata.analytics.v1.ApiRequestFilter detected>\"\n      }\n    ]\n  },\n  \"measures\": [\n    {\n      \"event_name\": \"event.$AppClick\",\n      \"aggregator\": \"general\",\n      \"field\": \"<string>\",\n      \"expression\": \"<string>\",\n      \"expression_filters\": [\n        {\n          \"relation\": \"OR\",\n          \"conditions\": [\n            {\n              \"field\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"function\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"params\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            },\n            {\n              \"field\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"function\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"params\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            }\n          ],\n          \"filters\": [\n            {\n              \"value\": \"<Circular reference to #/components/schemas/sensorsdata.analytics.v1.ApiRequestFilter detected>\"\n            },\n            {\n              \"value\": \"<Circular reference to #/components/schemas/sensorsdata.analytics.v1.ApiRequestFilter detected>\"\n            }\n          ]\n        },\n        {\n          \"relation\": \"OR\",\n          \"conditions\": [\n            {\n              \"field\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"function\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"params\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            },\n            {\n              \"field\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"function\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"params\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            }\n          ],\n          \"filters\": [\n            {\n              \"value\": \"<Circular reference to #/components/schemas/sensorsdata.analytics.v1.ApiRequestFilter detected>\"\n            },\n            {\n              \"value\": \"<Circular reference to #/components/schemas/sensorsdata.analytics.v1.ApiRequestFilter detected>\"\n            }\n          ]\n        }\n      ],\n      \"filter\": {\n        \"relation\": \"OR\",\n        \"conditions\": [\n          {\n            \"field\": \"<string>\",\n            \"function\": \"<string>\",\n            \"params\": [\n              {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            ]\n          },\n          {\n            \"field\": \"<string>\",\n            \"function\": \"<string>\",\n            \"params\": [\n              {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            ]\n          }\n        ],\n        \"filters\": [\n          {\n            \"value\": \"<Circular reference to #/components/schemas/sensorsdata.analytics.v1.ApiRequestFilter detected>\"\n          },\n          {\n            \"value\": \"<Circular reference to #/components/schemas/sensorsdata.analytics.v1.ApiRequestFilter detected>\"\n          }\n        ]\n      },\n      \"name\": \"小程序显示的用户数\",\n      \"events\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"split\": \"<boolean>\",\n      \"profit_rate\": \"<float>\",\n      \"by_session\": \"<boolean>\",\n      \"expression_denominator_without_group\": \"<boolean>\",\n      \"atom_measure_without_group\": \"<boolean>\",\n      \"show_cname\": \"<string>\"\n    },\n    {\n      \"event_name\": \"event.$AppClick\",\n      \"aggregator\": \"general\",\n      \"field\": \"<string>\",\n      \"expression\": \"<string>\",\n      \"expression_filters\": [\n        {\n          \"relation\": \"OR\",\n          \"conditions\": [\n            {\n              \"field\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"function\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"params\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            },\n            {\n              \"field\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"function\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"params\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            }\n          ],\n          \"filters\": [\n            {\n              \"value\": \"<Circular reference to #/components/schemas/sensorsdata.analytics.v1.ApiRequestFilter detected>\"\n            },\n            {\n              \"value\": \"<Circular reference to #/components/schemas/sensorsdata.analytics.v1.ApiRequestFilter detected>\"\n            }\n          ]\n        },\n        {\n          \"relation\": \"OR\",\n          \"conditions\": [\n            {\n              \"field\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"function\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"params\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            },\n            {\n              \"field\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"function\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"params\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            }\n          ],\n          \"filters\": [\n            {\n              \"value\": \"<Circular reference to #/components/schemas/sensorsdata.analytics.v1.ApiRequestFilter detected>\"\n            },\n            {\n              \"value\": \"<Circular reference to #/components/schemas/sensorsdata.analytics.v1.ApiRequestFilter detected>\"\n            }\n          ]\n        }\n      ],\n      \"filter\": {\n        \"relation\": \"OR\",\n        \"conditions\": [\n          {\n            \"field\": \"<string>\",\n            \"function\": \"<string>\",\n            \"params\": [\n              {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            ]\n          },\n          {\n            \"field\": \"<string>\",\n            \"function\": \"<string>\",\n            \"params\": [\n              {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            ]\n          }\n        ],\n        \"filters\": [\n          {\n            \"value\": \"<Circular reference to #/components/schemas/sensorsdata.analytics.v1.ApiRequestFilter detected>\"\n          },\n          {\n            \"value\": \"<Circular reference to #/components/schemas/sensorsdata.analytics.v1.ApiRequestFilter detected>\"\n          }\n        ]\n      },\n      \"name\": \"小程序显示的用户数\",\n      \"events\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"split\": \"<boolean>\",\n      \"profit_rate\": \"<float>\",\n      \"by_session\": \"<boolean>\",\n      \"expression_denominator_without_group\": \"<boolean>\",\n      \"atom_measure_without_group\": \"<boolean>\",\n      \"show_cname\": \"<string>\"\n    }\n  ],\n  \"user_filter\": {\n    \"relation\": \"OR\",\n    \"conditions\": [\n      {\n        \"field\": \"<string>\",\n        \"function\": \"<string>\"\n      },\n      {\n        \"field\": \"<string>\",\n        \"function\": \"<string>\"\n      }\n    ],\n    \"filters\": [\n      {\n        \"value\": \"<Circular reference to #/components/schemas/sensorsdata.analytics.v1.ApiRequestFilter detected>\"\n      },\n      {\n        \"value\": \"<Circular reference to #/components/schemas/sensorsdata.analytics.v1.ApiRequestFilter detected>\"\n      }\n    ]\n  },\n  \"common_event_filter\": {\n    \"relation\": \"OR\",\n    \"conditions\": [\n      {\n        \"field\": \"<string>\",\n        \"function\": \"<string>\"\n      },\n      {\n        \"field\": \"<string>\",\n        \"function\": \"<string>\"\n      }\n    ],\n    \"filters\": [\n      {\n        \"value\": \"<Circular reference to #/components/schemas/sensorsdata.analytics.v1.ApiRequestFilter detected>\"\n      },\n      {\n        \"value\": \"<Circular reference to #/components/schemas/sensorsdata.analytics.v1.ApiRequestFilter detected>\"\n      }\n    ]\n  },\n  \"common_user_filter\": {\n    \"relation\": \"OR\",\n    \"conditions\": [\n      {\n        \"field\": \"<string>\",\n        \"function\": \"<string>\"\n      },\n      {\n        \"field\": \"<string>\",\n        \"function\": \"<string>\"\n      }\n    ],\n    \"filters\": [\n      {\n        \"value\": \"<Circular reference to #/components/schemas/sensorsdata.analytics.v1.ApiRequestFilter detected>\"\n      },\n      {\n        \"value\": \"<Circular reference to #/components/schemas/sensorsdata.analytics.v1.ApiRequestFilter detected>\"\n      }\n    ]\n  },\n  \"show_zero_day\": \"true\",\n  \"include_zero_unit\": true,\n  \"rate_scale\": \"0.01\",\n  \"last_zero\": false,\n  \"trade_day_mode\": false,\n  \"dashboard_id\": \"<integer>\",\n  \"bookmark_id\": 22,\n  \"extend_over_end_date\": true,\n  \"sampling_factor\": 64,\n  \"is_wastage\": false,\n  \"use_cache\": false,\n  \"request_id\": \"12345696321548954\",\n  \"by_fields\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"rollup\": false,\n  \"limit\": 10000,\n  \"bucket_params\": {},\n  \"time_zone_mode\": \"SERVER\",\n  \"server_time_zone\": \"UTC+10:00\",\n  \"subject_id\": \"$country\",\n  \"by_event\": \"$AppClick\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "status": "Internal Server Error",
+          "code": 500,
+          "header": [
+            {
+              "key": "Content-Type",
+              "value": "application/json"
+            }
+          ],
+          "body": "{\n  \"code\": \"SUCCESS\",\n  \"data\": {\n    \"column_meta_lists\": [\n      {\n        \"column_name\": \"day1\",\n        \"column_value\": 1\n      }\n    ],\n    \"user_tag_values\": {\n      \"user_level\": [\n        \"VIP\",\n        \"普通用户\"\n      ]\n    },\n    \"data_sufficient_update_time\": \"2022-09-29 12:00:00\",\n    \"data\": [\n      {\n        \"date\": \"2022-09-29\",\n        \"day1\": 0.5,\n        \"day3\": 0.3\n      }\n    ],\n    \"report_update_time\": \"2022-09-29 12:00:00\",\n    \"truncated\": false,\n    \"compare_data\": [\n      {\n        \"date\": \"2022-09-28\",\n        \"day1\": 0.4,\n        \"day3\": 0.2\n      }\n    ],\n    \"compare_column_meta_lists\": [\n      {\n        \"column_name\": \"day1\",\n        \"column_value\": 1\n      }\n    ],\n    \"sampling_factor\": 64,\n    \"user_tags_partitions\": [\n      {\n        \"tag_name\": \"user_level\",\n        \"tag_c_name\": \"用户等级\"\n      }\n    ],\n    \"data_update_time\": \"2022-09-29 12:00:00\"\n  },\n  \"request_id\": \"1\"\n}",
+          "cookie": [],
+          "_postman_previewlanguage": "json"
+        }
+      ],
+      "event": [],
+      "protocolProfileBehavior": {
+        "disableBodyPruning": true
+      }
+    },
+    {
+      "id": "18f0f1b7-79e1-4508-8718-49cdb2296438",
+      "name": "查询 LTV 分析报告（扁平模型）",
+      "request": {
+        "name": "查询 LTV 分析报告（扁平模型）",
+        "description": {
+          "content": "查询 LTV 分析报告（扁平/新版模型）",
+          "type": "text/plain"
+        },
+        "url": {
+          "path": [
+            "model",
+            "ltv",
+            "report"
+          ],
+          "host": [
+            "{{baseUrl}}"
+          ],
+          "query": [],
+          "variable": []
+        },
+        "header": [
+          {
+            "disabled": false,
+            "description": "(Required) 全局唯一的密钥，用于验证和授权访问 API 接口",
+            "key": "api-key",
+            "value": "<string>"
+          },
+          {
+            "disabled": false,
+            "description": "(Required) 项目名, 指定请求所属项目",
+            "key": "sensorsdata-project",
+            "value": "<string>"
+          },
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          },
+          {
+            "key": "Accept",
+            "value": "application/json"
+          }
+        ],
+        "method": "POST",
+        "auth": null,
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"duration\": \"<integer>\",\n  \"from_date\": \"<string>\",\n  \"measures\": [\n    {\n      \"event_name\": \"<string>\",\n      \"aggregator\": \"<string>\",\n      \"field\": \"<string>\",\n      \"expression\": \"<string>\",\n      \"expression_filters\": [\n        {\n          \"relation\": \"<string>\",\n          \"conditions\": [\n            {\n              \"field\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"function\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"params\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            },\n            {\n              \"field\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"function\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"params\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            }\n          ],\n          \"filters\": [\n            {\n              \"value\": \"<Circular reference to #/components/schemas/sensorsdata.analytics.v1.ApiRequestFilter detected>\"\n            },\n            {\n              \"value\": \"<Circular reference to #/components/schemas/sensorsdata.analytics.v1.ApiRequestFilter detected>\"\n            }\n          ]\n        },\n        {\n          \"relation\": \"<string>\",\n          \"conditions\": [\n            {\n              \"field\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"function\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"params\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            },\n            {\n              \"field\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"function\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"params\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            }\n          ],\n          \"filters\": [\n            {\n              \"value\": \"<Circular reference to #/components/schemas/sensorsdata.analytics.v1.ApiRequestFilter detected>\"\n            },\n            {\n              \"value\": \"<Circular reference to #/components/schemas/sensorsdata.analytics.v1.ApiRequestFilter detected>\"\n            }\n          ]\n        }\n      ],\n      \"filter\": {\n        \"relation\": \"<string>\",\n        \"conditions\": [\n          {\n            \"field\": \"<string>\",\n            \"function\": \"<string>\",\n            \"params\": [\n              {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            ]\n          },\n          {\n            \"field\": \"<string>\",\n            \"function\": \"<string>\",\n            \"params\": [\n              {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            ]\n          }\n        ],\n        \"filters\": [\n          {\n            \"value\": \"<Circular reference to #/components/schemas/sensorsdata.analytics.v1.ApiRequestFilter detected>\"\n          },\n          {\n            \"value\": \"<Circular reference to #/components/schemas/sensorsdata.analytics.v1.ApiRequestFilter detected>\"\n          }\n        ]\n      },\n      \"name\": \"<string>\",\n      \"events\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"split\": \"<boolean>\",\n      \"profit_rate\": \"<float>\",\n      \"by_session\": \"<boolean>\",\n      \"expression_denominator_without_group\": \"<boolean>\",\n      \"atom_measure_without_group\": \"<boolean>\",\n      \"show_cname\": \"<string>\"\n    },\n    {\n      \"event_name\": \"<string>\",\n      \"aggregator\": \"<string>\",\n      \"field\": \"<string>\",\n      \"expression\": \"<string>\",\n      \"expression_filters\": [\n        {\n          \"relation\": \"<string>\",\n          \"conditions\": [\n            {\n              \"field\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"function\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"params\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            },\n            {\n              \"field\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"function\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"params\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            }\n          ],\n          \"filters\": [\n            {\n              \"value\": \"<Circular reference to #/components/schemas/sensorsdata.analytics.v1.ApiRequestFilter detected>\"\n            },\n            {\n              \"value\": \"<Circular reference to #/components/schemas/sensorsdata.analytics.v1.ApiRequestFilter detected>\"\n            }\n          ]\n        },\n        {\n          \"relation\": \"<string>\",\n          \"conditions\": [\n            {\n              \"field\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"function\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"params\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            },\n            {\n              \"field\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"function\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"params\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            }\n          ],\n          \"filters\": [\n            {\n              \"value\": \"<Circular reference to #/components/schemas/sensorsdata.analytics.v1.ApiRequestFilter detected>\"\n            },\n            {\n              \"value\": \"<Circular reference to #/components/schemas/sensorsdata.analytics.v1.ApiRequestFilter detected>\"\n            }\n          ]\n        }\n      ],\n      \"filter\": {\n        \"relation\": \"<string>\",\n        \"conditions\": [\n          {\n            \"field\": \"<string>\",\n            \"function\": \"<string>\",\n            \"params\": [\n              {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            ]\n          },\n          {\n            \"field\": \"<string>\",\n            \"function\": \"<string>\",\n            \"params\": [\n              {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            ]\n          }\n        ],\n        \"filters\": [\n          {\n            \"value\": \"<Circular reference to #/components/schemas/sensorsdata.analytics.v1.ApiRequestFilter detected>\"\n          },\n          {\n            \"value\": \"<Circular reference to #/components/schemas/sensorsdata.analytics.v1.ApiRequestFilter detected>\"\n          }\n        ]\n      },\n      \"name\": \"<string>\",\n      \"events\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"split\": \"<boolean>\",\n      \"profit_rate\": \"<float>\",\n      \"by_session\": \"<boolean>\",\n      \"expression_denominator_without_group\": \"<boolean>\",\n      \"atom_measure_without_group\": \"<boolean>\",\n      \"show_cname\": \"<string>\"\n    }\n  ],\n  \"start_sign\": {\n    \"start_event\": \"<string>\",\n    \"start_time_field\": \"<string>\",\n    \"filter\": {\n      \"relation\": \"<string>\",\n      \"conditions\": [\n        {\n          \"field\": \"<string>\",\n          \"function\": \"<string>\"\n        },\n        {\n          \"field\": \"<string>\",\n          \"function\": \"<string>\"\n        }\n      ],\n      \"filters\": [\n        {\n          \"value\": \"<Circular reference to #/components/schemas/sensorsdata.analytics.v1.ApiRequestFilter detected>\"\n        },\n        {\n          \"value\": \"<Circular reference to #/components/schemas/sensorsdata.analytics.v1.ApiRequestFilter detected>\"\n        }\n      ]\n    }\n  },\n  \"to_date\": \"<string>\",\n  \"unit\": \"<string>\",\n  \"filter\": {\n    \"relation\": \"<string>\",\n    \"conditions\": [\n      {\n        \"field\": \"<string>\",\n        \"function\": \"<string>\"\n      },\n      {\n        \"field\": \"<string>\",\n        \"function\": \"<string>\"\n      }\n    ],\n    \"filters\": [\n      {\n        \"value\": \"<Circular reference to #/components/schemas/sensorsdata.analytics.v1.ApiRequestFilter detected>\"\n      },\n      {\n        \"value\": \"<Circular reference to #/components/schemas/sensorsdata.analytics.v1.ApiRequestFilter detected>\"\n      }\n    ]\n  },\n  \"by_fields\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"bucket_params\": {},\n  \"request_id\": \"<string>\",\n  \"use_cache\": \"<boolean>\",\n  \"limit\": \"<integer>\",\n  \"need_show_ltv_columns\": \"<string>\",\n  \"time_zone_mode\": \"<string>\",\n  \"server_time_zone\": \"<string>\",\n  \"subject_id\": \"<string>\",\n  \"ltv_compute_type\": \"<string>\"\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        }
+      },
+      "response": [
+        {
+          "id": "43615dc3-ac88-47bf-9308-c23b53352edb",
+          "name": "sensorsdata.analytics.v2.LtvFlatReportResponse",
+          "originalRequest": {
+            "url": {
+              "path": [
+                "model",
+                "ltv",
+                "report"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "disabled": false,
+                "description": "(Required) 全局唯一的密钥，用于验证和授权访问 API 接口",
+                "key": "api-key",
+                "value": "<string>"
+              },
+              {
+                "disabled": false,
+                "description": "(Required) 项目名, 指定请求所属项目",
+                "key": "sensorsdata-project",
+                "value": "<string>"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"duration\": \"<integer>\",\n  \"from_date\": \"<string>\",\n  \"measures\": [\n    {\n      \"event_name\": \"event.$AppClick\",\n      \"aggregator\": \"general\",\n      \"field\": \"<string>\",\n      \"expression\": \"<string>\",\n      \"expression_filters\": [\n        {\n          \"relation\": \"OR\",\n          \"conditions\": [\n            {\n              \"field\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"function\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"params\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            },\n            {\n              \"field\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"function\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"params\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            }\n          ],\n          \"filters\": [\n            {\n              \"value\": \"<Circular reference to #/components/schemas/sensorsdata.analytics.v1.ApiRequestFilter detected>\"\n            },\n            {\n              \"value\": \"<Circular reference to #/components/schemas/sensorsdata.analytics.v1.ApiRequestFilter detected>\"\n            }\n          ]\n        },\n        {\n          \"relation\": \"OR\",\n          \"conditions\": [\n            {\n              \"field\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"function\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"params\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            },\n            {\n              \"field\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"function\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"params\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            }\n          ],\n          \"filters\": [\n            {\n              \"value\": \"<Circular reference to #/components/schemas/sensorsdata.analytics.v1.ApiRequestFilter detected>\"\n            },\n            {\n              \"value\": \"<Circular reference to #/components/schemas/sensorsdata.analytics.v1.ApiRequestFilter detected>\"\n            }\n          ]\n        }\n      ],\n      \"filter\": {\n        \"relation\": \"OR\",\n        \"conditions\": [\n          {\n            \"field\": \"<string>\",\n            \"function\": \"<string>\",\n            \"params\": [\n              {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            ]\n          },\n          {\n            \"field\": \"<string>\",\n            \"function\": \"<string>\",\n            \"params\": [\n              {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            ]\n          }\n        ],\n        \"filters\": [\n          {\n            \"value\": \"<Circular reference to #/components/schemas/sensorsdata.analytics.v1.ApiRequestFilter detected>\"\n          },\n          {\n            \"value\": \"<Circular reference to #/components/schemas/sensorsdata.analytics.v1.ApiRequestFilter detected>\"\n          }\n        ]\n      },\n      \"name\": \"小程序显示的用户数\",\n      \"events\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"split\": \"<boolean>\",\n      \"profit_rate\": \"<float>\",\n      \"by_session\": \"<boolean>\",\n      \"expression_denominator_without_group\": \"<boolean>\",\n      \"atom_measure_without_group\": \"<boolean>\",\n      \"show_cname\": \"<string>\"\n    },\n    {\n      \"event_name\": \"event.$AppClick\",\n      \"aggregator\": \"general\",\n      \"field\": \"<string>\",\n      \"expression\": \"<string>\",\n      \"expression_filters\": [\n        {\n          \"relation\": \"OR\",\n          \"conditions\": [\n            {\n              \"field\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"function\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"params\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            },\n            {\n              \"field\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"function\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"params\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            }\n          ],\n          \"filters\": [\n            {\n              \"value\": \"<Circular reference to #/components/schemas/sensorsdata.analytics.v1.ApiRequestFilter detected>\"\n            },\n            {\n              \"value\": \"<Circular reference to #/components/schemas/sensorsdata.analytics.v1.ApiRequestFilter detected>\"\n            }\n          ]\n        },\n        {\n          \"relation\": \"OR\",\n          \"conditions\": [\n            {\n              \"field\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"function\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"params\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            },\n            {\n              \"field\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"function\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"params\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            }\n          ],\n          \"filters\": [\n            {\n              \"value\": \"<Circular reference to #/components/schemas/sensorsdata.analytics.v1.ApiRequestFilter detected>\"\n            },\n            {\n              \"value\": \"<Circular reference to #/components/schemas/sensorsdata.analytics.v1.ApiRequestFilter detected>\"\n            }\n          ]\n        }\n      ],\n      \"filter\": {\n        \"relation\": \"OR\",\n        \"conditions\": [\n          {\n            \"field\": \"<string>\",\n            \"function\": \"<string>\",\n            \"params\": [\n              {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            ]\n          },\n          {\n            \"field\": \"<string>\",\n            \"function\": \"<string>\",\n            \"params\": [\n              {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            ]\n          }\n        ],\n        \"filters\": [\n          {\n            \"value\": \"<Circular reference to #/components/schemas/sensorsdata.analytics.v1.ApiRequestFilter detected>\"\n          },\n          {\n            \"value\": \"<Circular reference to #/components/schemas/sensorsdata.analytics.v1.ApiRequestFilter detected>\"\n          }\n        ]\n      },\n      \"name\": \"小程序显示的用户数\",\n      \"events\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"split\": \"<boolean>\",\n      \"profit_rate\": \"<float>\",\n      \"by_session\": \"<boolean>\",\n      \"expression_denominator_without_group\": \"<boolean>\",\n      \"atom_measure_without_group\": \"<boolean>\",\n      \"show_cname\": \"<string>\"\n    }\n  ],\n  \"start_sign\": {\n    \"start_event\": \"<string>\",\n    \"start_time_field\": \"<string>\",\n    \"filter\": {\n      \"relation\": \"OR\",\n      \"conditions\": [\n        {\n          \"field\": \"<string>\",\n          \"function\": \"<string>\"\n        },\n        {\n          \"field\": \"<string>\",\n          \"function\": \"<string>\"\n        }\n      ],\n      \"filters\": [\n        {\n          \"value\": \"<Circular reference to #/components/schemas/sensorsdata.analytics.v1.ApiRequestFilter detected>\"\n        },\n        {\n          \"value\": \"<Circular reference to #/components/schemas/sensorsdata.analytics.v1.ApiRequestFilter detected>\"\n        }\n      ]\n    }\n  },\n  \"to_date\": \"<string>\",\n  \"unit\": \"<string>\",\n  \"filter\": {\n    \"relation\": \"OR\",\n    \"conditions\": [\n      {\n        \"field\": \"<string>\",\n        \"function\": \"<string>\"\n      },\n      {\n        \"field\": \"<string>\",\n        \"function\": \"<string>\"\n      }\n    ],\n    \"filters\": [\n      {\n        \"value\": \"<Circular reference to #/components/schemas/sensorsdata.analytics.v1.ApiRequestFilter detected>\"\n      },\n      {\n        \"value\": \"<Circular reference to #/components/schemas/sensorsdata.analytics.v1.ApiRequestFilter detected>\"\n      }\n    ]\n  },\n  \"by_fields\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"bucket_params\": {},\n  \"request_id\": \"<string>\",\n  \"use_cache\": \"<boolean>\",\n  \"limit\": \"<integer>\",\n  \"need_show_ltv_columns\": \"<string>\",\n  \"time_zone_mode\": \"<string>\",\n  \"server_time_zone\": \"<string>\",\n  \"subject_id\": \"<string>\",\n  \"ltv_compute_type\": \"<string>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "status": "Internal Server Error",
+          "code": 500,
+          "header": [
+            {
+              "key": "Content-Type",
+              "value": "application/json"
+            }
+          ],
+          "body": "{\n  \"code\": \"SUCCESS\",\n  \"data\": {\n    \"table_data\": {\n      \"column_meta_lists\": [\n        {\n          \"data_name\": \"date\",\n          \"view_name\": \"日期\",\n          \"data_type\": \"string\"\n        }\n      ],\n      \"cells\": [\n        {\n          \"date\": \"2022-09-29\",\n          \"count\": 100\n        }\n      ],\n      \"compare_cells\": [\n        {\n          \"date\": \"2022-09-28\",\n          \"count\": 90\n        }\n      ]\n    },\n    \"user_tags_partitions\": [\n      {\n        \"tag_c_name\": \"用户等级\",\n        \"base_time\": \"2022-09-29\",\n        \"finished_time\": \"2022-09-29 12:00:00\",\n        \"tag_name\": \"user_level\",\n        \"is_today\": false,\n        \"is_routine\": true,\n        \"today_cal_status\": \"completed\"\n      }\n    ]\n  },\n  \"request_id\": \"1\"\n}",
+          "cookie": [],
+          "_postman_previewlanguage": "json"
+        }
+      ],
+      "event": [],
+      "protocolProfileBehavior": {
+        "disableBodyPruning": true
+      }
+    },
+    {
+      "id": "9c2faf9b-cb87-46c3-baa0-450cf9d469cf",
+      "name": "查询归因分析报告",
+      "request": {
+        "name": "查询归因分析报告",
+        "description": {
+          "content": "查询归因分析报告",
+          "type": "text/plain"
+        },
+        "url": {
+          "path": [
+            "model",
+            "attribution",
+            "report"
+          ],
+          "host": [
+            "{{baseUrl}}"
+          ],
+          "query": [],
+          "variable": []
+        },
+        "header": [
+          {
+            "disabled": false,
+            "description": "(Required) 全局唯一的密钥，用于验证和授权访问 API 接口",
+            "key": "api-key",
+            "value": "<string>"
+          },
+          {
+            "disabled": false,
+            "description": "(Required) 项目名, 指定请求所属项目",
+            "key": "sensorsdata-project",
+            "value": "<string>"
+          },
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          },
+          {
+            "key": "Accept",
+            "value": "application/json"
+          }
+        ],
+        "method": "POST",
+        "auth": null,
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"attribution_events\": {\n    \"events\": [\n      {\n        \"event_name\": \"<string>\",\n        \"by_fields\": [\n          \"<string>\",\n          \"<string>\"\n        ],\n        \"link_events\": [\n          {\n            \"event_name\": \"<string>\",\n            \"link_properties\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"filter\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          },\n          {\n            \"event_name\": \"<string>\",\n            \"link_properties\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"filter\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          }\n        ],\n        \"bucket_params\": {},\n        \"filter\": {\n          \"render_index\": \"<integer>\",\n          \"conditions\": [\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          ],\n          \"filters\": [\n            {\n              \"value\": \"<Circular reference to #/components/schemas/sensorsdata.analytics.v2.QueryExtendFilter detected>\"\n            },\n            {\n              \"value\": \"<Circular reference to #/components/schemas/sensorsdata.analytics.v2.QueryExtendFilter detected>\"\n            }\n          ],\n          \"relation\": \"<string>\"\n        }\n      },\n      {\n        \"event_name\": \"<string>\",\n        \"by_fields\": [\n          \"<string>\",\n          \"<string>\"\n        ],\n        \"link_events\": [\n          {\n            \"event_name\": \"<string>\",\n            \"link_properties\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"filter\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          },\n          {\n            \"event_name\": \"<string>\",\n            \"link_properties\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"filter\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          }\n        ],\n        \"bucket_params\": {},\n        \"filter\": {\n          \"render_index\": \"<integer>\",\n          \"conditions\": [\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          ],\n          \"filters\": [\n            {\n              \"value\": \"<Circular reference to #/components/schemas/sensorsdata.analytics.v2.QueryExtendFilter detected>\"\n            },\n            {\n              \"value\": \"<Circular reference to #/components/schemas/sensorsdata.analytics.v2.QueryExtendFilter detected>\"\n            }\n          ],\n          \"relation\": \"<string>\"\n        }\n      }\n    ],\n    \"filter\": {\n      \"render_index\": \"<integer>\",\n      \"conditions\": [\n        {\n          \"render_index\": \"<integer>\",\n          \"field\": \"<string>\",\n          \"function\": \"<string>\"\n        },\n        {\n          \"render_index\": \"<integer>\",\n          \"field\": \"<string>\",\n          \"function\": \"<string>\"\n        }\n      ],\n      \"filters\": [\n        {\n          \"value\": \"<Circular reference to #/components/schemas/sensorsdata.analytics.v2.QueryExtendFilter detected>\"\n        },\n        {\n          \"value\": \"<Circular reference to #/components/schemas/sensorsdata.analytics.v2.QueryExtendFilter detected>\"\n        }\n      ],\n      \"relation\": \"<string>\"\n    },\n    \"by_fields\": [\n      \"<string>\",\n      \"<string>\"\n    ],\n    \"bucket_params\": {},\n    \"byfield_groups\": [\n      [],\n      []\n    ],\n    \"by_unit\": \"<string>\"\n  },\n  \"from_date\": \"<string>\",\n  \"lookback_window\": {\n    \"unit\": \"<string>\",\n    \"value\": \"<integer>\"\n  },\n  \"model_type\": \"<string>\",\n  \"target_event\": {\n    \"measure\": {\n      \"event_name\": \"<string>\",\n      \"aggregator\": \"<string>\",\n      \"filter\": {\n        \"render_index\": \"<integer>\",\n        \"conditions\": [\n          {\n            \"render_index\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"field\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"function\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"params\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          },\n          {\n            \"render_index\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"field\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"function\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"params\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          }\n        ],\n        \"filters\": [\n          {\n            \"value\": \"<Circular reference to #/components/schemas/sensorsdata.analytics.v2.QueryExtendFilter detected>\"\n          },\n          {\n            \"value\": \"<Circular reference to #/components/schemas/sensorsdata.analytics.v2.QueryExtendFilter detected>\"\n          }\n        ],\n        \"relation\": \"<string>\"\n      },\n      \"expression\": \"<string>\",\n      \"format\": \"<string>\",\n      \"name\": \"<string>\",\n      \"expression_filters\": [\n        {\n          \"render_index\": \"<integer>\",\n          \"conditions\": [\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          ],\n          \"filters\": [\n            {\n              \"value\": \"<Circular reference to #/components/schemas/sensorsdata.analytics.v2.QueryExtendFilter detected>\"\n            },\n            {\n              \"value\": \"<Circular reference to #/components/schemas/sensorsdata.analytics.v2.QueryExtendFilter detected>\"\n            }\n          ],\n          \"relation\": \"<string>\"\n        },\n        {\n          \"render_index\": \"<integer>\",\n          \"conditions\": [\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          ],\n          \"filters\": [\n            {\n              \"value\": \"<Circular reference to #/components/schemas/sensorsdata.analytics.v2.QueryExtendFilter detected>\"\n            },\n            {\n              \"value\": \"<Circular reference to #/components/schemas/sensorsdata.analytics.v2.QueryExtendFilter detected>\"\n            }\n          ],\n          \"relation\": \"<string>\"\n        }\n      ],\n      \"events\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"profit_rate\": \"<float>\",\n      \"field\": \"<string>\",\n      \"expression_denominator_without_group\": \"<boolean>\"\n    },\n    \"by_fields\": [\n      \"<string>\",\n      \"<string>\"\n    ],\n    \"bucket_params\": {},\n    \"by_unit\": \"<string>\",\n    \"event_name\": \"<string>\",\n    \"aggregator\": \"<string>\",\n    \"field\": \"<string>\",\n    \"filter\": {\n      \"render_index\": \"<integer>\",\n      \"conditions\": [\n        {\n          \"render_index\": \"<integer>\",\n          \"field\": \"<string>\",\n          \"function\": \"<string>\"\n        },\n        {\n          \"render_index\": \"<integer>\",\n          \"field\": \"<string>\",\n          \"function\": \"<string>\"\n        }\n      ],\n      \"filters\": [\n        {\n          \"value\": \"<Circular reference to #/components/schemas/sensorsdata.analytics.v2.QueryExtendFilter detected>\"\n        },\n        {\n          \"value\": \"<Circular reference to #/components/schemas/sensorsdata.analytics.v2.QueryExtendFilter detected>\"\n        }\n      ],\n      \"relation\": \"<string>\"\n    }\n  },\n  \"to_date\": \"<string>\",\n  \"unit\": \"<string>\",\n  \"use_cache\": \"<boolean>\",\n  \"direct_conversion\": \"<boolean>\",\n  \"sampling_factor\": \"<integer>\",\n  \"file_name\": \"<string>\",\n  \"dashboard_id\": \"<integer>\",\n  \"bookmark_id\": \"<integer>\",\n  \"link_events\": [\n    {\n      \"event_name\": \"<string>\",\n      \"link_properties\": {\n        \"current_event_property\": \"<string>\",\n        \"target_event_property\": \"<string>\"\n      },\n      \"filter\": {\n        \"render_index\": \"<integer>\",\n        \"conditions\": [\n          {\n            \"render_index\": \"<integer>\",\n            \"field\": \"<string>\",\n            \"function\": \"<string>\",\n            \"params\": [\n              {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            ]\n          },\n          {\n            \"render_index\": \"<integer>\",\n            \"field\": \"<string>\",\n            \"function\": \"<string>\",\n            \"params\": [\n              {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            ]\n          }\n        ],\n        \"filters\": [\n          {\n            \"value\": \"<Circular reference to #/components/schemas/sensorsdata.analytics.v2.QueryExtendFilter detected>\"\n          },\n          {\n            \"value\": \"<Circular reference to #/components/schemas/sensorsdata.analytics.v2.QueryExtendFilter detected>\"\n          }\n        ],\n        \"relation\": \"<string>\"\n      }\n    },\n    {\n      \"event_name\": \"<string>\",\n      \"link_properties\": {\n        \"current_event_property\": \"<string>\",\n        \"target_event_property\": \"<string>\"\n      },\n      \"filter\": {\n        \"render_index\": \"<integer>\",\n        \"conditions\": [\n          {\n            \"render_index\": \"<integer>\",\n            \"field\": \"<string>\",\n            \"function\": \"<string>\",\n            \"params\": [\n              {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            ]\n          },\n          {\n            \"render_index\": \"<integer>\",\n            \"field\": \"<string>\",\n            \"function\": \"<string>\",\n            \"params\": [\n              {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            ]\n          }\n        ],\n        \"filters\": [\n          {\n            \"value\": \"<Circular reference to #/components/schemas/sensorsdata.analytics.v2.QueryExtendFilter detected>\"\n          },\n          {\n            \"value\": \"<Circular reference to #/components/schemas/sensorsdata.analytics.v2.QueryExtendFilter detected>\"\n          }\n        ],\n        \"relation\": \"<string>\"\n      }\n    }\n  ],\n  \"filter\": {\n    \"render_index\": \"<integer>\",\n    \"conditions\": [\n      {\n        \"render_index\": \"<integer>\",\n        \"field\": \"<string>\",\n        \"function\": \"<string>\"\n      },\n      {\n        \"render_index\": \"<integer>\",\n        \"field\": \"<string>\",\n        \"function\": \"<string>\"\n      }\n    ],\n    \"filters\": [\n      {\n        \"value\": \"<Circular reference to #/components/schemas/sensorsdata.analytics.v2.QueryExtendFilter detected>\"\n      },\n      {\n        \"value\": \"<Circular reference to #/components/schemas/sensorsdata.analytics.v2.QueryExtendFilter detected>\"\n      }\n    ],\n    \"relation\": \"<string>\"\n  },\n  \"by_fields\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"request_id\": \"<string>\",\n  \"show_by_field_summary\": \"<boolean>\",\n  \"arith_rollup\": \"<boolean>\",\n  \"limit\": \"<integer>\",\n  \"time_zone_mode\": \"<string>\",\n  \"server_time_zone\": \"<string>\",\n  \"subject_id\": \"<string>\",\n  \"show_measure_lists\": [\n    {\n      \"measure_name\": \"<string>\",\n      \"measure_cname\": \"<string>\"\n    },\n    {\n      \"measure_name\": \"<string>\",\n      \"measure_cname\": \"<string>\"\n    }\n  ],\n  \"user_filter\": {\n    \"render_index\": \"<integer>\",\n    \"conditions\": [\n      {\n        \"render_index\": \"<integer>\",\n        \"field\": \"<string>\",\n        \"function\": \"<string>\"\n      },\n      {\n        \"render_index\": \"<integer>\",\n        \"field\": \"<string>\",\n        \"function\": \"<string>\"\n      }\n    ],\n    \"filters\": [\n      {\n        \"value\": \"<Circular reference to #/components/schemas/sensorsdata.analytics.v2.QueryExtendFilter detected>\"\n      },\n      {\n        \"value\": \"<Circular reference to #/components/schemas/sensorsdata.analytics.v2.QueryExtendFilter detected>\"\n      }\n    ],\n    \"relation\": \"<string>\"\n  }\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        }
+      },
+      "response": [
+        {
+          "id": "bbc5334f-243f-471b-9d66-e616105ce914",
+          "name": "sensorsdata.analytics.v2.AttributionReportResponse",
+          "originalRequest": {
+            "url": {
+              "path": [
+                "model",
+                "attribution",
+                "report"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "disabled": false,
+                "description": "(Required) 全局唯一的密钥，用于验证和授权访问 API 接口",
+                "key": "api-key",
+                "value": "<string>"
+              },
+              {
+                "disabled": false,
+                "description": "(Required) 项目名, 指定请求所属项目",
+                "key": "sensorsdata-project",
+                "value": "<string>"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"attribution_events\": {\n    \"events\": [\n      {\n        \"event_name\": \"$AppClick\",\n        \"by_fields\": [\n          \"<string>\",\n          \"<string>\"\n        ],\n        \"link_events\": [\n          {\n            \"event_name\": \"event.$AppClick\",\n            \"link_properties\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"filter\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          },\n          {\n            \"event_name\": \"event.$AppClick\",\n            \"link_properties\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"filter\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          }\n        ],\n        \"bucket_params\": {},\n        \"filter\": {\n          \"render_index\": 0,\n          \"conditions\": [\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          ],\n          \"filters\": [\n            {\n              \"value\": \"<Circular reference to #/components/schemas/sensorsdata.analytics.v2.QueryExtendFilter detected>\"\n            },\n            {\n              \"value\": \"<Circular reference to #/components/schemas/sensorsdata.analytics.v2.QueryExtendFilter detected>\"\n            }\n          ],\n          \"relation\": \"AND\"\n        }\n      },\n      {\n        \"event_name\": \"$AppClick\",\n        \"by_fields\": [\n          \"<string>\",\n          \"<string>\"\n        ],\n        \"link_events\": [\n          {\n            \"event_name\": \"event.$AppClick\",\n            \"link_properties\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"filter\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          },\n          {\n            \"event_name\": \"event.$AppClick\",\n            \"link_properties\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"filter\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          }\n        ],\n        \"bucket_params\": {},\n        \"filter\": {\n          \"render_index\": 0,\n          \"conditions\": [\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          ],\n          \"filters\": [\n            {\n              \"value\": \"<Circular reference to #/components/schemas/sensorsdata.analytics.v2.QueryExtendFilter detected>\"\n            },\n            {\n              \"value\": \"<Circular reference to #/components/schemas/sensorsdata.analytics.v2.QueryExtendFilter detected>\"\n            }\n          ],\n          \"relation\": \"AND\"\n        }\n      }\n    ],\n    \"filter\": {\n      \"render_index\": 0,\n      \"conditions\": [\n        {\n          \"render_index\": 0,\n          \"field\": \"event.$Anything.country\",\n          \"function\": \"equal\"\n        },\n        {\n          \"render_index\": 0,\n          \"field\": \"event.$Anything.country\",\n          \"function\": \"equal\"\n        }\n      ],\n      \"filters\": [\n        {\n          \"value\": \"<Circular reference to #/components/schemas/sensorsdata.analytics.v2.QueryExtendFilter detected>\"\n        },\n        {\n          \"value\": \"<Circular reference to #/components/schemas/sensorsdata.analytics.v2.QueryExtendFilter detected>\"\n        }\n      ],\n      \"relation\": \"AND\"\n    },\n    \"by_fields\": [\n      \"<string>\",\n      \"<string>\"\n    ],\n    \"bucket_params\": {},\n    \"byfield_groups\": [\n      [],\n      []\n    ],\n    \"by_unit\": \"DAY\"\n  },\n  \"from_date\": \"2022-09-29\",\n  \"lookback_window\": {\n    \"unit\": \"“DAY”\",\n    \"value\": 7\n  },\n  \"model_type\": \"first\",\n  \"target_event\": {\n    \"measure\": {\n      \"event_name\": \"event.$AppClick\",\n      \"aggregator\": \"general\",\n      \"filter\": {\n        \"render_index\": 0,\n        \"conditions\": [\n          {\n            \"render_index\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"field\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"function\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"params\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          },\n          {\n            \"render_index\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"field\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"function\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"params\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          }\n        ],\n        \"filters\": [\n          {\n            \"value\": \"<Circular reference to #/components/schemas/sensorsdata.analytics.v2.QueryExtendFilter detected>\"\n          },\n          {\n            \"value\": \"<Circular reference to #/components/schemas/sensorsdata.analytics.v2.QueryExtendFilter detected>\"\n          }\n        ],\n        \"relation\": \"AND\"\n      },\n      \"expression\": \"A/B\",\n      \"format\": \"percent\",\n      \"name\": \"measure_1\",\n      \"expression_filters\": [\n        {\n          \"render_index\": 0,\n          \"conditions\": [\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          ],\n          \"filters\": [\n            {\n              \"value\": \"<Circular reference to #/components/schemas/sensorsdata.analytics.v2.QueryExtendFilter detected>\"\n            },\n            {\n              \"value\": \"<Circular reference to #/components/schemas/sensorsdata.analytics.v2.QueryExtendFilter detected>\"\n            }\n          ],\n          \"relation\": \"AND\"\n        },\n        {\n          \"render_index\": 0,\n          \"conditions\": [\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          ],\n          \"filters\": [\n            {\n              \"value\": \"<Circular reference to #/components/schemas/sensorsdata.analytics.v2.QueryExtendFilter detected>\"\n            },\n            {\n              \"value\": \"<Circular reference to #/components/schemas/sensorsdata.analytics.v2.QueryExtendFilter detected>\"\n            }\n          ],\n          \"relation\": \"AND\"\n        }\n      ],\n      \"events\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"profit_rate\": 0.5,\n      \"field\": \"event.$AppClick.$money\",\n      \"expression_denominator_without_group\": false\n    },\n    \"by_fields\": [\n      \"<string>\",\n      \"<string>\"\n    ],\n    \"bucket_params\": {},\n    \"by_unit\": \"DAY\",\n    \"event_name\": \"$AppClick\",\n    \"aggregator\": \"general\",\n    \"field\": \"event.$AppClick.$money\",\n    \"filter\": {\n      \"render_index\": 0,\n      \"conditions\": [\n        {\n          \"render_index\": 0,\n          \"field\": \"event.$Anything.country\",\n          \"function\": \"equal\"\n        },\n        {\n          \"render_index\": 0,\n          \"field\": \"event.$Anything.country\",\n          \"function\": \"equal\"\n        }\n      ],\n      \"filters\": [\n        {\n          \"value\": \"<Circular reference to #/components/schemas/sensorsdata.analytics.v2.QueryExtendFilter detected>\"\n        },\n        {\n          \"value\": \"<Circular reference to #/components/schemas/sensorsdata.analytics.v2.QueryExtendFilter detected>\"\n        }\n      ],\n      \"relation\": \"AND\"\n    }\n  },\n  \"to_date\": \"2022-09-29\",\n  \"unit\": \"DAY\",\n  \"use_cache\": false,\n  \"direct_conversion\": false,\n  \"sampling_factor\": 64,\n  \"file_name\": \"attribution_report_2022-09-29_2022-09-29_DAY_first.csv?\",\n  \"dashboard_id\": \"<integer>\",\n  \"bookmark_id\": \"<integer>\",\n  \"link_events\": [\n    {\n      \"event_name\": \"event.$AppClick\",\n      \"link_properties\": {\n        \"current_event_property\": \"$country\",\n        \"target_event_property\": \"$money\"\n      },\n      \"filter\": {\n        \"render_index\": 0,\n        \"conditions\": [\n          {\n            \"render_index\": 0,\n            \"field\": \"event.$Anything.country\",\n            \"function\": \"equal\",\n            \"params\": [\n              {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            ]\n          },\n          {\n            \"render_index\": 0,\n            \"field\": \"event.$Anything.country\",\n            \"function\": \"equal\",\n            \"params\": [\n              {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            ]\n          }\n        ],\n        \"filters\": [\n          {\n            \"value\": \"<Circular reference to #/components/schemas/sensorsdata.analytics.v2.QueryExtendFilter detected>\"\n          },\n          {\n            \"value\": \"<Circular reference to #/components/schemas/sensorsdata.analytics.v2.QueryExtendFilter detected>\"\n          }\n        ],\n        \"relation\": \"AND\"\n      }\n    },\n    {\n      \"event_name\": \"event.$AppClick\",\n      \"link_properties\": {\n        \"current_event_property\": \"$country\",\n        \"target_event_property\": \"$money\"\n      },\n      \"filter\": {\n        \"render_index\": 0,\n        \"conditions\": [\n          {\n            \"render_index\": 0,\n            \"field\": \"event.$Anything.country\",\n            \"function\": \"equal\",\n            \"params\": [\n              {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            ]\n          },\n          {\n            \"render_index\": 0,\n            \"field\": \"event.$Anything.country\",\n            \"function\": \"equal\",\n            \"params\": [\n              {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            ]\n          }\n        ],\n        \"filters\": [\n          {\n            \"value\": \"<Circular reference to #/components/schemas/sensorsdata.analytics.v2.QueryExtendFilter detected>\"\n          },\n          {\n            \"value\": \"<Circular reference to #/components/schemas/sensorsdata.analytics.v2.QueryExtendFilter detected>\"\n          }\n        ],\n        \"relation\": \"AND\"\n      }\n    }\n  ],\n  \"filter\": {\n    \"render_index\": 0,\n    \"conditions\": [\n      {\n        \"render_index\": 0,\n        \"field\": \"event.$Anything.country\",\n        \"function\": \"equal\"\n      },\n      {\n        \"render_index\": 0,\n        \"field\": \"event.$Anything.country\",\n        \"function\": \"equal\"\n      }\n    ],\n    \"filters\": [\n      {\n        \"value\": \"<Circular reference to #/components/schemas/sensorsdata.analytics.v2.QueryExtendFilter detected>\"\n      },\n      {\n        \"value\": \"<Circular reference to #/components/schemas/sensorsdata.analytics.v2.QueryExtendFilter detected>\"\n      }\n    ],\n    \"relation\": \"AND\"\n  },\n  \"by_fields\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"request_id\": \"12345696321548954\",\n  \"show_by_field_summary\": false,\n  \"arith_rollup\": true,\n  \"limit\": 10000,\n  \"time_zone_mode\": \"SERVER\",\n  \"server_time_zone\": \"UTC+10:00\",\n  \"subject_id\": \"$country\",\n  \"show_measure_lists\": [\n    {\n      \"measure_name\": \"measure_name\",\n      \"measure_cname\": \"measure_cname\"\n    },\n    {\n      \"measure_name\": \"measure_name\",\n      \"measure_cname\": \"measure_cname\"\n    }\n  ],\n  \"user_filter\": {\n    \"render_index\": 0,\n    \"conditions\": [\n      {\n        \"render_index\": 0,\n        \"field\": \"event.$Anything.country\",\n        \"function\": \"equal\"\n      },\n      {\n        \"render_index\": 0,\n        \"field\": \"event.$Anything.country\",\n        \"function\": \"equal\"\n      }\n    ],\n    \"filters\": [\n      {\n        \"value\": \"<Circular reference to #/components/schemas/sensorsdata.analytics.v2.QueryExtendFilter detected>\"\n      },\n      {\n        \"value\": \"<Circular reference to #/components/schemas/sensorsdata.analytics.v2.QueryExtendFilter detected>\"\n      }\n    ],\n    \"relation\": \"AND\"\n  }\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "status": "Internal Server Error",
+          "code": 500,
+          "header": [
+            {
+              "key": "Content-Type",
+              "value": "application/json"
+            }
+          ],
+          "body": "{\n  \"code\": \"SUCCESS\",\n  \"data\": {\n    \"user_tag_values\": {\n      \"user_level\": [\n        \"VIP\",\n        \"普通用户\"\n      ]\n    },\n    \"trade_day_rewritten\": false,\n    \"data_sufficient_update_time\": \"2022-09-29 12:00:00\",\n    \"table_data\": [\n      {\n        \"column_meta_lists\": [\n          {\n            \"data_name\": \"date\",\n            \"view_name\": \"日期\",\n            \"data_type\": \"string\"\n          }\n        ],\n        \"cells\": [\n          {\n            \"date\": \"2022-09-29\",\n            \"count\": 100\n          }\n        ],\n        \"compare_cells\": [\n          {\n            \"date\": \"2022-09-28\",\n            \"count\": 90\n          }\n        ]\n      }\n    ],\n    \"report_update_time\": \"2022-09-29 12:00:00\",\n    \"truncated\": false,\n    \"sampling_factor\": 64,\n    \"time_zone\": \"UTC+10:00\",\n    \"user_tags_partitions\": [\n      {\n        \"tag_name\": \"user_level\",\n        \"tag_c_name\": \"用户等级\"\n      }\n    ],\n    \"data_update_time\": \"2022-09-29 12:00:00\"\n  },\n  \"request_id\": \"1\"\n}",
+          "cookie": [],
+          "_postman_previewlanguage": "json"
+        }
+      ],
+      "event": [],
+      "protocolProfileBehavior": {
+        "disableBodyPruning": true
+      }
+    },
+    {
+      "id": "593088f6-8083-45dd-a92a-ac9bc45d35fa",
+      "name": "查询用户群画像分析报告",
+      "request": {
+        "name": "查询用户群画像分析报告",
+        "description": {
+          "content": "查询用户群画像分析报告",
+          "type": "text/plain"
+        },
+        "url": {
+          "path": [
+            "model",
+            "personas",
+            "report"
+          ],
+          "host": [
+            "{{baseUrl}}"
+          ],
+          "query": [
+            {
+              "disabled": false,
+              "key": "use_cache",
+              "value": "<boolean>",
+              "description": "是否使用缓存"
+            }
+          ],
+          "variable": []
+        },
+        "header": [
+          {
+            "disabled": false,
+            "description": "(Required) 全局唯一的密钥，用于验证和授权访问 API 接口",
+            "key": "api-key",
+            "value": "<string>"
+          },
+          {
+            "disabled": false,
+            "description": "(Required) 项目名, 指定请求所属项目",
+            "key": "sensorsdata-project",
+            "value": "<string>"
+          },
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          },
+          {
+            "key": "Accept",
+            "value": "application/json"
+          }
+        ],
+        "method": "POST",
+        "auth": null,
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"analysis\": {\n    \"id\": \"<integer>\",\n    \"display_name\": \"<string>\",\n    \"user_name\": \"<string>\",\n    \"account_id\": \"<integer>\",\n    \"create_time\": \"<string>\",\n    \"sample_factor\": \"<integer>\",\n    \"tgi\": \"<boolean>\",\n    \"group_configs\": [\n      {\n        \"group_id\": \"<string>\",\n        \"group_name\": \"<string>\",\n        \"group_type\": \"<string>\",\n        \"group_missed\": \"<boolean>\",\n        \"group_component_type\": \"<string>\",\n        \"user_group_rule\": {},\n        \"query_request\": {},\n        \"query_type\": \"<string>\",\n        \"template_data\": {},\n        \"rule_ext\": {},\n        \"sql_encode\": \"<boolean>\"\n      },\n      {\n        \"group_id\": \"<string>\",\n        \"group_name\": \"<string>\",\n        \"group_type\": \"<string>\",\n        \"group_missed\": \"<boolean>\",\n        \"group_component_type\": \"<string>\",\n        \"user_group_rule\": {},\n        \"query_request\": {},\n        \"query_type\": \"<string>\",\n        \"template_data\": {},\n        \"rule_ext\": {},\n        \"sql_encode\": \"<boolean>\"\n      }\n    ],\n    \"widget_configs\": [\n      {\n        \"widget_id\": \"<string>\",\n        \"widget_name\": \"<string>\",\n        \"type\": \"<string>\",\n        \"request\": {},\n        \"chart_type\": \"<string>\",\n        \"row_index\": \"<integer>\",\n        \"group_ids\": [\n          \"<string>\",\n          \"<string>\"\n        ]\n      },\n      {\n        \"widget_id\": \"<string>\",\n        \"widget_name\": \"<string>\",\n        \"type\": \"<string>\",\n        \"request\": {},\n        \"chart_type\": \"<string>\",\n        \"row_index\": \"<integer>\",\n        \"group_ids\": [\n          \"<string>\",\n          \"<string>\"\n        ]\n      }\n    ],\n    \"tgi_base_user_group_config\": {\n      \"type\": \"<string>\",\n      \"user_group_rule\": {},\n      \"rule_ext\": {}\n    },\n    \"latest_report\": {\n      \"task_state\": \"<string>\",\n      \"task_start_time\": \"<string>\",\n      \"task_end_time\": \"<string>\",\n      \"task_failure_message\": {},\n      \"data\": {\n        \"total_count\": \"<long>\",\n        \"groups_data\": [\n          {\n            \"group_id\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"user_count\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"task_message\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          },\n          {\n            \"group_id\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"user_count\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"task_message\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          }\n        ],\n        \"widgets_data\": [\n          {\n            \"widget_id\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"widget_time_ranges\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"widget_groups\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          },\n          {\n            \"widget_id\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"widget_time_ranges\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"widget_groups\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          }\n        ]\n      }\n    },\n    \"request_id\": \"<string>\"\n  }\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        }
+      },
+      "response": [
+        {
+          "id": "b4748fb5-4872-4d3c-ac62-c52329eff464",
+          "name": "sensorsdata.analytics.v2.PersonasAnalyseReportResponse",
+          "originalRequest": {
+            "url": {
+              "path": [
+                "model",
+                "personas",
+                "report"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "key": "use_cache",
+                  "value": "<boolean>"
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "disabled": false,
+                "description": "(Required) 全局唯一的密钥，用于验证和授权访问 API 接口",
+                "key": "api-key",
+                "value": "<string>"
+              },
+              {
+                "disabled": false,
+                "description": "(Required) 项目名, 指定请求所属项目",
+                "key": "sensorsdata-project",
+                "value": "<string>"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"analysis\": {\n    \"id\": \"<integer>\",\n    \"display_name\": \"<string>\",\n    \"user_name\": \"<string>\",\n    \"account_id\": \"<integer>\",\n    \"create_time\": \"<string>\",\n    \"sample_factor\": \"<integer>\",\n    \"tgi\": \"<boolean>\",\n    \"group_configs\": [\n      {\n        \"group_id\": \"<string>\",\n        \"group_name\": \"<string>\",\n        \"group_type\": \"<string>\",\n        \"group_missed\": \"<boolean>\",\n        \"group_component_type\": \"<string>\",\n        \"user_group_rule\": {},\n        \"query_request\": {},\n        \"query_type\": \"<string>\",\n        \"template_data\": {},\n        \"rule_ext\": {},\n        \"sql_encode\": \"<boolean>\"\n      },\n      {\n        \"group_id\": \"<string>\",\n        \"group_name\": \"<string>\",\n        \"group_type\": \"<string>\",\n        \"group_missed\": \"<boolean>\",\n        \"group_component_type\": \"<string>\",\n        \"user_group_rule\": {},\n        \"query_request\": {},\n        \"query_type\": \"<string>\",\n        \"template_data\": {},\n        \"rule_ext\": {},\n        \"sql_encode\": \"<boolean>\"\n      }\n    ],\n    \"widget_configs\": [\n      {\n        \"widget_id\": \"<string>\",\n        \"widget_name\": \"<string>\",\n        \"type\": \"<string>\",\n        \"request\": {},\n        \"chart_type\": \"<string>\",\n        \"row_index\": \"<integer>\",\n        \"group_ids\": [\n          \"<string>\",\n          \"<string>\"\n        ]\n      },\n      {\n        \"widget_id\": \"<string>\",\n        \"widget_name\": \"<string>\",\n        \"type\": \"<string>\",\n        \"request\": {},\n        \"chart_type\": \"<string>\",\n        \"row_index\": \"<integer>\",\n        \"group_ids\": [\n          \"<string>\",\n          \"<string>\"\n        ]\n      }\n    ],\n    \"tgi_base_user_group_config\": {\n      \"type\": \"<string>\",\n      \"user_group_rule\": {},\n      \"rule_ext\": {}\n    },\n    \"latest_report\": {\n      \"task_state\": \"<string>\",\n      \"task_start_time\": \"<string>\",\n      \"task_end_time\": \"<string>\",\n      \"task_failure_message\": {},\n      \"data\": {\n        \"total_count\": \"<long>\",\n        \"groups_data\": [\n          {\n            \"group_id\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"user_count\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"task_message\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          },\n          {\n            \"group_id\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"user_count\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"task_message\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          }\n        ],\n        \"widgets_data\": [\n          {\n            \"widget_id\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"widget_time_ranges\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"widget_groups\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          },\n          {\n            \"widget_id\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"widget_time_ranges\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"widget_groups\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          }\n        ]\n      }\n    },\n    \"request_id\": \"<string>\"\n  }\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "status": "Internal Server Error",
+          "code": 500,
+          "header": [
+            {
+              "key": "Content-Type",
+              "value": "application/json"
+            }
+          ],
+          "body": "{\n  \"code\": \"SUCCESS\",\n  \"data\": {\n    \"data\": {\n      \"detail_result\": {\n        \"rows\": [\n          {\n            \"values\": {\n              \"values\": [\n                {\n                  \"struct_value\": {}\n                }\n              ]\n            }\n          }\n        ]\n      }\n    }\n  },\n  \"request_id\": \"1\"\n}",
+          "cookie": [],
+          "_postman_previewlanguage": "json"
+        }
+      ],
+      "event": [],
+      "protocolProfileBehavior": {
+        "disableBodyPruning": true
+      }
+    },
+    {
+      "id": "ae70f58c-368c-4d5e-81a2-f3bc2fab60ad",
+      "name": "查询漏斗分析用户明细",
+      "request": {
+        "name": "查询漏斗分析用户明细",
+        "description": {
+          "content": "查询漏斗分析用户明细",
+          "type": "text/plain"
+        },
+        "url": {
+          "path": [
+            "model",
+            "funnel",
+            "users"
+          ],
+          "host": [
+            "{{baseUrl}}"
+          ],
+          "query": [],
+          "variable": []
+        },
+        "header": [
+          {
+            "disabled": false,
+            "description": "(Required) 全局唯一的密钥，用于验证和授权访问 API 接口",
+            "key": "api-key",
+            "value": "<string>"
+          },
+          {
+            "disabled": false,
+            "description": "(Required) 项目名, 指定请求所属项目",
+            "key": "sensorsdata-project",
+            "value": "<string>"
+          },
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          },
+          {
+            "key": "Accept",
+            "value": "application/json"
+          }
+        ],
+        "method": "POST",
+        "auth": null,
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"from_date\": \"<string>\",\n  \"to_date\": \"<string>\",\n  \"unit\": \"<string>\",\n  \"use_cache\": \"<boolean>\",\n  \"sampling_factor\": \"<integer>\",\n  \"request_id\": \"<string>\",\n  \"ignore_cache_expire\": \"<boolean>\",\n  \"extend_over_end_date\": \"<boolean>\",\n  \"limit\": \"<long>\",\n  \"dashboard_id\": \"<integer>\",\n  \"bookmark_id\": \"<integer>\",\n  \"filter\": {\n    \"render_index\": \"<integer>\",\n    \"conditions\": [\n      {\n        \"render_index\": \"<integer>\",\n        \"field\": \"<string>\",\n        \"function\": \"<string>\"\n      },\n      {\n        \"render_index\": \"<integer>\",\n        \"field\": \"<string>\",\n        \"function\": \"<string>\"\n      }\n    ],\n    \"filters\": [\n      {\n        \"value\": \"<Circular reference to #/components/schemas/sensorsdata.analytics.v2.QueryExtendFilter detected>\"\n      },\n      {\n        \"value\": \"<Circular reference to #/components/schemas/sensorsdata.analytics.v2.QueryExtendFilter detected>\"\n      }\n    ],\n    \"relation\": \"<string>\"\n  },\n  \"subject_id\": \"<string>\",\n  \"time_zone_mode\": \"<string>\",\n  \"server_time_zone\": \"<string>\",\n  \"trade_day_mode\": \"<boolean>\",\n  \"cache_expire_seconds\": \"<long>\",\n  \"dashboard_cache_policy\": \"<string>\",\n  \"dashboard_stop_update\": \"<boolean>\",\n  \"use_entire_cache_only\": \"<boolean>\",\n  \"funnel_id\": \"<integer>\",\n  \"funnel_name\": \"<string>\",\n  \"by_fields\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"bucket_params\": {},\n  \"by_field_steps\": [\n    \"<integer>\",\n    \"<integer>\"\n  ],\n  \"filter_field_steps\": [\n    \"<integer>\",\n    \"<integer>\"\n  ],\n  \"funnel_define\": {\n    \"max_convert_time\": \"<integer>\",\n    \"comment\": \"<string>\",\n    \"name\": \"<string>\",\n    \"steps\": [\n      {\n        \"event_name\": \"<string>\",\n        \"custom_name\": \"<string>\",\n        \"filter\": {\n          \"conditions\": [\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          ],\n          \"filters\": [\n            {\n              \"value\": \"<Circular reference to #/components/schemas/sensorsdata.analytics.v2.FunnelStepFilter detected>\"\n            },\n            {\n              \"value\": \"<Circular reference to #/components/schemas/sensorsdata.analytics.v2.FunnelStepFilter detected>\"\n            }\n          ],\n          \"relation\": \"<string>\"\n        },\n        \"relevance_field\": \"<string>\",\n        \"step_measures\": [\n          {\n            \"aggregator\": \"<string>\",\n            \"event_name\": \"<string>\",\n            \"measure_name\": \"<string>\",\n            \"field\": \"<string>\"\n          },\n          {\n            \"aggregator\": \"<string>\",\n            \"event_name\": \"<string>\",\n            \"measure_name\": \"<string>\",\n            \"field\": \"<string>\"\n          }\n        ]\n      },\n      {\n        \"event_name\": \"<string>\",\n        \"custom_name\": \"<string>\",\n        \"filter\": {\n          \"conditions\": [\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          ],\n          \"filters\": [\n            {\n              \"value\": \"<Circular reference to #/components/schemas/sensorsdata.analytics.v2.FunnelStepFilter detected>\"\n            },\n            {\n              \"value\": \"<Circular reference to #/components/schemas/sensorsdata.analytics.v2.FunnelStepFilter detected>\"\n            }\n          ],\n          \"relation\": \"<string>\"\n        },\n        \"relevance_field\": \"<string>\",\n        \"step_measures\": [\n          {\n            \"aggregator\": \"<string>\",\n            \"event_name\": \"<string>\",\n            \"measure_name\": \"<string>\",\n            \"field\": \"<string>\"\n          },\n          {\n            \"aggregator\": \"<string>\",\n            \"event_name\": \"<string>\",\n            \"measure_name\": \"<string>\",\n            \"field\": \"<string>\"\n          }\n        ]\n      }\n    ]\n  },\n  \"calculation_caliber\": \"<string>\",\n  \"arith_rollup\": \"<boolean>\",\n  \"diversion_mode\": \"<string>\",\n  \"order_type\": \"<string>\",\n  \"compare_from_date\": \"<string>\",\n  \"compare_to_date\": \"<string>\",\n  \"common_user_filter\": {\n    \"render_index\": \"<integer>\",\n    \"conditions\": [\n      {\n        \"render_index\": \"<integer>\",\n        \"field\": \"<string>\",\n        \"function\": \"<string>\"\n      },\n      {\n        \"render_index\": \"<integer>\",\n        \"field\": \"<string>\",\n        \"function\": \"<string>\"\n      }\n    ],\n    \"filters\": [\n      {\n        \"value\": \"<Circular reference to #/components/schemas/sensorsdata.analytics.v2.QueryExtendFilter detected>\"\n      },\n      {\n        \"value\": \"<Circular reference to #/components/schemas/sensorsdata.analytics.v2.QueryExtendFilter detected>\"\n      }\n    ],\n    \"relation\": \"<string>\"\n  },\n  \"slice_by_value\": \"<string>\",\n  \"slice_by_values\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"slice_step\": \"<integer>\",\n  \"slice_wastage_user\": \"<boolean>\",\n  \"detail\": \"<boolean>\",\n  \"page\": \"<integer>\",\n  \"profiles\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"sort_by_field\": \"<string>\",\n  \"asc\": \"<boolean>\",\n  \"num_per_page\": \"<integer>\",\n  \"all_page\": \"<boolean>\",\n  \"slice_end_date\": \"<string>\",\n  \"slice_measure_index\": \"<integer>\"\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        }
+      },
+      "response": [
+        {
+          "id": "fa77f56b-2f8e-43ba-9ded-2a02bdd45fe5",
+          "name": "sensorsdata.analytics.v1.UserPageResponse",
+          "originalRequest": {
+            "url": {
+              "path": [
+                "model",
+                "funnel",
+                "users"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "disabled": false,
+                "description": "(Required) 全局唯一的密钥，用于验证和授权访问 API 接口",
+                "key": "api-key",
+                "value": "<string>"
+              },
+              {
+                "disabled": false,
+                "description": "(Required) 项目名, 指定请求所属项目",
+                "key": "sensorsdata-project",
+                "value": "<string>"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"from_date\": \"2022-09-29\",\n  \"to_date\": \"2022-09-29\",\n  \"unit\": \"DAY\",\n  \"use_cache\": false,\n  \"sampling_factor\": 64,\n  \"request_id\": \"12345696321548954\",\n  \"ignore_cache_expire\": false,\n  \"extend_over_end_date\": true,\n  \"limit\": 10000,\n  \"dashboard_id\": 123,\n  \"bookmark_id\": 123,\n  \"filter\": {\n    \"render_index\": 0,\n    \"conditions\": [\n      {\n        \"render_index\": 0,\n        \"field\": \"event.$Anything.country\",\n        \"function\": \"equal\"\n      },\n      {\n        \"render_index\": 0,\n        \"field\": \"event.$Anything.country\",\n        \"function\": \"equal\"\n      }\n    ],\n    \"filters\": [\n      {\n        \"value\": \"<Circular reference to #/components/schemas/sensorsdata.analytics.v2.QueryExtendFilter detected>\"\n      },\n      {\n        \"value\": \"<Circular reference to #/components/schemas/sensorsdata.analytics.v2.QueryExtendFilter detected>\"\n      }\n    ],\n    \"relation\": \"AND\"\n  },\n  \"subject_id\": \"$country\",\n  \"time_zone_mode\": \"SERVER\",\n  \"server_time_zone\": \"UTC+10:00\",\n  \"trade_day_mode\": false,\n  \"cache_expire_seconds\": 3600,\n  \"dashboard_cache_policy\": \"default\",\n  \"dashboard_stop_update\": false,\n  \"use_entire_cache_only\": false,\n  \"funnel_id\": 123,\n  \"funnel_name\": \"用户转化漏斗\",\n  \"by_fields\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"bucket_params\": {},\n  \"by_field_steps\": [\n    \"<integer>\",\n    \"<integer>\"\n  ],\n  \"filter_field_steps\": [\n    \"<integer>\",\n    \"<integer>\"\n  ],\n  \"funnel_define\": {\n    \"max_convert_time\": 10080,\n    \"comment\": \"用户转化漏斗\",\n    \"name\": \"转化漏斗\",\n    \"steps\": [\n      {\n        \"event_name\": \"$AppStart\",\n        \"custom_name\": \"启动应用\",\n        \"filter\": {\n          \"conditions\": [\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          ],\n          \"filters\": [\n            {\n              \"value\": \"<Circular reference to #/components/schemas/sensorsdata.analytics.v2.FunnelStepFilter detected>\"\n            },\n            {\n              \"value\": \"<Circular reference to #/components/schemas/sensorsdata.analytics.v2.FunnelStepFilter detected>\"\n            }\n          ],\n          \"relation\": \"AND\"\n        },\n        \"relevance_field\": \"event.$AppStart.$device_id\",\n        \"step_measures\": [\n          {\n            \"aggregator\": \"sum\",\n            \"event_name\": \"$AppClick\",\n            \"measure_name\": \"总金额\",\n            \"field\": \"$money\"\n          },\n          {\n            \"aggregator\": \"sum\",\n            \"event_name\": \"$AppClick\",\n            \"measure_name\": \"总金额\",\n            \"field\": \"$money\"\n          }\n        ]\n      },\n      {\n        \"event_name\": \"$AppStart\",\n        \"custom_name\": \"启动应用\",\n        \"filter\": {\n          \"conditions\": [\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          ],\n          \"filters\": [\n            {\n              \"value\": \"<Circular reference to #/components/schemas/sensorsdata.analytics.v2.FunnelStepFilter detected>\"\n            },\n            {\n              \"value\": \"<Circular reference to #/components/schemas/sensorsdata.analytics.v2.FunnelStepFilter detected>\"\n            }\n          ],\n          \"relation\": \"AND\"\n        },\n        \"relevance_field\": \"event.$AppStart.$device_id\",\n        \"step_measures\": [\n          {\n            \"aggregator\": \"sum\",\n            \"event_name\": \"$AppClick\",\n            \"measure_name\": \"总金额\",\n            \"field\": \"$money\"\n          },\n          {\n            \"aggregator\": \"sum\",\n            \"event_name\": \"$AppClick\",\n            \"measure_name\": \"总金额\",\n            \"field\": \"$money\"\n          }\n        ]\n      }\n    ]\n  },\n  \"calculation_caliber\": \"count\",\n  \"arith_rollup\": true,\n  \"diversion_mode\": \"USER_MULTI_GROUP\",\n  \"order_type\": \"asc\",\n  \"compare_from_date\": \"2022-09-22\",\n  \"compare_to_date\": \"2022-09-28\",\n  \"common_user_filter\": {\n    \"render_index\": 0,\n    \"conditions\": [\n      {\n        \"render_index\": 0,\n        \"field\": \"event.$Anything.country\",\n        \"function\": \"equal\"\n      },\n      {\n        \"render_index\": 0,\n        \"field\": \"event.$Anything.country\",\n        \"function\": \"equal\"\n      }\n    ],\n    \"filters\": [\n      {\n        \"value\": \"<Circular reference to #/components/schemas/sensorsdata.analytics.v2.QueryExtendFilter detected>\"\n      },\n      {\n        \"value\": \"<Circular reference to #/components/schemas/sensorsdata.analytics.v2.QueryExtendFilter detected>\"\n      }\n    ],\n    \"relation\": \"AND\"\n  },\n  \"slice_by_value\": \"中国\",\n  \"slice_by_values\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"slice_step\": 0,\n  \"slice_wastage_user\": false,\n  \"detail\": true,\n  \"page\": 1,\n  \"profiles\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"sort_by_field\": \"$name\",\n  \"asc\": true,\n  \"num_per_page\": 20,\n  \"all_page\": false,\n  \"slice_end_date\": \"2022-09-30\",\n  \"slice_measure_index\": 0\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "status": "Internal Server Error",
+          "code": 500,
+          "header": [
+            {
+              "key": "Content-Type",
+              "value": "application/json"
+            }
+          ],
+          "body": "{\n  \"code\": \"SUCCESS\",\n  \"data\": {\n    \"page\": {\n      \"current_page\": 1,\n      \"page_count\": 1,\n      \"total\": 2\n    },\n    \"users\": [\n      {\n        \"id\": \"-8961289991947891759\",\n        \"first_id\": \"7tpEmL7hMALkIinn\",\n        \"second_id\": \"\",\n        \"distinct_id\": \"\",\n        \"column_names\": [\n          \"$id\",\n          \"vehicle_type\",\n          \"vehicle_system\"\n        ],\n        \"profiles\": {\n          \"vehicle_type\": \"四门轿车\",\n          \"$id\": \"-8961289991947891759\",\n          \"vehicle_system\": \"7\"\n        }\n      }\n    ]\n  },\n  \"request_id\": \"1\"\n}",
+          "cookie": [],
+          "_postman_previewlanguage": "json"
+        }
+      ],
+      "event": [],
+      "protocolProfileBehavior": {
+        "disableBodyPruning": true
+      }
+    },
+    {
+      "id": "2f6dfb94-f5e2-44b1-ba43-5a03a9a08f26",
+      "name": "查询留存分析用户明细",
+      "request": {
+        "name": "查询留存分析用户明细",
+        "description": {
+          "content": "查询留存分析用户明细",
+          "type": "text/plain"
+        },
+        "url": {
+          "path": [
+            "model",
+            "retention",
+            "users"
+          ],
+          "host": [
+            "{{baseUrl}}"
+          ],
+          "query": [],
+          "variable": []
+        },
+        "header": [
+          {
+            "disabled": false,
+            "description": "(Required) 全局唯一的密钥，用于验证和授权访问 API 接口",
+            "key": "api-key",
+            "value": "<string>"
+          },
+          {
+            "disabled": false,
+            "description": "(Required) 项目名, 指定请求所属项目",
+            "key": "sensorsdata-project",
+            "value": "<string>"
+          },
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          },
+          {
+            "key": "Accept",
+            "value": "application/json"
+          }
+        ],
+        "method": "POST",
+        "auth": null,
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"first_event\": {\n    \"event_name\": \"<string>\",\n    \"filter\": {\n      \"relation\": \"<string>\",\n      \"conditions\": [\n        {\n          \"field\": \"<string>\",\n          \"function\": \"<string>\"\n        },\n        {\n          \"field\": \"<string>\",\n          \"function\": \"<string>\"\n        }\n      ],\n      \"filters\": [\n        {\n          \"value\": \"<Circular reference to #/components/schemas/sensorsdata.analytics.v1.ApiRequestFilter detected>\"\n        },\n        {\n          \"value\": \"<Circular reference to #/components/schemas/sensorsdata.analytics.v1.ApiRequestFilter detected>\"\n        }\n      ]\n    },\n    \"by_field\": \"<string>\",\n    \"relevance_field\": \"<string>\"\n  },\n  \"from_date\": \"<string>\",\n  \"retention_mode\": \"<string>\",\n  \"second_event\": {\n    \"event_name\": \"<string>\",\n    \"filter\": {\n      \"relation\": \"<string>\",\n      \"conditions\": [\n        {\n          \"field\": \"<string>\",\n          \"function\": \"<string>\"\n        },\n        {\n          \"field\": \"<string>\",\n          \"function\": \"<string>\"\n        }\n      ],\n      \"filters\": [\n        {\n          \"value\": \"<Circular reference to #/components/schemas/sensorsdata.analytics.v1.ApiRequestFilter detected>\"\n        },\n        {\n          \"value\": \"<Circular reference to #/components/schemas/sensorsdata.analytics.v1.ApiRequestFilter detected>\"\n        }\n      ]\n    },\n    \"by_field\": \"<string>\",\n    \"relevance_field\": \"<string>\"\n  },\n  \"to_date\": \"<string>\",\n  \"unit\": \"<string>\",\n  \"compare_from_date\": \"<string>\",\n  \"compare_to_date\": \"<string>\",\n  \"diversion_mode\": \"<string>\",\n  \"retention_rate_type\": \"<string>\",\n  \"by_events\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"by_field\": \"<string>\",\n  \"rollup_date\": \"<boolean>\",\n  \"duration\": \"<integer>\",\n  \"filter\": {\n    \"relation\": \"<string>\",\n    \"conditions\": [\n      {\n        \"field\": \"<string>\",\n        \"function\": \"<string>\"\n      },\n      {\n        \"field\": \"<string>\",\n        \"function\": \"<string>\"\n      }\n    ],\n    \"filters\": [\n      {\n        \"value\": \"<Circular reference to #/components/schemas/sensorsdata.analytics.v1.ApiRequestFilter detected>\"\n      },\n      {\n        \"value\": \"<Circular reference to #/components/schemas/sensorsdata.analytics.v1.ApiRequestFilter detected>\"\n      }\n    ]\n  },\n  \"measures\": [\n    {\n      \"event_name\": \"<string>\",\n      \"aggregator\": \"<string>\",\n      \"field\": \"<string>\",\n      \"expression\": \"<string>\",\n      \"expression_filters\": [\n        {\n          \"relation\": \"<string>\",\n          \"conditions\": [\n            {\n              \"field\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"function\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"params\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            },\n            {\n              \"field\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"function\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"params\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            }\n          ],\n          \"filters\": [\n            {\n              \"value\": \"<Circular reference to #/components/schemas/sensorsdata.analytics.v1.ApiRequestFilter detected>\"\n            },\n            {\n              \"value\": \"<Circular reference to #/components/schemas/sensorsdata.analytics.v1.ApiRequestFilter detected>\"\n            }\n          ]\n        },\n        {\n          \"relation\": \"<string>\",\n          \"conditions\": [\n            {\n              \"field\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"function\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"params\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            },\n            {\n              \"field\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"function\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"params\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            }\n          ],\n          \"filters\": [\n            {\n              \"value\": \"<Circular reference to #/components/schemas/sensorsdata.analytics.v1.ApiRequestFilter detected>\"\n            },\n            {\n              \"value\": \"<Circular reference to #/components/schemas/sensorsdata.analytics.v1.ApiRequestFilter detected>\"\n            }\n          ]\n        }\n      ],\n      \"filter\": {\n        \"relation\": \"<string>\",\n        \"conditions\": [\n          {\n            \"field\": \"<string>\",\n            \"function\": \"<string>\",\n            \"params\": [\n              {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            ]\n          },\n          {\n            \"field\": \"<string>\",\n            \"function\": \"<string>\",\n            \"params\": [\n              {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            ]\n          }\n        ],\n        \"filters\": [\n          {\n            \"value\": \"<Circular reference to #/components/schemas/sensorsdata.analytics.v1.ApiRequestFilter detected>\"\n          },\n          {\n            \"value\": \"<Circular reference to #/components/schemas/sensorsdata.analytics.v1.ApiRequestFilter detected>\"\n          }\n        ]\n      },\n      \"name\": \"<string>\",\n      \"events\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"split\": \"<boolean>\",\n      \"profit_rate\": \"<float>\",\n      \"by_session\": \"<boolean>\",\n      \"expression_denominator_without_group\": \"<boolean>\",\n      \"atom_measure_without_group\": \"<boolean>\",\n      \"show_cname\": \"<string>\"\n    },\n    {\n      \"event_name\": \"<string>\",\n      \"aggregator\": \"<string>\",\n      \"field\": \"<string>\",\n      \"expression\": \"<string>\",\n      \"expression_filters\": [\n        {\n          \"relation\": \"<string>\",\n          \"conditions\": [\n            {\n              \"field\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"function\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"params\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            },\n            {\n              \"field\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"function\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"params\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            }\n          ],\n          \"filters\": [\n            {\n              \"value\": \"<Circular reference to #/components/schemas/sensorsdata.analytics.v1.ApiRequestFilter detected>\"\n            },\n            {\n              \"value\": \"<Circular reference to #/components/schemas/sensorsdata.analytics.v1.ApiRequestFilter detected>\"\n            }\n          ]\n        },\n        {\n          \"relation\": \"<string>\",\n          \"conditions\": [\n            {\n              \"field\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"function\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"params\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            },\n            {\n              \"field\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"function\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"params\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            }\n          ],\n          \"filters\": [\n            {\n              \"value\": \"<Circular reference to #/components/schemas/sensorsdata.analytics.v1.ApiRequestFilter detected>\"\n            },\n            {\n              \"value\": \"<Circular reference to #/components/schemas/sensorsdata.analytics.v1.ApiRequestFilter detected>\"\n            }\n          ]\n        }\n      ],\n      \"filter\": {\n        \"relation\": \"<string>\",\n        \"conditions\": [\n          {\n            \"field\": \"<string>\",\n            \"function\": \"<string>\",\n            \"params\": [\n              {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            ]\n          },\n          {\n            \"field\": \"<string>\",\n            \"function\": \"<string>\",\n            \"params\": [\n              {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            ]\n          }\n        ],\n        \"filters\": [\n          {\n            \"value\": \"<Circular reference to #/components/schemas/sensorsdata.analytics.v1.ApiRequestFilter detected>\"\n          },\n          {\n            \"value\": \"<Circular reference to #/components/schemas/sensorsdata.analytics.v1.ApiRequestFilter detected>\"\n          }\n        ]\n      },\n      \"name\": \"<string>\",\n      \"events\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"split\": \"<boolean>\",\n      \"profit_rate\": \"<float>\",\n      \"by_session\": \"<boolean>\",\n      \"expression_denominator_without_group\": \"<boolean>\",\n      \"atom_measure_without_group\": \"<boolean>\",\n      \"show_cname\": \"<string>\"\n    }\n  ],\n  \"user_filter\": {\n    \"relation\": \"<string>\",\n    \"conditions\": [\n      {\n        \"field\": \"<string>\",\n        \"function\": \"<string>\"\n      },\n      {\n        \"field\": \"<string>\",\n        \"function\": \"<string>\"\n      }\n    ],\n    \"filters\": [\n      {\n        \"value\": \"<Circular reference to #/components/schemas/sensorsdata.analytics.v1.ApiRequestFilter detected>\"\n      },\n      {\n        \"value\": \"<Circular reference to #/components/schemas/sensorsdata.analytics.v1.ApiRequestFilter detected>\"\n      }\n    ]\n  },\n  \"common_event_filter\": {\n    \"relation\": \"<string>\",\n    \"conditions\": [\n      {\n        \"field\": \"<string>\",\n        \"function\": \"<string>\"\n      },\n      {\n        \"field\": \"<string>\",\n        \"function\": \"<string>\"\n      }\n    ],\n    \"filters\": [\n      {\n        \"value\": \"<Circular reference to #/components/schemas/sensorsdata.analytics.v1.ApiRequestFilter detected>\"\n      },\n      {\n        \"value\": \"<Circular reference to #/components/schemas/sensorsdata.analytics.v1.ApiRequestFilter detected>\"\n      }\n    ]\n  },\n  \"common_user_filter\": {\n    \"relation\": \"<string>\",\n    \"conditions\": [\n      {\n        \"field\": \"<string>\",\n        \"function\": \"<string>\"\n      },\n      {\n        \"field\": \"<string>\",\n        \"function\": \"<string>\"\n      }\n    ],\n    \"filters\": [\n      {\n        \"value\": \"<Circular reference to #/components/schemas/sensorsdata.analytics.v1.ApiRequestFilter detected>\"\n      },\n      {\n        \"value\": \"<Circular reference to #/components/schemas/sensorsdata.analytics.v1.ApiRequestFilter detected>\"\n      }\n    ]\n  },\n  \"show_zero_day\": \"<string>\",\n  \"include_zero_unit\": \"<boolean>\",\n  \"rate_scale\": \"<string>\",\n  \"last_zero\": \"<boolean>\",\n  \"trade_day_mode\": \"<boolean>\",\n  \"dashboard_id\": \"<integer>\",\n  \"bookmark_id\": \"<integer>\",\n  \"extend_over_end_date\": \"<boolean>\",\n  \"sampling_factor\": \"<integer>\",\n  \"is_wastage\": \"<boolean>\",\n  \"use_cache\": \"<boolean>\",\n  \"request_id\": \"<string>\",\n  \"by_fields\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"rollup\": \"<boolean>\",\n  \"limit\": \"<long>\",\n  \"bucket_params\": {},\n  \"time_zone_mode\": \"<string>\",\n  \"server_time_zone\": \"<string>\",\n  \"subject_id\": \"<string>\",\n  \"by_event\": \"<string>\",\n  \"slice_value\": \"<string>\",\n  \"slice_by_value\": \"<string>\",\n  \"slice_by_values\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"slice_by_fields\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"slice_date\": \"<string>\",\n  \"slice_interval\": \"<string>\",\n  \"detail\": \"<boolean>\",\n  \"page\": \"<integer>\",\n  \"profiles\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"sort_by_field\": \"<string>\",\n  \"asc\": \"<boolean>\",\n  \"num_per_page\": \"<integer>\",\n  \"all_page\": \"<boolean>\"\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        }
+      },
+      "response": [
+        {
+          "id": "f4cf8570-b791-43ae-b6b8-cc1c2b4aa13d",
+          "name": "sensorsdata.analytics.v1.UserPageResponse",
+          "originalRequest": {
+            "url": {
+              "path": [
+                "model",
+                "retention",
+                "users"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "disabled": false,
+                "description": "(Required) 全局唯一的密钥，用于验证和授权访问 API 接口",
+                "key": "api-key",
+                "value": "<string>"
+              },
+              {
+                "disabled": false,
+                "description": "(Required) 项目名, 指定请求所属项目",
+                "key": "sensorsdata-project",
+                "value": "<string>"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"first_event\": {\n    \"event_name\": \"event.$AppClick\",\n    \"filter\": {\n      \"relation\": \"OR\",\n      \"conditions\": [\n        {\n          \"field\": \"<string>\",\n          \"function\": \"<string>\"\n        },\n        {\n          \"field\": \"<string>\",\n          \"function\": \"<string>\"\n        }\n      ],\n      \"filters\": [\n        {\n          \"value\": \"<Circular reference to #/components/schemas/sensorsdata.analytics.v1.ApiRequestFilter detected>\"\n        },\n        {\n          \"value\": \"<Circular reference to #/components/schemas/sensorsdata.analytics.v1.ApiRequestFilter detected>\"\n        }\n      ]\n    },\n    \"by_field\": \"event.$AppClick.country\",\n    \"relevance_field\": \"<string>\"\n  },\n  \"from_date\": \"2022-09-29\",\n  \"retention_mode\": \"SELECTED_RETENTION\",\n  \"second_event\": {\n    \"event_name\": \"event.$AppClick\",\n    \"filter\": {\n      \"relation\": \"OR\",\n      \"conditions\": [\n        {\n          \"field\": \"<string>\",\n          \"function\": \"<string>\"\n        },\n        {\n          \"field\": \"<string>\",\n          \"function\": \"<string>\"\n        }\n      ],\n      \"filters\": [\n        {\n          \"value\": \"<Circular reference to #/components/schemas/sensorsdata.analytics.v1.ApiRequestFilter detected>\"\n        },\n        {\n          \"value\": \"<Circular reference to #/components/schemas/sensorsdata.analytics.v1.ApiRequestFilter detected>\"\n        }\n      ]\n    },\n    \"by_field\": \"event.$AppClick.country\",\n    \"relevance_field\": \"<string>\"\n  },\n  \"to_date\": \"2022-09-29\",\n  \"unit\": \"DAY\",\n  \"compare_from_date\": \"2022-09-22\",\n  \"compare_to_date\": \"2022-09-28\",\n  \"diversion_mode\": \"USER_MULTI_GROUP\",\n  \"retention_rate_type\": \"DISTINCT\",\n  \"by_events\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"by_field\": \"event.$AppClick.$country\",\n  \"rollup_date\": true,\n  \"duration\": 7,\n  \"filter\": {\n    \"relation\": \"OR\",\n    \"conditions\": [\n      {\n        \"field\": \"<string>\",\n        \"function\": \"<string>\"\n      },\n      {\n        \"field\": \"<string>\",\n        \"function\": \"<string>\"\n      }\n    ],\n    \"filters\": [\n      {\n        \"value\": \"<Circular reference to #/components/schemas/sensorsdata.analytics.v1.ApiRequestFilter detected>\"\n      },\n      {\n        \"value\": \"<Circular reference to #/components/schemas/sensorsdata.analytics.v1.ApiRequestFilter detected>\"\n      }\n    ]\n  },\n  \"measures\": [\n    {\n      \"event_name\": \"event.$AppClick\",\n      \"aggregator\": \"general\",\n      \"field\": \"<string>\",\n      \"expression\": \"<string>\",\n      \"expression_filters\": [\n        {\n          \"relation\": \"OR\",\n          \"conditions\": [\n            {\n              \"field\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"function\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"params\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            },\n            {\n              \"field\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"function\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"params\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            }\n          ],\n          \"filters\": [\n            {\n              \"value\": \"<Circular reference to #/components/schemas/sensorsdata.analytics.v1.ApiRequestFilter detected>\"\n            },\n            {\n              \"value\": \"<Circular reference to #/components/schemas/sensorsdata.analytics.v1.ApiRequestFilter detected>\"\n            }\n          ]\n        },\n        {\n          \"relation\": \"OR\",\n          \"conditions\": [\n            {\n              \"field\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"function\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"params\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            },\n            {\n              \"field\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"function\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"params\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            }\n          ],\n          \"filters\": [\n            {\n              \"value\": \"<Circular reference to #/components/schemas/sensorsdata.analytics.v1.ApiRequestFilter detected>\"\n            },\n            {\n              \"value\": \"<Circular reference to #/components/schemas/sensorsdata.analytics.v1.ApiRequestFilter detected>\"\n            }\n          ]\n        }\n      ],\n      \"filter\": {\n        \"relation\": \"OR\",\n        \"conditions\": [\n          {\n            \"field\": \"<string>\",\n            \"function\": \"<string>\",\n            \"params\": [\n              {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            ]\n          },\n          {\n            \"field\": \"<string>\",\n            \"function\": \"<string>\",\n            \"params\": [\n              {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            ]\n          }\n        ],\n        \"filters\": [\n          {\n            \"value\": \"<Circular reference to #/components/schemas/sensorsdata.analytics.v1.ApiRequestFilter detected>\"\n          },\n          {\n            \"value\": \"<Circular reference to #/components/schemas/sensorsdata.analytics.v1.ApiRequestFilter detected>\"\n          }\n        ]\n      },\n      \"name\": \"小程序显示的用户数\",\n      \"events\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"split\": \"<boolean>\",\n      \"profit_rate\": \"<float>\",\n      \"by_session\": \"<boolean>\",\n      \"expression_denominator_without_group\": \"<boolean>\",\n      \"atom_measure_without_group\": \"<boolean>\",\n      \"show_cname\": \"<string>\"\n    },\n    {\n      \"event_name\": \"event.$AppClick\",\n      \"aggregator\": \"general\",\n      \"field\": \"<string>\",\n      \"expression\": \"<string>\",\n      \"expression_filters\": [\n        {\n          \"relation\": \"OR\",\n          \"conditions\": [\n            {\n              \"field\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"function\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"params\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            },\n            {\n              \"field\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"function\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"params\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            }\n          ],\n          \"filters\": [\n            {\n              \"value\": \"<Circular reference to #/components/schemas/sensorsdata.analytics.v1.ApiRequestFilter detected>\"\n            },\n            {\n              \"value\": \"<Circular reference to #/components/schemas/sensorsdata.analytics.v1.ApiRequestFilter detected>\"\n            }\n          ]\n        },\n        {\n          \"relation\": \"OR\",\n          \"conditions\": [\n            {\n              \"field\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"function\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"params\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            },\n            {\n              \"field\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"function\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"params\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            }\n          ],\n          \"filters\": [\n            {\n              \"value\": \"<Circular reference to #/components/schemas/sensorsdata.analytics.v1.ApiRequestFilter detected>\"\n            },\n            {\n              \"value\": \"<Circular reference to #/components/schemas/sensorsdata.analytics.v1.ApiRequestFilter detected>\"\n            }\n          ]\n        }\n      ],\n      \"filter\": {\n        \"relation\": \"OR\",\n        \"conditions\": [\n          {\n            \"field\": \"<string>\",\n            \"function\": \"<string>\",\n            \"params\": [\n              {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            ]\n          },\n          {\n            \"field\": \"<string>\",\n            \"function\": \"<string>\",\n            \"params\": [\n              {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            ]\n          }\n        ],\n        \"filters\": [\n          {\n            \"value\": \"<Circular reference to #/components/schemas/sensorsdata.analytics.v1.ApiRequestFilter detected>\"\n          },\n          {\n            \"value\": \"<Circular reference to #/components/schemas/sensorsdata.analytics.v1.ApiRequestFilter detected>\"\n          }\n        ]\n      },\n      \"name\": \"小程序显示的用户数\",\n      \"events\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"split\": \"<boolean>\",\n      \"profit_rate\": \"<float>\",\n      \"by_session\": \"<boolean>\",\n      \"expression_denominator_without_group\": \"<boolean>\",\n      \"atom_measure_without_group\": \"<boolean>\",\n      \"show_cname\": \"<string>\"\n    }\n  ],\n  \"user_filter\": {\n    \"relation\": \"OR\",\n    \"conditions\": [\n      {\n        \"field\": \"<string>\",\n        \"function\": \"<string>\"\n      },\n      {\n        \"field\": \"<string>\",\n        \"function\": \"<string>\"\n      }\n    ],\n    \"filters\": [\n      {\n        \"value\": \"<Circular reference to #/components/schemas/sensorsdata.analytics.v1.ApiRequestFilter detected>\"\n      },\n      {\n        \"value\": \"<Circular reference to #/components/schemas/sensorsdata.analytics.v1.ApiRequestFilter detected>\"\n      }\n    ]\n  },\n  \"common_event_filter\": {\n    \"relation\": \"OR\",\n    \"conditions\": [\n      {\n        \"field\": \"<string>\",\n        \"function\": \"<string>\"\n      },\n      {\n        \"field\": \"<string>\",\n        \"function\": \"<string>\"\n      }\n    ],\n    \"filters\": [\n      {\n        \"value\": \"<Circular reference to #/components/schemas/sensorsdata.analytics.v1.ApiRequestFilter detected>\"\n      },\n      {\n        \"value\": \"<Circular reference to #/components/schemas/sensorsdata.analytics.v1.ApiRequestFilter detected>\"\n      }\n    ]\n  },\n  \"common_user_filter\": {\n    \"relation\": \"OR\",\n    \"conditions\": [\n      {\n        \"field\": \"<string>\",\n        \"function\": \"<string>\"\n      },\n      {\n        \"field\": \"<string>\",\n        \"function\": \"<string>\"\n      }\n    ],\n    \"filters\": [\n      {\n        \"value\": \"<Circular reference to #/components/schemas/sensorsdata.analytics.v1.ApiRequestFilter detected>\"\n      },\n      {\n        \"value\": \"<Circular reference to #/components/schemas/sensorsdata.analytics.v1.ApiRequestFilter detected>\"\n      }\n    ]\n  },\n  \"show_zero_day\": \"true\",\n  \"include_zero_unit\": true,\n  \"rate_scale\": \"0.01\",\n  \"last_zero\": false,\n  \"trade_day_mode\": false,\n  \"dashboard_id\": 123,\n  \"bookmark_id\": 123,\n  \"extend_over_end_date\": true,\n  \"sampling_factor\": 64,\n  \"is_wastage\": false,\n  \"use_cache\": false,\n  \"request_id\": \"12345696321548954\",\n  \"by_fields\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"rollup\": true,\n  \"limit\": 10000,\n  \"bucket_params\": {},\n  \"time_zone_mode\": \"SERVER\",\n  \"server_time_zone\": \"UTC+10:00\",\n  \"subject_id\": \"$country\",\n  \"by_event\": \"$AppClick\",\n  \"slice_value\": \"中国\",\n  \"slice_by_value\": \"中国\",\n  \"slice_by_values\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"slice_by_fields\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"slice_date\": \"2022-09-29\",\n  \"slice_interval\": \"day1\",\n  \"detail\": true,\n  \"page\": 1,\n  \"profiles\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"sort_by_field\": \"$name\",\n  \"asc\": true,\n  \"num_per_page\": 20,\n  \"all_page\": false\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "status": "Internal Server Error",
+          "code": 500,
+          "header": [
+            {
+              "key": "Content-Type",
+              "value": "application/json"
+            }
+          ],
+          "body": "{\n  \"code\": \"SUCCESS\",\n  \"data\": {\n    \"page\": {\n      \"current_page\": 1,\n      \"page_count\": 1,\n      \"total\": 2\n    },\n    \"users\": [\n      {\n        \"id\": \"-8961289991947891759\",\n        \"first_id\": \"7tpEmL7hMALkIinn\",\n        \"second_id\": \"\",\n        \"distinct_id\": \"\",\n        \"column_names\": [\n          \"$id\",\n          \"vehicle_type\",\n          \"vehicle_system\"\n        ],\n        \"profiles\": {\n          \"vehicle_type\": \"四门轿车\",\n          \"$id\": \"-8961289991947891759\",\n          \"vehicle_system\": \"7\"\n        }\n      }\n    ]\n  },\n  \"request_id\": \"1\"\n}",
+          "cookie": [],
+          "_postman_previewlanguage": "json"
+        }
+      ],
+      "event": [],
+      "protocolProfileBehavior": {
+        "disableBodyPruning": true
+      }
+    },
+    {
+      "id": "13580164-b692-47a1-b0e2-6dfc254463af",
+      "name": "自定义 sql 查询",
+      "request": {
+        "name": "自定义 sql 查询",
+        "description": {
+          "content": "自定义 sql 查询",
+          "type": "text/plain"
+        },
+        "url": {
+          "path": [
+            "model",
+            "sql",
+            "query"
+          ],
+          "host": [
+            "{{baseUrl}}"
+          ],
+          "query": [],
+          "variable": []
+        },
+        "header": [
+          {
+            "disabled": false,
+            "description": "(Required) 全局唯一的密钥，用于验证和授权访问 API 接口",
+            "key": "api-key",
+            "value": "<string>"
+          },
+          {
+            "disabled": false,
+            "description": "(Required) 项目名, 指定请求所属项目",
+            "key": "sensorsdata-project",
+            "value": "<string>"
+          },
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          },
+          {
+            "key": "Accept",
+            "value": "application/json"
+          }
+        ],
+        "method": "POST",
+        "auth": null,
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"sql\": \"<string>\",\n  \"limit\": \"<string>\",\n  \"request_id\": \"<string>\"\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        }
+      },
+      "response": [
+        {
+          "id": "0b79f93e-2b7a-437f-8681-9771c6f55b65",
+          "name": "sensorsdata.analytics.v1.SqlQueryResponse",
+          "originalRequest": {
+            "url": {
+              "path": [
+                "model",
+                "sql",
+                "query"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "disabled": false,
+                "description": "(Required) 全局唯一的密钥，用于验证和授权访问 API 接口",
+                "key": "api-key",
+                "value": "<string>"
+              },
+              {
+                "disabled": false,
+                "description": "(Required) 项目名, 指定请求所属项目",
+                "key": "sensorsdata-project",
+                "value": "<string>"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"sql\": \"select * from events\",\n  \"limit\": \"100\",\n  \"request_id\": \"12345696321548954\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "status": "Internal Server Error",
+          "code": 500,
+          "header": [
+            {
+              "key": "Content-Type",
+              "value": "application/json"
+            }
+          ],
+          "body": "{\n  \"code\": \"SUCCESS\",\n  \"data\": {\n    \"data\": [\n      \"56.0.2924.87\",\n      \"媒介2\",\n      \"1027.000\",\n      \"iPad Air2\",\n      \"iOS\",\n      1,\n      \"5G\",\n      1,\n      \"127.0.0.1\",\n      \"1130.000\",\n      \"广告词4\",\n      \"referrer3\",\n      \"612.000\",\n      \"path4\",\n      \"广东省\",\n      \"url3\",\n      \"352.000\",\n      19174,\n      \"咨询经销商\",\n      \"中国移动\",\n      \"9.0\",\n      \"1663900415616.000\",\n      \"设备指纹模糊匹配\",\n      1,\n      \"host1\",\n      \"广州市\",\n      \"476.000\",\n      \"845.000\",\n      \"新浪\",\n      \"Chrome\",\n      \"2.0\",\n      \"Android\",\n      \"544.000\",\n      12,\n      \"中国\",\n      \"广告4\",\n      -8565168885686534000,\n      \"TJeqKhv3ETtFcvJB\",\n      \"标题5\",\n      \"内容1\",\n      \"Apple\",\n      \"2022-07-01 03:31:07.904\",\n      1\n    ],\n    \"columns\": [\n      \"$browser_version\",\n      \"$utm_medium\",\n      \"$viewport_position\",\n      \"$dimension_dict_$model\",\n      \"$os\",\n      \"$is_first_time\",\n      \"$network_type\",\n      \"$wifi\",\n      \"$ip\",\n      \"$screen_height\",\n      \"$utm_term\",\n      \"$referrer\",\n      \"$viewport_height\",\n      \"$url_path\",\n      \"$province\",\n      \"$url\",\n      \"$share_depth\",\n      \"day\",\n      \"$element_content\",\n      \"$carrier\",\n      \"$os_version\",\n      \"$receive_time\",\n      \"$utm_matching_type\",\n      \"$is_first_day\",\n      \"$referrer_host\",\n      \"$city\",\n      \"$viewport_width\",\n      \"$screen_width\",\n      \"$utm_source\",\n      \"$browser\",\n      \"$app_version\",\n      \"$lib\",\n      \"$event_duration\",\n      \"event_id\",\n      \"$country\",\n      \"$utm_campaign\",\n      \"user_id\",\n      \"distinct_id\",\n      \"$title\",\n      \"$utm_content\",\n      \"$dimension_dict_$manufacturer\",\n      \"time\",\n      \"$resume_from_background\"\n    ]\n  },\n  \"request_id\": \"1\"\n}",
+          "cookie": [],
+          "_postman_previewlanguage": "json"
+        }
+      ],
+      "event": [],
+      "protocolProfileBehavior": {
+        "disableBodyPruning": true
+      }
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "/api/v3/analytics/v2",
+      "key": "baseUrl"
+    }
+  ],
+  "info": {
+    "_postman_id": "80af870e-6ee6-4e64-931c-2c31aa080cd2",
+    "name": "神策分析",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "分析模型开放接口",
+      "type": "text/plain"
+    }
+  }
+}

@@ -1,0 +1,651 @@
+openapi: 3.0.1
+info:
+  description: 目录服务
+  title: 神策数界
+  version: ''
+servers:
+- url: /api/v3/horizon/v1
+paths:
+  /catalog/tree/list:
+    post:
+      description: "获取某个业务所有的目录树\n```\n  curl -X POST 'http://{host}:{port}/api/v3/horizon/v1/catalog/tree/list'\
+        \ \\\n    -H 'Content-Type: application/json' \\\n    -H 'api-key: {api_key}' \\\n    -H 'sensorsdata-project:\
+        \ {projectName}' \\\n    -d '{\n      \"business_type\": \"ENTITY\",\n      \"business_names\"\
+        : [\"user\"],\n      \"query_catalog_node_type\": \"ONLY_UNDELETE\",\n      \"show_resource\"\
+        : false\n  }'\n  返回值示例：\n  {\n    \"code\": \"SUCCESS\",\n    \"request_id\": \"12163604dca26fcdc2184104654955c5\"\
+        ,\n    \"data\": {\n        \"catalog_trees\": [\n            {\n                \"business_name\"\
+        : \"user\",\n                \"catalog\": {\n                    \"type\": \"CATALOG\",\n    \
+        \                \"name\": \"8998a014-f8e3-4d8a-8b2c-ec7beeeefc97\",\n                    \"display_name\"\
+        : \"user\",\n                    \"resource_type\": \"\",\n                    \"resource_id\"\
+        : \"\",\n                    \"parent_name\": \"\",\n                    \"rank\": 1,\n      \
+        \              \"is_deleted\": false,\n                    \"delete_path\": \"\",\n          \
+        \          \"catalogs\": [\n                        {\n                            \"type\": \"\
+        CATALOG\",\n                            \"name\": \"CATALOG_DEFAULT_ATTRIBUTE_2394196636433\"\
+        ,\n                            \"display_name\": \"属性\",\n                            \"resource_type\"\
+        : \"\",\n                            \"resource_id\": \"\",\n                            \"parent_name\"\
+        : \"8998a014-f8e3-4d8a-8b2c-ec7beeeefc97\",\n                            \"rank\": 1,\n      \
+        \                      \"is_deleted\": false,\n                            \"delete_path\": \"\
+        \",\n                            \"catalogs\": [\n                                ...\n      \
+        \                      ],\n                            \"access_info\": {\n                  \
+        \              \"creator_id\": \"0\",\n                                \"modifier_id\": \"0\"\
+        ,\n                                \"create_time\": \"2025-06-09T02:54:33Z\",\n              \
+        \                  \"update_time\": \"2025-06-09T02:54:33Z\"\n                            },\n\
+        \                            \"custom_params\": {\n                                \"BELONG_KEY\"\
+        : \"DEFAULT\"\n                            },\n                            \"legacy_id\": 2\n\
+        \                        }, ...\n                    ],\n                    \"access_info\":\
+        \ {\n                        \"creator_id\": \"2\",\n                        \"modifier_id\":\
+        \ \"2\",\n                        \"create_time\": \"2025-06-09T02:54:33Z\",\n               \
+        \         \"update_time\": \"2025-06-09T02:54:33Z\"\n                    },\n                \
+        \    \"custom_params\": {},\n                    \"legacy_id\": 1\n                },\n      \
+        \          \"custom_params\": {}\n            }\n        ]\n    }\n  }\n```"
+      operationId: ListCatalogTrees
+      parameters:
+      - description: 全局唯一的密钥，用于验证和授权访问 API 接口
+        in: header
+        name: api-key
+        required: true
+        schema:
+          type: string
+      - description: 项目名, 指定请求所属项目
+        in: header
+        name: sensorsdata-project
+        required: true
+        schema:
+          type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/sensorsdata.horizon.v1.ListCatalogTreesRequest'
+        required: false
+      responses:
+        default:
+          content:
+            application/json:
+              example:
+                code: SUCCESS
+                data:
+                  catalog_trees:
+                    code: SUCCESS
+                    request_id: 12163604dca26fcdc2184104654955c5
+                    data:
+                      catalog_trees:
+                      - business_name: user
+                        catalog:
+                          type: CATALOG
+                          name: 8998a014-f8e3-4d8a-8b2c-ec7beeeefc97
+                          display_name: user
+                          resource_type: ''
+                          resource_id: ''
+                          parent_name: ''
+                          rank: 1
+                          is_deleted: false
+                          delete_path: ''
+                          catalogs:
+                          - type: CATALOG
+                            name: CATALOG_DEFAULT_ATTRIBUTE_2394196636433
+                            display_name: 属性
+                            resource_type: ''
+                            resource_id: ''
+                            parent_name: 8998a014-f8e3-4d8a-8b2c-ec7beeeefc97
+                            rank: 1
+                            is_deleted: false
+                            delete_path: ''
+                            catalogs:
+                            - type: CATALOG
+                              name: CATALOG_DEFAULT_USER_PROPERTY_2394294291991
+                              display_name: 普通属性
+                              resource_type: ''
+                              resource_id: ''
+                              parent_name: CATALOG_DEFAULT_ATTRIBUTE_2394196636433
+                              rank: 1
+                              is_deleted: false
+                              delete_path: ''
+                              catalogs: []
+                              access_info:
+                                creator_id: '0'
+                                modifier_id: '0'
+                                create_time: '2025-06-09T02:54:33Z'
+                                update_time: '2025-06-09T02:54:33Z'
+                              custom_params:
+                                BELONG_KEY: USER_PROPERTY
+                              legacy_id: 5
+                            custom_params:
+                              BELONG_KEY: DETAIL_INFO
+                            legacy_id: 4
+                          access_info:
+                            creator_id: '2'
+                            modifier_id: '2'
+                            create_time: '2025-06-09T02:54:33Z'
+                            update_time: '2025-06-09T02:54:33Z'
+                          custom_params: {}
+                          legacy_id: 1
+                        custom_params: {}
+                request_id: '1'
+              schema:
+                $ref: '#/components/schemas/sensorsdata.horizon.v1.ListCatalogTreesResponseHttpApiResult'
+          description: sensorsdata.horizon.v1.ListCatalogTreesResponse
+      summary: 查询目录树
+      x-sd-openapi:
+        responseClass: com.sensorsdata.horizon.v1.ListCatalogTreesResponse
+        isServerStreaming: false
+        requestClass: com.sensorsdata.horizon.v1.ListCatalogTreesRequest
+        grpcServiceBase: com.sensorsdata.horizon.v1.CatalogServiceGrpc.CatalogServiceImplBase
+        internalDesc: classes in template for grpc service dynamic invoking
+        isClientStreaming: false
+      x-codegen-request-body-name: ListCatalogTreesRequest
+  /catalog/resource/bind:
+    post:
+      description: "挂载资源节点\n```\n  curl -X POST 'http://{host}:{port}/api/v3/horizon/v1/catalog/resource/bind'\
+        \ \\\n    -H 'Content-Type: application/json' \\\n    -H 'api-key: {api_key}' \\\n    -H 'sensorsdata-project:\
+        \ {projectName}' \\\n    -d '{\n      \"parent_name\": \"8998a014-f8e3-4d8a-8b2c-ec7beeeefc97\"\
+        ,\n      \"resource_type\": \"TAG\",\n      \"resource_id\":\"user_tag_bq_meta_string\"\n  }'\n\
+        \  返回值示例：\n  {\n    \"code\": \"SUCCESS\",\n    \"request_id\": \"1217080591f8f9e3d9b6d24e8a43ee8c\"\
+        ,\n    \"data\": {}\n  }\n```"
+      operationId: BindCatalogResource
+      parameters:
+      - description: 全局唯一的密钥，用于验证和授权访问 API 接口
+        in: header
+        name: api-key
+        required: true
+        schema:
+          type: string
+      - description: 项目名, 指定请求所属项目
+        in: header
+        name: sensorsdata-project
+        required: true
+        schema:
+          type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/sensorsdata.horizon.v1.BindCatalogResourceRequest'
+        description: 挂载资源节点
+        required: false
+      responses:
+        default:
+          content:
+            application/json:
+              example:
+                code: SUCCESS
+                data: {}
+                request_id: '1'
+              schema:
+                $ref: '#/components/schemas/sensorsdata.common.HttpApiResult'
+          description: ''
+      summary: 挂载资源节点
+      x-sd-openapi:
+        responseClass: com.google.protobuf.Empty
+        isServerStreaming: false
+        requestClass: com.sensorsdata.horizon.v1.BindCatalogResourceRequest
+        grpcServiceBase: com.sensorsdata.horizon.v1.CatalogServiceGrpc.CatalogServiceImplBase
+        internalDesc: classes in template for grpc service dynamic invoking
+        isClientStreaming: false
+      x-codegen-request-body-name: BindCatalogResourceRequest
+  /catalog/resource/unbind:
+    post:
+      description: "解绑资源节点\n```\n  curl -X POST 'http://{host}:{port}/api/v3/horizon/v1/catalog/resource/unbind'\
+        \ \\\n    -H 'Content-Type: application/json' \\\n    -H 'api-key: {api_key}' \\\n    -H 'sensorsdata-project:\
+        \ {projectName}' \\\n    -d '{\n    \"business_type\": \"ENTITY\",\n    \"business_name\": \"\
+        user\",\n    \"resource_type\": \"TAG\",\n    \"resource_id\": \"user_tag_bq_meta_string\"\n \
+        \ }'\n  返回值示例：\n  {\n    \"code\": \"SUCCESS\",\n    \"request_id\": \"121717050a1c695fb26a0f298252ba28\"\
+        ,\n    \"data\": {}\n  }\n```"
+      operationId: UnbindCatalogResource
+      parameters:
+      - description: 全局唯一的密钥，用于验证和授权访问 API 接口
+        in: header
+        name: api-key
+        required: true
+        schema:
+          type: string
+      - description: 项目名, 指定请求所属项目
+        in: header
+        name: sensorsdata-project
+        required: true
+        schema:
+          type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/sensorsdata.horizon.v1.UnbindCatalogResourceRequest'
+        description: 解绑资源节点
+        required: false
+      responses:
+        default:
+          content:
+            application/json:
+              example:
+                code: SUCCESS
+                data: {}
+                request_id: '1'
+              schema:
+                $ref: '#/components/schemas/sensorsdata.common.HttpApiResult'
+          description: ''
+      summary: 解绑资源节点
+      x-sd-openapi:
+        responseClass: com.google.protobuf.Empty
+        isServerStreaming: false
+        requestClass: com.sensorsdata.horizon.v1.UnbindCatalogResourceRequest
+        grpcServiceBase: com.sensorsdata.horizon.v1.CatalogServiceGrpc.CatalogServiceImplBase
+        internalDesc: classes in template for grpc service dynamic invoking
+        isClientStreaming: false
+      x-codegen-request-body-name: UnbindCatalogResourceRequest
+components:
+  schemas:
+    sensorsdata.horizon.v1.CheckUnDeleteCatalogResponseHttpApiResult:
+      properties:
+        code:
+          type: string
+        message:
+          type: string
+        request_id:
+          type: string
+        data:
+          $ref: '#/components/schemas/sensorsdata.horizon.v1.CheckUnDeleteCatalogResponse'
+        error_info:
+          $ref: '#/components/schemas/sensorsdata.common.ErrorInfo'
+      title: sensorsdata.horizon.v1.CheckUnDeleteCatalogResponseHttpApiResult
+      type: object
+    sensorsdata.horizon.v1.BindCatalogResourceRequest:
+      description: 挂载资源节点
+      properties:
+        project_id:
+          description: 项目 ID
+          example: 1
+          format: int32
+          type: integer
+        parent_name:
+          description: 父目录标识
+          type: string
+        resource_type:
+          description: 资源类型
+          example: TAG
+          type: string
+        resource_id:
+          description: 资源标识
+          example: user_tag_bq_meta_string
+          type: string
+      required:
+      - parent_name
+      - project_id
+      - resource_id
+      - resource_type
+      title: BindCatalogResourceRequest
+      type: object
+    sensorsdata.common.HttpApiResult:
+      properties:
+        code:
+          type: string
+        message:
+          type: string
+        request_id:
+          type: string
+        data:
+          properties: {}
+          type: object
+        error_info:
+          $ref: '#/components/schemas/sensorsdata.common.ErrorInfo'
+      title: HttpApiResult
+      type: object
+    sensorsdata.horizon.v1.CatalogTreeHttpApiResult:
+      properties:
+        code:
+          type: string
+        message:
+          type: string
+        request_id:
+          type: string
+        data:
+          $ref: '#/components/schemas/sensorsdata.horizon.v1.CatalogTree'
+        error_info:
+          $ref: '#/components/schemas/sensorsdata.common.ErrorInfo'
+      title: sensorsdata.horizon.v1.CatalogTreeHttpApiResult
+      type: object
+    sensorsdata.horizon.v1.ListCatalogTreesRequest:
+      description: ''
+      properties:
+        project_id:
+          description: 项目 ID
+          example: 1
+          format: int32
+          type: integer
+        business_type:
+          description: 业务类型
+          example: ENTITY
+          type: string
+        business_names:
+          description: "业务名称\n 返回特定业务的目录树，不传则返回当前业务类型下所有的目录树"
+          example: '["user"]'
+          items:
+            type: string
+          type: array
+        query_catalog_node_type:
+          description: "查询的节点类型\n```\n QUERY_CATALOG_NODE_TYPE_UNSPECIFIED = 0; // 未标识\n ONLY_UNDELETE\
+            \ = 1;                       // 仅包含未删除的节点\n ONLY_DELETE = 2;                         // 仅包含删除的节点\n\
+            \ ALL = 3;                                 // 所有节点\n```"
+          enum:
+          - QUERY_CATALOG_NODE_TYPE_UNSPECIFIED
+          - ONLY_UNDELETE
+          - ONLY_DELETE
+          - ALL
+          example: ONLY_UNDELETE
+          type: string
+        show_resource:
+          description: 返回的目录树是否包含资源节点
+          example: true
+          type: boolean
+      required:
+      - business_type
+      - project_id
+      - query_catalog_node_type
+      title: ListCatalogTreesRequest
+      type: object
+    sensorsdata.horizon.v1.CatalogTree.CustomParamsEntry:
+      description: ''
+      properties:
+        key:
+          description: ''
+          type: string
+        value:
+          description: ''
+          type: string
+      title: CustomParamsEntry
+      type: object
+    sensorsdata.horizon.v1.UnbindCatalogResourceRequest:
+      description: 解绑资源节点
+      properties:
+        project_id:
+          description: 项目 ID
+          example: 1
+          format: int32
+          type: integer
+        business_type:
+          description: 业务类型
+          example: ENTITY
+          type: string
+        business_name:
+          description: 业务名称
+          example: user
+          type: string
+        resource_type:
+          description: 资源类型
+          example: TAG
+          type: string
+        resource_id:
+          description: 资源标识
+          example: user_tag_bq_meta_string
+          type: string
+        skip_trash:
+          description: 是否跳过回收站
+          example: true
+          type: boolean
+      required:
+      - business_name
+      - business_type
+      - project_id
+      - resource_id
+      - resource_type
+      title: UnbindCatalogResourceRequest
+      type: object
+    sensorsdata.horizon.v1.ListResourcesResponseHttpApiResult:
+      properties:
+        code:
+          type: string
+        message:
+          type: string
+        request_id:
+          type: string
+        data:
+          $ref: '#/components/schemas/sensorsdata.horizon.v1.ListResourcesResponse'
+        error_info:
+          $ref: '#/components/schemas/sensorsdata.common.ErrorInfo'
+      title: sensorsdata.horizon.v1.ListResourcesResponseHttpApiResult
+      type: object
+    sensorsdata.common.ErrorCause:
+      properties:
+        error_cause:
+          description: 致错原因1
+          example: 参数异常1
+          type: string
+        action_suggestion:
+          description: 操作建议，针对该原因，建议的解决方式
+          example: 检测入参的数据类型1
+          type: string
+      title: ErrorCause
+      type: object
+    sensorsdata.common.ErrorContext:
+      description: 发生错误时，系统快照信息
+      properties:
+        origin_stack:
+          description: 上游异常的 stack，由系统截获
+          type: string
+        origin_cause:
+          description: 上游异常的 cause by，由系统截获
+          type: string
+        origin_code:
+          description: 上游异常的错误简码
+          type: string
+        origin_complete_code:
+          description: 上游异常的完整错误码
+          type: string
+        error_extend_desc:
+          description: 本次异常的辅助说明，可传入
+          type: string
+      title: ErrorContext
+      type: object
+    sensorsdata.common.ErrorInfo:
+      properties:
+        code:
+          description: 具体的错误码
+          example: XX-D-F-2-1
+          type: string
+        description:
+          description: 错误描述
+          example: 前端参数校验异常,PARAMETER_FORMAT_ERROR(quantiles=[10, -90] is not include [0, 100])
+          type: string
+        system_response:
+          description: 致错的可能原因列表
+          example: 系统终止了查询处理
+          type: string
+        error_causes:
+          items:
+            $ref: '#/components/schemas/sensorsdata.common.ErrorCause'
+          type: array
+        context:
+          $ref: '#/components/schemas/sensorsdata.common.ErrorContext'
+      title: ErrorInfo
+      type: object
+    sensorsdata.horizon.v1.ListCatalogTreesResponseHttpApiResult:
+      properties:
+        code:
+          type: string
+        message:
+          type: string
+        request_id:
+          type: string
+        data:
+          $ref: '#/components/schemas/sensorsdata.horizon.v1.ListCatalogTreesResponse'
+        error_info:
+          $ref: '#/components/schemas/sensorsdata.common.ErrorInfo'
+      title: sensorsdata.horizon.v1.ListCatalogTreesResponseHttpApiResult
+      type: object
+    sensorsdata.horizon.v1.CatalogTree:
+      description: ''
+      properties:
+        business_name:
+          description: 业务名称
+          example: user
+          type: string
+        catalog:
+          $ref: '#/components/schemas/sensorsdata.horizon.v1.Catalog'
+        custom_params:
+          additionalProperties:
+            description: ''
+            type: string
+          description: 自定义参数
+          example:
+            BELONG_KEY: USER_PROPERTY
+          type: object
+      title: CatalogTree
+      type: object
+    sensorsdata.horizon.v1.Catalog.CustomParamsEntry:
+      description: ''
+      properties:
+        key:
+          description: ''
+          type: string
+        value:
+          description: ''
+          type: string
+      title: CustomParamsEntry
+      type: object
+    sensorsdata.horizon.v1.ListCatalogTreesResponse:
+      description: ''
+      properties:
+        catalog_trees:
+          description: 多棵树，每一个一级目录为一棵树
+          example: "{\n  \"code\": \"SUCCESS\",\n  \"request_id\": \"12163604dca26fcdc2184104654955c5\"\
+            ,\n  \"data\": {\n      \"catalog_trees\": [\n          {\n              \"business_name\"\
+            : \"user\",\n              \"catalog\": {\n                  \"type\": \"CATALOG\",\n    \
+            \              \"name\": \"8998a014-f8e3-4d8a-8b2c-ec7beeeefc97\",\n                  \"display_name\"\
+            : \"user\",\n                  \"resource_type\": \"\",\n                  \"resource_id\"\
+            : \"\",\n                  \"parent_name\": \"\",\n                  \"rank\": 1,\n      \
+            \            \"is_deleted\": false,\n                  \"delete_path\": \"\",\n          \
+            \        \"catalogs\": [\n                      {\n                          \"type\": \"\
+            CATALOG\",\n                          \"name\": \"CATALOG_DEFAULT_ATTRIBUTE_2394196636433\"\
+            ,\n                          \"display_name\": \"属性\",\n                          \"resource_type\"\
+            : \"\",\n                          \"resource_id\": \"\",\n                          \"parent_name\"\
+            : \"8998a014-f8e3-4d8a-8b2c-ec7beeeefc97\",\n                          \"rank\": 1,\n    \
+            \                      \"is_deleted\": false,\n                          \"delete_path\":\
+            \ \"\",\n                          \"catalogs\": [\n                              {\n    \
+            \                              \"type\": \"CATALOG\",\n                                  \"\
+            name\": \"CATALOG_DEFAULT_USER_PROPERTY_2394294291991\",\n                               \
+            \   \"display_name\": \"普通属性\",\n                                  \"resource_type\": \"\"\
+            ,\n                                  \"resource_id\": \"\",\n                            \
+            \      \"parent_name\": \"CATALOG_DEFAULT_ATTRIBUTE_2394196636433\",\n                   \
+            \               \"rank\": 1,\n                                  \"is_deleted\": false,\n \
+            \                                 \"delete_path\": \"\",\n                               \
+            \   \"catalogs\": [],\n                                  \"access_info\": {\n            \
+            \                          \"creator_id\": \"0\",\n                                      \"\
+            modifier_id\": \"0\",\n                                      \"create_time\": \"2025-06-09T02:54:33Z\"\
+            ,\n                                      \"update_time\": \"2025-06-09T02:54:33Z\"\n     \
+            \                             },\n                                  \"custom_params\": {\n\
+            \                                      \"BELONG_KEY\": \"USER_PROPERTY\"\n               \
+            \                   },\n                                  \"legacy_id\": 5\n             \
+            \                 }\n                          ],\n                          \"custom_params\"\
+            : {\n                              \"BELONG_KEY\": \"DETAIL_INFO\"\n                     \
+            \     },\n                          \"legacy_id\": 4\n                      }\n          \
+            \        ],\n                  \"access_info\": {\n                      \"creator_id\": \"\
+            2\",\n                      \"modifier_id\": \"2\",\n                      \"create_time\"\
+            : \"2025-06-09T02:54:33Z\",\n                      \"update_time\": \"2025-06-09T02:54:33Z\"\
+            \n                  },\n                  \"custom_params\": {},\n                  \"legacy_id\"\
+            : 1\n              },\n              \"custom_params\": {}\n          }\n      ]\n  }\n}"
+          items:
+            $ref: '#/components/schemas/sensorsdata.horizon.v1.CatalogTree'
+          type: array
+      title: ListCatalogTreesResponse
+      type: object
+    sensorsdata.horizon.v1.Catalog:
+      description: 数据目录定义
+      properties:
+        type:
+          description: "节点类型\n ```\n NODE_TYPE_UNSPECIFIED = 0   // 未标识\n CATALOG = 1;               \
+            \ // 目录\n RESOURCE = 2;               // 资源\n```"
+          enum:
+          - NODE_TYPE_UNSPECIFIED
+          - CATALOG
+          - RESOURCE
+          example: CATALOG
+          type: string
+        name:
+          description: 唯一标识
+          example: 3aba2b10-b44a-4203-9f88-c7b79cc32930
+          type: string
+        display_name:
+          description: "显示名\n type = CATALOG 时必填，最长 100 个字符"
+          example: 属性
+          type: string
+        resource_type:
+          description: "资源类型\n type = RESOURCE 时必填"
+          example: TAG
+          type: string
+        resource_id:
+          description: "资源标识\n type = RESOURCE 时必填"
+          example: user_tag_bq_meta_string
+          type: string
+        parent_name:
+          description: 父级目录标示
+          type: string
+        rank:
+          description: 同级目录或者资源的顺序，目录和资源分开计数
+          example: 1
+          format: int32
+          type: integer
+        is_deleted:
+          description: 是否已删除
+          example: false
+          type: boolean
+        delete_path:
+          description: 节点被删除时，记录父级目录路径
+          type: string
+        delete_time:
+          description: 删除时间
+          format: date-time
+          type: string
+        catalogs:
+          description: 子目录
+          items:
+            $ref: '#/components/schemas/sensorsdata.horizon.v1.Catalog'
+          type: array
+        access_info:
+          $ref: '#/components/schemas/sensorsdata.horizon.v1.AccessInfo'
+        custom_params:
+          additionalProperties:
+            description: ''
+            type: string
+          description: 自定义参数
+          type: object
+      required:
+      - parent_name
+      title: Catalog
+      type: object
+    sensorsdata.horizon.v1.AccessInfo:
+      description: 数据访问信息
+      properties:
+        creator_id:
+          description: 创建人 ID
+          type: string
+        modifier_id:
+          description: 最近一次修改人 ID
+          type: string
+        create_time:
+          description: 创建时间
+          format: date-time
+          type: string
+        update_time:
+          description: 最近一次修改时间
+          format: date-time
+          type: string
+      title: AccessInfo
+      type: object
+    sensorsdata.horizon.v1.CatalogHttpApiResult:
+      properties:
+        code:
+          type: string
+        message:
+          type: string
+        request_id:
+          type: string
+        data:
+          $ref: '#/components/schemas/sensorsdata.horizon.v1.Catalog'
+        error_info:
+          $ref: '#/components/schemas/sensorsdata.common.ErrorInfo'
+      title: sensorsdata.horizon.v1.CatalogHttpApiResult
+      type: object
+x-sd-openapi-service-name: Catalog
+x-sd-openapi-service-name-hyphen: catalog
+x-sd-openapi-app-name: horizon
+x-sd-openapi-service-name-zh_cn: 目录
+x-original-swagger-version: '2.0'

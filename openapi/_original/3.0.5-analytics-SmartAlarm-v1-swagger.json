@@ -1,0 +1,768 @@
+{
+  "openapi" : "3.0.1",
+  "info" : {
+    "description" : "智能预警开放接口",
+    "title" : "神策分析",
+    "version" : ""
+  },
+  "servers" : [ {
+    "url" : "/api/v3/analytics/v1"
+  } ],
+  "paths" : {
+    "/smart-alarm/detail" : {
+      "get" : {
+        "description" : "获取一个预警配置的详细信息",
+        "operationId" : "QueryAlarmConfig",
+        "parameters" : [ {
+          "description" : "全局唯一的密钥，用于验证和授权访问 API 接口",
+          "in" : "header",
+          "name" : "api-key",
+          "required" : true,
+          "schema" : {
+            "type" : "string"
+          }
+        }, {
+          "description" : "项目名, 指定请求所属项目",
+          "in" : "header",
+          "name" : "sensorsdata-project",
+          "required" : true,
+          "schema" : {
+            "type" : "string"
+          }
+        }, {
+          "description" : "配置 ID",
+          "example" : 1,
+          "in" : "query",
+          "name" : "config_id",
+          "schema" : {
+            "format" : "int32",
+            "type" : "integer"
+          }
+        }, {
+          "description" : "本次请求 ID, 方便后续追踪问题",
+          "example" : "12345696321548954",
+          "in" : "query",
+          "name" : "request_id",
+          "schema" : {
+            "type" : "string"
+          }
+        } ],
+        "responses" : {
+          "default" : {
+            "content" : {
+              "application/json" : {
+                "example" : {
+                  "code" : "SUCCESS",
+                  "data" : {
+                    "emails" : [ "test1@test.cn", "test2@test.cn" ],
+                    "unit" : "HOUR",
+                    "send_alarm" : true,
+                    "id" : 1,
+                    "history" : {
+                      "execute_time" : "2023-01-08 23:00:00",
+                      "alarm_time" : "2023-01-08 23:00:00",
+                      "alarm_value" : "0",
+                      "alarm_last_value" : "1",
+                      "alarm_field" : "event.$Anything.customer_id",
+                      "alarm_group" : "landz-cluster",
+                      "alarm_function" : "general",
+                      "alarm_reference" : "测试",
+                      "alarm_unit" : "day",
+                      "receivers" : [ "test1@test.cn", "test2@test.cn" ]
+                    },
+                    "title" : "测试预警"
+                  },
+                  "request_id" : "1"
+                },
+                "schema" : {
+                  "$ref" : "#/components/schemas/sensorsdata.analytics.v1.SmartAlarmConfigResponseHttpApiResult"
+                }
+              }
+            },
+            "description" : "sensorsdata.analytics.v1.SmartAlarmConfigResponse"
+          }
+        },
+        "summary" : "获取一个预警配置的详细信息",
+        "x-sd-openapi" : {
+          "responseClass" : "com.sensorsdata.analytics.v1.SmartAlarmConfigResponse",
+          "isServerStreaming" : false,
+          "requestClass" : "com.sensorsdata.analytics.v1.SmartAlarmConfigRequest",
+          "grpcServiceBase" : "com.sensorsdata.analytics.v1.SmartAlarmServiceGrpc.SmartAlarmServiceImplBase",
+          "internalDesc" : "classes in template for grpc service dynamic invoking",
+          "isClientStreaming" : false
+        }
+      }
+    },
+    "/smart-alarm/all" : {
+      "post" : {
+        "description" : "获取所有的预警列表",
+        "operationId" : "QueryAllAlarms",
+        "parameters" : [ {
+          "description" : "全局唯一的密钥，用于验证和授权访问 API 接口",
+          "in" : "header",
+          "name" : "api-key",
+          "required" : true,
+          "schema" : {
+            "type" : "string"
+          }
+        }, {
+          "description" : "项目名, 指定请求所属项目",
+          "in" : "header",
+          "name" : "sensorsdata-project",
+          "required" : true,
+          "schema" : {
+            "type" : "string"
+          }
+        } ],
+        "requestBody" : {
+          "content" : {
+            "application/json" : {
+              "schema" : {
+                "$ref" : "#/components/schemas/sensorsdata.analytics.v1.SmartAlarmRequest"
+              }
+            }
+          },
+          "description" : "获取所有的预警配置列表接口的参数描述",
+          "required" : false
+        },
+        "responses" : {
+          "default" : {
+            "content" : {
+              "application/json" : {
+                "example" : {
+                  "code" : "SUCCESS",
+                  "data" : {
+                    "total" : 10,
+                    "ids" : [ 1, 2, 3 ]
+                  },
+                  "request_id" : "1"
+                },
+                "schema" : {
+                  "$ref" : "#/components/schemas/sensorsdata.analytics.v1.SmartAlarmConfigListResponseHttpApiResult"
+                }
+              }
+            },
+            "description" : "sensorsdata.analytics.v1.SmartAlarmConfigListResponse"
+          }
+        },
+        "summary" : "获取所有的预警列表",
+        "x-sd-openapi" : {
+          "responseClass" : "com.sensorsdata.analytics.v1.SmartAlarmConfigListResponse",
+          "isServerStreaming" : false,
+          "requestClass" : "com.sensorsdata.analytics.v1.SmartAlarmRequest",
+          "grpcServiceBase" : "com.sensorsdata.analytics.v1.SmartAlarmServiceGrpc.SmartAlarmServiceImplBase",
+          "internalDesc" : "classes in template for grpc service dynamic invoking",
+          "isClientStreaming" : false
+        },
+        "x-codegen-request-body-name" : "SmartAlarmRequest"
+      }
+    },
+    "/smart-alarm/polling-execution/detail" : {
+      "get" : {
+        "description" : "获取轮询模式某次 execution 的预警结果",
+        "operationId" : "QueryPollingAlarmExecutionResult",
+        "parameters" : [ {
+          "description" : "全局唯一的密钥，用于验证和授权访问 API 接口",
+          "in" : "header",
+          "name" : "api-key",
+          "required" : true,
+          "schema" : {
+            "type" : "string"
+          }
+        }, {
+          "description" : "项目名, 指定请求所属项目",
+          "in" : "header",
+          "name" : "sensorsdata-project",
+          "required" : true,
+          "schema" : {
+            "type" : "string"
+          }
+        }, {
+          "description" : "预警配置 ID",
+          "example" : 1,
+          "in" : "query",
+          "name" : "config_id",
+          "schema" : {
+            "format" : "int32",
+            "type" : "integer"
+          }
+        }, {
+          "description" : "execution ID",
+          "example" : 456,
+          "in" : "query",
+          "name" : "execution_id",
+          "schema" : {
+            "format" : "int64",
+            "type" : "integer"
+          }
+        }, {
+          "description" : "是否返回未触发预警的结果，默认 false",
+          "example" : false,
+          "in" : "query",
+          "name" : "include_non_triggered_results",
+          "schema" : {
+            "type" : "boolean"
+          }
+        }, {
+          "description" : "本次请求 ID, 方便后续追踪问题",
+          "example" : "12345696321548954",
+          "in" : "query",
+          "name" : "request_id",
+          "schema" : {
+            "type" : "string"
+          }
+        } ],
+        "responses" : {
+          "default" : {
+            "content" : {
+              "application/json" : {
+                "example" : {
+                  "code" : "SUCCESS",
+                  "data" : {
+                    "non_triggered_results" : [ {
+                      "group_value" : "US",
+                      "current_value" : "85"
+                    } ],
+                    "truncated" : true,
+                    "title" : "测试预警",
+                    "project_name" : "production",
+                    "candidate_group_count" : 100,
+                    "group_by_fields" : "country",
+                    "execution_id" : 456,
+                    "unit" : "HOUR",
+                    "triggered_group_count" : 2,
+                    "triggered_results" : [ {
+                      "group_value" : "CN",
+                      "rules" : [ "低于昨天同期 20", "高于上一小时 30%" ],
+                      "current_value" : "120"
+                    } ],
+                    "config_id" : 1,
+                    "project_id" : 1,
+                    "execute_time" : "2026-03-23 15:05:00"
+                  },
+                  "request_id" : "1"
+                },
+                "schema" : {
+                  "$ref" : "#/components/schemas/sensorsdata.analytics.v1.SmartAlarmPollingExecutionResultResponseHttpApiResult"
+                }
+              }
+            },
+            "description" : "sensorsdata.analytics.v1.SmartAlarmPollingExecutionResultResponse"
+          }
+        },
+        "summary" : "获取轮询模式某次 execution 的预警结果",
+        "x-sd-openapi" : {
+          "responseClass" : "com.sensorsdata.analytics.v1.SmartAlarmPollingExecutionResultResponse",
+          "isServerStreaming" : false,
+          "requestClass" : "com.sensorsdata.analytics.v1.SmartAlarmPollingExecutionResultRequest",
+          "grpcServiceBase" : "com.sensorsdata.analytics.v1.SmartAlarmServiceGrpc.SmartAlarmServiceImplBase",
+          "internalDesc" : "classes in template for grpc service dynamic invoking",
+          "isClientStreaming" : false
+        }
+      }
+    }
+  },
+  "components" : {
+    "schemas" : {
+      "sensorsdata.analytics.v1.SmartAlarmPollingExecutionResultResponse" : {
+        "description" : "获取轮询模式某次 execution 结果接口返回结构描述",
+        "properties" : {
+          "config_id" : {
+            "description" : "预警配置 ID",
+            "example" : 1,
+            "format" : "int32",
+            "type" : "integer"
+          },
+          "execution_id" : {
+            "description" : "execution ID",
+            "example" : 456,
+            "format" : "int64",
+            "type" : "integer"
+          },
+          "title" : {
+            "description" : "预警标题",
+            "example" : "测试预警",
+            "type" : "string"
+          },
+          "project_id" : {
+            "description" : "项目 ID",
+            "example" : 1,
+            "format" : "int32",
+            "type" : "integer"
+          },
+          "project_name" : {
+            "description" : "项目名称",
+            "example" : "production",
+            "type" : "string"
+          },
+          "execute_time" : {
+            "description" : "执行时间",
+            "example" : "2026-03-23 15:05:00",
+            "type" : "string"
+          },
+          "unit" : {
+            "description" : "预警单位",
+            "enum" : [ "UNIT_TYPE_UNSPECIFIED", "HOUR", "DAY", "WEEK", "MONTH", "YEAR", "QUARTER", "MINUTE", "SECOND" ],
+            "example" : "HOUR",
+            "type" : "string"
+          },
+          "group_by_fields" : {
+            "description" : "分组字段",
+            "example" : "country",
+            "type" : "string"
+          },
+          "truncated" : {
+            "description" : "是否因上限被截断",
+            "example" : true,
+            "type" : "boolean"
+          },
+          "candidate_group_count" : {
+            "description" : "本次参与判断的分组数",
+            "example" : 100,
+            "format" : "int32",
+            "type" : "integer"
+          },
+          "triggered_group_count" : {
+            "description" : "本次触发预警的分组数",
+            "example" : 2,
+            "format" : "int32",
+            "type" : "integer"
+          },
+          "triggered_results" : {
+            "description" : "触发预警的结果列表",
+            "items" : {
+              "$ref" : "#/components/schemas/sensorsdata.analytics.v1.TriggeredSmartAlarmPollingResult"
+            },
+            "type" : "array"
+          },
+          "non_triggered_results" : {
+            "description" : "未触发预警的结果列表",
+            "items" : {
+              "$ref" : "#/components/schemas/sensorsdata.analytics.v1.NonTriggeredSmartAlarmPollingResult"
+            },
+            "type" : "array"
+          }
+        },
+        "title" : "SmartAlarmPollingExecutionResultResponse",
+        "type" : "object"
+      },
+      "sensorsdata.analytics.v1.NonTriggeredSmartAlarmPollingResult" : {
+        "description" : "",
+        "properties" : {
+          "group_value" : {
+            "description" : "分组值",
+            "example" : "US",
+            "type" : "string"
+          },
+          "current_value" : {
+            "description" : "当前值",
+            "example" : "85",
+            "type" : "string"
+          }
+        },
+        "title" : "NonTriggeredSmartAlarmPollingResult",
+        "type" : "object"
+      },
+      "sensorsdata.analytics.v1.SmartAlarmConfigListResponse" : {
+        "description" : "获取所有的预警配置列表接口返回结构描述",
+        "properties" : {
+          "total" : {
+            "description" : "总记录数",
+            "example" : 10,
+            "format" : "int32",
+            "type" : "integer"
+          },
+          "ids" : {
+            "description" : "预警配置 id 列表",
+            "example" : "[1,2,3]",
+            "items" : {
+              "format" : "int32",
+              "type" : "integer"
+            },
+            "type" : "array"
+          }
+        },
+        "title" : "SmartAlarmConfigListResponse",
+        "type" : "object"
+      },
+      "sensorsdata.common.HttpApiResult" : {
+        "properties" : {
+          "code" : {
+            "type" : "string"
+          },
+          "message" : {
+            "type" : "string"
+          },
+          "request_id" : {
+            "type" : "string"
+          },
+          "data" : {
+            "properties" : { },
+            "type" : "object"
+          },
+          "error_info" : {
+            "$ref" : "#/components/schemas/sensorsdata.common.ErrorInfo"
+          }
+        },
+        "title" : "HttpApiResult",
+        "type" : "object"
+      },
+      "sensorsdata.analytics.v1.SmartAlarmConfigListResponseHttpApiResult" : {
+        "properties" : {
+          "code" : {
+            "type" : "string"
+          },
+          "message" : {
+            "type" : "string"
+          },
+          "request_id" : {
+            "type" : "string"
+          },
+          "data" : {
+            "$ref" : "#/components/schemas/sensorsdata.analytics.v1.SmartAlarmConfigListResponse"
+          },
+          "error_info" : {
+            "$ref" : "#/components/schemas/sensorsdata.common.ErrorInfo"
+          }
+        },
+        "title" : "sensorsdata.analytics.v1.SmartAlarmConfigListResponseHttpApiResult",
+        "type" : "object"
+      },
+      "sensorsdata.analytics.v1.SmartAlarmPollingExecutionResultResponseHttpApiResult" : {
+        "properties" : {
+          "code" : {
+            "type" : "string"
+          },
+          "message" : {
+            "type" : "string"
+          },
+          "request_id" : {
+            "type" : "string"
+          },
+          "data" : {
+            "$ref" : "#/components/schemas/sensorsdata.analytics.v1.SmartAlarmPollingExecutionResultResponse"
+          },
+          "error_info" : {
+            "$ref" : "#/components/schemas/sensorsdata.common.ErrorInfo"
+          }
+        },
+        "title" : "sensorsdata.analytics.v1.SmartAlarmPollingExecutionResultResponseHttpApiResult",
+        "type" : "object"
+      },
+      "sensorsdata.analytics.v1.SmartAlarmConfigRequest" : {
+        "description" : "获取一个预警配置的详细信息接口的参数描述",
+        "properties" : {
+          "config_id" : {
+            "description" : "配置 ID",
+            "example" : 1,
+            "format" : "int32",
+            "type" : "integer"
+          },
+          "request_id" : {
+            "description" : "本次请求 ID, 方便后续追踪问题",
+            "example" : "12345696321548954",
+            "type" : "string"
+          }
+        },
+        "title" : "SmartAlarmConfigRequest",
+        "type" : "object"
+      },
+      "sensorsdata.common.ErrorCause" : {
+        "properties" : {
+          "error_cause" : {
+            "description" : "致错原因1",
+            "example" : "参数异常1",
+            "type" : "string"
+          },
+          "action_suggestion" : {
+            "description" : "操作建议，针对该原因，建议的解决方式",
+            "example" : "检测入参的数据类型1",
+            "type" : "string"
+          }
+        },
+        "title" : "ErrorCause",
+        "type" : "object"
+      },
+      "sensorsdata.common.ErrorContext" : {
+        "description" : "发生错误时，系统快照信息",
+        "properties" : {
+          "origin_stack" : {
+            "description" : "上游异常的 stack，由系统截获",
+            "type" : "string"
+          },
+          "origin_cause" : {
+            "description" : "上游异常的 cause by，由系统截获",
+            "type" : "string"
+          },
+          "origin_code" : {
+            "description" : "上游异常的错误简码",
+            "type" : "string"
+          },
+          "origin_complete_code" : {
+            "description" : "上游异常的完整错误码",
+            "type" : "string"
+          },
+          "error_extend_desc" : {
+            "description" : "本次异常的辅助说明，可传入",
+            "type" : "string"
+          }
+        },
+        "title" : "ErrorContext",
+        "type" : "object"
+      },
+      "sensorsdata.analytics.v1.SmartAlarmRequest" : {
+        "description" : "获取所有的预警配置列表接口的参数描述",
+        "properties" : {
+          "title" : {
+            "description" : "预警标题",
+            "example" : "测试预警信息",
+            "type" : "string"
+          },
+          "units" : {
+            "description" : "时间单位",
+            "example" : "DAY",
+            "items" : {
+              "enum" : [ "UNIT_TYPE_UNSPECIFIED", "HOUR", "DAY", "WEEK", "MONTH", "YEAR", "QUARTER", "MINUTE", "SECOND" ],
+              "type" : "string"
+            },
+            "type" : "array"
+          },
+          "create_user_ids" : {
+            "description" : "创建者 id 列表",
+            "example" : "[1,2,3]",
+            "items" : {
+              "format" : "int32",
+              "type" : "integer"
+            },
+            "type" : "array"
+          },
+          "disables" : {
+            "description" : "是否可用",
+            "example" : "[true]",
+            "items" : {
+              "type" : "boolean"
+            },
+            "type" : "array"
+          },
+          "request_id" : {
+            "description" : "本次请求 ID, 方便后续追踪问题",
+            "example" : "12345696321548954",
+            "type" : "string"
+          }
+        },
+        "title" : "SmartAlarmRequest",
+        "type" : "object"
+      },
+      "sensorsdata.common.ErrorInfo" : {
+        "properties" : {
+          "code" : {
+            "description" : "具体的错误码",
+            "example" : "XX-D-F-2-1",
+            "type" : "string"
+          },
+          "description" : {
+            "description" : "错误描述",
+            "example" : "前端参数校验异常,PARAMETER_FORMAT_ERROR(quantiles=[10, -90] is not include [0, 100])",
+            "type" : "string"
+          },
+          "system_response" : {
+            "description" : "致错的可能原因列表",
+            "example" : "系统终止了查询处理",
+            "type" : "string"
+          },
+          "error_causes" : {
+            "items" : {
+              "$ref" : "#/components/schemas/sensorsdata.common.ErrorCause"
+            },
+            "type" : "array"
+          },
+          "context" : {
+            "$ref" : "#/components/schemas/sensorsdata.common.ErrorContext"
+          }
+        },
+        "title" : "ErrorInfo",
+        "type" : "object"
+      },
+      "sensorsdata.analytics.v1.SmartAlarmConfigResponseHttpApiResult" : {
+        "properties" : {
+          "code" : {
+            "type" : "string"
+          },
+          "message" : {
+            "type" : "string"
+          },
+          "request_id" : {
+            "type" : "string"
+          },
+          "data" : {
+            "$ref" : "#/components/schemas/sensorsdata.analytics.v1.SmartAlarmConfigResponse"
+          },
+          "error_info" : {
+            "$ref" : "#/components/schemas/sensorsdata.common.ErrorInfo"
+          }
+        },
+        "title" : "sensorsdata.analytics.v1.SmartAlarmConfigResponseHttpApiResult",
+        "type" : "object"
+      },
+      "sensorsdata.analytics.v1.TriggeredSmartAlarmPollingResult" : {
+        "description" : "",
+        "properties" : {
+          "group_value" : {
+            "description" : "分组值",
+            "example" : "CN",
+            "type" : "string"
+          },
+          "current_value" : {
+            "description" : "当前值",
+            "example" : "120",
+            "type" : "string"
+          },
+          "rules" : {
+            "description" : "命中的规则文案列表",
+            "example" : "[\"低于昨天同期 20\", \"高于上一小时 30%\"]",
+            "items" : {
+              "type" : "string"
+            },
+            "type" : "array"
+          }
+        },
+        "title" : "TriggeredSmartAlarmPollingResult",
+        "type" : "object"
+      },
+      "sensorsdata.analytics.v1.SmartAlarmConfigResponse" : {
+        "description" : "获取一个预警配置的详细信息接口返回结构描述",
+        "properties" : {
+          "id" : {
+            "description" : "预警配置 ID",
+            "example" : 1,
+            "format" : "int32",
+            "type" : "integer"
+          },
+          "title" : {
+            "description" : "预警标题",
+            "example" : "测试预警",
+            "type" : "string"
+          },
+          "emails" : {
+            "description" : "预警接收人邮箱列表",
+            "example" : "[\"test1@test.cn\", \"test2@test.cn\"]",
+            "items" : {
+              "type" : "string"
+            },
+            "type" : "array"
+          },
+          "unit" : {
+            "description" : "预警单位",
+            "enum" : [ "UNIT_TYPE_UNSPECIFIED", "HOUR", "DAY", "WEEK", "MONTH", "YEAR", "QUARTER", "MINUTE", "SECOND" ],
+            "example" : "HOUR",
+            "type" : "string"
+          },
+          "send_alarm" : {
+            "description" : "是否发送预警",
+            "example" : true,
+            "type" : "boolean"
+          },
+          "history" : {
+            "$ref" : "#/components/schemas/sensorsdata.analytics.v1.LatestSmartAlarmRecord"
+          }
+        },
+        "title" : "SmartAlarmConfigResponse",
+        "type" : "object"
+      },
+      "sensorsdata.analytics.v1.LatestSmartAlarmRecord" : {
+        "description" : "",
+        "properties" : {
+          "execute_time" : {
+            "description" : "触发时间",
+            "example" : "2023-01-08 23:00:00",
+            "type" : "string"
+          },
+          "alarm_time" : {
+            "description" : "预警时间",
+            "example" : "2023-01-08 23:00:00",
+            "type" : "string"
+          },
+          "alarm_value" : {
+            "description" : "预警值",
+            "example" : "\"0\"",
+            "type" : "string"
+          },
+          "alarm_last_value" : {
+            "description" : "对比值",
+            "example" : "\"3\"",
+            "type" : "string"
+          },
+          "alarm_field" : {
+            "description" : "报警分组",
+            "example" : "\"event.$Anything.customer_id\"",
+            "type" : "string"
+          },
+          "alarm_group" : {
+            "description" : "报警分组值",
+            "example" : "\"landz-cluster\"",
+            "type" : "string"
+          },
+          "alarm_function" : {
+            "description" : "预警规则-比较方式",
+            "example" : "\"general\"",
+            "type" : "string"
+          },
+          "alarm_reference" : {
+            "description" : "预警规则-参照模板",
+            "example" : "\"测试\"",
+            "type" : "string"
+          },
+          "alarm_unit" : {
+            "description" : "预警规则-数值类型",
+            "example" : "\"day\"",
+            "type" : "string"
+          },
+          "receivers" : {
+            "description" : "预警接收人邮箱列表",
+            "example" : "[\"test1@test.cn\", \"test2@test.cn\"]",
+            "items" : {
+              "type" : "string"
+            },
+            "type" : "array"
+          }
+        },
+        "title" : "LatestSmartAlarmRecord",
+        "type" : "object"
+      },
+      "sensorsdata.analytics.v1.SmartAlarmPollingExecutionResultRequest" : {
+        "description" : "获取轮询模式某次 execution 结果接口的参数描述",
+        "properties" : {
+          "config_id" : {
+            "description" : "预警配置 ID",
+            "example" : 1,
+            "format" : "int32",
+            "type" : "integer"
+          },
+          "execution_id" : {
+            "description" : "execution ID",
+            "example" : 456,
+            "format" : "int64",
+            "type" : "integer"
+          },
+          "include_non_triggered_results" : {
+            "description" : "是否返回未触发预警的结果，默认 false",
+            "example" : false,
+            "type" : "boolean"
+          },
+          "request_id" : {
+            "description" : "本次请求 ID, 方便后续追踪问题",
+            "example" : "12345696321548954",
+            "type" : "string"
+          }
+        },
+        "title" : "SmartAlarmPollingExecutionResultRequest",
+        "type" : "object"
+      }
+    }
+  },
+  "x-sd-openapi-service-name" : "SmartAlarm",
+  "x-sd-openapi-service-name-hyphen" : "smart-alarm",
+  "x-sd-openapi-app-name" : "analytics",
+  "x-sd-openapi-service-name-zh_cn" : "智能预警",
+  "x-original-swagger-version" : "2.0"
+}
