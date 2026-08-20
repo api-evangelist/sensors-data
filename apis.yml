@@ -52,6 +52,15 @@ apis:
   humanURL: https://docs.sensorsdata.com/sa/docs/about_open_api
   baseURL: https://{sensors_data_url}/api/v3/analytics/v1
   tags:
+  - Product Analytics
+  - Behavioral Analytics
+  - Funnel Analysis
+  - Retention
+  - Attribution
+  - Dashboards
+  - sql-query
+  - EventMetadata
+  tags_raw:
   - product-analytics
   - behavioral-analytics
   - funnel-analysis
@@ -103,6 +112,14 @@ apis:
   humanURL: https://manual.sensorsdata.cn/openapi
   baseURL: https://{sensors_data_url}/api/v3/horizon/v1
   tags:
+  - Customer Data Platform
+  - CDP
+  - Segmentation
+  - Tagging
+  - Schema Management
+  - data-subscription
+  - Kafka
+  tags_raw:
   - customer-data-platform
   - cdp
   - segmentation
@@ -150,6 +167,14 @@ apis:
   humanURL: https://manual.sensorsdata.cn/sf/docs/openapi_audience
   baseURL: https://{sensors_data_url}/api/v3/focus/v1
   tags:
+  - Marketing Automation
+  - Customer Engagement
+  - Audience
+  - real-time-tags
+  - trigger-strategy
+  - Webhook
+  - Campaign Management
+  tags_raw:
   - marketing-automation
   - customer-engagement
   - audience
@@ -211,6 +236,15 @@ apis:
   humanURL: https://manual.sensorsdata.cn/openapi
   baseURL: https://{sensors_data_url}/api/v3/portal/v2
   tags:
+  - Identity
+  - Account Management
+  - RBAC
+  - Roles
+  - Permissions
+  - Multi-Tenancy
+  - Resource Management
+  - Administration
+  tags_raw:
   - identity
   - account-management
   - rbac
