@@ -43,57 +43,20 @@ maintainers:
 - FN: APIs.json
   email: info@apis.io
 apis:
-- name: Sensors Analytics OpenAPI (神策分析)
-  description: 'OpenAPI for Sensors Analytics — the product-analytics engine. 64 operations across
-    eight services: analysis models (funnel, retention, LTV, attribution, path, interval, addiction,
-    segmentation, custom SQL), dashboards and bookmarks, business-mart datasets, event and property
-    metadata, channel/campaign link tracking, and smart alarms. Auth is a project-scoped api-key
-    header; every response is the standard {code,data,request_id} envelope.'
+- aid: sensors-data:sensors-data-catalog-api
+  name: Sensors Data Catalog API
+  description: The Catalog API from Sensors Data — 3 operation(s) for catalog.
   humanURL: https://docs.sensorsdata.com/sa/docs/about_open_api
   baseURL: https://{sensors_data_url}/api/v3/analytics/v1
   tags:
-  - Product Analytics
-  - Behavioral Analytics
-  - Funnel Analysis
-  - Retention
-  - Attribution
-  - Dashboards
-  - sql-query
-  - EventMetadata
-  tags_raw:
-  - product-analytics
-  - behavioral-analytics
-  - funnel-analysis
-  - retention
-  - attribution
-  - dashboards
-  - sql-query
-  - event-metadata
+  - Catalog
   properties:
+  - type: OpenAPI
+    url: openapi/sensors-data-catalog-api-openapi.yml
   - type: Documentation
     url: https://manual.sensorsdata.cn/openapi
   - type: APIReference
     url: https://docs.sensorsdata.com/sa/docs/about_open_api
-  - type: OpenAPI
-    url: openapi/sensors-data-analytics-channel-v1-openapi.yml
-  - type: OpenAPI
-    url: openapi/sensors-data-analytics-dashboard-v1-openapi.yml
-  - type: OpenAPI
-    url: openapi/sensors-data-analytics-dataset-v1-openapi.yml
-  - type: OpenAPI
-    url: openapi/sensors-data-analytics-event-meta-v1-openapi.yml
-  - type: OpenAPI
-    url: openapi/sensors-data-analytics-model-v1-openapi.yml
-  - type: OpenAPI
-    url: openapi/sensors-data-analytics-model-v2-openapi.yml
-  - type: OpenAPI
-    url: openapi/sensors-data-analytics-property-meta-v1-openapi.yml
-  - type: OpenAPI
-    url: openapi/sensors-data-analytics-smart-alarm-v1-openapi.yml
-  - type: Overlay
-    url: overlays/sensors-data-analytics-overlay.yaml
-  - type: AgentSkill
-    url: skills/sensors-data-run-funnel-analysis.md
   - type: Authentication
     url: authentication/sensors-data-authentication.yml
   - type: Conventions
@@ -104,170 +67,26 @@ apis:
     url: data-model/sensors-data-data-model.yml
   - type: RateLimits
     url: rate-limits/sensors-data-rate-limits.yml
-- name: Sensors Horizon CDP OpenAPI (神策数界)
-  description: OpenAPI for Sensors Horizon (神策数界), the real-time customer data platform layer. 54
-    operations for schema management (event tables, user tables, fields, extended tables), segment
-    definitions and segment tasks, tag management, physical/public data tables, information catalogs,
-    and data subscriptions that stream computed results out to downstream systems such as Kafka.
-  humanURL: https://manual.sensorsdata.cn/openapi
-  baseURL: https://{sensors_data_url}/api/v3/horizon/v1
-  tags:
-  - Customer Data Platform
-  - CDP
-  - Segmentation
-  - Tagging
-  - Schema Management
-  - data-subscription
-  - Kafka
-  tags_raw:
-  - customer-data-platform
-  - cdp
-  - segmentation
-  - tagging
-  - schema-management
-  - data-subscription
-  - kafka
-  properties:
-  - type: Documentation
-    url: https://manual.sensorsdata.cn/openapi
   - type: APIReference
-    url: https://manual.sensorsdata.cn/openapi
-  - type: OpenAPI
-    url: openapi/sensors-data-horizon-catalog-v1-openapi.yml
-  - type: OpenAPI
-    url: openapi/sensors-data-horizon-data-subscription-v1-openapi.yml
-  - type: OpenAPI
-    url: openapi/sensors-data-horizon-schema-v1-openapi.yml
-  - type: OpenAPI
-    url: openapi/sensors-data-horizon-segment-v1-openapi.yml
-  - type: OpenAPI
-    url: openapi/sensors-data-horizon-table-v1-openapi.yml
-  - type: OpenAPI
-    url: openapi/sensors-data-horizon-tag-v1-openapi.yml
-  - type: Overlay
-    url: overlays/sensors-data-horizon-overlay.yaml
-  - type: AgentSkill
-    url: skills/sensors-data-build-and-evaluate-a-segment.md
-  - type: Authentication
-    url: authentication/sensors-data-authentication.yml
-  - type: Conventions
-    url: conventions/sensors-data-conventions.yml
-  - type: ErrorCatalog
-    url: errors/sensors-data-problem-types.yml
-  - type: DataModel
-    url: data-model/sensors-data-data-model.yml
-  - type: RateLimits
-    url: rate-limits/sensors-data-rate-limits.yml
-- name: Sensors Focus OpenAPI (神策智能运营)
-  description: OpenAPI for Sensors Focus, the smart-operations / marketing-automation cloud. 70 operations
-    covering reach channels and channel instances (including AI channel-selection endpoints), audience
-    rules and online audience membership, real-time entity attributes and tags, trigger strategies,
-    marketing plans, resource sections, creative materials and user blacklists. Webhook channels
-    let the platform call customer-owned HTTP endpoints when a user is triggered.
-  humanURL: https://manual.sensorsdata.cn/sf/docs/openapi_audience
-  baseURL: https://{sensors_data_url}/api/v3/focus/v1
-  tags:
-  - Marketing Automation
-  - Customer Engagement
-  - Audience
-  - real-time-tags
-  - trigger-strategy
-  - Webhook
-  - Campaign Management
-  tags_raw:
-  - marketing-automation
-  - customer-engagement
-  - audience
-  - real-time-tags
-  - trigger-strategy
-  - webhooks
-  - campaign-management
-  properties:
-  - type: Documentation
     url: https://manual.sensorsdata.cn/openapi
   - type: APIReference
     url: https://manual.sensorsdata.cn/sf/docs/openapi_audience
-  - type: OpenAPI
-    url: openapi/sensors-data-focus-express-action-channel-v1-openapi.yml
-  - type: OpenAPI
-    url: openapi/sensors-data-focus-express-attribute-online-v1-openapi.yml
-  - type: OpenAPI
-    url: openapi/sensors-data-focus-express-attribute-v1-openapi.yml
-  - type: OpenAPI
-    url: openapi/sensors-data-focus-express-audience-meta-v1-openapi.yml
-  - type: OpenAPI
-    url: openapi/sensors-data-focus-express-audience-online-v1-openapi.yml
-  - type: OpenAPI
-    url: openapi/sensors-data-focus-express-notify-v1-openapi.yml
-  - type: OpenAPI
-    url: openapi/sensors-data-focus-real-time-tag-v1-openapi.yml
-  - type: OpenAPI
-    url: openapi/sensors-data-focus-trigger-strategy-v1-openapi.yml
-  - type: OpenAPI
-    url: openapi/sensors-data-focus-web-black-users-v1-openapi.yml
-  - type: OpenAPI
-    url: openapi/sensors-data-focus-web-materials-v1-openapi.yml
-  - type: OpenAPI
-    url: openapi/sensors-data-focus-web-sections-v1-openapi.yml
-  - type: OpenAPI
-    url: openapi/sensors-data-focus-web-v1-openapi.yml
-  - type: Overlay
-    url: overlays/sensors-data-focus-overlay.yaml
   - type: Webhooks
     url: asyncapi/sensors-data-webhooks.yml
-  - type: AgentSkill
-    url: skills/sensors-data-receive-focus-webhooks.md
-  - type: Authentication
-    url: authentication/sensors-data-authentication.yml
-  - type: Conventions
-    url: conventions/sensors-data-conventions.yml
-  - type: ErrorCatalog
-    url: errors/sensors-data-problem-types.yml
-  - type: DataModel
-    url: data-model/sensors-data-data-model.yml
-  - type: RateLimits
-    url: rate-limits/sensors-data-rate-limits.yml
-- name: Sensors Portal OpenAPI (神策业务门户)
-  description: OpenAPI for the Sensors Data business portal — the shared identity, tenancy and resource
-    plane across every Sensors product. 64 operations for accounts (project-scoped and global), roles
-    and permission points, resource and category registration, organisational attribute trees, duties,
-    projects and platform management. This is the API an administrator uses to provision and de-provision
-    access programmatically.
-  humanURL: https://manual.sensorsdata.cn/openapi
-  baseURL: https://{sensors_data_url}/api/v3/portal/v2
+- aid: sensors-data:sensors-data-channel-api
+  name: Sensors Data Channel API
+  description: The Channel API from Sensors Data — 5 operation(s) for channel.
+  humanURL: https://docs.sensorsdata.com/sa/docs/about_open_api
+  baseURL: https://{sensors_data_url}/api/v3/analytics/v1
   tags:
-  - Identity
-  - Account Management
-  - RBAC
-  - Roles
-  - Permissions
-  - Multi-Tenancy
-  - Resource Management
-  - Administration
-  tags_raw:
-  - identity
-  - account-management
-  - rbac
-  - roles
-  - permissions
-  - multi-tenancy
-  - resource-management
-  - administration
+  - Channel
   properties:
+  - type: OpenAPI
+    url: openapi/sensors-data-channel-api-openapi.yml
   - type: Documentation
     url: https://manual.sensorsdata.cn/openapi
   - type: APIReference
-    url: https://manual.sensorsdata.cn/openapi
-  - type: OpenAPI
-    url: openapi/sensors-data-portal-identity-v2-openapi.yml
-  - type: OpenAPI
-    url: openapi/sensors-data-portal-management-v2-openapi.yml
-  - type: OpenAPI
-    url: openapi/sensors-data-portal-resource-management-v2-openapi.yml
-  - type: Overlay
-    url: overlays/sensors-data-portal-overlay.yaml
-  - type: AgentSkill
-    url: skills/sensors-data-provision-account-access.md
+    url: https://docs.sensorsdata.com/sa/docs/about_open_api
   - type: Authentication
     url: authentication/sensors-data-authentication.yml
   - type: Conventions
@@ -278,7 +97,811 @@ apis:
     url: data-model/sensors-data-data-model.yml
   - type: RateLimits
     url: rate-limits/sensors-data-rate-limits.yml
+  - type: APIReference
+    url: https://manual.sensorsdata.cn/openapi
+  - type: APIReference
+    url: https://manual.sensorsdata.cn/sf/docs/openapi_audience
+  - type: Webhooks
+    url: asyncapi/sensors-data-webhooks.yml
+- aid: sensors-data:sensors-data-dashboard-api
+  name: Sensors Data Dashboard API
+  description: The Dashboard API from Sensors Data — 9 operation(s) for dashboard.
+  humanURL: https://docs.sensorsdata.com/sa/docs/about_open_api
+  baseURL: https://{sensors_data_url}/api/v3/analytics/v1
+  tags:
+  - Dashboard
+  properties:
+  - type: OpenAPI
+    url: openapi/sensors-data-dashboard-api-openapi.yml
+  - type: Documentation
+    url: https://manual.sensorsdata.cn/openapi
+  - type: APIReference
+    url: https://docs.sensorsdata.com/sa/docs/about_open_api
+  - type: Authentication
+    url: authentication/sensors-data-authentication.yml
+  - type: Conventions
+    url: conventions/sensors-data-conventions.yml
+  - type: ErrorCatalog
+    url: errors/sensors-data-problem-types.yml
+  - type: DataModel
+    url: data-model/sensors-data-data-model.yml
+  - type: RateLimits
+    url: rate-limits/sensors-data-rate-limits.yml
+  - type: APIReference
+    url: https://manual.sensorsdata.cn/openapi
+  - type: APIReference
+    url: https://manual.sensorsdata.cn/sf/docs/openapi_audience
+  - type: Webhooks
+    url: asyncapi/sensors-data-webhooks.yml
+- aid: sensors-data:sensors-data-data-subscription-api
+  name: Sensors Data Data Subscription API
+  description: The Data Subscription API from Sensors Data — 7 operation(s) for data subscription.
+  humanURL: https://docs.sensorsdata.com/sa/docs/about_open_api
+  baseURL: https://{sensors_data_url}/api/v3/analytics/v1
+  tags:
+  - Data Subscription
+  properties:
+  - type: OpenAPI
+    url: openapi/sensors-data-data-subscription-api-openapi.yml
+  - type: Documentation
+    url: https://manual.sensorsdata.cn/openapi
+  - type: APIReference
+    url: https://docs.sensorsdata.com/sa/docs/about_open_api
+  - type: Authentication
+    url: authentication/sensors-data-authentication.yml
+  - type: Conventions
+    url: conventions/sensors-data-conventions.yml
+  - type: ErrorCatalog
+    url: errors/sensors-data-problem-types.yml
+  - type: DataModel
+    url: data-model/sensors-data-data-model.yml
+  - type: RateLimits
+    url: rate-limits/sensors-data-rate-limits.yml
+  - type: APIReference
+    url: https://manual.sensorsdata.cn/openapi
+  - type: APIReference
+    url: https://manual.sensorsdata.cn/sf/docs/openapi_audience
+  - type: Webhooks
+    url: asyncapi/sensors-data-webhooks.yml
+- aid: sensors-data:sensors-data-dataset-api
+  name: Sensors Data Dataset API
+  description: The Dataset API from Sensors Data — 7 operation(s) for dataset.
+  humanURL: https://docs.sensorsdata.com/sa/docs/about_open_api
+  baseURL: https://{sensors_data_url}/api/v3/analytics/v1
+  tags:
+  - Dataset
+  properties:
+  - type: OpenAPI
+    url: openapi/sensors-data-dataset-api-openapi.yml
+  - type: Documentation
+    url: https://manual.sensorsdata.cn/openapi
+  - type: APIReference
+    url: https://docs.sensorsdata.com/sa/docs/about_open_api
+  - type: Authentication
+    url: authentication/sensors-data-authentication.yml
+  - type: Conventions
+    url: conventions/sensors-data-conventions.yml
+  - type: ErrorCatalog
+    url: errors/sensors-data-problem-types.yml
+  - type: DataModel
+    url: data-model/sensors-data-data-model.yml
+  - type: RateLimits
+    url: rate-limits/sensors-data-rate-limits.yml
+  - type: APIReference
+    url: https://manual.sensorsdata.cn/openapi
+  - type: APIReference
+    url: https://manual.sensorsdata.cn/sf/docs/openapi_audience
+  - type: Webhooks
+    url: asyncapi/sensors-data-webhooks.yml
+- aid: sensors-data:sensors-data-event-meta-api
+  name: Sensors Data Event Meta API
+  description: The Event Meta API from Sensors Data — 2 operation(s) for event meta.
+  humanURL: https://docs.sensorsdata.com/sa/docs/about_open_api
+  baseURL: https://{sensors_data_url}/api/v3/analytics/v1
+  tags:
+  - Event Meta
+  properties:
+  - type: OpenAPI
+    url: openapi/sensors-data-event-meta-api-openapi.yml
+  - type: Documentation
+    url: https://manual.sensorsdata.cn/openapi
+  - type: APIReference
+    url: https://docs.sensorsdata.com/sa/docs/about_open_api
+  - type: Authentication
+    url: authentication/sensors-data-authentication.yml
+  - type: Conventions
+    url: conventions/sensors-data-conventions.yml
+  - type: ErrorCatalog
+    url: errors/sensors-data-problem-types.yml
+  - type: DataModel
+    url: data-model/sensors-data-data-model.yml
+  - type: RateLimits
+    url: rate-limits/sensors-data-rate-limits.yml
+  - type: APIReference
+    url: https://manual.sensorsdata.cn/openapi
+  - type: APIReference
+    url: https://manual.sensorsdata.cn/sf/docs/openapi_audience
+  - type: Webhooks
+    url: asyncapi/sensors-data-webhooks.yml
+- aid: sensors-data:sensors-data-express-action-channel-api
+  name: Sensors Data Express Action Channel API
+  description: >-
+    The Express Action Channel API from Sensors Data — 14 operation(s) for express action channel.
+  humanURL: https://docs.sensorsdata.com/sa/docs/about_open_api
+  baseURL: https://{sensors_data_url}/api/v3/analytics/v1
+  tags:
+  - Express Action Channel
+  properties:
+  - type: OpenAPI
+    url: openapi/sensors-data-express-action-channel-api-openapi.yml
+  - type: Documentation
+    url: https://manual.sensorsdata.cn/openapi
+  - type: APIReference
+    url: https://docs.sensorsdata.com/sa/docs/about_open_api
+  - type: Authentication
+    url: authentication/sensors-data-authentication.yml
+  - type: Conventions
+    url: conventions/sensors-data-conventions.yml
+  - type: ErrorCatalog
+    url: errors/sensors-data-problem-types.yml
+  - type: DataModel
+    url: data-model/sensors-data-data-model.yml
+  - type: RateLimits
+    url: rate-limits/sensors-data-rate-limits.yml
+  - type: APIReference
+    url: https://manual.sensorsdata.cn/openapi
+  - type: APIReference
+    url: https://manual.sensorsdata.cn/sf/docs/openapi_audience
+  - type: Webhooks
+    url: asyncapi/sensors-data-webhooks.yml
+- aid: sensors-data:sensors-data-express-attribute-api
+  name: Sensors Data Express Attribute API
+  description: The Express Attribute API from Sensors Data — 5 operation(s) for express attribute.
+  humanURL: https://docs.sensorsdata.com/sa/docs/about_open_api
+  baseURL: https://{sensors_data_url}/api/v3/analytics/v1
+  tags:
+  - Express Attribute
+  properties:
+  - type: OpenAPI
+    url: openapi/sensors-data-express-attribute-api-openapi.yml
+  - type: Documentation
+    url: https://manual.sensorsdata.cn/openapi
+  - type: APIReference
+    url: https://docs.sensorsdata.com/sa/docs/about_open_api
+  - type: Authentication
+    url: authentication/sensors-data-authentication.yml
+  - type: Conventions
+    url: conventions/sensors-data-conventions.yml
+  - type: ErrorCatalog
+    url: errors/sensors-data-problem-types.yml
+  - type: DataModel
+    url: data-model/sensors-data-data-model.yml
+  - type: RateLimits
+    url: rate-limits/sensors-data-rate-limits.yml
+  - type: APIReference
+    url: https://manual.sensorsdata.cn/openapi
+  - type: APIReference
+    url: https://manual.sensorsdata.cn/sf/docs/openapi_audience
+  - type: Webhooks
+    url: asyncapi/sensors-data-webhooks.yml
+- aid: sensors-data:sensors-data-express-attribute-online-api
+  name: Sensors Data Express Attribute Online API
+  description: >-
+    The Express Attribute Online API from Sensors Data — 2 operation(s) for express attribute online.
+  humanURL: https://docs.sensorsdata.com/sa/docs/about_open_api
+  baseURL: https://{sensors_data_url}/api/v3/analytics/v1
+  tags:
+  - Express Attribute Online
+  properties:
+  - type: OpenAPI
+    url: openapi/sensors-data-express-attribute-online-api-openapi.yml
+  - type: Documentation
+    url: https://manual.sensorsdata.cn/openapi
+  - type: APIReference
+    url: https://docs.sensorsdata.com/sa/docs/about_open_api
+  - type: Authentication
+    url: authentication/sensors-data-authentication.yml
+  - type: Conventions
+    url: conventions/sensors-data-conventions.yml
+  - type: ErrorCatalog
+    url: errors/sensors-data-problem-types.yml
+  - type: DataModel
+    url: data-model/sensors-data-data-model.yml
+  - type: RateLimits
+    url: rate-limits/sensors-data-rate-limits.yml
+  - type: APIReference
+    url: https://manual.sensorsdata.cn/openapi
+  - type: APIReference
+    url: https://manual.sensorsdata.cn/sf/docs/openapi_audience
+  - type: Webhooks
+    url: asyncapi/sensors-data-webhooks.yml
+- aid: sensors-data:sensors-data-express-audience-meta-api
+  name: Sensors Data Express Audience Meta API
+  description: >-
+    The Express Audience Meta API from Sensors Data — 6 operation(s) for express audience meta.
+  humanURL: https://docs.sensorsdata.com/sa/docs/about_open_api
+  baseURL: https://{sensors_data_url}/api/v3/analytics/v1
+  tags:
+  - Express Audience Meta
+  properties:
+  - type: OpenAPI
+    url: openapi/sensors-data-express-audience-meta-api-openapi.yml
+  - type: Documentation
+    url: https://manual.sensorsdata.cn/openapi
+  - type: APIReference
+    url: https://docs.sensorsdata.com/sa/docs/about_open_api
+  - type: Authentication
+    url: authentication/sensors-data-authentication.yml
+  - type: Conventions
+    url: conventions/sensors-data-conventions.yml
+  - type: ErrorCatalog
+    url: errors/sensors-data-problem-types.yml
+  - type: DataModel
+    url: data-model/sensors-data-data-model.yml
+  - type: RateLimits
+    url: rate-limits/sensors-data-rate-limits.yml
+  - type: APIReference
+    url: https://manual.sensorsdata.cn/openapi
+  - type: APIReference
+    url: https://manual.sensorsdata.cn/sf/docs/openapi_audience
+  - type: Webhooks
+    url: asyncapi/sensors-data-webhooks.yml
+- aid: sensors-data:sensors-data-express-audience-online-api
+  name: Sensors Data Express Audience Online API
+  description: >-
+    The Express Audience Online API from Sensors Data — 4 operation(s) for express audience online.
+  humanURL: https://docs.sensorsdata.com/sa/docs/about_open_api
+  baseURL: https://{sensors_data_url}/api/v3/analytics/v1
+  tags:
+  - Express Audience Online
+  properties:
+  - type: OpenAPI
+    url: openapi/sensors-data-express-audience-online-api-openapi.yml
+  - type: Documentation
+    url: https://manual.sensorsdata.cn/openapi
+  - type: APIReference
+    url: https://docs.sensorsdata.com/sa/docs/about_open_api
+  - type: Authentication
+    url: authentication/sensors-data-authentication.yml
+  - type: Conventions
+    url: conventions/sensors-data-conventions.yml
+  - type: ErrorCatalog
+    url: errors/sensors-data-problem-types.yml
+  - type: DataModel
+    url: data-model/sensors-data-data-model.yml
+  - type: RateLimits
+    url: rate-limits/sensors-data-rate-limits.yml
+  - type: APIReference
+    url: https://manual.sensorsdata.cn/openapi
+  - type: APIReference
+    url: https://manual.sensorsdata.cn/sf/docs/openapi_audience
+  - type: Webhooks
+    url: asyncapi/sensors-data-webhooks.yml
+- aid: sensors-data:sensors-data-express-notify-api
+  name: Sensors Data Express Notify API
+  description: The Express Notify API from Sensors Data — 3 operation(s) for express notify.
+  humanURL: https://docs.sensorsdata.com/sa/docs/about_open_api
+  baseURL: https://{sensors_data_url}/api/v3/analytics/v1
+  tags:
+  - Express Notify
+  properties:
+  - type: OpenAPI
+    url: openapi/sensors-data-express-notify-api-openapi.yml
+  - type: Documentation
+    url: https://manual.sensorsdata.cn/openapi
+  - type: APIReference
+    url: https://docs.sensorsdata.com/sa/docs/about_open_api
+  - type: Authentication
+    url: authentication/sensors-data-authentication.yml
+  - type: Conventions
+    url: conventions/sensors-data-conventions.yml
+  - type: ErrorCatalog
+    url: errors/sensors-data-problem-types.yml
+  - type: DataModel
+    url: data-model/sensors-data-data-model.yml
+  - type: RateLimits
+    url: rate-limits/sensors-data-rate-limits.yml
+  - type: APIReference
+    url: https://manual.sensorsdata.cn/openapi
+  - type: APIReference
+    url: https://manual.sensorsdata.cn/sf/docs/openapi_audience
+  - type: Webhooks
+    url: asyncapi/sensors-data-webhooks.yml
+- aid: sensors-data:sensors-data-identity-api
+  name: Sensors Data Identity API
+  description: The Identity API from Sensors Data — 51 operation(s) for identity.
+  humanURL: https://docs.sensorsdata.com/sa/docs/about_open_api
+  baseURL: https://{sensors_data_url}/api/v3/analytics/v1
+  tags:
+  - Identity
+  properties:
+  - type: OpenAPI
+    url: openapi/sensors-data-identity-api-openapi.yml
+  - type: Documentation
+    url: https://manual.sensorsdata.cn/openapi
+  - type: APIReference
+    url: https://docs.sensorsdata.com/sa/docs/about_open_api
+  - type: Authentication
+    url: authentication/sensors-data-authentication.yml
+  - type: Conventions
+    url: conventions/sensors-data-conventions.yml
+  - type: ErrorCatalog
+    url: errors/sensors-data-problem-types.yml
+  - type: DataModel
+    url: data-model/sensors-data-data-model.yml
+  - type: RateLimits
+    url: rate-limits/sensors-data-rate-limits.yml
+  - type: APIReference
+    url: https://manual.sensorsdata.cn/openapi
+  - type: APIReference
+    url: https://manual.sensorsdata.cn/sf/docs/openapi_audience
+  - type: Webhooks
+    url: asyncapi/sensors-data-webhooks.yml
+- aid: sensors-data:sensors-data-management-api
+  name: Sensors Data Management API
+  description: The Management API from Sensors Data — 9 operation(s) for management.
+  humanURL: https://docs.sensorsdata.com/sa/docs/about_open_api
+  baseURL: https://{sensors_data_url}/api/v3/analytics/v1
+  tags:
+  - Management
+  properties:
+  - type: OpenAPI
+    url: openapi/sensors-data-management-api-openapi.yml
+  - type: Documentation
+    url: https://manual.sensorsdata.cn/openapi
+  - type: APIReference
+    url: https://docs.sensorsdata.com/sa/docs/about_open_api
+  - type: Authentication
+    url: authentication/sensors-data-authentication.yml
+  - type: Conventions
+    url: conventions/sensors-data-conventions.yml
+  - type: ErrorCatalog
+    url: errors/sensors-data-problem-types.yml
+  - type: DataModel
+    url: data-model/sensors-data-data-model.yml
+  - type: RateLimits
+    url: rate-limits/sensors-data-rate-limits.yml
+  - type: APIReference
+    url: https://manual.sensorsdata.cn/openapi
+  - type: APIReference
+    url: https://manual.sensorsdata.cn/sf/docs/openapi_audience
+  - type: Webhooks
+    url: asyncapi/sensors-data-webhooks.yml
+- aid: sensors-data:sensors-data-model-api
+  name: Sensors Data Model API
+  description: The Model API from Sensors Data — 25 operation(s) for model.
+  humanURL: https://docs.sensorsdata.com/sa/docs/about_open_api
+  baseURL: https://{sensors_data_url}/api/v3/analytics/v1
+  tags:
+  - Model
+  properties:
+  - type: OpenAPI
+    url: openapi/sensors-data-model-api-openapi.yml
+  - type: Documentation
+    url: https://manual.sensorsdata.cn/openapi
+  - type: APIReference
+    url: https://docs.sensorsdata.com/sa/docs/about_open_api
+  - type: Authentication
+    url: authentication/sensors-data-authentication.yml
+  - type: Conventions
+    url: conventions/sensors-data-conventions.yml
+  - type: ErrorCatalog
+    url: errors/sensors-data-problem-types.yml
+  - type: DataModel
+    url: data-model/sensors-data-data-model.yml
+  - type: RateLimits
+    url: rate-limits/sensors-data-rate-limits.yml
+  - type: APIReference
+    url: https://manual.sensorsdata.cn/openapi
+  - type: APIReference
+    url: https://manual.sensorsdata.cn/sf/docs/openapi_audience
+  - type: Webhooks
+    url: asyncapi/sensors-data-webhooks.yml
+- aid: sensors-data:sensors-data-property-meta-api
+  name: Sensors Data Property Meta API
+  description: The Property Meta API from Sensors Data — 6 operation(s) for property meta.
+  humanURL: https://docs.sensorsdata.com/sa/docs/about_open_api
+  baseURL: https://{sensors_data_url}/api/v3/analytics/v1
+  tags:
+  - Property Meta
+  properties:
+  - type: OpenAPI
+    url: openapi/sensors-data-property-meta-api-openapi.yml
+  - type: Documentation
+    url: https://manual.sensorsdata.cn/openapi
+  - type: APIReference
+    url: https://docs.sensorsdata.com/sa/docs/about_open_api
+  - type: Authentication
+    url: authentication/sensors-data-authentication.yml
+  - type: Conventions
+    url: conventions/sensors-data-conventions.yml
+  - type: ErrorCatalog
+    url: errors/sensors-data-problem-types.yml
+  - type: DataModel
+    url: data-model/sensors-data-data-model.yml
+  - type: RateLimits
+    url: rate-limits/sensors-data-rate-limits.yml
+  - type: APIReference
+    url: https://manual.sensorsdata.cn/openapi
+  - type: APIReference
+    url: https://manual.sensorsdata.cn/sf/docs/openapi_audience
+  - type: Webhooks
+    url: asyncapi/sensors-data-webhooks.yml
+- aid: sensors-data:sensors-data-real-time-tag-api
+  name: Sensors Data Real Time Tag API
+  description: The Real Time Tag API from Sensors Data — 5 operation(s) for real time tag.
+  humanURL: https://docs.sensorsdata.com/sa/docs/about_open_api
+  baseURL: https://{sensors_data_url}/api/v3/analytics/v1
+  tags:
+  - Real Time Tag
+  properties:
+  - type: OpenAPI
+    url: openapi/sensors-data-real-time-tag-api-openapi.yml
+  - type: Documentation
+    url: https://manual.sensorsdata.cn/openapi
+  - type: APIReference
+    url: https://docs.sensorsdata.com/sa/docs/about_open_api
+  - type: Authentication
+    url: authentication/sensors-data-authentication.yml
+  - type: Conventions
+    url: conventions/sensors-data-conventions.yml
+  - type: ErrorCatalog
+    url: errors/sensors-data-problem-types.yml
+  - type: DataModel
+    url: data-model/sensors-data-data-model.yml
+  - type: RateLimits
+    url: rate-limits/sensors-data-rate-limits.yml
+  - type: APIReference
+    url: https://manual.sensorsdata.cn/openapi
+  - type: APIReference
+    url: https://manual.sensorsdata.cn/sf/docs/openapi_audience
+  - type: Webhooks
+    url: asyncapi/sensors-data-webhooks.yml
+- aid: sensors-data:sensors-data-resource-management-api
+  name: Sensors Data Resource Management API
+  description: The Resource Management API from Sensors Data — 4 operation(s) for resource management.
+  humanURL: https://docs.sensorsdata.com/sa/docs/about_open_api
+  baseURL: https://{sensors_data_url}/api/v3/analytics/v1
+  tags:
+  - Resource Management
+  properties:
+  - type: OpenAPI
+    url: openapi/sensors-data-resource-management-api-openapi.yml
+  - type: Documentation
+    url: https://manual.sensorsdata.cn/openapi
+  - type: APIReference
+    url: https://docs.sensorsdata.com/sa/docs/about_open_api
+  - type: Authentication
+    url: authentication/sensors-data-authentication.yml
+  - type: Conventions
+    url: conventions/sensors-data-conventions.yml
+  - type: ErrorCatalog
+    url: errors/sensors-data-problem-types.yml
+  - type: DataModel
+    url: data-model/sensors-data-data-model.yml
+  - type: RateLimits
+    url: rate-limits/sensors-data-rate-limits.yml
+  - type: APIReference
+    url: https://manual.sensorsdata.cn/openapi
+  - type: APIReference
+    url: https://manual.sensorsdata.cn/sf/docs/openapi_audience
+  - type: Webhooks
+    url: asyncapi/sensors-data-webhooks.yml
+- aid: sensors-data:sensors-data-schema-api
+  name: Sensors Data Schema API
+  description: The Schema API from Sensors Data — 13 operation(s) for schema.
+  humanURL: https://docs.sensorsdata.com/sa/docs/about_open_api
+  baseURL: https://{sensors_data_url}/api/v3/analytics/v1
+  tags:
+  - Schema
+  properties:
+  - type: OpenAPI
+    url: openapi/sensors-data-schema-api-openapi.yml
+  - type: Documentation
+    url: https://manual.sensorsdata.cn/openapi
+  - type: APIReference
+    url: https://docs.sensorsdata.com/sa/docs/about_open_api
+  - type: Authentication
+    url: authentication/sensors-data-authentication.yml
+  - type: Conventions
+    url: conventions/sensors-data-conventions.yml
+  - type: ErrorCatalog
+    url: errors/sensors-data-problem-types.yml
+  - type: DataModel
+    url: data-model/sensors-data-data-model.yml
+  - type: RateLimits
+    url: rate-limits/sensors-data-rate-limits.yml
+  - type: APIReference
+    url: https://manual.sensorsdata.cn/openapi
+  - type: APIReference
+    url: https://manual.sensorsdata.cn/sf/docs/openapi_audience
+  - type: Webhooks
+    url: asyncapi/sensors-data-webhooks.yml
+- aid: sensors-data:sensors-data-segment-api
+  name: Sensors Data Segment API
+  description: The Segment API from Sensors Data — 12 operation(s) for segment.
+  humanURL: https://docs.sensorsdata.com/sa/docs/about_open_api
+  baseURL: https://{sensors_data_url}/api/v3/analytics/v1
+  tags:
+  - Segment
+  properties:
+  - type: OpenAPI
+    url: openapi/sensors-data-segment-api-openapi.yml
+  - type: Documentation
+    url: https://manual.sensorsdata.cn/openapi
+  - type: APIReference
+    url: https://docs.sensorsdata.com/sa/docs/about_open_api
+  - type: Authentication
+    url: authentication/sensors-data-authentication.yml
+  - type: Conventions
+    url: conventions/sensors-data-conventions.yml
+  - type: ErrorCatalog
+    url: errors/sensors-data-problem-types.yml
+  - type: DataModel
+    url: data-model/sensors-data-data-model.yml
+  - type: RateLimits
+    url: rate-limits/sensors-data-rate-limits.yml
+  - type: APIReference
+    url: https://manual.sensorsdata.cn/openapi
+  - type: APIReference
+    url: https://manual.sensorsdata.cn/sf/docs/openapi_audience
+  - type: Webhooks
+    url: asyncapi/sensors-data-webhooks.yml
+- aid: sensors-data:sensors-data-smart-alarm-api
+  name: Sensors Data Smart Alarm API
+  description: The Smart Alarm API from Sensors Data — 3 operation(s) for smart alarm.
+  humanURL: https://docs.sensorsdata.com/sa/docs/about_open_api
+  baseURL: https://{sensors_data_url}/api/v3/analytics/v1
+  tags:
+  - Smart Alarm
+  properties:
+  - type: OpenAPI
+    url: openapi/sensors-data-smart-alarm-api-openapi.yml
+  - type: Documentation
+    url: https://manual.sensorsdata.cn/openapi
+  - type: APIReference
+    url: https://docs.sensorsdata.com/sa/docs/about_open_api
+  - type: Authentication
+    url: authentication/sensors-data-authentication.yml
+  - type: Conventions
+    url: conventions/sensors-data-conventions.yml
+  - type: ErrorCatalog
+    url: errors/sensors-data-problem-types.yml
+  - type: DataModel
+    url: data-model/sensors-data-data-model.yml
+  - type: RateLimits
+    url: rate-limits/sensors-data-rate-limits.yml
+  - type: APIReference
+    url: https://manual.sensorsdata.cn/openapi
+  - type: APIReference
+    url: https://manual.sensorsdata.cn/sf/docs/openapi_audience
+  - type: Webhooks
+    url: asyncapi/sensors-data-webhooks.yml
+- aid: sensors-data:sensors-data-table-api
+  name: Sensors Data Table API
+  description: The Table API from Sensors Data — 5 operation(s) for table.
+  humanURL: https://docs.sensorsdata.com/sa/docs/about_open_api
+  baseURL: https://{sensors_data_url}/api/v3/analytics/v1
+  tags:
+  - Table
+  properties:
+  - type: OpenAPI
+    url: openapi/sensors-data-table-api-openapi.yml
+  - type: Documentation
+    url: https://manual.sensorsdata.cn/openapi
+  - type: APIReference
+    url: https://docs.sensorsdata.com/sa/docs/about_open_api
+  - type: Authentication
+    url: authentication/sensors-data-authentication.yml
+  - type: Conventions
+    url: conventions/sensors-data-conventions.yml
+  - type: ErrorCatalog
+    url: errors/sensors-data-problem-types.yml
+  - type: DataModel
+    url: data-model/sensors-data-data-model.yml
+  - type: RateLimits
+    url: rate-limits/sensors-data-rate-limits.yml
+  - type: APIReference
+    url: https://manual.sensorsdata.cn/openapi
+  - type: APIReference
+    url: https://manual.sensorsdata.cn/sf/docs/openapi_audience
+  - type: Webhooks
+    url: asyncapi/sensors-data-webhooks.yml
+- aid: sensors-data:sensors-data-tag-api
+  name: Sensors Data Tag API
+  description: The Tag API from Sensors Data — 14 operation(s) for tag.
+  humanURL: https://docs.sensorsdata.com/sa/docs/about_open_api
+  baseURL: https://{sensors_data_url}/api/v3/analytics/v1
+  tags:
+  - Tag
+  properties:
+  - type: OpenAPI
+    url: openapi/sensors-data-tag-api-openapi.yml
+  - type: Documentation
+    url: https://manual.sensorsdata.cn/openapi
+  - type: APIReference
+    url: https://docs.sensorsdata.com/sa/docs/about_open_api
+  - type: Authentication
+    url: authentication/sensors-data-authentication.yml
+  - type: Conventions
+    url: conventions/sensors-data-conventions.yml
+  - type: ErrorCatalog
+    url: errors/sensors-data-problem-types.yml
+  - type: DataModel
+    url: data-model/sensors-data-data-model.yml
+  - type: RateLimits
+    url: rate-limits/sensors-data-rate-limits.yml
+  - type: APIReference
+    url: https://manual.sensorsdata.cn/openapi
+  - type: APIReference
+    url: https://manual.sensorsdata.cn/sf/docs/openapi_audience
+  - type: Webhooks
+    url: asyncapi/sensors-data-webhooks.yml
+- aid: sensors-data:sensors-data-trigger-strategy-api
+  name: Sensors Data Trigger Strategy API
+  description: The Trigger Strategy API from Sensors Data — 9 operation(s) for trigger strategy.
+  humanURL: https://docs.sensorsdata.com/sa/docs/about_open_api
+  baseURL: https://{sensors_data_url}/api/v3/analytics/v1
+  tags:
+  - Trigger Strategy
+  properties:
+  - type: OpenAPI
+    url: openapi/sensors-data-trigger-strategy-api-openapi.yml
+  - type: Documentation
+    url: https://manual.sensorsdata.cn/openapi
+  - type: APIReference
+    url: https://docs.sensorsdata.com/sa/docs/about_open_api
+  - type: Authentication
+    url: authentication/sensors-data-authentication.yml
+  - type: Conventions
+    url: conventions/sensors-data-conventions.yml
+  - type: ErrorCatalog
+    url: errors/sensors-data-problem-types.yml
+  - type: DataModel
+    url: data-model/sensors-data-data-model.yml
+  - type: RateLimits
+    url: rate-limits/sensors-data-rate-limits.yml
+  - type: APIReference
+    url: https://manual.sensorsdata.cn/openapi
+  - type: APIReference
+    url: https://manual.sensorsdata.cn/sf/docs/openapi_audience
+  - type: Webhooks
+    url: asyncapi/sensors-data-webhooks.yml
+- aid: sensors-data:sensors-data-web-api
+  name: Sensors Data Web API
+  description: The Web API from Sensors Data — 12 operation(s) for web.
+  humanURL: https://docs.sensorsdata.com/sa/docs/about_open_api
+  baseURL: https://{sensors_data_url}/api/v3/analytics/v1
+  tags:
+  - Web
+  properties:
+  - type: OpenAPI
+    url: openapi/sensors-data-web-api-openapi.yml
+  - type: Documentation
+    url: https://manual.sensorsdata.cn/openapi
+  - type: APIReference
+    url: https://docs.sensorsdata.com/sa/docs/about_open_api
+  - type: Authentication
+    url: authentication/sensors-data-authentication.yml
+  - type: Conventions
+    url: conventions/sensors-data-conventions.yml
+  - type: ErrorCatalog
+    url: errors/sensors-data-problem-types.yml
+  - type: DataModel
+    url: data-model/sensors-data-data-model.yml
+  - type: RateLimits
+    url: rate-limits/sensors-data-rate-limits.yml
+  - type: APIReference
+    url: https://manual.sensorsdata.cn/openapi
+  - type: APIReference
+    url: https://manual.sensorsdata.cn/sf/docs/openapi_audience
+  - type: Webhooks
+    url: asyncapi/sensors-data-webhooks.yml
+- aid: sensors-data:sensors-data-web-black-users-api
+  name: Sensors Data Web Black Users API
+  description: The Web Black Users API from Sensors Data — 1 operation(s) for web black users.
+  humanURL: https://docs.sensorsdata.com/sa/docs/about_open_api
+  baseURL: https://{sensors_data_url}/api/v3/analytics/v1
+  tags:
+  - Web Black Users
+  properties:
+  - type: OpenAPI
+    url: openapi/sensors-data-web-black-users-api-openapi.yml
+  - type: Documentation
+    url: https://manual.sensorsdata.cn/openapi
+  - type: APIReference
+    url: https://docs.sensorsdata.com/sa/docs/about_open_api
+  - type: Authentication
+    url: authentication/sensors-data-authentication.yml
+  - type: Conventions
+    url: conventions/sensors-data-conventions.yml
+  - type: ErrorCatalog
+    url: errors/sensors-data-problem-types.yml
+  - type: DataModel
+    url: data-model/sensors-data-data-model.yml
+  - type: RateLimits
+    url: rate-limits/sensors-data-rate-limits.yml
+  - type: APIReference
+    url: https://manual.sensorsdata.cn/openapi
+  - type: APIReference
+    url: https://manual.sensorsdata.cn/sf/docs/openapi_audience
+  - type: Webhooks
+    url: asyncapi/sensors-data-webhooks.yml
+- aid: sensors-data:sensors-data-web-materials-api
+  name: Sensors Data Web Materials API
+  description: The Web Materials API from Sensors Data — 5 operation(s) for web materials.
+  humanURL: https://docs.sensorsdata.com/sa/docs/about_open_api
+  baseURL: https://{sensors_data_url}/api/v3/analytics/v1
+  tags:
+  - Web Materials
+  properties:
+  - type: OpenAPI
+    url: openapi/sensors-data-web-materials-api-openapi.yml
+  - type: Documentation
+    url: https://manual.sensorsdata.cn/openapi
+  - type: APIReference
+    url: https://docs.sensorsdata.com/sa/docs/about_open_api
+  - type: Authentication
+    url: authentication/sensors-data-authentication.yml
+  - type: Conventions
+    url: conventions/sensors-data-conventions.yml
+  - type: ErrorCatalog
+    url: errors/sensors-data-problem-types.yml
+  - type: DataModel
+    url: data-model/sensors-data-data-model.yml
+  - type: RateLimits
+    url: rate-limits/sensors-data-rate-limits.yml
+  - type: APIReference
+    url: https://manual.sensorsdata.cn/openapi
+  - type: APIReference
+    url: https://manual.sensorsdata.cn/sf/docs/openapi_audience
+  - type: Webhooks
+    url: asyncapi/sensors-data-webhooks.yml
+- aid: sensors-data:sensors-data-web-sections-api
+  name: Sensors Data Web Sections API
+  description: The Web Sections API from Sensors Data — 4 operation(s) for web sections.
+  humanURL: https://docs.sensorsdata.com/sa/docs/about_open_api
+  baseURL: https://{sensors_data_url}/api/v3/analytics/v1
+  tags:
+  - Web Sections
+  properties:
+  - type: OpenAPI
+    url: openapi/sensors-data-web-sections-api-openapi.yml
+  - type: Documentation
+    url: https://manual.sensorsdata.cn/openapi
+  - type: APIReference
+    url: https://docs.sensorsdata.com/sa/docs/about_open_api
+  - type: Authentication
+    url: authentication/sensors-data-authentication.yml
+  - type: Conventions
+    url: conventions/sensors-data-conventions.yml
+  - type: ErrorCatalog
+    url: errors/sensors-data-problem-types.yml
+  - type: DataModel
+    url: data-model/sensors-data-data-model.yml
+  - type: RateLimits
+    url: rate-limits/sensors-data-rate-limits.yml
+  - type: APIReference
+    url: https://manual.sensorsdata.cn/openapi
+  - type: APIReference
+    url: https://manual.sensorsdata.cn/sf/docs/openapi_audience
+  - type: Webhooks
+    url: asyncapi/sensors-data-webhooks.yml
 common:
+- type: AgentSkill
+  url: skills/sensors-data-run-funnel-analysis.md
+- type: Overlay
+  url: overlays/sensors-data-horizon-overlay.yaml
+- type: AgentSkill
+  url: skills/sensors-data-build-and-evaluate-a-segment.md
+- type: Overlay
+  url: overlays/sensors-data-focus-overlay.yaml
+- type: AgentSkill
+  url: skills/sensors-data-receive-focus-webhooks.md
+- type: Overlay
+  url: overlays/sensors-data-portal-overlay.yaml
+- type: AgentSkill
+  url: skills/sensors-data-provision-account-access.md
 - type: Website
   url: https://www.sensorsdata.com/
 - type: Documentation
