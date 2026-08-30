@@ -1,0 +1,2058 @@
+openapi: 3.2.0
+info:
+  description: 计划、老画布、新画布相关接口
+  title: 神策智能运营 Web API
+  version: ''
+servers:
+- url: /api/v3/focus/v1
+tags:
+- name: Web
+paths:
+  /web/plan/list:
+    post:
+      description: 获取计划列表
+      operationId: WebListPlan
+      parameters:
+      - description: 全局唯一的密钥，用于验证和授权访问 API 接口
+        in: header
+        name: api-key
+        required: true
+        schema:
+          type: string
+      - description: 项目名, 指定请求所属项目
+        in: header
+        name: sensorsdata-project
+        required: true
+        schema:
+          type: string
+      - description: 租户 ID, 用于请求所属租户
+        in: header
+        name: X-Organization-Id
+        required: true
+        schema:
+          type: string
+      - description: 通道实例ID
+        in: query
+        name: channel_instance_id
+        schema:
+          format: int32
+          type: integer
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/sensorsdata.focus.v1.WebListPlanRequestBody'
+        description: 请求计划列表的请求体
+        required: false
+      responses:
+        default:
+          content:
+            application/json:
+              example:
+                code: SUCCESS
+                data:
+                  page_filter: {}
+                  plans:
+                  - entry: {}
+                    action:
+                      strategies:
+                      - msg_content:
+                          webhook:
+                            plan_params:
+                            - {}
+                    created_by: {}
+                request_id: '1'
+              schema:
+                $ref: '#/components/schemas/sensorsdata.focus.v1.WebListPlanResponseHttpApiResult'
+          description: sensorsdata.focus.v1.WebListPlanResponse
+      summary: 获取计划列表
+      x-sd-openapi:
+        responseClass: com.sensorsdata.focus.v1.WebListPlanResponse
+        isServerStreaming: false
+        requestClass: com.sensorsdata.focus.v1.WebListPlanRequest
+        grpcServiceBase: com.sensorsdata.focus.v1.WebServiceGrpc.WebServiceImplBase
+        internalDesc: classes in template for grpc service dynamic invoking
+        isClientStreaming: false
+      x-codegen-request-body-name: WebListPlanRequestBody
+      tags:
+      - Web
+  /web/plan/get:
+    get:
+      description: 获取单个计划
+      operationId: WebGetPlan
+      parameters:
+      - description: 全局唯一的密钥，用于验证和授权访问 API 接口
+        in: header
+        name: api-key
+        required: true
+        schema:
+          type: string
+      - description: 项目名, 指定请求所属项目
+        in: header
+        name: sensorsdata-project
+        required: true
+        schema:
+          type: string
+      - description: 租户 ID, 用于请求所属租户
+        in: header
+        name: X-Organization-Id
+        required: true
+        schema:
+          type: string
+      - in: query
+        name: id
+        schema:
+          format: int32
+          type: integer
+      responses:
+        default:
+          content:
+            application/json:
+              example:
+                code: SUCCESS
+                data:
+                  plan:
+                    entry: {}
+                    action:
+                      strategies:
+                      - msg_content:
+                          webhook:
+                            plan_params:
+                            - {}
+                    created_by: {}
+                request_id: '1'
+              schema:
+                $ref: '#/components/schemas/sensorsdata.focus.v1.WebGetPlanResponseHttpApiResult'
+          description: sensorsdata.focus.v1.WebGetPlanResponse
+      summary: 获取单个计划
+      x-sd-openapi:
+        responseClass: com.sensorsdata.focus.v1.WebGetPlanResponse
+        isServerStreaming: false
+        requestClass: com.sensorsdata.focus.v1.WebGetPlanRequest
+        grpcServiceBase: com.sensorsdata.focus.v1.WebServiceGrpc.WebServiceImplBase
+        internalDesc: classes in template for grpc service dynamic invoking
+        isClientStreaming: false
+      tags:
+      - Web
+  /web/old-canvas/list:
+    post:
+      description: 获取老画布列表
+      operationId: WebListOldCanvas
+      parameters:
+      - description: 全局唯一的密钥，用于验证和授权访问 API 接口
+        in: header
+        name: api-key
+        required: true
+        schema:
+          type: string
+      - description: 项目名, 指定请求所属项目
+        in: header
+        name: sensorsdata-project
+        required: true
+        schema:
+          type: string
+      - description: 租户 ID, 用于请求所属租户
+        in: header
+        name: X-Organization-Id
+        required: true
+        schema:
+          type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/sensorsdata.focus.v1.WebListOldCanvasRequestBody'
+        description: 请求画布列表的请求体
+        required: false
+      responses:
+        default:
+          content:
+            application/json:
+              example:
+                code: SUCCESS
+                data:
+                  page_filter: {}
+                  old_canvases:
+                  - entry: {}
+                    strategy_relations:
+                    - {}
+                    strategies:
+                    - msg_content:
+                        webhook:
+                          plan_params:
+                          - {}
+                    updated_by: {}
+                    created_by: {}
+                request_id: '1'
+              schema:
+                $ref: '#/components/schemas/sensorsdata.focus.v1.WebListOldCanvasResponseHttpApiResult'
+          description: sensorsdata.focus.v1.WebListOldCanvasResponse
+      summary: 获取老画布列表
+      x-sd-openapi:
+        responseClass: com.sensorsdata.focus.v1.WebListOldCanvasResponse
+        isServerStreaming: false
+        requestClass: com.sensorsdata.focus.v1.WebListOldCanvasRequest
+        grpcServiceBase: com.sensorsdata.focus.v1.WebServiceGrpc.WebServiceImplBase
+        internalDesc: classes in template for grpc service dynamic invoking
+        isClientStreaming: false
+      x-codegen-request-body-name: WebListOldCanvasRequestBody
+      tags:
+      - Web
+  /web/old-canvas/get:
+    get:
+      description: 获取单个老画布
+      operationId: WebGetOldCanvas
+      parameters:
+      - description: 全局唯一的密钥，用于验证和授权访问 API 接口
+        in: header
+        name: api-key
+        required: true
+        schema:
+          type: string
+      - description: 项目名, 指定请求所属项目
+        in: header
+        name: sensorsdata-project
+        required: true
+        schema:
+          type: string
+      - description: 租户 ID, 用于请求所属租户
+        in: header
+        name: X-Organization-Id
+        required: true
+        schema:
+          type: string
+      - in: query
+        name: id
+        schema:
+          format: int32
+          type: integer
+      responses:
+        default:
+          content:
+            application/json:
+              example:
+                code: SUCCESS
+                data:
+                  old_canvas:
+                    entry: {}
+                    strategy_relations:
+                    - {}
+                    strategies:
+                    - msg_content:
+                        webhook:
+                          plan_params:
+                          - {}
+                    updated_by: {}
+                    created_by: {}
+                request_id: '1'
+              schema:
+                $ref: '#/components/schemas/sensorsdata.focus.v1.WebGetOldCanvasResponseHttpApiResult'
+          description: sensorsdata.focus.v1.WebGetOldCanvasResponse
+      summary: 获取单个老画布
+      x-sd-openapi:
+        responseClass: com.sensorsdata.focus.v1.WebGetOldCanvasResponse
+        isServerStreaming: false
+        requestClass: com.sensorsdata.focus.v1.WebGetOldCanvasRequest
+        grpcServiceBase: com.sensorsdata.focus.v1.WebServiceGrpc.WebServiceImplBase
+        internalDesc: classes in template for grpc service dynamic invoking
+        isClientStreaming: false
+      tags:
+      - Web
+  /web/canvas/list:
+    post:
+      description: 获取新画布列表
+      operationId: WebListCanvas
+      parameters:
+      - description: 全局唯一的密钥，用于验证和授权访问 API 接口
+        in: header
+        name: api-key
+        required: true
+        schema:
+          type: string
+      - description: 项目名, 指定请求所属项目
+        in: header
+        name: sensorsdata-project
+        required: true
+        schema:
+          type: string
+      - description: 租户 ID, 用于请求所属租户
+        in: header
+        name: X-Organization-Id
+        required: true
+        schema:
+          type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/sensorsdata.focus.v1.WebListCanvasRequestBody'
+        description: 请求画布列表的请求体
+        required: false
+      responses:
+        default:
+          content:
+            application/json:
+              example:
+                code: SUCCESS
+                data:
+                  page_filter: {}
+                  canvases:
+                  - entry:
+                      entry_component:
+                        rule: {}
+                        event:
+                          event_do:
+                            match_lists:
+                            - {}
+                      action_component:
+                        msg_content:
+                          webhook:
+                            plan_params:
+                            - {}
+                          push: {}
+                          edm: {}
+                      control_component: {}
+                      condition_component: {}
+                    component_relations:
+                    - {}
+                    updated_by: {}
+                    created_by: {}
+                request_id: '1'
+              schema:
+                $ref: '#/components/schemas/sensorsdata.focus.v1.WebListCanvasResponseHttpApiResult'
+          description: sensorsdata.focus.v1.WebListCanvasResponse
+      summary: 获取新画布列表
+      x-sd-openapi:
+        responseClass: com.sensorsdata.focus.v1.WebListCanvasResponse
+        isServerStreaming: false
+        requestClass: com.sensorsdata.focus.v1.WebListCanvasRequest
+        grpcServiceBase: com.sensorsdata.focus.v1.WebServiceGrpc.WebServiceImplBase
+        internalDesc: classes in template for grpc service dynamic invoking
+        isClientStreaming: false
+      x-codegen-request-body-name: WebListCanvasRequestBody
+      tags:
+      - Web
+  /web/canvas/get:
+    get:
+      description: 获取单个新画布
+      operationId: WebGetCanvas
+      parameters:
+      - description: 全局唯一的密钥，用于验证和授权访问 API 接口
+        in: header
+        name: api-key
+        required: true
+        schema:
+          type: string
+      - description: 项目名, 指定请求所属项目
+        in: header
+        name: sensorsdata-project
+        required: true
+        schema:
+          type: string
+      - description: 租户 ID, 用于请求所属租户
+        in: header
+        name: X-Organization-Id
+        required: true
+        schema:
+          type: string
+      - in: query
+        name: id
+        schema:
+          format: int32
+          type: integer
+      responses:
+        default:
+          content:
+            application/json:
+              example:
+                code: SUCCESS
+                data:
+                  canvas:
+                    entry:
+                      entry_component:
+                        rule: {}
+                        event:
+                          event_do:
+                            match_lists:
+                            - {}
+                      action_component:
+                        msg_content:
+                          webhook:
+                            plan_params:
+                            - {}
+                          push: {}
+                          edm: {}
+                      control_component: {}
+                      condition_component: {}
+                    component_relations:
+                    - {}
+                    updated_by: {}
+                    created_by: {}
+                request_id: '1'
+              schema:
+                $ref: '#/components/schemas/sensorsdata.focus.v1.WebGetCanvasResponseHttpApiResult'
+          description: sensorsdata.focus.v1.WebGetCanvasResponse
+      summary: 获取单个新画布
+      x-sd-openapi:
+        responseClass: com.sensorsdata.focus.v1.WebGetCanvasResponse
+        isServerStreaming: false
+        requestClass: com.sensorsdata.focus.v1.WebGetCanvasRequest
+        grpcServiceBase: com.sensorsdata.focus.v1.WebServiceGrpc.WebServiceImplBase
+        internalDesc: classes in template for grpc service dynamic invoking
+        isClientStreaming: false
+      tags:
+      - Web
+  /web/canvas/deliver:
+    post:
+      description: 发布status=DRAFT状态的新画布， 进入待审批状态
+      operationId: CanvasDeliver
+      parameters:
+      - description: 全局唯一的密钥，用于验证和授权访问 API 接口
+        in: header
+        name: api-key
+        required: true
+        schema:
+          type: string
+      - description: 项目名, 指定请求所属项目
+        in: header
+        name: sensorsdata-project
+        required: true
+        schema:
+          type: string
+      - description: 租户 ID, 用于请求所属租户
+        in: header
+        name: X-Organization-Id
+        required: true
+        schema:
+          type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/sensorsdata.focus.v1.CanvasDeliverRequest'
+        description: 发布新画布
+        required: false
+      responses:
+        default:
+          content:
+            application/json:
+              example:
+                code: SUCCESS
+                data: {}
+                request_id: '1'
+              schema:
+                $ref: '#/components/schemas/sensorsdata.focus.v1.CanvasDeliverResponseHttpApiResult'
+          description: sensorsdata.focus.v1.CanvasDeliverResponse
+      summary: 发布新画布草稿
+      x-sd-openapi:
+        responseClass: com.sensorsdata.focus.v1.CanvasDeliverResponse
+        isServerStreaming: false
+        requestClass: com.sensorsdata.focus.v1.CanvasDeliverRequest
+        grpcServiceBase: com.sensorsdata.focus.v1.WebServiceGrpc.WebServiceImplBase
+        internalDesc: classes in template for grpc service dynamic invoking
+        isClientStreaming: false
+      x-codegen-request-body-name: CanvasDeliverRequest
+      tags:
+      - Web
+  /web/canvas/terminate:
+    post:
+      description: 终止新画布, 只能终止以下状态的新画布：待运行-审批中(PENDING-子状态为AUDITING)、运行中(ACTIVE)、暂停中(SUSPEND)
+      operationId: CanvasTerminate
+      parameters:
+      - description: 全局唯一的密钥，用于验证和授权访问 API 接口
+        in: header
+        name: api-key
+        required: true
+        schema:
+          type: string
+      - description: 项目名, 指定请求所属项目
+        in: header
+        name: sensorsdata-project
+        required: true
+        schema:
+          type: string
+      - description: 租户 ID, 用于请求所属租户
+        in: header
+        name: X-Organization-Id
+        required: true
+        schema:
+          type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/sensorsdata.focus.v1.CanvasTerminateRequest'
+        description: 终止新画布
+        required: false
+      responses:
+        default:
+          content:
+            application/json:
+              example:
+                code: SUCCESS
+                data: {}
+                request_id: '1'
+              schema:
+                $ref: '#/components/schemas/sensorsdata.focus.v1.CanvasTerminateResponseHttpApiResult'
+          description: sensorsdata.focus.v1.CanvasTerminateResponse
+      summary: 终止新画布
+      x-sd-openapi:
+        responseClass: com.sensorsdata.focus.v1.CanvasTerminateResponse
+        isServerStreaming: false
+        requestClass: com.sensorsdata.focus.v1.CanvasTerminateRequest
+        grpcServiceBase: com.sensorsdata.focus.v1.WebServiceGrpc.WebServiceImplBase
+        internalDesc: classes in template for grpc service dynamic invoking
+        isClientStreaming: false
+      x-codegen-request-body-name: CanvasTerminateRequest
+      tags:
+      - Web
+  /web/canvas/delete:
+    post:
+      description: 删除新画布, 只能删除以下状态的新画布：草稿（DRAFT）、待运行-审批驳回（PENDING-子状态为AUDIT_BACK）、已终止(FINISHED)
+      operationId: CanvasDelete
+      parameters:
+      - description: 全局唯一的密钥，用于验证和授权访问 API 接口
+        in: header
+        name: api-key
+        required: true
+        schema:
+          type: string
+      - description: 项目名, 指定请求所属项目
+        in: header
+        name: sensorsdata-project
+        required: true
+        schema:
+          type: string
+      - description: 租户 ID, 用于请求所属租户
+        in: header
+        name: X-Organization-Id
+        required: true
+        schema:
+          type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/sensorsdata.focus.v1.CanvasDeleteRequest'
+        description: 删除新画布
+        required: false
+      responses:
+        default:
+          content:
+            application/json:
+              example:
+                code: SUCCESS
+                data: {}
+                request_id: '1'
+              schema:
+                $ref: '#/components/schemas/sensorsdata.focus.v1.CanvasDeleteResponseHttpApiResult'
+          description: sensorsdata.focus.v1.CanvasDeleteResponse
+      summary: 删除新画布
+      x-sd-openapi:
+        responseClass: com.sensorsdata.focus.v1.CanvasDeleteResponse
+        isServerStreaming: false
+        requestClass: com.sensorsdata.focus.v1.CanvasDeleteRequest
+        grpcServiceBase: com.sensorsdata.focus.v1.WebServiceGrpc.WebServiceImplBase
+        internalDesc: classes in template for grpc service dynamic invoking
+        isClientStreaming: false
+      x-codegen-request-body-name: CanvasDeleteRequest
+      tags:
+      - Web
+  /web/canvas/update-time:
+    post:
+      description: 修改草稿状态（DRAFT）/暂停中驳回状态（SUSPEND AUDIT_BACK）/待运行驳回（PENDING AUDIT_BACK）的新画布开始结束时间
+      operationId: CanvasUpdateTime
+      parameters:
+      - description: 全局唯一的密钥，用于验证和授权访问 API 接口
+        in: header
+        name: api-key
+        required: true
+        schema:
+          type: string
+      - description: 项目名, 指定请求所属项目
+        in: header
+        name: sensorsdata-project
+        required: true
+        schema:
+          type: string
+      - description: 租户 ID, 用于请求所属租户
+        in: header
+        name: X-Organization-Id
+        required: true
+        schema:
+          type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/sensorsdata.focus.v1.CanvasUpdateTimeRequest'
+        description: 修改草稿状态的新画布开始结束时间
+        required: false
+      responses:
+        default:
+          content:
+            application/json:
+              example:
+                code: SUCCESS
+                data: {}
+                request_id: '1'
+              schema:
+                $ref: '#/components/schemas/sensorsdata.focus.v1.CanvasUpdateTimeResponseHttpApiResult'
+          description: sensorsdata.focus.v1.CanvasUpdateTimeResponse
+      summary: 修改草稿状态（DRAFT）/暂停中驳回状态（SUSPEND AUDIT_BACK）/待运行驳回（PENDING AUDIT_BACK）的新画布开始结束时间
+      x-sd-openapi:
+        responseClass: com.sensorsdata.focus.v1.CanvasUpdateTimeResponse
+        isServerStreaming: false
+        requestClass: com.sensorsdata.focus.v1.CanvasUpdateTimeRequest
+        grpcServiceBase: com.sensorsdata.focus.v1.WebServiceGrpc.WebServiceImplBase
+        internalDesc: classes in template for grpc service dynamic invoking
+        isClientStreaming: false
+      x-codegen-request-body-name: CanvasUpdateTimeRequest
+      tags:
+      - Web
+  /web/user-groups/list:
+    get:
+      description: 获取单个计划、老画布、新画布的受众列表
+      operationId: ListUserGroups
+      parameters:
+      - description: 全局唯一的密钥，用于验证和授权访问 API 接口
+        in: header
+        name: api-key
+        required: true
+        schema:
+          type: string
+      - description: 项目名, 指定请求所属项目
+        in: header
+        name: sensorsdata-project
+        required: true
+        schema:
+          type: string
+      - description: 租户 ID, 用于请求所属租户
+        in: header
+        name: X-Organization-Id
+        required: true
+        schema:
+          type: string
+      - description: 计划、画布、新画布 id
+        in: query
+        name: id
+        schema:
+          format: int32
+          type: integer
+      responses:
+        default:
+          content:
+            application/json:
+              example:
+                code: SUCCESS
+                data:
+                  user_groups:
+                  - {}
+                request_id: '1'
+              schema:
+                $ref: '#/components/schemas/sensorsdata.focus.v1.express.GetUserGroupsResponseHttpApiResult'
+          description: sensorsdata.focus.v1.express.GetUserGroupsResponse
+      summary: 获取单个计划、老画布、新画布的受众列表
+      x-sd-openapi:
+        responseClass: com.sensorsdata.focus.v1.express.GetUserGroupsResponse
+        isServerStreaming: false
+        requestClass: com.sensorsdata.focus.v1.express.GetUserGroupsRequest
+        grpcServiceBase: com.sensorsdata.focus.v1.WebServiceGrpc.WebServiceImplBase
+        internalDesc: classes in template for grpc service dynamic invoking
+        isClientStreaming: false
+      tags:
+      - Web
+  /web/metrics/query:
+    post:
+      description: 根据传入条件查询指标信息
+      operationId: ListMetrics
+      parameters:
+      - description: 全局唯一的密钥，用于验证和授权访问 API 接口
+        in: header
+        name: api-key
+        required: true
+        schema:
+          type: string
+      - description: 项目名, 指定请求所属项目
+        in: header
+        name: sensorsdata-project
+        required: true
+        schema:
+          type: string
+      - description: 租户 ID, 用于请求所属租户
+        in: header
+        name: X-Organization-Id
+        required: true
+        schema:
+          type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/sensorsdata.focus.v1.MetricsRequest'
+        required: false
+      responses:
+        default:
+          content:
+            application/json:
+              example:
+                code: SUCCESS
+                data:
+                  metrics_responses:
+                  - phase: AUDIENCE
+                    create_time: '2023-07-29T18:00:00.000Z'
+                    from_component: 1
+                    count: 100
+                    current_day: '2023-07-29T18:00:00.000Z'
+                    convert_id: 1
+                    last_update_time: '2023-07-29T18:00:00.000Z'
+                    plan_version: 1
+                    strategy_id: -1
+                    current_component: 2
+                    strategy_unit_id: 100
+                    day: '2023-07-29T18:00:00.000Z'
+                    plan_id: 123
+                request_id: '1'
+              schema:
+                $ref: '#/components/schemas/sensorsdata.focus.v1.ListMetricsResponseHttpApiResult'
+          description: sensorsdata.focus.v1.ListMetricsResponse
+      summary: 查询指标
+      x-sd-openapi:
+        responseClass: com.sensorsdata.focus.v1.ListMetricsResponse
+        isServerStreaming: false
+        requestClass: com.sensorsdata.focus.v1.MetricsRequest
+        grpcServiceBase: com.sensorsdata.focus.v1.WebServiceGrpc.WebServiceImplBase
+        internalDesc: classes in template for grpc service dynamic invoking
+        isClientStreaming: false
+      x-codegen-request-body-name: MetricsRequest
+      tags:
+      - Web
+components:
+  schemas:
+    sensorsdata.focus.v1.WebListCanvasRequestBody:
+      description: 请求画布列表的请求体
+      properties:
+        page_filter:
+          $ref: '#/components/schemas/sensorsdata.focus.v1.web.PageFilter'
+      title: WebListCanvasRequest
+      type: object
+    sensorsdata.focus.v1.web.canvas.WebCanvas:
+      description: 新画布的配置信息
+      properties:
+        id:
+          description: ID，集群唯一
+          format: int32
+          type: integer
+        cname:
+          description: 中文名称
+          type: string
+        project_id:
+          description: 项目ID
+          format: int32
+          type: integer
+        type:
+          description: 新画布类型，固定值
+          enum:
+          - UNSPECIFIED
+          - SIMPLE
+          - RICH
+          - CANVAS
+          type: string
+        entry:
+          $ref: '#/components/schemas/sensorsdata.focus.v1.web.canvas.WebComponent'
+        status:
+          description: 状态
+          enum:
+          - UNSPECIFIED
+          - DRAFT
+          - PENDING
+          - ACTIVE
+          - SUSPEND
+          - CLOSED
+          - FINISHED
+          - ARCHIVE
+          - RETURN_SUBMITTER
+          type: string
+        sub_status:
+          description: 子状态
+          enum:
+          - UNSPECIFIED
+          - AUDITING
+          - AUDIT_REJECT
+          - AUDIT_BACK
+          - AUDIT_PASS
+          - MANUAL_STOP
+          - ERROR
+          type: string
+        components:
+          description: 组件信息，不包含进入组件
+          items:
+            $ref: '#/components/schemas/sensorsdata.focus.v1.web.canvas.WebComponent'
+          type: array
+        component_relations:
+          description: 组件直接之间的连接关心
+          items:
+            $ref: '#/components/schemas/sensorsdata.focus.v1.web.canvas.WebComponentEdge'
+          type: array
+        created_by:
+          $ref: '#/components/schemas/sensorsdata.focus.v1.web.AccountInfo'
+        updated_by:
+          $ref: '#/components/schemas/sensorsdata.focus.v1.web.AccountInfo'
+        create_time:
+          description: 画布创建时间
+          type: string
+        last_update_time:
+          description: 最近一次计划更新时间
+          type: string
+        group_id:
+          description: 组 ID
+          format: int32
+          type: integer
+        convert_rule_list:
+          description: 转化规则
+          type: string
+        convert_relevance_field_enabled:
+          description: 转化规则的关联属性开关
+          type: boolean
+        quiet_hour:
+          description: 静默时间
+          type: string
+        global_msg_limit_enabled:
+          description: 是否开启全局消息推送配置
+          type: boolean
+        re_enter:
+          description: 计划参与限制
+          type: string
+      title: WebCanvas
+      type: object
+    sensorsdata.focus.v1.CanvasUpdateTimeResponse:
+      description: 修改草稿状态的新画布开始结束时间的响应
+      title: CanvasUpdateTimeResponse
+      type: object
+    sensorsdata.focus.v1.web.canvas.EntryComponent:
+      description: ''
+      properties:
+        schedule_type:
+          description: 类型
+          enum:
+          - UNSPECIFIED
+          - FIXED_TIME
+          - ROUTINE
+          - TRIGGER_ONLY_A
+          - TRIGGER_A_NOT_B
+          type: string
+        fixed_time:
+          description: 触发类型为 FIXED_TIME 存在，定时运行时间
+          type: string
+        cron:
+          description: 触发类型为 ROUTINE 存在，定时周期 cron 表达式
+          type: string
+        schedule_start:
+          description: 触发类型为 ROUTINE、TRIGGER_ONLY_A、TRIGGER_A_NOT_B 存在，开始时间
+          type: string
+        schedule_end:
+          description: 触发类型为 ROUTINE、TRIGGER_ONLY_A、TRIGGER_A_NOT_B 存在，结束时间
+          type: string
+        finished_time:
+          description: ''
+          type: string
+        event:
+          $ref: '#/components/schemas/sensorsdata.focus.v1.web.canvas.EventComponent'
+        rule:
+          $ref: '#/components/schemas/sensorsdata.focus.v1.web.canvas.AudienceRule'
+      title: EntryComponent
+      type: object
+    sensorsdata.focus.v1.WebListPlanResponse:
+      description: 请求计划列表的响应体
+      properties:
+        page_filter:
+          $ref: '#/components/schemas/sensorsdata.focus.v1.web.PageFilter'
+        plans:
+          description: 计划信息
+          items:
+            $ref: '#/components/schemas/sensorsdata.focus.v1.web.plan.WebPlan'
+          type: array
+      title: WebListPlanResponse
+      type: object
+    sensorsdata.focus.v1.web.plan.StrategyInfo:
+      description: AB Test 配置信息
+      properties:
+        strategy_id:
+          description: id
+          format: int32
+          type: integer
+        strategy_name:
+          description: 组名
+          type: string
+        strategy_type:
+          description: 组类别
+          enum:
+          - UNSPECIFIED
+          - EXPERIENCE_GROUP
+          - CONTROL_GROUP
+          type: string
+        strategy_ratio:
+          description: 流量分配比例，用 integer 表示，取值范围 [1~100] ，一个计划中的流量分配总和 100
+          format: int32
+          type: integer
+        msg_content:
+          $ref: '#/components/schemas/sensorsdata.focus.v1.web.plan.MsgContentWithStyle'
+        is_trigger:
+          description: 是否触发
+          type: boolean
+      title: StrategyInfo
+      type: object
+    sensorsdata.focus.v1.ListMetricsResponse:
+      description: ''
+      properties:
+        metrics_responses:
+          description: 返回指标数据
+          items:
+            $ref: '#/components/schemas/sensorsdata.focus.v1.MetricsResponse'
+          type: array
+        udtf_error:
+          description: ''
+          format: int32
+          type: integer
+      title: ListMetricsResponse
+      type: object
+    sensorsdata.focus.v1.WebListPlanRequestBody:
+      description: 请求计划列表的请求体
+      properties:
+        page_filter:
+          $ref: '#/components/schemas/sensorsdata.focus.v1.web.PageFilter'
+      title: WebListPlanRequest
+      type: object
+    sensorsdata.focus.v1.WebGetPlanResponseHttpApiResult:
+      properties:
+        code:
+          type: string
+        message:
+          type: string
+        request_id:
+          type: string
+        data:
+          $ref: '#/components/schemas/sensorsdata.focus.v1.WebGetPlanResponse'
+        error_info:
+          $ref: '#/components/schemas/sensorsdata.common.ErrorInfo'
+      title: sensorsdata.focus.v1.WebGetPlanResponseHttpApiResult
+      type: object
+    sensorsdata.focus.v1.web.PageFilter:
+      description: 分页信息
+      properties:
+        limit:
+          description: 每页大小
+          format: int32
+          type: integer
+        offset:
+          description: 偏移量
+          format: int32
+          type: integer
+        total:
+          description: 总数
+          format: int32
+          type: integer
+      title: PageFilter
+      type: object
+    sensorsdata.focus.v1.web.plan.MsgContentWithStyle4OldCanvas:
+      description: 旧画布推送消息配置
+      properties:
+        channel_instance_id:
+          description: 通道实例 id
+          format: int32
+          type: integer
+        style:
+          description: 通道类型
+          enum:
+          - UNSPECIFIED
+          - WEBHOOK
+          - EMAIL
+          - TEXT_MSG
+          - WECHAT_SERVICE_TEMPLATE_MSG
+          - WECHAT_ACTIVE_PUSH
+          - WECHAT_BROADCAST
+          - POPUP
+          - CUSTOM_POPUP
+          - SECTION
+          - BANNER
+          - EDM
+          - LINE
+          - REWARD_GRANT
+          - COMMON
+          - NO_TOUCH
+          - PUSH
+          type: string
+        webhook:
+          $ref: '#/components/schemas/sensorsdata.focus.v1.web.WebHookContent'
+      title: MsgContentWithStyle4OldCanvas
+      type: object
+    sensorsdata.focus.v1.WebListOldCanvasRequestBody:
+      description: 请求画布列表的请求体
+      properties:
+        page_filter:
+          $ref: '#/components/schemas/sensorsdata.focus.v1.web.PageFilter'
+      title: WebListOldCanvasRequest
+      type: object
+    sensorsdata.focus.v1.web.canvas.PushContent:
+      description: ''
+      properties:
+        freemarker_syntax_version:
+          description: ''
+          format: int32
+          type: integer
+        title:
+          description: ''
+          type: string
+        content:
+          description: ''
+          type: string
+        type:
+          description: ''
+          enum:
+          - UNSPECIFIED
+          - OPEN_APP
+          - LINK
+          - CUSTOMIZED
+          type: string
+        notification_icon:
+          description: ''
+          type: string
+      title: PushContent
+      type: object
+    sensorsdata.focus.v1.web.canvas.EdmContent:
+      description: ''
+      properties:
+        from_name:
+          description: ''
+          type: string
+        subject:
+          description: ''
+          type: string
+        type:
+          description: ''
+          enum:
+          - UNSPECIFIED
+          - TEXT
+          - RICH_TEXT
+          - HTML
+          - TEMPLATE
+          type: string
+        content:
+          description: ''
+          type: string
+        template_id:
+          description: ''
+          type: string
+        template_name:
+          description: ''
+          type: string
+        template_subject:
+          description: ''
+          type: string
+      title: EdmContent
+      type: object
+    sensorsdata.focus.v1.CanvasDeleteResponse:
+      description: 删除新画布的响应
+      title: CanvasDeleteResponse
+      type: object
+    sensorsdata.focus.v1.web.plan.StrategyRelation:
+      description: 策略器关系
+      properties:
+        from:
+          description: 上一层的策略器 id，1 表示根节点
+          format: int32
+          type: integer
+        tos:
+          description: 下一层的策略器 id，从前往右有优先级关系
+          items:
+            format: int32
+            type: integer
+          type: array
+      title: StrategyRelation
+      type: object
+    sensorsdata.focus.v1.web.plan.WebOldCanvas:
+      description: 旧画布配置
+      properties:
+        id:
+          description: id，集群唯一
+          format: int32
+          type: integer
+        cname:
+          description: 中文名称
+          type: string
+        project_id:
+          description: 项目id
+          format: int32
+          type: integer
+        type:
+          description: 画布类型
+          enum:
+          - UNSPECIFIED
+          - SIMPLE
+          - RICH
+          - CANVAS
+          type: string
+        entry:
+          $ref: '#/components/schemas/sensorsdata.focus.v1.web.Entry'
+        status:
+          description: 状态
+          enum:
+          - UNSPECIFIED
+          - DRAFT
+          - PENDING
+          - ACTIVE
+          - SUSPEND
+          - CLOSED
+          - FINISHED
+          - ARCHIVE
+          - RETURN_SUBMITTER
+          type: string
+        strategies:
+          description: 策略器配置列表
+          items:
+            $ref: '#/components/schemas/sensorsdata.focus.v1.web.plan.StrategyUnit'
+          type: array
+        strategy_relations:
+          description: 策略器关系
+          items:
+            $ref: '#/components/schemas/sensorsdata.focus.v1.web.plan.StrategyRelation'
+          type: array
+        created_by:
+          $ref: '#/components/schemas/sensorsdata.focus.v1.web.AccountInfo'
+        updated_by:
+          $ref: '#/components/schemas/sensorsdata.focus.v1.web.AccountInfo'
+        create_time:
+          description: 画布创建时间
+          type: string
+        last_update_time:
+          description: 最近一次计划更新时间
+          type: string
+        group_id:
+          description: 组 ID
+          format: int32
+          type: integer
+        audience_rule:
+          description: 受众用户匹配规则
+          type: string
+        entry_rule:
+          description: 策略进入规则
+          type: string
+        convert_rule_list:
+          description: 转化规则
+          type: string
+        quiet_hour:
+          description: 静默时间
+          type: string
+        global_msg_limit_enabled:
+          description: 是否开启全局消息推送配置
+          type: boolean
+        re_enter:
+          description: 计划参与限制
+          type: string
+      title: WebOldCanvas
+      type: object
+    sensorsdata.focus.v1.WebListOldCanvasResponseHttpApiResult:
+      properties:
+        code:
+          type: string
+        message:
+          type: string
+        request_id:
+          type: string
+        data:
+          $ref: '#/components/schemas/sensorsdata.focus.v1.WebListOldCanvasResponse'
+        error_info:
+          $ref: '#/components/schemas/sensorsdata.common.ErrorInfo'
+      title: sensorsdata.focus.v1.WebListOldCanvasResponseHttpApiResult
+      type: object
+    sensorsdata.common.ErrorInfo:
+      properties:
+        code:
+          description: 具体的错误码
+          example: XX-D-F-2-1
+          type: string
+        description:
+          description: 错误描述
+          example: 前端参数校验异常,PARAMETER_FORMAT_ERROR(quantiles=[10, -90] is not include [0, 100])
+          type: string
+        system_response:
+          description: 致错的可能原因列表
+          example: 系统终止了查询处理
+          type: string
+        error_causes:
+          items:
+            $ref: '#/components/schemas/sensorsdata.common.ErrorCause'
+          type: array
+        context:
+          $ref: '#/components/schemas/sensorsdata.common.ErrorContext'
+      title: ErrorInfo
+      type: object
+    sensorsdata.focus.v1.web.canvas.EventComponent:
+      description: ''
+      properties:
+        event_do:
+          $ref: '#/components/schemas/sensorsdata.focus.v1.web.canvas.EventPattern'
+      title: EventComponent
+      type: object
+    sensorsdata.focus.v1.web.WebHookContent:
+      description: webhook 的推送内容
+      properties:
+        plan_params:
+          description: 模板配置参数列表
+          items:
+            $ref: '#/components/schemas/sensorsdata.focus.v1.web.ContentParam'
+          type: array
+      title: WebHookContent
+      type: object
+    sensorsdata.focus.v1.express.GetUserGroupsResponse:
+      description: ''
+      properties:
+        success:
+          description: ''
+          type: boolean
+        user_groups:
+          description: 受众列表
+          items:
+            $ref: '#/components/schemas/sensorsdata.focus.v1.express.UserGroupInfo'
+          type: array
+      title: GetUserGroupsResponse
+      type: object
+    sensorsdata.focus.v1.CanvasDeleteResponseHttpApiResult:
+      properties:
+        code:
+          type: string
+        message:
+          type: string
+        request_id:
+          type: string
+        data:
+          $ref: '#/components/schemas/sensorsdata.focus.v1.CanvasDeleteResponse'
+        error_info:
+          $ref: '#/components/schemas/sensorsdata.common.ErrorInfo'
+      title: sensorsdata.focus.v1.CanvasDeleteResponseHttpApiResult
+      type: object
+    sensorsdata.focus.v1.web.plan.Action:
+      description: 营销动作配置
+      properties:
+        channel_category:
+          description: 通道类型
+          enum:
+          - UNSPECIFIED
+          - WEBHOOK
+          - EMAIL
+          - TEXT_MSG
+          - WECHAT_SERVICE_TEMPLATE_MSG
+          - WECHAT_ACTIVE_PUSH
+          - WECHAT_BROADCAST
+          - POPUP
+          - CUSTOM_POPUP
+          - SECTION
+          - BANNER
+          - EDM
+          - LINE
+          - REWARD_GRANT
+          - COMMON
+          - NO_TOUCH
+          - PUSH
+          type: string
+        strategies:
+          description: 策略配置列表
+          items:
+            $ref: '#/components/schemas/sensorsdata.focus.v1.web.plan.StrategyInfo'
+          type: array
+      title: Action
+      type: object
+    sensorsdata.focus.v1.web.AccountInfo:
+      description: 用户信息
+      properties:
+        user_name:
+          description: 用户名
+          type: string
+        user_id:
+          description: 用户 id
+          format: int64
+          type: integer
+        user_cname:
+          description: 用户显示名
+          type: string
+      title: AccountInfo
+      type: object
+    sensorsdata.focus.v1.CanvasUpdateTimeResponseHttpApiResult:
+      properties:
+        code:
+          type: string
+        message:
+          type: string
+        request_id:
+          type: string
+        data:
+          $ref: '#/components/schemas/sensorsdata.focus.v1.CanvasUpdateTimeResponse'
+        error_info:
+          $ref: '#/components/schemas/sensorsdata.common.ErrorInfo'
+      title: sensorsdata.focus.v1.CanvasUpdateTimeResponseHttpApiResult
+      type: object
+    sensorsdata.common.ErrorContext:
+      description: 发生错误时，系统快照信息
+      properties:
+        origin_stack:
+          description: 上游异常的 stack，由系统截获
+          type: string
+        origin_cause:
+          description: 上游异常的 cause by，由系统截获
+          type: string
+        origin_code:
+          description: 上游异常的错误简码
+          type: string
+        origin_complete_code:
+          description: 上游异常的完整错误码
+          type: string
+        error_extend_desc:
+          description: 本次异常的辅助说明，可传入
+          type: string
+      title: ErrorContext
+      type: object
+    sensorsdata.focus.v1.WebListCanvasResponse:
+      description: 请求画布列表的响应体
+      properties:
+        page_filter:
+          $ref: '#/components/schemas/sensorsdata.focus.v1.web.PageFilter'
+        canvases:
+          description: ''
+          items:
+            $ref: '#/components/schemas/sensorsdata.focus.v1.web.canvas.WebCanvas'
+          type: array
+      title: WebListCanvasResponse
+      type: object
+    sensorsdata.focus.v1.ListMetricsResponseHttpApiResult:
+      properties:
+        code:
+          type: string
+        message:
+          type: string
+        request_id:
+          type: string
+        data:
+          $ref: '#/components/schemas/sensorsdata.focus.v1.ListMetricsResponse'
+        error_info:
+          $ref: '#/components/schemas/sensorsdata.common.ErrorInfo'
+      title: sensorsdata.focus.v1.ListMetricsResponseHttpApiResult
+      type: object
+    sensorsdata.focus.v1.web.plan.WebPlan:
+      description: 运营计划配置
+      properties:
+        id:
+          description: id，集群唯一
+          format: int32
+          type: integer
+        cname:
+          description: 中文名称
+          type: string
+        project_id:
+          description: 项目id
+          format: int32
+          type: integer
+        type:
+          description: 计划类型
+          enum:
+          - UNSPECIFIED
+          - SIMPLE
+          - RICH
+          - CANVAS
+          type: string
+        entry:
+          $ref: '#/components/schemas/sensorsdata.focus.v1.web.Entry'
+        status:
+          description: 状态，只读
+          enum:
+          - UNSPECIFIED
+          - DRAFT
+          - PENDING
+          - ACTIVE
+          - SUSPEND
+          - CLOSED
+          - FINISHED
+          - ARCHIVE
+          - RETURN_SUBMITTER
+          type: string
+        sub_status:
+          description: 子状态
+          enum:
+          - UNSPECIFIED
+          - AUDITING
+          - AUDIT_REJECT
+          - AUDIT_BACK
+          - AUDIT_PASS
+          - MANUAL_STOP
+          - ERROR
+          type: string
+        action:
+          $ref: '#/components/schemas/sensorsdata.focus.v1.web.plan.Action'
+        created_by:
+          $ref: '#/components/schemas/sensorsdata.focus.v1.web.AccountInfo'
+        updated_by:
+          $ref: '#/components/schemas/sensorsdata.focus.v1.web.AccountInfo'
+        create_time:
+          description: 画布创建时间
+          type: string
+        last_update_time:
+          description: 最近一次计划更新时间
+          type: string
+        group_id:
+          description: 组 ID
+          format: int32
+          type: integer
+        audience_rule:
+          description: 受众用户匹配规则
+          type: string
+        entry_rule:
+          description: 策略进入规则
+          type: string
+        convert_rule_list:
+          description: 转化规则
+          type: string
+        quiet_hour:
+          description: 静默时间
+          type: string
+        have_ab_test:
+          description: 是否有实验组
+          type: boolean
+        global_msg_limit_enabled:
+          description: 是否开启全局消息推送配置
+          type: boolean
+        re_enter:
+          description: 计划参与限制
+          type: string
+      title: WebPlan
+      type: object
+    sensorsdata.focus.v1.CanvasDeliverRequest:
+      description: 发布新画布
+      properties:
+        canvas_id:
+          description: 画布ID
+          format: int32
+          type: integer
+      title: CanvasDeliverRequest
+      type: object
+    sensorsdata.focus.v1.CanvasTerminateResponse:
+      description: 终止新画布的响应
+      title: CanvasTerminateResponse
+      type: object
+    sensorsdata.focus.v1.express.metrics.FilterMetricsCondition:
+      description: ''
+      properties:
+        plan_id:
+          description: 计划 id,必录项
+          example: 123
+          format: int32
+          type: integer
+        metrics_phases:
+          description: 指标名称集合
+          example: '["AUDIENCE", "SENDER_SEND", "ENTER"]'
+          items:
+            type: string
+          type: array
+        plan_version:
+          description: 计划对应的版本号
+          example: 1
+          format: int32
+          type: integer
+        from_components:
+          description: 开始节点集合
+          example: '[1, 2, 3, 4]'
+          items:
+            format: int32
+            type: integer
+          type: array
+        current_components:
+          description: 结束节点
+          example: '[2, 3]'
+          items:
+            format: int32
+            type: integer
+          type: array
+        from_date:
+          description: 开始日期，必录项，对应为时间戳
+          example: '2023-07-29T18:00:00Z'
+          format: date-time
+          type: string
+        to_date:
+          description: 结束日期，必录项，对应为时间戳
+          example: '2023-07-29T18:00:00Z'
+          format: date-time
+          type: string
+        statistic_type:
+          description: ''
+          enum:
+          - PLAT_FORM_UNSPECIFIED
+          - DAY
+          - CURRENT_DAY
+          type: string
+        time_zone:
+          description: ''
+          type: string
+        plan_id_lists:
+          description: ''
+          items:
+            format: int32
+            type: integer
+          type: array
+      required:
+      - from_date
+      - to_date
+      title: FilterMetricsCondition
+      type: object
+    sensorsdata.focus.v1.WebListPlanResponseHttpApiResult:
+      properties:
+        code:
+          type: string
+        message:
+          type: string
+        request_id:
+          type: string
+        data:
+          $ref: '#/components/schemas/sensorsdata.focus.v1.WebListPlanResponse'
+        error_info:
+          $ref: '#/components/schemas/sensorsdata.common.ErrorInfo'
+      title: sensorsdata.focus.v1.WebListPlanResponseHttpApiResult
+      type: object
+    sensorsdata.common.ErrorCause:
+      properties:
+        error_cause:
+          description: 致错原因1
+          example: 参数异常1
+          type: string
+        action_suggestion:
+          description: 操作建议，针对该原因，建议的解决方式
+          example: 检测入参的数据类型1
+          type: string
+      title: ErrorCause
+      type: object
+    sensorsdata.focus.v1.WebGetPlanResponse:
+      description: 请求计划的响应体
+      properties:
+        plan:
+          $ref: '#/components/schemas/sensorsdata.focus.v1.web.plan.WebPlan'
+      title: WebGetPlanResponse
+      type: object
+    sensorsdata.focus.v1.WebGetOldCanvasResponse:
+      description: 请求画布的响应体
+      properties:
+        old_canvas:
+          $ref: '#/components/schemas/sensorsdata.focus.v1.web.plan.WebOldCanvas'
+      title: WebGetOldCanvasResponse
+      type: object
+    sensorsdata.focus.v1.web.canvas.Matcher:
+      description: ''
+      properties:
+        event_name:
+          description: ''
+          type: string
+        aggregator_enum:
+          description: ''
+          enum:
+          - UNSPECIFIED
+          - COUNT
+          - SUM
+          type: string
+        function_enum:
+          description: ''
+          enum:
+          - UNSPECIFIED
+          - EQUAL
+          - LEAST
+          - GREATER
+          - LESS
+          - LESS_EQUAL
+          - NOT_EQUAL
+          type: string
+      title: Matcher
+      type: object
+    sensorsdata.focus.v1.express.GetUserGroupsResponseHttpApiResult:
+      properties:
+        code:
+          type: string
+        message:
+          type: string
+        request_id:
+          type: string
+        data:
+          $ref: '#/components/schemas/sensorsdata.focus.v1.express.GetUserGroupsResponse'
+        error_info:
+          $ref: '#/components/schemas/sensorsdata.common.ErrorInfo'
+      title: sensorsdata.focus.v1.express.GetUserGroupsResponseHttpApiResult
+      type: object
+    sensorsdata.focus.v1.web.canvas.ActionComponent:
+      description: 营销动作组件
+      properties:
+        msg_content:
+          $ref: '#/components/schemas/sensorsdata.focus.v1.web.canvas.ActionMsgContent'
+      title: ActionComponent
+      type: object
+    sensorsdata.focus.v1.CanvasDeliverResponse:
+      description: 发布新画布的响应
+      title: CanvasDeliverResponse
+      type: object
+    sensorsdata.focus.v1.web.plan.MsgContentWithStyle:
+      description: 通道实例配置
+      properties:
+        channel_instance_id:
+          description: 通道实例 id
+          format: int32
+          type: integer
+        webhook:
+          $ref: '#/components/schemas/sensorsdata.focus.v1.web.WebHookContent'
+      title: MsgContentWithStyle
+      type: object
+    sensorsdata.focus.v1.MetricsRequest:
+      description: ''
+      properties:
+        filter_metrics_condition:
+          $ref: '#/components/schemas/sensorsdata.focus.v1.express.metrics.FilterMetricsCondition'
+        metrics_sorts:
+          description: 排序条件
+          items:
+            $ref: '#/components/schemas/sensorsdata.focus.v1.express.metrics.MetricsSort'
+          type: array
+        account_id:
+          description: 账号ID
+          format: int32
+          type: integer
+      title: MetricsRequest
+      type: object
+    sensorsdata.focus.v1.WebGetCanvasResponse:
+      description: 请求画布的响应体
+      properties:
+        canvas:
+          $ref: '#/components/schemas/sensorsdata.focus.v1.web.canvas.WebCanvas'
+      title: WebGetCanvasResponse
+      type: object
+    sensorsdata.focus.v1.web.canvas.ConditionComponent:
+      description: 判定组件
+      properties:
+        style:
+          description: ''
+          enum:
+          - UNSPECIFIED
+          - EVENT
+          - ROUTINE
+          - STREAM
+          - EVENT_PROPERTY
+          type: string
+      title: ConditionComponent
+      type: object
+    sensorsdata.focus.v1.CanvasTerminateResponseHttpApiResult:
+      properties:
+        code:
+          type: string
+        message:
+          type: string
+        request_id:
+          type: string
+        data:
+          $ref: '#/components/schemas/sensorsdata.focus.v1.CanvasTerminateResponse'
+        error_info:
+          $ref: '#/components/schemas/sensorsdata.common.ErrorInfo'
+      title: sensorsdata.focus.v1.CanvasTerminateResponseHttpApiResult
+      type: object
+    sensorsdata.focus.v1.web.plan.StrategyUnit:
+      description: 策略器单元配置
+      properties:
+        id:
+          description: id
+          format: int32
+          type: integer
+        cname:
+          description: 显示名称
+          type: string
+        msg_content:
+          $ref: '#/components/schemas/sensorsdata.focus.v1.web.plan.MsgContentWithStyle4OldCanvas'
+      title: StrategyUnit
+      type: object
+    sensorsdata.focus.v1.CanvasUpdateTimeRequest:
+      description: 修改草稿状态的新画布开始结束时间
+      properties:
+        canvas_id:
+          description: 画布ID
+          format: int32
+          type: integer
+        start_time:
+          description: 进入时间-开始时间
+          format: date-time
+          type: string
+        end_time:
+          description: 进入时间-结束时间
+          format: date-time
+          type: string
+        terminate_time:
+          description: 新画布终止时间
+          format: date-time
+          type: string
+      title: CanvasUpdateTimeRequest
+      type: object
+    sensorsdata.focus.v1.MetricsResponse:
+      description: ''
+      properties:
+        plan_id:
+          description: 计划 ID
+          example: 123
+          format: int32
+          type: integer
+        phase:
+          description: 指标名称
+          example: AUDIENCE
+          type: string
+        strategy_id:
+          description: 对照组/实验组 ID
+          example: -1
+          format: int32
+          type: integer
+        strategy_unit_id:
+          description: 策略 ID
+          example: 100
+          format: int32
+          type: integer
+        convert_id:
+          description: 目标转化 ID
+          example: 1
+          format: int32
+          type: integer
+        count:
+          description: 对应指标数量
+          example: 100
+          format: int32
+          type: integer
+        day:
+          description: 指标归因对应日期：根据进入画布时间统计
+          example: '2023-07-29T18:00:00Z'
+          format: date-time
+          type: string
+        plan_version:
+          description: 版本信息
+          example: 1
+          format: int32
+          type: integer
+        from_component:
+          description: 来源组件 ID
+          example: 1
+          format: int32
+          type: integer
+        current_component:
+          description: 当前节点 ID
+          example: 2
+          format: int32
+          type: integer
+        last_update_time:
+          description: 更新时间
+          example: '2023-07-29T18:00:00Z'
+          format: date-time
+          type: string
+        create_time:
+          description: 创建时间
+          example: '2023-07-29T18:00:00Z'
+          format: date-time
+          type: string
+        current_day:
+          description: 指标归因对应日期:根据事件发生时间统计
+          example: '2023-07-29T18:00:00Z'
+          format: date-time
+          type: string
+      title: MetricsResponse
+      type: object
+    sensorsdata.focus.v1.web.canvas.EventPattern:
+      description: ''
+      properties:
+        match_lists:
+          description: ''
+          items:
+            $ref: '#/components/schemas/sensorsdata.focus.v1.web.canvas.Matcher'
+          type: array
+      title: EventPattern
+      type: object
+    sensorsdata.focus.v1.WebGetOldCanvasResponseHttpApiResult:
+      properties:
+        code:
+          type: string
+        message:
+          type: string
+        request_id:
+          type: string
+        data:
+          $ref: '#/components/schemas/sensorsdata.focus.v1.WebGetOldCanvasResponse'
+        error_info:
+          $ref: '#/components/schemas/sensorsdata.common.ErrorInfo'
+      title: sensorsdata.focus.v1.WebGetOldCanvasResponseHttpApiResult
+      type: object
+    sensorsdata.focus.v1.web.canvas.ControlComponent:
+      description: 控制组件
+      properties:
+        style:
+          description: ''
+          enum:
+          - UNSPECIFIED
+          - AUDIENCE_SPLITTER
+          - EVENT_SPLITTER
+          - PERCENT_SPLITTER
+          - PERCENT_SPLITTER_BRANCH
+          - TIME_SPLITTER
+          - TIME_SPLITTER_BRANCH
+          - ELSE_BRANCH
+          - DELAY
+          - END
+          - EVENT_PROPERTY_SPLITTER
+          type: string
+      title: ControlComponent
+      type: object
+    sensorsdata.focus.v1.WebListOldCanvasResponse:
+      description: 请求画布列表的响应体
+      properties:
+        page_filter:
+          $ref: '#/components/schemas/sensorsdata.focus.v1.web.PageFilter'
+        old_canvases:
+          description: ''
+          items:
+            $ref: '#/components/schemas/sensorsdata.focus.v1.web.plan.WebOldCanvas'
+          type: array
+      title: WebListOldCanvasResponse
+      type: object
+    sensorsdata.focus.v1.web.ContentParam:
+      description: 模板配置参数
+      properties:
+        name:
+          description: 参数名
+          type: string
+        cname:
+          description: 参数显示名
+          type: string
+        value:
+          description: 参数值
+          type: string
+        required:
+          description: 是否是必填项
+          type: boolean
+      title: ContentParam
+      type: object
+    sensorsdata.focus.v1.CanvasDeliverResponseHttpApiResult:
+      properties:
+        code:
+          type: string
+        message:
+          type: string
+        request_id:
+          type: string
+        data:
+          $ref: '#/components/schemas/sensorsdata.focus.v1.CanvasDeliverResponse'
+        error_info:
+          $ref: '#/components/schemas/sensorsdata.common.ErrorInfo'
+      title: sensorsdata.focus.v1.CanvasDeliverResponseHttpApiResult
+      type: object
+    sensorsdata.focus.v1.web.canvas.WebComponentEdge:
+      description: 组件的关系
+      properties:
+        source_component_id:
+          description: 来源组件在组件列表中的 ID，该 ID 为画布内组件 ID
+          format: int32
+          type: integer
+        target_component_id:
+          description: 目标组件在组件列表中的 ID，该 ID 为画布内组件 ID
+          format: int32
+          type: integer
+        entry_source_node:
+          description: 边类型
+          enum:
+          - UNSPECIFIED
+          - 'YES'
+          - 'NO'
+          - ALL
+          type: string
+      title: WebComponentEdge
+      type: object
+    sensorsdata.focus.v1.WebListCanvasResponseHttpApiResult:
+      properties:
+        code:
+          type: string
+        message:
+          type: string
+        request_id:
+          type: string
+        data:
+          $ref: '#/components/schemas/sensorsdata.focus.v1.WebListCanvasResponse'
+        error_info:
+          $ref: '#/components/schemas/sensorsdata.common.ErrorInfo'
+      title: sensorsdata.focus.v1.WebListCanvasResponseHttpApiResult
+      type: object
+    sensorsdata.focus.v1.web.canvas.AudienceRule:
+      description: ''
+      properties:
+        select_all:
+          description: ''
+          type: boolean
+        type:
+          description: ''
+          enum:
+          - UNSPECIFIED
+          - BATCH
+          - STREAM
+          type: string
+      title: AudienceRule
+      type: object
+    sensorsdata.focus.v1.express.metrics.MetricsSort:
+      description: ''
+      properties:
+        property_name:
+          description: 排序字段
+          example: plan_id
+          type: string
+        sort_order:
+          description: 排序方向
+          enum:
+          - UNSPECIFIED
+          - ASC
+          - DESC
+          example: ASC/DESC
+          type: string
+      title: MetricsSort
+      type: object
+    sensorsdata.focus.v1.web.canvas.WebComponent:
+      description: 画布组件定义,包含进入/判定/控制/动作/结束等组件
+      properties:
+        id:
+          description: 组件ID 画布内不重复
+          format: int32
+          type: integer
+        cname:
+          description: 组件名称
+          type: string
+        type:
+          description: 类型
+          enum:
+          - UNSPECIFIED
+          - ENTER
+          - CONDITION
+          - ACTION
+          - CONTROL
+          - PLACEHOLDER
+          type: string
+        entry_component:
+          $ref: '#/components/schemas/sensorsdata.focus.v1.web.canvas.EntryComponent'
+        condition_component:
+          $ref: '#/components/schemas/sensorsdata.focus.v1.web.canvas.ConditionComponent'
+        action_component:
+          $ref: '#/components/schemas/sensorsdata.focus.v1.web.canvas.ActionComponent'
+        control_component:
+          $ref: '#/components/schemas/sensorsdata.focus.v1.web.canvas.ControlComponent'
+      title: WebComponent
+      type: object
+    sensorsdata.focus.v1.WebGetCanvasResponseHttpApiResult:
+      properties:
+        code:
+          type: string
+        message:
+          type: string
+        request_id:
+          type: string
+        data:
+          $ref: '#/components/schemas/sensorsdata.focus.v1.WebGetCanvasResponse'
+        error_info:
+          $ref: '#/components/schemas/sensorsdata.common.ErrorInfo'
+      title: sensorsdata.focus.v1.WebGetCanvasResponseHttpApiResult
+      type: object
+    sensorsdata.focus.v1.CanvasTerminateRequest:
+      description: 终止新画布
+      properties:
+        canvas_id:
+          description: 画布ID
+          format: int32
+          type: integer
+      title: CanvasTerminateRequest
+      type: object
+    sensorsdata.focus.v1.web.canvas.ActionMsgContent:
+      description: 动作消息体
+      properties:
+        channel_instance_id:
+          description: 通道实例ID
+          format: int32
+          type: integer
+        style:
+          description: 通道类型
+          enum:
+          - UNSPECIFIED
+          - WEBHOOK
+          - EMAIL
+          - TEXT_MSG
+          - WECHAT_SERVICE_TEMPLATE_MSG
+          - WECHAT_ACTIVE_PUSH
+          - WECHAT_BROADCAST
+          - POPUP
+          - CUSTOM_POPUP
+          - SECTION
+          - BANNER
+          - EDM
+          - LINE
+          - REWARD_GRANT
+          - COMMON
+          - NO_TOUCH
+          - PUSH
+          type: string
+        webhook:
+          $ref: '#/components/schemas/sensorsdata.focus.v1.web.WebHookContent'
+        edm:
+          $ref: '#/components/schemas/sensorsdata.focus.v1.web.canvas.EdmContent'
+        push:
+          $ref: '#/components/schemas/sensorsdata.focus.v1.web.canvas.PushContent'
+      title: ActionMsgContent
+      type: object
+    sensorsdata.focus.v1.express.UserGroupInfo:
+      description: ''
+      properties:
+        component_id:
+          description: 计划的component_id为0、画布的策略器id、新画布的组件id
+          format: int32
+          type: integer
+        user_group_name:
+          description: 受众名称
+          type: string
+        audience_rule:
+          description: 受众规则
+          type: string
+      title: UserGroupInfo
+      type: object
+    sensorsdata.focus.v1.web.Entry:
+      description: 进入节点配置
+      properties:
+        schedule_type:
+          description: ''
+          enum:
+          - UNSPECIFIED
+          - FIXED_TIME
+          - ROUTINE
+          - TRIGGER_ONLY_A
+          - TRIGGER_A_NOT_B
+          type: string
+        fixed_time:
+          description: 触发类型为 FIXED_TIME 存在，定时运行时间
+          type: string
+        cron:
+          description: 触发类型为 ROUTINE 存在，定时周期 cron 表达式
+          type: string
+        schedule_start:
+          description: 触发类型为 ROUTINE、TRIGGER_ONLY_A、TRIGGER_A_NOT_B 存在，开始时间
+          type: string
+        schedule_end:
+          description: 触发类型为 ROUTINE、TRIGGER_ONLY_A、TRIGGER_A_NOT_B 存在，结束时间
+          type: string
+      title: Entry
+      type: object
+    sensorsdata.focus.v1.CanvasDeleteRequest:
+      description: 删除新画布
+      properties:
+        canvas_id:
+          description: 画布ID
+          format: int32
+          type: integer
+      title: CanvasDeleteRequest
+      type: object
+x-sd-openapi-service-name: Web
+x-sd-openapi-service-name-hyphen: web
+x-sd-openapi-app-name: focus
+x-sd-openapi-service-name-zh_cn: 营销策略
+x-original-swagger-version: '2.0'

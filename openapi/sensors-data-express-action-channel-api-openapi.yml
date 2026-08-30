@@ -1,0 +1,1807 @@
+openapi: 3.2.0
+info:
+  description: 通道相关控制流 Open Api 定义
+  title: 神策智能运营 Express Action Channel API
+  version: ''
+servers:
+- url: /api/v3/focus/v1
+tags:
+- name: Express Action Channel
+paths:
+  /express-action-channel/plugin/get:
+    get:
+      description: 支持单个插件查询，仅能查询生效的插件信息. 查询结果会根据当前的组织 ID / project_id 过滤
+      operationId: GetPlugin
+      parameters:
+      - description: 全局唯一的密钥，用于验证和授权访问 API 接口
+        in: header
+        name: api-key
+        required: true
+        schema:
+          type: string
+      - description: 项目名, 指定请求所属项目
+        in: header
+        name: sensorsdata-project
+        required: true
+        schema:
+          type: string
+      - description: 租户 ID, 用于请求所属租户
+        in: header
+        name: X-Organization-Id
+        required: true
+        schema:
+          type: string
+      - description: plugin_id 和 plugin_route 必传其一
+        in: query
+        name: plugin_id
+        schema:
+          format: int32
+          type: integer
+      - in: query
+        name: plugin_route
+        schema:
+          type: string
+      responses:
+        default:
+          content:
+            application/json:
+              example:
+                code: SUCCESS
+                data:
+                  plugin_information:
+                    biz_type: SFN
+                request_id: '1'
+              schema:
+                $ref: '#/components/schemas/sensorsdata.focus.v1.GetPluginOpenApiResponseHttpApiResult'
+          description: sensorsdata.focus.v1.GetPluginOpenApiResponse
+      summary: 查询插件信息
+      x-sd-openapi:
+        responseClass: com.sensorsdata.focus.v1.GetPluginOpenApiResponse
+        isServerStreaming: false
+        requestClass: com.sensorsdata.focus.v1.GetPluginOpenApiRequest
+        grpcServiceBase: com.sensorsdata.focus.v1.ExpressActionChannelServiceGrpc.ExpressActionChannelServiceImplBase
+        internalDesc: classes in template for grpc service dynamic invoking
+        isClientStreaming: false
+      tags:
+      - Express Action Channel
+  /express-action-channel/channel/query:
+    get:
+      description: 查询通道信息，仅能按照插件 ID 查询
+      operationId: QueryChannel
+      parameters:
+      - description: 全局唯一的密钥，用于验证和授权访问 API 接口
+        in: header
+        name: api-key
+        required: true
+        schema:
+          type: string
+      - description: 项目名, 指定请求所属项目
+        in: header
+        name: sensorsdata-project
+        required: true
+        schema:
+          type: string
+      - description: 租户 ID, 用于请求所属租户
+        in: header
+        name: X-Organization-Id
+        required: true
+        schema:
+          type: string
+      - description: 只能通过插件 ID 查询
+        in: query
+        name: plugin_id
+        schema:
+          format: int32
+          type: integer
+      responses:
+        default:
+          content:
+            application/json:
+              example:
+                code: SUCCESS
+                data:
+                  plugin_channel_informations:
+                  - channel_category: PUSH
+                request_id: '1'
+              schema:
+                $ref: '#/components/schemas/sensorsdata.focus.v1.QueryChannelOpenApiResponseHttpApiResult'
+          description: sensorsdata.focus.v1.QueryChannelOpenApiResponse
+      summary: 查询通道信息
+      x-sd-openapi:
+        responseClass: com.sensorsdata.focus.v1.QueryChannelOpenApiResponse
+        isServerStreaming: false
+        requestClass: com.sensorsdata.focus.v1.QueryChannelOpenApiRequest
+        grpcServiceBase: com.sensorsdata.focus.v1.ExpressActionChannelServiceGrpc.ExpressActionChannelServiceImplBase
+        internalDesc: classes in template for grpc service dynamic invoking
+        isClientStreaming: false
+      tags:
+      - Express Action Channel
+  /express-action-channel/channel/instance/query:
+    get:
+      description: 查询通道实例信息
+      operationId: QueryChannelInstance
+      parameters:
+      - description: 全局唯一的密钥，用于验证和授权访问 API 接口
+        in: header
+        name: api-key
+        required: true
+        schema:
+          type: string
+      - description: 项目名, 指定请求所属项目
+        in: header
+        name: sensorsdata-project
+        required: true
+        schema:
+          type: string
+      - description: 租户 ID, 用于请求所属租户
+        in: header
+        name: X-Organization-Id
+        required: true
+        schema:
+          type: string
+      - description: "plugin_id/channel_id/channel_instance_id 都是筛选器，可以都不传\n 不传则默认查出来该 project 的所有 channel instance"
+        in: query
+        name: plugin_id
+        schema:
+          format: int32
+          type: integer
+      - in: query
+        name: channel_id
+        schema:
+          format: int32
+          type: integer
+      - in: query
+        name: channel_instance_id
+        schema:
+          format: int32
+          type: integer
+      responses:
+        default:
+          content:
+            application/json:
+              example:
+                code: SUCCESS
+                data:
+                  channel_instance_informations:
+                  - rate_limit: {}
+                    configuration:
+                      send_id: ${user.$id}
+                      send_id_cname: 用户ID
+                request_id: '1'
+              schema:
+                $ref: '#/components/schemas/sensorsdata.focus.v1.QueryChannelInstanceOpenApiResponseHttpApiResult'
+          description: sensorsdata.focus.v1.QueryChannelInstanceOpenApiResponse
+      summary: 查询通道实例信息
+      x-sd-openapi:
+        responseClass: com.sensorsdata.focus.v1.QueryChannelInstanceOpenApiResponse
+        isServerStreaming: false
+        requestClass: com.sensorsdata.focus.v1.QueryChannelInstanceOpenApiRequest
+        grpcServiceBase: com.sensorsdata.focus.v1.ExpressActionChannelServiceGrpc.ExpressActionChannelServiceImplBase
+        internalDesc: classes in template for grpc service dynamic invoking
+        isClientStreaming: false
+      tags:
+      - Express Action Channel
+  /express-action-channel/channel/instance/create:
+    post:
+      description: 创建通道实例
+      operationId: CreateChannelInstance
+      parameters:
+      - description: 全局唯一的密钥，用于验证和授权访问 API 接口
+        in: header
+        name: api-key
+        required: true
+        schema:
+          type: string
+      - description: 项目名, 指定请求所属项目
+        in: header
+        name: sensorsdata-project
+        required: true
+        schema:
+          type: string
+      - description: 租户 ID, 用于请求所属租户
+        in: header
+        name: X-Organization-Id
+        required: true
+        schema:
+          type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/sensorsdata.focus.v1.express.action.ChannelInstanceInformation'
+        description: 通用通道实例基础信息
+        required: false
+      responses:
+        default:
+          content:
+            application/json:
+              example:
+                code: SUCCESS
+                data:
+                  channel_instance_information:
+                    rate_limit: {}
+                    configuration:
+                      send_id: ${user.$id}
+                      send_id_cname: 用户ID
+                request_id: '1'
+              schema:
+                $ref: '#/components/schemas/sensorsdata.focus.v1.CreateChannelInstanceOpenApiResponseHttpApiResult'
+          description: sensorsdata.focus.v1.CreateChannelInstanceOpenApiResponse
+      summary: 创建通道实例
+      x-sd-openapi:
+        responseClass: com.sensorsdata.focus.v1.CreateChannelInstanceOpenApiResponse
+        isServerStreaming: false
+        requestClass: com.sensorsdata.focus.v1.express.action.ChannelInstanceInformation
+        grpcServiceBase: com.sensorsdata.focus.v1.ExpressActionChannelServiceGrpc.ExpressActionChannelServiceImplBase
+        internalDesc: classes in template for grpc service dynamic invoking
+        isClientStreaming: false
+      x-codegen-request-body-name: ChannelInstanceInformation
+      tags:
+      - Express Action Channel
+  /express-action-channel/channel/instance/update:
+    post:
+      description: 修改通道实例，包括通道实例的开关等
+      operationId: UpdateChannelInstance
+      parameters:
+      - description: 全局唯一的密钥，用于验证和授权访问 API 接口
+        in: header
+        name: api-key
+        required: true
+        schema:
+          type: string
+      - description: 项目名, 指定请求所属项目
+        in: header
+        name: sensorsdata-project
+        required: true
+        schema:
+          type: string
+      - description: 租户 ID, 用于请求所属租户
+        in: header
+        name: X-Organization-Id
+        required: true
+        schema:
+          type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/sensorsdata.focus.v1.express.action.ChannelInstanceInformation'
+        description: 通用通道实例基础信息
+        required: false
+      responses:
+        default:
+          content:
+            application/json:
+              example:
+                code: SUCCESS
+                data:
+                  channel_instance_information:
+                    rate_limit: {}
+                    configuration:
+                      send_id: ${user.$id}
+                      send_id_cname: 用户ID
+                request_id: '1'
+              schema:
+                $ref: '#/components/schemas/sensorsdata.focus.v1.UpdateChannelInstanceOpenApiResponseHttpApiResult'
+          description: sensorsdata.focus.v1.UpdateChannelInstanceOpenApiResponse
+      summary: 修改通道实例
+      x-sd-openapi:
+        responseClass: com.sensorsdata.focus.v1.UpdateChannelInstanceOpenApiResponse
+        isServerStreaming: false
+        requestClass: com.sensorsdata.focus.v1.express.action.ChannelInstanceInformation
+        grpcServiceBase: com.sensorsdata.focus.v1.ExpressActionChannelServiceGrpc.ExpressActionChannelServiceImplBase
+        internalDesc: classes in template for grpc service dynamic invoking
+        isClientStreaming: false
+      x-codegen-request-body-name: ChannelInstanceInformation
+      tags:
+      - Express Action Channel
+  /express-action-channel/channel/instance/delete:
+    post:
+      description: 删除通道实例
+      operationId: DeleteChannelInstance
+      parameters:
+      - description: 全局唯一的密钥，用于验证和授权访问 API 接口
+        in: header
+        name: api-key
+        required: true
+        schema:
+          type: string
+      - description: 项目名, 指定请求所属项目
+        in: header
+        name: sensorsdata-project
+        required: true
+        schema:
+          type: string
+      - description: 租户 ID, 用于请求所属租户
+        in: header
+        name: X-Organization-Id
+        required: true
+        schema:
+          type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/sensorsdata.focus.v1.DeleteChannelInstanceOpenApiRequest'
+        required: false
+      responses:
+        default:
+          content:
+            application/json:
+              example:
+                code: SUCCESS
+                data: {}
+                request_id: '1'
+              schema:
+                $ref: '#/components/schemas/sensorsdata.common.HttpApiResult'
+          description: ''
+      summary: 删除通道实例
+      x-sd-openapi:
+        responseClass: com.google.protobuf.Empty
+        isServerStreaming: false
+        requestClass: com.sensorsdata.focus.v1.DeleteChannelInstanceOpenApiRequest
+        grpcServiceBase: com.sensorsdata.focus.v1.ExpressActionChannelServiceGrpc.ExpressActionChannelServiceImplBase
+        internalDesc: classes in template for grpc service dynamic invoking
+        isClientStreaming: false
+      x-codegen-request-body-name: DeleteChannelInstanceOpenApiRequest
+      tags:
+      - Express Action Channel
+  /express-action-channel/plugin/resource/get:
+    get:
+      description: 获取插件资源文件，加载插件前端可以使用
+      operationId: GetPluginResource
+      parameters:
+      - description: 全局唯一的密钥，用于验证和授权访问 API 接口
+        in: header
+        name: api-key
+        required: true
+        schema:
+          type: string
+      - description: 项目名, 指定请求所属项目
+        in: header
+        name: sensorsdata-project
+        required: true
+        schema:
+          type: string
+      - description: 租户 ID, 用于请求所属租户
+        in: header
+        name: X-Organization-Id
+        required: true
+        schema:
+          type: string
+      - description: 插件 pluginRoute
+        in: query
+        name: plugin_route
+        schema:
+          type: string
+      - description: 获取资源文件的路径，一般是插件前端资源文件路径
+        example: /dist/index.css
+        in: query
+        name: file_path
+        schema:
+          type: string
+      responses:
+        default:
+          content:
+            application/json:
+              example:
+                code: SUCCESS
+                data: {}
+                request_id: '1'
+              schema:
+                $ref: '#/components/schemas/sensorsdata.focus.v1.GetPluginResourceOpenApiResponseHttpApiResult'
+          description: sensorsdata.focus.v1.GetPluginResourceOpenApiResponse
+      summary: 获取插件资源文件
+      x-sd-openapi:
+        responseClass: com.sensorsdata.focus.v1.GetPluginResourceOpenApiResponse
+        isServerStreaming: false
+        requestClass: com.sensorsdata.focus.v1.GetPluginResourceOpenApiRequest
+        grpcServiceBase: com.sensorsdata.focus.v1.ExpressActionChannelServiceGrpc.ExpressActionChannelServiceImplBase
+        internalDesc: classes in template for grpc service dynamic invoking
+        isClientStreaming: false
+      tags:
+      - Express Action Channel
+  /express-action-channel/channel/instance/test-send/execute:
+    post:
+      description: 通道实例测试发送
+      operationId: ExecuteTestSend
+      parameters:
+      - description: 全局唯一的密钥，用于验证和授权访问 API 接口
+        in: header
+        name: api-key
+        required: true
+        schema:
+          type: string
+      - description: 项目名, 指定请求所属项目
+        in: header
+        name: sensorsdata-project
+        required: true
+        schema:
+          type: string
+      - description: 租户 ID, 用于请求所属租户
+        in: header
+        name: X-Organization-Id
+        required: true
+        schema:
+          type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/sensorsdata.focus.v1.express.action.ExecutionMessageOpenApiRequest'
+        description: 消息发送内容
+        required: false
+      responses:
+        default:
+          content:
+            application/json:
+              example:
+                code: SUCCESS
+                data:
+                  response:
+                    receipt_message_context:
+                      event_properties:
+                      - {}
+                request_id: '1'
+              schema:
+                $ref: '#/components/schemas/sensorsdata.focus.v1.ExecuteTestSendOpenApiResponseHttpApiResult'
+          description: sensorsdata.focus.v1.ExecuteTestSendOpenApiResponse
+      summary: 通道实例测试发送
+      x-sd-openapi:
+        responseClass: com.sensorsdata.focus.v1.ExecuteTestSendOpenApiResponse
+        isServerStreaming: false
+        requestClass: com.sensorsdata.focus.v1.express.action.ExecutionMessageOpenApiRequest
+        grpcServiceBase: com.sensorsdata.focus.v1.ExpressActionChannelServiceGrpc.ExpressActionChannelServiceImplBase
+        internalDesc: classes in template for grpc service dynamic invoking
+        isClientStreaming: false
+      x-codegen-request-body-name: ExecutionMessageOpenApiRequest
+      tags:
+      - Express Action Channel
+  /express-action-channel/channel/instance/send-content/check:
+    post:
+      description: 通道实例配置发送内容校验，用于校验通道实例上配置的发送内容是否合法
+      operationId: CheckChannelInstanceContent
+      parameters:
+      - description: 全局唯一的密钥，用于验证和授权访问 API 接口
+        in: header
+        name: api-key
+        required: true
+        schema:
+          type: string
+      - description: 项目名, 指定请求所属项目
+        in: header
+        name: sensorsdata-project
+        required: true
+        schema:
+          type: string
+      - description: 租户 ID, 用于请求所属租户
+        in: header
+        name: X-Organization-Id
+        required: true
+        schema:
+          type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/sensorsdata.focus.v1.CheckChannelInstanceContentOpenApiRequest'
+        description: 通道配置内容验证请求数据结构
+        required: false
+      responses:
+        default:
+          content:
+            application/json:
+              example:
+                code: SUCCESS
+                data: {}
+                request_id: '1'
+              schema:
+                $ref: '#/components/schemas/sensorsdata.common.HttpApiResult'
+          description: ''
+      summary: 通道实例配置发送内容校验
+      x-sd-openapi:
+        responseClass: com.google.protobuf.Empty
+        isServerStreaming: false
+        requestClass: com.sensorsdata.focus.v1.CheckChannelInstanceContentOpenApiRequest
+        grpcServiceBase: com.sensorsdata.focus.v1.ExpressActionChannelServiceGrpc.ExpressActionChannelServiceImplBase
+        internalDesc: classes in template for grpc service dynamic invoking
+        isClientStreaming: false
+      x-codegen-request-body-name: CheckChannelInstanceContentOpenApiRequest
+      tags:
+      - Express Action Channel
+  /express-action-channel/channel/instance/extension/execute:
+    post:
+      description: 通道实例其他扩展请求，对于需要更多通道前后端交互的逻辑可以走该接口
+      operationId: ExecuteChannelInstanceExtensionRest
+      parameters:
+      - description: 全局唯一的密钥，用于验证和授权访问 API 接口
+        in: header
+        name: api-key
+        required: true
+        schema:
+          type: string
+      - description: 项目名, 指定请求所属项目
+        in: header
+        name: sensorsdata-project
+        required: true
+        schema:
+          type: string
+      - description: 租户 ID, 用于请求所属租户
+        in: header
+        name: X-Organization-Id
+        required: true
+        schema:
+          type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/sensorsdata.focus.v1.ExecuteChannelInstanceExtensionRestOpenApiRequest'
+        required: false
+      responses:
+        default:
+          content:
+            application/json:
+              example:
+                code: SUCCESS
+                data: {}
+                request_id: '1'
+              schema:
+                $ref: '#/components/schemas/sensorsdata.focus.v1.ExecuteChannelInstanceExtensionRestOpenApiResponseHttpApiResult'
+          description: sensorsdata.focus.v1.ExecuteChannelInstanceExtensionRestOpenApiResponse
+      summary: 通道实例其他扩展请求
+      x-sd-openapi:
+        responseClass: com.sensorsdata.focus.v1.ExecuteChannelInstanceExtensionRestOpenApiResponse
+        isServerStreaming: false
+        requestClass: com.sensorsdata.focus.v1.ExecuteChannelInstanceExtensionRestOpenApiRequest
+        grpcServiceBase: com.sensorsdata.focus.v1.ExpressActionChannelServiceGrpc.ExpressActionChannelServiceImplBase
+        internalDesc: classes in template for grpc service dynamic invoking
+        isClientStreaming: false
+      x-codegen-request-body-name: ExecuteChannelInstanceExtensionRestOpenApiRequest
+      tags:
+      - Express Action Channel
+  /express-action-channel/channel/instance/metrics-define/get:
+    get:
+      description: 通道实例指标定义获取
+      operationId: GetChannelInstanceMetricsDefine
+      parameters:
+      - description: 全局唯一的密钥，用于验证和授权访问 API 接口
+        in: header
+        name: api-key
+        required: true
+        schema:
+          type: string
+      - description: 项目名, 指定请求所属项目
+        in: header
+        name: sensorsdata-project
+        required: true
+        schema:
+          type: string
+      - description: 租户 ID, 用于请求所属租户
+        in: header
+        name: X-Organization-Id
+        required: true
+        schema:
+          type: string
+      - description: 请求的通道实例 ID
+        in: query
+        name: channel_instance_id
+        schema:
+          format: int32
+          type: integer
+      responses:
+        default:
+          content:
+            application/json:
+              example:
+                code: SUCCESS
+                data:
+                  metrics_defines:
+                  - event_series:
+                      condition:
+                        index: 10
+                        conditions:
+                        - function: EQUAL
+                          index: 10
+                          params:
+                          - expression: user.p1/user.p2+user.p3
+                            field: '#ResourceId'
+                            variable: $ENTRY_TIME
+                            value: {}
+                            param_type: FIELD
+                        operator: AND
+                      time_range:
+                        start_time:
+                          relative_time:
+                            time_interval: {}
+                    phase_names: {}
+                    display_positions:
+                    - PLAN_TOTAL_CONVERT_CARD
+                    detail_event_property_name: $sf_fail_reason
+                request_id: '1'
+              schema:
+                $ref: '#/components/schemas/sensorsdata.focus.v1.GetChannelInstanceMetricsDefineOpenApiResponseHttpApiResult'
+          description: sensorsdata.focus.v1.GetChannelInstanceMetricsDefineOpenApiResponse
+      summary: 通道实例指标定义获取
+      x-sd-openapi:
+        responseClass: com.sensorsdata.focus.v1.GetChannelInstanceMetricsDefineOpenApiResponse
+        isServerStreaming: false
+        requestClass: com.sensorsdata.focus.v1.GetChannelInstanceMetricsDefineOpenApiRequest
+        grpcServiceBase: com.sensorsdata.focus.v1.ExpressActionChannelServiceGrpc.ExpressActionChannelServiceImplBase
+        internalDesc: classes in template for grpc service dynamic invoking
+        isClientStreaming: false
+      tags:
+      - Express Action Channel
+  /express-action-channel/channel/ai/category/get:
+    get:
+      description: 获取有可用通道实例的通道大类
+      operationId: GetChannelCategories
+      parameters:
+      - description: 全局唯一的密钥，用于验证和授权访问 API 接口
+        in: header
+        name: api-key
+        required: true
+        schema:
+          type: string
+      - description: 项目名, 指定请求所属项目
+        in: header
+        name: sensorsdata-project
+        required: true
+        schema:
+          type: string
+      - description: 租户 ID, 用于请求所属租户
+        in: header
+        name: X-Organization-Id
+        required: true
+        schema:
+          type: string
+      responses:
+        default:
+          content:
+            application/json:
+              example:
+                code: SUCCESS
+                data:
+                  categories:
+                  - {}
+                request_id: '1'
+              schema:
+                $ref: '#/components/schemas/sensorsdata.focus.v1.GetChannelCategoryOpenApiResponseHttpApiResult'
+          description: sensorsdata.focus.v1.GetChannelCategoryOpenApiResponse
+      summary: 获取有可用通道实例的通道大类
+      x-sd-openapi:
+        responseClass: com.sensorsdata.focus.v1.GetChannelCategoryOpenApiResponse
+        isServerStreaming: false
+        requestClass: com.sensorsdata.focus.v1.GetChannelCategoryOpenApiRequest
+        grpcServiceBase: com.sensorsdata.focus.v1.ExpressActionChannelServiceGrpc.ExpressActionChannelServiceImplBase
+        internalDesc: classes in template for grpc service dynamic invoking
+        isClientStreaming: false
+      tags:
+      - Express Action Channel
+  /express-action-channel/channel/ai/category/instance/get:
+    get:
+      description: 获取某个通道大类下的通道实例信息
+      operationId: GetChannelInstanceWithDescByChannelCategory
+      parameters:
+      - description: 全局唯一的密钥，用于验证和授权访问 API 接口
+        in: header
+        name: api-key
+        required: true
+        schema:
+          type: string
+      - description: 项目名, 指定请求所属项目
+        in: header
+        name: sensorsdata-project
+        required: true
+        schema:
+          type: string
+      - description: 租户 ID, 用于请求所属租户
+        in: header
+        name: X-Organization-Id
+        required: true
+        schema:
+          type: string
+      - description: 通道大类名称
+        in: query
+        name: channel_category
+        schema:
+          type: string
+      responses:
+        default:
+          content:
+            application/json:
+              example:
+                code: SUCCESS
+                data:
+                  channel_instances:
+                  - fields:
+                    - {}
+                request_id: '1'
+              schema:
+                $ref: '#/components/schemas/sensorsdata.focus.v1.ChannelInstanceWithDescOpenApiResponseHttpApiResult'
+          description: sensorsdata.focus.v1.ChannelInstanceWithDescOpenApiResponse
+      summary: 获取某个通道大类下的通道实例信息
+      x-sd-openapi:
+        responseClass: com.sensorsdata.focus.v1.ChannelInstanceWithDescOpenApiResponse
+        isServerStreaming: false
+        requestClass: com.sensorsdata.focus.v1.GetChannelInstanceByChannelCategoryOpenApiRequest
+        grpcServiceBase: com.sensorsdata.focus.v1.ExpressActionChannelServiceGrpc.ExpressActionChannelServiceImplBase
+        internalDesc: classes in template for grpc service dynamic invoking
+        isClientStreaming: false
+      tags:
+      - Express Action Channel
+  /express-action-channel/channel/ai/instance/get:
+    get:
+      description: 获取某个项目下所有可用的通道实例
+      operationId: GetAllChannelInstanceWithDesc
+      parameters:
+      - description: 全局唯一的密钥，用于验证和授权访问 API 接口
+        in: header
+        name: api-key
+        required: true
+        schema:
+          type: string
+      - description: 项目名, 指定请求所属项目
+        in: header
+        name: sensorsdata-project
+        required: true
+        schema:
+          type: string
+      - description: 租户 ID, 用于请求所属租户
+        in: header
+        name: X-Organization-Id
+        required: true
+        schema:
+          type: string
+      responses:
+        default:
+          content:
+            application/json:
+              example:
+                code: SUCCESS
+                data:
+                  channel_instances:
+                  - fields:
+                    - {}
+                request_id: '1'
+              schema:
+                $ref: '#/components/schemas/sensorsdata.focus.v1.ChannelInstanceWithDescOpenApiResponseHttpApiResult'
+          description: sensorsdata.focus.v1.ChannelInstanceWithDescOpenApiResponse
+      summary: 获取某个项目下所有可用的通道实例
+      x-sd-openapi:
+        responseClass: com.sensorsdata.focus.v1.ChannelInstanceWithDescOpenApiResponse
+        isServerStreaming: false
+        requestClass: com.sensorsdata.focus.v1.GetAllChannelInstanceWithDescOpenApiRequest
+        grpcServiceBase: com.sensorsdata.focus.v1.ExpressActionChannelServiceGrpc.ExpressActionChannelServiceImplBase
+        internalDesc: classes in template for grpc service dynamic invoking
+        isClientStreaming: false
+      tags:
+      - Express Action Channel
+components:
+  schemas:
+    sensorsdata.focus.v1.GetChannelCategoryOpenApiResponse:
+      description: ''
+      properties:
+        project_id:
+          description: 项目 ID
+          format: int32
+          type: integer
+        categories:
+          description: 包含所有通道大类描述的列表
+          items:
+            $ref: '#/components/schemas/sensorsdata.focus.v1.GetChannelCategoryOpenApiResponse.ChannelCategoryInfo'
+          type: array
+      title: GetChannelCategoryOpenApiResponse
+      type: object
+    sensorsdata.focus.v1.express.action.ExecutionMessageOpenApiResponse.ExecutionReceiptMessageOpenApiContext.EventProperty:
+      description: ''
+      properties:
+        property_name:
+          description: ''
+          type: string
+        property_value:
+          description: ''
+          type: string
+      title: EventProperty
+      type: object
+    sensorsdata.focus.v1.GetChannelInstanceMetricsDefineOpenApiResponse:
+      description: ''
+      properties:
+        channel_instance_id:
+          description: 请求的通道实例 ID
+          format: int32
+          type: integer
+        metrics_defines:
+          description: 对应的指标定义信息列表
+          items:
+            $ref: '#/components/schemas/sensorsdata.focus.v1.GetChannelInstanceMetricsDefineOpenApiResponse.ExternalMetricsEventSeries'
+          type: array
+      title: GetChannelInstanceMetricsDefineOpenApiResponse
+      type: object
+    sensorsdata.focus.v1.GetPluginResourceOpenApiResponseHttpApiResult:
+      properties:
+        code:
+          type: string
+        message:
+          type: string
+        request_id:
+          type: string
+        data:
+          $ref: '#/components/schemas/sensorsdata.focus.v1.GetPluginResourceOpenApiResponse'
+        error_info:
+          $ref: '#/components/schemas/sensorsdata.common.ErrorInfo'
+      title: sensorsdata.focus.v1.GetPluginResourceOpenApiResponseHttpApiResult
+      type: object
+    sensorsdata.focus.v1.ExecuteChannelInstanceExtensionRestOpenApiResponse:
+      description: ''
+      properties:
+        request_route:
+          description: ''
+          type: string
+        succeed:
+          description: ''
+          type: boolean
+        error_message:
+          description: ''
+          type: string
+        response_body:
+          description: ''
+          type: string
+      title: ExecuteChannelInstanceExtensionRestOpenApiResponse
+      type: object
+    sensorsdata.focus.v1.ExecuteChannelInstanceExtensionRestOpenApiRequest:
+      description: ''
+      properties:
+        channel_instance_id:
+          description: 请求的通道实例 ID
+          format: int32
+          type: integer
+        request_route:
+          description: 请求路径，插件自己解析请求路径，由插件的前后端之间约定
+          example: /my_test/test1
+          type: string
+        request_body:
+          description: 请求消息体，也是由插件自己解析
+          type: string
+      title: ExecuteChannelInstanceExtensionRestOpenApiRequest
+      type: object
+    sensorsdata.common.Literal:
+      description: ''
+      properties:
+        data_type:
+          description: ''
+          enum:
+          - DATA_TYPE_UNSPECIFIED
+          - BOOL
+          - INT
+          - NUMBER
+          - STRING
+          - LIST
+          - DATETIME
+          - DATE
+          - BIGINT
+          - DECIMAL
+          type: string
+        bool_value:
+          description: ''
+          type: boolean
+        int_value:
+          description: ''
+          format: int64
+          type: integer
+        number_value:
+          description: ''
+          format: double
+          type: number
+        string_value:
+          description: ''
+          type: string
+        list_value:
+          description: ''
+          items:
+            type: string
+          type: array
+        datetime_value:
+          description: ''
+          format: date-time
+          type: string
+        date_value:
+          description: ''
+          type: string
+        bigint_value:
+          description: ''
+          format: int64
+          type: integer
+        decimal_value:
+          description: ''
+          type: string
+      title: Literal
+      type: object
+    sensorsdata.focus.v1.express.action.ExecutionMessageOpenApiResponse.ExecutionReceiptMessageOpenApiContext:
+      description: ''
+      properties:
+        plugin_route:
+          description: ''
+          type: string
+        context_key:
+          description: ''
+          type: string
+        organization_id:
+          description: ''
+          type: string
+        infinity_ref_id:
+          description: ''
+          format: int32
+          type: integer
+        distinct_id:
+          description: ''
+          type: string
+        event_properties:
+          description: ''
+          items:
+            $ref: '#/components/schemas/sensorsdata.focus.v1.express.action.ExecutionMessageOpenApiResponse.ExecutionReceiptMessageOpenApiContext.EventProperty'
+          type: array
+      title: ExecutionReceiptMessageOpenApiContext
+      type: object
+    sensorsdata.common.FilterCondition:
+      description: 单个过滤条件
+      properties:
+        function:
+          description: 过滤条件的判断函数
+          enum:
+          - PREDICATE_FUNCTION_TYPE_UNSPECIFIED
+          - IS_SET
+          - IS_NOT_SET
+          - EQUAL
+          - NOT_EQUAL
+          - IN
+          - NOT_IN
+          - LESS
+          - LESS_EQUAL
+          - GREATER
+          - GREATER_EQUAL
+          - BETWEEN
+          - RIGHT_OPEN_BETWEEN
+          - HASH_BETWEEN
+          - LEFT_OPEN_BETWEEN
+          - OPEN_BETWEEN
+          - IS_TRUE
+          - IS_FALSE
+          - CONTAIN
+          - NOT_CONTAIN
+          - IS_EMPTY
+          - IS_NOT_EMPTY
+          - RLIKE
+          - NOT_RLIKE
+          - INCLUDE
+          - NOT_INCLUDE
+          - ABSOLUTE_BETWEEN
+          - RELATIVE_WITHIN
+          - RELATIVE_BETWEEN
+          - RELATIVE_EVENT_TIME
+          - RELATIVE_BEFORE
+          - INTERSECTS
+          - NOT_INTERSECTS
+          - SUBSET_OF
+          - NOT_SUBSET_OF
+          - SUPERSET_OF
+          - NOT_SUPERSET_OF
+          example: EQUAL
+          type: string
+        params:
+          description: 函数的参数
+          items:
+            $ref: '#/components/schemas/sensorsdata.common.PredicateFunctionParam'
+          type: array
+        index:
+          description: 当前筛选条件所处的位置下标，主要为了保证前端展示顺序的稳定
+          example: 10
+          format: int32
+          type: integer
+      title: FilterCondition
+      type: object
+    sensorsdata.focus.v1.GetChannelInstanceMetricsDefineOpenApiResponse.ExternalMetricsEventSeries:
+      description: 指标定义详情
+      properties:
+        metrics_phase:
+          description: 指标标识符
+          type: string
+        metrics_type:
+          description: 指标类型
+          enum:
+          - SIMPLE_UNSPECIFIED
+          - AGGREGATE_SUM
+          type: string
+        phase_names:
+          $ref: '#/components/schemas/sensorsdata.focus.v1.GetChannelInstanceMetricsDefineOpenApiResponse.InternationalStrings'
+        describes:
+          $ref: '#/components/schemas/sensorsdata.focus.v1.GetChannelInstanceMetricsDefineOpenApiResponse.InternationalStrings'
+        detail_event_property_name:
+          description: 指标二级展示对应的事件属性名，定义后指标可以根据事件的属性值做二级展开
+          example: $sf_fail_reason
+          type: string
+        display_positions:
+          description: 指标展示位置，可以有多个，展示点位参考：https://doc.sensorsdata.cn/pages/viewpage.action?pageId=284666451
+          example: '["PLAN_TOTAL_CONVERT_CARD"]'
+          items:
+            type: string
+          type: array
+        event_series:
+          $ref: '#/components/schemas/sensorsdata.common.EventSeries'
+        metrics_sum_event_property_name:
+          description: sum 类型指标可以指定事件属性名称（可选），若指标类型为 AGGREGATE_SUM，则需要配置此字段
+          type: string
+      title: ExternalMetricsEventSeries
+      type: object
+    sensorsdata.focus.v1.GetChannelCategoryOpenApiResponseHttpApiResult:
+      properties:
+        code:
+          type: string
+        message:
+          type: string
+        request_id:
+          type: string
+        data:
+          $ref: '#/components/schemas/sensorsdata.focus.v1.GetChannelCategoryOpenApiResponse'
+        error_info:
+          $ref: '#/components/schemas/sensorsdata.common.ErrorInfo'
+      title: sensorsdata.focus.v1.GetChannelCategoryOpenApiResponseHttpApiResult
+      type: object
+    sensorsdata.focus.v1.CreateChannelInstanceOpenApiResponseHttpApiResult:
+      properties:
+        code:
+          type: string
+        message:
+          type: string
+        request_id:
+          type: string
+        data:
+          $ref: '#/components/schemas/sensorsdata.focus.v1.CreateChannelInstanceOpenApiResponse'
+        error_info:
+          $ref: '#/components/schemas/sensorsdata.common.ErrorInfo'
+      title: sensorsdata.focus.v1.CreateChannelInstanceOpenApiResponseHttpApiResult
+      type: object
+    sensorsdata.common.ErrorInfo:
+      properties:
+        code:
+          description: 具体的错误码
+          example: XX-D-F-2-1
+          type: string
+        description:
+          description: 错误描述
+          example: 前端参数校验异常,PARAMETER_FORMAT_ERROR(quantiles=[10, -90] is not include [0, 100])
+          type: string
+        system_response:
+          description: 致错的可能原因列表
+          example: 系统终止了查询处理
+          type: string
+        error_causes:
+          items:
+            $ref: '#/components/schemas/sensorsdata.common.ErrorCause'
+          type: array
+        context:
+          $ref: '#/components/schemas/sensorsdata.common.ErrorContext'
+      title: ErrorInfo
+      type: object
+    sensorsdata.focus.v1.GetPluginOpenApiResponse:
+      description: ''
+      properties:
+        plugin_information:
+          $ref: '#/components/schemas/sensorsdata.focus.v1.express.action.PluginInformation'
+      title: GetPluginOpenApiResponse
+      type: object
+    sensorsdata.common.ErrorContext:
+      description: 发生错误时，系统快照信息
+      properties:
+        origin_stack:
+          description: 上游异常的 stack，由系统截获
+          type: string
+        origin_cause:
+          description: 上游异常的 cause by，由系统截获
+          type: string
+        origin_code:
+          description: 上游异常的错误简码
+          type: string
+        origin_complete_code:
+          description: 上游异常的完整错误码
+          type: string
+        error_extend_desc:
+          description: 本次异常的辅助说明，可传入
+          type: string
+      title: ErrorContext
+      type: object
+    sensorsdata.focus.v1.GetPluginOpenApiResponseHttpApiResult:
+      properties:
+        code:
+          type: string
+        message:
+          type: string
+        request_id:
+          type: string
+        data:
+          $ref: '#/components/schemas/sensorsdata.focus.v1.GetPluginOpenApiResponse'
+        error_info:
+          $ref: '#/components/schemas/sensorsdata.common.ErrorInfo'
+      title: sensorsdata.focus.v1.GetPluginOpenApiResponseHttpApiResult
+      type: object
+    sensorsdata.focus.v1.express.action.ChannelInstanceConfiguration:
+      description: "通道实例的详细配置信息，由于有些配置是每个通道都必须的，比如 send_id，\n 所以这里需要对必须的配置项进行枚举\n 非必须的配置是由插件自己决定如何配置的，所以只以一个字符串来存储\n***************************************************************"
+      properties:
+        send_id:
+          description: send_id 对应的字段名称
+          example: ${user.$id}
+          type: string
+        send_id_cname:
+          description: send_id 对应的字段显示名称
+          example: 用户ID
+          type: string
+        send_mode:
+          description: 发送模式
+          enum:
+          - HIGH_SPEED_UNSPECIFIED
+          - RELIABLE
+          type: string
+        extra_config:
+          description: 通道实例额外配置，可自定义，在通道实例运行时可取到该配置
+          type: string
+        used_in_openapi:
+          description: 是否在触发策略 OpenApi 中使用
+          type: boolean
+      title: ChannelInstanceConfiguration
+      type: object
+    sensorsdata.focus.v1.ExecuteTestSendOpenApiResponseHttpApiResult:
+      properties:
+        code:
+          type: string
+        message:
+          type: string
+        request_id:
+          type: string
+        data:
+          $ref: '#/components/schemas/sensorsdata.focus.v1.ExecuteTestSendOpenApiResponse'
+        error_info:
+          $ref: '#/components/schemas/sensorsdata.common.ErrorInfo'
+      title: sensorsdata.focus.v1.ExecuteTestSendOpenApiResponseHttpApiResult
+      type: object
+    sensorsdata.focus.v1.DeleteChannelInstanceOpenApiRequest:
+      description: ''
+      properties:
+        id:
+          description: 通道实例 ID
+          format: int32
+          type: integer
+      title: DeleteChannelInstanceOpenApiRequest
+      type: object
+    sensorsdata.focus.v1.CheckChannelInstanceContentOpenApiRequest:
+      description: 通道配置内容验证请求数据结构
+      properties:
+        channel_instance_id:
+          description: 通道实例 ID
+          format: int32
+          type: integer
+        message_body:
+          description: 内容模板信息
+          example: '{"msg_content":"这是一条消息示例，我的 jiguang_id=${user.jiguang_id}"}'
+          type: string
+      title: CheckChannelInstanceContentOpenApiRequest
+      type: object
+    sensorsdata.focus.v1.UpdateChannelInstanceOpenApiResponseHttpApiResult:
+      properties:
+        code:
+          type: string
+        message:
+          type: string
+        request_id:
+          type: string
+        data:
+          $ref: '#/components/schemas/sensorsdata.focus.v1.UpdateChannelInstanceOpenApiResponse'
+        error_info:
+          $ref: '#/components/schemas/sensorsdata.common.ErrorInfo'
+      title: sensorsdata.focus.v1.UpdateChannelInstanceOpenApiResponseHttpApiResult
+      type: object
+    sensorsdata.focus.v1.GetChannelCategoryOpenApiResponse.ChannelCategoryInfo:
+      description: ''
+      properties:
+        name:
+          description: 通道大类名称
+          type: string
+        cname:
+          description: 中文名称
+          type: string
+        description:
+          description: 描述信息
+          type: string
+      title: ChannelCategoryInfo
+      type: object
+    sensorsdata.common.ErrorCause:
+      properties:
+        error_cause:
+          description: 致错原因1
+          example: 参数异常1
+          type: string
+        action_suggestion:
+          description: 操作建议，针对该原因，建议的解决方式
+          example: 检测入参的数据类型1
+          type: string
+      title: ErrorCause
+      type: object
+    sensorsdata.common.PredicateFunctionParam:
+      description: "```\n 函数的参数，有几种可能\n 1. 一个 field, 如 events.$Anything.$city\n 2. 一个 Literal 的常量\n 3. 一个变量, 如 $ENTRY_TIME, 需要在执行上下文里进行替换\n 4. 一个 TimePoint, 代表一个相对或绝对的时间点, 用于时间类型的条件\n 5. 一个 expression user.p1/user.p2+user.p3\n ```"
+      properties:
+        param_type:
+          description: 函数的参数类型
+          enum:
+          - FUNCTION_PARAM_TYPE_UNSPECIFIED
+          - FIELD
+          - VALUE
+          - VARIABLE
+          - TIME_POINT
+          - EXPRESSION
+          example: FIELD
+          type: string
+        field:
+          description: 字段名
+          example: '#ResourceId'
+          type: string
+        value:
+          $ref: '#/components/schemas/sensorsdata.common.Literal'
+        variable:
+          description: 变量，需要在执行上下文里进行替换
+          example: $ENTRY_TIME
+          type: string
+        time_point:
+          $ref: '#/components/schemas/sensorsdata.common.TimePoint'
+        expression:
+          description: 自定义表达式
+          example: user.p1/user.p2+user.p3
+          type: string
+      title: PredicateFunctionParam
+      type: object
+    sensorsdata.focus.v1.ChannelInstanceSchema:
+      description: ''
+      properties:
+        project_id:
+          description: 项目 ID
+          format: int32
+          type: integer
+        id:
+          description: 通道实例 ID
+          format: int32
+          type: integer
+        name:
+          description: 通道实例名称
+          type: string
+        channel_category:
+          description: 通道大类
+          type: string
+        description:
+          description: 通道实例描述（当前只有内置描述信息）
+          type: string
+        per_message_cost:
+          description: 每条消息成本
+          format: double
+          type: number
+        fields:
+          description: 通道实例消息发送字段
+          items:
+            $ref: '#/components/schemas/sensorsdata.focus.v1.ChannelInstanceSchema.FieldSchema'
+          type: array
+        field_desc:
+          description: 字段描述信息，与 fields 属性互斥，只会存在一个，如果存在 field_desc，则使用 field_desc 作为当前通道实例所有字段的描述信息
+          type: string
+        msg_content_example:
+          description: 通道实例消息示例内容
+          type: string
+        sub_category:
+          description: 通道子类名称，如 webhook 中又分短信、push 等
+          type: string
+      title: ChannelInstanceSchema
+      type: object
+    sensorsdata.focus.v1.express.action.PluginInformation:
+      description: 通用插件基础信息
+      properties:
+        id:
+          description: 插件 ID
+          format: int32
+          type: integer
+        plugin_route:
+          description: 插件唯一标识符
+          type: string
+        cname:
+          description: 插件名称
+          type: string
+        description:
+          description: 插件描述信息
+          type: string
+        version:
+          description: 插件版本号
+          type: string
+        author:
+          description: 插件作者信息
+          type: string
+        biz_type:
+          description: 自定义业务类别
+          example: SFN
+          type: string
+        more_config:
+          description: 插件前端信息索引
+          type: string
+      title: PluginInformation
+      type: object
+    sensorsdata.focus.v1.ChannelInstanceWithDescOpenApiResponseHttpApiResult:
+      properties:
+        code:
+          type: string
+        message:
+          type: string
+        request_id:
+          type: string
+        data:
+          $ref: '#/components/schemas/sensorsdata.focus.v1.ChannelInstanceWithDescOpenApiResponse'
+        error_info:
+          $ref: '#/components/schemas/sensorsdata.common.ErrorInfo'
+      title: sensorsdata.focus.v1.ChannelInstanceWithDescOpenApiResponseHttpApiResult
+      type: object
+    sensorsdata.focus.v1.CreateChannelInstanceOpenApiResponse:
+      description: ''
+      properties:
+        channel_instance_information:
+          $ref: '#/components/schemas/sensorsdata.focus.v1.express.action.ChannelInstanceInformation'
+      title: CreateChannelInstanceOpenApiResponse
+      type: object
+    sensorsdata.focus.v1.express.action.ChannelInstanceInformation:
+      description: 通用通道实例基础信息
+      properties:
+        id:
+          description: 通道实例 ID
+          format: int32
+          type: integer
+        channel_id:
+          description: 通道 ID
+          format: int32
+          type: integer
+        project_id:
+          description: 所属的项目 ID
+          format: int32
+          type: integer
+        cname:
+          description: 通道实例名称
+          type: string
+        state:
+          description: 通道实例状态
+          enum:
+          - ALL_VALID_UNSPECIFIED
+          - CHANNEL_AUTHORIZED
+          - CHANNEL_PAUSED
+          - CHANNEL_DESTROYED
+          - ALL
+          type: string
+        rate_limit:
+          $ref: '#/components/schemas/sensorsdata.focus.v1.express.action.ChannelInstanceInformation.RateLimitConfig'
+        configuration:
+          $ref: '#/components/schemas/sensorsdata.focus.v1.express.action.ChannelInstanceConfiguration'
+        version:
+          description: 版本号
+          format: int32
+          type: integer
+        create_user_id:
+          description: ''
+          format: int32
+          type: integer
+        update_user_id:
+          description: ''
+          format: int32
+          type: integer
+        create_timestamp:
+          description: ''
+          format: int64
+          type: integer
+        last_update_timestamp:
+          description: ''
+          format: int64
+          type: integer
+      title: ChannelInstanceInformation
+      type: object
+    sensorsdata.common.CompoundFilterCondition:
+      description: 复合过滤条件，用于描述 condition 或 compound_filter 之间的关系
+      properties:
+        operator:
+          description: 逻辑运算法
+          enum:
+          - LOGICAL_OPERATOR_UNSPECIFIED
+          - AND
+          - OR
+          example: AND
+          type: string
+        conditions:
+          description: 过滤条件列表，只有最后一级才有
+          items:
+            $ref: '#/components/schemas/sensorsdata.common.FilterCondition'
+          type: array
+        compound_conditions:
+          description: 嵌套的下一级复合过滤条件
+          items:
+            $ref: '#/components/schemas/sensorsdata.common.CompoundFilterCondition'
+          type: array
+        index:
+          description: 当前筛选条件所处的位置下标，主要为了保证前端展示顺序的稳定
+          example: 10
+          format: int32
+          type: integer
+      title: CompoundFilterCondition
+      type: object
+    sensorsdata.focus.v1.GetChannelInstanceMetricsDefineOpenApiResponse.InternationalStrings:
+      description: ''
+      properties:
+        value_zh_cn:
+          description: ''
+          type: string
+        value_zh_tw:
+          description: ''
+          type: string
+        value_en_us:
+          description: ''
+          type: string
+        value_ja_jp:
+          description: ''
+          type: string
+        value_th_th:
+          description: ''
+          type: string
+      title: InternationalStrings
+      type: object
+    sensorsdata.focus.v1.QueryChannelOpenApiResponse:
+      description: ''
+      properties:
+        plugin_channel_informations:
+          description: ''
+          items:
+            $ref: '#/components/schemas/sensorsdata.focus.v1.express.action.PluginChannelInformation'
+          type: array
+      title: QueryChannelOpenApiResponse
+      type: object
+    sensorsdata.focus.v1.express.action.PluginChannelInformation:
+      description: 通用通道基础信息
+      properties:
+        id:
+          description: 通道 ID
+          format: int32
+          type: integer
+        plugin_id:
+          description: 插件 ID
+          format: int32
+          type: integer
+        cname:
+          description: 通道显示名称
+          type: string
+        channel_route:
+          description: 通道在插件内的唯一标识
+          type: string
+        description:
+          description: 通道描述信息
+          type: string
+        channel_category:
+          description: 通道大类标识符
+          example: PUSH
+          type: string
+        support_error_msg:
+          description: 通道是否支持 error_msg
+          format: int32
+          type: integer
+      title: PluginChannelInformation
+      type: object
+    sensorsdata.focus.v1.express.action.ChannelInstanceInformation.RateLimitConfig:
+      description: ''
+      properties:
+        tokens:
+          description: 在 seconds 时间段内可以通过的 token 数量
+          format: int32
+          type: integer
+        seconds:
+          description: ''
+          format: int32
+          type: integer
+      title: RateLimitConfig
+      type: object
+    sensorsdata.focus.v1.GetChannelInstanceMetricsDefineOpenApiResponseHttpApiResult:
+      properties:
+        code:
+          type: string
+        message:
+          type: string
+        request_id:
+          type: string
+        data:
+          $ref: '#/components/schemas/sensorsdata.focus.v1.GetChannelInstanceMetricsDefineOpenApiResponse'
+        error_info:
+          $ref: '#/components/schemas/sensorsdata.common.ErrorInfo'
+      title: sensorsdata.focus.v1.GetChannelInstanceMetricsDefineOpenApiResponseHttpApiResult
+      type: object
+    sensorsdata.focus.v1.QueryChannelInstanceOpenApiResponse:
+      description: ''
+      properties:
+        channel_instance_informations:
+          description: ''
+          items:
+            $ref: '#/components/schemas/sensorsdata.focus.v1.express.action.ChannelInstanceInformation'
+          type: array
+      title: QueryChannelInstanceOpenApiResponse
+      type: object
+    sensorsdata.focus.v1.express.action.ExecutionMessageOpenApiRequest:
+      description: 消息发送内容
+      properties:
+        channel_instance_id:
+          description: 发送的通道实例 ID
+          format: int32
+          type: integer
+        message_context:
+          $ref: '#/components/schemas/sensorsdata.focus.v1.express.action.ExecutionMessageOpenApiRequest.ExecutionMessageOpenApiContext'
+        message_body:
+          description: 要发送的消息内容，比如短信内容、push 标题信息等，可以在消息内容中插入属性
+          example: '{"msg_content":"这是一条消息示例，我的 jiguang_id=${user.jiguang_id}"}'
+          type: string
+        required_properties:
+          description: 额外获取的信息存储，比如插件自身要求的额外的属性，该属性会传递给插件
+          items:
+            $ref: '#/components/schemas/sensorsdata.focus.v1.express.action.ExecutionMessageOpenApiRequest.Pair'
+          type: array
+      title: ExecutionMessageOpenApiRequest
+      type: object
+    sensorsdata.focus.v1.express.action.ExecutionMessageOpenApiResponse:
+      description: ''
+      properties:
+        status:
+          description: ''
+          enum:
+          - MSG_SUCCEED_UNSPECIFIED
+          - MSG_FAILED
+          - MSG_RETRY
+          - MSG_OTHER
+          type: string
+        success_message:
+          description: ''
+          type: string
+        error_message:
+          description: ''
+          type: string
+        error_code:
+          description: ''
+          type: string
+        receipt_message_context:
+          $ref: '#/components/schemas/sensorsdata.focus.v1.express.action.ExecutionMessageOpenApiResponse.ExecutionReceiptMessageOpenApiContext'
+      title: ExecutionMessageOpenApiResponse
+      type: object
+    sensorsdata.common.HttpApiResult:
+      properties:
+        code:
+          type: string
+        message:
+          type: string
+        request_id:
+          type: string
+        data:
+          properties: {}
+          type: object
+        error_info:
+          $ref: '#/components/schemas/sensorsdata.common.ErrorInfo'
+      title: HttpApiResult
+      type: object
+    sensorsdata.focus.v1.ChannelInstanceWithDescOpenApiResponse:
+      description: ''
+      properties:
+        channel_instances:
+          description: 通道实例简要信息列表
+          items:
+            $ref: '#/components/schemas/sensorsdata.focus.v1.ChannelInstanceSchema'
+          type: array
+      title: ChannelInstanceWithDescOpenApiResponse
+      type: object
+    sensorsdata.focus.v1.ExecuteChannelInstanceExtensionRestOpenApiResponseHttpApiResult:
+      properties:
+        code:
+          type: string
+        message:
+          type: string
+        request_id:
+          type: string
+        data:
+          $ref: '#/components/schemas/sensorsdata.focus.v1.ExecuteChannelInstanceExtensionRestOpenApiResponse'
+        error_info:
+          $ref: '#/components/schemas/sensorsdata.common.ErrorInfo'
+      title: sensorsdata.focus.v1.ExecuteChannelInstanceExtensionRestOpenApiResponseHttpApiResult
+      type: object
+    sensorsdata.focus.v1.express.action.ExecutionMessageOpenApiRequest.ExecutionMessageOpenApiContext:
+      description: ''
+      properties:
+        user_id:
+          description: 发送的用户 id
+          format: int64
+          type: integer
+        send_id:
+          description: 实际 send_id 的值，比如示例为 user.$id 的值
+          example: '-9765623679283982735625323'
+          type: string
+      title: ExecutionMessageOpenApiContext
+      type: object
+    sensorsdata.common.TimePoint:
+      description: ''
+      properties:
+        type:
+          description: ''
+          enum:
+          - TIME_POINT_TYPE_UNSPECIFIED
+          - STATIC
+          - RELATIVE
+          - EXPRESSION
+          type: string
+        trunc_unit:
+          description: ''
+          enum:
+          - TRUNC_UNIT_UNSPECIFIED
+          - TRUNC_HOUR
+          - TRUNC_DAY
+          - TRUNC_WEEK
+          - TRUNC_MONTH
+          - TRUNC_YEAR
+          - TRUNC_BIGBANG
+          type: string
+        static_time:
+          description: ''
+          format: date-time
+          type: string
+        relative_time:
+          $ref: '#/components/schemas/sensorsdata.common.TimePoint.RelativeTimePoint'
+        expression:
+          description: ''
+          type: string
+      title: TimePoint
+      type: object
+    sensorsdata.common.TimeInterval:
+      description: ''
+      properties:
+        size:
+          description: ''
+          format: int32
+          type: integer
+        unit:
+          description: ''
+          enum:
+          - DATE_TIME_UNIT_UNSPECIFIED
+          - MILLISECOND
+          - SECOND
+          - MINUTE
+          - HOUR
+          - DAY
+          - WEEK
+          - MONTH
+          - YEAR
+          type: string
+      title: TimeInterval
+      type: object
+    sensorsdata.focus.v1.GetPluginResourceOpenApiResponse:
+      description: ''
+      properties:
+        plugin_route:
+          description: ''
+          type: string
+        succeed:
+          description: 是否成功
+          type: boolean
+        file_path:
+          description: ''
+          type: string
+        file_bytes:
+          description: 文件的字节数组，如果是文本文件，需要自己转换成 String
+          format: byte
+          pattern: ^(?:[A-Za-z0-9+/]{4})*(?:[A-Za-z0-9+/]{2}==|[A-Za-z0-9+/]{3}=)?$
+          type: string
+      title: GetPluginResourceOpenApiResponse
+      type: object
+    sensorsdata.focus.v1.QueryChannelOpenApiResponseHttpApiResult:
+      properties:
+        code:
+          type: string
+        message:
+          type: string
+        request_id:
+          type: string
+        data:
+          $ref: '#/components/schemas/sensorsdata.focus.v1.QueryChannelOpenApiResponse'
+        error_info:
+          $ref: '#/components/schemas/sensorsdata.common.ErrorInfo'
+      title: sensorsdata.focus.v1.QueryChannelOpenApiResponseHttpApiResult
+      type: object
+    sensorsdata.common.TimeRange:
+      description: ''
+      properties:
+        start_time:
+          $ref: '#/components/schemas/sensorsdata.common.TimePoint'
+        end_time:
+          $ref: '#/components/schemas/sensorsdata.common.TimePoint'
+      title: TimeRange
+      type: object
+    sensorsdata.focus.v1.ChannelInstanceSchema.FieldSchema:
+      description: ''
+      properties:
+        name:
+          description: 字段名称
+          type: string
+        cname:
+          description: 字段中文名
+          type: string
+        type:
+          description: 字段类型
+          type: string
+        required:
+          description: 是否必填字段
+          type: boolean
+        description:
+          description: 字段描述信息
+          type: string
+      title: FieldSchema
+      type: object
+    sensorsdata.focus.v1.express.action.ExecutionMessageOpenApiRequest.Pair:
+      description: ''
+      properties:
+        key:
+          description: ''
+          type: string
+        value:
+          $ref: '#/components/schemas/sensorsdata.common.Literal'
+      title: Pair
+      type: object
+    sensorsdata.focus.v1.ExecuteTestSendOpenApiResponse:
+      description: ''
+      properties:
+        response:
+          $ref: '#/components/schemas/sensorsdata.focus.v1.express.action.ExecutionMessageOpenApiResponse'
+      title: ExecuteTestSendOpenApiResponse
+      type: object
+    sensorsdata.common.EventSeries:
+      description: ''
+      properties:
+        event_name:
+          description: ''
+          type: string
+        time_range:
+          $ref: '#/components/schemas/sensorsdata.common.TimeRange'
+        condition:
+          $ref: '#/components/schemas/sensorsdata.common.CompoundFilterCondition'
+      title: EventSeries
+      type: object
+    sensorsdata.common.TimePoint.RelativeTimePoint:
+      description: ''
+      properties:
+        base_time:
+          description: ''
+          type: string
+        time_interval:
+          $ref: '#/components/schemas/sensorsdata.common.TimeInterval'
+      title: RelativeTimePoint
+      type: object
+    sensorsdata.focus.v1.UpdateChannelInstanceOpenApiResponse:
+      description: ''
+      properties:
+        channel_instance_information:
+          $ref: '#/components/schemas/sensorsdata.focus.v1.express.action.ChannelInstanceInformation'
+      title: UpdateChannelInstanceOpenApiResponse
+      type: object
+    sensorsdata.focus.v1.QueryChannelInstanceOpenApiResponseHttpApiResult:
+      properties:
+        code:
+          type: string
+        message:
+          type: string
+        request_id:
+          type: string
+        data:
+          $ref: '#/components/schemas/sensorsdata.focus.v1.QueryChannelInstanceOpenApiResponse'
+        error_info:
+          $ref: '#/components/schemas/sensorsdata.common.ErrorInfo'
+      title: sensorsdata.focus.v1.QueryChannelInstanceOpenApiResponseHttpApiResult
+      type: object
+x-sd-openapi-service-name: ExpressActionChannel
+x-sd-openapi-service-name-hyphen: express-action-channel
+x-sd-openapi-app-name: focus
+x-sd-openapi-service-name-zh_cn: 基础服务-通道
+x-original-swagger-version: '2.0'

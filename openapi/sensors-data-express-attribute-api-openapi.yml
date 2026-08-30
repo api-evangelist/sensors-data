@@ -1,0 +1,597 @@
+openapi: 3.2.0
+info:
+  description: 属性元数据操作服务,提供标签订阅、取消订阅、查询订阅状态等功能
+  title: 神策智能运营 Express Attribute API
+  version: ''
+servers:
+- url: /api/v3/focus/v1
+tags:
+- name: Express Attribute
+paths:
+  /express-attribute/subscribe:
+    post:
+      description: 订阅一个实体属性，相同项目下同一个订阅方对同一个实体属性只能订阅一次，重复订阅会报错
+      operationId: SubscribeEntityAttribute
+      parameters:
+      - description: 全局唯一的密钥，用于验证和授权访问 API 接口
+        in: header
+        name: api-key
+        required: true
+        schema:
+          type: string
+      - description: 项目名, 指定请求所属项目
+        in: header
+        name: sensorsdata-project
+        required: true
+        schema:
+          type: string
+      - description: 租户 ID, 用于请求所属租户
+        in: header
+        name: X-Organization-Id
+        required: true
+        schema:
+          type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/sensorsdata.focus.v1.SubscribeEntityAttributeRequest'
+        required: false
+      responses:
+        default:
+          content:
+            application/json:
+              example:
+                code: SUCCESS
+                data: {}
+                request_id: '1'
+              schema:
+                $ref: '#/components/schemas/sensorsdata.focus.v1.SubscribeEntityAttributeResponseHttpApiResult'
+          description: sensorsdata.focus.v1.SubscribeEntityAttributeResponse
+      summary: 属性/标签订阅
+      x-sd-openapi:
+        responseClass: com.sensorsdata.focus.v1.SubscribeEntityAttributeResponse
+        isServerStreaming: false
+        requestClass: com.sensorsdata.focus.v1.SubscribeEntityAttributeRequest
+        grpcServiceBase: com.sensorsdata.focus.v1.ExpressAttributeServiceGrpc.ExpressAttributeServiceImplBase
+        internalDesc: classes in template for grpc service dynamic invoking
+        isClientStreaming: false
+      x-codegen-request-body-name: SubscribeEntityAttributeRequest
+      tags:
+      - Express Attribute
+  /express-attribute/unsubscribe:
+    post:
+      description: 此接口幂等
+      operationId: UnSubscribeEntityAttribute
+      parameters:
+      - description: 全局唯一的密钥，用于验证和授权访问 API 接口
+        in: header
+        name: api-key
+        required: true
+        schema:
+          type: string
+      - description: 项目名, 指定请求所属项目
+        in: header
+        name: sensorsdata-project
+        required: true
+        schema:
+          type: string
+      - description: 租户 ID, 用于请求所属租户
+        in: header
+        name: X-Organization-Id
+        required: true
+        schema:
+          type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/sensorsdata.focus.v1.UnSubscribeEntityAttributeRequest'
+        required: false
+      responses:
+        default:
+          content:
+            application/json:
+              example:
+                code: SUCCESS
+                data:
+                  success: true
+                request_id: '1'
+              schema:
+                $ref: '#/components/schemas/sensorsdata.focus.v1.UnSubscribeEntityAttributeResponseHttpApiResult'
+          description: sensorsdata.focus.v1.UnSubscribeEntityAttributeResponse
+      summary: 取消属性订阅
+      x-sd-openapi:
+        responseClass: com.sensorsdata.focus.v1.UnSubscribeEntityAttributeResponse
+        isServerStreaming: false
+        requestClass: com.sensorsdata.focus.v1.UnSubscribeEntityAttributeRequest
+        grpcServiceBase: com.sensorsdata.focus.v1.ExpressAttributeServiceGrpc.ExpressAttributeServiceImplBase
+        internalDesc: classes in template for grpc service dynamic invoking
+        isClientStreaming: false
+      x-codegen-request-body-name: UnSubscribeEntityAttributeRequest
+      tags:
+      - Express Attribute
+  /express-attribute/status/query:
+    post:
+      description: 批量查询属性订阅状态
+      operationId: GetEntityAttributeStatus
+      parameters:
+      - description: 全局唯一的密钥，用于验证和授权访问 API 接口
+        in: header
+        name: api-key
+        required: true
+        schema:
+          type: string
+      - description: 项目名, 指定请求所属项目
+        in: header
+        name: sensorsdata-project
+        required: true
+        schema:
+          type: string
+      - description: 租户 ID, 用于请求所属租户
+        in: header
+        name: X-Organization-Id
+        required: true
+        schema:
+          type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/sensorsdata.focus.v1.GetEntityAttributeStatusRequest'
+        required: false
+      responses:
+        default:
+          content:
+            application/json:
+              example:
+                code: SUCCESS
+                data: {}
+                request_id: '1'
+              schema:
+                $ref: '#/components/schemas/sensorsdata.focus.v1.GetEntityAttributeStatusResponseHttpApiResult'
+          description: sensorsdata.focus.v1.GetEntityAttributeStatusResponse
+      summary: 批量查询属性订阅状态
+      x-sd-openapi:
+        responseClass: com.sensorsdata.focus.v1.GetEntityAttributeStatusResponse
+        isServerStreaming: false
+        requestClass: com.sensorsdata.focus.v1.GetEntityAttributeStatusRequest
+        grpcServiceBase: com.sensorsdata.focus.v1.ExpressAttributeServiceGrpc.ExpressAttributeServiceImplBase
+        internalDesc: classes in template for grpc service dynamic invoking
+        isClientStreaming: false
+      x-codegen-request-body-name: GetEntityAttributeStatusRequest
+      tags:
+      - Express Attribute
+  /express-attribute/list:
+    post:
+      description: 获取实体属性列表
+      operationId: ListAttributes
+      parameters:
+      - description: 全局唯一的密钥，用于验证和授权访问 API 接口
+        in: header
+        name: api-key
+        required: true
+        schema:
+          type: string
+      - description: 项目名, 指定请求所属项目
+        in: header
+        name: sensorsdata-project
+        required: true
+        schema:
+          type: string
+      - description: 租户 ID, 用于请求所属租户
+        in: header
+        name: X-Organization-Id
+        required: true
+        schema:
+          type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/sensorsdata.focus.v1.ListAttributesRequest'
+        required: false
+      responses:
+        default:
+          content:
+            application/json:
+              example:
+                code: SUCCESS
+                data:
+                  page_filter: {}
+                  attribute_records:
+                  - create_time: 1709895845938
+                    project_id: 2
+                    hubble_sub_id: 7
+                    name: age
+                    sync_done_time: 1709891376000
+                    id: 1
+                    type: tag
+                    name_cn: 年龄
+                    status: ACTIVE
+                request_id: '1'
+              schema:
+                $ref: '#/components/schemas/sensorsdata.focus.v1.ListAttributesResponseHttpApiResult'
+          description: sensorsdata.focus.v1.ListAttributesResponse
+      summary: 获取实体属性列表
+      x-sd-openapi:
+        responseClass: com.sensorsdata.focus.v1.ListAttributesResponse
+        isServerStreaming: false
+        requestClass: com.sensorsdata.focus.v1.ListAttributesRequest
+        grpcServiceBase: com.sensorsdata.focus.v1.ExpressAttributeServiceGrpc.ExpressAttributeServiceImplBase
+        internalDesc: classes in template for grpc service dynamic invoking
+        isClientStreaming: false
+      x-codegen-request-body-name: ListAttributesRequest
+      tags:
+      - Express Attribute
+  /express-attribute/quota/query:
+    get:
+      description: 查询Quota
+      operationId: QueryQuota
+      parameters:
+      - description: 全局唯一的密钥，用于验证和授权访问 API 接口
+        in: header
+        name: api-key
+        required: true
+        schema:
+          type: string
+      - description: 项目名, 指定请求所属项目
+        in: header
+        name: sensorsdata-project
+        required: true
+        schema:
+          type: string
+      - description: 租户 ID, 用于请求所属租户
+        in: header
+        name: X-Organization-Id
+        required: true
+        schema:
+          type: string
+      responses:
+        default:
+          content:
+            application/json:
+              example:
+                code: SUCCESS
+                data:
+                  used_count: 2
+                  remained_count: 8
+                request_id: '1'
+              schema:
+                $ref: '#/components/schemas/sensorsdata.focus.v1.QuotaResponseHttpApiResult'
+          description: sensorsdata.focus.v1.QuotaResponse
+      summary: 查询Quota
+      x-sd-openapi:
+        responseClass: com.sensorsdata.focus.v1.QuotaResponse
+        isServerStreaming: false
+        requestClass: com.sensorsdata.focus.v1.QuotaRequest
+        grpcServiceBase: com.sensorsdata.focus.v1.ExpressAttributeServiceGrpc.ExpressAttributeServiceImplBase
+        internalDesc: classes in template for grpc service dynamic invoking
+        isClientStreaming: false
+      tags:
+      - Express Attribute
+components:
+  schemas:
+    sensorsdata.focus.v1.SubscribeEntityAttributeResponse:
+      description: ''
+      title: SubscribeEntityAttributeResponse
+      type: object
+    sensorsdata.focus.v1.web.PageFilter:
+      description: 分页信息
+      properties:
+        limit:
+          description: 每页大小
+          format: int32
+          type: integer
+        offset:
+          description: 偏移量
+          format: int32
+          type: integer
+        total:
+          description: 总数
+          format: int32
+          type: integer
+      title: PageFilter
+      type: object
+    sensorsdata.common.ErrorInfo:
+      properties:
+        code:
+          description: 具体的错误码
+          example: XX-D-F-2-1
+          type: string
+        description:
+          description: 错误描述
+          example: 前端参数校验异常,PARAMETER_FORMAT_ERROR(quantiles=[10, -90] is not include [0, 100])
+          type: string
+        system_response:
+          description: 致错的可能原因列表
+          example: 系统终止了查询处理
+          type: string
+        error_causes:
+          items:
+            $ref: '#/components/schemas/sensorsdata.common.ErrorCause'
+          type: array
+        context:
+          $ref: '#/components/schemas/sensorsdata.common.ErrorContext'
+      title: ErrorInfo
+      type: object
+    sensorsdata.focus.v1.QuotaResponseHttpApiResult:
+      properties:
+        code:
+          type: string
+        message:
+          type: string
+        request_id:
+          type: string
+        data:
+          $ref: '#/components/schemas/sensorsdata.focus.v1.QuotaResponse'
+        error_info:
+          $ref: '#/components/schemas/sensorsdata.common.ErrorInfo'
+      title: sensorsdata.focus.v1.QuotaResponseHttpApiResult
+      type: object
+    sensorsdata.focus.v1.UnSubscribeEntityAttributeResponse:
+      description: ''
+      properties:
+        success:
+          description: 是否成功取消订阅
+          example: true
+          type: boolean
+      title: UnSubscribeEntityAttributeResponse
+      type: object
+    sensorsdata.common.ErrorContext:
+      description: 发生错误时，系统快照信息
+      properties:
+        origin_stack:
+          description: 上游异常的 stack，由系统截获
+          type: string
+        origin_cause:
+          description: 上游异常的 cause by，由系统截获
+          type: string
+        origin_code:
+          description: 上游异常的错误简码
+          type: string
+        origin_complete_code:
+          description: 上游异常的完整错误码
+          type: string
+        error_extend_desc:
+          description: 本次异常的辅助说明，可传入
+          type: string
+      title: ErrorContext
+      type: object
+    sensorsdata.focus.v1.ListAttributesRequest:
+      description: ''
+      properties:
+        project_id:
+          description: 项目ID
+          example: 1
+          format: int32
+          type: integer
+        keyword:
+          description: 搜索的关键字(订阅ID、属性名、标签名称)
+          example: '2'
+          type: string
+        status:
+          description: 订阅状态
+          example: ACTIVE
+          type: string
+        subscribe_start_date:
+          description: 订阅开始时间
+          example: '2020-01-01'
+          type: string
+        subscribe_end_date:
+          description: 订阅结束时间
+          example: '2032-01-01'
+          type: string
+        page_filter:
+          $ref: '#/components/schemas/sensorsdata.focus.v1.web.PageFilter'
+        subscribers:
+          description: 订阅方
+          items:
+            type: string
+          type: array
+      title: ListAttributesRequest
+      type: object
+    sensorsdata.focus.v1.SubscribeEntityAttributeResponseHttpApiResult:
+      properties:
+        code:
+          type: string
+        message:
+          type: string
+        request_id:
+          type: string
+        data:
+          $ref: '#/components/schemas/sensorsdata.focus.v1.SubscribeEntityAttributeResponse'
+        error_info:
+          $ref: '#/components/schemas/sensorsdata.common.ErrorInfo'
+      title: sensorsdata.focus.v1.SubscribeEntityAttributeResponseHttpApiResult
+      type: object
+    sensorsdata.common.ErrorCause:
+      properties:
+        error_cause:
+          description: 致错原因1
+          example: 参数异常1
+          type: string
+        action_suggestion:
+          description: 操作建议，针对该原因，建议的解决方式
+          example: 检测入参的数据类型1
+          type: string
+      title: ErrorCause
+      type: object
+    sensorsdata.focus.v1.QuotaResponse:
+      description: ''
+      properties:
+        used_count:
+          description: 已经使用的额度
+          example: 2
+          format: int32
+          type: integer
+        remained_count:
+          description: 剩余的额度
+          example: 8
+          format: int32
+          type: integer
+      title: QuotaResponse
+      type: object
+    sensorsdata.focus.v1.GetEntityAttributeStatusResponse:
+      description: ''
+      properties:
+        attribute_subscribe_statuses:
+          description: 属性/标签订阅状态列表
+          items:
+            enum:
+            - ATTRIBUTE_SUBSCRIBE_PREPARING
+            - ATTRIBUTE_SUBSCRIBE_READY
+            - ATTRIBUTE_SUBSCRIBE_EXCEPTION
+            type: string
+          type: array
+      title: GetEntityAttributeStatusResponse
+      type: object
+    sensorsdata.focus.v1.SubscribeEntityAttributeRequest:
+      description: ''
+      properties:
+        entity_name:
+          description: 实体名，不传默认 user 实体
+          type: string
+        attribute_name:
+          description: 属性名
+          type: string
+        subscriber:
+          description: 订阅方
+          type: string
+      title: SubscribeEntityAttributeRequest
+      type: object
+    sensorsdata.focus.v1.GetEntityAttributeStatusResponseHttpApiResult:
+      properties:
+        code:
+          type: string
+        message:
+          type: string
+        request_id:
+          type: string
+        data:
+          $ref: '#/components/schemas/sensorsdata.focus.v1.GetEntityAttributeStatusResponse'
+        error_info:
+          $ref: '#/components/schemas/sensorsdata.common.ErrorInfo'
+      title: sensorsdata.focus.v1.GetEntityAttributeStatusResponseHttpApiResult
+      type: object
+    sensorsdata.focus.v1.ListAttributesResponseHttpApiResult:
+      properties:
+        code:
+          type: string
+        message:
+          type: string
+        request_id:
+          type: string
+        data:
+          $ref: '#/components/schemas/sensorsdata.focus.v1.ListAttributesResponse'
+        error_info:
+          $ref: '#/components/schemas/sensorsdata.common.ErrorInfo'
+      title: sensorsdata.focus.v1.ListAttributesResponseHttpApiResult
+      type: object
+    sensorsdata.focus.v1.UnSubscribeEntityAttributeRequest:
+      description: ''
+      properties:
+        entity_name:
+          description: 实体名，不传默认 user 实体
+          type: string
+        attribute_name:
+          description: 被取消订阅的属性名
+          type: string
+        subscriber:
+          description: 订阅方
+          type: string
+      title: UnSubscribeEntityAttributeRequest
+      type: object
+    sensorsdata.focus.v1.GetEntityAttributeStatusRequest:
+      description: ''
+      properties:
+        entity_name:
+          description: 实体名，不传默认 user 实体
+          type: string
+        attribute_names:
+          description: 属性名
+          items:
+            type: string
+          type: array
+      title: GetEntityAttributeStatusRequest
+      type: object
+    sensorsdata.focus.v1.AttributeRecord:
+      description: ''
+      properties:
+        id:
+          description: 订阅ID
+          example: 1
+          format: int32
+          type: integer
+        project_id:
+          description: 项目ID
+          example: 2
+          format: int32
+          type: integer
+        name_cn:
+          description: 中文名称
+          example: 年龄
+          type: string
+        name:
+          description: 英文名称
+          example: age
+          type: string
+        status:
+          description: 订阅状态
+          example: ACTIVE
+          type: string
+        type:
+          description: 订阅类型：如 用户属性、标签
+          example: tag
+          type: string
+        hubble_sub_id:
+          description: hubble订阅ID
+          example: 7
+          format: int32
+          type: integer
+        create_time:
+          description: 创建时间
+          example: 1709895845938
+          format: int64
+          type: integer
+        sync_done_time:
+          description: 同步完成时间
+          example: 1709891376000
+          format: int64
+          type: integer
+        subscriber:
+          description: 订阅方
+          type: string
+      title: AttributeRecord
+      type: object
+    sensorsdata.focus.v1.ListAttributesResponse:
+      description: ''
+      properties:
+        page_filter:
+          $ref: '#/components/schemas/sensorsdata.focus.v1.web.PageFilter'
+        attribute_records:
+          description: 属性订阅详情
+          items:
+            $ref: '#/components/schemas/sensorsdata.focus.v1.AttributeRecord'
+          type: array
+      title: ListAttributesResponse
+      type: object
+    sensorsdata.focus.v1.UnSubscribeEntityAttributeResponseHttpApiResult:
+      properties:
+        code:
+          type: string
+        message:
+          type: string
+        request_id:
+          type: string
+        data:
+          $ref: '#/components/schemas/sensorsdata.focus.v1.UnSubscribeEntityAttributeResponse'
+        error_info:
+          $ref: '#/components/schemas/sensorsdata.common.ErrorInfo'
+      title: sensorsdata.focus.v1.UnSubscribeEntityAttributeResponseHttpApiResult
+      type: object
+x-sd-openapi-service-name: ExpressAttribute
+x-sd-openapi-service-name-hyphen: express-attribute
+x-sd-openapi-app-name: focus
+x-sd-openapi-service-name-zh_cn: 属性-元数据
+x-original-swagger-version: '2.0'

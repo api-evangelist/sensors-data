@@ -1,0 +1,563 @@
+openapi: 3.2.0
+info:
+  description: 素材相关接口
+  title: 神策智能运营 Web Materials API
+  version: ''
+servers:
+- url: /api/v3/focus/v1
+tags:
+- name: Web Materials
+paths:
+  /web-materials/list:
+    post:
+      description: 获取素材列表
+      operationId: WebListMaterial
+      parameters:
+      - description: 全局唯一的密钥，用于验证和授权访问 API 接口
+        in: header
+        name: api-key
+        required: true
+        schema:
+          type: string
+      - description: 项目名, 指定请求所属项目
+        in: header
+        name: sensorsdata-project
+        required: true
+        schema:
+          type: string
+      - description: 租户 ID, 用于请求所属租户
+        in: header
+        name: X-Organization-Id
+        required: true
+        schema:
+          type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/sensorsdata.focus.v1.WebListMaterialRequestBody'
+        description: 获取素材列表请求体
+        required: false
+      responses:
+        default:
+          content:
+            application/json:
+              example:
+                code: SUCCESS
+                data:
+                  page_filter: {}
+                  materials:
+                  - created_by: {}
+                request_id: '1'
+              schema:
+                $ref: '#/components/schemas/sensorsdata.focus.v1.WebListMaterialResponseHttpApiResult'
+          description: sensorsdata.focus.v1.WebListMaterialResponse
+      summary: 获取素材列表
+      x-sd-openapi:
+        responseClass: com.sensorsdata.focus.v1.WebListMaterialResponse
+        isServerStreaming: false
+        requestClass: com.sensorsdata.focus.v1.WebListMaterialRequest
+        grpcServiceBase: com.sensorsdata.focus.v1.WebMaterialsServiceGrpc.WebMaterialsServiceImplBase
+        internalDesc: classes in template for grpc service dynamic invoking
+        isClientStreaming: false
+      x-codegen-request-body-name: WebListMaterialRequestBody
+      tags:
+      - Web Materials
+  /web-materials/get:
+    get:
+      description: 获取单个素材
+      operationId: WebGetMaterial
+      parameters:
+      - description: 全局唯一的密钥，用于验证和授权访问 API 接口
+        in: header
+        name: api-key
+        required: true
+        schema:
+          type: string
+      - description: 项目名, 指定请求所属项目
+        in: header
+        name: sensorsdata-project
+        required: true
+        schema:
+          type: string
+      - description: 租户 ID, 用于请求所属租户
+        in: header
+        name: X-Organization-Id
+        required: true
+        schema:
+          type: string
+      - in: query
+        name: id
+        schema:
+          format: int32
+          type: integer
+      responses:
+        default:
+          content:
+            application/json:
+              example:
+                code: SUCCESS
+                data:
+                  material:
+                    created_by: {}
+                request_id: '1'
+              schema:
+                $ref: '#/components/schemas/sensorsdata.focus.v1.WebGetMaterialResponseHttpApiResult'
+          description: sensorsdata.focus.v1.WebGetMaterialResponse
+      summary: 获取单个素材
+      x-sd-openapi:
+        responseClass: com.sensorsdata.focus.v1.WebGetMaterialResponse
+        isServerStreaming: false
+        requestClass: com.sensorsdata.focus.v1.WebGetMaterialRequest
+        grpcServiceBase: com.sensorsdata.focus.v1.WebMaterialsServiceGrpc.WebMaterialsServiceImplBase
+        internalDesc: classes in template for grpc service dynamic invoking
+        isClientStreaming: false
+      tags:
+      - Web Materials
+  /web-materials/delete:
+    post:
+      description: 删除素材
+      operationId: WebDeleteMaterial
+      parameters:
+      - description: 全局唯一的密钥，用于验证和授权访问 API 接口
+        in: header
+        name: api-key
+        required: true
+        schema:
+          type: string
+      - description: 项目名, 指定请求所属项目
+        in: header
+        name: sensorsdata-project
+        required: true
+        schema:
+          type: string
+      - description: 租户 ID, 用于请求所属租户
+        in: header
+        name: X-Organization-Id
+        required: true
+        schema:
+          type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/sensorsdata.focus.v1.WebDeleteMaterialRequestBody'
+        description: 删除素材请求体
+        required: false
+      responses:
+        default:
+          content:
+            application/json:
+              example:
+                code: SUCCESS
+                data: {}
+                request_id: '1'
+              schema:
+                $ref: '#/components/schemas/sensorsdata.focus.v1.WebDeleteMaterialResponseHttpApiResult'
+          description: sensorsdata.focus.v1.WebDeleteMaterialResponse
+      summary: 删除素材
+      x-sd-openapi:
+        responseClass: com.sensorsdata.focus.v1.WebDeleteMaterialResponse
+        isServerStreaming: false
+        requestClass: com.sensorsdata.focus.v1.WebDeleteMaterialRequest
+        grpcServiceBase: com.sensorsdata.focus.v1.WebMaterialsServiceGrpc.WebMaterialsServiceImplBase
+        internalDesc: classes in template for grpc service dynamic invoking
+        isClientStreaming: false
+      x-codegen-request-body-name: WebDeleteMaterialRequestBody
+      tags:
+      - Web Materials
+  /web-materials/update:
+    post:
+      description: 更新素材
+      operationId: WebUpdateMaterial
+      parameters:
+      - description: 全局唯一的密钥，用于验证和授权访问 API 接口
+        in: header
+        name: api-key
+        required: true
+        schema:
+          type: string
+      - description: 项目名, 指定请求所属项目
+        in: header
+        name: sensorsdata-project
+        required: true
+        schema:
+          type: string
+      - description: 租户 ID, 用于请求所属租户
+        in: header
+        name: X-Organization-Id
+        required: true
+        schema:
+          type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/sensorsdata.focus.v1.WebUpdateMaterialRequest'
+        description: 更新素材请求体
+        required: false
+      responses:
+        default:
+          content:
+            application/json:
+              example:
+                code: SUCCESS
+                data:
+                  material:
+                    created_by: {}
+                request_id: '1'
+              schema:
+                $ref: '#/components/schemas/sensorsdata.focus.v1.WebUpdateMaterialResponseHttpApiResult'
+          description: sensorsdata.focus.v1.WebUpdateMaterialResponse
+      summary: 更新素材
+      x-sd-openapi:
+        responseClass: com.sensorsdata.focus.v1.WebUpdateMaterialResponse
+        isServerStreaming: false
+        requestClass: com.sensorsdata.focus.v1.WebUpdateMaterialRequest
+        grpcServiceBase: com.sensorsdata.focus.v1.WebMaterialsServiceGrpc.WebMaterialsServiceImplBase
+        internalDesc: classes in template for grpc service dynamic invoking
+        isClientStreaming: false
+      x-codegen-request-body-name: WebUpdateMaterialRequest
+      tags:
+      - Web Materials
+  /web-materials/create:
+    post:
+      description: 创建素材
+      operationId: WebCreateMaterial
+      parameters:
+      - description: 全局唯一的密钥，用于验证和授权访问 API 接口
+        in: header
+        name: api-key
+        required: true
+        schema:
+          type: string
+      - description: 项目名, 指定请求所属项目
+        in: header
+        name: sensorsdata-project
+        required: true
+        schema:
+          type: string
+      - description: 租户 ID, 用于请求所属租户
+        in: header
+        name: X-Organization-Id
+        required: true
+        schema:
+          type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/sensorsdata.focus.v1.WebCreateMaterialRequest'
+        description: 创建素材请求体
+        required: false
+      responses:
+        default:
+          content:
+            application/json:
+              example:
+                code: SUCCESS
+                data:
+                  material:
+                    created_by: {}
+                request_id: '1'
+              schema:
+                $ref: '#/components/schemas/sensorsdata.focus.v1.WebCreateMaterialResponseHttpApiResult'
+          description: sensorsdata.focus.v1.WebCreateMaterialResponse
+      summary: 创建素材
+      x-sd-openapi:
+        responseClass: com.sensorsdata.focus.v1.WebCreateMaterialResponse
+        isServerStreaming: false
+        requestClass: com.sensorsdata.focus.v1.WebCreateMaterialRequest
+        grpcServiceBase: com.sensorsdata.focus.v1.WebMaterialsServiceGrpc.WebMaterialsServiceImplBase
+        internalDesc: classes in template for grpc service dynamic invoking
+        isClientStreaming: false
+      x-codegen-request-body-name: WebCreateMaterialRequest
+      tags:
+      - Web Materials
+components:
+  schemas:
+    sensorsdata.focus.v1.WebCreateMaterialResponse:
+      description: 创建素材响应体
+      properties:
+        material:
+          $ref: '#/components/schemas/sensorsdata.focus.v1.web.Material'
+      title: WebCreateMaterialResponse
+      type: object
+    sensorsdata.focus.v1.WebCreateMaterialResponseHttpApiResult:
+      properties:
+        code:
+          type: string
+        message:
+          type: string
+        request_id:
+          type: string
+        data:
+          $ref: '#/components/schemas/sensorsdata.focus.v1.WebCreateMaterialResponse'
+        error_info:
+          $ref: '#/components/schemas/sensorsdata.common.ErrorInfo'
+      title: sensorsdata.focus.v1.WebCreateMaterialResponseHttpApiResult
+      type: object
+    sensorsdata.focus.v1.web.PageFilter:
+      description: 分页信息
+      properties:
+        limit:
+          description: 每页大小
+          format: int32
+          type: integer
+        offset:
+          description: 偏移量
+          format: int32
+          type: integer
+        total:
+          description: 总数
+          format: int32
+          type: integer
+      title: PageFilter
+      type: object
+    sensorsdata.focus.v1.WebListMaterialResponseHttpApiResult:
+      properties:
+        code:
+          type: string
+        message:
+          type: string
+        request_id:
+          type: string
+        data:
+          $ref: '#/components/schemas/sensorsdata.focus.v1.WebListMaterialResponse'
+        error_info:
+          $ref: '#/components/schemas/sensorsdata.common.ErrorInfo'
+      title: sensorsdata.focus.v1.WebListMaterialResponseHttpApiResult
+      type: object
+    sensorsdata.focus.v1.WebDeleteMaterialRequestBody:
+      description: 删除素材请求体
+      properties:
+        ids:
+          description: ''
+          items:
+            format: int32
+            type: integer
+          type: array
+      title: WebDeleteMaterialRequest
+      type: object
+    sensorsdata.common.ErrorInfo:
+      properties:
+        code:
+          description: 具体的错误码
+          example: XX-D-F-2-1
+          type: string
+        description:
+          description: 错误描述
+          example: 前端参数校验异常,PARAMETER_FORMAT_ERROR(quantiles=[10, -90] is not include [0, 100])
+          type: string
+        system_response:
+          description: 致错的可能原因列表
+          example: 系统终止了查询处理
+          type: string
+        error_causes:
+          items:
+            $ref: '#/components/schemas/sensorsdata.common.ErrorCause'
+          type: array
+        context:
+          $ref: '#/components/schemas/sensorsdata.common.ErrorContext'
+      title: ErrorInfo
+      type: object
+    sensorsdata.focus.v1.WebGetMaterialResponseHttpApiResult:
+      properties:
+        code:
+          type: string
+        message:
+          type: string
+        request_id:
+          type: string
+        data:
+          $ref: '#/components/schemas/sensorsdata.focus.v1.WebGetMaterialResponse'
+        error_info:
+          $ref: '#/components/schemas/sensorsdata.common.ErrorInfo'
+      title: sensorsdata.focus.v1.WebGetMaterialResponseHttpApiResult
+      type: object
+    sensorsdata.focus.v1.web.AccountInfo:
+      description: 用户信息
+      properties:
+        user_name:
+          description: 用户名
+          type: string
+        user_id:
+          description: 用户 id
+          format: int64
+          type: integer
+        user_cname:
+          description: 用户显示名
+          type: string
+      title: AccountInfo
+      type: object
+    sensorsdata.common.ErrorContext:
+      description: 发生错误时，系统快照信息
+      properties:
+        origin_stack:
+          description: 上游异常的 stack，由系统截获
+          type: string
+        origin_cause:
+          description: 上游异常的 cause by，由系统截获
+          type: string
+        origin_code:
+          description: 上游异常的错误简码
+          type: string
+        origin_complete_code:
+          description: 上游异常的完整错误码
+          type: string
+        error_extend_desc:
+          description: 本次异常的辅助说明，可传入
+          type: string
+      title: ErrorContext
+      type: object
+    sensorsdata.focus.v1.WebListMaterialResponse:
+      description: 获取素材列表响应体
+      properties:
+        page_filter:
+          $ref: '#/components/schemas/sensorsdata.focus.v1.web.PageFilter'
+        materials:
+          description: ''
+          items:
+            $ref: '#/components/schemas/sensorsdata.focus.v1.web.Material'
+          type: array
+      title: WebListMaterialResponse
+      type: object
+    sensorsdata.focus.v1.WebGetMaterialResponse:
+      description: 获取单个素材响应体
+      properties:
+        material:
+          $ref: '#/components/schemas/sensorsdata.focus.v1.web.Material'
+      title: WebGetMaterialResponse
+      type: object
+    sensorsdata.common.ErrorCause:
+      properties:
+        error_cause:
+          description: 致错原因1
+          example: 参数异常1
+          type: string
+        action_suggestion:
+          description: 操作建议，针对该原因，建议的解决方式
+          example: 检测入参的数据类型1
+          type: string
+      title: ErrorCause
+      type: object
+    sensorsdata.focus.v1.WebListMaterialRequestBody:
+      description: 获取素材列表请求体
+      properties:
+        page_filter:
+          $ref: '#/components/schemas/sensorsdata.focus.v1.web.PageFilter'
+      title: WebListMaterialRequest
+      type: object
+    sensorsdata.focus.v1.WebDeleteMaterialResponseHttpApiResult:
+      properties:
+        code:
+          type: string
+        message:
+          type: string
+        request_id:
+          type: string
+        data:
+          $ref: '#/components/schemas/sensorsdata.focus.v1.WebDeleteMaterialResponse'
+        error_info:
+          $ref: '#/components/schemas/sensorsdata.common.ErrorInfo'
+      title: sensorsdata.focus.v1.WebDeleteMaterialResponseHttpApiResult
+      type: object
+    sensorsdata.focus.v1.web.Material:
+      description: 素材信息
+      properties:
+        id:
+          description: id
+          format: int32
+          type: integer
+        title:
+          description: 标题
+          type: string
+        format:
+          description: 格式
+          type: string
+        thumb_url:
+          description: 下载连接
+          type: string
+        img_url:
+          description: 图像连接
+          type: string
+        width:
+          description: 宽
+          format: int32
+          type: integer
+        height:
+          description: 高
+          format: int32
+          type: integer
+        size:
+          description: 大小
+          format: int32
+          type: integer
+        created_by:
+          $ref: '#/components/schemas/sensorsdata.focus.v1.web.AccountInfo'
+        updated_by:
+          $ref: '#/components/schemas/sensorsdata.focus.v1.web.AccountInfo'
+        create_time:
+          description: 创建时间
+          type: string
+        update_time:
+          description: 更新时间
+          type: string
+      title: Material
+      type: object
+    sensorsdata.focus.v1.WebCreateMaterialRequest:
+      description: 创建素材请求体
+      properties:
+        file_name:
+          description: ''
+          type: string
+        content:
+          description: ''
+          type: string
+        md5:
+          description: ''
+          type: string
+      title: WebCreateMaterialRequest
+      type: object
+    sensorsdata.focus.v1.WebUpdateMaterialRequest:
+      description: 更新素材请求体
+      properties:
+        id:
+          description: ''
+          format: int32
+          type: integer
+        title:
+          description: ''
+          type: string
+      title: WebUpdateMaterialRequest
+      type: object
+    sensorsdata.focus.v1.WebUpdateMaterialResponse:
+      description: 更新素材响应体
+      properties:
+        material:
+          $ref: '#/components/schemas/sensorsdata.focus.v1.web.Material'
+      title: WebUpdateMaterialResponse
+      type: object
+    sensorsdata.focus.v1.WebDeleteMaterialResponse:
+      description: 删除素材响应体
+      title: WebDeleteMaterialResponse
+      type: object
+    sensorsdata.focus.v1.WebUpdateMaterialResponseHttpApiResult:
+      properties:
+        code:
+          type: string
+        message:
+          type: string
+        request_id:
+          type: string
+        data:
+          $ref: '#/components/schemas/sensorsdata.focus.v1.WebUpdateMaterialResponse'
+        error_info:
+          $ref: '#/components/schemas/sensorsdata.common.ErrorInfo'
+      title: sensorsdata.focus.v1.WebUpdateMaterialResponseHttpApiResult
+      type: object
+x-sd-openapi-service-name: WebMaterials
+x-sd-openapi-service-name-hyphen: web-materials
+x-sd-openapi-app-name: focus
+x-sd-openapi-service-name-zh_cn: 基础服务-素材
+x-original-swagger-version: '2.0'

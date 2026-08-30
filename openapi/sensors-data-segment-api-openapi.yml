@@ -1,0 +1,2843 @@
+openapi: 3.2.0
+info:
+  description: 分群管理服务
+  title: 神策数界 Segment API
+  version: ''
+servers:
+- url: /api/v3/horizon/v1
+tags:
+- name: Segment
+paths:
+  /segment/definition/list:
+    post:
+      description: "获取分群列表\n```\ncurl -X POST \"http://{host}:{port}/api/v3/horizon/v1/segment/definition/list\" \\\n  -H \"Accept: application/json\" \\\n  -H \"Content-Type: application/json\" \\\n  -H \"sensorsdata-project: {projectName}\" \\\n  -H \"api-key: {apiKey}\" \\\n  -d '{\"entity_name\":\"user\",\"segment_definition_names\":[\"user_segment_t\",\"user_segment_c001\"],\"segment_definition_fuzzy_name\":\"segment_c\",\"create_time_range\":{\"start_time\":\"2025-04-01T00:00:00Z\",\"end_time\":\"2025-04-30T23:59:59Z\"},\"has_valid_segment\":true,\"show_invisible\":true,\"page_size\":20,\"page\":-1}'\n 返回示例：\n{\"code\":\"SUCCESS\",\"request_id\":\"29144049a3397aefedcab4bebcb686cd\",\"data\":{\"total\":2,\"segment_definitions\":[{\"entity_name\":\"user\",\"name\":\"user_segment_c001\",\"display_name\":\"ceshi001\",\"comment\":\"\",\"segment_rule_ref\":{\"segment_rule_name\":\"7ed87d2d88124805bb6d81012648e782\",\"version\":\"1\"},\"trigger\":{\"trigger_type\":\"MANUAL\"},\"custom_params\":{\"INTERNAL_DEFINITION_ID\":{\"data_type\":\"INT\",\"int_value\":40,\"list_value\":[]}},\"visible\":true,\"managed\":true,\"status\":\"ACTIVE\",\"created_by\":\"SDH_WEB\",\"create_type\":\"QUICK_COMPONENT\",\"storage_settings\":{\"version_count\":1},\"alarm_config\":{\"enable\":false,\"alarm_rules\":[]},\"creator_id\":\"2\",\"modifier_id\":\"2\",\"create_time\":\"2025-04-09T08:12:12.580Z\",\"update_time\":\"2025-04-09T08:12:12.580Z\",\"notify_params\":{\"subscribe_param\":{\"enable\":false,\"contents\":[]},\"push_param\":{\"enable\":false,\"contents\":[]}},\"source\":{\"app\":\"SDH\",\"category\":\"SEGMENT\",\"sub_category\":\"\"},\"legacy_id\":792},{\"entity_name\":\"user\",\"name\":\"user_segment_t\",\"display_name\":\"tezheng\",\"comment\":\"\",\"segment_rule_ref\":{\"segment_rule_name\":\"13711b8bc45a4cfa83747864b468afe2\",\"version\":\"1\"},\"trigger\":{\"trigger_type\":\"MANUAL\"},\"custom_params\":{\"INTERNAL_DEFINITION_ID\":{\"data_type\":\"INT\",\"int_value\":42,\"list_value\":[]}},\"visible\":true,\"managed\":true,\"status\":\"ACTIVE\",\"created_by\":\"SDH_WEB\",\"create_type\":\"CUSTOMIZED_RULE\",\"storage_settings\":{\"version_count\":1},\"alarm_config\":{\"enable\":false,\"alarm_rules\":[]},\"creator_id\":\"2\",\"modifier_id\":\"2\",\"create_time\":\"2025-04-23T09:17:20.397Z\",\"update_time\":\"2025-04-23T09:17:20.397Z\",\"notify_params\":{\"subscribe_param\":{\"enable\":false,\"contents\":[]},\"push_param\":{\"enable\":false,\"contents\":[]}},\"source\":{\"app\":\"SDH\",\"category\":\"SEGMENT\",\"sub_category\":\"\"},\"legacy_id\":796}]}}\n```"
+      operationId: ListSegmentDefinitions
+      parameters:
+      - description: 全局唯一的密钥，用于验证和授权访问 API 接口
+        in: header
+        name: api-key
+        required: true
+        schema:
+          type: string
+      - description: 项目名, 指定请求所属项目
+        in: header
+        name: sensorsdata-project
+        required: true
+        schema:
+          type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/sensorsdata.horizon.v1.ListSegmentDefinitionsRequest'
+        required: false
+      responses:
+        default:
+          content:
+            application/json:
+              example:
+                code: SUCCESS
+                data:
+                  segment_definitions:
+                  - entity_name: user
+                    segment_rule_ref:
+                      expression:
+                        eql_segment_rule:
+                          eql: 'user.$SegmentMembership.user_segment_t111111.is_not_null()
+
+                            and
+
+                            user.user_tag_c4 == ''标签值1''
+
+                            and
+
+                            user.vip_level in [''高级VIP'',''普通用户'']'
+                        entity_set_rules:
+                        - {}
+                        used_fields:
+                        - user.id
+                        sql_segment_rule:
+                          query_options:
+                            option: TIMEOUT
+                            value: '120'
+                          sql: select user_id as id from user where user_id > 100
+                        loading_segment_rule:
+                          matched_field: user.$identity_login_id
+                          sync_flag: false
+                          loading_type: TAG_LOADING_TYPE_OVERWRITE
+                        custom_rule: {}
+                        event_sequence_rule:
+                          simple_event_sequences:
+                          - time_window:
+                              unit: DAY
+                            time_range:
+                              start_time:
+                                type: RELATIVE
+                                trunc_unit: DAY
+                                base_time: $TASK_TIME
+                                time_interval: -7
+                              end_time:
+                                type: RELATIVE
+                                trunc_unit: DAY
+                                base_time: $TASK_TIME
+                                time_interval: -1
+                            event_steps:
+                            - condition:
+                                operator: AND
+                                conditions:
+                                - function: IS_TRUE
+                                  params:
+                                  - param_type: FIELD
+                                    field: user.$Events.$AppStart.$is_login_id
+                              event_name: user.$Events.AppStart
+                          operator: UNION
+                        tailor:
+                          function: LESS_EQUAL
+                          rank_field:
+                            type: PERCENT_ORDER_RANK
+                            orders:
+                            - measure:
+                                type: EQL_MEASURE_FIELD
+                                eql_measure: "user.$Events.virtual_event_for_tag.filter_event(\n  datetime_add(${var:base_time}, -1, 'DAY'),\n  datetime_add(${var:base_time}, -1, 'DAY')\n).count()"
+                              is_asc: false
+                          params:
+                          - param_type: VALUE
+                            value:
+                              data_type: NUMBER
+                              number_value: 0.1
+                        type: SQL_BASED
+                        version: 2
+                        group_expression_rule:
+                          group_expression: $1-$2
+                      segment_rule_name: user_segment_rule_cs001
+                    alarm_config:
+                      alarm_rules:
+                      - {}
+                    name: user_segment_cs001
+                    create_type: CUSTOMIZED_RULE
+                    comment: 这是我的分群描述
+                    trigger:
+                      trigger_type: CRON
+                      cron_trigger:
+                        crontab_exp: 0 6 21 * * ? *
+                      periodic_trigger: {}
+                      static_trigger:
+                        time: '2020-07-08T00:00:00Z'
+                      sync_job_trigger: {}
+                    source: {}
+                    display_name: 我的分群
+                    storage_settings:
+                      version_count: 30
+                    notify_params:
+                      subscribe_param:
+                        contents:
+                        - {}
+                    status: ACTIVE
+                request_id: '1'
+              schema:
+                $ref: '#/components/schemas/sensorsdata.horizon.v1.ListSegmentDefinitionsResponseHttpApiResult'
+          description: sensorsdata.horizon.v1.ListSegmentDefinitionsResponse
+      summary: 获取分群列表
+      x-sd-openapi:
+        responseClass: com.sensorsdata.horizon.v1.ListSegmentDefinitionsResponse
+        isServerStreaming: false
+        requestClass: com.sensorsdata.horizon.v1.ListSegmentDefinitionsRequest
+        grpcServiceBase: com.sensorsdata.horizon.v1.SegmentServiceGrpc.SegmentServiceImplBase
+        internalDesc: classes in template for grpc service dynamic invoking
+        isClientStreaming: false
+      x-codegen-request-body-name: ListSegmentDefinitionsRequest
+      tags:
+      - Segment
+  /segment/definition/get:
+    post:
+      description: "获取分群信息\n```\ncurl -X POST \"http://{host}:{port}/api/v3/horizon/v1/segment/definition/get\" \\\n  -H \"Accept: application/json\" \\\n  -H \"Content-Type: application/json\" \\\n  -H \"sensorsdata-project: {projectName}\" \\\n  -H \"api-key: {apiKey}\" \\\n  -d '{\"entity_name\":\"user\",\"name\":\"user_segment_t\"}'\n 返回示例：\n{\"code\":\"SUCCESS\",\"request_id\":\"2914451801921dbc95dc8cceff783fd4\",\"data\":{\"visible\":true,\"create_time\":\"2025-04-23T09:17:20.397Z\",\"entity_name\":\"user\",\"create_type\":\"CUSTOMIZED_RULE\",\"trigger\":{\"trigger_type\":\"MANUAL\"},\"source\":{\"app\":\"SDH\",\"category\":\"SEGMENT\",\"sub_category\":\"\"},\"display_name\":\"tezheng\",\"storage_settings\":{\"version_count\":1},\"created_by\":\"SDH_WEB\",\"custom_params\":{\"INTERNAL_DEFINITION_ID\":{\"data_type\":\"INT\",\"int_value\":42,\"list_value\":[]}},\"update_time\":\"2025-04-23T09:17:20.397Z\",\"managed\":true,\"segment_rule_ref\":{\"segment_rule_name\":\"13711b8bc45a4cfa83747864b468afe2\",\"version\":\"1\"},\"alarm_config\":{\"enable\":false,\"alarm_rules\":[]},\"name\":\"user_segment_t\",\"creator_id\":\"2\",\"modifier_id\":\"2\",\"legacy_id\":796,\"comment\":\"\",\"notify_params\":{\"subscribe_param\":{\"enable\":false,\"contents\":[]},\"push_param\":{\"enable\":false,\"contents\":[]}},\"status\":\"ACTIVE\"}}\n```"
+      operationId: GetSegmentDefinition
+      parameters:
+      - description: 全局唯一的密钥，用于验证和授权访问 API 接口
+        in: header
+        name: api-key
+        required: true
+        schema:
+          type: string
+      - description: 项目名, 指定请求所属项目
+        in: header
+        name: sensorsdata-project
+        required: true
+        schema:
+          type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/sensorsdata.horizon.v1.GetSegmentDefinitionRequest'
+        required: false
+      responses:
+        default:
+          content:
+            application/json:
+              example:
+                code: SUCCESS
+                data:
+                  entity_name: user
+                  segment_rule_ref:
+                    expression:
+                      eql_segment_rule:
+                        eql: 'user.$SegmentMembership.user_segment_t111111.is_not_null()
+
+                          and
+
+                          user.user_tag_c4 == ''标签值1''
+
+                          and
+
+                          user.vip_level in [''高级VIP'',''普通用户'']'
+                      entity_set_rules:
+                      - {}
+                      used_fields:
+                      - user.id
+                      sql_segment_rule:
+                        query_options:
+                          option: TIMEOUT
+                          value: '120'
+                        sql: select user_id as id from user where user_id > 100
+                      loading_segment_rule:
+                        matched_field: user.$identity_login_id
+                        sync_flag: false
+                        loading_type: TAG_LOADING_TYPE_OVERWRITE
+                      custom_rule: {}
+                      event_sequence_rule:
+                        simple_event_sequences:
+                        - time_window:
+                            unit: DAY
+                          time_range:
+                            start_time:
+                              type: RELATIVE
+                              trunc_unit: DAY
+                              base_time: $TASK_TIME
+                              time_interval: -7
+                            end_time:
+                              type: RELATIVE
+                              trunc_unit: DAY
+                              base_time: $TASK_TIME
+                              time_interval: -1
+                          event_steps:
+                          - condition:
+                              operator: AND
+                              conditions:
+                              - function: IS_TRUE
+                                params:
+                                - param_type: FIELD
+                                  field: user.$Events.$AppStart.$is_login_id
+                            event_name: user.$Events.AppStart
+                        operator: UNION
+                      tailor:
+                        function: LESS_EQUAL
+                        rank_field:
+                          type: PERCENT_ORDER_RANK
+                          orders:
+                          - measure:
+                              type: EQL_MEASURE_FIELD
+                              eql_measure: "user.$Events.virtual_event_for_tag.filter_event(\n  datetime_add(${var:base_time}, -1, 'DAY'),\n  datetime_add(${var:base_time}, -1, 'DAY')\n).count()"
+                            is_asc: false
+                        params:
+                        - param_type: VALUE
+                          value:
+                            data_type: NUMBER
+                            number_value: 0.1
+                      type: SQL_BASED
+                      version: 2
+                      group_expression_rule:
+                        group_expression: $1-$2
+                    segment_rule_name: user_segment_rule_cs001
+                  alarm_config:
+                    alarm_rules:
+                    - {}
+                  name: user_segment_cs001
+                  create_type: CUSTOMIZED_RULE
+                  comment: 这是我的分群描述
+                  trigger:
+                    trigger_type: CRON
+                    cron_trigger:
+                      crontab_exp: 0 6 21 * * ? *
+                    periodic_trigger: {}
+                    static_trigger:
+                      time: '2020-07-08T00:00:00Z'
+                    sync_job_trigger: {}
+                  source: {}
+                  display_name: 我的分群
+                  storage_settings:
+                    version_count: 30
+                  notify_params:
+                    subscribe_param:
+                      contents:
+                      - {}
+                  status: ACTIVE
+                request_id: '1'
+              schema:
+                $ref: '#/components/schemas/sensorsdata.horizon.v1.SegmentDefinitionHttpApiResult'
+          description: sensorsdata.horizon.v1.SegmentDefinition
+      summary: 获取分群信息
+      x-sd-openapi:
+        responseClass: com.sensorsdata.horizon.v1.SegmentDefinition
+        isServerStreaming: false
+        requestClass: com.sensorsdata.horizon.v1.GetSegmentDefinitionRequest
+        grpcServiceBase: com.sensorsdata.horizon.v1.SegmentServiceGrpc.SegmentServiceImplBase
+        internalDesc: classes in template for grpc service dynamic invoking
+        isClientStreaming: false
+      x-codegen-request-body-name: GetSegmentDefinitionRequest
+      tags:
+      - Segment
+  /segment/definition/create-with-rule:
+    post:
+      description: "创建分群\n```\ncurl -X POST \"http://{host}:{port}/api/v3/horizon/v1/segment/definition/create-with-rule\" \\\n  -H \"Accept: application/json\" \\\n  -H \"Content-Type: application/json\" \\\n  -H \"sensorsdata-project: {projectName}\" \\\n  -H \"api-key: {apiKey}\" \\\n  -d '{\"segment_definition\":{\"entity_name\":\"user\",\"name\":\"user_segment_wdfq1\",\"display_name\":\"我的分群1\",\"comment\":\"备注信息\",\"segment_rule_ref\":{\"expression\":{\"type\":\"LOADING_BASED\",\"loading_segment_rule\":{\"matched_field\":\"user.$identity_login_id\",\"sync_flag\":false,\"loading_type\":\"LOADING_TYPE_OVERWRITE\"},\"version\":2}},\"trigger\":{\"trigger_type\":\"MANUAL\"},\"visible\":true,\"managed\":true,\"status\":\"ACTIVE\",\"created_by\":\"SDH_WEB\",\"create_type\":\"IMPORT\",\"storage_settings\":{\"version_count\":1}},\"dry_run\":false}'\n 返回示例：\n{\"code\":\"SUCCESS\",\"request_id\":\"29145736a5c98fb2c455a8919189fa2d\",\"data\":{\"visible\":true,\"create_time\":\"2025-04-29T06:57:36.724Z\",\"entity_name\":\"user\",\"create_type\":\"IMPORT\",\"trigger\":{\"trigger_type\":\"MANUAL\"},\"source\":{\"app\":\"SDH\",\"category\":\"SEGMENT\",\"sub_category\":\"\"},\"display_name\":\"我的分群1\",\"storage_settings\":{\"version_count\":1},\"created_by\":\"SDH_WEB\",\"custom_params\":{\"INTERNAL_DEFINITION_ID\":{\"data_type\":\"INT\",\"int_value\":43,\"list_value\":[]}},\"update_time\":\"2025-04-29T06:57:36.724Z\",\"managed\":true,\"segment_rule_ref\":{\"segment_rule_name\":\"78eabb46c13b4673a2b2af10ef4616f8\",\"version\":\"1\"},\"name\":\"user_segment_wdfq1\",\"creator_id\":\"2\",\"modifier_id\":\"2\",\"legacy_id\":800,\"comment\":\"备注信息\",\"status\":\"ACTIVE\"}}\n```"
+      operationId: CreateSegmentDefinitionWithRule
+      parameters:
+      - description: 全局唯一的密钥，用于验证和授权访问 API 接口
+        in: header
+        name: api-key
+        required: true
+        schema:
+          type: string
+      - description: 项目名, 指定请求所属项目
+        in: header
+        name: sensorsdata-project
+        required: true
+        schema:
+          type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/sensorsdata.horizon.v1.CreateSegmentDefinitionWithRuleRequest'
+        required: false
+      responses:
+        default:
+          content:
+            application/json:
+              example:
+                code: SUCCESS
+                data:
+                  entity_name: user
+                  segment_rule_ref:
+                    expression:
+                      eql_segment_rule:
+                        eql: 'user.$SegmentMembership.user_segment_t111111.is_not_null()
+
+                          and
+
+                          user.user_tag_c4 == ''标签值1''
+
+                          and
+
+                          user.vip_level in [''高级VIP'',''普通用户'']'
+                      entity_set_rules:
+                      - {}
+                      used_fields:
+                      - user.id
+                      sql_segment_rule:
+                        query_options:
+                          option: TIMEOUT
+                          value: '120'
+                        sql: select user_id as id from user where user_id > 100
+                      loading_segment_rule:
+                        matched_field: user.$identity_login_id
+                        sync_flag: false
+                        loading_type: TAG_LOADING_TYPE_OVERWRITE
+                      custom_rule: {}
+                      event_sequence_rule:
+                        simple_event_sequences:
+                        - time_window:
+                            unit: DAY
+                          time_range:
+                            start_time:
+                              type: RELATIVE
+                              trunc_unit: DAY
+                              base_time: $TASK_TIME
+                              time_interval: -7
+                            end_time:
+                              type: RELATIVE
+                              trunc_unit: DAY
+                              base_time: $TASK_TIME
+                              time_interval: -1
+                          event_steps:
+                          - condition:
+                              operator: AND
+                              conditions:
+                              - function: IS_TRUE
+                                params:
+                                - param_type: FIELD
+                                  field: user.$Events.$AppStart.$is_login_id
+                            event_name: user.$Events.AppStart
+                        operator: UNION
+                      tailor:
+                        function: LESS_EQUAL
+                        rank_field:
+                          type: PERCENT_ORDER_RANK
+                          orders:
+                          - measure:
+                              type: EQL_MEASURE_FIELD
+                              eql_measure: "user.$Events.virtual_event_for_tag.filter_event(\n  datetime_add(${var:base_time}, -1, 'DAY'),\n  datetime_add(${var:base_time}, -1, 'DAY')\n).count()"
+                            is_asc: false
+                        params:
+                        - param_type: VALUE
+                          value:
+                            data_type: NUMBER
+                            number_value: 0.1
+                      type: SQL_BASED
+                      version: 2
+                      group_expression_rule:
+                        group_expression: $1-$2
+                    segment_rule_name: user_segment_rule_cs001
+                  alarm_config:
+                    alarm_rules:
+                    - {}
+                  name: user_segment_cs001
+                  create_type: CUSTOMIZED_RULE
+                  comment: 这是我的分群描述
+                  trigger:
+                    trigger_type: CRON
+                    cron_trigger:
+                      crontab_exp: 0 6 21 * * ? *
+                    periodic_trigger: {}
+                    static_trigger:
+                      time: '2020-07-08T00:00:00Z'
+                    sync_job_trigger: {}
+                  source: {}
+                  display_name: 我的分群
+                  storage_settings:
+                    version_count: 30
+                  notify_params:
+                    subscribe_param:
+                      contents:
+                      - {}
+                  status: ACTIVE
+                request_id: '1'
+              schema:
+                $ref: '#/components/schemas/sensorsdata.horizon.v1.SegmentDefinitionHttpApiResult'
+          description: sensorsdata.horizon.v1.SegmentDefinition
+      summary: 创建分群
+      x-sd-openapi:
+        responseClass: com.sensorsdata.horizon.v1.SegmentDefinition
+        isServerStreaming: false
+        requestClass: com.sensorsdata.horizon.v1.CreateSegmentDefinitionWithRuleRequest
+        grpcServiceBase: com.sensorsdata.horizon.v1.SegmentServiceGrpc.SegmentServiceImplBase
+        internalDesc: classes in template for grpc service dynamic invoking
+        isClientStreaming: false
+      x-codegen-request-body-name: CreateSegmentDefinitionWithRuleRequest
+      tags:
+      - Segment
+  /segment/definition/update-with-rule:
+    post:
+      description: "编辑分群\n```\ncurl -X POST \"http://{host}:{port}/api/v3/horizon/v1/segment/definition/update-with-rule\" \\\n  -H \"Accept: application/json\" \\\n  -H \"Content-Type: application/json\" \\\n  -H \"sensorsdata-project: {projectName}\" \\\n  -H \"api-key: {apiKey}\" \\\n  -d '{\"segment_definition\":{\"entity_name\":\"user\",\"name\":\"user_segment_wdfq1\",\"display_name\":\"我的分群1_修改\",\"comment\":\"备注信息_修改\",\"segment_rule_ref\":{\"expression\":{\"type\":\"LOADING_BASED\",\"loading_segment_rule\":{\"matched_field\":\"user.name\",\"sync_flag\":false,\"loading_type\":\"LOADING_TYPE_OVERWRITE\"},\"version\":2}},\"trigger\":{\"trigger_type\":\"MANUAL\"},\"visible\":true,\"managed\":true,\"status\":\"ACTIVE\",\"created_by\":\"SDH_WEB\",\"create_type\":\"IMPORT\",\"storage_settings\":{\"version_count\":1}},\"dry_run\":false,\"update_mask\":\"display_name,comment,segment_rule_ref,trigger,custom_params,visible,status,storage_settings\"}'\n 返回示例：\n{\"code\":\"SUCCESS\",\"request_id\":\"2916164415f0ca09d3ecd3a8ecd39a48\",\"data\":{\"visible\":true,\"create_time\":\"2025-04-29T06:57:36.724Z\",\"entity_name\":\"user\",\"create_type\":\"IMPORT\",\"trigger\":{\"trigger_type\":\"MANUAL\"},\"source\":{\"app\":\"SDH\",\"category\":\"SEGMENT\",\"sub_category\":\"\"},\"display_name\":\"我的分群1_修改\",\"storage_settings\":{\"version_count\":1},\"created_by\":\"SDH_WEB\",\"custom_params\":{\"INTERNAL_DEFINITION_ID\":{\"data_type\":\"INT\",\"int_value\":43,\"list_value\":[]}},\"update_time\":\"2025-04-29T08:16:44.750Z\",\"managed\":true,\"segment_rule_ref\":{\"segment_rule_name\":\"78eabb46c13b4673a2b2af10ef4616f8\",\"version\":\"2\"},\"name\":\"user_segment_wdfq1\",\"creator_id\":\"2\",\"modifier_id\":\"2\",\"legacy_id\":800,\"comment\":\"备注信息_修改\",\"status\":\"ACTIVE\"}}\n```"
+      operationId: UpdateSegmentDefinitionWithRule
+      parameters:
+      - description: 全局唯一的密钥，用于验证和授权访问 API 接口
+        in: header
+        name: api-key
+        required: true
+        schema:
+          type: string
+      - description: 项目名, 指定请求所属项目
+        in: header
+        name: sensorsdata-project
+        required: true
+        schema:
+          type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/sensorsdata.horizon.v1.UpdateSegmentDefinitionWithRuleRequest'
+        required: false
+      responses:
+        default:
+          content:
+            application/json:
+              example:
+                code: SUCCESS
+                data:
+                  entity_name: user
+                  segment_rule_ref:
+                    expression:
+                      eql_segment_rule:
+                        eql: 'user.$SegmentMembership.user_segment_t111111.is_not_null()
+
+                          and
+
+                          user.user_tag_c4 == ''标签值1''
+
+                          and
+
+                          user.vip_level in [''高级VIP'',''普通用户'']'
+                      entity_set_rules:
+                      - {}
+                      used_fields:
+                      - user.id
+                      sql_segment_rule:
+                        query_options:
+                          option: TIMEOUT
+                          value: '120'
+                        sql: select user_id as id from user where user_id > 100
+                      loading_segment_rule:
+                        matched_field: user.$identity_login_id
+                        sync_flag: false
+                        loading_type: TAG_LOADING_TYPE_OVERWRITE
+                      custom_rule: {}
+                      event_sequence_rule:
+                        simple_event_sequences:
+                        - time_window:
+                            unit: DAY
+                          time_range:
+                            start_time:
+                              type: RELATIVE
+                              trunc_unit: DAY
+                              base_time: $TASK_TIME
+                              time_interval: -7
+                            end_time:
+                              type: RELATIVE
+                              trunc_unit: DAY
+                              base_time: $TASK_TIME
+                              time_interval: -1
+                          event_steps:
+                          - condition:
+                              operator: AND
+                              conditions:
+                              - function: IS_TRUE
+                                params:
+                                - param_type: FIELD
+                                  field: user.$Events.$AppStart.$is_login_id
+                            event_name: user.$Events.AppStart
+                        operator: UNION
+                      tailor:
+                        function: LESS_EQUAL
+                        rank_field:
+                          type: PERCENT_ORDER_RANK
+                          orders:
+                          - measure:
+                              type: EQL_MEASURE_FIELD
+                              eql_measure: "user.$Events.virtual_event_for_tag.filter_event(\n  datetime_add(${var:base_time}, -1, 'DAY'),\n  datetime_add(${var:base_time}, -1, 'DAY')\n).count()"
+                            is_asc: false
+                        params:
+                        - param_type: VALUE
+                          value:
+                            data_type: NUMBER
+                            number_value: 0.1
+                      type: SQL_BASED
+                      version: 2
+                      group_expression_rule:
+                        group_expression: $1-$2
+                    segment_rule_name: user_segment_rule_cs001
+                  alarm_config:
+                    alarm_rules:
+                    - {}
+                  name: user_segment_cs001
+                  create_type: CUSTOMIZED_RULE
+                  comment: 这是我的分群描述
+                  trigger:
+                    trigger_type: CRON
+                    cron_trigger:
+                      crontab_exp: 0 6 21 * * ? *
+                    periodic_trigger: {}
+                    static_trigger:
+                      time: '2020-07-08T00:00:00Z'
+                    sync_job_trigger: {}
+                  source: {}
+                  display_name: 我的分群
+                  storage_settings:
+                    version_count: 30
+                  notify_params:
+                    subscribe_param:
+                      contents:
+                      - {}
+                  status: ACTIVE
+                request_id: '1'
+              schema:
+                $ref: '#/components/schemas/sensorsdata.horizon.v1.SegmentDefinitionHttpApiResult'
+          description: sensorsdata.horizon.v1.SegmentDefinition
+      summary: 编辑分群
+      x-sd-openapi:
+        responseClass: com.sensorsdata.horizon.v1.SegmentDefinition
+        isServerStreaming: false
+        requestClass: com.sensorsdata.horizon.v1.UpdateSegmentDefinitionWithRuleRequest
+        grpcServiceBase: com.sensorsdata.horizon.v1.SegmentServiceGrpc.SegmentServiceImplBase
+        internalDesc: classes in template for grpc service dynamic invoking
+        isClientStreaming: false
+      x-codegen-request-body-name: UpdateSegmentDefinitionWithRuleRequest
+      tags:
+      - Segment
+  /segment/definition/delete:
+    post:
+      description: "删除分群\n```\ncurl -X POST \"http://{host}:{port}/api/v3/horizon/v1/segment/definition/delete\" \\\n  -H \"Accept: application/json\" \\\n  -H \"Content-Type: application/json\" \\\n  -H \"sensorsdata-project: {projectName}\" \\\n  -H \"api-key: {apiKey}\" \\\n  -d '{ \"entity_name\": \"user\",\n        \"name\": \"user_segment_wdfq1\"\n  }'\n 返回示例：\n{\n    \"code\": \"SUCCESS\",\n    \"request_id\": \"18115057aa85bb6c55b1d02a940fe692\",\n    \"data\": {}\n}\n```"
+      operationId: DeleteSegmentDefinition
+      parameters:
+      - description: 全局唯一的密钥，用于验证和授权访问 API 接口
+        in: header
+        name: api-key
+        required: true
+        schema:
+          type: string
+      - description: 项目名, 指定请求所属项目
+        in: header
+        name: sensorsdata-project
+        required: true
+        schema:
+          type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/sensorsdata.horizon.v1.DeleteSegmentDefinitionRequest'
+        description: 删除分群
+        required: false
+      responses:
+        default:
+          content:
+            application/json:
+              example:
+                code: SUCCESS
+                data: {}
+                request_id: '1'
+              schema:
+                $ref: '#/components/schemas/sensorsdata.common.HttpApiResult'
+          description: ''
+      summary: 删除分群
+      x-sd-openapi:
+        responseClass: com.google.protobuf.Empty
+        isServerStreaming: false
+        requestClass: com.sensorsdata.horizon.v1.DeleteSegmentDefinitionRequest
+        grpcServiceBase: com.sensorsdata.horizon.v1.SegmentServiceGrpc.SegmentServiceImplBase
+        internalDesc: classes in template for grpc service dynamic invoking
+        isClientStreaming: false
+      x-codegen-request-body-name: DeleteSegmentDefinitionRequest
+      tags:
+      - Segment
+  /segment/definition/recover:
+    post:
+      description: "恢复被删除分群\n```\ncurl -X POST \"http://{host}:{port}/api/v3/horizon/v1/segment/definition/recover\" \\\n  -H \"Accept: application/json\" \\\n  -H \"Content-Type: application/json\" \\\n  -H \"sensorsdata-project: {projectName}\" \\\n  -H \"api-key: {apiKey}\" \\\n  -d '{ \"entity_name\": \"user\",\n        \"name\": \"user_segment_wdfq1\"\n  }'\n 返回示例：\n{\n    \"code\": \"SUCCESS\",\n    \"request_id\": \"181155401d5eef23e64654ecf04f2f8c\",\n    \"data\": {\n        \"visible\": true,\n        \"create_time\": \"2025-06-18T03:46:47.876Z\",\n        \"entity_name\": \"user\",\n        \"create_type\": \"IMPORT\",\n        \"trigger\": {\n            \"trigger_type\": \"MANUAL\"\n        },\n        \"source\": {\n            \"app\": \"SDH\",\n            \"category\": \"SEGMENT\",\n            \"sub_category\": \"\"\n        },\n        \"display_name\": \"我的分群1\",\n        \"storage_settings\": {\n            \"version_count\": 1\n        },\n        \"created_by\": \"SDH_WEB\",\n        \"custom_params\": {\n            \"DELETE_REQUESTED_PARAM\": {\n                \"data_type\": \"STRING\",\n                \"string_value\": \"{\\\"delete_requested_time\\\":1750218657735,\\\"delete_requested_status\\\":\\\"ACTIVE\\\",\\\"delete_account_id\\\":\\\"2\\\"}\",\n                \"list_value\": []\n            },\n            \"INTERNAL_DEFINITION_ID\": {\n                \"data_type\": \"INT\",\n                \"int_value\": 2,\n                \"list_value\": []\n            }\n        },\n        \"update_time\": \"2025-06-18T03:46:47.876Z\",\n        \"managed\": true,\n        \"segment_rule_ref\": {\n            \"segment_rule_name\": \"88ebf4862ca445b6b6d5678dad50e563\",\n            \"version\": \"1\"\n        },\n        \"name\": \"user_segment_wdfq1\",\n        \"creator_id\": \"2\",\n        \"modifier_id\": \"2\",\n        \"legacy_id\": 58,\n        \"comment\": \"备注信息\",\n        \"status\": \"ACTIVE\"\n    }\n}\n```"
+      operationId: RecoverSegmentDefinition
+      parameters:
+      - description: 全局唯一的密钥，用于验证和授权访问 API 接口
+        in: header
+        name: api-key
+        required: true
+        schema:
+          type: string
+      - description: 项目名, 指定请求所属项目
+        in: header
+        name: sensorsdata-project
+        required: true
+        schema:
+          type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/sensorsdata.horizon.v1.RecoverSegmentDefinitionRequest'
+        description: 恢复分群
+        required: false
+      responses:
+        default:
+          content:
+            application/json:
+              example:
+                code: SUCCESS
+                data:
+                  entity_name: user
+                  segment_rule_ref:
+                    expression:
+                      eql_segment_rule:
+                        eql: 'user.$SegmentMembership.user_segment_t111111.is_not_null()
+
+                          and
+
+                          user.user_tag_c4 == ''标签值1''
+
+                          and
+
+                          user.vip_level in [''高级VIP'',''普通用户'']'
+                      entity_set_rules:
+                      - {}
+                      used_fields:
+                      - user.id
+                      sql_segment_rule:
+                        query_options:
+                          option: TIMEOUT
+                          value: '120'
+                        sql: select user_id as id from user where user_id > 100
+                      loading_segment_rule:
+                        matched_field: user.$identity_login_id
+                        sync_flag: false
+                        loading_type: TAG_LOADING_TYPE_OVERWRITE
+                      custom_rule: {}
+                      event_sequence_rule:
+                        simple_event_sequences:
+                        - time_window:
+                            unit: DAY
+                          time_range:
+                            start_time:
+                              type: RELATIVE
+                              trunc_unit: DAY
+                              base_time: $TASK_TIME
+                              time_interval: -7
+                            end_time:
+                              type: RELATIVE
+                              trunc_unit: DAY
+                              base_time: $TASK_TIME
+                              time_interval: -1
+                          event_steps:
+                          - condition:
+                              operator: AND
+                              conditions:
+                              - function: IS_TRUE
+                                params:
+                                - param_type: FIELD
+                                  field: user.$Events.$AppStart.$is_login_id
+                            event_name: user.$Events.AppStart
+                        operator: UNION
+                      tailor:
+                        function: LESS_EQUAL
+                        rank_field:
+                          type: PERCENT_ORDER_RANK
+                          orders:
+                          - measure:
+                              type: EQL_MEASURE_FIELD
+                              eql_measure: "user.$Events.virtual_event_for_tag.filter_event(\n  datetime_add(${var:base_time}, -1, 'DAY'),\n  datetime_add(${var:base_time}, -1, 'DAY')\n).count()"
+                            is_asc: false
+                        params:
+                        - param_type: VALUE
+                          value:
+                            data_type: NUMBER
+                            number_value: 0.1
+                      type: SQL_BASED
+                      version: 2
+                      group_expression_rule:
+                        group_expression: $1-$2
+                    segment_rule_name: user_segment_rule_cs001
+                  alarm_config:
+                    alarm_rules:
+                    - {}
+                  name: user_segment_cs001
+                  create_type: CUSTOMIZED_RULE
+                  comment: 这是我的分群描述
+                  trigger:
+                    trigger_type: CRON
+                    cron_trigger:
+                      crontab_exp: 0 6 21 * * ? *
+                    periodic_trigger: {}
+                    static_trigger:
+                      time: '2020-07-08T00:00:00Z'
+                    sync_job_trigger: {}
+                  source: {}
+                  display_name: 我的分群
+                  storage_settings:
+                    version_count: 30
+                  notify_params:
+                    subscribe_param:
+                      contents:
+                      - {}
+                  status: ACTIVE
+                request_id: '1'
+              schema:
+                $ref: '#/components/schemas/sensorsdata.horizon.v1.SegmentDefinitionHttpApiResult'
+          description: sensorsdata.horizon.v1.SegmentDefinition
+      summary: 恢复被删除分群
+      x-sd-openapi:
+        responseClass: com.sensorsdata.horizon.v1.SegmentDefinition
+        isServerStreaming: false
+        requestClass: com.sensorsdata.horizon.v1.RecoverSegmentDefinitionRequest
+        grpcServiceBase: com.sensorsdata.horizon.v1.SegmentServiceGrpc.SegmentServiceImplBase
+        internalDesc: classes in template for grpc service dynamic invoking
+        isClientStreaming: false
+      x-codegen-request-body-name: RecoverSegmentDefinitionRequest
+      tags:
+      - Segment
+  /segment/definition/status/update:
+    post:
+      description: "更新例行分群的调度状态\n```\ncurl -X POST \"http://{host}:{port}/api/v3/horizon/v1/segment/definition/status/update\" \\\n  -H \"Accept: application/json\" \\\n  -H \"Content-Type: application/json\" \\\n  -H \"sensorsdata-project: {projectName}\" \\\n  -H \"api-key: {apiKey}\" \\\n  -d '{\"entity_name\":\"user\",\"name\":\"user_segment_wdfq1\",\"status\":\"SUSPENDED\"}'\n```"
+      operationId: UpdateSegmentSchedulerStatus
+      parameters:
+      - description: 全局唯一的密钥，用于验证和授权访问 API 接口
+        in: header
+        name: api-key
+        required: true
+        schema:
+          type: string
+      - description: 项目名, 指定请求所属项目
+        in: header
+        name: sensorsdata-project
+        required: true
+        schema:
+          type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/sensorsdata.horizon.v1.UpdateSegmentSchedulerStatusRequest'
+        required: false
+      responses:
+        default:
+          content:
+            application/json:
+              example:
+                code: SUCCESS
+                data: {}
+                request_id: '1'
+              schema:
+                $ref: '#/components/schemas/sensorsdata.common.HttpApiResult'
+          description: ''
+      summary: 更新调度状态
+      x-sd-openapi:
+        responseClass: com.google.protobuf.Empty
+        isServerStreaming: false
+        requestClass: com.sensorsdata.horizon.v1.UpdateSegmentSchedulerStatusRequest
+        grpcServiceBase: com.sensorsdata.horizon.v1.SegmentServiceGrpc.SegmentServiceImplBase
+        internalDesc: classes in template for grpc service dynamic invoking
+        isClientStreaming: false
+      x-codegen-request-body-name: UpdateSegmentSchedulerStatusRequest
+      tags:
+      - Segment
+  /segment/definition/evaluate:
+    post:
+      description: "触发分群计算\n```\ncurl -X POST 'http://{host}:{port}/api/v3/horizon/v1/segment/definition/evaluate' \\\n-H \"Accept: application/json\" \\\n  -H \"Content-Type: application/json\" \\\n  -H \"sensorsdata-project: {projectName}\" \\\n  -H \"api-key: {apiKey}\" \\\n  -d '{\n    \"entity_name\": \"user\",\n    \"evaluate_params\": [{\n        \"segment_definition_name\": \"user_segment_t\",\n        \"base_time\": \"2025-04-27T16:00:00Z\"\n    }]\n}'\n```"
+      operationId: EvaluateSegment
+      parameters:
+      - description: 全局唯一的密钥，用于验证和授权访问 API 接口
+        in: header
+        name: api-key
+        required: true
+        schema:
+          type: string
+      - description: 项目名, 指定请求所属项目
+        in: header
+        name: sensorsdata-project
+        required: true
+        schema:
+          type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/sensorsdata.horizon.v1.EvaluateSegmentRequest'
+        required: false
+      responses:
+        default:
+          content:
+            application/json:
+              example:
+                code: SUCCESS
+                data: {}
+                request_id: '1'
+              schema:
+                $ref: '#/components/schemas/sensorsdata.common.HttpApiResult'
+          description: ''
+      summary: 触发分群计算
+      x-sd-openapi:
+        responseClass: com.google.protobuf.Empty
+        isServerStreaming: false
+        requestClass: com.sensorsdata.horizon.v1.EvaluateSegmentRequest
+        grpcServiceBase: com.sensorsdata.horizon.v1.SegmentServiceGrpc.SegmentServiceImplBase
+        internalDesc: classes in template for grpc service dynamic invoking
+        isClientStreaming: false
+      x-codegen-request-body-name: EvaluateSegmentRequest
+      tags:
+      - Segment
+  /segment/item/list:
+    post:
+      description: "获取计算出来的分群包信息列表\n```\ncurl -X POST \"http://{host}:{port}/api/v3/horizon/v1/segment/item/list\" \\\n  -H \"Accept: application/json\" \\\n  -H \"Content-Type: application/json\" \\\n  -H \"sensorsdata-project: {projectName}\" \\\n  -H \"api-key: {apiKey}\" \\\n  -d '{\"entity_name\":\"user\",\"definition_name\":\"user_segment_t\",\"limit\":5,\"segment_ready\":true}'\n 返回值示例：\n{\"code\":\"SUCCESS\",\"request_id\":\"301030287ccb2a91d6c7fefa78065f25\",\"data\":{\"items\":[{\"base_time\":\"2025-04-22T16:00:00Z\",\"segment_name\":\"user_user_segment_t_42_1745337600000\",\"create_time\":\"2025-04-23T09:17:20.602Z\",\"segment_ready\":true,\"segment_ready_time\":\"2025-04-23T09:17:44.727Z\",\"count\":0}]}\n```"
+      operationId: ListSegmentItems
+      parameters:
+      - description: 全局唯一的密钥，用于验证和授权访问 API 接口
+        in: header
+        name: api-key
+        required: true
+        schema:
+          type: string
+      - description: 项目名, 指定请求所属项目
+        in: header
+        name: sensorsdata-project
+        required: true
+        schema:
+          type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/sensorsdata.horizon.v1.ListSegmentItemsRequest'
+        required: false
+      responses:
+        default:
+          content:
+            application/json:
+              example:
+                code: SUCCESS
+                data:
+                  items:
+                  - {}
+                request_id: '1'
+              schema:
+                $ref: '#/components/schemas/sensorsdata.horizon.v1.ListSegmentItemsResponseHttpApiResult'
+          description: sensorsdata.horizon.v1.ListSegmentItemsResponse
+      summary: 获取分群定义关联的分群包元素
+      x-sd-openapi:
+        responseClass: com.sensorsdata.horizon.v1.ListSegmentItemsResponse
+        isServerStreaming: false
+        requestClass: com.sensorsdata.horizon.v1.ListSegmentItemsRequest
+        grpcServiceBase: com.sensorsdata.horizon.v1.SegmentServiceGrpc.SegmentServiceImplBase
+        internalDesc: classes in template for grpc service dynamic invoking
+        isClientStreaming: false
+      x-codegen-request-body-name: ListSegmentItemsRequest
+      tags:
+      - Segment
+  /segment/latest-item/get:
+    post:
+      description: "获取分群对应最新分群包元素\n```\ncurl -X POST \"http://{host}:{port}/api/v3/horizon/v1/segment/latest-item/get\" \\\n  -H \"Accept: application/json\" \\\n  -H \"Content-Type: application/json\" \\\n  -H \"sensorsdata-project: {projectName}\" \\\n  -H \"api-key: {apiKey}\" \\\n  -d '{\"entity_name\":\"user\",\"definition_names\":[\"user_segment_t\",\"user_segment_wdfq1\"],\"segment_ready\":true}'\n 返回值示例：\n{\"code\":\"SUCCESS\",\"request_id\":\"30104727710d6fa19eb7b5aa76b92e90\",\"data\":{\"lasted_segment_item_map\":{\"user_segment_t\":{\"base_time\":\"2025-04-22T16:00:00Z\",\"segment_name\":\"user_user_segment_t_42_1745337600000\",\"create_time\":\"2025-04-23T09:17:20.602Z\",\"segment_ready\":true,\"segment_ready_time\":\"2025-04-23T09:17:44.727Z\",\"count\":0}}}}\n```"
+      operationId: GetLastedSegmentItem
+      parameters:
+      - description: 全局唯一的密钥，用于验证和授权访问 API 接口
+        in: header
+        name: api-key
+        required: true
+        schema:
+          type: string
+      - description: 项目名, 指定请求所属项目
+        in: header
+        name: sensorsdata-project
+        required: true
+        schema:
+          type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/sensorsdata.horizon.v1.GetLastedSegmentItemRequest'
+        required: false
+      responses:
+        default:
+          content:
+            application/json:
+              example:
+                code: SUCCESS
+                data: {}
+                request_id: '1'
+              schema:
+                $ref: '#/components/schemas/sensorsdata.horizon.v1.GetLastedSegmentItemResponseHttpApiResult'
+          description: sensorsdata.horizon.v1.GetLastedSegmentItemResponse
+      summary: 获取最新分群包元素
+      x-sd-openapi:
+        responseClass: com.sensorsdata.horizon.v1.GetLastedSegmentItemResponse
+        isServerStreaming: false
+        requestClass: com.sensorsdata.horizon.v1.GetLastedSegmentItemRequest
+        grpcServiceBase: com.sensorsdata.horizon.v1.SegmentServiceGrpc.SegmentServiceImplBase
+        internalDesc: classes in template for grpc service dynamic invoking
+        isClientStreaming: false
+      x-codegen-request-body-name: GetLastedSegmentItemRequest
+      tags:
+      - Segment
+  /segment/task/get:
+    post:
+      description: "获取分群任务状态\n```\n  curl -X POST \"http://{host}:{port}/api/v3/horizon/v1/segment/task/get\" \\\n    -H \"Accept: application/json\" \\\n    -H \"Content-Type: application/json\" \\\n    -H \"sensorsdata-project: {projectName}\" \\\n    -H \"api-key: {apiKey}\" \\\n    -d '{\"entity_name\":\"user\",\"definition_name\":\"user_segment_t\",\"base_time_list\":[\"2025-04-22T16:00:00Z\",\"2025-04-27T16:00:00Z\"],\"fetch_all\":false}'\n 返回值示例：\n {\"code\":\"SUCCESS\",\"request_id\":\"30110749a909652f7e7a5bd6b6753f5a\",\"data\":{\"tasks\":[{\"id\":165,\"segment_definition_name\":\"user_segment_t\",\"rule_ref\":{\"segment_rule_name\":\"13711b8bc45a4cfa83747864b468afe2\",\"version\":\"1\"},\"segment_name\":\"\",\"segment_task_params\":{},\"failure_detail\":{\"code\":\"\",\"error_message\":\"\"},\"segment_task_report\":{\"count\":0},\"base_time\":\"2025-04-22T16:00:00Z\",\"entity_name\":\"user\",\"segment_task_status\":\"SEGMENT_TASK_SUCCESS\",\"end_time\":\"2025-04-23T09:17:44.706Z\",\"failed_times\":0,\"start_time\":\"2025-04-23T09:17:37.282Z\",\"custom_params\":{},\"creator_id\":\"2\",\"modifier_id\":\"2\",\"create_time\":\"2025-04-23T09:17:20.617Z\",\"update_time\":\"2025-04-23T09:17:44.790Z\"},{\"id\":180,\"segment_definition_name\":\"user_segment_t\",\"rule_ref\":{\"segment_rule_name\":\"13711b8bc45a4cfa83747864b468afe2\",\"version\":\"1\"},\"segment_name\":\"\",\"segment_task_params\":{},\"failure_detail\":{\"code\":\"\",\"error_message\":\"\"},\"segment_task_report\":{\"count\":0},\"base_time\":\"2025-04-27T16:00:00Z\",\"entity_name\":\"user\",\"segment_task_status\":\"SEGMENT_TASK_COMPUTING\",\"end_time\":\"2025-04-30T02:23:17.523Z\",\"failed_times\":0,\"start_time\":\"2025-04-30T02:23:17.523Z\",\"custom_params\":{},\"creator_id\":\"2\",\"modifier_id\":\"2\",\"create_time\":\"2025-04-30T02:23:17.523Z\",\"update_time\":\"2025-04-30T02:23:20.082Z\"}]}}\n```"
+      operationId: GetSegmentTask
+      parameters:
+      - description: 全局唯一的密钥，用于验证和授权访问 API 接口
+        in: header
+        name: api-key
+        required: true
+        schema:
+          type: string
+      - description: 项目名, 指定请求所属项目
+        in: header
+        name: sensorsdata-project
+        required: true
+        schema:
+          type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/sensorsdata.horizon.v1.GetSegmentTaskRequest'
+        required: false
+      responses:
+        default:
+          content:
+            application/json:
+              example:
+                code: SUCCESS
+                data:
+                  tasks:
+                  - failure_detail: {}
+                    segment_task_report:
+                      segment_loading_report: {}
+                    rule_ref:
+                      expression:
+                        eql_segment_rule:
+                          eql: 'user.$SegmentMembership.user_segment_t111111.is_not_null()
+
+                            and
+
+                            user.user_tag_c4 == ''标签值1''
+
+                            and
+
+                            user.vip_level in [''高级VIP'',''普通用户'']'
+                        entity_set_rules:
+                        - {}
+                        used_fields:
+                        - user.id
+                        sql_segment_rule:
+                          query_options:
+                            option: TIMEOUT
+                            value: '120'
+                          sql: select user_id as id from user where user_id > 100
+                        loading_segment_rule:
+                          matched_field: user.$identity_login_id
+                          sync_flag: false
+                          loading_type: TAG_LOADING_TYPE_OVERWRITE
+                        custom_rule: {}
+                        event_sequence_rule:
+                          simple_event_sequences:
+                          - time_window:
+                              unit: DAY
+                            time_range:
+                              start_time:
+                                type: RELATIVE
+                                trunc_unit: DAY
+                                base_time: $TASK_TIME
+                                time_interval: -7
+                              end_time:
+                                type: RELATIVE
+                                trunc_unit: DAY
+                                base_time: $TASK_TIME
+                                time_interval: -1
+                            event_steps:
+                            - condition:
+                                operator: AND
+                                conditions:
+                                - function: IS_TRUE
+                                  params:
+                                  - param_type: FIELD
+                                    field: user.$Events.$AppStart.$is_login_id
+                              event_name: user.$Events.AppStart
+                          operator: UNION
+                        tailor:
+                          function: LESS_EQUAL
+                          rank_field:
+                            type: PERCENT_ORDER_RANK
+                            orders:
+                            - measure:
+                                type: EQL_MEASURE_FIELD
+                                eql_measure: "user.$Events.virtual_event_for_tag.filter_event(\n  datetime_add(${var:base_time}, -1, 'DAY'),\n  datetime_add(${var:base_time}, -1, 'DAY')\n).count()"
+                              is_asc: false
+                          params:
+                          - param_type: VALUE
+                            value:
+                              data_type: NUMBER
+                              number_value: 0.1
+                        type: SQL_BASED
+                        version: 2
+                        group_expression_rule:
+                          group_expression: $1-$2
+                      segment_rule_name: user_segment_rule_cs001
+                request_id: '1'
+              schema:
+                $ref: '#/components/schemas/sensorsdata.horizon.v1.GetSegmentTaskResponseHttpApiResult'
+          description: sensorsdata.horizon.v1.GetSegmentTaskResponse
+      summary: 获取分群任务状态
+      x-sd-openapi:
+        responseClass: com.sensorsdata.horizon.v1.GetSegmentTaskResponse
+        isServerStreaming: false
+        requestClass: com.sensorsdata.horizon.v1.GetSegmentTaskRequest
+        grpcServiceBase: com.sensorsdata.horizon.v1.SegmentServiceGrpc.SegmentServiceImplBase
+        internalDesc: classes in template for grpc service dynamic invoking
+        isClientStreaming: false
+      x-codegen-request-body-name: GetSegmentTaskRequest
+      tags:
+      - Segment
+  /segment/task/cancel:
+    post:
+      description: "停止分群任务\n```\ncurl -X POST \"http://{host}:{port}/api/v3/horizon/v1/segment/task/cancel\" \\\n  -H \"Accept: application/json\" \\\n  -H \"Content-Type: application/json\" \\\n  -H \"sensorsdata-project: {projectName}\" \\\n  -H \"api-key: {apiKey}\" \\\n  -d '{\"task_ids\":[4121],\"sync\":\"false\",\"sync_timeout_seconds\":30}'\n```"
+      operationId: CancelSegmentTask
+      parameters:
+      - description: 全局唯一的密钥，用于验证和授权访问 API 接口
+        in: header
+        name: api-key
+        required: true
+        schema:
+          type: string
+      - description: 项目名, 指定请求所属项目
+        in: header
+        name: sensorsdata-project
+        required: true
+        schema:
+          type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/sensorsdata.horizon.v1.CancelSegmentTaskRequest'
+        required: false
+      responses:
+        default:
+          content:
+            application/json:
+              example:
+                code: SUCCESS
+                data: {}
+                request_id: '1'
+              schema:
+                $ref: '#/components/schemas/sensorsdata.common.HttpApiResult'
+          description: ''
+      summary: 停止分群任务
+      x-sd-openapi:
+        responseClass: com.google.protobuf.Empty
+        isServerStreaming: false
+        requestClass: com.sensorsdata.horizon.v1.CancelSegmentTaskRequest
+        grpcServiceBase: com.sensorsdata.horizon.v1.SegmentServiceGrpc.SegmentServiceImplBase
+        internalDesc: classes in template for grpc service dynamic invoking
+        isClientStreaming: false
+      x-codegen-request-body-name: CancelSegmentTaskRequest
+      tags:
+      - Segment
+components:
+  schemas:
+    sensorsdata.horizon.v1.SegmentRule:
+      description: ''
+      properties:
+        entity_name:
+          description: ''
+          type: string
+        name:
+          description: ''
+          type: string
+        display_name:
+          description: ''
+          type: string
+        comment:
+          description: ''
+          type: string
+        id:
+          description: ''
+          format: int32
+          type: integer
+        status:
+          description: ''
+          enum:
+          - STATUS_UNSPECIFIED
+          - ACTIVE
+          - INACTIVE
+          - DELETE_REQUESTED
+          type: string
+        expression:
+          $ref: '#/components/schemas/sensorsdata.horizon.v1.SegmentRuleExpression'
+        version:
+          description: ''
+          type: string
+        rule_available:
+          description: ''
+          type: boolean
+        created_by:
+          description: ''
+          type: string
+        custom_params:
+          additionalProperties:
+            $ref: '#/components/schemas/sensorsdata.common.Literal'
+          description: ''
+          type: object
+        creator_id:
+          description: ''
+          type: string
+        modifier_id:
+          description: ''
+          type: string
+        create_time:
+          description: ''
+          format: date-time
+          type: string
+        update_time:
+          description: ''
+          format: date-time
+          type: string
+        type:
+          description: ''
+          enum:
+          - TYPE_UNSPECIFIED
+          - SEGMENT_DEFINITION_RULE
+          - ENTITY_SET_RULE
+          type: string
+        read_only:
+          description: ''
+          type: boolean
+        delete_flag:
+          description: ''
+          format: int64
+          type: integer
+      required:
+      - entity_name
+      - expression
+      title: SegmentRule
+      type: object
+    sensorsdata.horizon.v1.LoadingSegmentRuleExpression:
+      description: ''
+      properties:
+        matched_field:
+          description: 匹配字段, 文件放在任务中，规则中没有文件信息
+          example: user.$identity_login_id
+          type: string
+        sync_flag:
+          description: 导入的用户不在实体中，是否通过到实体表。如导入列表中有个 用户标识=【新增用户1】不在用户表， 这个参数可以控制是否将【新增用户1】 通过到用户表
+          example: false
+          type: boolean
+        loading_type:
+          description: "导入类型，\n ```\n TAG_LOADING_TYPE_OVERWRITE: 覆盖模式\n TAG_LOADING_TYPE_INCREMENT: 增量模式\n ```"
+          enum:
+          - LOADING_TYPE_UNSPECIFIED
+          - LOADING_TYPE_OVERWRITE
+          - LOADING_TYPE_INCREMENT
+          example: TAG_LOADING_TYPE_OVERWRITE
+          type: string
+      title: LoadingSegmentRuleExpression
+      type: object
+    sensorsdata.horizon.v1.SegmentRuleExpression:
+      description: ''
+      properties:
+        type:
+          description: "分群规则类型\n```\n  SQL_BASED: 基于 SQL 的分群规则\n  EQL_BASED: 基于 EQL 的分群规则\n  LOADING_BASED: 基于文件加载的分群规则\n  CUSTOM_BASED: 基于自定义组件的分群规则\n  EVENT_SEQUENCE_BASED: 基于行为序列的分群规则\n  GROUP_EXPRESSION_BASED: 基于规则组的分群规则\n  ALL: 表示全部实体, 该类型比较特殊, 无实际的规则信息。\n```"
+          enum:
+          - SIMPLE_USER_GROUP_TYPE_UNSPECIFIED
+          - SQL_BASED
+          - EQL_BASED
+          - LOADING_BASED
+          - CUSTOM_BASED
+          - EVENT_SEQUENCE_BASED
+          - GROUP_EXPRESSION_BASED
+          - ALL
+          example: SQL_BASED
+          type: string
+        sql_segment_rule:
+          $ref: '#/components/schemas/sensorsdata.horizon.v1.SqlSegmentRuleExpression'
+        eql_segment_rule:
+          $ref: '#/components/schemas/sensorsdata.horizon.v1.EqlSegmentRuleExpression'
+        loading_segment_rule:
+          $ref: '#/components/schemas/sensorsdata.horizon.v1.LoadingSegmentRuleExpression'
+        custom_rule:
+          $ref: '#/components/schemas/sensorsdata.horizon.v1.CustomSegmentRuleExpression'
+        event_sequence_rule:
+          $ref: '#/components/schemas/sensorsdata.horizon.v1.EventSequenceSegmentRuleExpression'
+        group_expression_rule:
+          $ref: '#/components/schemas/sensorsdata.horizon.v1.GroupExpressionSegmentRuleExpression'
+        virtual:
+          description: "是否是虚拟分群, 如果是虚拟分群则不会执行 SQL 存储分群结果\n LoadingSegmentRuleExpression 不能为虚拟分群"
+          type: boolean
+        tailor:
+          $ref: '#/components/schemas/sensorsdata.horizon.v1.Tailor'
+        entity_set_rules:
+          description: "实体范围数组, 实体范围之间的关系为 \"OR/或\" 关系\n 保存规则的时候, SegmentRule 只需要填充 id\n 查询返回的时候, gRPC 会返回 id、display_name、expression、version、rule_available、delete_flag"
+          items:
+            $ref: '#/components/schemas/sensorsdata.horizon.v1.SegmentRule'
+          type: array
+        time_zone:
+          description: 规则时区, 设置之后事件规则中 time 及 时间类型事件属性计算时会相对服务器时区发生偏移, 数据样例：UTC+11:00
+          type: string
+        version:
+          description: 分群规则版本, 从 sps 升级带上来的规则为 1 (QE 和 老PB), 在 horizon 新组件创建出来的为 2， openApi创建的时候，固定传2
+          example: 2
+          format: int32
+          type: integer
+        used_fields:
+          description: 规则引用到的字段
+          example: '["user.id"]'
+          items:
+            type: string
+          type: array
+      title: SegmentRuleExpression
+      type: object
+    sensorsdata.horizon.v1.ListSegmentItemsRequest:
+      description: ''
+      properties:
+        entity_name:
+          description: 实体名称
+          example: user
+          type: string
+        definition_name:
+          description: 分群定义名
+          example: user_segment_c1
+          type: string
+        segment_ready:
+          description: 用于筛选分群包是否生成完成，不设置返回所有分群包， true 表示只返回计算成功的分群包，false 表示只返回非计算成功的分群包
+          example: true
+          type: boolean
+        base_time_list:
+          description: "用于获取指定的 base_time 信息\n protolint:disable:next REPEATED_FIELD_NAMES_PLURALIZED"
+          example: '["2025-04-28T16:00:00Z"]'
+          items:
+            description: google.protobuf.Timestamp 按照 rfc 3399
+            format: date-time
+            type: string
+          type: array
+        limit:
+          description: 必须指定返回的个数
+          format: int32
+          type: integer
+      required:
+      - definition_name
+      - entity_name
+      title: ListSegmentItemsRequest
+      type: object
+    sensorsdata.horizon.v1.GetSegmentDefinitionRequest:
+      description: ''
+      properties:
+        entity_name:
+          description: 实体名称
+          example: user
+          type: string
+        name:
+          description: 分群唯一标识名
+          example: user_segment_c1
+          type: string
+        show_deleted:
+          description: 是否显示回收站内容
+          example: false
+          type: boolean
+      required:
+      - entity_name
+      - name
+      title: GetSegmentDefinitionRequest
+      type: object
+    sensorsdata.common.Literal:
+      description: ''
+      properties:
+        data_type:
+          description: ''
+          enum:
+          - DATA_TYPE_UNSPECIFIED
+          - BOOL
+          - INT
+          - NUMBER
+          - STRING
+          - LIST
+          - DATETIME
+          - DATE
+          - BIGINT
+          - DECIMAL
+          type: string
+        bool_value:
+          description: ''
+          type: boolean
+        int_value:
+          description: ''
+          format: int64
+          type: integer
+        number_value:
+          description: ''
+          format: double
+          type: number
+        string_value:
+          description: ''
+          type: string
+        list_value:
+          description: ''
+          items:
+            type: string
+          type: array
+        datetime_value:
+          description: ''
+          format: date-time
+          type: string
+        date_value:
+          description: ''
+          type: string
+        bigint_value:
+          description: ''
+          format: int64
+          type: integer
+        decimal_value:
+          description: ''
+          type: string
+      title: Literal
+      type: object
+    sensorsdata.horizon.v1.AggregatorField:
+      description: ''
+      properties:
+        aggregator:
+          description: "聚合类型\n```\n  COUNT: 计数\n  SUM: 求和\n  AVG: 平均值\n  MIN: 最小值\n  MAX: 最大值\n```"
+          enum:
+          - AGGREGATOR_TYPE_UNSPECIFIED
+          - COUNT
+          - AVG
+          - MAX
+          - MIN
+          - SUM
+          - UNIQUE_COUNT
+          - UNIQUE_AVG
+          - BOUNCE_RATE
+          - EXIT_RATE
+          - UNIQUE_COUNT_APPROX
+          - COUNT_PERCENT
+          - RANK_ASC
+          - RANK_DESC
+          - PERCENT_RANK_ASC
+          - PERCENT_RANK_DESC
+          - SESSION_COUNT
+          - FIRST_TIME
+          - LAST_TIME
+          - FIRST_TIME_INTERVAL
+          - LAST_TIME_INTERVAL
+          - GROUP_CONCAT
+          - UNIQUE_COUNT_BITMAP
+          - UNIQUE_COUNT_APPROX_ORDINARY
+          - COUNT_DISTINCT
+          - LTV
+          - LTV_AVG
+          - COUNT_RANK
+          - AVG_RANK
+          - MAX_RANK
+          - MIN_RANK
+          - SUM_RANK
+          - COUNT_RANK_ASC
+          - COUNT_RANK_DESC
+          - COUNT_PERCENT_RANK_ASC
+          - COUNT_PERCENT_RANK_DESC
+          - AVG_RANK_ASC
+          - AVG_RANK_DESC
+          - AVG_PERCENT_RANK_ASC
+          - AVG_PERCENT_RANK_DESC
+          - MAX_RANK_ASC
+          - MAX_RANK_DESC
+          - MAX_PERCENT_RANK_ASC
+          - MAX_PERCENT_RANK_DESC
+          - MIN_RANK_ASC
+          - MIN_RANK_DESC
+          - MIN_PERCENT_RANK_ASC
+          - MIN_PERCENT_RANK_DESC
+          - SUM_RANK_ASC
+          - SUM_RANK_DESC
+          - SUM_PERCENT_RANK_ASC
+          - SUM_PERCENT_RANK_DESC
+          example: SUM
+          type: string
+        field:
+          description: 聚合字段
+          example: user.$Events.$AppStart.$duration
+          type: string
+      title: AggregatorField
+      type: object
+    sensorsdata.horizon.v1.SegmentTask:
+      description: ''
+      properties:
+        id:
+          description: ''
+          format: int32
+          type: integer
+        segment_task_status:
+          description: ''
+          enum:
+          - SEGMENT_TASK_STATUS_UNSPECIFIED
+          - SEGMENT_TASK_PREPARING
+          - SEGMENT_TASK_WAITING_DATA
+          - SEGMENT_TASK_COMPUTING
+          - SEGMENT_TASK_SUCCESS
+          - SEGMENT_TASK_FAILED
+          - SEGMENT_TASK_CANCELLED
+          type: string
+        entity_name:
+          description: ''
+          type: string
+        segment_definition_name:
+          description: ''
+          type: string
+        rule_ref:
+          $ref: '#/components/schemas/sensorsdata.horizon.v1.SegmentRuleRef'
+        base_time:
+          description: ''
+          format: date-time
+          type: string
+        segment_task_params:
+          additionalProperties:
+            $ref: '#/components/schemas/sensorsdata.common.Literal'
+          description: ''
+          type: object
+        custom_params:
+          additionalProperties:
+            $ref: '#/components/schemas/sensorsdata.common.Literal'
+          description: ''
+          type: object
+        segment_name:
+          description: ''
+          type: string
+        segment_task_report:
+          $ref: '#/components/schemas/sensorsdata.horizon.v1.SegmentTaskReport'
+        failure_detail:
+          $ref: '#/components/schemas/sensorsdata.horizon.v1.SegmentTask.SegmentTaskFailureDetail'
+        start_time:
+          description: ''
+          format: date-time
+          type: string
+        end_time:
+          description: ''
+          format: date-time
+          type: string
+        failed_times:
+          description: ''
+          format: int32
+          type: integer
+        creator_id:
+          description: ''
+          type: string
+        modifier_id:
+          description: ''
+          type: string
+        create_time:
+          description: ''
+          format: date-time
+          type: string
+        update_time:
+          description: ''
+          format: date-time
+          type: string
+      required:
+      - entity_name
+      title: SegmentTask
+      type: object
+    sensorsdata.common.PeriodicTrigger:
+      description: "周期调度触发\n 整点调度, 每次触发时间设置为 $TASK_TIME\n 若 TimeRange 里包含 RELATIVE 类型, 且 base_time 设置为 $TASK_TIME, 则将每次触发时间设置为 $TASK_TIME"
+      properties:
+        start_time:
+          description: 周期调度的生效时间，可以早于创建时间，这样会触发数据补齐
+          format: date-time
+          type: string
+        end_time:
+          description: 周期调度的失效时间，超过此时间之后不再进行周期触发
+          format: date-time
+          type: string
+        interval_size:
+          description: interval_size + interval_unit 定义了调度间隔, 如 3 DAY
+          format: int32
+          type: integer
+        interval_unit:
+          description: ''
+          enum:
+          - DATE_TIME_UNIT_UNSPECIFIED
+          - MILLISECOND
+          - SECOND
+          - MINUTE
+          - HOUR
+          - DAY
+          - WEEK
+          - MONTH
+          - YEAR
+          type: string
+        trunc_unit:
+          description: 时间点的取整方式, 一般只会是 TRUNC_HOUR 或 TRUNC_DAY
+          enum:
+          - TRUNC_UNIT_UNSPECIFIED
+          - TRUNC_HOUR
+          - TRUNC_DAY
+          - TRUNC_WEEK
+          - TRUNC_MONTH
+          - TRUNC_YEAR
+          - TRUNC_BIGBANG
+          type: string
+      title: PeriodicTrigger
+      type: object
+    sensorsdata.common.FilterCondition:
+      description: 单个过滤条件
+      properties:
+        function:
+          description: 过滤条件的判断函数
+          enum:
+          - PREDICATE_FUNCTION_TYPE_UNSPECIFIED
+          - IS_SET
+          - IS_NOT_SET
+          - EQUAL
+          - NOT_EQUAL
+          - IN
+          - NOT_IN
+          - LESS
+          - LESS_EQUAL
+          - GREATER
+          - GREATER_EQUAL
+          - BETWEEN
+          - RIGHT_OPEN_BETWEEN
+          - HASH_BETWEEN
+          - LEFT_OPEN_BETWEEN
+          - OPEN_BETWEEN
+          - IS_TRUE
+          - IS_FALSE
+          - CONTAIN
+          - NOT_CONTAIN
+          - IS_EMPTY
+          - IS_NOT_EMPTY
+          - RLIKE
+          - NOT_RLIKE
+          - INCLUDE
+          - NOT_INCLUDE
+          - ABSOLUTE_BETWEEN
+          - RELATIVE_WITHIN
+          - RELATIVE_BETWEEN
+          - RELATIVE_EVENT_TIME
+          - RELATIVE_BEFORE
+          - INTERSECTS
+          - NOT_INTERSECTS
+          - SUBSET_OF
+          - NOT_SUBSET_OF
+          - SUPERSET_OF
+          - NOT_SUPERSET_OF
+          example: EQUAL
+          type: string
+        params:
+          description: 函数的参数
+          items:
+            $ref: '#/components/schemas/sensorsdata.common.PredicateFunctionParam'
+          type: array
+        index:
+          description: 当前筛选条件所处的位置下标，主要为了保证前端展示顺序的稳定
+          example: 10
+          format: int32
+          type: integer
+      title: FilterCondition
+      type: object
+    sensorsdata.horizon.v1.CreateSegmentDefinitionWithRuleRequest:
+      description: ''
+      properties:
+        segment_definition:
+          $ref: '#/components/schemas/sensorsdata.horizon.v1.SegmentDefinition'
+        dry_run:
+          description: 为 true 时候，只是校验分群创建信息而不会实际创建分群。
+          example: false
+          type: boolean
+      required:
+      - segment_definition
+      title: CreateSegmentDefinitionWithRuleRequest
+      type: object
+    sensorsdata.common.StaticTrigger:
+      description: "静态触发\n $TASK_TIME 永远为此处设置的 time"
+      properties:
+        time:
+          description: 静态触发的时间点
+          example: '2020-07-08T00:00:00Z'
+          format: date-time
+          type: string
+      title: StaticTrigger
+      type: object
+    sensorsdata.horizon.v1.SegmentAlarmConfig.AlarmRule:
+      description: ''
+      properties:
+        name:
+          description: 报警规则名称，每个报警规则名称不能重复
+          type: string
+        alarm_params:
+          additionalProperties:
+            description: ''
+            type: string
+          description: 报警规则参数
+          type: object
+      title: AlarmRule
+      type: object
+    sensorsdata.horizon.v1.EvaluateSegmentRequest:
+      description: ''
+      properties:
+        entity_name:
+          description: 实体名称
+          example: user
+          type: string
+        evaluate_params:
+          description: 提交分群计算的参数信息
+          items:
+            $ref: '#/components/schemas/sensorsdata.horizon.v1.EvaluateSegmentRequest.EvaluateSegmentParam'
+          type: array
+      required:
+      - entity_name
+      title: EvaluateSegmentRequest
+      type: object
+    sensorsdata.horizon.v1.GetLastedSegmentItemRequest:
+      description: ''
+      properties:
+        entity_name:
+          description: 实体名称
+          example: user
+          type: string
+        definition_names:
+          description: 需要查询的分群名称列表
+          example: '["user_segment_c1", "user_segment_c2"]'
+          items:
+            type: string
+          type: array
+        segment_ready:
+          description: 用于筛选分群包是否生成完成，不设置返回所有分群包， true 表示只返回计算成功的分群包，false 表示只返回非计算成功的分群包
+          example: true
+          type: boolean
+      required:
+      - definition_names
+      - entity_name
+      title: GetLastedSegmentItemRequest
+      type: object
+    sensorsdata.horizon.v1.CustomSegmentRuleExpression:
+      description: ''
+      properties:
+        component_name:
+          description: "组件的 name， 用来唯一标识一个组件\n 如 USER_GROUP_RULE"
+          type: string
+        rule:
+          description: ''
+          properties: {}
+          type: object
+        rule_str:
+          description: ''
+          type: string
+      title: CustomSegmentRuleExpression
+      type: object
+    sensorsdata.horizon.v1.SegmentItem:
+      description: ''
+      properties:
+        base_time:
+          description: ''
+          format: date-time
+          type: string
+        segment_name:
+          description: ''
+          type: string
+        create_time:
+          description: ''
+          format: date-time
+          type: string
+        segment_ready:
+          description: ''
+          type: boolean
+        segment_ready_time:
+          description: ''
+          format: date-time
+          type: string
+        count:
+          description: ''
+          format: int64
+          type: integer
+      title: SegmentItem
+      type: object
+    sensorsdata.common.ErrorInfo:
+      properties:
+        code:
+          description: 具体的错误码
+          example: XX-D-F-2-1
+          type: string
+        description:
+          description: 错误描述
+          example: 前端参数校验异常,PARAMETER_FORMAT_ERROR(quantiles=[10, -90] is not include [0, 100])
+          type: string
+        system_response:
+          description: 致错的可能原因列表
+          example: 系统终止了查询处理
+          type: string
+        error_causes:
+          items:
+            $ref: '#/components/schemas/sensorsdata.common.ErrorCause'
+          type: array
+        context:
+          $ref: '#/components/schemas/sensorsdata.common.ErrorContext'
+      title: ErrorInfo
+      type: object
+    sensorsdata.horizon.v1.EventSequenceSegmentRuleExpression:
+      description: ''
+      properties:
+        operator:
+          description: "用于描述多个 simple_event_sequence 之间的关系\n ```\n  UNION: 多个 simple_event_sequence 之间的并集\n  INTERSECT: 多个 simple_event_sequence 之间的交集\n```"
+          enum:
+          - SET_OPERATOR_UNSPECIFIED
+          - UNION
+          - INTERSECT
+          example: UNION
+          type: string
+        simple_event_sequences:
+          description: 多个单一的行为序列的
+          items:
+            $ref: '#/components/schemas/sensorsdata.horizon.v1.EventSequenceSegmentRuleExpression.SimpleEventSequenceSegmentRuleExpression'
+          type: array
+      title: EventSequenceSegmentRuleExpression
+      type: object
+    sensorsdata.common.CronTrigger:
+      description: "周期时间窗口的触发器定义\n 理论上可以覆盖 PeriodicTrigger, 实现更复杂的调度周期"
+      properties:
+        crontab_exp:
+          description: cron 表达式，例如 "0 6 21 * * ? *"
+          example: 0 6 21 * * ? *
+          type: string
+        start_time:
+          description: 周期调度的生效时间，可以早于创建时间，这样会触发数据补齐
+          format: date-time
+          type: string
+        end_time:
+          description: 周期调度的失效时间，超过此时间之后不再进行周期触发
+          format: date-time
+          type: string
+      title: CronTrigger
+      type: object
+    sensorsdata.horizon.v1.RecoverSegmentDefinitionRequest:
+      description: 恢复分群
+      properties:
+        project_id:
+          description: 项目id
+          example: 1
+          format: int32
+          type: integer
+        entity_name:
+          description: 实体名称
+          example: user
+          type: string
+        name:
+          description: 分群名称
+          type: string
+      required:
+      - entity_name
+      - name
+      - project_id
+      title: RecoverSegmentDefinitionRequest
+      type: object
+    sensorsdata.horizon.v1.ListSegmentItemsResponseHttpApiResult:
+      properties:
+        code:
+          type: string
+        message:
+          type: string
+        request_id:
+          type: string
+        data:
+          $ref: '#/components/schemas/sensorsdata.horizon.v1.ListSegmentItemsResponse'
+        error_info:
+          $ref: '#/components/schemas/sensorsdata.common.ErrorInfo'
+      title: sensorsdata.horizon.v1.ListSegmentItemsResponseHttpApiResult
+      type: object
+    sensorsdata.horizon.v1.EventSequenceSegmentRuleExpression.SimpleEventSequenceSegmentRuleExpression:
+      description: ''
+      properties:
+        event_steps:
+          description: 行为序列规则信息
+          items:
+            $ref: '#/components/schemas/sensorsdata.horizon.v1.EventSequenceSegmentRuleExpression.SimpleEventSequenceSegmentRuleExpression.EventStep'
+          type: array
+        time_range:
+          $ref: '#/components/schemas/sensorsdata.common.TimeRange'
+        time_window:
+          $ref: '#/components/schemas/sensorsdata.horizon.v1.EventSequenceSegmentRuleExpression.SimpleEventSequenceSegmentRuleExpression.TimeWindow'
+      title: SimpleEventSequenceSegmentRuleExpression
+      type: object
+    sensorsdata.horizon.v1.SqlSegmentRuleExpression.QueryOption:
+      description: ''
+      properties:
+        option:
+          description: ''
+          type: string
+        value:
+          description: ''
+          type: string
+      title: QueryOption
+      type: object
+    sensorsdata.horizon.v1.EqlSegmentRuleExpression:
+      description: ''
+      properties:
+        eql:
+          description: EQL 表达式
+          example: 'user.$SegmentMembership.user_segment_t111111.is_not_null()
+
+            and
+
+            user.user_tag_c4 == ''标签值1''
+
+            and
+
+            user.vip_level in [''高级VIP'',''普通用户'']'
+          type: string
+      title: EqlSegmentRuleExpression
+      type: object
+    sensorsdata.horizon.v1.Tailor:
+      description: ''
+      properties:
+        rank_field:
+          $ref: '#/components/schemas/sensorsdata.horizon.v1.RankField'
+        function:
+          description: ''
+          enum:
+          - PREDICATE_FUNCTION_TYPE_UNSPECIFIED
+          - IS_SET
+          - IS_NOT_SET
+          - EQUAL
+          - NOT_EQUAL
+          - IN
+          - NOT_IN
+          - LESS
+          - LESS_EQUAL
+          - GREATER
+          - GREATER_EQUAL
+          - BETWEEN
+          - RIGHT_OPEN_BETWEEN
+          - HASH_BETWEEN
+          - LEFT_OPEN_BETWEEN
+          - OPEN_BETWEEN
+          - IS_TRUE
+          - IS_FALSE
+          - CONTAIN
+          - NOT_CONTAIN
+          - IS_EMPTY
+          - IS_NOT_EMPTY
+          - RLIKE
+          - NOT_RLIKE
+          - INCLUDE
+          - NOT_INCLUDE
+          - ABSOLUTE_BETWEEN
+          - RELATIVE_WITHIN
+          - RELATIVE_BETWEEN
+          - RELATIVE_EVENT_TIME
+          - RELATIVE_BEFORE
+          - INTERSECTS
+          - NOT_INTERSECTS
+          - SUBSET_OF
+          - NOT_SUBSET_OF
+          - SUPERSET_OF
+          - NOT_SUPERSET_OF
+          type: string
+        params:
+          description: ''
+          items:
+            $ref: '#/components/schemas/sensorsdata.common.PredicateFunctionParam'
+          type: array
+      title: Tailor
+      type: object
+    sensorsdata.common.ErrorContext:
+      description: 发生错误时，系统快照信息
+      properties:
+        origin_stack:
+          description: 上游异常的 stack，由系统截获
+          type: string
+        origin_cause:
+          description: 上游异常的 cause by，由系统截获
+          type: string
+        origin_code:
+          description: 上游异常的错误简码
+          type: string
+        origin_complete_code:
+          description: 上游异常的完整错误码
+          type: string
+        error_extend_desc:
+          description: 本次异常的辅助说明，可传入
+          type: string
+      title: ErrorContext
+      type: object
+    sensorsdata.horizon.v1.SegmentTaskReport:
+      description: ''
+      properties:
+        count:
+          description: ''
+          format: int64
+          type: integer
+        segment_loading_report:
+          $ref: '#/components/schemas/sensorsdata.horizon.v1.SegmentTaskReport.SegmentLoadingReport'
+      title: SegmentTaskReport
+      type: object
+    sensorsdata.horizon.v1.ListSegmentDefinitionsRequest:
+      description: ''
+      properties:
+        entity_name:
+          description: 实体名称
+          example: user
+          type: string
+        segment_definition_names:
+          description: 查询的分群名称列表，可选参数
+          example: '["user_segment_c1", "user_segment_c2"]'
+          items:
+            type: string
+          type: array
+        has_valid_segment:
+          description: 是否有可用的计算成功的分群数据
+          example: true
+          type: boolean
+        show_invisible:
+          description: 是否返回不可见的分群定义， 默认情况下只返回可见的分群定义
+          example: false
+          type: boolean
+        segment_definition_fuzzy_name:
+          description: 分群名称模糊搜索关键词，按名称包含关系匹配
+          example: segment_c
+          type: string
+        create_time_range:
+          $ref: '#/components/schemas/sensorsdata.horizon.v1.TimeStampRange'
+        page_size:
+          description: 分页信息 page_size 必传，必须大于0
+          example: 20
+          format: int32
+          type: integer
+        page:
+          description: 分页信息 page 必传，-1 表示查询所有数据，大于0的表示查询指定分页数据
+          example: -1
+          format: int32
+          type: integer
+        show_deleted:
+          description: 是否显示回收站内容
+          example: false
+          type: boolean
+      required:
+      - entity_name
+      title: ListSegmentDefinitionsRequest
+      type: object
+    sensorsdata.horizon.v1.SegmentAlarmConfig:
+      description: ''
+      properties:
+        enable:
+          description: 是否启用
+          type: boolean
+        alarm_rules:
+          description: 报警规则配置
+          items:
+            $ref: '#/components/schemas/sensorsdata.horizon.v1.SegmentAlarmConfig.AlarmRule'
+          type: array
+      title: SegmentAlarmConfig
+      type: object
+    sensorsdata.common.Trigger:
+      description: ''
+      properties:
+        trigger_type:
+          description: "触发类型, 根据触发类型取不同的参数\n```\nMANUAL: 手动触发, 手动触发的任务, $TASK_TIME 为触发时的当前时间\nPERIODIC: 周期触发, 周期触发的任务, $TASK_TIME 为触发时的当前时间\nCRON: cron 表达式触发, cron 表达式触发的任务, $TASK_TIME 为触发时的当前时间\nSTATIC: 静态触发, 静态触发的任务, $TASK_TIME 为静态时间\nDYNAMIC: 动态触发, 动态触发的任务, $TASK_TIME 为动态时间\nSYNC_JOB: 数据同步任务特殊的触发器\n```\n 注意：\n 1. 对于周期调度，$TASK_TIME 为触发时的当前时间\n 2. 对于静态调度，$TASK_TIME 为静态时间\n 3. 对于动态调度，$TASK_TIME 为动态时间\n 4. 对于 cron 表达式调度，$TASK_TIME 为触发时的当前时间\n 5. 对于数据同步任务，$TASK_TIME 为任务执行时间点"
+          enum:
+          - TRIGGER_TYPE_UNSPECIFIED
+          - MANUAL
+          - PERIODIC
+          - CRON
+          - STATIC
+          - DYNAMIC
+          - SYNC_JOB
+          example: CRON
+          type: string
+        periodic_trigger:
+          $ref: '#/components/schemas/sensorsdata.common.PeriodicTrigger'
+        cron_trigger:
+          $ref: '#/components/schemas/sensorsdata.common.CronTrigger'
+        static_trigger:
+          $ref: '#/components/schemas/sensorsdata.common.StaticTrigger'
+      title: Trigger
+      type: object
+    sensorsdata.common.ErrorCause:
+      properties:
+        error_cause:
+          description: 致错原因1
+          example: 参数异常1
+          type: string
+        action_suggestion:
+          description: 操作建议，针对该原因，建议的解决方式
+          example: 检测入参的数据类型1
+          type: string
+      title: ErrorCause
+      type: object
+    sensorsdata.horizon.v1.SegmentTask.SegmentTaskFailureDetail:
+      description: ''
+      properties:
+        code:
+          description: ''
+          type: string
+        error_message:
+          description: ''
+          type: string
+      title: SegmentTaskFailureDetail
+      type: object
+    sensorsdata.common.PredicateFunctionParam:
+      description: "```\n 函数的参数，有几种可能\n 1. 一个 field, 如 events.$Anything.$city\n 2. 一个 Literal 的常量\n 3. 一个变量, 如 $ENTRY_TIME, 需要在执行上下文里进行替换\n 4. 一个 TimePoint, 代表一个相对或绝对的时间点, 用于时间类型的条件\n 5. 一个 expression user.p1/user.p2+user.p3\n ```"
+      properties:
+        param_type:
+          description: 函数的参数类型
+          enum:
+          - FUNCTION_PARAM_TYPE_UNSPECIFIED
+          - FIELD
+          - VALUE
+          - VARIABLE
+          - TIME_POINT
+          - EXPRESSION
+          example: FIELD
+          type: string
+        field:
+          description: 字段名
+          example: '#ResourceId'
+          type: string
+        value:
+          $ref: '#/components/schemas/sensorsdata.common.Literal'
+        variable:
+          description: 变量，需要在执行上下文里进行替换
+          example: $ENTRY_TIME
+          type: string
+        time_point:
+          $ref: '#/components/schemas/sensorsdata.common.TimePoint'
+        expression:
+          description: 自定义表达式
+          example: user.p1/user.p2+user.p3
+          type: string
+      title: PredicateFunctionParam
+      type: object
+    sensorsdata.horizon.v1.SegmentNotifyParams.NotifyParam:
+      description: ''
+      properties:
+        enable:
+          description: 通知是否启用
+          type: boolean
+        contents:
+          description: 通知参数的内容
+          items:
+            $ref: '#/components/schemas/sensorsdata.horizon.v1.SegmentNotifyParams.Content'
+          type: array
+      title: NotifyParam
+      type: object
+    sensorsdata.horizon.v1.GetLastedSegmentItemResponseHttpApiResult:
+      properties:
+        code:
+          type: string
+        message:
+          type: string
+        request_id:
+          type: string
+        data:
+          $ref: '#/components/schemas/sensorsdata.horizon.v1.GetLastedSegmentItemResponse'
+        error_info:
+          $ref: '#/components/schemas/sensorsdata.common.ErrorInfo'
+      title: sensorsdata.horizon.v1.GetLastedSegmentItemResponseHttpApiResult
+      type: object
+    sensorsdata.horizon.v1.ListSegmentDefinitionsResponseHttpApiResult:
+      properties:
+        code:
+          type: string
+        message:
+          type: string
+        request_id:
+          type: string
+        data:
+          $ref: '#/components/schemas/sensorsdata.horizon.v1.ListSegmentDefinitionsResponse'
+        error_info:
+          $ref: '#/components/schemas/sensorsdata.common.ErrorInfo'
+      title: sensorsdata.horizon.v1.ListSegmentDefinitionsResponseHttpApiResult
+      type: object
+    sensorsdata.horizon.v1.UpdateSegmentSchedulerStatusRequest:
+      description: ''
+      properties:
+        entity_name:
+          description: 分群实体名称
+          example: user
+          type: string
+        name:
+          description: 分群英文名
+          example: user_segment_c1
+          type: string
+        status:
+          description: '指定状态,切换分群状态只能在  SUSPENDED <--> ACTIVE 之间进行切换
+
+            ```
+
+            SUSPENDED 暂停涨停
+
+            ACTIVE 激活状态
+
+            ```'
+          enum:
+          - STATUS_UNSPECIFIED
+          - ACTIVE
+          - SUSPENDED
+          - DELETE_REQUESTED
+          - ARCHIVED
+          example: SUSPENDED
+          type: string
+      required:
+      - entity_name
+      - name
+      title: UpdateSegmentSchedulerStatusRequest
+      type: object
+    sensorsdata.common.CompoundFilterCondition:
+      description: 复合过滤条件，用于描述 condition 或 compound_filter 之间的关系
+      properties:
+        operator:
+          description: 逻辑运算法
+          enum:
+          - LOGICAL_OPERATOR_UNSPECIFIED
+          - AND
+          - OR
+          example: AND
+          type: string
+        conditions:
+          description: 过滤条件列表，只有最后一级才有
+          items:
+            $ref: '#/components/schemas/sensorsdata.common.FilterCondition'
+          type: array
+        compound_conditions:
+          description: 嵌套的下一级复合过滤条件
+          items:
+            $ref: '#/components/schemas/sensorsdata.common.CompoundFilterCondition'
+          type: array
+        index:
+          description: 当前筛选条件所处的位置下标，主要为了保证前端展示顺序的稳定
+          example: 10
+          format: int32
+          type: integer
+      title: CompoundFilterCondition
+      type: object
+    sensorsdata.horizon.v1.EventSequenceSegmentRuleExpression.SimpleEventSequenceSegmentRuleExpression.EventStep:
+      description: ''
+      properties:
+        event_name:
+          description: 事件名称
+          example: user.$Events.AppStart
+          type: string
+        condition:
+          $ref: '#/components/schemas/sensorsdata.common.CompoundFilterCondition'
+      title: EventStep
+      type: object
+    sensorsdata.horizon.v1.SegmentNotifyParams:
+      description: ''
+      properties:
+        subscribe_param:
+          $ref: '#/components/schemas/sensorsdata.horizon.v1.SegmentNotifyParams.NotifyParam'
+        push_param:
+          $ref: '#/components/schemas/sensorsdata.horizon.v1.SegmentNotifyParams.NotifyParam'
+      title: SegmentNotifyParams
+      type: object
+    sensorsdata.common.HttpApiResult:
+      properties:
+        code:
+          type: string
+        message:
+          type: string
+        request_id:
+          type: string
+        data:
+          properties: {}
+          type: object
+        error_info:
+          $ref: '#/components/schemas/sensorsdata.common.ErrorInfo'
+      title: HttpApiResult
+      type: object
+    sensorsdata.horizon.v1.GroupExpressionSegmentRuleExpression:
+      description: 规则组
+      properties:
+        groups:
+          description: 规则组，与 expression 配合使用
+          items:
+            $ref: '#/components/schemas/sensorsdata.horizon.v1.SegmentRuleExpression'
+          type: array
+        group_expression:
+          description: "集合的交并差运算\n 如: ($1-$2)*($3-$4)+$5\n 其中, '*' => 交, '+' => 并, '-' => 差\n 在算式中, 以 $1、$2 代表第一个群组、第二个群组"
+          example: $1-$2
+          type: string
+      title: GroupExpressionSegmentRuleExpression
+      type: object
+    sensorsdata.horizon.v1.GetSegmentTaskResponseHttpApiResult:
+      properties:
+        code:
+          type: string
+        message:
+          type: string
+        request_id:
+          type: string
+        data:
+          $ref: '#/components/schemas/sensorsdata.horizon.v1.GetSegmentTaskResponse'
+        error_info:
+          $ref: '#/components/schemas/sensorsdata.common.ErrorInfo'
+      title: sensorsdata.horizon.v1.GetSegmentTaskResponseHttpApiResult
+      type: object
+    sensorsdata.horizon.v1.UpdateSegmentDefinitionWithRuleRequest:
+      description: ''
+      properties:
+        segment_definition:
+          $ref: '#/components/schemas/sensorsdata.horizon.v1.SegmentDefinition'
+        update_mask:
+          description: '指定要修改的信息
+
+            ```
+
+            display_name 分群显示名
+
+            comment 分群描述
+
+            segment_rule_ref 分群规则
+
+            trigger 分群规则触发条件
+
+            custom_params 分群规则自定义参数
+
+            visible 分群是否可见
+
+            status 分群状态
+
+            storage_settings 分群存储设置
+
+            notify_params 分群通知参数
+
+            alarm_config 分群告警配置
+
+            ```'
+          example: display_name,comment,segment_rule_ref,trigger,custom_params,visible,status,storage_settings,notify_params,alarm_config
+          type: string
+        dry_run:
+          description: 为 true 表示校验功能，不会实际更新分群信息
+          example: false
+          type: boolean
+      required:
+      - segment_definition
+      title: UpdateSegmentDefinitionWithRuleRequest
+      type: object
+    sensorsdata.horizon.v1.ListSegmentDefinitionsResponse:
+      description: ''
+      properties:
+        segment_definitions:
+          description: ''
+          items:
+            $ref: '#/components/schemas/sensorsdata.horizon.v1.SegmentDefinition'
+          type: array
+        total:
+          description: ''
+          format: int32
+          type: integer
+      title: ListSegmentDefinitionsResponse
+      type: object
+    sensorsdata.common.TimeInterval:
+      description: ''
+      properties:
+        size:
+          description: ''
+          format: int32
+          type: integer
+        unit:
+          description: ''
+          enum:
+          - DATE_TIME_UNIT_UNSPECIFIED
+          - MILLISECOND
+          - SECOND
+          - MINUTE
+          - HOUR
+          - DAY
+          - WEEK
+          - MONTH
+          - YEAR
+          type: string
+      title: TimeInterval
+      type: object
+    sensorsdata.common.TimePoint:
+      description: ''
+      properties:
+        type:
+          description: ''
+          enum:
+          - TIME_POINT_TYPE_UNSPECIFIED
+          - STATIC
+          - RELATIVE
+          - EXPRESSION
+          type: string
+        trunc_unit:
+          description: ''
+          enum:
+          - TRUNC_UNIT_UNSPECIFIED
+          - TRUNC_HOUR
+          - TRUNC_DAY
+          - TRUNC_WEEK
+          - TRUNC_MONTH
+          - TRUNC_YEAR
+          - TRUNC_BIGBANG
+          type: string
+        static_time:
+          description: ''
+          format: date-time
+          type: string
+        relative_time:
+          $ref: '#/components/schemas/sensorsdata.common.TimePoint.RelativeTimePoint'
+        expression:
+          description: ''
+          type: string
+      title: TimePoint
+      type: object
+    sensorsdata.horizon.v1.SegmentDefinitionSource:
+      description: ''
+      properties:
+        app:
+          description: 应用名, 填写创建分群的所属应用，如 SA、SDH、SF 等
+          type: string
+        category:
+          description: 一级分类, 创建分群的一级业务分类
+          type: string
+        sub_category:
+          description: 二级分类, 创建分群的二级业务分类，和 category 联动
+          type: string
+      title: SegmentDefinitionSource
+      type: object
+    sensorsdata.horizon.v1.EventSequenceSegmentRuleExpression.SimpleEventSequenceSegmentRuleExpression.TimeWindow:
+      description: 通过 数值 + 时间单位 描述一个时间窗口
+      properties:
+        size:
+          description: 时间窗口大小
+          format: int32
+          type: integer
+        unit:
+          description: "时间窗口单位\n```\n  DAY: 天\n  HOUR: 小时\n  MINUTE: 分钟\n```"
+          enum:
+          - TIME_UNIT_UNSPECIFIED
+          - DAY
+          - HOUR
+          - MINUTE
+          example: DAY
+          type: string
+      title: TimeWindow
+      type: object
+    sensorsdata.horizon.v1.GetLastedSegmentItemResponse:
+      description: ''
+      properties:
+        lasted_segment_item_map:
+          additionalProperties:
+            $ref: '#/components/schemas/sensorsdata.horizon.v1.SegmentItem'
+          description: '关联分群包信息, key: definition_name, value: 最近关联的分群包信息'
+          type: object
+      required:
+      - lasted_segment_item_map
+      title: GetLastedSegmentItemResponse
+      type: object
+    sensorsdata.horizon.v1.GetSegmentTaskResponse:
+      description: ''
+      properties:
+        tasks:
+          description: 关联分群任务信息, 根据 base_time 降序返回
+          items:
+            $ref: '#/components/schemas/sensorsdata.horizon.v1.SegmentTask'
+          type: array
+      title: GetSegmentTaskResponse
+      type: object
+    sensorsdata.common.TimeRange:
+      description: ''
+      properties:
+        start_time:
+          $ref: '#/components/schemas/sensorsdata.common.TimePoint'
+        end_time:
+          $ref: '#/components/schemas/sensorsdata.common.TimePoint'
+      title: TimeRange
+      type: object
+    sensorsdata.horizon.v1.OrderMeasure:
+      description: 数据目标的原生属性或计算得到的属性
+      properties:
+        type:
+          description: "排序字段类型\n```\n  PLAIN_FIELD: 属性裁剪, 后续废弃不再迭代\n  AGGREGATOR_FIELD: 明细属性指标裁剪，后续废弃不再迭代\n  EQL_MEASURE_FIELD: eql 指标裁剪\n```"
+          enum:
+          - FIELD_TYPE_UNSPECIFIED
+          - PLAIN_FIELD
+          - AGGREGATOR_FIELD
+          - EQL_MEASURE_FIELD
+          example: EQL_MEASURE_FIELD
+          type: string
+        plain_field:
+          description: 当 type = PLAIN_FIELD 时取此值
+          example: user.$identity_login_id
+          type: string
+        aggregator_field:
+          $ref: '#/components/schemas/sensorsdata.horizon.v1.AggregatorField'
+        condition:
+          $ref: '#/components/schemas/sensorsdata.common.CompoundFilterCondition'
+        eql_measure:
+          description: 当 type = EQL_MEASURE_FIELD
+          example: user.$Events.virtual_event_for_tag.filter_event(\n  datetime_add(${var:base_time}, -1, 'DAY'),\n  datetime_add(${var:base_time}, -1, 'DAY')\n).count()
+          type: string
+      title: OrderMeasure
+      type: object
+    sensorsdata.horizon.v1.SegmentRuleRef:
+      description: 分群策略引用，可以指定版本
+      properties:
+        segment_rule_name:
+          description: 分群规则名, 用于引用分群策略.创建分群的时候不需要指定
+          example: user_segment_rule_cs001
+          type: string
+        version:
+          description: 分群策略版本，没有传递则每次计算都是使用最新版本的规则
+          type: string
+        expression:
+          $ref: '#/components/schemas/sensorsdata.horizon.v1.SegmentRuleExpression'
+      title: SegmentRuleRef
+      type: object
+    sensorsdata.horizon.v1.RankField:
+      description: ''
+      properties:
+        type:
+          description: "排序类型\n```\n  SHUFFLE_RANK: 随机值的排序值为序列号\n  PERCENT_SHUFFLE_RANK: 随机值的排序百分比为序列号，如：0.1 表示该随机值在所有值中的位次为前百分之十\n  ORDER_RANK: orders 排序值为序列号\n  PERCENT_ORDER_RANK: orders 排序值的排序百分比为序列号，如：0.1 表示根据 order 排序的序号值在所有值中的位次为前百分之十\n```"
+          enum:
+          - RANK_TYPE_UNSPECIFIED
+          - SHUFFLE_RANK
+          - PERCENT_SHUFFLE_RANK
+          - ORDER_RANK
+          - PERCENT_ORDER_RANK
+          example: SHUFFLE_RANK
+          type: string
+        orders:
+          description: 排序字段信息
+          items:
+            $ref: '#/components/schemas/sensorsdata.horizon.v1.Order'
+          type: array
+      title: RankField
+      type: object
+    sensorsdata.horizon.v1.SegmentNotifyParams.Content:
+      description: ''
+      properties:
+        config_id:
+          description: 本次通知涉及到的插件配置，用于加载配置中心的配置，填充到通知的 pluginConfig 里
+          format: int32
+          type: integer
+        strategy_name:
+          description: 推送策略名称
+          type: string
+        extension_point_id:
+          description: 插件名称，用于兼容当前版本插件未接入配置中心时，在未传 config_id 时，用来查找插件
+          type: string
+        ext_params:
+          description: 通知的扩展参数
+          type: string
+      title: Content
+      type: object
+    sensorsdata.horizon.v1.SegmentTaskReport.SegmentLoadingReport:
+      description: ''
+      properties:
+        total_line_count:
+          description: ''
+          format: int64
+          type: integer
+        valid_line_count:
+          description: ''
+          format: int64
+          type: integer
+        distinct_line_count:
+          description: ''
+          format: int64
+          type: integer
+        matched_property_count:
+          description: ''
+          format: int64
+          type: integer
+        unmatched_property_count:
+          description: ''
+          format: int64
+          type: integer
+        matched_entity_count:
+          description: ''
+          format: int64
+          type: integer
+      title: SegmentLoadingReport
+      type: object
+    sensorsdata.horizon.v1.GetSegmentTaskRequest:
+      description: ''
+      properties:
+        entity_name:
+          description: 实体名称
+          example: user
+          type: string
+        definition_name:
+          description: 分群名称
+          example: user_segment_c1
+          type: string
+        fetch_all:
+          description: "默认为 false，如果为 false，则返回每个基准时间的最后一次 task 记录\n 如果为 true，则返回每个基准时间的所有 task 记录"
+          example: false
+          type: boolean
+        base_time_list:
+          description: "查询任务的基准时间列表。 只能查询指定基准时间的任务信息\n protolint:disable:next REPEATED_FIELD_NAMES_PLURALIZED"
+          example: '["2025-04-26T16:00:00Z","2025-04-27T16:00:00Z"]'
+          items:
+            description: google.protobuf.Timestamp 按照 rfc 3399
+            format: date-time
+            type: string
+          type: array
+      required:
+      - base_time_list
+      - definition_name
+      - entity_name
+      title: GetSegmentTaskRequest
+      type: object
+    sensorsdata.horizon.v1.SegmentStorageSettings:
+      description: ''
+      properties:
+        version_count:
+          description: 分群包保留天数
+          example: 30
+          format: int32
+          type: integer
+      title: SegmentStorageSettings
+      type: object
+    sensorsdata.common.TimePoint.RelativeTimePoint:
+      description: ''
+      properties:
+        base_time:
+          description: ''
+          type: string
+        time_interval:
+          $ref: '#/components/schemas/sensorsdata.common.TimeInterval'
+      title: RelativeTimePoint
+      type: object
+    sensorsdata.horizon.v1.Order:
+      description: ''
+      properties:
+        measure:
+          $ref: '#/components/schemas/sensorsdata.horizon.v1.OrderMeasure'
+        is_asc:
+          description: 排序方向, true 表示升序，false 表示降序
+          example: false
+          type: boolean
+      title: Order
+      type: object
+    sensorsdata.horizon.v1.ListSegmentItemsResponse:
+      description: ''
+      properties:
+        items:
+          description: 关联分群包信息, 根据 base_time 降序返回
+          items:
+            $ref: '#/components/schemas/sensorsdata.horizon.v1.SegmentItem'
+          type: array
+      required:
+      - items
+      title: ListSegmentItemsResponse
+      type: object
+    sensorsdata.horizon.v1.EvaluateSegmentRequest.EvaluateSegmentParam:
+      description: ''
+      properties:
+        segment_definition_name:
+          description: 分群定义名
+          example: user_segment_c1
+          type: string
+        segment_task_params:
+          additionalProperties:
+            $ref: '#/components/schemas/sensorsdata.common.Literal'
+          description: '分群任务执行时需要的参数,支持的参数信息
+
+            ```
+
+            IGNORE_DEPENDENCY_CHECK 忽略依赖检查，value可以传，只要有该key就会忽略检查
+
+            LOADING_FILE_KEY 导入分群类型时候，触发计算使用的文件，只支持hdfs文件路径。（不推荐使用）
+
+            LOADING_FILE_TOKEN 导入分群类型时候，触发计算的时候通过 file-service 接口上传文件生成的token。 该接口从 SA 302套餐，horizon 1.3.4 版本开始支持
+
+            LOADING_DATA_FORMAT 导入文件内容格式， 支持 LINE_OF_DISTINCT_ID 单行 distinct_id 格式
+
+            ```'
+          example:
+            LOADING_FILE_TOKEN:
+              data_type: STRING
+              string_value: 199b2c74c22f40b0a632e407a0872b00
+            LOADING_DATA_FORMAT:
+              data_type: STRING
+              string_value: LINE_OF_DISTINCT_ID
+            IGNORE_DEPENDENCY_CHECK:
+              data_type: BOOL
+              bool_value: 'true'
+          type: object
+        base_time:
+          description: 分群计算的基准时间，传的时间必须是 UTC 时间，格式为：yyyy-MM-ddTHH:mm:ssZ 如 北京时间 2025-04-29 00:00:00 对应的 UTC 时间为 2025-04-28T16:00:00Z
+          example: '2025-04-28T16:00:00Z'
+          format: date-time
+          type: string
+      required:
+      - base_time
+      - segment_definition_name
+      title: EvaluateSegmentParam
+      type: object
+    sensorsdata.horizon.v1.SegmentDefinitionHttpApiResult:
+      properties:
+        code:
+          type: string
+        message:
+          type: string
+        request_id:
+          type: string
+        data:
+          $ref: '#/components/schemas/sensorsdata.horizon.v1.SegmentDefinition'
+        error_info:
+          $ref: '#/components/schemas/sensorsdata.common.ErrorInfo'
+      title: sensorsdata.horizon.v1.SegmentDefinitionHttpApiResult
+      type: object
+    sensorsdata.horizon.v1.SegmentDefinition:
+      description: ''
+      properties:
+        entity_name:
+          description: 实体名称
+          example: user
+          type: string
+        name:
+          description: "名称, 唯一标识\n 同一 entity 内唯一"
+          example: user_segment_cs001
+          type: string
+        display_name:
+          description: 显示名
+          example: 我的分群
+          type: string
+        comment:
+          description: 描述
+          example: 这是我的分群描述
+          type: string
+        segment_rule_ref:
+          $ref: '#/components/schemas/sensorsdata.horizon.v1.SegmentRuleRef'
+        trigger:
+          $ref: '#/components/schemas/sensorsdata.common.Trigger'
+        custom_params:
+          additionalProperties:
+            $ref: '#/components/schemas/sensorsdata.common.Literal'
+          description: "业务方 自定义信息\n ignore_dependency_check 内置自定义参数, bool 类型，计算时或根据这个设置响应是否忽略依赖检查\n internal_definition_id 内部分群 ID， 数值 类型"
+          type: object
+        visible:
+          description: "是否可见，默认情况下只给上层应用返回可见的分群定义，如需获取不可见的分群定义需特殊指定\n 设置 true 相当于全局可见，如果只是想使用分群能力，无需让其他业务产品都可见请设置 false"
+          type: boolean
+        managed:
+          description: "受管理的, false 表示在管理页面上不可管理, true 表示在管理页面上可以管理\n 默认为 true，非特殊情况不建议设置为false"
+          type: boolean
+        status:
+          description: '分群定义的状态
+
+            ```
+
+            ACTIVE: 激活状态
+
+            SUSPENDED: 暂停后为停止状态(只有例行的分群定义才会有这个状态)
+
+            DELETE_REQUESTED: 被标记为删除
+
+            ARCHIVED: 被标记为归档（开启归档功能需要特殊处理）
+
+            ```'
+          enum:
+          - STATUS_UNSPECIFIED
+          - ACTIVE
+          - SUSPENDED
+          - DELETE_REQUESTED
+          - ARCHIVED
+          example: ACTIVE
+          type: string
+        created_by:
+          description: (废弃) 创建来源，由业务自定义， format 格式可以是 {产品线}_{具体业务英文语义}
+          type: string
+        create_type:
+          description: '分群创建方式
+
+            ```
+
+            GROUP_BASED 根据已有人群筛选
+
+            CUSTOMIZED_RULE 规则创建
+
+            QUERY_RESULT 结果保存
+
+            IMPORT 导入(特殊情况)
+
+            SQL SQL创建
+
+            EQL EQL创建
+
+            ```'
+          example: CUSTOMIZED_RULE
+          type: string
+        storage_settings:
+          $ref: '#/components/schemas/sensorsdata.horizon.v1.SegmentStorageSettings'
+        alarm_config:
+          $ref: '#/components/schemas/sensorsdata.horizon.v1.SegmentAlarmConfig'
+        creator_id:
+          description: 创建人 id
+          type: string
+        modifier_id:
+          description: 最近一次修改人 id
+          type: string
+        create_time:
+          description: 创建时间
+          format: date-time
+          type: string
+        update_time:
+          description: 最近一次修改时间
+          format: date-time
+          type: string
+        notify_params:
+          $ref: '#/components/schemas/sensorsdata.horizon.v1.SegmentNotifyParams'
+        delete_time:
+          description: 进入回收站时间
+          format: date-time
+          type: string
+        delete_account_id:
+          description: 删除人
+          type: string
+        source:
+          $ref: '#/components/schemas/sensorsdata.horizon.v1.SegmentDefinitionSource'
+        archive_time:
+          description: 归档时间
+          format: date-time
+          type: string
+        archive_account_id:
+          description: 归档人
+          type: string
+      required:
+      - entity_name
+      - name
+      title: SegmentDefinition
+      type: object
+    sensorsdata.horizon.v1.SqlSegmentRuleExpression:
+      description: ''
+      properties:
+        sql:
+          description: SQL 的结果只取一列 user_id
+          example: select user_id as id from user where user_id > 100
+          type: string
+        query_options:
+          description: SQL 执行的选项
+          example: '{"option":"TIMEOUT","value":"120"}'
+          items:
+            $ref: '#/components/schemas/sensorsdata.horizon.v1.SqlSegmentRuleExpression.QueryOption'
+          type: array
+      title: SqlSegmentRuleExpression
+      type: object
+    sensorsdata.horizon.v1.TimeStampRange:
+      description: 时间范围（前闭后闭），即 [start_time, end_time]
+      properties:
+        start_time:
+          description: 开始时间（包含）
+          format: date-time
+          type: string
+        end_time:
+          description: 结束时间（包含）
+          format: date-time
+          type: string
+      title: TimeStampRange
+      type: object
+    sensorsdata.horizon.v1.DeleteSegmentDefinitionRequest:
+      description: 删除分群
+      properties:
+        project_id:
+          description: 项目id
+          example: 1
+          format: int32
+          type: integer
+        entity_name:
+          description: 主体标识
+          example: user
+          type: string
+        name:
+          description: 唯一标识名
+          type: string
+        skip_trash:
+          description: 是否跳过回收站直接删除，默认为 false
+          example: false
+          type: boolean
+      required:
+      - entity_name
+      - name
+      - project_id
+      title: DeleteSegmentDefinitionRequest
+      type: object
+    sensorsdata.horizon.v1.CancelSegmentTaskRequest:
+      description: ''
+      properties:
+        task_ids:
+          description: 任务id列表
+          example: '[1, 2, 3]'
+          items:
+            format: int32
+            type: integer
+          type: array
+        sync:
+          description: ''
+          example: false
+          type: boolean
+        sync_timeout_seconds:
+          description: ''
+          example: 30
+          format: int32
+          type: integer
+      title: CancelSegmentTaskRequest
+      type: object
+x-sd-openapi-service-name: Segment
+x-sd-openapi-service-name-hyphen: segment
+x-sd-openapi-app-name: horizon
+x-sd-openapi-service-name-zh_cn: 分群管理
+x-original-swagger-version: '2.0'
