@@ -13,14 +13,18 @@ deliveryModel:
   method: derived
 accessModel:
   pricing: unknown
-  onboarding: unknown
+  onboarding: approval
   trial: false
   try_now: false
   public: false
-  label: Unknown
-  confidence: low
-  source: []
-  generated: '2026-07-22'
+  label: Requires approval
+  confidence: medium
+  source:
+  - plans
+  - authentication
+  - rate-limits
+  - security
+  generated: '2026-09-03'
   method: derived
 image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/icons/sensors-data.png
 name: Sensors Data
@@ -900,6 +904,9 @@ apis:
   - type: Webhooks
     url: asyncapi/sensors-data-webhooks.yml
 common:
+- type: CapabilityMap
+  url: capabilities/sensors-data-capability-edges.yml
+  name: Sensors Data Business Capability Map
 - type: AgentSkill
   url: skills/sensors-data-run-funnel-analysis.md
 - type: Overlay
@@ -964,8 +971,9 @@ common:
   url: rate-limits/sensors-data-rate-limits.yml
 - type: Webhooks
   url: asyncapi/sensors-data-webhooks.yml
-- type: MCPServer
+- type: X-MCPServerCandidate
   url: mcp/sensors-data-mcp.yml
+  note: 'Renamed from MCPServer 2026-09-03 (roadmap#247): the manifest self-describes as status: candidate — a tool list derived from the published API contracts, not an existing server. The scorer already read the manifest and reported mcp_server correctly; the MCPServer type was crediting the artifact-type surfaces with a server that does not exist.'
 - type: Components
   url: components/sensors-data-components.yml
 - type: AgentSkill
