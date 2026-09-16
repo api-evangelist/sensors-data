@@ -29,11 +29,11 @@ accessModel:
 image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/icons/sensors-data.png
 name: Sensors Data
 description: Sensors Data (神策数据) is a customer data analytics and CDP (Customer Data Platform) company.
-  Its platform unifies customer data across channels into real-time customer profiles and provides
-  product analytics, user profiling, marketing and ad attribution, A/B testing, and smart-operations
-  tooling. Sensors Data processes 250+ billion data points daily, ships 50+ data-collection SDKs
-  across web, mobile, mini-program and server-side languages, and serves 2,000+ enterprise customers
-  with both cloud and on-premise deployment. An OpenAPI is exposed for ecosystem integration.
+  Its platform unifies customer data across channels into real-time customer profiles and provides product
+  analytics, user profiling, marketing and ad attribution, A/B testing, and smart-operations tooling.
+  Sensors Data processes 250+ billion data points daily, ships 50+ data-collection SDKs across web, mobile,
+  mini-program and server-side languages, and serves 2,000+ enterprise customers with both cloud and on-premise
+  deployment. An OpenAPI is exposed for ecosystem integration.
 url: https://raw.githubusercontent.com/api-evangelist/sensors-data/refs/heads/main/apis.yml
 x-type: company
 x-source: vc-portfolio
@@ -43,7 +43,7 @@ x-tier: enriched
 x-tier-reason: portfolio-lead
 specificationVersion: '0.23'
 created: '2026-07-17'
-modified: '2026-08-13'
+modified: '2026-09-16'
 tags:
 - Company
 - Enterprise
@@ -150,7 +150,7 @@ apis:
   - type: Webhooks
     url: asyncapi/sensors-data-webhooks.yml
 - aid: sensors-data:sensors-data-data-subscription-api
-  name: Sensors Data Data Subscription API
+  name: Sensors Data Subscription API
   description: The Data Subscription API from Sensors Data — 7 operation(s) for data subscription.
   humanURL: https://docs.sensorsdata.com/sa/docs/about_open_api
   baseURL: https://{sensors_data_url}/api/v3/analytics/v1
@@ -241,8 +241,7 @@ apis:
     url: asyncapi/sensors-data-webhooks.yml
 - aid: sensors-data:sensors-data-express-action-channel-api
   name: Sensors Data Express Action Channel API
-  description: >-
-    The Express Action Channel API from Sensors Data — 14 operation(s) for express action channel.
+  description: The Express Action Channel API from Sensors Data — 14 operation(s) for express action channel.
   humanURL: https://docs.sensorsdata.com/sa/docs/about_open_api
   baseURL: https://{sensors_data_url}/api/v3/analytics/v1
   tags:
@@ -302,8 +301,8 @@ apis:
     url: asyncapi/sensors-data-webhooks.yml
 - aid: sensors-data:sensors-data-express-attribute-online-api
   name: Sensors Data Express Attribute Online API
-  description: >-
-    The Express Attribute Online API from Sensors Data — 2 operation(s) for express attribute online.
+  description: The Express Attribute Online API from Sensors Data — 2 operation(s) for express attribute
+    online.
   humanURL: https://docs.sensorsdata.com/sa/docs/about_open_api
   baseURL: https://{sensors_data_url}/api/v3/analytics/v1
   tags:
@@ -333,8 +332,7 @@ apis:
     url: asyncapi/sensors-data-webhooks.yml
 - aid: sensors-data:sensors-data-express-audience-meta-api
   name: Sensors Data Express Audience Meta API
-  description: >-
-    The Express Audience Meta API from Sensors Data — 6 operation(s) for express audience meta.
+  description: The Express Audience Meta API from Sensors Data — 6 operation(s) for express audience meta.
   humanURL: https://docs.sensorsdata.com/sa/docs/about_open_api
   baseURL: https://{sensors_data_url}/api/v3/analytics/v1
   tags:
@@ -364,8 +362,8 @@ apis:
     url: asyncapi/sensors-data-webhooks.yml
 - aid: sensors-data:sensors-data-express-audience-online-api
   name: Sensors Data Express Audience Online API
-  description: >-
-    The Express Audience Online API from Sensors Data — 4 operation(s) for express audience online.
+  description: The Express Audience Online API from Sensors Data — 4 operation(s) for express audience
+    online.
   humanURL: https://docs.sensorsdata.com/sa/docs/about_open_api
   baseURL: https://{sensors_data_url}/api/v3/analytics/v1
   tags:
@@ -973,7 +971,10 @@ common:
   url: asyncapi/sensors-data-webhooks.yml
 - type: X-MCPServerCandidate
   url: mcp/sensors-data-mcp.yml
-  note: 'Renamed from MCPServer 2026-09-03 (roadmap#247): the manifest self-describes as status: candidate — a tool list derived from the published API contracts, not an existing server. The scorer already read the manifest and reported mcp_server correctly; the MCPServer type was crediting the artifact-type surfaces with a server that does not exist.'
+  note: 'Renamed from MCPServer 2026-09-03 (roadmap#247): the manifest self-describes as status: candidate
+    — a tool list derived from the published API contracts, not an existing server. The scorer already
+    read the manifest and reported mcp_server correctly; the MCPServer type was crediting the artifact-type
+    surfaces with a server that does not exist.'
 - type: Components
   url: components/sensors-data-components.yml
 - type: AgentSkill
