@@ -95,6 +95,8 @@ apis:
   humanURL: https://docs.sensorsdata.com/sa/docs/about_open_api
   baseURL: https://{sensors_data_url}/api/v3/analytics/v1
   tags:
+  - Channels
+  tags_raw:
   - Channel
   properties:
   - type: OpenAPI
@@ -125,6 +127,8 @@ apis:
   humanURL: https://docs.sensorsdata.com/sa/docs/about_open_api
   baseURL: https://{sensors_data_url}/api/v3/analytics/v1
   tags:
+  - Dashboards
+  tags_raw:
   - Dashboard
   properties:
   - type: OpenAPI
@@ -185,6 +189,8 @@ apis:
   humanURL: https://docs.sensorsdata.com/sa/docs/about_open_api
   baseURL: https://{sensors_data_url}/api/v3/analytics/v1
   tags:
+  - Datasets
+  tags_raw:
   - Dataset
   properties:
   - type: OpenAPI
