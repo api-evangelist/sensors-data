@@ -1730,7 +1730,6 @@ paths:
       - Identity
   /identity/attr/query:
     get:
-      description: 获取扩展属性
       operationId: GetAttribute
       parameters:
       - description: 全局唯一的密钥，用于验证和授权访问 API 接口
@@ -1791,7 +1790,6 @@ paths:
       - Identity
   /identity/attr/delete:
     post:
-      description: 删除扩展属性
       operationId: DeleteAttribute
       parameters:
       - description: 全局唯一的密钥，用于验证和授权访问 API 接口
@@ -2152,7 +2150,6 @@ paths:
       - Identity
   /identity/attr/account:
     post:
-      description: 将人和扩展属性绑定
       operationId: UpsertAccountAttribute
       parameters:
       - description: 全局唯一的密钥，用于验证和授权访问 API 接口
@@ -2198,7 +2195,6 @@ paths:
       - Identity
   /identity/attr/account/query:
     get:
-      description: 获取人和扩展属性绑定关系
       operationId: GetAccountAttribute
       parameters:
       - description: 全局唯一的密钥，用于验证和授权访问 API 接口
@@ -2309,7 +2305,6 @@ paths:
       - Identity
   /identity/attr/role:
     post:
-      description: 将角色和扩展属性绑定
       operationId: UpsertRoleAttribute
       parameters:
       - description: 全局唯一的密钥，用于验证和授权访问 API 接口
@@ -2355,7 +2350,6 @@ paths:
       - Identity
   /identity/attr/role/query:
     get:
-      description: 获取角色和扩展属性绑定关系
       operationId: GetRoleAttribute
       parameters:
       - description: 全局唯一的密钥，用于验证和授权访问 API 接口
@@ -2815,29 +2809,1389 @@ paths:
       - Identity
 components:
   schemas:
-    sensorsdata.portal.v2.api.AddRoleResponse:
-      description: 「新增角色」的响应对象
+    sensorsdata.portal.v2.api.PageInfo:
+      description: 分页信息
+      properties:
+        current_page:
+          description: 当前页，起始页号：1
+          example: 1
+          format: int32
+          type: integer
+        page_count:
+          description: 总页数
+          example: 100
+          format: int32
+          type: integer
+        total:
+          description: 总条数
+          example: 100
+          format: int32
+          type: integer
+      title: PageInfo
+      type: object
+    sensorsdata.common.HttpApiResult:
+      properties:
+        code:
+          type: string
+        message:
+          type: string
+        request_id:
+          type: string
+        data:
+          properties: {}
+          type: object
+        error_info:
+          $ref: '#/components/schemas/sensorsdata.common.ErrorInfo'
+      title: HttpApiResult
+      type: object
+    sensorsdata.portal.v2.api.ListRoleResponse:
+      description: 「获取账号下的角色列表」的响应对象
+      properties:
+        roles:
+          description: 角色列表
+          items:
+            $ref: '#/components/schemas/sensorsdata.portal.v2.api.Role'
+          type: array
+        page:
+          $ref: '#/components/schemas/sensorsdata.portal.v2.api.PageInfo'
+      title: ListRoleResponse
+      type: object
+    sensorsdata.portal.v2.api.GetRoleResponseHttpApiResult:
+      properties:
+        code:
+          type: string
+        message:
+          type: string
+        request_id:
+          type: string
+        data:
+          $ref: '#/components/schemas/sensorsdata.portal.v2.api.GetRoleResponse'
+        error_info:
+          $ref: '#/components/schemas/sensorsdata.common.ErrorInfo'
+      title: sensorsdata.portal.v2.api.GetRoleResponseHttpApiResult
+      type: object
+    sensorsdata.portal.v2.BatchListResourceOperationConditionResponse:
+      description: ''
+      properties:
+        resource_operation_conditions:
+          description: ''
+          items:
+            $ref: '#/components/schemas/sensorsdata.portal.v2.ResourceOperationCondition'
+          type: array
+      title: BatchListResourceOperationConditionResponse
+      type: object
+    sensorsdata.portal.v2.api.GetRoleResponse:
+      description: 「获取单个角色信息」的响应对象
       properties:
         role:
           $ref: '#/components/schemas/sensorsdata.portal.v2.api.Role'
-      title: AddRoleResponse
+        statements:
+          description: 角色权限配置
+          example: '[{"operation": "8013", "effect": "ALLOW"}, {"operation": "8014", "effect": "DENY"}]'
+          items:
+            $ref: '#/components/schemas/sensorsdata.portal.v2.Statement'
+          type: array
+      title: GetRoleResponse
       type: object
-    sensorsdata.portal.v2.OperationCompoundCondition:
-      description: 权限的condition结构；ALLOW：允许，DENY：拒绝
+    sensorsdata.portal.v2.api.EnableAccountRequest:
+      description: 「启用账户」的请求对象
       properties:
-        allow_condition:
-          $ref: '#/components/schemas/sensorsdata.common.CompoundFilterCondition'
-        deny_condition:
-          $ref: '#/components/schemas/sensorsdata.common.CompoundFilterCondition'
-        permission_scope:
-          description: 权限的scope
-          enum:
-          - UNSPECIFIED
-          - PARTIAL_PERMISSION
-          - ALLOW_ALL
-          - DENY_ALL
+        id:
+          description: 账号 id
+          example: 1
+          format: int32
+          type: integer
+        expire_time:
+          description: 账号过期时间（选填，默认永久），日期格式：yyyy-MM-dd HH:mm:ss
+          example: '2022-01-01 00:00:00'
           type: string
-      title: OperationCompoundCondition
+      required:
+      - id
+      title: EnableAccountRequest
+      type: object
+    sensorsdata.portal.v2.api.AddAccountResponseHttpApiResult:
+      properties:
+        code:
+          type: string
+        message:
+          type: string
+        request_id:
+          type: string
+        data:
+          $ref: '#/components/schemas/sensorsdata.portal.v2.api.AddAccountResponse'
+        error_info:
+          $ref: '#/components/schemas/sensorsdata.common.ErrorInfo'
+      title: sensorsdata.portal.v2.api.AddAccountResponseHttpApiResult
+      type: object
+    sensorsdata.portal.v2.api.GetAttributeResponseHttpApiResult:
+      properties:
+        code:
+          type: string
+        message:
+          type: string
+        request_id:
+          type: string
+        data:
+          $ref: '#/components/schemas/sensorsdata.portal.v2.api.GetAttributeResponse'
+        error_info:
+          $ref: '#/components/schemas/sensorsdata.common.ErrorInfo'
+      title: sensorsdata.portal.v2.api.GetAttributeResponseHttpApiResult
+      type: object
+    sensorsdata.portal.v2.api.UpdateRoleResponseHttpApiResult:
+      properties:
+        code:
+          type: string
+        message:
+          type: string
+        request_id:
+          type: string
+        data:
+          $ref: '#/components/schemas/sensorsdata.portal.v2.api.UpdateRoleResponse'
+        error_info:
+          $ref: '#/components/schemas/sensorsdata.common.ErrorInfo'
+      title: sensorsdata.portal.v2.api.UpdateRoleResponseHttpApiResult
+      type: object
+    sensorsdata.common.ErrorContext:
+      description: 发生错误时，系统快照信息
+      properties:
+        origin_stack:
+          description: 上游异常的 stack，由系统截获
+          type: string
+        origin_cause:
+          description: 上游异常的 cause by，由系统截获
+          type: string
+        origin_code:
+          description: 上游异常的错误简码
+          type: string
+        origin_complete_code:
+          description: 上游异常的完整错误码
+          type: string
+        error_extend_desc:
+          description: 本次异常的辅助说明，可传入
+          type: string
+      title: ErrorContext
+      type: object
+    sensorsdata.common.ErrorInfo:
+      properties:
+        code:
+          description: 具体的错误码
+          example: XX-D-F-2-1
+          type: string
+        description:
+          description: 错误描述
+          example: 前端参数校验异常,PARAMETER_FORMAT_ERROR(quantiles=[10, -90] is not include [0, 100])
+          type: string
+        system_response:
+          description: 致错的可能原因列表
+          example: 系统终止了查询处理
+          type: string
+        error_causes:
+          items:
+            $ref: '#/components/schemas/sensorsdata.common.ErrorCause'
+          type: array
+        context:
+          $ref: '#/components/schemas/sensorsdata.common.ErrorContext'
+      title: ErrorInfo
+      type: object
+    sensorsdata.portal.v2.api.BatchListGlobalAccountsRequest:
+      description: 「批量查询平台账号基本信息」的请求对象
+      properties:
+        query_account_option:
+          description: 「必填」账号查询条件 可根据账号ID、账号name、账号UUID查询账号
+          enum:
+          - FUNCTION_QUERY_ACCOUNT_OPTION_UNSPECIFIED
+          - ACCOUNT_ID
+          - ACCOUNT_NAME
+          - ACCOUNT_CNAME
+          - ACCOUNT_UUID
+          example: ACCOUNT_ID
+          type: string
+        account_ids:
+          description: 「可选，四选一」目标账号的 id 列表
+          example: '["178","467","124"]'
+          items:
+            format: int32
+            type: integer
+          type: array
+        account_names:
+          description: 「可选，四选一」目标账号登录账号列表
+          example: '["admin","ss@123.com","shenCe1"]'
+          items:
+            type: string
+          type: array
+        account_cnames:
+          description: 「可选，四选一」目标账号的姓名（展示名称）列表
+          example: '["神策工程师A","神策工程师B","神策工程师C"]'
+          items:
+            type: string
+          type: array
+        account_uuids:
+          description: 「可选，四选一」目标账号的 uuid 列表
+          example: '["xkfdq131e","dakg1213","1231jf2okf"]'
+          items:
+            type: string
+          type: array
+      title: BatchListGlobalAccountsRequest
+      type: object
+    sensorsdata.portal.v2.api.DisableAccountRequest:
+      description: 「禁用账户」的请求对象
+      properties:
+        id:
+          description: 账号 id
+          example: 1
+          format: int32
+          type: integer
+      required:
+      - id
+      title: DisableAccountRequest
+      type: object
+    sensorsdata.portal.v2.api.ListDutyResponseHttpApiResult:
+      properties:
+        code:
+          type: string
+        message:
+          type: string
+        request_id:
+          type: string
+        data:
+          $ref: '#/components/schemas/sensorsdata.portal.v2.api.ListDutyResponse'
+        error_info:
+          $ref: '#/components/schemas/sensorsdata.common.ErrorInfo'
+      title: sensorsdata.portal.v2.api.ListDutyResponseHttpApiResult
+      type: object
+    sensorsdata.portal.v2.api.DeleteResourceRequest:
+      description: 「删除功能资源」的请求对象
+      properties:
+        code:
+          description: 资源编码；该字段和「注册功能资源」接口中的 code 字段含义一致
+          example: data_permission_view_all_data
+          type: string
+      required:
+      - code
+      title: DeleteResourceRequest
+      type: object
+    sensorsdata.portal.v2.api.GetAttributeNodeResponseHttpApiResult:
+      properties:
+        code:
+          type: string
+        message:
+          type: string
+        request_id:
+          type: string
+        data:
+          $ref: '#/components/schemas/sensorsdata.portal.v2.api.GetAttributeNodeResponse'
+        error_info:
+          $ref: '#/components/schemas/sensorsdata.common.ErrorInfo'
+      title: sensorsdata.portal.v2.api.GetAttributeNodeResponseHttpApiResult
+      type: object
+    sensorsdata.portal.v2.Resources:
+      description: ''
+      properties:
+        resource_code:
+          description: ''
+          type: string
+        resource_ids:
+          description: ''
+          items:
+            type: string
+          type: array
+      title: Resources
+      type: object
+    sensorsdata.portal.v2.BatchDeleteResourcePermissionRequest:
+      description: ''
+      properties:
+        resources:
+          $ref: '#/components/schemas/sensorsdata.portal.v2.Resources'
+        delete_operations:
+          description: ''
+          items:
+            type: string
+          type: array
+        project_id:
+          description: ''
+          format: int32
+          type: integer
+        project_name:
+          description: ''
+          type: string
+      title: BatchDeleteResourcePermissionRequest
+      type: object
+    sensorsdata.portal.v2.api.Role:
+      description: 角色信息
+      properties:
+        id:
+          description: 角色 id
+          example: 1
+          format: int32
+          type: integer
+        name:
+          description: 角色名
+          example: admin
+          type: string
+        cname:
+          description: 角色显示名
+          example: 管理员
+          type: string
+        description:
+          description: 角色描述
+          example: 管理员角色描述信息
+          type: string
+        create_user_cname:
+          description: 创建人
+          example: 管理员
+          type: string
+        create_time:
+          description: 创建时间，日期格式：yyyy-MM-dd HH:mm:ss
+          example: '2022-01-01 00:00:00'
+          type: string
+        update_time:
+          description: 更新时间，日期格式：yyyy-MM-dd HH:mm:ss
+          example: '2022-01-01 00:00:00'
+          type: string
+        role_type:
+          description: 角色类型；SYSTEM_ROLE：系统角色，CUSTOM_ROLE：自定义角色，THIRD_PART_ROLE：第三方角色
+          example: SYSTEM_ROLE
+          type: string
+        type_name:
+          description: 角色类型名称
+          example: 系统角色
+          type: string
+        is_project_customize_default_role:
+          description: 是否是默认角色；true：默认角色，false：非默认角色
+          example: true
+          type: boolean
+      title: Role
+      type: object
+    sensorsdata.portal.v2.ListOperationConditionResponse:
+      description: 获取指定账号的权限响应
+      properties:
+        compound_condition_map:
+          additionalProperties:
+            $ref: '#/components/schemas/sensorsdata.portal.v2.OperationCompoundCondition'
+          description: key为权限点，value为对应的权限表达式
+          type: object
+      title: ListOperationConditionResponse
+      type: object
+    sensorsdata.portal.v2.api.InviteAccountRequest:
+      description: 「邀请账号」的请求对象
+      properties:
+        invite_accounts:
+          description: 邀请的账号列表
+          items:
+            $ref: '#/components/schemas/sensorsdata.portal.v2.api.InviteAccount'
+          type: array
+      title: InviteAccountRequest
+      type: object
+    sensorsdata.portal.v2.api.GetGlobalAccountResponseHttpApiResult:
+      properties:
+        code:
+          type: string
+        message:
+          type: string
+        request_id:
+          type: string
+        data:
+          $ref: '#/components/schemas/sensorsdata.portal.v2.api.GetGlobalAccountResponse'
+        error_info:
+          $ref: '#/components/schemas/sensorsdata.common.ErrorInfo'
+      title: sensorsdata.portal.v2.api.GetGlobalAccountResponseHttpApiResult
+      type: object
+    sensorsdata.portal.v2.api.GetAccountResponseHttpApiResult:
+      properties:
+        code:
+          type: string
+        message:
+          type: string
+        request_id:
+          type: string
+        data:
+          $ref: '#/components/schemas/sensorsdata.portal.v2.api.GetAccountResponse'
+        error_info:
+          $ref: '#/components/schemas/sensorsdata.common.ErrorInfo'
+      title: sensorsdata.portal.v2.api.GetAccountResponseHttpApiResult
+      type: object
+    sensorsdata.portal.v2.ListPolicyPrincipalsResponseHttpApiResult:
+      properties:
+        code:
+          type: string
+        message:
+          type: string
+        request_id:
+          type: string
+        data:
+          $ref: '#/components/schemas/sensorsdata.portal.v2.ListPolicyPrincipalsResponse'
+        error_info:
+          $ref: '#/components/schemas/sensorsdata.common.ErrorInfo'
+      title: sensorsdata.portal.v2.ListPolicyPrincipalsResponseHttpApiResult
+      type: object
+    sensorsdata.portal.v2.api.AddRoleRequest:
+      description: 「新增角色」的请求对象
+      properties:
+        role:
+          $ref: '#/components/schemas/sensorsdata.portal.v2.api.RoleAddBody'
+        statements:
+          description: 角色权限配置
+          example: '[{"operation": "8013", "effect": "ALLOW"}, {"operation": "8014", "effect": "DENY"}]'
+          items:
+            $ref: '#/components/schemas/sensorsdata.portal.v2.Statement'
+          type: array
+      required:
+      - role
+      - statements
+      title: AddRoleRequest
+      type: object
+    sensorsdata.portal.v2.api.StatusResponse:
+      description: 仅返回状态标识的 grpc 响应结构
+      properties:
+        flag:
+          description: 操作成功标识；true：操作成功，false：操作失败
+          example: true
+          type: boolean
+      title: StatusResponse
+      type: object
+    sensorsdata.common.PredicateFunctionParam:
+      description: "```\n 函数的参数，有几种可能\n 1. 一个 field, 如 events.$Anything.$city\n 2. 一个 Literal 的常量\n 3. 一个变量, 如 $ENTRY_TIME, 需要在执行上下文里进行替换\n 4. 一个 TimePoint, 代表一个相对或绝对的时间点, 用于时间类型的条件\n 5. 一个 expression user.p1/user.p2+user.p3\n ```"
+      properties:
+        param_type:
+          description: 函数的参数类型
+          enum:
+          - FUNCTION_PARAM_TYPE_UNSPECIFIED
+          - FIELD
+          - VALUE
+          - VARIABLE
+          - TIME_POINT
+          - EXPRESSION
+          example: FIELD
+          type: string
+        field:
+          description: 字段名
+          example: '#ResourceId'
+          type: string
+        value:
+          $ref: '#/components/schemas/sensorsdata.common.Literal'
+        variable:
+          description: 变量，需要在执行上下文里进行替换
+          example: $ENTRY_TIME
+          type: string
+        time_point:
+          $ref: '#/components/schemas/sensorsdata.common.TimePoint'
+        expression:
+          description: 自定义表达式
+          example: user.p1/user.p2+user.p3
+          type: string
+      title: PredicateFunctionParam
+      type: object
+    sensorsdata.portal.v2.api.UpdateAccountResponseHttpApiResult:
+      properties:
+        code:
+          type: string
+        message:
+          type: string
+        request_id:
+          type: string
+        data:
+          $ref: '#/components/schemas/sensorsdata.portal.v2.api.UpdateAccountResponse'
+        error_info:
+          $ref: '#/components/schemas/sensorsdata.common.ErrorInfo'
+      title: sensorsdata.portal.v2.api.UpdateAccountResponseHttpApiResult
+      type: object
+    sensorsdata.portal.v2.api.AccountRelatedProjectInfo:
+      description: 平台账号关联的项目信息
+      properties:
+        project_id:
+          description: 平台账号关联的项目id
+          format: int32
+          type: integer
+        position:
+          description: 平台账号在此项目下的职务名
+          type: string
+        role_ids:
+          description: 平台账号在此项目下关联的角色id列表
+          items:
+            format: int32
+            type: integer
+          type: array
+      required:
+      - project_id
+      - role_ids
+      title: AccountRelatedProjectInfo
+      type: object
+    sensorsdata.common.TimePoint:
+      description: ''
+      properties:
+        type:
+          description: ''
+          enum:
+          - TIME_POINT_TYPE_UNSPECIFIED
+          - STATIC
+          - RELATIVE
+          - EXPRESSION
+          type: string
+        trunc_unit:
+          description: ''
+          enum:
+          - TRUNC_UNIT_UNSPECIFIED
+          - TRUNC_HOUR
+          - TRUNC_DAY
+          - TRUNC_WEEK
+          - TRUNC_MONTH
+          - TRUNC_YEAR
+          - TRUNC_BIGBANG
+          type: string
+        static_time:
+          description: ''
+          format: date-time
+          type: string
+        relative_time:
+          $ref: '#/components/schemas/sensorsdata.common.TimePoint.RelativeTimePoint'
+        expression:
+          description: ''
+          type: string
+      title: TimePoint
+      type: object
+    sensorsdata.portal.v2.api.AccountRoleRequest:
+      description: 账号角色请求对象
+      properties:
+        id:
+          description: 账号 id（id/uuid 任意选填一个即可。如果均填写，会以id进行查询查询）
+          example: 1
+          format: int32
+          type: integer
+        uuid:
+          description: 账号 uuid（id/uuid 任意选填一个即可。如果均填写，会以id进行查询操作）
+          example: 38135721-2938-4585-b19b-396ceb910d88
+          type: string
+        role_id:
+          description: 平台账号在此项目下关联的角色id
+          example: 2
+          format: int32
+          type: integer
+      required:
+      - role_id
+      title: AccountRoleRequest
+      type: object
+    sensorsdata.portal.v2.BatchListResourceOperationConditionResponseHttpApiResult:
+      properties:
+        code:
+          type: string
+        message:
+          type: string
+        request_id:
+          type: string
+        data:
+          $ref: '#/components/schemas/sensorsdata.portal.v2.BatchListResourceOperationConditionResponse'
+        error_info:
+          $ref: '#/components/schemas/sensorsdata.common.ErrorInfo'
+      title: sensorsdata.portal.v2.BatchListResourceOperationConditionResponseHttpApiResult
+      type: object
+    sensorsdata.common.TimePoint.RelativeTimePoint:
+      description: ''
+      properties:
+        base_time:
+          description: ''
+          type: string
+        time_interval:
+          $ref: '#/components/schemas/sensorsdata.common.TimeInterval'
+      title: RelativeTimePoint
+      type: object
+    sensorsdata.portal.v2.api.DeleteGlobalAccountRequest:
+      description: 「移除平台账户」的请求对象
+      properties:
+        id:
+          description: 账号 id（id/uuid 任意选填一个即可。如果均填写，会以id进行移除操作）
+          example: 1
+          format: int32
+          type: integer
+        uuid:
+          description: 账号 uuid（id/uuid 任意选填一个即可。如果均填写，会以id进行移除操作）
+          example: 38135721-2938-4585-b19b-396ceb910d88
+          type: string
+      title: DeleteGlobalAccountRequest
+      type: object
+    sensorsdata.portal.v2.api.GetAccountAttributeResponseHttpApiResult:
+      properties:
+        code:
+          type: string
+        message:
+          type: string
+        request_id:
+          type: string
+        data:
+          $ref: '#/components/schemas/sensorsdata.portal.v2.api.GetAccountAttributeResponse'
+        error_info:
+          $ref: '#/components/schemas/sensorsdata.common.ErrorInfo'
+      title: sensorsdata.portal.v2.api.GetAccountAttributeResponseHttpApiResult
+      type: object
+    sensorsdata.portal.v2.api.RoleInfoSummary:
+      description: 角色信息概览
+      properties:
+        id:
+          description: 角色 id
+          example: 1
+          format: int32
+          type: integer
+        name:
+          description: 角色名称
+          example: analyst
+          type: string
+        cname:
+          description: 角色显示名
+          example: 管理员
+          type: string
+      title: RoleInfoSummary
+      type: object
+    sensorsdata.portal.v2.api.ExtraAttributeDefinition:
+      description: 扩展属性的定义
+      properties:
+        id:
+          description: 用于保存 id 映射
+          example: 1
+          format: int32
+          type: integer
+        code:
+          description: 属性编码
+          example: JOB
+          type: string
+        name:
+          description: 属性名
+          example: 职位
+          type: string
+        desc:
+          description: 属性描述
+          example: 职位属性
+          type: string
+        type:
+          description: 属性类型
+          enum:
+          - TYPE_UNSPECIFIED
+          - VALUE
+          - TREE
+          example: VALUE
+          type: string
+        attr_value_scope:
+          description: 属性值的作用范围，GLOBAL：全局，PROJECT：项目
+          example: GLOBAL
+          type: string
+      title: ExtraAttributeDefinition
+      type: object
+    sensorsdata.portal.v2.api.DeleteAttributeRequest:
+      description: 扩展属性的定义
+      properties:
+        code:
+          description: 属性编码
+          example: JOB
+          type: string
+      title: DeleteAttributeRequest
+      type: object
+    sensorsdata.portal.v2.api.ListAccountResponseHttpApiResult:
+      properties:
+        code:
+          type: string
+        message:
+          type: string
+        request_id:
+          type: string
+        data:
+          $ref: '#/components/schemas/sensorsdata.portal.v2.api.ListAccountResponse'
+        error_info:
+          $ref: '#/components/schemas/sensorsdata.common.ErrorInfo'
+      title: sensorsdata.portal.v2.api.ListAccountResponseHttpApiResult
+      type: object
+    sensorsdata.portal.v2.Statement:
+      description: "权限描述结构定义，参考下面几个示例：\n ```\n 允许 operation code=8013 的操作：{\"operation\": \"8013\", \"effect\": \"ALLOW\"}\n 禁用 operation code=8013 的操作：{\"operation\": \"8013\", \"effect\": \"DENY\"}\n 允许对资源 id 为 [4，5] 的资源执行 operation code = 8013 的操作：\n {\n   \"operation\": \"8013\",\n   \"effect\": \"ALLOW\",\n   \"condition\": {\n     \"operator\": \"OR\",\n     \"conditions\": [\n       {\n         \"function\": \"EQUAL\",\n         \"params\": [\n           {\n             \"param_type\": \"FIELD\",\n             \"field\": \"#ResourceId\",\n             \"variable\": \"\",\n             \"expression\": \"\",\n             \"value\": {\"list_value\": [\"4\",\"5\"]}\n           }\n         ]\n       }\n     ]\n   }\n }\n ```"
+      properties:
+        operation:
+          description: 权限操作的 code
+          example: '11011'
+          type: string
+        effect:
+          description: 权限作用效果；ALLOW：允许，DENY：拒绝
+          enum:
+          - PERMISSION_EFFECT_UNSPECIFIED
+          - ALLOW
+          - DENY
+          example: ALLOW
+          type: string
+        condition:
+          $ref: '#/components/schemas/sensorsdata.common.CompoundFilterCondition'
+      required:
+      - effect
+      - operation
+      title: Statement
+      type: object
+    sensorsdata.portal.v2.api.UpsertAttributeNodeRequest:
+      description: 扩展属性的节点信息，存在则更新，不存在则新增
+      properties:
+        nodes:
+          description: 节点信息
+          items:
+            $ref: '#/components/schemas/sensorsdata.portal.v2.api.AttributeNode'
+          type: array
+      title: UpsertAttributeNodeRequest
+      type: object
+    sensorsdata.portal.v2.api.UpdateGlobalAccountRequest:
+      description: 「更新平台账户」的请求对象
+      properties:
+        account:
+          $ref: '#/components/schemas/sensorsdata.portal.v2.api.UpdateGlobalAccountDetail'
+        related_projects:
+          description: 更新平台账号关联的项目信息、角色信息、职位信息等
+          items:
+            $ref: '#/components/schemas/sensorsdata.portal.v2.api.AccountRelatedProjectInfo'
+          type: array
+      required:
+      - account
+      - related_projects
+      title: UpdateGlobalAccountRequest
+      type: object
+    sensorsdata.portal.v2.ResourceOperationConditionRequest:
+      description: ''
+      properties:
+        project_id:
+          description: ''
+          format: int32
+          type: integer
+        account_id:
+          description: ''
+          type: string
+        resource:
+          description: ''
+          type: string
+        operations:
+          description: ''
+          items:
+            type: string
+          type: array
+        project_name:
+          description: ''
+          type: string
+      title: ResourceOperationConditionRequest
+      type: object
+    sensorsdata.portal.v2.api.ListDutyResponse:
+      description: ''
+      properties:
+        duties:
+          description: 职务信息
+          items:
+            $ref: '#/components/schemas/sensorsdata.portal.v2.api.Duty'
+          type: array
+        page:
+          $ref: '#/components/schemas/sensorsdata.portal.v2.api.PageInfo'
+      title: ListDutyResponse
+      type: object
+    sensorsdata.portal.v2.api.GetProjectAttributeResponse:
+      description: 项目和扩展属性关联关系
+      properties:
+        project_attributes:
+          description: 扩展属性关联关系
+          items:
+            $ref: '#/components/schemas/sensorsdata.portal.v2.api.ProjectAttribute'
+          type: array
+      title: GetProjectAttributeResponse
+      type: object
+    sensorsdata.portal.v2.api.GetAccountByApiKeyRequest:
+      description: 「根据 api-key 获取账号」的请求对象
+      properties:
+        api_key:
+          description: api-key 明文；为空时返回当前请求鉴权所用 api-key 对应的账号（whoami）
+          example: '#K-1Q0rg4L3ssqXZYp57u0LMONvHQs8MF61'
+          type: string
+      title: GetAccountByApiKeyRequest
+      type: object
+    sensorsdata.portal.v2.api.GetGlobalAccountResponse:
+      description: 「获取单个平台账户」的响应对象
+      properties:
+        account:
+          $ref: '#/components/schemas/sensorsdata.portal.v2.api.GlobalAccount'
+        related_projects:
+          description: 平台账号关联的项目信息、角色信息、职位信息等
+          items:
+            $ref: '#/components/schemas/sensorsdata.portal.v2.api.AccountRelatedProjectInfo'
+          type: array
+      title: GetGlobalAccountResponse
+      type: object
+    sensorsdata.portal.v2.api.InviteAccount:
+      description: 「邀请账号」的对象
+      properties:
+        id:
+          description: 账号 id
+          example: 78
+          format: int32
+          type: integer
+        duty_name:
+          description: 职务名称
+          example: lh
+          type: string
+        related_role_ids:
+          description: 关联的角色 id
+          example: '[1,4,9]'
+          items:
+            format: int32
+            type: integer
+          type: array
+      required:
+      - id
+      - related_role_ids
+      title: InviteAccount
+      type: object
+    sensorsdata.common.CompoundFilterCondition:
+      description: 复合过滤条件，用于描述 condition 或 compound_filter 之间的关系
+      properties:
+        operator:
+          description: 逻辑运算法
+          enum:
+          - LOGICAL_OPERATOR_UNSPECIFIED
+          - AND
+          - OR
+          example: AND
+          type: string
+        conditions:
+          description: 过滤条件列表，只有最后一级才有
+          items:
+            $ref: '#/components/schemas/sensorsdata.common.FilterCondition'
+          type: array
+        compound_conditions:
+          description: 嵌套的下一级复合过滤条件
+          items:
+            $ref: '#/components/schemas/sensorsdata.common.CompoundFilterCondition'
+          type: array
+        index:
+          description: 当前筛选条件所处的位置下标，主要为了保证前端展示顺序的稳定
+          example: 10
+          format: int32
+          type: integer
+      title: CompoundFilterCondition
+      type: object
+    sensorsdata.portal.v2.api.AccountWithRelatedInfo:
+      description: 账号及其相关信息（包括角色和扩展属性值）
+      properties:
+        account:
+          $ref: '#/components/schemas/sensorsdata.portal.v2.api.Account'
+        related_extra_attributes:
+          description: 扩展属性的值
+          items:
+            $ref: '#/components/schemas/sensorsdata.portal.v2.api.ExtraAttribute'
+          type: array
+        roles:
+          description: 角色的简要信息
+          items:
+            $ref: '#/components/schemas/sensorsdata.portal.v2.api.RoleInfoSummary'
+          type: array
+      title: AccountWithRelatedInfo
+      type: object
+    sensorsdata.portal.v2.api.ExtraAttribute:
+      description: 扩展属性值，通过该结构来描述对象关联的具体的扩展属性值
+      properties:
+        attr_code:
+          description: 属性编码（根据 ExtraAttributeDefinition 获取属性编码的定义）
+          example: JOB
+          type: string
+        node_code:
+          description: 节点编码
+          example: '4'
+          type: string
+        node_name:
+          description: 节点名
+          example: 技术部
+          type: string
+        full_name:
+          description: 节点全称（主要用于树形结构属性，表示当前节点到树的根节点的路径）
+          example: 集团/技术部
+          type: string
+        has_children_node:
+          description: 是否包含子节点；如果是树形结构，仅绑定树中的某个节点（不包括子树），则 has_children_node=false，如果绑定树中的某个节点及其子树，则 has_children_node=true
+          example: true
+          type: boolean
+        desc:
+          description: 节点描述
+          example: 集团技术部
+          type: string
+      title: ExtraAttribute
+      type: object
+    sensorsdata.portal.v2.BatchListResourcePoliciesResponseHttpApiResult:
+      properties:
+        code:
+          type: string
+        message:
+          type: string
+        request_id:
+          type: string
+        data:
+          $ref: '#/components/schemas/sensorsdata.portal.v2.BatchListResourcePoliciesResponse'
+        error_info:
+          $ref: '#/components/schemas/sensorsdata.common.ErrorInfo'
+      title: sensorsdata.portal.v2.BatchListResourcePoliciesResponseHttpApiResult
+      type: object
+    sensorsdata.portal.v2.api.UpdateAccountDetail:
+      description: 「修改账号」的请求对象
+      properties:
+        id:
+          description: "账号 id（id/uuid 任选一个，如果两个字段同时填充会报参数错误）\n 由于 grpc 转 http 接口时，参数解析只支持简单类型，而 int32 类型无法描述 id = null 的情况，所以使用 string 类型代替"
+          example: '1'
+          type: string
+        uuid:
+          description: 账号 uuid（id/uuid 任选一个，如果两个字段同时填充会报错）
+          example: 38135721-2938-4585-b19b-396ceb910d88
+          type: string
+        cname:
+          description: 账号显示名
+          example: 管理员
+          type: string
+        email:
+          description: 邮箱；如果添加的账号为平台账号，需要确保该字段全局唯一；如果添加的账号为项目账号，需要确保该字段在项目下唯一
+          example: demo@sensorsdata.com
+          type: string
+        phone:
+          description: 手机号码
+          example: '12399999999'
+          type: string
+        expire_time:
+          description: 账号过期时间（选填，默认永久），日期格式：yyyy-MM-dd HH:mm:ss
+          example: '2022-01-01 00:00:00'
+          type: string
+        position:
+          description: 职务
+          example: 销售
+          type: string
+      required:
+      - cname
+      title: UpdateAccountDetail
+      type: object
+    sensorsdata.portal.v2.api.GetAttributeResponse:
+      description: 扩展属性的定义
+      properties:
+        attribute:
+          $ref: '#/components/schemas/sensorsdata.portal.v2.api.Attribute'
+        project_ids:
+          description: 属性关联的项目
+          example: '[1,2]'
+          items:
+            format: int32
+            type: integer
+          type: array
+      title: GetAttributeResponse
+      type: object
+    sensorsdata.portal.v2.api.AccountAttribute:
+      description: 账号和扩展属性的关联关系
+      properties:
+        user_id:
+          description: 账号ID
+          example: 1
+          format: int32
+          type: integer
+        project_id:
+          description: 项目id, 当扩展属性scope=GLOBAL时,project_id=NULL;scope=PROJECT时,project_id必填
+          example: 1
+          format: int32
+          type: integer
+        attr_code:
+          description: 扩展属性维度
+          example: JOB
+          type: string
+        attr_name:
+          description: 扩展属性名称
+          example: 岗位
+          type: string
+        node_code:
+          description: 扩展节点code
+          example: RD
+          type: string
+        node_name:
+          description: 扩展节点name
+          example: RD
+          type: string
+      title: AccountAttribute
+      type: object
+    sensorsdata.portal.v2.api.StatusResponseHttpApiResult:
+      properties:
+        code:
+          type: string
+        message:
+          type: string
+        request_id:
+          type: string
+        data:
+          $ref: '#/components/schemas/sensorsdata.portal.v2.api.StatusResponse'
+        error_info:
+          $ref: '#/components/schemas/sensorsdata.common.ErrorInfo'
+      title: sensorsdata.portal.v2.api.StatusResponseHttpApiResult
+      type: object
+    sensorsdata.portal.v2.api.GetAccountAttributeResponse:
+      description: 获取账号和扩展属性的关联关系响应
+      properties:
+        account_attributes:
+          description: 当前账号绑定的扩展属性信息
+          items:
+            $ref: '#/components/schemas/sensorsdata.portal.v2.api.AccountAttribute'
+          type: array
+      title: GetAccountAttributeResponse
+      type: object
+    sensorsdata.portal.v2.api.GetAccountResponse:
+      description: 「获取单个账号信息」的响应对象
+      properties:
+        account:
+          $ref: '#/components/schemas/sensorsdata.portal.v2.api.Account'
+        related_roles:
+          description: 账号关联的角色列表
+          items:
+            $ref: '#/components/schemas/sensorsdata.portal.v2.api.Role'
+          type: array
+        extra_attributes_definitions:
+          description: 扩展属性定义
+          items:
+            $ref: '#/components/schemas/sensorsdata.portal.v2.api.ExtraAttributeDefinition'
+          type: array
+        related_extra_attributes:
+          description: 扩展属性的值
+          items:
+            $ref: '#/components/schemas/sensorsdata.portal.v2.api.ExtraAttribute'
+          type: array
+      title: GetAccountResponse
+      type: object
+    sensorsdata.portal.v2.api.DeleteRoleAttributeRequest:
+      description: 删除角色和扩展属性的关联关系
+      properties:
+        role_attributes:
+          description: 绑定关系
+          items:
+            $ref: '#/components/schemas/sensorsdata.portal.v2.api.RoleAttribute'
+          type: array
+      title: DeleteRoleAttributeRequest
+      type: object
+    sensorsdata.portal.v2.api.ListRoleResponseHttpApiResult:
+      properties:
+        code:
+          type: string
+        message:
+          type: string
+        request_id:
+          type: string
+        data:
+          $ref: '#/components/schemas/sensorsdata.portal.v2.api.ListRoleResponse'
+        error_info:
+          $ref: '#/components/schemas/sensorsdata.common.ErrorInfo'
+      title: sensorsdata.portal.v2.api.ListRoleResponseHttpApiResult
+      type: object
+    sensorsdata.portal.v2.api.UpdateRoleResponse:
+      description: 「修改角色」的响应对象
+      properties:
+        role:
+          $ref: '#/components/schemas/sensorsdata.portal.v2.api.Role'
+      title: UpdateRoleResponse
+      type: object
+    sensorsdata.portal.v2.api.RegisterCategoryRequest:
+      description: 「注册分类」的请求对象
+      properties:
+        code:
+          description: 资源分类的分类编码，需要保证唯一性，建议为小写字母，多个以下划线拼接
+          example: setting_sensors_analysis
+          type: string
+        name_i18n_message:
+          $ref: '#/components/schemas/sensorsdata.portal.v2.api.I18nMessage'
+        sort:
+          description: 排序序号，可选字段，默认值为 0
+          example: 10
+          format: int32
+          type: integer
+      required:
+      - code
+      - name_i18n_message
+      title: RegisterCategoryRequest
+      type: object
+    sensorsdata.portal.v2.Policy:
+      description: ''
+      properties:
+        code:
+          description: ''
+          type: string
+        name:
+          description: ''
+          type: string
+        type:
+          description: ''
+          enum:
+          - POLICY_TYPE_UNSPECIFIED
+          - BASE_PRINCIPAL
+          - BASE_RESOURCE
+          type: string
+        statements:
+          description: ''
+          items:
+            $ref: '#/components/schemas/sensorsdata.portal.v2.Statement'
+          type: array
+      title: Policy
+      type: object
+    sensorsdata.portal.v2.api.UpdateAccountResponse:
+      description: 「修改账号信息」的响应对象
+      properties:
+        account:
+          $ref: '#/components/schemas/sensorsdata.portal.v2.api.Account'
+      title: UpdateAccountResponse
+      type: object
+    sensorsdata.portal.v2.api.UpsertProjectAttributeRequest:
+      description: 项目和扩展属性关联关系
+      properties:
+        project_attributes:
+          description: 绑定关系
+          items:
+            $ref: '#/components/schemas/sensorsdata.portal.v2.api.ProjectAttribute'
+          type: array
+      title: UpsertProjectAttributeRequest
+      type: object
+    sensorsdata.portal.v2.api.ListGlobalAccountDetail:
+      description: 平台账号及其相关信息（包括项目信息、职位信息、角色信息）
+      properties:
+        account:
+          $ref: '#/components/schemas/sensorsdata.portal.v2.api.GlobalAccount'
+        related_projects:
+          description: 平台账号关联的项目信息
+          items:
+            $ref: '#/components/schemas/sensorsdata.portal.v2.api.AccountRelatedProjectInfo'
+          type: array
+      title: ListGlobalAccountDetail
+      type: object
+    sensorsdata.portal.v2.api.Attribute:
+      description: 扩展属性的定义
+      properties:
+        code:
+          description: 属性编码
+          example: JOB
+          type: string
+        name:
+          description: 属性名
+          example: 职位
+          type: string
+        desc:
+          description: 属性描述
+          example: 职位属性
+          type: string
+        type:
+          description: 属性类型
+          enum:
+          - TYPE_UNSPECIFIED
+          - VALUE
+          - TREE
+          example: VALUE
+          type: string
+        scope:
+          description: 属性值的作用范围，GLOBAL：全局，PROJECT：项目
+          enum:
+          - SCOPE_UNSPECIFIED
+          - GLOBAL
+          - PROJECT
+          example: GLOBAL
+          type: string
+        nodes:
+          description: 节点信息
+          items:
+            $ref: '#/components/schemas/sensorsdata.portal.v2.api.AttributeNode'
+          type: array
+      title: Attribute
+      type: object
+    sensorsdata.portal.v2.api.I18nMessage:
+      description: i18n 国际化信息
+      properties:
+        zh_cn:
+          description: 中文简体
+          example: 职位
+          type: string
+        en_us:
+          description: 英文
+          example: job
+          type: string
+        zh_tw:
+          description: 中文繁体
+          example: 職位
+          type: string
+        ja:
+          description: 日语
+          example: ロケーション
+          type: string
+        th:
+          description: 泰语
+          example: ตำแหน่ง
+          type: string
+      title: I18nMessage
+      type: object
+    sensorsdata.portal.v2.ResourcePolicies:
+      description: ''
+      properties:
+        resource_code:
+          description: ''
+          type: string
+        resource_id:
+          description: ''
+          type: string
+        policy_principals:
+          description: ''
+          items:
+            $ref: '#/components/schemas/sensorsdata.portal.v2.PolicyPrincipals'
+          type: array
+      title: ResourcePolicies
+      type: object
+    sensorsdata.portal.v2.api.RoleUpdateBody:
+      description: 角色更新请求体
+      properties:
+        id:
+          description: 角色 id
+          example: 1
+          format: int32
+          type: integer
+        name:
+          description: 角色名；长度不超过50个字符，且需要确保该字段在项目下唯一
+          example: admin
+          type: string
+        cname:
+          description: 角色显示名；长度不超过50个字符，且需要确保该字段在项目下唯一
+          example: 管理员
+          type: string
+        description:
+          description: 角色描述
+          example: 管理员角色描述信息
+          type: string
+        is_project_customize_default_role:
+          description: 是否是默认角色；选填，默认为false
+          example: false
+          type: boolean
+      required:
+      - cname
+      - id
+      title: RoleUpdateBody
+      type: object
+    sensorsdata.portal.v2.api.RegisterResourceRequest:
+      description: 「注册功能资源」的请求对象
+      properties:
+        code:
+          description: 资源编码；规范：唯一性，小写英文字母，多个以下划线拼接
+          example: data_permission_view_all_data
+          type: string
+        product:
+          description: 所属产品线；例如：SA、SBP、SFN、SDF、SDH等
+          example: SA
+          type: string
+        name_i18n_message:
+          $ref: '#/components/schemas/sensorsdata.portal.v2.api.I18nMessage'
+        tip_i18n_message:
+          $ref: '#/components/schemas/sensorsdata.portal.v2.api.I18nMessage'
+        config:
+          description: 自定义扩展；支持权限点依赖联动
+          type: string
+        operations:
+          description: 操作（权限）集合；不允许为空
+          items:
+            $ref: '#/components/schemas/sensorsdata.portal.v2.api.Operation'
+          type: array
+      required:
+      - code
+      - name_i18n_message
+      - operations
+      - product
+      title: RegisterResourceRequest
+      type: object
+    sensorsdata.portal.v2.BatchListResourceOperationConditionRequest:
+      description: ''
+      properties:
+        project_id:
+          description: ''
+          format: int32
+          type: integer
+        account_id:
+          description: ''
+          format: int32
+          type: integer
+        resources:
+          description: ''
+          items:
+            type: string
+          type: array
+        operations:
+          description: ''
+          items:
+            type: string
+          type: array
+        project_name:
+          description: ''
+          type: string
+      title: BatchListResourceOperationConditionRequest
+      type: object
+    sensorsdata.portal.v2.api.ListGlobalAccountResponse:
+      description: 「获取平台账户列表」的响应对象
+      properties:
+        results:
+          description: 平台账号基本信息及相关信息列表（包括账号关联的项目信息、职位信息、角色信息等）
+          items:
+            $ref: '#/components/schemas/sensorsdata.portal.v2.api.ListGlobalAccountDetail'
+          type: array
+        page:
+          $ref: '#/components/schemas/sensorsdata.portal.v2.api.PageInfo'
+      title: ListGlobalAccountResponse
+      type: object
+    sensorsdata.portal.v2.api.GetAccountByApiKeyResponseHttpApiResult:
+      properties:
+        code:
+          type: string
+        message:
+          type: string
+        request_id:
+          type: string
+        data:
+          $ref: '#/components/schemas/sensorsdata.portal.v2.api.GetAccountByApiKeyResponse'
+        error_info:
+          $ref: '#/components/schemas/sensorsdata.common.ErrorInfo'
+      title: sensorsdata.portal.v2.api.GetAccountByApiKeyResponseHttpApiResult
+      type: object
+    sensorsdata.portal.v2.api.AddRoleResponseHttpApiResult:
+      properties:
+        code:
+          type: string
+        message:
+          type: string
+        request_id:
+          type: string
+        data:
+          $ref: '#/components/schemas/sensorsdata.portal.v2.api.AddRoleResponse'
+        error_info:
+          $ref: '#/components/schemas/sensorsdata.common.ErrorInfo'
+      title: sensorsdata.portal.v2.api.AddRoleResponseHttpApiResult
+      type: object
+    sensorsdata.portal.v2.api.AttributeNode:
+      description: 扩展属性的节点信息
+      properties:
+        code:
+          description: 节点编码
+          example: RD_1
+          type: string
+        name:
+          description: 节点名称
+          example: 研发部
+          type: string
+        parent_code:
+          description: 父节点，如果是根节点，为空即可
+          example: RD
+          type: string
+        attr_code:
+          description: 所属属性
+          example: JOB
+          type: string
+        desc:
+          description: 节点描述
+          example: 描述信息
+          type: string
+        project_id:
+          description: 节点所属项目
+          example: 1
+          format: int32
+          type: integer
+        children:
+          description: 子节点
+          items:
+            $ref: '#/components/schemas/sensorsdata.portal.v2.api.AttributeNode'
+          type: array
+        detach_from_parent:
+          description: 从父节点摘除, POST /attr/node 更新节点时使用
+          example: true
+          type: boolean
+      title: AttributeNode
       type: object
     sensorsdata.portal.v2.Principals:
       description: ''
@@ -2856,6 +4210,449 @@ components:
             type: string
           type: array
       title: Principals
+      type: object
+    sensorsdata.portal.v2.ListOperationConditionResponseHttpApiResult:
+      properties:
+        code:
+          type: string
+        message:
+          type: string
+        request_id:
+          type: string
+        data:
+          $ref: '#/components/schemas/sensorsdata.portal.v2.ListOperationConditionResponse'
+        error_info:
+          $ref: '#/components/schemas/sensorsdata.common.ErrorInfo'
+      title: sensorsdata.portal.v2.ListOperationConditionResponseHttpApiResult
+      type: object
+    sensorsdata.portal.v2.api.DeleteAccountAttributeRequest:
+      description: 删除账号和扩展属性的关联关系
+      properties:
+        account_attributes:
+          description: 绑定关系
+          items:
+            $ref: '#/components/schemas/sensorsdata.portal.v2.api.AccountAttribute'
+          type: array
+      title: DeleteAccountAttributeRequest
+      type: object
+    sensorsdata.portal.v2.api.BatchListGlobalAccountResponse:
+      description: 「批量查询平台账号基本信息」的响应对象
+      properties:
+        accounts:
+          description: 平台账号基本信息
+          items:
+            $ref: '#/components/schemas/sensorsdata.portal.v2.api.GlobalAccount'
+          type: array
+        total:
+          description: 总条数
+          example: 100
+          format: int32
+          type: integer
+      title: BatchListGlobalAccountResponse
+      type: object
+    sensorsdata.portal.v2.api.DeleteProjectAttributeRequest:
+      description: 删除项目和扩展属性关联关系
+      properties:
+        project_attributes:
+          description: 绑定的数据
+          items:
+            $ref: '#/components/schemas/sensorsdata.portal.v2.api.ProjectAttribute'
+          type: array
+      title: DeleteProjectAttributeRequest
+      type: object
+    sensorsdata.portal.v2.BatchAddResourcePermissionRequest:
+      description: ''
+      properties:
+        resources:
+          $ref: '#/components/schemas/sensorsdata.portal.v2.Resources'
+        policy_principals:
+          description: ''
+          items:
+            $ref: '#/components/schemas/sensorsdata.portal.v2.PolicyPrincipals'
+          type: array
+        project_id:
+          description: ''
+          format: int32
+          type: integer
+        project_name:
+          description: ''
+          type: string
+      title: BatchAddResourcePermissionRequest
+      type: object
+    sensorsdata.portal.v2.BatchListResourcePoliciesResponse:
+      description: ''
+      properties:
+        resource_policies:
+          description: ''
+          items:
+            $ref: '#/components/schemas/sensorsdata.portal.v2.ResourcePolicies'
+          type: array
+      title: BatchListResourcePoliciesResponse
+      type: object
+    sensorsdata.common.TimeInterval:
+      description: ''
+      properties:
+        size:
+          description: ''
+          format: int32
+          type: integer
+        unit:
+          description: ''
+          enum:
+          - DATE_TIME_UNIT_UNSPECIFIED
+          - MILLISECOND
+          - SECOND
+          - MINUTE
+          - HOUR
+          - DAY
+          - WEEK
+          - MONTH
+          - YEAR
+          type: string
+      title: TimeInterval
+      type: object
+    sensorsdata.portal.v2.api.GlobalAccount:
+      description: 平台账号基本信息
+      properties:
+        id:
+          description: 账号 id，当前租户下账号唯一标识
+          example: 1
+          format: int32
+          type: integer
+        uuid:
+          description: 账号 uuid，当前租户下账号唯一标识
+          example: 38135721-2938-4585-b19b-396ceb910d88
+          type: string
+        name:
+          description: 登录帐号名
+          example: admin
+          type: string
+        cname:
+          description: 账号显示名
+          example: 管理员
+          type: string
+        email:
+          description: 邮箱
+          example: demo@sensorsdata.com
+          type: string
+        phone:
+          description: 手机号码
+          example: '12399999999'
+          type: string
+        expire_time:
+          description: 账号过期时间，日期格式：yyyy-MM-dd HH:mm:ss
+          example: '2022-05-03 11:18:41'
+          type: string
+        disabled:
+          description: 是否被禁用
+          example: false
+          type: boolean
+      title: GlobalAccount
+      type: object
+    sensorsdata.portal.v2.api.DeleteCategoryRequest:
+      description: 「删除分类」的请求对象
+      properties:
+        code:
+          description: 资源分类的分类编码，需要和「注册分类」接口中的资源分类的分类编码字段保持一致
+          example: setting_sensors_analysis
+          type: string
+      required:
+      - code
+      title: DeleteCategoryRequest
+      type: object
+    sensorsdata.portal.v2.api.GetRoleAttributeResponseHttpApiResult:
+      properties:
+        code:
+          type: string
+        message:
+          type: string
+        request_id:
+          type: string
+        data:
+          $ref: '#/components/schemas/sensorsdata.portal.v2.api.GetRoleAttributeResponse'
+        error_info:
+          $ref: '#/components/schemas/sensorsdata.common.ErrorInfo'
+      title: sensorsdata.portal.v2.api.GetRoleAttributeResponseHttpApiResult
+      type: object
+    sensorsdata.portal.v2.api.Duty:
+      description: 职务定义，包含 id，职务名称
+      properties:
+        id:
+          description: 职务 id
+          example: 5
+          format: int32
+          type: integer
+        name:
+          description: 职务名称
+          example: 普通员工
+          type: string
+      required:
+      - id
+      - name
+      title: Duty
+      type: object
+    sensorsdata.portal.v2.api.RoleAttribute:
+      description: 角色和扩展属性的关联关系
+      properties:
+        role_id:
+          description: 角色ID
+          example: 1
+          format: int32
+          type: integer
+        attr_code:
+          description: 扩展属性维度
+          example: JOB
+          type: string
+        attr_name:
+          description: 扩展属性名称
+          example: 岗位
+          type: string
+        node_code:
+          description: 扩展节点code
+          example: RD
+          type: string
+        node_name:
+          description: 扩展节点name
+          example: RD
+          type: string
+        not_auth_children:
+          description: 是否不授权所有子节点，默认false
+          example: false
+          type: boolean
+      title: RoleAttribute
+      type: object
+    sensorsdata.portal.v2.ResourcePoliciesRequest:
+      description: ''
+      properties:
+        project_id:
+          description: ''
+          format: int32
+          type: integer
+        resource:
+          description: ''
+          type: string
+        project_name:
+          description: ''
+          type: string
+      title: ResourcePoliciesRequest
+      type: object
+    sensorsdata.common.Literal:
+      description: ''
+      properties:
+        data_type:
+          description: ''
+          enum:
+          - DATA_TYPE_UNSPECIFIED
+          - BOOL
+          - INT
+          - NUMBER
+          - STRING
+          - LIST
+          - DATETIME
+          - DATE
+          - BIGINT
+          - DECIMAL
+          type: string
+        bool_value:
+          description: ''
+          type: boolean
+        int_value:
+          description: ''
+          format: int64
+          type: integer
+        number_value:
+          description: ''
+          format: double
+          type: number
+        string_value:
+          description: ''
+          type: string
+        list_value:
+          description: ''
+          items:
+            type: string
+          type: array
+        datetime_value:
+          description: ''
+          format: date-time
+          type: string
+        date_value:
+          description: ''
+          type: string
+        bigint_value:
+          description: ''
+          format: int64
+          type: integer
+        decimal_value:
+          description: ''
+          type: string
+      title: Literal
+      type: object
+    sensorsdata.portal.v2.api.GetAttributeNodeResponse:
+      description: 获取扩展属性的节点信息
+      properties:
+        nodes:
+          description: 节点信息
+          items:
+            $ref: '#/components/schemas/sensorsdata.portal.v2.api.AttributeNode'
+          type: array
+        count:
+          description: 当前响应的数据数
+          example: 20
+          format: int32
+          type: integer
+      title: GetAttributeNodeResponse
+      type: object
+    sensorsdata.portal.v2.api.AddGlobalAccountRequest:
+      description: 「新增平台账户」的请求对象
+      properties:
+        account:
+          $ref: '#/components/schemas/sensorsdata.portal.v2.api.AddGlobalAccountDetail'
+        related_projects:
+          description: 新增平台账号关联的项目信息、角色信息、职位信息等
+          items:
+            $ref: '#/components/schemas/sensorsdata.portal.v2.api.AccountRelatedProjectInfo'
+          type: array
+      required:
+      - account
+      - related_projects
+      title: AddGlobalAccountRequest
+      type: object
+    sensorsdata.portal.v2.OperationCompoundCondition:
+      description: 权限的condition结构；ALLOW：允许，DENY：拒绝
+      properties:
+        allow_condition:
+          $ref: '#/components/schemas/sensorsdata.common.CompoundFilterCondition'
+        deny_condition:
+          $ref: '#/components/schemas/sensorsdata.common.CompoundFilterCondition'
+        permission_scope:
+          description: 权限的scope
+          enum:
+          - UNSPECIFIED
+          - PARTIAL_PERMISSION
+          - ALLOW_ALL
+          - DENY_ALL
+          type: string
+      title: OperationCompoundCondition
+      type: object
+    sensorsdata.portal.v2.api.DeleteAttributeNodeRequest:
+      description: 删除扩展属性的节点
+      properties:
+        attr_code:
+          description: 所属属性
+          example: JOB
+          type: string
+        codes:
+          description: 节点编码集合
+          example: RD_1
+          items:
+            type: string
+          type: array
+      title: DeleteAttributeNodeRequest
+      type: object
+    sensorsdata.portal.v2.api.BatchListGlobalAccountResponseHttpApiResult:
+      properties:
+        code:
+          type: string
+        message:
+          type: string
+        request_id:
+          type: string
+        data:
+          $ref: '#/components/schemas/sensorsdata.portal.v2.api.BatchListGlobalAccountResponse'
+        error_info:
+          $ref: '#/components/schemas/sensorsdata.common.ErrorInfo'
+      title: sensorsdata.portal.v2.api.BatchListGlobalAccountResponseHttpApiResult
+      type: object
+    sensorsdata.portal.v2.api.GetRoleAttributeResponse:
+      description: 角色和扩展属性的关联关系响应
+      properties:
+        role_attributes:
+          description: 当前角色绑定的扩展属性信息
+          items:
+            $ref: '#/components/schemas/sensorsdata.portal.v2.api.RoleAttribute'
+          type: array
+      title: GetRoleAttributeResponse
+      type: object
+    sensorsdata.portal.v2.ResourceOperationCondition:
+      description: ''
+      properties:
+        resource_code:
+          description: ''
+          type: string
+        resource_id:
+          description: ''
+          type: string
+        compound_condition_map:
+          additionalProperties:
+            $ref: '#/components/schemas/sensorsdata.portal.v2.OperationCompoundCondition'
+          description: ''
+          type: object
+      title: ResourceOperationCondition
+      type: object
+    sensorsdata.portal.v2.api.UpsertAttributeRequest:
+      description: 扩展属性的定义
+      properties:
+        attribute:
+          $ref: '#/components/schemas/sensorsdata.portal.v2.api.Attribute'
+        project_ids:
+          description: 属性关联的项目
+          example: '[1,2]'
+          items:
+            format: int32
+            type: integer
+          type: array
+      title: UpsertAttributeRequest
+      type: object
+    sensorsdata.portal.v2.api.UpdateRoleRequest:
+      description: 「修改角色」的请求对象
+      properties:
+        role:
+          $ref: '#/components/schemas/sensorsdata.portal.v2.api.RoleUpdateBody'
+        statements:
+          description: 角色权限配置
+          example: '[{"operation": "8013", "effect": "ALLOW"}, {"operation": "8014", "effect": "DENY"}]'
+          items:
+            $ref: '#/components/schemas/sensorsdata.portal.v2.Statement'
+          type: array
+      required:
+      - role
+      - statements
+      title: UpdateRoleRequest
+      type: object
+    sensorsdata.portal.v2.api.UpdateGlobalAccountDetail:
+      description: 平台账号基本信息
+      properties:
+        id:
+          description: 「选填，和 uuid 二选一」账号 id，当前租户下账号唯一标识
+          example: 1
+          format: int32
+          type: integer
+        uuid:
+          description: 「选填，和 uuid 二选一」账号 uuid，当前租户下账号唯一标识
+          example: 38135721-2938-4585-b19b-396ceb910d88
+          type: string
+        cname:
+          description: 账号显示名
+          example: 管理员
+          type: string
+        email:
+          description: 邮箱
+          example: demo@sensorsdata.com
+          type: string
+        phone:
+          description: 手机号码
+          example: '12399999999'
+          type: string
+        expire_time:
+          description: 账号过期时间，日期格式：yyyy-MM-dd HH:mm:ss
+          example: '2022-05-03 11:18:41'
+          type: string
+        disabled:
+          description: 是否被禁用
+          example: false
+          type: boolean
+      title: UpdateGlobalAccountDetail
       type: object
     sensorsdata.common.FilterCondition:
       description: 单个过滤条件
@@ -2914,68 +4711,7 @@ components:
           type: integer
       title: FilterCondition
       type: object
-    sensorsdata.portal.v2.api.ListGlobalAccountResponse:
-      description: 「获取平台账户列表」的响应对象
-      properties:
-        results:
-          description: 平台账号基本信息及相关信息列表（包括账号关联的项目信息、职位信息、角色信息等）
-          items:
-            $ref: '#/components/schemas/sensorsdata.portal.v2.api.ListGlobalAccountDetail'
-          type: array
-        page:
-          $ref: '#/components/schemas/sensorsdata.portal.v2.api.PageInfo'
-      title: ListGlobalAccountResponse
-      type: object
-    sensorsdata.portal.v2.api.AccountWithRelatedInfo:
-      description: 账号及其相关信息（包括角色和扩展属性值）
-      properties:
-        account:
-          $ref: '#/components/schemas/sensorsdata.portal.v2.api.Account'
-        related_extra_attributes:
-          description: 扩展属性的值
-          items:
-            $ref: '#/components/schemas/sensorsdata.portal.v2.api.ExtraAttribute'
-          type: array
-        roles:
-          description: 角色的简要信息
-          items:
-            $ref: '#/components/schemas/sensorsdata.portal.v2.api.RoleInfoSummary'
-          type: array
-      title: AccountWithRelatedInfo
-      type: object
-    sensorsdata.portal.v2.api.AddGlobalAccountRequest:
-      description: 「新增平台账户」的请求对象
-      properties:
-        account:
-          $ref: '#/components/schemas/sensorsdata.portal.v2.api.AddGlobalAccountDetail'
-        related_projects:
-          description: 新增平台账号关联的项目信息、角色信息、职位信息等
-          items:
-            $ref: '#/components/schemas/sensorsdata.portal.v2.api.AccountRelatedProjectInfo'
-          type: array
-      required:
-      - account
-      - related_projects
-      title: AddGlobalAccountRequest
-      type: object
-    sensorsdata.portal.v2.BatchListResourcePoliciesRequest:
-      description: ''
-      properties:
-        project_id:
-          description: ''
-          format: int32
-          type: integer
-        resources:
-          description: ''
-          items:
-            type: string
-          type: array
-        project_name:
-          description: ''
-          type: string
-      title: BatchListResourcePoliciesRequest
-      type: object
-    sensorsdata.portal.v2.api.AddAccountResponseHttpApiResult:
+    sensorsdata.portal.v2.api.ListGlobalAccountResponseHttpApiResult:
       properties:
         code:
           type: string
@@ -2984,403 +4720,43 @@ components:
         request_id:
           type: string
         data:
-          $ref: '#/components/schemas/sensorsdata.portal.v2.api.AddAccountResponse'
+          $ref: '#/components/schemas/sensorsdata.portal.v2.api.ListGlobalAccountResponse'
         error_info:
           $ref: '#/components/schemas/sensorsdata.common.ErrorInfo'
-      title: sensorsdata.portal.v2.api.AddAccountResponseHttpApiResult
+      title: sensorsdata.portal.v2.api.ListGlobalAccountResponseHttpApiResult
       type: object
-    sensorsdata.portal.v2.Statement:
-      description: "权限描述结构定义，参考下面几个示例：\n ```\n 允许 operation code=8013 的操作：{\"operation\": \"8013\", \"effect\": \"ALLOW\"}\n 禁用 operation code=8013 的操作：{\"operation\": \"8013\", \"effect\": \"DENY\"}\n 允许对资源 id 为 [4，5] 的资源执行 operation code = 8013 的操作：\n {\n   \"operation\": \"8013\",\n   \"effect\": \"ALLOW\",\n   \"condition\": {\n     \"operator\": \"OR\",\n     \"conditions\": [\n       {\n         \"function\": \"EQUAL\",\n         \"params\": [\n           {\n             \"param_type\": \"FIELD\",\n             \"field\": \"#ResourceId\",\n             \"variable\": \"\",\n             \"expression\": \"\",\n             \"value\": {\"list_value\": [\"4\",\"5\"]}\n           }\n         ]\n       }\n     ]\n   }\n }\n ```"
+    sensorsdata.portal.v2.api.BindCategoryAndResourceRequest:
+      description: 「资源分类关联具体的功能资源」的请求对象
       properties:
-        operation:
-          description: 权限操作的 code
-          example: '11011'
-          type: string
-        effect:
-          description: 权限作用效果；ALLOW：允许，DENY：拒绝
+        group:
+          description: 功能资源所属的分组，可选值为 DATA_PERMISSION、FEATURE_PERMISSION、MANAGEMENT_PERMISSION
           enum:
-          - PERMISSION_EFFECT_UNSPECIFIED
-          - ALLOW
-          - DENY
-          example: ALLOW
+          - GROUP_UNSPECIFIED
+          - DATA_PERMISSION
+          - FEATURE_PERMISSION
+          - MANAGEMENT_PERMISSION
+          example: DATA_PERMISSION
           type: string
-        condition:
-          $ref: '#/components/schemas/sensorsdata.common.CompoundFilterCondition'
-      required:
-      - effect
-      - operation
-      title: Statement
-      type: object
-    sensorsdata.portal.v2.api.ListDutyResponseHttpApiResult:
-      properties:
-        code:
+        category_code:
+          description: 资源分类的分类编码，需要和「注册分类」接口中的资源分类的分类编码字段保持一致
+          example: setting_sensors_analysis
           type: string
-        message:
-          type: string
-        request_id:
-          type: string
-        data:
-          $ref: '#/components/schemas/sensorsdata.portal.v2.api.ListDutyResponse'
-        error_info:
-          $ref: '#/components/schemas/sensorsdata.common.ErrorInfo'
-      title: sensorsdata.portal.v2.api.ListDutyResponseHttpApiResult
-      type: object
-    sensorsdata.portal.v2.api.UpdateGlobalAccountRequest:
-      description: 「更新平台账户」的请求对象
-      properties:
-        account:
-          $ref: '#/components/schemas/sensorsdata.portal.v2.api.UpdateGlobalAccountDetail'
-        related_projects:
-          description: 更新平台账号关联的项目信息、角色信息、职位信息等
-          items:
-            $ref: '#/components/schemas/sensorsdata.portal.v2.api.AccountRelatedProjectInfo'
-          type: array
-      required:
-      - account
-      - related_projects
-      title: UpdateGlobalAccountRequest
-      type: object
-    sensorsdata.portal.v2.api.UpdateRoleResponseHttpApiResult:
-      properties:
-        code:
-          type: string
-        message:
-          type: string
-        request_id:
-          type: string
-        data:
-          $ref: '#/components/schemas/sensorsdata.portal.v2.api.UpdateRoleResponse'
-        error_info:
-          $ref: '#/components/schemas/sensorsdata.common.ErrorInfo'
-      title: sensorsdata.portal.v2.api.UpdateRoleResponseHttpApiResult
-      type: object
-    sensorsdata.common.ErrorContext:
-      description: 发生错误时，系统快照信息
-      properties:
-        origin_stack:
-          description: 上游异常的 stack，由系统截获
-          type: string
-        origin_cause:
-          description: 上游异常的 cause by，由系统截获
-          type: string
-        origin_code:
-          description: 上游异常的错误简码
-          type: string
-        origin_complete_code:
-          description: 上游异常的完整错误码
-          type: string
-        error_extend_desc:
-          description: 本次异常的辅助说明，可传入
-          type: string
-      title: ErrorContext
-      type: object
-    sensorsdata.portal.v2.api.GetAccountResponse:
-      description: 「获取单个账号信息」的响应对象
-      properties:
-        account:
-          $ref: '#/components/schemas/sensorsdata.portal.v2.api.Account'
-        related_roles:
-          description: 账号关联的角色列表
-          items:
-            $ref: '#/components/schemas/sensorsdata.portal.v2.api.Role'
-          type: array
-        extra_attributes_definitions:
-          description: 扩展属性定义
-          items:
-            $ref: '#/components/schemas/sensorsdata.portal.v2.api.ExtraAttributeDefinition'
-          type: array
-        related_extra_attributes:
-          description: 扩展属性的值
-          items:
-            $ref: '#/components/schemas/sensorsdata.portal.v2.api.ExtraAttribute'
-          type: array
-      title: GetAccountResponse
-      type: object
-    sensorsdata.portal.v2.api.GlobalAccount:
-      description: 平台账号基本信息
-      properties:
-        id:
-          description: 账号 id，当前租户下账号唯一标识
-          example: 1
-          format: int32
-          type: integer
-        uuid:
-          description: 账号 uuid，当前租户下账号唯一标识
-          example: 38135721-2938-4585-b19b-396ceb910d88
-          type: string
-        name:
-          description: 登录帐号名
-          example: admin
-          type: string
-        cname:
-          description: 账号显示名
-          example: 管理员
-          type: string
-        email:
-          description: 邮箱
-          example: demo@sensorsdata.com
-          type: string
-        phone:
-          description: 手机号码
-          example: '12399999999'
-          type: string
-        expire_time:
-          description: 账号过期时间，日期格式：yyyy-MM-dd HH:mm:ss
-          example: '2022-05-03 11:18:41'
-          type: string
-        disabled:
-          description: 是否被禁用
-          example: false
-          type: boolean
-      title: GlobalAccount
-      type: object
-    sensorsdata.portal.v2.api.I18nMessage:
-      description: i18n 国际化信息
-      properties:
-        zh_cn:
-          description: 中文简体
-          example: 职位
-          type: string
-        en_us:
-          description: 英文
-          example: job
-          type: string
-        zh_tw:
-          description: 中文繁体
-          example: 職位
-          type: string
-        ja:
-          description: 日语
-          example: ロケーション
-          type: string
-        th:
-          description: 泰语
-          example: ตำแหน่ง
-          type: string
-      title: I18nMessage
-      type: object
-    sensorsdata.portal.v2.api.ListRoleResponseHttpApiResult:
-      properties:
-        code:
-          type: string
-        message:
-          type: string
-        request_id:
-          type: string
-        data:
-          $ref: '#/components/schemas/sensorsdata.portal.v2.api.ListRoleResponse'
-        error_info:
-          $ref: '#/components/schemas/sensorsdata.common.ErrorInfo'
-      title: sensorsdata.portal.v2.api.ListRoleResponseHttpApiResult
-      type: object
-    sensorsdata.portal.v2.api.DeleteResourceRequest:
-      description: 「删除功能资源」的请求对象
-      properties:
-        code:
-          description: 资源编码；该字段和「注册功能资源」接口中的 code 字段含义一致
+        resource_code:
+          description: 功能资源code，需要和「注册功能资源」接口中资源编码字段保持一致
           example: data_permission_view_all_data
           type: string
       required:
-      - code
-      title: DeleteResourceRequest
+      - category_code
+      - group
+      - resource_code
+      title: BindCategoryAndResourceRequest
       type: object
-    sensorsdata.portal.v2.api.Resource:
-      description: 资源定义
-      properties:
-        operation_code:
-          description: 关联的操作（权限）编码
-          example: '11011'
-          type: string
-        code:
-          description: 资源编码，需要保证唯一性，建议为小写字母，多个以下划线拼接
-          example: data_permission_view_all_data
-          type: string
-        name_i18n_message:
-          $ref: '#/components/schemas/sensorsdata.portal.v2.api.I18nMessage'
-        desc_i18n_message:
-          $ref: '#/components/schemas/sensorsdata.portal.v2.api.I18nMessage'
-        deny_desc_i18n_message:
-          $ref: '#/components/schemas/sensorsdata.portal.v2.api.I18nMessage'
-        condition_type:
-          description: 数据条件类型
-          enum:
-          - CONDITION_TYPE_UNSPECIFIED
-          - ALL
-          - ADMIN
-          - MINE
-          - DEFINE
-          example: ALL
-          type: string
-        is_default:
-          description: 是否默认数据资源
-          example: true
-          type: boolean
-        api:
-          description: 获取数据资源的 api
-          example: /api/property/all?include_virtual=true
-          type: string
-        display_column:
-          description: 从 api 中获取值的健名称
-          example: cname
-          type: string
-        value_column:
-          description: 数据资源的固定值
-          example: id
-          type: string
-        config:
-          description: 自定义扩展，JSON 格式的字符串
-          example: '{"extraText":"清空全部","extraType":"link"}'
-          type: string
-      title: Resource
-      type: object
-    sensorsdata.portal.v2.api.AttributeNode:
-      description: 扩展属性的节点信息
-      properties:
-        code:
-          description: 节点编码
-          example: RD_1
-          type: string
-        name:
-          description: 节点名称
-          example: 研发部
-          type: string
-        parent_code:
-          description: 父节点，如果是根节点，为空即可
-          example: RD
-          type: string
-        attr_code:
-          description: 所属属性
-          example: JOB
-          type: string
-        desc:
-          description: 节点描述
-          example: 描述信息
-          type: string
-        project_id:
-          description: 节点所属项目
-          example: 1
-          format: int32
-          type: integer
-        children:
-          description: 子节点
-          items:
-            $ref: '#/components/schemas/sensorsdata.portal.v2.api.AttributeNode'
-          type: array
-        detach_from_parent:
-          description: 从父节点摘除, POST /attr/node 更新节点时使用
-          example: true
-          type: boolean
-      title: AttributeNode
-      type: object
-    sensorsdata.common.CompoundFilterCondition:
-      description: 复合过滤条件，用于描述 condition 或 compound_filter 之间的关系
-      properties:
-        operator:
-          description: 逻辑运算法
-          enum:
-          - LOGICAL_OPERATOR_UNSPECIFIED
-          - AND
-          - OR
-          example: AND
-          type: string
-        conditions:
-          description: 过滤条件列表，只有最后一级才有
-          items:
-            $ref: '#/components/schemas/sensorsdata.common.FilterCondition'
-          type: array
-        compound_conditions:
-          description: 嵌套的下一级复合过滤条件
-          items:
-            $ref: '#/components/schemas/sensorsdata.common.CompoundFilterCondition'
-          type: array
-        index:
-          description: 当前筛选条件所处的位置下标，主要为了保证前端展示顺序的稳定
-          example: 10
-          format: int32
-          type: integer
-      title: CompoundFilterCondition
-      type: object
-    sensorsdata.portal.v2.api.UpdateAccountRequest:
-      description: 「修改账号信息」的请求对象
+    sensorsdata.portal.v2.api.GetAccountByApiKeyResponse:
+      description: 「根据 api-key 获取账号」的响应对象
       properties:
         account:
-          $ref: '#/components/schemas/sensorsdata.portal.v2.api.UpdateAccountDetail'
-        related_role_ids:
-          description: 账号关联的角色 id 数组，不允许为空
-          example: '[1,2,3]'
-          items:
-            format: int32
-            type: integer
-          type: array
-      required:
-      - account
-      - related_role_ids
-      title: UpdateAccountRequest
-      type: object
-    sensorsdata.portal.v2.SaveResourcePermissionRequest:
-      description: ''
-      properties:
-        resource:
-          description: ''
-          type: string
-        policy_principals:
-          description: ''
-          items:
-            $ref: '#/components/schemas/sensorsdata.portal.v2.PolicyPrincipals'
-          type: array
-        no_filter_license:
-          description: ''
-          type: boolean
-        project_id:
-          description: ''
-          format: int32
-          type: integer
-        project_name:
-          description: ''
-          type: string
-      title: SaveResourcePermissionRequest
-      type: object
-    sensorsdata.portal.v2.api.UpsertRoleAttributeRequest:
-      description: 角色和扩展属性的关联关系
-      properties:
-        role_attributes:
-          description: 绑定关系
-          items:
-            $ref: '#/components/schemas/sensorsdata.portal.v2.api.RoleAttribute'
-          type: array
-      title: UpsertRoleAttributeRequest
-      type: object
-    sensorsdata.common.HttpApiResult:
-      properties:
-        code:
-          type: string
-        message:
-          type: string
-        request_id:
-          type: string
-        data:
-          properties: {}
-          type: object
-        error_info:
-          $ref: '#/components/schemas/sensorsdata.common.ErrorInfo'
-      title: HttpApiResult
-      type: object
-    sensorsdata.portal.v2.api.ListAccountResponse:
-      description: 「获取账号列表」的响应对象
-      properties:
-        accounts:
-          description: 账号及其相关信息的列表（包括角色和扩展属性值）
-          items:
-            $ref: '#/components/schemas/sensorsdata.portal.v2.api.AccountWithRelatedInfo'
-          type: array
-        extra_attributes_definitions:
-          description: 扩展属性定义
-          items:
-            $ref: '#/components/schemas/sensorsdata.portal.v2.api.ExtraAttributeDefinition'
-          type: array
-        page:
-          $ref: '#/components/schemas/sensorsdata.portal.v2.api.PageInfo'
-      title: ListAccountResponse
+          $ref: '#/components/schemas/sensorsdata.portal.v2.api.Account'
+      title: GetAccountByApiKeyResponse
       type: object
     sensorsdata.portal.v2.PolicyPrincipals:
       description: ''
@@ -3393,94 +4769,6 @@ components:
             $ref: '#/components/schemas/sensorsdata.portal.v2.Principals'
           type: array
       title: PolicyPrincipals
-      type: object
-    sensorsdata.portal.v2.api.BatchListGlobalAccountResponse:
-      description: 「批量查询平台账号基本信息」的响应对象
-      properties:
-        accounts:
-          description: 平台账号基本信息
-          items:
-            $ref: '#/components/schemas/sensorsdata.portal.v2.api.GlobalAccount'
-          type: array
-        total:
-          description: 总条数
-          example: 100
-          format: int32
-          type: integer
-      title: BatchListGlobalAccountResponse
-      type: object
-    sensorsdata.portal.v2.api.RegisterCategoryRequest:
-      description: 「注册分类」的请求对象
-      properties:
-        code:
-          description: 资源分类的分类编码，需要保证唯一性，建议为小写字母，多个以下划线拼接
-          example: setting_sensors_analysis
-          type: string
-        name_i18n_message:
-          $ref: '#/components/schemas/sensorsdata.portal.v2.api.I18nMessage'
-        sort:
-          description: 排序序号，可选字段，默认值为 0
-          example: 10
-          format: int32
-          type: integer
-      required:
-      - code
-      - name_i18n_message
-      title: RegisterCategoryRequest
-      type: object
-    sensorsdata.portal.v2.BatchListResourcePoliciesResponse:
-      description: ''
-      properties:
-        resource_policies:
-          description: ''
-          items:
-            $ref: '#/components/schemas/sensorsdata.portal.v2.ResourcePolicies'
-          type: array
-      title: BatchListResourcePoliciesResponse
-      type: object
-    sensorsdata.portal.v2.ListPolicyPrincipalsResponse:
-      description: ''
-      properties:
-        policy_principals:
-          description: ''
-          items:
-            $ref: '#/components/schemas/sensorsdata.portal.v2.PolicyPrincipals'
-          type: array
-      title: ListPolicyPrincipalsResponse
-      type: object
-    sensorsdata.portal.v2.api.UpdateGlobalAccountDetail:
-      description: 平台账号基本信息
-      properties:
-        id:
-          description: 「选填，和 uuid 二选一」账号 id，当前租户下账号唯一标识
-          example: 1
-          format: int32
-          type: integer
-        uuid:
-          description: 「选填，和 uuid 二选一」账号 uuid，当前租户下账号唯一标识
-          example: 38135721-2938-4585-b19b-396ceb910d88
-          type: string
-        cname:
-          description: 账号显示名
-          example: 管理员
-          type: string
-        email:
-          description: 邮箱
-          example: demo@sensorsdata.com
-          type: string
-        phone:
-          description: 手机号码
-          example: '12399999999'
-          type: string
-        expire_time:
-          description: 账号过期时间，日期格式：yyyy-MM-dd HH:mm:ss
-          example: '2022-05-03 11:18:41'
-          type: string
-        disabled:
-          description: 是否被禁用
-          example: false
-          type: boolean
-      title: UpdateGlobalAccountDetail
       type: object
     sensorsdata.portal.v2.api.AddAccountDetail:
       description: 账号添加的正文
@@ -3524,96 +4812,39 @@ components:
       - password
       title: AddAccountDetail
       type: object
-    sensorsdata.portal.v2.api.BatchListGlobalAccountResponseHttpApiResult:
+    sensorsdata.portal.v2.api.ProjectAttribute:
+      description: 项目和扩展属性关联关系
       properties:
-        code:
-          type: string
-        message:
-          type: string
-        request_id:
-          type: string
-        data:
-          $ref: '#/components/schemas/sensorsdata.portal.v2.api.BatchListGlobalAccountResponse'
-        error_info:
-          $ref: '#/components/schemas/sensorsdata.common.ErrorInfo'
-      title: sensorsdata.portal.v2.api.BatchListGlobalAccountResponseHttpApiResult
-      type: object
-    sensorsdata.portal.v2.api.AddRoleRequest:
-      description: 「新增角色」的请求对象
-      properties:
-        role:
-          $ref: '#/components/schemas/sensorsdata.portal.v2.api.RoleAddBody'
-        statements:
-          description: 角色权限配置
-          example: '[{"operation": "8013", "effect": "ALLOW"}, {"operation": "8014", "effect": "DENY"}]'
-          items:
-            $ref: '#/components/schemas/sensorsdata.portal.v2.Statement'
-          type: array
-      required:
-      - role
-      - statements
-      title: AddRoleRequest
-      type: object
-    sensorsdata.common.Literal:
-      description: ''
-      properties:
-        data_type:
-          description: ''
-          enum:
-          - DATA_TYPE_UNSPECIFIED
-          - BOOL
-          - INT
-          - NUMBER
-          - STRING
-          - LIST
-          - DATETIME
-          - DATE
-          - BIGINT
-          - DECIMAL
-          type: string
-        bool_value:
-          description: ''
-          type: boolean
-        int_value:
-          description: ''
-          format: int64
-          type: integer
-        number_value:
-          description: ''
-          format: double
-          type: number
-        string_value:
-          description: ''
-          type: string
-        list_value:
-          description: ''
-          items:
-            type: string
-          type: array
-        datetime_value:
-          description: ''
-          format: date-time
-          type: string
-        date_value:
-          description: ''
-          type: string
-        bigint_value:
-          description: ''
-          format: int64
-          type: integer
-        decimal_value:
-          description: ''
-          type: string
-      title: Literal
-      type: object
-    sensorsdata.portal.v2.api.DeleteAttributeRequest:
-      description: 扩展属性的定义
-      properties:
-        code:
-          description: 属性编码
+        attr_code:
+          description: 扩展属性
           example: JOB
           type: string
-      title: DeleteAttributeRequest
+        attr_name:
+          description: 扩展属性名称
+          example: 岗位
+          type: string
+        project_id:
+          description: 绑定的项目 id
+          example: 1
+          format: int32
+          type: integer
+        project_name:
+          description: 绑定的项目名称
+          example: 正式项目
+          type: string
+      title: ProjectAttribute
+      type: object
+    sensorsdata.portal.v2.api.DeleteRoleRequest:
+      description: 「删除角色」的请求对象
+      properties:
+        id:
+          description: 角色 id
+          example: 1
+          format: int32
+          type: integer
+      required:
+      - id
+      title: DeleteRoleRequest
       type: object
     sensorsdata.portal.v2.api.AddGlobalAccountDetail:
       description: 新增平台账户的正文
@@ -3653,304 +4884,66 @@ components:
       - password
       title: AddGlobalAccountDetail
       type: object
-    sensorsdata.common.ErrorInfo:
-      properties:
-        code:
-          description: 具体的错误码
-          example: XX-D-F-2-1
-          type: string
-        description:
-          description: 错误描述
-          example: 前端参数校验异常,PARAMETER_FORMAT_ERROR(quantiles=[10, -90] is not include [0, 100])
-          type: string
-        system_response:
-          description: 致错的可能原因列表
-          example: 系统终止了查询处理
-          type: string
-        error_causes:
-          items:
-            $ref: '#/components/schemas/sensorsdata.common.ErrorCause'
-          type: array
-        context:
-          $ref: '#/components/schemas/sensorsdata.common.ErrorContext'
-      title: ErrorInfo
-      type: object
-    sensorsdata.portal.v2.api.UpdateAccountDetail:
-      description: 「修改账号」的请求对象
+    sensorsdata.portal.v2.api.AccountIdOrUuidRequest:
+      description: 「账号 id 或 uuid」的请求对象
       properties:
         id:
-          description: "账号 id（id/uuid 任选一个，如果两个字段同时填充会报参数错误）\n 由于 grpc 转 http 接口时，参数解析只支持简单类型，而 int32 类型无法描述 id = null 的情况，所以使用 string 类型代替"
+          description: 账号 id（id/uuid 任选一个，如果两个字段同时填充会报参数错误）
           example: '1'
           type: string
         uuid:
           description: 账号 uuid（id/uuid 任选一个，如果两个字段同时填充会报错）
           example: 38135721-2938-4585-b19b-396ceb910d88
           type: string
-        cname:
-          description: 账号显示名
-          example: 管理员
-          type: string
-        email:
-          description: 邮箱；如果添加的账号为平台账号，需要确保该字段全局唯一；如果添加的账号为项目账号，需要确保该字段在项目下唯一
-          example: demo@sensorsdata.com
-          type: string
-        phone:
-          description: 手机号码
-          example: '12399999999'
-          type: string
-        expire_time:
-          description: 账号过期时间（选填，默认永久），日期格式：yyyy-MM-dd HH:mm:ss
-          example: '2022-01-01 00:00:00'
-          type: string
-        position:
-          description: 职务
-          example: 销售
-          type: string
-      required:
-      - cname
-      title: UpdateAccountDetail
+      title: AccountIdOrUuidRequest
       type: object
-    sensorsdata.portal.v2.api.GetProjectAttributeResponse:
-      description: 项目和扩展属性关联关系
+    sensorsdata.portal.v2.api.UpsertAccountAttributeRequest:
+      description: 账号和扩展属性的关联关系
       properties:
-        project_attributes:
-          description: 扩展属性关联关系
+        account_attributes:
+          description: 绑定关系
           items:
-            $ref: '#/components/schemas/sensorsdata.portal.v2.api.ProjectAttribute'
+            $ref: '#/components/schemas/sensorsdata.portal.v2.api.AccountAttribute'
           type: array
-      title: GetProjectAttributeResponse
+      title: UpsertAccountAttributeRequest
       type: object
-    sensorsdata.portal.v2.api.UpsertAttributeRequest:
-      description: 扩展属性的定义
+    sensorsdata.portal.v2.api.AddAccountRequest:
+      description: 「新增账号」的请求对象
       properties:
-        attribute:
-          $ref: '#/components/schemas/sensorsdata.portal.v2.api.Attribute'
-        project_ids:
-          description: 属性关联的项目
-          example: '[1,2]'
+        account:
+          $ref: '#/components/schemas/sensorsdata.portal.v2.api.AddAccountDetail'
+        related_role_ids:
+          description: 账号关联的角色 id 数组，不允许为空
+          example: '[1,2,3]'
           items:
             format: int32
             type: integer
           type: array
-      title: UpsertAttributeRequest
-      type: object
-    sensorsdata.portal.v2.api.Duty:
-      description: 职务定义，包含 id，职务名称
-      properties:
-        id:
-          description: 职务 id
-          example: 5
-          format: int32
-          type: integer
-        name:
-          description: 职务名称
-          example: 普通员工
-          type: string
       required:
-      - id
-      - name
-      title: Duty
+      - account
+      - related_role_ids
+      title: AddAccountRequest
       type: object
-    sensorsdata.portal.v2.api.StatusResponse:
-      description: 仅返回状态标识的 grpc 响应结构
-      properties:
-        flag:
-          description: 操作成功标识；true：操作成功，false：操作失败
-          example: true
-          type: boolean
-      title: StatusResponse
-      type: object
-    sensorsdata.common.ErrorCause:
-      properties:
-        error_cause:
-          description: 致错原因1
-          example: 参数异常1
-          type: string
-        action_suggestion:
-          description: 操作建议，针对该原因，建议的解决方式
-          example: 检测入参的数据类型1
-          type: string
-      title: ErrorCause
-      type: object
-    sensorsdata.portal.v2.api.DisableAccountRequest:
-      description: 「禁用账户」的请求对象
-      properties:
-        id:
-          description: 账号 id
-          example: 1
-          format: int32
-          type: integer
-      required:
-      - id
-      title: DisableAccountRequest
-      type: object
-    sensorsdata.portal.v2.api.Role:
-      description: 角色信息
-      properties:
-        id:
-          description: 角色 id
-          example: 1
-          format: int32
-          type: integer
-        name:
-          description: 角色名
-          example: admin
-          type: string
-        cname:
-          description: 角色显示名
-          example: 管理员
-          type: string
-        description:
-          description: 角色描述
-          example: 管理员角色描述信息
-          type: string
-        create_user_cname:
-          description: 创建人
-          example: 管理员
-          type: string
-        create_time:
-          description: 创建时间，日期格式：yyyy-MM-dd HH:mm:ss
-          example: '2022-01-01 00:00:00'
-          type: string
-        update_time:
-          description: 更新时间，日期格式：yyyy-MM-dd HH:mm:ss
-          example: '2022-01-01 00:00:00'
-          type: string
-        role_type:
-          description: 角色类型；SYSTEM_ROLE：系统角色，CUSTOM_ROLE：自定义角色，THIRD_PART_ROLE：第三方角色
-          example: SYSTEM_ROLE
-          type: string
-        type_name:
-          description: 角色类型名称
-          example: 系统角色
-          type: string
-        is_project_customize_default_role:
-          description: 是否是默认角色；true：默认角色，false：非默认角色
-          example: true
-          type: boolean
-      title: Role
-      type: object
-    sensorsdata.portal.v2.ListPolicyPrincipalsResponseHttpApiResult:
-      properties:
-        code:
-          type: string
-        message:
-          type: string
-        request_id:
-          type: string
-        data:
-          $ref: '#/components/schemas/sensorsdata.portal.v2.ListPolicyPrincipalsResponse'
-        error_info:
-          $ref: '#/components/schemas/sensorsdata.common.ErrorInfo'
-      title: sensorsdata.portal.v2.ListPolicyPrincipalsResponseHttpApiResult
-      type: object
-    sensorsdata.portal.v2.api.RoleAddBody:
-      description: 角色新增请求体
-      properties:
-        name:
-          description: 角色名；选填，长度不超过50个字符，且需要确保该字段在项目下唯一；如果该字段为空，会自动生成一个角色名，格式为：autoName{number}
-          example: admin
-          type: string
-        cname:
-          description: 角色显示名；长度不超过50个字符，且需要确保该字段在项目下唯一
-          example: 管理员
-          type: string
-        description:
-          description: 角色描述
-          example: 管理员角色描述信息
-          type: string
-        is_project_customize_default_role:
-          description: 是否是默认角色；选填，默认为false
-          example: false
-          type: boolean
-      required:
-      - cname
-      title: RoleAddBody
-      type: object
-    sensorsdata.common.TimeInterval:
+    sensorsdata.portal.v2.ListPolicyPrincipalsResponse:
       description: ''
       properties:
-        size:
+        policy_principals:
           description: ''
-          format: int32
-          type: integer
-        unit:
-          description: ''
-          enum:
-          - DATE_TIME_UNIT_UNSPECIFIED
-          - MILLISECOND
-          - SECOND
-          - MINUTE
-          - HOUR
-          - DAY
-          - WEEK
-          - MONTH
-          - YEAR
-          type: string
-      title: TimeInterval
+          items:
+            $ref: '#/components/schemas/sensorsdata.portal.v2.PolicyPrincipals'
+          type: array
+      title: ListPolicyPrincipalsResponse
       type: object
-    sensorsdata.portal.v2.ResourcePoliciesRequest:
-      description: ''
+    sensorsdata.portal.v2.api.GetAttributeNodeRequestBody:
+      description: 获取扩展属性的节点信息
       properties:
-        project_id:
-          description: ''
-          format: int32
-          type: integer
-        resource:
-          description: ''
-          type: string
-        project_name:
-          description: ''
-          type: string
-      title: ResourcePoliciesRequest
-      type: object
-    sensorsdata.portal.v2.api.AddAccountResponse:
-      description: 「新增账号」的响应对象
-      properties:
-        account:
-          $ref: '#/components/schemas/sensorsdata.portal.v2.api.Account'
-      title: AddAccountResponse
-      type: object
-    sensorsdata.portal.v2.ResourceOperationConditionRequest:
-      description: ''
-      properties:
-        project_id:
-          description: ''
-          format: int32
-          type: integer
-        account_id:
-          description: ''
-          type: string
-        resource:
-          description: ''
-          type: string
-        operations:
-          description: ''
+        codes:
+          description: 节点编码集合
+          example: RD_1
           items:
             type: string
           type: array
-        project_name:
-          description: ''
-          type: string
-      title: ResourceOperationConditionRequest
-      type: object
-    sensorsdata.portal.v2.api.RoleInfoSummary:
-      description: 角色信息概览
-      properties:
-        id:
-          description: 角色 id
-          example: 1
-          format: int32
-          type: integer
-        name:
-          description: 角色名称
-          example: analyst
-          type: string
-        cname:
-          description: 角色显示名
-          example: 管理员
-          type: string
-      title: RoleInfoSummary
+      title: GetAttributeNodeRequest
       type: object
     sensorsdata.portal.v2.api.Account:
       description: 账号基本信息
@@ -4010,156 +5003,130 @@ components:
           type: object
       title: Account
       type: object
-    sensorsdata.portal.v2.api.DeleteCategoryRequest:
-      description: 「删除分类」的请求对象
+    sensorsdata.portal.v2.api.UpsertRoleAttributeRequest:
+      description: 角色和扩展属性的关联关系
       properties:
+        role_attributes:
+          description: 绑定关系
+          items:
+            $ref: '#/components/schemas/sensorsdata.portal.v2.api.RoleAttribute'
+          type: array
+      title: UpsertRoleAttributeRequest
+      type: object
+    sensorsdata.portal.v2.api.Resource:
+      description: 资源定义
+      properties:
+        operation_code:
+          description: 关联的操作（权限）编码
+          example: '11011'
+          type: string
         code:
-          description: 资源分类的分类编码，需要和「注册分类」接口中的资源分类的分类编码字段保持一致
-          example: setting_sensors_analysis
+          description: 资源编码，需要保证唯一性，建议为小写字母，多个以下划线拼接
+          example: data_permission_view_all_data
           type: string
-      required:
-      - code
-      title: DeleteCategoryRequest
-      type: object
-    sensorsdata.portal.v2.api.AccountAttribute:
-      description: 账号和扩展属性的关联关系
-      properties:
-        user_id:
-          description: 账号ID
-          example: 1
-          format: int32
-          type: integer
-        project_id:
-          description: 项目id, 当扩展属性scope=GLOBAL时,project_id=NULL;scope=PROJECT时,project_id必填
-          example: 1
-          format: int32
-          type: integer
-        attr_code:
-          description: 扩展属性维度
-          example: JOB
+        name_i18n_message:
+          $ref: '#/components/schemas/sensorsdata.portal.v2.api.I18nMessage'
+        desc_i18n_message:
+          $ref: '#/components/schemas/sensorsdata.portal.v2.api.I18nMessage'
+        deny_desc_i18n_message:
+          $ref: '#/components/schemas/sensorsdata.portal.v2.api.I18nMessage'
+        condition_type:
+          description: 数据条件类型
+          enum:
+          - CONDITION_TYPE_UNSPECIFIED
+          - ALL
+          - ADMIN
+          - MINE
+          - DEFINE
+          example: ALL
           type: string
-        attr_name:
-          description: 扩展属性名称
-          example: 岗位
-          type: string
-        node_code:
-          description: 扩展节点code
-          example: RD
-          type: string
-        node_name:
-          description: 扩展节点name
-          example: RD
-          type: string
-      title: AccountAttribute
-      type: object
-    sensorsdata.portal.v2.api.RoleUpdateBody:
-      description: 角色更新请求体
-      properties:
-        id:
-          description: 角色 id
-          example: 1
-          format: int32
-          type: integer
-        name:
-          description: 角色名；长度不超过50个字符，且需要确保该字段在项目下唯一
-          example: admin
-          type: string
-        cname:
-          description: 角色显示名；长度不超过50个字符，且需要确保该字段在项目下唯一
-          example: 管理员
-          type: string
-        description:
-          description: 角色描述
-          example: 管理员角色描述信息
-          type: string
-        is_project_customize_default_role:
-          description: 是否是默认角色；选填，默认为false
-          example: false
+        is_default:
+          description: 是否默认数据资源
+          example: true
           type: boolean
-      required:
-      - cname
-      - id
-      title: RoleUpdateBody
+        api:
+          description: 获取数据资源的 api
+          example: /api/property/all?include_virtual=true
+          type: string
+        display_column:
+          description: 从 api 中获取值的健名称
+          example: cname
+          type: string
+        value_column:
+          description: 数据资源的固定值
+          example: id
+          type: string
+        config:
+          description: 自定义扩展，JSON 格式的字符串
+          example: '{"extraText":"清空全部","extraType":"link"}'
+          type: string
+      title: Resource
       type: object
-    sensorsdata.portal.v2.ListOperationConditionResponse:
-      description: 获取指定账号的权限响应
-      properties:
-        compound_condition_map:
-          additionalProperties:
-            $ref: '#/components/schemas/sensorsdata.portal.v2.OperationCompoundCondition'
-          description: key为权限点，value为对应的权限表达式
-          type: object
-      title: ListOperationConditionResponse
-      type: object
-    sensorsdata.portal.v2.api.ListGlobalAccountResponseHttpApiResult:
-      properties:
-        code:
-          type: string
-        message:
-          type: string
-        request_id:
-          type: string
-        data:
-          $ref: '#/components/schemas/sensorsdata.portal.v2.api.ListGlobalAccountResponse'
-        error_info:
-          $ref: '#/components/schemas/sensorsdata.common.ErrorInfo'
-      title: sensorsdata.portal.v2.api.ListGlobalAccountResponseHttpApiResult
-      type: object
-    sensorsdata.portal.v2.api.UpdateAccountResponseHttpApiResult:
-      properties:
-        code:
-          type: string
-        message:
-          type: string
-        request_id:
-          type: string
-        data:
-          $ref: '#/components/schemas/sensorsdata.portal.v2.api.UpdateAccountResponse'
-        error_info:
-          $ref: '#/components/schemas/sensorsdata.common.ErrorInfo'
-      title: sensorsdata.portal.v2.api.UpdateAccountResponseHttpApiResult
-      type: object
-    sensorsdata.portal.v2.api.GetAccountByApiKeyResponseHttpApiResult:
-      properties:
-        code:
-          type: string
-        message:
-          type: string
-        request_id:
-          type: string
-        data:
-          $ref: '#/components/schemas/sensorsdata.portal.v2.api.GetAccountByApiKeyResponse'
-        error_info:
-          $ref: '#/components/schemas/sensorsdata.common.ErrorInfo'
-      title: sensorsdata.portal.v2.api.GetAccountByApiKeyResponseHttpApiResult
-      type: object
-    sensorsdata.portal.v2.api.GetAccountByApiKeyResponse:
-      description: 「根据 api-key 获取账号」的响应对象
+    sensorsdata.portal.v2.api.UpdateAccountRequest:
+      description: 「修改账号信息」的请求对象
       properties:
         account:
-          $ref: '#/components/schemas/sensorsdata.portal.v2.api.Account'
-      title: GetAccountByApiKeyResponse
-      type: object
-    sensorsdata.portal.v2.api.AccountRelatedProjectInfo:
-      description: 平台账号关联的项目信息
-      properties:
-        project_id:
-          description: 平台账号关联的项目id
-          format: int32
-          type: integer
-        position:
-          description: 平台账号在此项目下的职务名
-          type: string
-        role_ids:
-          description: 平台账号在此项目下关联的角色id列表
+          $ref: '#/components/schemas/sensorsdata.portal.v2.api.UpdateAccountDetail'
+        related_role_ids:
+          description: 账号关联的角色 id 数组，不允许为空
+          example: '[1,2,3]'
           items:
             format: int32
             type: integer
           type: array
       required:
-      - project_id
-      - role_ids
-      title: AccountRelatedProjectInfo
+      - account
+      - related_role_ids
+      title: UpdateAccountRequest
+      type: object
+    sensorsdata.portal.v2.api.AddAccountResponse:
+      description: 「新增账号」的响应对象
+      properties:
+        account:
+          $ref: '#/components/schemas/sensorsdata.portal.v2.api.Account'
+      title: AddAccountResponse
+      type: object
+    sensorsdata.portal.v2.api.AddRoleResponse:
+      description: 「新增角色」的响应对象
+      properties:
+        role:
+          $ref: '#/components/schemas/sensorsdata.portal.v2.api.Role'
+      title: AddRoleResponse
+      type: object
+    sensorsdata.portal.v2.SaveResourcePermissionRequest:
+      description: ''
+      properties:
+        resource:
+          description: ''
+          type: string
+        policy_principals:
+          description: ''
+          items:
+            $ref: '#/components/schemas/sensorsdata.portal.v2.PolicyPrincipals'
+          type: array
+        no_filter_license:
+          description: ''
+          type: boolean
+        project_id:
+          description: ''
+          format: int32
+          type: integer
+        project_name:
+          description: ''
+          type: string
+      title: SaveResourcePermissionRequest
+      type: object
+    sensorsdata.common.ErrorCause:
+      properties:
+        error_cause:
+          description: 致错原因1
+          example: 参数异常1
+          type: string
+        action_suggestion:
+          description: 操作建议，针对该原因，建议的解决方式
+          example: 检测入参的数据类型1
+          type: string
+      title: ErrorCause
       type: object
     sensorsdata.portal.v2.api.Operation:
       description: 操作定义
@@ -4210,332 +5177,39 @@ components:
           type: array
       title: Operation
       type: object
-    sensorsdata.portal.v2.api.BatchListGlobalAccountsRequest:
-      description: 「批量查询平台账号基本信息」的请求对象
+    sensorsdata.portal.v2.api.ListAccountResponse:
+      description: 「获取账号列表」的响应对象
       properties:
-        query_account_option:
-          description: 「必填」账号查询条件 可根据账号ID、账号name、账号UUID查询账号
-          enum:
-          - FUNCTION_QUERY_ACCOUNT_OPTION_UNSPECIFIED
-          - ACCOUNT_ID
-          - ACCOUNT_NAME
-          - ACCOUNT_CNAME
-          - ACCOUNT_UUID
-          example: ACCOUNT_ID
-          type: string
-        account_ids:
-          description: 「可选，四选一」目标账号的 id 列表
-          example: '["178","467","124"]'
+        accounts:
+          description: 账号及其相关信息的列表（包括角色和扩展属性值）
           items:
-            format: int32
-            type: integer
+            $ref: '#/components/schemas/sensorsdata.portal.v2.api.AccountWithRelatedInfo'
           type: array
-        account_names:
-          description: 「可选，四选一」目标账号登录账号列表
-          example: '["admin","ss@123.com","shenCe1"]'
+        extra_attributes_definitions:
+          description: 扩展属性定义
           items:
-            type: string
+            $ref: '#/components/schemas/sensorsdata.portal.v2.api.ExtraAttributeDefinition'
           type: array
-        account_cnames:
-          description: 「可选，四选一」目标账号的姓名（展示名称）列表
-          example: '["神策工程师A","神策工程师B","神策工程师C"]'
-          items:
-            type: string
-          type: array
-        account_uuids:
-          description: 「可选，四选一」目标账号的 uuid 列表
-          example: '["xkfdq131e","dakg1213","1231jf2okf"]'
-          items:
-            type: string
-          type: array
-      title: BatchListGlobalAccountsRequest
+        page:
+          $ref: '#/components/schemas/sensorsdata.portal.v2.api.PageInfo'
+      title: ListAccountResponse
       type: object
-    sensorsdata.portal.v2.api.AccountRoleRequest:
-      description: 账号角色请求对象
-      properties:
-        id:
-          description: 账号 id（id/uuid 任意选填一个即可。如果均填写，会以id进行查询查询）
-          example: 1
-          format: int32
-          type: integer
-        uuid:
-          description: 账号 uuid（id/uuid 任意选填一个即可。如果均填写，会以id进行查询操作）
-          example: 38135721-2938-4585-b19b-396ceb910d88
-          type: string
-        role_id:
-          description: 平台账号在此项目下关联的角色id
-          example: 2
-          format: int32
-          type: integer
-      required:
-      - role_id
-      title: AccountRoleRequest
-      type: object
-    sensorsdata.portal.v2.api.Attribute:
-      description: 扩展属性的定义
-      properties:
-        code:
-          description: 属性编码
-          example: JOB
-          type: string
-        name:
-          description: 属性名
-          example: 职位
-          type: string
-        desc:
-          description: 属性描述
-          example: 职位属性
-          type: string
-        type:
-          description: 属性类型
-          enum:
-          - TYPE_UNSPECIFIED
-          - VALUE
-          - TREE
-          example: VALUE
-          type: string
-        scope:
-          description: 属性值的作用范围，GLOBAL：全局，PROJECT：项目
-          enum:
-          - SCOPE_UNSPECIFIED
-          - GLOBAL
-          - PROJECT
-          example: GLOBAL
-          type: string
-        nodes:
-          description: 节点信息
-          items:
-            $ref: '#/components/schemas/sensorsdata.portal.v2.api.AttributeNode'
-          type: array
-      title: Attribute
-      type: object
-    sensorsdata.portal.v2.api.DeleteAccountAttributeRequest:
-      description: 删除账号和扩展属性的关联关系
-      properties:
-        account_attributes:
-          description: 绑定关系
-          items:
-            $ref: '#/components/schemas/sensorsdata.portal.v2.api.AccountAttribute'
-          type: array
-      title: DeleteAccountAttributeRequest
-      type: object
-    sensorsdata.portal.v2.api.GetAccountAttributeResponse:
-      description: 获取账号和扩展属性的关联关系响应
-      properties:
-        account_attributes:
-          description: 当前账号绑定的扩展属性信息
-          items:
-            $ref: '#/components/schemas/sensorsdata.portal.v2.api.AccountAttribute'
-          type: array
-      title: GetAccountAttributeResponse
-      type: object
-    sensorsdata.portal.v2.api.DeleteGlobalAccountRequest:
-      description: 「移除平台账户」的请求对象
-      properties:
-        id:
-          description: 账号 id（id/uuid 任意选填一个即可。如果均填写，会以id进行移除操作）
-          example: 1
-          format: int32
-          type: integer
-        uuid:
-          description: 账号 uuid（id/uuid 任意选填一个即可。如果均填写，会以id进行移除操作）
-          example: 38135721-2938-4585-b19b-396ceb910d88
-          type: string
-      title: DeleteGlobalAccountRequest
-      type: object
-    sensorsdata.portal.v2.api.UpdateRoleRequest:
-      description: 「修改角色」的请求对象
-      properties:
-        role:
-          $ref: '#/components/schemas/sensorsdata.portal.v2.api.RoleUpdateBody'
-        statements:
-          description: 角色权限配置
-          example: '[{"operation": "8013", "effect": "ALLOW"}, {"operation": "8014", "effect": "DENY"}]'
-          items:
-            $ref: '#/components/schemas/sensorsdata.portal.v2.Statement'
-          type: array
-      required:
-      - role
-      - statements
-      title: UpdateRoleRequest
-      type: object
-    sensorsdata.portal.v2.api.GetAttributeResponse:
-      description: 扩展属性的定义
-      properties:
-        attribute:
-          $ref: '#/components/schemas/sensorsdata.portal.v2.api.Attribute'
-        project_ids:
-          description: 属性关联的项目
-          example: '[1,2]'
-          items:
-            format: int32
-            type: integer
-          type: array
-      title: GetAttributeResponse
-      type: object
-    sensorsdata.portal.v2.api.ProjectAttribute:
-      description: 项目和扩展属性关联关系
-      properties:
-        attr_code:
-          description: 扩展属性
-          example: JOB
-          type: string
-        attr_name:
-          description: 扩展属性名称
-          example: 岗位
-          type: string
-        project_id:
-          description: 绑定的项目 id
-          example: 1
-          format: int32
-          type: integer
-        project_name:
-          description: 绑定的项目名称
-          example: 正式项目
-          type: string
-      title: ProjectAttribute
-      type: object
-    sensorsdata.portal.v2.api.UpsertAttributeNodeRequest:
-      description: 扩展属性的节点信息，存在则更新，不存在则新增
-      properties:
-        nodes:
-          description: 节点信息
-          items:
-            $ref: '#/components/schemas/sensorsdata.portal.v2.api.AttributeNode'
-          type: array
-      title: UpsertAttributeNodeRequest
-      type: object
-    sensorsdata.portal.v2.api.GetAttributeResponseHttpApiResult:
-      properties:
-        code:
-          type: string
-        message:
-          type: string
-        request_id:
-          type: string
-        data:
-          $ref: '#/components/schemas/sensorsdata.portal.v2.api.GetAttributeResponse'
-        error_info:
-          $ref: '#/components/schemas/sensorsdata.common.ErrorInfo'
-      title: sensorsdata.portal.v2.api.GetAttributeResponseHttpApiResult
-      type: object
-    sensorsdata.portal.v2.api.EnableAccountRequest:
-      description: 「启用账户」的请求对象
-      properties:
-        id:
-          description: 账号 id
-          example: 1
-          format: int32
-          type: integer
-        expire_time:
-          description: 账号过期时间（选填，默认永久），日期格式：yyyy-MM-dd HH:mm:ss
-          example: '2022-01-01 00:00:00'
-          type: string
-      required:
-      - id
-      title: EnableAccountRequest
-      type: object
-    sensorsdata.portal.v2.api.AddAccountRequest:
-      description: 「新增账号」的请求对象
-      properties:
-        account:
-          $ref: '#/components/schemas/sensorsdata.portal.v2.api.AddAccountDetail'
-        related_role_ids:
-          description: 账号关联的角色 id 数组，不允许为空
-          example: '[1,2,3]'
-          items:
-            format: int32
-            type: integer
-          type: array
-      required:
-      - account
-      - related_role_ids
-      title: AddAccountRequest
-      type: object
-    sensorsdata.common.PredicateFunctionParam:
-      description: "```\n 函数的参数，有几种可能\n 1. 一个 field, 如 events.$Anything.$city\n 2. 一个 Literal 的常量\n 3. 一个变量, 如 $ENTRY_TIME, 需要在执行上下文里进行替换\n 4. 一个 TimePoint, 代表一个相对或绝对的时间点, 用于时间类型的条件\n 5. 一个 expression user.p1/user.p2+user.p3\n ```"
-      properties:
-        param_type:
-          description: 函数的参数类型
-          enum:
-          - FUNCTION_PARAM_TYPE_UNSPECIFIED
-          - FIELD
-          - VALUE
-          - VARIABLE
-          - TIME_POINT
-          - EXPRESSION
-          example: FIELD
-          type: string
-        field:
-          description: 字段名
-          example: '#ResourceId'
-          type: string
-        value:
-          $ref: '#/components/schemas/sensorsdata.common.Literal'
-        variable:
-          description: 变量，需要在执行上下文里进行替换
-          example: $ENTRY_TIME
-          type: string
-        time_point:
-          $ref: '#/components/schemas/sensorsdata.common.TimePoint'
-        expression:
-          description: 自定义表达式
-          example: user.p1/user.p2+user.p3
-          type: string
-      title: PredicateFunctionParam
-      type: object
-    sensorsdata.portal.v2.api.InviteAccountRequest:
-      description: 「邀请账号」的请求对象
-      properties:
-        invite_accounts:
-          description: 邀请的账号列表
-          items:
-            $ref: '#/components/schemas/sensorsdata.portal.v2.api.InviteAccount'
-          type: array
-      title: InviteAccountRequest
-      type: object
-    sensorsdata.portal.v2.api.UpdateAccountResponse:
-      description: 「修改账号信息」的响应对象
-      properties:
-        account:
-          $ref: '#/components/schemas/sensorsdata.portal.v2.api.Account'
-      title: UpdateAccountResponse
-      type: object
-    sensorsdata.portal.v2.api.AccountIdOrUuidRequest:
-      description: 「账号 id 或 uuid」的请求对象
-      properties:
-        id:
-          description: 账号 id（id/uuid 任选一个，如果两个字段同时填充会报参数错误）
-          example: '1'
-          type: string
-        uuid:
-          description: 账号 uuid（id/uuid 任选一个，如果两个字段同时填充会报错）
-          example: 38135721-2938-4585-b19b-396ceb910d88
-          type: string
-      title: AccountIdOrUuidRequest
-      type: object
-    sensorsdata.portal.v2.Policy:
+    sensorsdata.portal.v2.BatchListResourcePoliciesRequest:
       description: ''
       properties:
-        code:
+        project_id:
           description: ''
-          type: string
-        name:
-          description: ''
-          type: string
-        type:
-          description: ''
-          enum:
-          - POLICY_TYPE_UNSPECIFIED
-          - BASE_PRINCIPAL
-          - BASE_RESOURCE
-          type: string
-        statements:
+          format: int32
+          type: integer
+        resources:
           description: ''
           items:
-            $ref: '#/components/schemas/sensorsdata.portal.v2.Statement'
+            type: string
           type: array
-      title: Policy
+        project_name:
+          description: ''
+          type: string
+      title: BatchListResourcePoliciesRequest
       type: object
     sensorsdata.portal.v2.api.GetProjectAttributeResponseHttpApiResult:
       properties:
@@ -4551,708 +5225,28 @@ components:
           $ref: '#/components/schemas/sensorsdata.common.ErrorInfo'
       title: sensorsdata.portal.v2.api.GetProjectAttributeResponseHttpApiResult
       type: object
-    sensorsdata.portal.v2.api.UpdateRoleResponse:
-      description: 「修改角色」的响应对象
+    sensorsdata.portal.v2.api.RoleAddBody:
+      description: 角色新增请求体
       properties:
-        role:
-          $ref: '#/components/schemas/sensorsdata.portal.v2.api.Role'
-      title: UpdateRoleResponse
-      type: object
-    sensorsdata.common.TimePoint:
-      description: ''
-      properties:
-        type:
-          description: ''
-          enum:
-          - TIME_POINT_TYPE_UNSPECIFIED
-          - STATIC
-          - RELATIVE
-          - EXPRESSION
+        name:
+          description: 角色名；选填，长度不超过50个字符，且需要确保该字段在项目下唯一；如果该字段为空，会自动生成一个角色名，格式为：autoName{number}
+          example: admin
           type: string
-        trunc_unit:
-          description: ''
-          enum:
-          - TRUNC_UNIT_UNSPECIFIED
-          - TRUNC_HOUR
-          - TRUNC_DAY
-          - TRUNC_WEEK
-          - TRUNC_MONTH
-          - TRUNC_YEAR
-          - TRUNC_BIGBANG
+        cname:
+          description: 角色显示名；长度不超过50个字符，且需要确保该字段在项目下唯一
+          example: 管理员
           type: string
-        static_time:
-          description: ''
-          format: date-time
+        description:
+          description: 角色描述
+          example: 管理员角色描述信息
           type: string
-        relative_time:
-          $ref: '#/components/schemas/sensorsdata.common.TimePoint.RelativeTimePoint'
-        expression:
-          description: ''
-          type: string
-      title: TimePoint
-      type: object
-    sensorsdata.portal.v2.api.GetRoleResponse:
-      description: 「获取单个角色信息」的响应对象
-      properties:
-        role:
-          $ref: '#/components/schemas/sensorsdata.portal.v2.api.Role'
-        statements:
-          description: 角色权限配置
-          example: '[{"operation": "8013", "effect": "ALLOW"}, {"operation": "8014", "effect": "DENY"}]'
-          items:
-            $ref: '#/components/schemas/sensorsdata.portal.v2.Statement'
-          type: array
-      title: GetRoleResponse
-      type: object
-    sensorsdata.portal.v2.api.GetRoleResponseHttpApiResult:
-      properties:
-        code:
-          type: string
-        message:
-          type: string
-        request_id:
-          type: string
-        data:
-          $ref: '#/components/schemas/sensorsdata.portal.v2.api.GetRoleResponse'
-        error_info:
-          $ref: '#/components/schemas/sensorsdata.common.ErrorInfo'
-      title: sensorsdata.portal.v2.api.GetRoleResponseHttpApiResult
-      type: object
-    sensorsdata.portal.v2.api.UpsertProjectAttributeRequest:
-      description: 项目和扩展属性关联关系
-      properties:
-        project_attributes:
-          description: 绑定关系
-          items:
-            $ref: '#/components/schemas/sensorsdata.portal.v2.api.ProjectAttribute'
-          type: array
-      title: UpsertProjectAttributeRequest
-      type: object
-    sensorsdata.portal.v2.BatchDeleteResourcePermissionRequest:
-      description: ''
-      properties:
-        resources:
-          $ref: '#/components/schemas/sensorsdata.portal.v2.Resources'
-        delete_operations:
-          description: ''
-          items:
-            type: string
-          type: array
-        project_id:
-          description: ''
-          format: int32
-          type: integer
-        project_name:
-          description: ''
-          type: string
-      title: BatchDeleteResourcePermissionRequest
-      type: object
-    sensorsdata.portal.v2.api.PageInfo:
-      description: 分页信息
-      properties:
-        current_page:
-          description: 当前页，起始页号：1
-          example: 1
-          format: int32
-          type: integer
-        page_count:
-          description: 总页数
-          example: 100
-          format: int32
-          type: integer
-        total:
-          description: 总条数
-          example: 100
-          format: int32
-          type: integer
-      title: PageInfo
-      type: object
-    sensorsdata.portal.v2.api.ListGlobalAccountDetail:
-      description: 平台账号及其相关信息（包括项目信息、职位信息、角色信息）
-      properties:
-        account:
-          $ref: '#/components/schemas/sensorsdata.portal.v2.api.GlobalAccount'
-        related_projects:
-          description: 平台账号关联的项目信息
-          items:
-            $ref: '#/components/schemas/sensorsdata.portal.v2.api.AccountRelatedProjectInfo'
-          type: array
-      title: ListGlobalAccountDetail
-      type: object
-    sensorsdata.common.TimePoint.RelativeTimePoint:
-      description: ''
-      properties:
-        base_time:
-          description: ''
-          type: string
-        time_interval:
-          $ref: '#/components/schemas/sensorsdata.common.TimeInterval'
-      title: RelativeTimePoint
-      type: object
-    sensorsdata.portal.v2.api.InviteAccount:
-      description: 「邀请账号」的对象
-      properties:
-        id:
-          description: 账号 id
-          example: 78
-          format: int32
-          type: integer
-        duty_name:
-          description: 职务名称
-          example: lh
-          type: string
-        related_role_ids:
-          description: 关联的角色 id
-          example: '[1,4,9]'
-          items:
-            format: int32
-            type: integer
-          type: array
-      required:
-      - id
-      - related_role_ids
-      title: InviteAccount
-      type: object
-    sensorsdata.portal.v2.api.GetAccountAttributeResponseHttpApiResult:
-      properties:
-        code:
-          type: string
-        message:
-          type: string
-        request_id:
-          type: string
-        data:
-          $ref: '#/components/schemas/sensorsdata.portal.v2.api.GetAccountAttributeResponse'
-        error_info:
-          $ref: '#/components/schemas/sensorsdata.common.ErrorInfo'
-      title: sensorsdata.portal.v2.api.GetAccountAttributeResponseHttpApiResult
-      type: object
-    sensorsdata.portal.v2.api.GetAccountByApiKeyRequest:
-      description: 「根据 api-key 获取账号」的请求对象
-      properties:
-        api_key:
-          description: api-key 明文；为空时返回当前请求鉴权所用 api-key 对应的账号（whoami）
-          example: '#K-1Q0rg4L3ssqXZYp57u0LMONvHQs8MF61'
-          type: string
-      title: GetAccountByApiKeyRequest
-      type: object
-    sensorsdata.portal.v2.api.GetGlobalAccountResponseHttpApiResult:
-      properties:
-        code:
-          type: string
-        message:
-          type: string
-        request_id:
-          type: string
-        data:
-          $ref: '#/components/schemas/sensorsdata.portal.v2.api.GetGlobalAccountResponse'
-        error_info:
-          $ref: '#/components/schemas/sensorsdata.common.ErrorInfo'
-      title: sensorsdata.portal.v2.api.GetGlobalAccountResponseHttpApiResult
-      type: object
-    sensorsdata.portal.v2.BatchListResourceOperationConditionResponseHttpApiResult:
-      properties:
-        code:
-          type: string
-        message:
-          type: string
-        request_id:
-          type: string
-        data:
-          $ref: '#/components/schemas/sensorsdata.portal.v2.BatchListResourceOperationConditionResponse'
-        error_info:
-          $ref: '#/components/schemas/sensorsdata.common.ErrorInfo'
-      title: sensorsdata.portal.v2.BatchListResourceOperationConditionResponseHttpApiResult
-      type: object
-    sensorsdata.portal.v2.api.ExtraAttribute:
-      description: 扩展属性值，通过该结构来描述对象关联的具体的扩展属性值
-      properties:
-        attr_code:
-          description: 属性编码（根据 ExtraAttributeDefinition 获取属性编码的定义）
-          example: JOB
-          type: string
-        node_code:
-          description: 节点编码
-          example: '4'
-          type: string
-        node_name:
-          description: 节点名
-          example: 技术部
-          type: string
-        full_name:
-          description: 节点全称（主要用于树形结构属性，表示当前节点到树的根节点的路径）
-          example: 集团/技术部
-          type: string
-        has_children_node:
-          description: 是否包含子节点；如果是树形结构，仅绑定树中的某个节点（不包括子树），则 has_children_node=false，如果绑定树中的某个节点及其子树，则 has_children_node=true
-          example: true
-          type: boolean
-        desc:
-          description: 节点描述
-          example: 集团技术部
-          type: string
-      title: ExtraAttribute
-      type: object
-    sensorsdata.portal.v2.BatchListResourceOperationConditionResponse:
-      description: ''
-      properties:
-        resource_operation_conditions:
-          description: ''
-          items:
-            $ref: '#/components/schemas/sensorsdata.portal.v2.ResourceOperationCondition'
-          type: array
-      title: BatchListResourceOperationConditionResponse
-      type: object
-    sensorsdata.portal.v2.api.BindCategoryAndResourceRequest:
-      description: 「资源分类关联具体的功能资源」的请求对象
-      properties:
-        group:
-          description: 功能资源所属的分组，可选值为 DATA_PERMISSION、FEATURE_PERMISSION、MANAGEMENT_PERMISSION
-          enum:
-          - GROUP_UNSPECIFIED
-          - DATA_PERMISSION
-          - FEATURE_PERMISSION
-          - MANAGEMENT_PERMISSION
-          example: DATA_PERMISSION
-          type: string
-        category_code:
-          description: 资源分类的分类编码，需要和「注册分类」接口中的资源分类的分类编码字段保持一致
-          example: setting_sensors_analysis
-          type: string
-        resource_code:
-          description: 功能资源code，需要和「注册功能资源」接口中资源编码字段保持一致
-          example: data_permission_view_all_data
-          type: string
-      required:
-      - category_code
-      - group
-      - resource_code
-      title: BindCategoryAndResourceRequest
-      type: object
-    sensorsdata.portal.v2.BatchListResourcePoliciesResponseHttpApiResult:
-      properties:
-        code:
-          type: string
-        message:
-          type: string
-        request_id:
-          type: string
-        data:
-          $ref: '#/components/schemas/sensorsdata.portal.v2.BatchListResourcePoliciesResponse'
-        error_info:
-          $ref: '#/components/schemas/sensorsdata.common.ErrorInfo'
-      title: sensorsdata.portal.v2.BatchListResourcePoliciesResponseHttpApiResult
-      type: object
-    sensorsdata.portal.v2.api.GetAttributeNodeResponse:
-      description: 获取扩展属性的节点信息
-      properties:
-        nodes:
-          description: 节点信息
-          items:
-            $ref: '#/components/schemas/sensorsdata.portal.v2.api.AttributeNode'
-          type: array
-        count:
-          description: 当前响应的数据数
-          example: 20
-          format: int32
-          type: integer
-      title: GetAttributeNodeResponse
-      type: object
-    sensorsdata.portal.v2.api.GetRoleAttributeResponse:
-      description: 角色和扩展属性的关联关系响应
-      properties:
-        role_attributes:
-          description: 当前角色绑定的扩展属性信息
-          items:
-            $ref: '#/components/schemas/sensorsdata.portal.v2.api.RoleAttribute'
-          type: array
-      title: GetRoleAttributeResponse
-      type: object
-    sensorsdata.portal.v2.api.DeleteAttributeNodeRequest:
-      description: 删除扩展属性的节点
-      properties:
-        attr_code:
-          description: 所属属性
-          example: JOB
-          type: string
-        codes:
-          description: 节点编码集合
-          example: RD_1
-          items:
-            type: string
-          type: array
-      title: DeleteAttributeNodeRequest
-      type: object
-    sensorsdata.portal.v2.ResourcePolicies:
-      description: ''
-      properties:
-        resource_code:
-          description: ''
-          type: string
-        resource_id:
-          description: ''
-          type: string
-        policy_principals:
-          description: ''
-          items:
-            $ref: '#/components/schemas/sensorsdata.portal.v2.PolicyPrincipals'
-          type: array
-      title: ResourcePolicies
-      type: object
-    sensorsdata.portal.v2.BatchListResourceOperationConditionRequest:
-      description: ''
-      properties:
-        project_id:
-          description: ''
-          format: int32
-          type: integer
-        account_id:
-          description: ''
-          format: int32
-          type: integer
-        resources:
-          description: ''
-          items:
-            type: string
-          type: array
-        operations:
-          description: ''
-          items:
-            type: string
-          type: array
-        project_name:
-          description: ''
-          type: string
-      title: BatchListResourceOperationConditionRequest
-      type: object
-    sensorsdata.portal.v2.ListOperationConditionResponseHttpApiResult:
-      properties:
-        code:
-          type: string
-        message:
-          type: string
-        request_id:
-          type: string
-        data:
-          $ref: '#/components/schemas/sensorsdata.portal.v2.ListOperationConditionResponse'
-        error_info:
-          $ref: '#/components/schemas/sensorsdata.common.ErrorInfo'
-      title: sensorsdata.portal.v2.ListOperationConditionResponseHttpApiResult
-      type: object
-    sensorsdata.portal.v2.api.DeleteRoleRequest:
-      description: 「删除角色」的请求对象
-      properties:
-        id:
-          description: 角色 id
-          example: 1
-          format: int32
-          type: integer
-      required:
-      - id
-      title: DeleteRoleRequest
-      type: object
-    sensorsdata.portal.v2.api.DeleteRoleAttributeRequest:
-      description: 删除角色和扩展属性的关联关系
-      properties:
-        role_attributes:
-          description: 绑定关系
-          items:
-            $ref: '#/components/schemas/sensorsdata.portal.v2.api.RoleAttribute'
-          type: array
-      title: DeleteRoleAttributeRequest
-      type: object
-    sensorsdata.portal.v2.api.GetAccountResponseHttpApiResult:
-      properties:
-        code:
-          type: string
-        message:
-          type: string
-        request_id:
-          type: string
-        data:
-          $ref: '#/components/schemas/sensorsdata.portal.v2.api.GetAccountResponse'
-        error_info:
-          $ref: '#/components/schemas/sensorsdata.common.ErrorInfo'
-      title: sensorsdata.portal.v2.api.GetAccountResponseHttpApiResult
-      type: object
-    sensorsdata.portal.v2.Resources:
-      description: ''
-      properties:
-        resource_code:
-          description: ''
-          type: string
-        resource_ids:
-          description: ''
-          items:
-            type: string
-          type: array
-      title: Resources
-      type: object
-    sensorsdata.portal.v2.api.StatusResponseHttpApiResult:
-      properties:
-        code:
-          type: string
-        message:
-          type: string
-        request_id:
-          type: string
-        data:
-          $ref: '#/components/schemas/sensorsdata.portal.v2.api.StatusResponse'
-        error_info:
-          $ref: '#/components/schemas/sensorsdata.common.ErrorInfo'
-      title: sensorsdata.portal.v2.api.StatusResponseHttpApiResult
-      type: object
-    sensorsdata.portal.v2.api.GetAttributeNodeRequestBody:
-      description: 获取扩展属性的节点信息
-      properties:
-        codes:
-          description: 节点编码集合
-          example: RD_1
-          items:
-            type: string
-          type: array
-      title: GetAttributeNodeRequest
-      type: object
-    sensorsdata.portal.v2.api.UpsertAccountAttributeRequest:
-      description: 账号和扩展属性的关联关系
-      properties:
-        account_attributes:
-          description: 绑定关系
-          items:
-            $ref: '#/components/schemas/sensorsdata.portal.v2.api.AccountAttribute'
-          type: array
-      title: UpsertAccountAttributeRequest
-      type: object
-    sensorsdata.portal.v2.api.ListDutyResponse:
-      description: ''
-      properties:
-        duties:
-          description: 职务信息
-          items:
-            $ref: '#/components/schemas/sensorsdata.portal.v2.api.Duty'
-          type: array
-        page:
-          $ref: '#/components/schemas/sensorsdata.portal.v2.api.PageInfo'
-      title: ListDutyResponse
-      type: object
-    sensorsdata.portal.v2.api.AddRoleResponseHttpApiResult:
-      properties:
-        code:
-          type: string
-        message:
-          type: string
-        request_id:
-          type: string
-        data:
-          $ref: '#/components/schemas/sensorsdata.portal.v2.api.AddRoleResponse'
-        error_info:
-          $ref: '#/components/schemas/sensorsdata.common.ErrorInfo'
-      title: sensorsdata.portal.v2.api.AddRoleResponseHttpApiResult
-      type: object
-    sensorsdata.portal.v2.api.RegisterResourceRequest:
-      description: 「注册功能资源」的请求对象
-      properties:
-        code:
-          description: 资源编码；规范：唯一性，小写英文字母，多个以下划线拼接
-          example: data_permission_view_all_data
-          type: string
-        product:
-          description: 所属产品线；例如：SA、SBP、SFN、SDF、SDH等
-          example: SA
-          type: string
-        name_i18n_message:
-          $ref: '#/components/schemas/sensorsdata.portal.v2.api.I18nMessage'
-        tip_i18n_message:
-          $ref: '#/components/schemas/sensorsdata.portal.v2.api.I18nMessage'
-        config:
-          description: 自定义扩展；支持权限点依赖联动
-          type: string
-        operations:
-          description: 操作（权限）集合；不允许为空
-          items:
-            $ref: '#/components/schemas/sensorsdata.portal.v2.api.Operation'
-          type: array
-      required:
-      - code
-      - name_i18n_message
-      - operations
-      - product
-      title: RegisterResourceRequest
-      type: object
-    sensorsdata.portal.v2.api.RoleAttribute:
-      description: 角色和扩展属性的关联关系
-      properties:
-        role_id:
-          description: 角色ID
-          example: 1
-          format: int32
-          type: integer
-        attr_code:
-          description: 扩展属性维度
-          example: JOB
-          type: string
-        attr_name:
-          description: 扩展属性名称
-          example: 岗位
-          type: string
-        node_code:
-          description: 扩展节点code
-          example: RD
-          type: string
-        node_name:
-          description: 扩展节点name
-          example: RD
-          type: string
-        not_auth_children:
-          description: 是否不授权所有子节点，默认false
+        is_project_customize_default_role:
+          description: 是否是默认角色；选填，默认为false
           example: false
           type: boolean
-      title: RoleAttribute
-      type: object
-    sensorsdata.portal.v2.api.GetGlobalAccountResponse:
-      description: 「获取单个平台账户」的响应对象
-      properties:
-        account:
-          $ref: '#/components/schemas/sensorsdata.portal.v2.api.GlobalAccount'
-        related_projects:
-          description: 平台账号关联的项目信息、角色信息、职位信息等
-          items:
-            $ref: '#/components/schemas/sensorsdata.portal.v2.api.AccountRelatedProjectInfo'
-          type: array
-      title: GetGlobalAccountResponse
-      type: object
-    sensorsdata.portal.v2.api.ListAccountResponseHttpApiResult:
-      properties:
-        code:
-          type: string
-        message:
-          type: string
-        request_id:
-          type: string
-        data:
-          $ref: '#/components/schemas/sensorsdata.portal.v2.api.ListAccountResponse'
-        error_info:
-          $ref: '#/components/schemas/sensorsdata.common.ErrorInfo'
-      title: sensorsdata.portal.v2.api.ListAccountResponseHttpApiResult
-      type: object
-    sensorsdata.portal.v2.api.ListRoleResponse:
-      description: 「获取账号下的角色列表」的响应对象
-      properties:
-        roles:
-          description: 角色列表
-          items:
-            $ref: '#/components/schemas/sensorsdata.portal.v2.api.Role'
-          type: array
-        page:
-          $ref: '#/components/schemas/sensorsdata.portal.v2.api.PageInfo'
-      title: ListRoleResponse
-      type: object
-    sensorsdata.portal.v2.api.ExtraAttributeDefinition:
-      description: 扩展属性的定义
-      properties:
-        id:
-          description: 用于保存 id 映射
-          example: 1
-          format: int32
-          type: integer
-        code:
-          description: 属性编码
-          example: JOB
-          type: string
-        name:
-          description: 属性名
-          example: 职位
-          type: string
-        desc:
-          description: 属性描述
-          example: 职位属性
-          type: string
-        type:
-          description: 属性类型
-          enum:
-          - TYPE_UNSPECIFIED
-          - VALUE
-          - TREE
-          example: VALUE
-          type: string
-        attr_value_scope:
-          description: 属性值的作用范围，GLOBAL：全局，PROJECT：项目
-          example: GLOBAL
-          type: string
-      title: ExtraAttributeDefinition
-      type: object
-    sensorsdata.portal.v2.ResourceOperationCondition:
-      description: ''
-      properties:
-        resource_code:
-          description: ''
-          type: string
-        resource_id:
-          description: ''
-          type: string
-        compound_condition_map:
-          additionalProperties:
-            $ref: '#/components/schemas/sensorsdata.portal.v2.OperationCompoundCondition'
-          description: ''
-          type: object
-      title: ResourceOperationCondition
-      type: object
-    sensorsdata.portal.v2.api.GetRoleAttributeResponseHttpApiResult:
-      properties:
-        code:
-          type: string
-        message:
-          type: string
-        request_id:
-          type: string
-        data:
-          $ref: '#/components/schemas/sensorsdata.portal.v2.api.GetRoleAttributeResponse'
-        error_info:
-          $ref: '#/components/schemas/sensorsdata.common.ErrorInfo'
-      title: sensorsdata.portal.v2.api.GetRoleAttributeResponseHttpApiResult
-      type: object
-    sensorsdata.portal.v2.api.DeleteProjectAttributeRequest:
-      description: 删除项目和扩展属性关联关系
-      properties:
-        project_attributes:
-          description: 绑定的数据
-          items:
-            $ref: '#/components/schemas/sensorsdata.portal.v2.api.ProjectAttribute'
-          type: array
-      title: DeleteProjectAttributeRequest
-      type: object
-    sensorsdata.portal.v2.api.GetAttributeNodeResponseHttpApiResult:
-      properties:
-        code:
-          type: string
-        message:
-          type: string
-        request_id:
-          type: string
-        data:
-          $ref: '#/components/schemas/sensorsdata.portal.v2.api.GetAttributeNodeResponse'
-        error_info:
-          $ref: '#/components/schemas/sensorsdata.common.ErrorInfo'
-      title: sensorsdata.portal.v2.api.GetAttributeNodeResponseHttpApiResult
-      type: object
-    sensorsdata.portal.v2.BatchAddResourcePermissionRequest:
-      description: ''
-      properties:
-        resources:
-          $ref: '#/components/schemas/sensorsdata.portal.v2.Resources'
-        policy_principals:
-          description: ''
-          items:
-            $ref: '#/components/schemas/sensorsdata.portal.v2.PolicyPrincipals'
-          type: array
-        project_id:
-          description: ''
-          format: int32
-          type: integer
-        project_name:
-          description: ''
-          type: string
-      title: BatchAddResourcePermissionRequest
+      required:
+      - cname
+      title: RoleAddBody
       type: object
 x-sd-openapi-service-name: Identity
 x-sd-openapi-service-name-hyphen: identity

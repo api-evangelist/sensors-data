@@ -10,7 +10,95 @@ tags:
 paths:
   /table/list:
     post:
-      description: "批量查询数据表信息\n```\n  curl -X POST 'http://{host}:{port}/api/v3/horizon/v1/table/list' \\\n    -H 'Content-Type: application/json' \\\n    -H 'api-key: api_key' \\\n    -H 'sensorsdata-project: default' \\\n    -d '{\n    \"project_id\": 1,\n    \"db_name\": \"horizon_default_db\",\n    \"page_size\": -1\n  }'\n  返回值示例：\n  {\n    \"code\": \"SUCCESS\",\n    \"request_id\": \"12152403a440365312df1603995514f4\",\n    \"data\": {\n        \"tables\": [\n            {\n                \"project_id\": 1,\n                \"db_name\": \"horizon_default_1\",\n                \"name\": \"events\",\n                \"display_name\": \"事件表\",\n                \"type\": \"VIEW\",\n                \"engine\": \"ENGINE_UNSPECIFIED\",\n                \"primary_keys\": [],\n                \"partition_keys\": [],\n                \"view_select_statement\": \"select field1, field2 from table ...\"\n                \"workspace\": \"PUBLIC\",\n                \"view_select_statement_db\": \"\",\n                \"external\": false,\n                \"direct_access_enabled\": false,\n                \"custom_params\": {},\n                \"columns\": [],\n                \"business_scopes\": [],\n                \"unique_keys\": [],\n                \"table_properties\": {\n                    \"enable_pre_join_elimination_view\": false\n                }\n            }, ...\n        ],\n        \"total_size\": 3,\n        \"has_next\": false\n    }\n  }\n```"
+      description: '批量查询数据表信息
+
+        ```
+
+        curl -X POST ''http://{host}:{port}/api/v3/horizon/v1/table/list'' \
+
+        -H ''Content-Type: application/json'' \
+
+        -H ''api-key: api_key'' \
+
+        -H ''sensorsdata-project: default'' \
+
+        -d ''{
+
+        "project_id": 1,
+
+        "db_name": "horizon_default_db",
+
+        "page_size": -1
+
+        }''
+
+        返回值示例：
+
+        {
+
+        "code": "SUCCESS",
+
+        "request_id": "12152403a440365312df1603995514f4",
+
+        "data": {
+
+        "tables": [
+
+        {
+
+        "project_id": 1,
+
+        "db_name": "horizon_default_1",
+
+        "name": "events",
+
+        "display_name": "事件表",
+
+        "type": "VIEW",
+
+        "engine": "ENGINE_UNSPECIFIED",
+
+        "primary_keys": [],
+
+        "partition_keys": [],
+
+        "view_select_statement": "select field1, field2 from table ..."
+
+        "workspace": "PUBLIC",
+
+        "view_select_statement_db": "",
+
+        "external": false,
+
+        "direct_access_enabled": false,
+
+        "custom_params": {},
+
+        "columns": [],
+
+        "business_scopes": [],
+
+        "unique_keys": [],
+
+        "table_properties": {
+
+        "enable_pre_join_elimination_view": false
+
+        }
+
+        }, ...
+
+        ],
+
+        "total_size": 3,
+
+        "has_next": false
+
+        }
+
+        }
+
+        ```'
       operationId: ListTables
       parameters:
       - description: 全局唯一的密钥，用于验证和授权访问 API 接口
@@ -98,7 +186,111 @@ paths:
       - Table
   /table/get:
     post:
-      description: "查询数据表信息\n```\n  curl -X POST 'http://{host}:{port}/api/v3/horizon/v1/table/get' \\\n    -H 'Content-Type: application/json' \\\n    -H 'api-key: api_key' \\\n    -H 'sensorsdata-project: default' \\\n    -d '{\n    \"project_id\": 1,\n    \"db_name\": \"horizon_default_db\",\n    \"table_name\": \"users\"\n  }'\n  返回值示例：\n  {\n    \"code\": \"SUCCESS\",\n    \"request_id\": \"12154350afbda336505d9385a72985b9\",\n    \"data\": {\n        \"workspace\": \"PUBLIC\",\n        \"primary_keys\": [],\n        \"columns\": [],\n        \"unique_keys\": [],\n        \"display_name\": \"用户表\",\n        \"type\": \"VIEW\",\n        \"table_properties\": {\n            \"enable_pre_join_elimination_view\": false\n        },\n        \"external\": false,\n        \"custom_params\": {},\n        \"business_scopes\": [],\n        \"db_name\": \"horizon_default_1\",\n        \"partition_keys\": [],\n        \"project_id\": 1,\n        \"engine\": \"ENGINE_UNSPECIFIED\",\n        \"view_select_statement_db\": \"\",\n        \"name\": \"users\",\n        \"view_select_statement\": \"select field1, field2 from table ...\"\n        \"direct_access_enabled\": false,\n        \"authorization_policy\": {\n            \"id\": \"_policy_#1#horizon_default_1#users\",\n            \"type\": \"ACCESS\",\n            \"access_policy_description\": {\n                \"database\": \"horizon_default_1\",\n                \"table\": \"users\",\n                \"columns\": [\n                    \"*\"\n                ],\n                \"conditions\": [\n                    ...\n                ]\n            }\n        }\n    }\n  }\n```"
+      description: '查询数据表信息
+
+        ```
+
+        curl -X POST ''http://{host}:{port}/api/v3/horizon/v1/table/get'' \
+
+        -H ''Content-Type: application/json'' \
+
+        -H ''api-key: api_key'' \
+
+        -H ''sensorsdata-project: default'' \
+
+        -d ''{
+
+        "project_id": 1,
+
+        "db_name": "horizon_default_db",
+
+        "table_name": "users"
+
+        }''
+
+        返回值示例：
+
+        {
+
+        "code": "SUCCESS",
+
+        "request_id": "12154350afbda336505d9385a72985b9",
+
+        "data": {
+
+        "workspace": "PUBLIC",
+
+        "primary_keys": [],
+
+        "columns": [],
+
+        "unique_keys": [],
+
+        "display_name": "用户表",
+
+        "type": "VIEW",
+
+        "table_properties": {
+
+        "enable_pre_join_elimination_view": false
+
+        },
+
+        "external": false,
+
+        "custom_params": {},
+
+        "business_scopes": [],
+
+        "db_name": "horizon_default_1",
+
+        "partition_keys": [],
+
+        "project_id": 1,
+
+        "engine": "ENGINE_UNSPECIFIED",
+
+        "view_select_statement_db": "",
+
+        "name": "users",
+
+        "view_select_statement": "select field1, field2 from table ..."
+
+        "direct_access_enabled": false,
+
+        "authorization_policy": {
+
+        "id": "_policy_#1#horizon_default_1#users",
+
+        "type": "ACCESS",
+
+        "access_policy_description": {
+
+        "database": "horizon_default_1",
+
+        "table": "users",
+
+        "columns": [
+
+        "*"
+
+        ],
+
+        "conditions": [
+
+        ...
+
+        ]
+
+        }
+
+        }
+
+        }
+
+        }
+
+        ```'
       operationId: GetTable
       parameters:
       - description: 全局唯一的密钥，用于验证和授权访问 API 接口
@@ -183,7 +375,169 @@ paths:
       - Table
   /table/create:
     post:
-      description: "创建数据表\n```\n  curl -X POST 'http://{host}:{port}/api/v3/horizon/v1/table/create' \\\n    -H 'Content-Type: application/json' \\\n    -H 'api-key: api_key' \\\n    -H 'sensorsdata-project: default' \\\n    -d '{\n    \"project_id\": 1,\n    \"table\": {\n      \"db_name\": \"test_db\",\n      \"name\": \"test_table\",\n      \"type\": \"TABLE\",\n      \"engine\": \"MUTABLE\",\n      \"primary_keys\": [\"id\"],\n      \"columns\": [\n        {\n          \"name\": \"id\",\n          \"dw_data_type\": \"STRING\"\n        }\n      ]\n    }\n  }'\n  返回值示例：\n  {\n    \"code\": \"SUCCESS\",\n    \"request_id\": \"121605448c7cb6e07b463cb8c78a00d8\",\n    \"data\": {\n        \"workspace\": \"PUBLIC\",\n        \"primary_keys\": [\n            \"id\"\n        ],\n        \"columns\": [],\n        \"unique_keys\": [\n            {\n                \"name\": \"pk_test_table\",\n                \"columns\": [\n                    \"id\"\n                ]\n            }\n        ],\n        \"type\": \"TABLE\",\n        \"external\": false,\n        \"custom_params\": {},\n        \"business_scopes\": [],\n        \"db_name\": \"test_db\",\n        \"partition_keys\": [],\n        \"project_id\": 1,\n        \"engine\": \"MUTABLE\",\n        \"name\": \"test_table\",\n        \"direct_access_enabled\": false,\n        \"authorization_policy\": {\n            \"id\": \"_policy_#1#test_db#test_table\",\n            \"type\": \"ACCESS\",\n            \"access_policy_description\": {\n                \"database\": \"test_db\",\n                \"table\": \"test_table\",\n                \"columns\": [\n                    \"*\"\n                ],\n                \"conditions\": [\n                    {\n                        \"accounts\": [\n                            {\n                                \"id\": \"2\",\n                                \"name\": \"admin\",\n                                \"cname\": \"平台管理员\",\n                                \"tokens\": [],\n                                \"available\": false\n                            }\n                        ],\n                        \"roles\": [],\n                        \"duties\": [],\n                        \"allow_permission_types\": [\n                            \"SELECT\"\n                        ]\n                    }\n                ]\n            }\n        }\n    }\n  }\n```"
+      description: '创建数据表
+
+        ```
+
+        curl -X POST ''http://{host}:{port}/api/v3/horizon/v1/table/create'' \
+
+        -H ''Content-Type: application/json'' \
+
+        -H ''api-key: api_key'' \
+
+        -H ''sensorsdata-project: default'' \
+
+        -d ''{
+
+        "project_id": 1,
+
+        "table": {
+
+        "db_name": "test_db",
+
+        "name": "test_table",
+
+        "type": "TABLE",
+
+        "engine": "MUTABLE",
+
+        "primary_keys": ["id"],
+
+        "columns": [
+
+        {
+
+        "name": "id",
+
+        "dw_data_type": "STRING"
+
+        }
+
+        ]
+
+        }
+
+        }''
+
+        返回值示例：
+
+        {
+
+        "code": "SUCCESS",
+
+        "request_id": "121605448c7cb6e07b463cb8c78a00d8",
+
+        "data": {
+
+        "workspace": "PUBLIC",
+
+        "primary_keys": [
+
+        "id"
+
+        ],
+
+        "columns": [],
+
+        "unique_keys": [
+
+        {
+
+        "name": "pk_test_table",
+
+        "columns": [
+
+        "id"
+
+        ]
+
+        }
+
+        ],
+
+        "type": "TABLE",
+
+        "external": false,
+
+        "custom_params": {},
+
+        "business_scopes": [],
+
+        "db_name": "test_db",
+
+        "partition_keys": [],
+
+        "project_id": 1,
+
+        "engine": "MUTABLE",
+
+        "name": "test_table",
+
+        "direct_access_enabled": false,
+
+        "authorization_policy": {
+
+        "id": "_policy_#1#test_db#test_table",
+
+        "type": "ACCESS",
+
+        "access_policy_description": {
+
+        "database": "test_db",
+
+        "table": "test_table",
+
+        "columns": [
+
+        "*"
+
+        ],
+
+        "conditions": [
+
+        {
+
+        "accounts": [
+
+        {
+
+        "id": "2",
+
+        "name": "admin",
+
+        "cname": "平台管理员",
+
+        "tokens": [],
+
+        "available": false
+
+        }
+
+        ],
+
+        "roles": [],
+
+        "duties": [],
+
+        "allow_permission_types": [
+
+        "SELECT"
+
+        ]
+
+        }
+
+        ]
+
+        }
+
+        }
+
+        }
+
+        }
+
+        ```'
       operationId: CreateTable
       parameters:
       - description: 全局唯一的密钥，用于验证和授权访问 API 接口
@@ -268,7 +622,91 @@ paths:
       - Table
   /table/public-database/list:
     post:
-      description: "批量查询数据库信息\n```\n  curl -X POST 'http://{host}:{port}/api/v3/horizon/v1/table/public-database/list' \\\n    -H 'Content-Type: application/json' \\\n    -H 'api-key: api_key' \\\n    -H 'sensorsdata-project: default' \\\n    -d '{\n    \"project_id\": 1\n  }'\n  返回值示例：\n  {\n    \"code\": \"SUCCESS\",\n    \"request_id\": \"121616536838406dccc1bec7f5e18495\",\n    \"data\": {\n        \"databases\": [\n            {\n                \"project_id\": 1,\n                \"name\": \"horizon_default_1\",\n                \"created_by\": \"sensorsdata.horizon\",\n                \"workspace\": \"PUBLIC\"\n            },\n            {\n                \"project_id\": 1,\n                \"name\": \"hue_medium_table_default\",\n                \"created_by\": \"sensorsdata.analytics\",\n                \"workspace\": \"PUBLIC\"\n            },\n            {\n                \"project_id\": 1,\n                \"name\": \"horizon_workspace_default_1\",\n                \"created_by\": \"sensorsdata.horizon.web\",\n                \"workspace\": \"PUBLIC\"\n            },\n            {\n                \"project_id\": 1,\n                \"name\": \"test_db\",\n                \"created_by\": \"test\",\n                \"workspace\": \"PUBLIC\"\n            }\n        ]\n    }\n  }\n```"
+      description: '批量查询数据库信息
+
+        ```
+
+        curl -X POST ''http://{host}:{port}/api/v3/horizon/v1/table/public-database/list'' \
+
+        -H ''Content-Type: application/json'' \
+
+        -H ''api-key: api_key'' \
+
+        -H ''sensorsdata-project: default'' \
+
+        -d ''{
+
+        "project_id": 1
+
+        }''
+
+        返回值示例：
+
+        {
+
+        "code": "SUCCESS",
+
+        "request_id": "121616536838406dccc1bec7f5e18495",
+
+        "data": {
+
+        "databases": [
+
+        {
+
+        "project_id": 1,
+
+        "name": "horizon_default_1",
+
+        "created_by": "sensorsdata.horizon",
+
+        "workspace": "PUBLIC"
+
+        },
+
+        {
+
+        "project_id": 1,
+
+        "name": "hue_medium_table_default",
+
+        "created_by": "sensorsdata.analytics",
+
+        "workspace": "PUBLIC"
+
+        },
+
+        {
+
+        "project_id": 1,
+
+        "name": "horizon_workspace_default_1",
+
+        "created_by": "sensorsdata.horizon.web",
+
+        "workspace": "PUBLIC"
+
+        },
+
+        {
+
+        "project_id": 1,
+
+        "name": "test_db",
+
+        "created_by": "test",
+
+        "workspace": "PUBLIC"
+
+        }
+
+        ]
+
+        }
+
+        }
+
+        ```'
       operationId: ListPublicDatabases
       parameters:
       - description: 全局唯一的密钥，用于验证和授权访问 API 接口
@@ -320,7 +758,55 @@ paths:
       - Table
   /table/public-database/create:
     post:
-      description: "创建数据库\n```\n  curl -X POST 'http://{host}:{port}/api/v3/horizon/v1/table/public-database/create' \\\n    -H 'Content-Type: application/json' \\\n    -H 'api-key: api_key' \\\n    -H 'sensorsdata-project: default' \\\n    -d '{\n    \"project_id\": 1,\n    \"database\": {\n      \"name\": \"test_db\",\n      \"created_by\": \"test\"\n    }\n  }'\n  返回值示例：\n  {\n    \"code\": \"SUCCESS\",\n    \"request_id\": \"121604079d9834d9a4011cb2b1fe588d\",\n    \"data\": {\n        \"workspace\": \"PUBLIC\",\n        \"project_id\": 1,\n        \"name\": \"test_db\",\n        \"created_by\": \"test\"\n    }\n  }\n```"
+      description: '创建数据库
+
+        ```
+
+        curl -X POST ''http://{host}:{port}/api/v3/horizon/v1/table/public-database/create'' \
+
+        -H ''Content-Type: application/json'' \
+
+        -H ''api-key: api_key'' \
+
+        -H ''sensorsdata-project: default'' \
+
+        -d ''{
+
+        "project_id": 1,
+
+        "database": {
+
+        "name": "test_db",
+
+        "created_by": "test"
+
+        }
+
+        }''
+
+        返回值示例：
+
+        {
+
+        "code": "SUCCESS",
+
+        "request_id": "121604079d9834d9a4011cb2b1fe588d",
+
+        "data": {
+
+        "workspace": "PUBLIC",
+
+        "project_id": 1,
+
+        "name": "test_db",
+
+        "created_by": "test"
+
+        }
+
+        }
+
+        ```'
       operationId: CreatePublicDatabase
       parameters:
       - description: 全局唯一的密钥，用于验证和授权访问 API 接口
@@ -371,98 +857,38 @@ paths:
       - Table
 components:
   schemas:
-    sensorsdata.horizon.v1.GetTableRequest:
-      description: 查询数据表信息
+    sensorsdata.horizon.v1.AuthorizationPolicy:
+      description: 授权策略
+      properties:
+        id:
+          description: 授权策略 ID，可唯一标识单个授权策略。
+          type: string
+        type:
+          description: 授权策略类型
+          enum:
+          - TYPE_UNSPECIFIED
+          - ACCESS
+          - DATAMASK
+          - ROWFILTER
+          type: string
+        access_policy_description:
+          $ref: '#/components/schemas/sensorsdata.horizon.v1.AccessPolicyDescription'
+      title: AuthorizationPolicy
+      type: object
+    sensorsdata.horizon.v1.CreatePublicDatabaseRequest:
+      description: 创建数据库
       properties:
         project_id:
           description: 项目 ID
           example: 1
           format: int32
           type: integer
-        db_name:
-          description: 数据库名
-          example: test_db
-          type: string
-        table_name:
-          description: 数据表名
-          example: test_table
-          type: string
-        expand:
-          description: "指定需要额外返回的字段\n 多个字段使用 `,` 分隔，可选值\n - custom_params\n - columns\n - source\n - business_scopes\n - access_info"
-          type: string
-      required:
-      - db_name
-      - project_id
-      - table_name
-      title: GetTableRequest
-      type: object
-    sensorsdata.horizon.v1.ListPublicDatabasesResponse:
-      description: ''
-      properties:
-        databases:
-          description: ''
-          items:
-            $ref: '#/components/schemas/sensorsdata.horizon.v1.Database'
-          type: array
-      title: ListPublicDatabasesResponse
-      type: object
-    sensorsdata.horizon.v1.AccessPolicyDescription:
-      description: ''
-      properties:
         database:
-          description: 数据库名
-          type: string
-        table:
-          description: 数据表名
-          type: string
-        columns:
-          description: 授权列
-          items:
-            type: string
-          type: array
-        conditions:
-          description: 授权策略条件
-          items:
-            $ref: '#/components/schemas/sensorsdata.horizon.v1.AuthorizationPolicyCondition'
-          type: array
-      title: AccessPolicyDescription
-      type: object
-    sensorsdata.common.ErrorInfo:
-      properties:
-        code:
-          description: 具体的错误码
-          example: XX-D-F-2-1
-          type: string
-        description:
-          description: 错误描述
-          example: 前端参数校验异常,PARAMETER_FORMAT_ERROR(quantiles=[10, -90] is not include [0, 100])
-          type: string
-        system_response:
-          description: 致错的可能原因列表
-          example: 系统终止了查询处理
-          type: string
-        error_causes:
-          items:
-            $ref: '#/components/schemas/sensorsdata.common.ErrorCause'
-          type: array
-        context:
-          $ref: '#/components/schemas/sensorsdata.common.ErrorContext'
-      title: ErrorInfo
-      type: object
-    sensorsdata.horizon.v1.Duty:
-      description: ''
-      properties:
-        id:
-          description: ''
-          type: string
-        project_id:
-          description: ''
-          format: int32
-          type: integer
-        name:
-          description: ''
-          type: string
-      title: Duty
+          $ref: '#/components/schemas/sensorsdata.horizon.v1.Database'
+      required:
+      - database
+      - project_id
+      title: CreatePublicDatabaseRequest
       type: object
     sensorsdata.horizon.v1.Table:
       description: 表
@@ -564,170 +990,20 @@ components:
       - type
       title: Table
       type: object
-    sensorsdata.horizon.v1.TableHttpApiResult:
+    sensorsdata.horizon.v1.CreateTableRequest:
+      description: 创建数据表
       properties:
-        code:
-          type: string
-        message:
-          type: string
-        request_id:
-          type: string
-        data:
+        project_id:
+          description: 项目 ID
+          example: 1
+          format: int32
+          type: integer
+        table:
           $ref: '#/components/schemas/sensorsdata.horizon.v1.Table'
-        error_info:
-          $ref: '#/components/schemas/sensorsdata.common.ErrorInfo'
-      title: sensorsdata.horizon.v1.TableHttpApiResult
-      type: object
-    sensorsdata.common.ErrorContext:
-      description: 发生错误时，系统快照信息
-      properties:
-        origin_stack:
-          description: 上游异常的 stack，由系统截获
-          type: string
-        origin_cause:
-          description: 上游异常的 cause by，由系统截获
-          type: string
-        origin_code:
-          description: 上游异常的错误简码
-          type: string
-        origin_complete_code:
-          description: 上游异常的完整错误码
-          type: string
-        error_extend_desc:
-          description: 本次异常的辅助说明，可传入
-          type: string
-      title: ErrorContext
-      type: object
-    sensorsdata.horizon.v1.ListPublicDatabasesRequest:
-      description: 批量查询数据库信息
-      properties:
-        project_id:
-          description: 项目 ID
-          example: 1
-          format: int32
-          type: integer
-        db_names:
-          description: 查询的数据库名
-          items:
-            type: string
-          type: array
-        created_bies:
-          description: 查询的数据库创建者
-          items:
-            type: string
-          type: array
-        expand:
-          description: "指定需要额外返回的字段\n 多个字段使用 `,` 分隔，可选值\n - access_info"
-          example: access_info
-          type: string
       required:
       - project_id
-      title: ListPublicDatabasesRequest
-      type: object
-    sensorsdata.horizon.v1.Database:
-      description: 数据库
-      properties:
-        project_id:
-          description: 项目 ID
-          example: 1
-          format: int32
-          type: integer
-        name:
-          description: "数据库名\n 项目下唯一，命名规则 `^[a-z][a-z\\d_]{0,55}$`"
-          example: test_db
-          type: string
-        created_by:
-          description: "业务方\n 格式规范 `{组织名}.{应用名}`\n 系统已定义的业务方\n - sensorsdata.horizon\n - sensorsdata.integrator"
-          example: sensorsdata.integrator
-          type: string
-        access_info:
-          $ref: '#/components/schemas/sensorsdata.horizon.v1.AccessInfo'
-      required:
-      - created_by
-      - name
-      title: Database
-      type: object
-    sensorsdata.horizon.v1.UniqueKey:
-      description: "唯一键\n 是在逻辑层面上指定某一列的键值是唯一的，系统对该列的值不做任何校验"
-      properties:
-        name:
-          description: 名称
-          type: string
-        columns:
-          description: 列信息
-          items:
-            type: string
-          type: array
-      required:
-      - columns
-      title: UniqueKey
-      type: object
-    sensorsdata.horizon.v1.ListTablesResponse:
-      description: 批量查询数据表信息
-      properties:
-        tables:
-          description: ''
-          items:
-            $ref: '#/components/schemas/sensorsdata.horizon.v1.Table'
-          type: array
-        total_size:
-          description: 总数据条数
-          example: 1
-          format: int32
-          type: integer
-        has_next:
-          description: 是否还有下一页
-          example: false
-          type: boolean
-      title: ListTablesResponse
-      type: object
-    sensorsdata.horizon.v1.CreatePublicDatabaseRequest:
-      description: 创建数据库
-      properties:
-        project_id:
-          description: 项目 ID
-          example: 1
-          format: int32
-          type: integer
-        database:
-          $ref: '#/components/schemas/sensorsdata.horizon.v1.Database'
-      required:
-      - database
-      - project_id
-      title: CreatePublicDatabaseRequest
-      type: object
-    sensorsdata.common.ErrorCause:
-      properties:
-        error_cause:
-          description: 致错原因1
-          example: 参数异常1
-          type: string
-        action_suggestion:
-          description: 操作建议，针对该原因，建议的解决方式
-          example: 检测入参的数据类型1
-          type: string
-      title: ErrorCause
-      type: object
-    sensorsdata.horizon.v1.TableSource:
-      description: "由创建表的系统注明该表的生产来源\n 上层应用根据来源信息做列表过滤，如业务集市中，仅显示来源为 自定义 的表"
-      properties:
-        name:
-          description: "来源名称\n 命名规则 `^[a-z][a-z_\\.]{0,99}$`\n 格式规范 `sensorsdata.{应用名}.{来源名称}`\n 系统已定义的来源\n - sensorsdata.horizon.events_table 事件表\n - sensorsdata.horizon.user_table 用户表\n - sensorsdata.horizon.item_table 物品表\n - sensorsdata.horizon.detail_table 明细表\n - sensorsdata.horizon.segment 分群\n - sensorsdata.horizon.tag 标签\n - sensorsdata.horizon.custom_table 自定义表\n - sensorsdata.analytics.sql_table SQL 中间表"
-          example: sensorsdata.horizon.custom_table
-          type: string
-        display_name:
-          description: "来源显示名\n 长度不超过 100 个字符"
-          example: 自定义表
-          type: string
-        created_by:
-          description: "业务方\n 格式规范 `sensorsdata.{应用名}`\n 系统已定义的业务方\n - sensorsdata.horizon\n - sensorsdata.analytics"
-          example: sensorsdata.horizon
-          type: string
-      required:
-      - created_by
-      - display_name
-      - name
-      title: TableSource
+      - table
+      title: CreateTableRequest
       type: object
     sensorsdata.horizon.v1.ListTablesRequest:
       description: 批量查询数据表信息
@@ -770,43 +1046,6 @@ components:
       - db_name
       - project_id
       title: ListTablesRequest
-      type: object
-    sensorsdata.horizon.v1.AccessInfo:
-      description: 数据访问信息
-      properties:
-        creator_id:
-          description: 创建人 ID
-          type: string
-        modifier_id:
-          description: 最近一次修改人 ID
-          type: string
-        create_time:
-          description: 创建时间
-          format: date-time
-          type: string
-        update_time:
-          description: 最近一次修改时间
-          format: date-time
-          type: string
-      title: AccessInfo
-      type: object
-    sensorsdata.horizon.v1.Role:
-      description: ''
-      properties:
-        id:
-          description: ''
-          type: string
-        project_id:
-          description: ''
-          format: int32
-          type: integer
-        name:
-          description: ''
-          type: string
-        cname:
-          description: ''
-          type: string
-      title: Role
       type: object
     sensorsdata.horizon.v1.ListPublicDatabasesResponseHttpApiResult:
       properties:
@@ -853,19 +1092,95 @@ components:
           type: array
       title: AuthorizationPolicyCondition
       type: object
-    sensorsdata.horizon.v1.DatabaseHttpApiResult:
+    sensorsdata.common.ErrorContext:
+      description: 发生错误时，系统快照信息
+      properties:
+        origin_stack:
+          description: 上游异常的 stack，由系统截获
+          type: string
+        origin_cause:
+          description: 上游异常的 cause by，由系统截获
+          type: string
+        origin_code:
+          description: 上游异常的错误简码
+          type: string
+        origin_complete_code:
+          description: 上游异常的完整错误码
+          type: string
+        error_extend_desc:
+          description: 本次异常的辅助说明，可传入
+          type: string
+      title: ErrorContext
+      type: object
+    sensorsdata.horizon.v1.Duty:
+      description: ''
+      properties:
+        id:
+          description: ''
+          type: string
+        project_id:
+          description: ''
+          format: int32
+          type: integer
+        name:
+          description: ''
+          type: string
+      title: Duty
+      type: object
+    sensorsdata.common.ErrorInfo:
       properties:
         code:
+          description: 具体的错误码
+          example: XX-D-F-2-1
           type: string
-        message:
+        description:
+          description: 错误描述
+          example: 前端参数校验异常,PARAMETER_FORMAT_ERROR(quantiles=[10, -90] is not include [0, 100])
           type: string
-        request_id:
+        system_response:
+          description: 致错的可能原因列表
+          example: 系统终止了查询处理
           type: string
-        data:
-          $ref: '#/components/schemas/sensorsdata.horizon.v1.Database'
-        error_info:
-          $ref: '#/components/schemas/sensorsdata.common.ErrorInfo'
-      title: sensorsdata.horizon.v1.DatabaseHttpApiResult
+        error_causes:
+          items:
+            $ref: '#/components/schemas/sensorsdata.common.ErrorCause'
+          type: array
+        context:
+          $ref: '#/components/schemas/sensorsdata.common.ErrorContext'
+      title: ErrorInfo
+      type: object
+    sensorsdata.horizon.v1.ListPublicDatabasesResponse:
+      description: ''
+      properties:
+        databases:
+          description: ''
+          items:
+            $ref: '#/components/schemas/sensorsdata.horizon.v1.Database'
+          type: array
+      title: ListPublicDatabasesResponse
+      type: object
+    sensorsdata.horizon.v1.Database:
+      description: 数据库
+      properties:
+        project_id:
+          description: 项目 ID
+          example: 1
+          format: int32
+          type: integer
+        name:
+          description: "数据库名\n 项目下唯一，命名规则 `^[a-z][a-z\\d_]{0,55}$`"
+          example: test_db
+          type: string
+        created_by:
+          description: "业务方\n 格式规范 `{组织名}.{应用名}`\n 系统已定义的业务方\n - sensorsdata.horizon\n - sensorsdata.integrator"
+          example: sensorsdata.integrator
+          type: string
+        access_info:
+          $ref: '#/components/schemas/sensorsdata.horizon.v1.AccessInfo'
+      required:
+      - created_by
+      - name
+      title: Database
       type: object
     sensorsdata.horizon.v1.TableProperties:
       description: 表配置参数
@@ -881,27 +1196,79 @@ components:
           type: boolean
       title: TableProperties
       type: object
-    sensorsdata.horizon.v1.Account:
+    sensorsdata.horizon.v1.AccessPolicyDescription:
       description: ''
       properties:
-        id:
-          description: ''
+        database:
+          description: 数据库名
           type: string
-        name:
-          description: ''
+        table:
+          description: 数据表名
           type: string
-        cname:
-          description: ''
-          type: string
-        tokens:
-          description: ''
+        columns:
+          description: 授权列
           items:
             type: string
           type: array
-        available:
-          description: ''
-          type: boolean
-      title: Account
+        conditions:
+          description: 授权策略条件
+          items:
+            $ref: '#/components/schemas/sensorsdata.horizon.v1.AuthorizationPolicyCondition'
+          type: array
+      title: AccessPolicyDescription
+      type: object
+    sensorsdata.horizon.v1.DatabaseHttpApiResult:
+      properties:
+        code:
+          type: string
+        message:
+          type: string
+        request_id:
+          type: string
+        data:
+          $ref: '#/components/schemas/sensorsdata.horizon.v1.Database'
+        error_info:
+          $ref: '#/components/schemas/sensorsdata.common.ErrorInfo'
+      title: sensorsdata.horizon.v1.DatabaseHttpApiResult
+      type: object
+    sensorsdata.horizon.v1.GetTableRequest:
+      description: 查询数据表信息
+      properties:
+        project_id:
+          description: 项目 ID
+          example: 1
+          format: int32
+          type: integer
+        db_name:
+          description: 数据库名
+          example: test_db
+          type: string
+        table_name:
+          description: 数据表名
+          example: test_table
+          type: string
+        expand:
+          description: "指定需要额外返回的字段\n 多个字段使用 `,` 分隔，可选值\n - custom_params\n - columns\n - source\n - business_scopes\n - access_info"
+          type: string
+      required:
+      - db_name
+      - project_id
+      - table_name
+      title: GetTableRequest
+      type: object
+    sensorsdata.horizon.v1.TableHttpApiResult:
+      properties:
+        code:
+          type: string
+        message:
+          type: string
+        request_id:
+          type: string
+        data:
+          $ref: '#/components/schemas/sensorsdata.horizon.v1.Table'
+        error_info:
+          $ref: '#/components/schemas/sensorsdata.common.ErrorInfo'
+      title: sensorsdata.horizon.v1.TableHttpApiResult
       type: object
     sensorsdata.horizon.v1.TableBusinessScope:
       description: "数据表业务范围\n 定义表适用于哪些应用，方便对表进行管理"
@@ -924,34 +1291,17 @@ components:
       - name
       title: TableBusinessScope
       type: object
-    sensorsdata.horizon.v1.CreateTableRequest:
-      description: 创建数据表
+    sensorsdata.common.ErrorCause:
       properties:
-        project_id:
-          description: 项目 ID
-          example: 1
-          format: int32
-          type: integer
-        table:
-          $ref: '#/components/schemas/sensorsdata.horizon.v1.Table'
-      required:
-      - project_id
-      - table
-      title: CreateTableRequest
-      type: object
-    sensorsdata.horizon.v1.ListTablesResponseHttpApiResult:
-      properties:
-        code:
+        error_cause:
+          description: 致错原因1
+          example: 参数异常1
           type: string
-        message:
+        action_suggestion:
+          description: 操作建议，针对该原因，建议的解决方式
+          example: 检测入参的数据类型1
           type: string
-        request_id:
-          type: string
-        data:
-          $ref: '#/components/schemas/sensorsdata.horizon.v1.ListTablesResponse'
-        error_info:
-          $ref: '#/components/schemas/sensorsdata.common.ErrorInfo'
-      title: sensorsdata.horizon.v1.ListTablesResponseHttpApiResult
+      title: ErrorCause
       type: object
     sensorsdata.horizon.v1.Column:
       description: 数据表列定义
@@ -995,23 +1345,159 @@ components:
       - name
       title: Column
       type: object
-    sensorsdata.horizon.v1.AuthorizationPolicy:
-      description: 授权策略
+    sensorsdata.horizon.v1.ListTablesResponseHttpApiResult:
+      properties:
+        code:
+          type: string
+        message:
+          type: string
+        request_id:
+          type: string
+        data:
+          $ref: '#/components/schemas/sensorsdata.horizon.v1.ListTablesResponse'
+        error_info:
+          $ref: '#/components/schemas/sensorsdata.common.ErrorInfo'
+      title: sensorsdata.horizon.v1.ListTablesResponseHttpApiResult
+      type: object
+    sensorsdata.horizon.v1.ListPublicDatabasesRequest:
+      description: 批量查询数据库信息
+      properties:
+        project_id:
+          description: 项目 ID
+          example: 1
+          format: int32
+          type: integer
+        db_names:
+          description: 查询的数据库名
+          items:
+            type: string
+          type: array
+        created_bies:
+          description: 查询的数据库创建者
+          items:
+            type: string
+          type: array
+        expand:
+          description: "指定需要额外返回的字段\n 多个字段使用 `,` 分隔，可选值\n - access_info"
+          example: access_info
+          type: string
+      required:
+      - project_id
+      title: ListPublicDatabasesRequest
+      type: object
+    sensorsdata.horizon.v1.TableSource:
+      description: "由创建表的系统注明该表的生产来源\n 上层应用根据来源信息做列表过滤，如业务集市中，仅显示来源为 自定义 的表"
+      properties:
+        name:
+          description: "来源名称\n 命名规则 `^[a-z][a-z_\\.]{0,99}$`\n 格式规范 `sensorsdata.{应用名}.{来源名称}`\n 系统已定义的来源\n - sensorsdata.horizon.events_table 事件表\n - sensorsdata.horizon.user_table 用户表\n - sensorsdata.horizon.item_table 物品表\n - sensorsdata.horizon.detail_table 明细表\n - sensorsdata.horizon.segment 分群\n - sensorsdata.horizon.tag 标签\n - sensorsdata.horizon.custom_table 自定义表\n - sensorsdata.analytics.sql_table SQL 中间表"
+          example: sensorsdata.horizon.custom_table
+          type: string
+        display_name:
+          description: "来源显示名\n 长度不超过 100 个字符"
+          example: 自定义表
+          type: string
+        created_by:
+          description: "业务方\n 格式规范 `sensorsdata.{应用名}`\n 系统已定义的业务方\n - sensorsdata.horizon\n - sensorsdata.analytics"
+          example: sensorsdata.horizon
+          type: string
+      required:
+      - created_by
+      - display_name
+      - name
+      title: TableSource
+      type: object
+    sensorsdata.horizon.v1.UniqueKey:
+      description: "唯一键\n 是在逻辑层面上指定某一列的键值是唯一的，系统对该列的值不做任何校验"
+      properties:
+        name:
+          description: 名称
+          type: string
+        columns:
+          description: 列信息
+          items:
+            type: string
+          type: array
+      required:
+      - columns
+      title: UniqueKey
+      type: object
+    sensorsdata.horizon.v1.Role:
+      description: ''
       properties:
         id:
-          description: 授权策略 ID，可唯一标识单个授权策略。
+          description: ''
           type: string
-        type:
-          description: 授权策略类型
-          enum:
-          - TYPE_UNSPECIFIED
-          - ACCESS
-          - DATAMASK
-          - ROWFILTER
+        project_id:
+          description: ''
+          format: int32
+          type: integer
+        name:
+          description: ''
           type: string
-        access_policy_description:
-          $ref: '#/components/schemas/sensorsdata.horizon.v1.AccessPolicyDescription'
-      title: AuthorizationPolicy
+        cname:
+          description: ''
+          type: string
+      title: Role
+      type: object
+    sensorsdata.horizon.v1.ListTablesResponse:
+      description: 批量查询数据表信息
+      properties:
+        tables:
+          description: ''
+          items:
+            $ref: '#/components/schemas/sensorsdata.horizon.v1.Table'
+          type: array
+        total_size:
+          description: 总数据条数
+          example: 1
+          format: int32
+          type: integer
+        has_next:
+          description: 是否还有下一页
+          example: false
+          type: boolean
+      title: ListTablesResponse
+      type: object
+    sensorsdata.horizon.v1.Account:
+      description: ''
+      properties:
+        id:
+          description: ''
+          type: string
+        name:
+          description: ''
+          type: string
+        cname:
+          description: ''
+          type: string
+        tokens:
+          description: ''
+          items:
+            type: string
+          type: array
+        available:
+          description: ''
+          type: boolean
+      title: Account
+      type: object
+    sensorsdata.horizon.v1.AccessInfo:
+      description: 数据访问信息
+      properties:
+        creator_id:
+          description: 创建人 ID
+          type: string
+        modifier_id:
+          description: 最近一次修改人 ID
+          type: string
+        create_time:
+          description: 创建时间
+          format: date-time
+          type: string
+        update_time:
+          description: 最近一次修改时间
+          format: date-time
+          type: string
+      title: AccessInfo
       type: object
 x-sd-openapi-service-name: Table
 x-sd-openapi-service-name-hyphen: table

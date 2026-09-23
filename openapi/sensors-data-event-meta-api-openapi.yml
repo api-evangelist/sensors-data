@@ -10,7 +10,6 @@ tags:
 paths:
   /event-meta/events/all:
     get:
-      description: 获取事件列表
       operationId: ListEventsAll
       parameters:
       - description: 全局唯一的密钥，用于验证和授权访问 API 接口
@@ -49,7 +48,6 @@ paths:
       - Event Meta
   /event-meta/events/tags:
     get:
-      description: 获取事件标签列表
       operationId: ListEventTags
       parameters:
       - description: 全局唯一的密钥，用于验证和授权访问 API 接口
@@ -88,30 +86,6 @@ paths:
       - Event Meta
 components:
   schemas:
-    sensorsdata.analytics.v1.ListEventAllResponse:
-      description: ''
-      properties:
-        events:
-          description: 事件列表
-          items:
-            $ref: '#/components/schemas/sensorsdata.analytics.v1.EventDefine'
-          type: array
-      title: ListEventAllResponse
-      type: object
-    sensorsdata.analytics.v1.ListEventAllResponseHttpApiResult:
-      properties:
-        code:
-          type: string
-        message:
-          type: string
-        request_id:
-          type: string
-        data:
-          $ref: '#/components/schemas/sensorsdata.analytics.v1.ListEventAllResponse'
-        error_info:
-          $ref: '#/components/schemas/sensorsdata.common.ErrorInfo'
-      title: sensorsdata.analytics.v1.ListEventAllResponseHttpApiResult
-      type: object
     sensorsdata.common.ErrorContext:
       description: 发生错误时，系统快照信息
       properties:
@@ -131,6 +105,52 @@ components:
           description: 本次异常的辅助说明，可传入
           type: string
       title: ErrorContext
+      type: object
+    sensorsdata.analytics.v1.ListEventTagsResponse:
+      description: ''
+      properties:
+        tag_infos:
+          description: 事件列表
+          items:
+            $ref: '#/components/schemas/sensorsdata.analytics.v1.TagInfo'
+          type: array
+      title: ListEventTagsResponse
+      type: object
+    sensorsdata.common.ErrorInfo:
+      properties:
+        code:
+          description: 具体的错误码
+          example: XX-D-F-2-1
+          type: string
+        description:
+          description: 错误描述
+          example: 前端参数校验异常,PARAMETER_FORMAT_ERROR(quantiles=[10, -90] is not include [0, 100])
+          type: string
+        system_response:
+          description: 致错的可能原因列表
+          example: 系统终止了查询处理
+          type: string
+        error_causes:
+          items:
+            $ref: '#/components/schemas/sensorsdata.common.ErrorCause'
+          type: array
+        context:
+          $ref: '#/components/schemas/sensorsdata.common.ErrorContext'
+      title: ErrorInfo
+      type: object
+    sensorsdata.analytics.v1.ListEventAllResponseHttpApiResult:
+      properties:
+        code:
+          type: string
+        message:
+          type: string
+        request_id:
+          type: string
+        data:
+          $ref: '#/components/schemas/sensorsdata.analytics.v1.ListEventAllResponse'
+        error_info:
+          $ref: '#/components/schemas/sensorsdata.common.ErrorInfo'
+      title: sensorsdata.analytics.v1.ListEventAllResponseHttpApiResult
       type: object
     sensorsdata.analytics.v1.EventDefine:
       description: ''
@@ -179,20 +199,6 @@ components:
           type: string
       title: EventDefine
       type: object
-    sensorsdata.analytics.v1.ListEventTagsResponseHttpApiResult:
-      properties:
-        code:
-          type: string
-        message:
-          type: string
-        request_id:
-          type: string
-        data:
-          $ref: '#/components/schemas/sensorsdata.analytics.v1.ListEventTagsResponse'
-        error_info:
-          $ref: '#/components/schemas/sensorsdata.common.ErrorInfo'
-      title: sensorsdata.analytics.v1.ListEventTagsResponseHttpApiResult
-      type: object
     sensorsdata.analytics.v1.TagInfo:
       description: ''
       properties:
@@ -208,15 +214,29 @@ components:
           type: string
       title: TagInfo
       type: object
-    sensorsdata.analytics.v1.ListEventTagsResponse:
+    sensorsdata.analytics.v1.ListEventAllResponse:
       description: ''
       properties:
-        tag_infos:
+        events:
           description: 事件列表
           items:
-            $ref: '#/components/schemas/sensorsdata.analytics.v1.TagInfo'
+            $ref: '#/components/schemas/sensorsdata.analytics.v1.EventDefine'
           type: array
-      title: ListEventTagsResponse
+      title: ListEventAllResponse
+      type: object
+    sensorsdata.analytics.v1.ListEventTagsResponseHttpApiResult:
+      properties:
+        code:
+          type: string
+        message:
+          type: string
+        request_id:
+          type: string
+        data:
+          $ref: '#/components/schemas/sensorsdata.analytics.v1.ListEventTagsResponse'
+        error_info:
+          $ref: '#/components/schemas/sensorsdata.common.ErrorInfo'
+      title: sensorsdata.analytics.v1.ListEventTagsResponseHttpApiResult
       type: object
     sensorsdata.common.ErrorCause:
       properties:
@@ -229,28 +249,6 @@ components:
           example: 检测入参的数据类型1
           type: string
       title: ErrorCause
-      type: object
-    sensorsdata.common.ErrorInfo:
-      properties:
-        code:
-          description: 具体的错误码
-          example: XX-D-F-2-1
-          type: string
-        description:
-          description: 错误描述
-          example: 前端参数校验异常,PARAMETER_FORMAT_ERROR(quantiles=[10, -90] is not include [0, 100])
-          type: string
-        system_response:
-          description: 致错的可能原因列表
-          example: 系统终止了查询处理
-          type: string
-        error_causes:
-          items:
-            $ref: '#/components/schemas/sensorsdata.common.ErrorCause'
-          type: array
-        context:
-          $ref: '#/components/schemas/sensorsdata.common.ErrorContext'
-      title: ErrorInfo
       type: object
 x-sd-openapi-service-name: EventMeta
 x-sd-openapi-service-name-hyphen: event-meta

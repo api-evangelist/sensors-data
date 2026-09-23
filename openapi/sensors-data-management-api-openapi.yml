@@ -548,7 +548,6 @@ paths:
       - Management
   /management/product/versions:
     get:
-      description: 查询私有端的版本信息
       operationId: GetAllProductVersion
       parameters:
       - description: 全局唯一的密钥，用于验证和授权访问 API 接口
@@ -634,55 +633,75 @@ paths:
       - Management
 components:
   schemas:
-    sensorsdata.portal.v2.api.GetProjectsByAccountIdResponse:
-      description: 项目列表的响应对象
+    sensorsdata.portal.v2.api.PageInfo:
+      description: 分页信息
       properties:
-        projects:
-          description: 项目信息
-          items:
-            $ref: '#/components/schemas/sensorsdata.portal.v2.api.Project'
-          type: array
-      title: GetProjectsByAccountIdResponse
+        current_page:
+          description: 当前页，起始页号：1
+          example: 1
+          format: int32
+          type: integer
+        page_count:
+          description: 总页数
+          example: 100
+          format: int32
+          type: integer
+        total:
+          description: 总条数
+          example: 100
+          format: int32
+          type: integer
+      title: PageInfo
       type: object
-    sensorsdata.portal.v2.api.NoticeMessageRequestBody:
-      description: ''
+    sensorsdata.portal.v2.api.ListOpenApiLogsResponseHttpApiResult:
       properties:
-        uuid:
-          description: 消息 id，消息唯一标识，用于实现幂等发送消息。若不填，系统将会自动生成一个唯一的消息标识
-          example: 38135721-2938-4585-b19b-396ceb910d88
+        code:
           type: string
-        priority:
-          description: 消息优先级，默认为 MIDDLE。可选项：LOW、MEDDLE、HIGH
-          enum:
-          - PRIORITY_UNSPECIFIED
-          - LOW
-          - MEDDLE
-          - HIGH
-          example: MEDDLE
+        message:
           type: string
-        operation_type:
-          description: 操作类型，不同的操作类型将显示不同的消息格式。可选项：DEFAULT、DOWNLOAD、DASHBOARD、QUERY、ALARM、EXAMINE
-          example: QUERY
+        request_id:
           type: string
-        description:
-          description: "通知消息描述，固定格式的 json 字符串；常见的操作类型的对应的格式如下：\n ```\n QUERY: {\n    // 消息的跳转链接\n   \"jump_url\": \"https://www.sensorsdata.cn/\",\n   \"content\": {\n      // 消息的标题\n     \"line\": \"分析查询\",\n      // 消息的内容\n     \"line2\": \"欢迎使用神策分析\",\n      // 消息的保留天数\n     \"reservation_day\": 19986,\n      // 如果为 true，消息卡片将显示计算成功。如果为 false，消息卡片将显示计算失败\n     \"is_success\": true\n   }\n }\n DOWNLOAD: {\n   // 消息的跳转链接\n   \"jump_url\": \"https://www.sensorsdata.cn/\",\n   \"content\": {\n      // 消息提示\n     \"line\": \"下载成功\",\n      // 该字段为 true，消息的标题将显示导出成功，为 false 将显示文件导出失败\n     \"is_success\": true,\n      // 消息的保留天数\n     \"reservation_day\": 19155,\n   }\n }\n DASHBOARD: {\n    // 消息标题的一部分\n   \"operator\": \"神策军\",\n    // 消息标题的一部分\n   \"action\": \"共享\",\n    // 消息的文本内容\n   \"content\": \"欢迎使用神策分析\"\n }\n ```"
-          example: '{"jump_url": "https://www.sensorsdata.cn/", "content": {"line": "神策数据", "line2": "欢迎使用神策分析", "reservation_day": 18924,"is_success": true}}'
-          type: string
-        accounts:
-          description: 消息发送的用户 id 列表，如果 to_all_accounts 为 false, accounts 参数必填。如果 to_all_accounts 为 true, accounts 可以不填。
-          example: '[1,2,3]'
+        data:
+          $ref: '#/components/schemas/sensorsdata.portal.v2.api.ListOpenApiLogsResponse'
+        error_info:
+          $ref: '#/components/schemas/sensorsdata.common.ErrorInfo'
+      title: sensorsdata.portal.v2.api.ListOpenApiLogsResponseHttpApiResult
+      type: object
+    sensorsdata.portal.v2.api.ListOpenApiLogsResponse:
+      description: 「查询 OpenAPI 调用日志」的响应对象
+      properties:
+        logs:
+          description: OpenAPI 调用日志列表
           items:
-            format: int32
-            type: integer
+            $ref: '#/components/schemas/sensorsdata.portal.v2.api.OpenApiLogResult'
           type: array
-        to_all_accounts:
-          description: 是否发送给所有账户。true 表示发送给全部账户，默认值为 false。
-          example: false
-          type: boolean
-      required:
-      - description
-      - operation_type
-      title: NoticeMessageRequestBody
+        total:
+          description: 符合条件的日志总数
+          example: 100
+          format: int64
+          type: integer
+        page_num:
+          description: 当前页码
+          example: 1
+          format: int32
+          type: integer
+        page_size:
+          description: 每页返回条数
+          example: 20
+          format: int32
+          type: integer
+      title: ListOpenApiLogsResponse
+      type: object
+    sensorsdata.portal.v2.api.ListBehaviorRequestBody:
+      description: 「获取操作日志列表」的请求对象
+      properties:
+        operation_types:
+          description: 操作类型，该字段仅当指定了功能模块时生效，若没有指定 module，该字段会被忽略，该字段由 sbp_behavior_define.operation_type 定义
+          example: '[login,logout]'
+          items:
+            type: string
+          type: array
+      title: ListBehaviorRequest
       type: object
     sensorsdata.portal.v2.api.ProjectWithConfigHttpApiResult:
       properties:
@@ -698,6 +717,20 @@ components:
           $ref: '#/components/schemas/sensorsdata.common.ErrorInfo'
       title: sensorsdata.portal.v2.api.ProjectWithConfigHttpApiResult
       type: object
+    sensorsdata.portal.v2.api.ListBehaviorDefineResponseHttpApiResult:
+      properties:
+        code:
+          type: string
+        message:
+          type: string
+        request_id:
+          type: string
+        data:
+          $ref: '#/components/schemas/sensorsdata.portal.v2.api.ListBehaviorDefineResponse'
+        error_info:
+          $ref: '#/components/schemas/sensorsdata.common.ErrorInfo'
+      title: sensorsdata.portal.v2.api.ListBehaviorDefineResponseHttpApiResult
+      type: object
     sensorsdata.portal.v2.api.AllProductVersionResponseHttpApiResult:
       properties:
         code:
@@ -712,57 +745,20 @@ components:
           $ref: '#/components/schemas/sensorsdata.common.ErrorInfo'
       title: sensorsdata.portal.v2.api.AllProductVersionResponseHttpApiResult
       type: object
-    sensorsdata.portal.v2.api.NoticeMessage:
-      description: ''
+    sensorsdata.portal.v2.api.ListProjectResponse:
+      description: 项目列表的响应对象
       properties:
-        id:
-          description: 消息 id
-          example: 1
+        projects:
+          description: 项目信息和项目配置
+          items:
+            $ref: '#/components/schemas/sensorsdata.portal.v2.api.ProjectWithConfig'
+          type: array
+        total:
+          description: 项目数量
+          example: 10
           format: int32
           type: integer
-        uuid:
-          description: 消息 uuid
-          example: 38135721-2938-4585-b19b-396ceb910d88
-          type: string
-        product_line:
-          description: 所属的产品线，例如：SA、SBP、SF
-          example: SA
-          type: string
-        priority:
-          description: 优先级，分为高/中/低三个等级，例如：LOW、MEDDLE、HIGH
-          enum:
-          - PRIORITY_UNSPECIFIED
-          - LOW
-          - MEDDLE
-          - HIGH
-          example: LOW
-          type: string
-        operation_type:
-          description: 操作类型，例如：DEFAULT、DOWNLOAD、DASHBOARD、QUERY、ALARM、EXAMINE
-          example: DASHBOARD
-          type: string
-        description:
-          description: 消息描述，和发送消息时指定的 description 字段保持一致
-          example: ''
-          type: string
-        operation_time:
-          description: 消息的发送时间，日期格式：yyyy-MM-dd HH:mm:ss
-          example: '2022-01-01 00:00:00'
-          type: string
-      title: NoticeMessage
-      type: object
-    sensorsdata.portal.v2.api.ProductVersion:
-      description: 产品线版本信息
-      properties:
-        product_name:
-          description: 产品线名称
-          example: SBP
-          type: string
-        product_version:
-          description: 产品线版本
-          example: 1.5.1.224
-          type: string
-      title: ProductVersion
+      title: ListProjectResponse
       type: object
     sensorsdata.portal.v2.api.Project:
       description: 项目信息
@@ -795,29 +791,65 @@ components:
           type: string
       title: Project
       type: object
-    sensorsdata.portal.v2.I18nEntry:
-      description: crowdin 定义的国际化信息
-      properties:
-        i18n_key:
-          description: crowdin 上定义的文本模版的key
-          example: sbp-behavior-description-content-{product}-{module}-{operationDescription}="角色「{roleName}」"
-          type: string
-        i18n_args:
-          additionalProperties:
-            description: ''
-            type: string
-          description: 替换 crowdin 上定义的文本模版的参数
-          example:
-            roleName: 测试角色
-          type: object
-      title: I18nEntry
-      type: object
-    sensorsdata.portal.v2.api.NoticeMessageResponse:
+    sensorsdata.portal.v2.api.ListBehaviorDefineResponse:
       description: ''
       properties:
-        notice:
-          $ref: '#/components/schemas/sensorsdata.portal.v2.api.NoticeMessage'
-      title: NoticeMessageResponse
+        behavior_defines:
+          description: 已注册的「操作日志定义」列表
+          items:
+            $ref: '#/components/schemas/sensorsdata.portal.v2.api.BehaviorDefine'
+          type: array
+        page:
+          $ref: '#/components/schemas/sensorsdata.portal.v2.api.PageInfo'
+      title: ListBehaviorDefineResponse
+      type: object
+    sensorsdata.portal.v2.api.StringList:
+      description: 字符串列表，常用于 map<string, StringList> 形态承载多值属性
+      properties:
+        values:
+          description: 字符串值列表
+          example: v1
+          items:
+            type: string
+          type: array
+      title: StringList
+      type: object
+    sensorsdata.portal.v2.BehaviorDescription:
+      description: ''
+      properties:
+        content:
+          description: "文本模版，描述的主体内容，支持用 ${} 作为占位符，占位符内填写 BehaviorDescriptionArgument 的 key 字段\n 表示该占位符会被替换"
+          example: 导出用户分群「分群-501」用户 ${linkA}
+          type: string
+        args:
+          description: 替换文本中占位符的参数
+          example: '[{"key": "linkA","type": "link","name": "用户分群","value": "a.com"}]'
+          items:
+            $ref: '#/components/schemas/sensorsdata.portal.v2.BehaviorDescriptionArgument'
+          type: array
+        description_i18n:
+          $ref: '#/components/schemas/sensorsdata.portal.v2.I18nEntry'
+      title: BehaviorDescription
+      type: object
+    sensorsdata.common.ErrorContext:
+      description: 发生错误时，系统快照信息
+      properties:
+        origin_stack:
+          description: 上游异常的 stack，由系统截获
+          type: string
+        origin_cause:
+          description: 上游异常的 cause by，由系统截获
+          type: string
+        origin_code:
+          description: 上游异常的错误简码
+          type: string
+        origin_complete_code:
+          description: 上游异常的完整错误码
+          type: string
+        error_extend_desc:
+          description: 本次异常的辅助说明，可传入
+          type: string
+      title: ErrorContext
       type: object
     sensorsdata.common.ErrorInfo:
       properties:
@@ -840,162 +872,6 @@ components:
         context:
           $ref: '#/components/schemas/sensorsdata.common.ErrorContext'
       title: ErrorInfo
-      type: object
-    sensorsdata.portal.v2.api.NoticeMessageResponseHttpApiResult:
-      properties:
-        code:
-          type: string
-        message:
-          type: string
-        request_id:
-          type: string
-        data:
-          $ref: '#/components/schemas/sensorsdata.portal.v2.api.NoticeMessageResponse'
-        error_info:
-          $ref: '#/components/schemas/sensorsdata.common.ErrorInfo'
-      title: sensorsdata.portal.v2.api.NoticeMessageResponseHttpApiResult
-      type: object
-    sensorsdata.portal.v2.api.GetProjectsByAccountIdResponseHttpApiResult:
-      properties:
-        code:
-          type: string
-        message:
-          type: string
-        request_id:
-          type: string
-        data:
-          $ref: '#/components/schemas/sensorsdata.portal.v2.api.GetProjectsByAccountIdResponse'
-        error_info:
-          $ref: '#/components/schemas/sensorsdata.common.ErrorInfo'
-      title: sensorsdata.portal.v2.api.GetProjectsByAccountIdResponseHttpApiResult
-      type: object
-    sensorsdata.common.ErrorContext:
-      description: 发生错误时，系统快照信息
-      properties:
-        origin_stack:
-          description: 上游异常的 stack，由系统截获
-          type: string
-        origin_cause:
-          description: 上游异常的 cause by，由系统截获
-          type: string
-        origin_code:
-          description: 上游异常的错误简码
-          type: string
-        origin_complete_code:
-          description: 上游异常的完整错误码
-          type: string
-        error_extend_desc:
-          description: 本次异常的辅助说明，可传入
-          type: string
-      title: ErrorContext
-      type: object
-    sensorsdata.portal.v2.BehaviorDescriptionArgument:
-      description: ''
-      properties:
-        key:
-          description: 占位符 key，表示被替换的关键字
-          example: id
-          type: string
-        type:
-          description: 替换参数的类型，可选值 [link, file]，link 表示链接，file 表示文件
-          example: 职位
-          type: string
-        name:
-          description: 替换后的展示名称
-          example: '4'
-          type: string
-        value:
-          description: 链接的值
-          example: /sts/users?project=default
-          type: string
-        name_i18n_key:
-          description: 替换后的展示名称的国际化key
-          example: sbp-behavior-description-content-args-name-sa-dashboard-view
-          type: string
-      title: BehaviorDescriptionArgument
-      type: object
-    sensorsdata.portal.v2.api.ProjectConfig:
-      description: 项目配置信息
-      properties:
-        is_duty_required:
-          description: 是否需要职务
-          example: true
-          type: boolean
-        customize_default_roles:
-          description: 当前项目自定义默认角色的名字
-          example: admin
-          type: string
-        is_csm:
-          description: 是否为客景类项目
-          example: false
-          type: boolean
-        is_new_sign_up:
-          description: 多设备 ID 关联，开启后不能再关闭
-          example: false
-          type: boolean
-        is_schema_limited:
-          description: '是否开启强 Schema 模式；true: Schema Limited，false: Schema Free'
-          example: false
-          type: boolean
-      title: ProjectConfig
-      type: object
-    sensorsdata.common.ErrorCause:
-      properties:
-        error_cause:
-          description: 致错原因1
-          example: 参数异常1
-          type: string
-        action_suggestion:
-          description: 操作建议，针对该原因，建议的解决方式
-          example: 检测入参的数据类型1
-          type: string
-      title: ErrorCause
-      type: object
-    sensorsdata.portal.v2.api.AllProductVersionResponse:
-      description: 查询所有产品线版本信息返回值
-      properties:
-        product_versions:
-          description: 产品线版本列表
-          items:
-            $ref: '#/components/schemas/sensorsdata.portal.v2.api.ProductVersion'
-          type: array
-      title: AllProductVersionResponse
-      type: object
-    sensorsdata.portal.v2.api.BehaviorDefine:
-      description: ''
-      properties:
-        module:
-          description: 功能模块，该字段由 sbp_behavior_define.module 定义
-          example: passport
-          type: string
-        module_name:
-          description: 功能模块名称，该字段由 sbp_behavior_define.module_name 定义
-          example: 系统
-          type: string
-        operation_type:
-          description: 操作类型，该字段仅当指定了功能模块时生效，该字段由 sbp_behavior_define.operation_type 定义
-          example: login
-          type: string
-        operation_type_name:
-          description: 操作类型名称，该字段由 sbp_behavior_define.operation_type_name 定义
-          example: 登录
-          type: string
-        product:
-          description: 声明该「操作日志定义」的产品线
-          example: SBP
-          type: string
-      title: BehaviorDefine
-      type: object
-    sensorsdata.portal.v2.api.ListBehaviorRequestBody:
-      description: 「获取操作日志列表」的请求对象
-      properties:
-        operation_types:
-          description: 操作类型，该字段仅当指定了功能模块时生效，若没有指定 module，该字段会被忽略，该字段由 sbp_behavior_define.operation_type 定义
-          example: '[login,logout]'
-          items:
-            type: string
-          type: array
-      title: ListBehaviorRequest
       type: object
     sensorsdata.portal.v2.api.OpenApiLogResult:
       description: OpenAPI 调用日志查询结果
@@ -1081,25 +957,123 @@ components:
           type: object
       title: OpenApiLogResult
       type: object
-    sensorsdata.portal.v2.api.GetLicenseProductResponse:
-      description: 获取产品线的授权信息返回结果
+    sensorsdata.portal.v2.api.ProductVersion:
+      description: 产品线版本信息
       properties:
-        project_name:
-          description: 项目名称
-          example: production
-          type: string
         product_name:
           description: 产品线名称
           example: SBP
           type: string
-        authorized_modules:
-          description: 授权模块
-          items:
-            type: string
-          type: array
-      title: GetLicenseProductResponse
+        product_version:
+          description: 产品线版本
+          example: 1.5.1.224
+          type: string
+      title: ProductVersion
       type: object
-    sensorsdata.portal.v2.api.ListOpenApiLogsResponseHttpApiResult:
+    sensorsdata.portal.v2.BehaviorDescriptionArgument:
+      description: ''
+      properties:
+        key:
+          description: 占位符 key，表示被替换的关键字
+          example: id
+          type: string
+        type:
+          description: 替换参数的类型，可选值 [link, file]，link 表示链接，file 表示文件
+          example: 职位
+          type: string
+        name:
+          description: 替换后的展示名称
+          example: '4'
+          type: string
+        value:
+          description: 链接的值
+          example: /sts/users?project=default
+          type: string
+        name_i18n_key:
+          description: 替换后的展示名称的国际化key
+          example: sbp-behavior-description-content-args-name-sa-dashboard-view
+          type: string
+      title: BehaviorDescriptionArgument
+      type: object
+    sensorsdata.portal.v2.api.NoticeMessageResponse:
+      description: ''
+      properties:
+        notice:
+          $ref: '#/components/schemas/sensorsdata.portal.v2.api.NoticeMessage'
+      title: NoticeMessageResponse
+      type: object
+    sensorsdata.portal.v2.api.NoticeMessageRequestBody:
+      description: ''
+      properties:
+        uuid:
+          description: 消息 id，消息唯一标识，用于实现幂等发送消息。若不填，系统将会自动生成一个唯一的消息标识
+          example: 38135721-2938-4585-b19b-396ceb910d88
+          type: string
+        priority:
+          description: 消息优先级，默认为 MIDDLE。可选项：LOW、MEDDLE、HIGH
+          enum:
+          - PRIORITY_UNSPECIFIED
+          - LOW
+          - MEDDLE
+          - HIGH
+          example: MEDDLE
+          type: string
+        operation_type:
+          description: 操作类型，不同的操作类型将显示不同的消息格式。可选项：DEFAULT、DOWNLOAD、DASHBOARD、QUERY、ALARM、EXAMINE
+          example: QUERY
+          type: string
+        description:
+          description: "通知消息描述，固定格式的 json 字符串；常见的操作类型的对应的格式如下：\n ```\n QUERY: {\n    // 消息的跳转链接\n   \"jump_url\": \"https://www.sensorsdata.cn/\",\n   \"content\": {\n      // 消息的标题\n     \"line\": \"分析查询\",\n      // 消息的内容\n     \"line2\": \"欢迎使用神策分析\",\n      // 消息的保留天数\n     \"reservation_day\": 19986,\n      // 如果为 true，消息卡片将显示计算成功。如果为 false，消息卡片将显示计算失败\n     \"is_success\": true\n   }\n }\n DOWNLOAD: {\n   // 消息的跳转链接\n   \"jump_url\": \"https://www.sensorsdata.cn/\",\n   \"content\": {\n      // 消息提示\n     \"line\": \"下载成功\",\n      // 该字段为 true，消息的标题将显示导出成功，为 false 将显示文件导出失败\n     \"is_success\": true,\n      // 消息的保留天数\n     \"reservation_day\": 19155,\n   }\n }\n DASHBOARD: {\n    // 消息标题的一部分\n   \"operator\": \"神策军\",\n    // 消息标题的一部分\n   \"action\": \"共享\",\n    // 消息的文本内容\n   \"content\": \"欢迎使用神策分析\"\n }\n ```"
+          example: '{"jump_url": "https://www.sensorsdata.cn/", "content": {"line": "神策数据", "line2": "欢迎使用神策分析", "reservation_day": 18924,"is_success": true}}'
+          type: string
+        accounts:
+          description: 消息发送的用户 id 列表，如果 to_all_accounts 为 false, accounts 参数必填。如果 to_all_accounts 为 true, accounts 可以不填。
+          example: '[1,2,3]'
+          items:
+            format: int32
+            type: integer
+          type: array
+        to_all_accounts:
+          description: 是否发送给所有账户。true 表示发送给全部账户，默认值为 false。
+          example: false
+          type: boolean
+      required:
+      - description
+      - operation_type
+      title: NoticeMessageRequestBody
+      type: object
+    sensorsdata.portal.v2.api.GetProjectsByAccountIdResponse:
+      description: 项目列表的响应对象
+      properties:
+        projects:
+          description: 项目信息
+          items:
+            $ref: '#/components/schemas/sensorsdata.portal.v2.api.Project'
+          type: array
+      title: GetProjectsByAccountIdResponse
+      type: object
+    sensorsdata.portal.v2.api.ProjectWithConfig:
+      description: 项目信息和项目配置
+      properties:
+        project:
+          $ref: '#/components/schemas/sensorsdata.portal.v2.api.Project'
+        config:
+          $ref: '#/components/schemas/sensorsdata.portal.v2.api.ProjectConfig'
+      title: ProjectWithConfig
+      type: object
+    sensorsdata.portal.v2.api.ListBehaviorResponse:
+      description: 「获取操作日志」的响应对象
+      properties:
+        page:
+          $ref: '#/components/schemas/sensorsdata.portal.v2.api.PageInfo'
+        behavior_infos:
+          description: 操作日志信息
+          items:
+            $ref: '#/components/schemas/sensorsdata.portal.v2.api.BehaviorInfo'
+          type: array
+      title: ListBehaviorResponse
+      type: object
+    sensorsdata.portal.v2.api.GetProjectsByAccountIdResponseHttpApiResult:
       properties:
         code:
           type: string
@@ -1108,10 +1082,88 @@ components:
         request_id:
           type: string
         data:
-          $ref: '#/components/schemas/sensorsdata.portal.v2.api.ListOpenApiLogsResponse'
+          $ref: '#/components/schemas/sensorsdata.portal.v2.api.GetProjectsByAccountIdResponse'
         error_info:
           $ref: '#/components/schemas/sensorsdata.common.ErrorInfo'
-      title: sensorsdata.portal.v2.api.ListOpenApiLogsResponseHttpApiResult
+      title: sensorsdata.portal.v2.api.GetProjectsByAccountIdResponseHttpApiResult
+      type: object
+    sensorsdata.portal.v2.api.NoticeMessage:
+      description: ''
+      properties:
+        id:
+          description: 消息 id
+          example: 1
+          format: int32
+          type: integer
+        uuid:
+          description: 消息 uuid
+          example: 38135721-2938-4585-b19b-396ceb910d88
+          type: string
+        product_line:
+          description: 所属的产品线，例如：SA、SBP、SF
+          example: SA
+          type: string
+        priority:
+          description: 优先级，分为高/中/低三个等级，例如：LOW、MEDDLE、HIGH
+          enum:
+          - PRIORITY_UNSPECIFIED
+          - LOW
+          - MEDDLE
+          - HIGH
+          example: LOW
+          type: string
+        operation_type:
+          description: 操作类型，例如：DEFAULT、DOWNLOAD、DASHBOARD、QUERY、ALARM、EXAMINE
+          example: DASHBOARD
+          type: string
+        description:
+          description: 消息描述，和发送消息时指定的 description 字段保持一致
+          example: ''
+          type: string
+        operation_time:
+          description: 消息的发送时间，日期格式：yyyy-MM-dd HH:mm:ss
+          example: '2022-01-01 00:00:00'
+          type: string
+      title: NoticeMessage
+      type: object
+    sensorsdata.portal.v2.api.BehaviorDefine:
+      description: ''
+      properties:
+        module:
+          description: 功能模块，该字段由 sbp_behavior_define.module 定义
+          example: passport
+          type: string
+        module_name:
+          description: 功能模块名称，该字段由 sbp_behavior_define.module_name 定义
+          example: 系统
+          type: string
+        operation_type:
+          description: 操作类型，该字段仅当指定了功能模块时生效，该字段由 sbp_behavior_define.operation_type 定义
+          example: login
+          type: string
+        operation_type_name:
+          description: 操作类型名称，该字段由 sbp_behavior_define.operation_type_name 定义
+          example: 登录
+          type: string
+        product:
+          description: 声明该「操作日志定义」的产品线
+          example: SBP
+          type: string
+      title: BehaviorDefine
+      type: object
+    sensorsdata.portal.v2.api.GetLicenseProductResponseHttpApiResult:
+      properties:
+        code:
+          type: string
+        message:
+          type: string
+        request_id:
+          type: string
+        data:
+          $ref: '#/components/schemas/sensorsdata.portal.v2.api.GetLicenseProductResponse'
+        error_info:
+          $ref: '#/components/schemas/sensorsdata.common.ErrorInfo'
+      title: sensorsdata.portal.v2.api.GetLicenseProductResponseHttpApiResult
       type: object
     sensorsdata.portal.v2.api.ListBehaviorResponseHttpApiResult:
       properties:
@@ -1126,6 +1178,28 @@ components:
         error_info:
           $ref: '#/components/schemas/sensorsdata.common.ErrorInfo'
       title: sensorsdata.portal.v2.api.ListBehaviorResponseHttpApiResult
+      type: object
+    sensorsdata.portal.v2.api.AllProductVersionResponse:
+      description: 查询所有产品线版本信息返回值
+      properties:
+        product_versions:
+          description: 产品线版本列表
+          items:
+            $ref: '#/components/schemas/sensorsdata.portal.v2.api.ProductVersion'
+          type: array
+      title: AllProductVersionResponse
+      type: object
+    sensorsdata.common.ErrorCause:
+      properties:
+        error_cause:
+          description: 致错原因1
+          example: 参数异常1
+          type: string
+        action_suggestion:
+          description: 操作建议，针对该原因，建议的解决方式
+          example: 检测入参的数据类型1
+          type: string
+      title: ErrorCause
       type: object
     sensorsdata.portal.v2.api.BehaviorInfo:
       description: ''
@@ -1178,108 +1252,22 @@ components:
           type: string
       title: BehaviorInfo
       type: object
-    sensorsdata.portal.v2.BehaviorDescription:
-      description: ''
+    sensorsdata.portal.v2.I18nEntry:
+      description: crowdin 定义的国际化信息
       properties:
-        content:
-          description: "文本模版，描述的主体内容，支持用 ${} 作为占位符，占位符内填写 BehaviorDescriptionArgument 的 key 字段\n 表示该占位符会被替换"
-          example: 导出用户分群「分群-501」用户 ${linkA}
+        i18n_key:
+          description: crowdin 上定义的文本模版的key
+          example: sbp-behavior-description-content-{product}-{module}-{operationDescription}="角色「{roleName}」"
           type: string
-        args:
-          description: 替换文本中占位符的参数
-          example: '[{"key": "linkA","type": "link","name": "用户分群","value": "a.com"}]'
-          items:
-            $ref: '#/components/schemas/sensorsdata.portal.v2.BehaviorDescriptionArgument'
-          type: array
-        description_i18n:
-          $ref: '#/components/schemas/sensorsdata.portal.v2.I18nEntry'
-      title: BehaviorDescription
-      type: object
-    sensorsdata.portal.v2.api.ListBehaviorDefineResponseHttpApiResult:
-      properties:
-        code:
-          type: string
-        message:
-          type: string
-        request_id:
-          type: string
-        data:
-          $ref: '#/components/schemas/sensorsdata.portal.v2.api.ListBehaviorDefineResponse'
-        error_info:
-          $ref: '#/components/schemas/sensorsdata.common.ErrorInfo'
-      title: sensorsdata.portal.v2.api.ListBehaviorDefineResponseHttpApiResult
-      type: object
-    sensorsdata.portal.v2.api.PageInfo:
-      description: 分页信息
-      properties:
-        current_page:
-          description: 当前页，起始页号：1
-          example: 1
-          format: int32
-          type: integer
-        page_count:
-          description: 总页数
-          example: 100
-          format: int32
-          type: integer
-        total:
-          description: 总条数
-          example: 100
-          format: int32
-          type: integer
-      title: PageInfo
-      type: object
-    sensorsdata.portal.v2.api.ListBehaviorDefineResponse:
-      description: ''
-      properties:
-        behavior_defines:
-          description: 已注册的「操作日志定义」列表
-          items:
-            $ref: '#/components/schemas/sensorsdata.portal.v2.api.BehaviorDefine'
-          type: array
-        page:
-          $ref: '#/components/schemas/sensorsdata.portal.v2.api.PageInfo'
-      title: ListBehaviorDefineResponse
-      type: object
-    sensorsdata.portal.v2.api.ListOpenApiLogsResponse:
-      description: 「查询 OpenAPI 调用日志」的响应对象
-      properties:
-        logs:
-          description: OpenAPI 调用日志列表
-          items:
-            $ref: '#/components/schemas/sensorsdata.portal.v2.api.OpenApiLogResult'
-          type: array
-        total:
-          description: 符合条件的日志总数
-          example: 100
-          format: int64
-          type: integer
-        page_num:
-          description: 当前页码
-          example: 1
-          format: int32
-          type: integer
-        page_size:
-          description: 每页返回条数
-          example: 20
-          format: int32
-          type: integer
-      title: ListOpenApiLogsResponse
-      type: object
-    sensorsdata.portal.v2.api.ListProjectResponse:
-      description: 项目列表的响应对象
-      properties:
-        projects:
-          description: 项目信息和项目配置
-          items:
-            $ref: '#/components/schemas/sensorsdata.portal.v2.api.ProjectWithConfig'
-          type: array
-        total:
-          description: 项目数量
-          example: 10
-          format: int32
-          type: integer
-      title: ListProjectResponse
+        i18n_args:
+          additionalProperties:
+            description: ''
+            type: string
+          description: 替换 crowdin 上定义的文本模版的参数
+          example:
+            roleName: 测试角色
+          type: object
+      title: I18nEntry
       type: object
     sensorsdata.portal.v2.api.ListProjectResponseHttpApiResult:
       properties:
@@ -1295,30 +1283,7 @@ components:
           $ref: '#/components/schemas/sensorsdata.common.ErrorInfo'
       title: sensorsdata.portal.v2.api.ListProjectResponseHttpApiResult
       type: object
-    sensorsdata.portal.v2.api.ListBehaviorResponse:
-      description: 「获取操作日志」的响应对象
-      properties:
-        page:
-          $ref: '#/components/schemas/sensorsdata.portal.v2.api.PageInfo'
-        behavior_infos:
-          description: 操作日志信息
-          items:
-            $ref: '#/components/schemas/sensorsdata.portal.v2.api.BehaviorInfo'
-          type: array
-      title: ListBehaviorResponse
-      type: object
-    sensorsdata.portal.v2.api.StringList:
-      description: 字符串列表，常用于 map<string, StringList> 形态承载多值属性
-      properties:
-        values:
-          description: 字符串值列表
-          example: v1
-          items:
-            type: string
-          type: array
-      title: StringList
-      type: object
-    sensorsdata.portal.v2.api.GetLicenseProductResponseHttpApiResult:
+    sensorsdata.portal.v2.api.NoticeMessageResponseHttpApiResult:
       properties:
         code:
           type: string
@@ -1327,19 +1292,53 @@ components:
         request_id:
           type: string
         data:
-          $ref: '#/components/schemas/sensorsdata.portal.v2.api.GetLicenseProductResponse'
+          $ref: '#/components/schemas/sensorsdata.portal.v2.api.NoticeMessageResponse'
         error_info:
           $ref: '#/components/schemas/sensorsdata.common.ErrorInfo'
-      title: sensorsdata.portal.v2.api.GetLicenseProductResponseHttpApiResult
+      title: sensorsdata.portal.v2.api.NoticeMessageResponseHttpApiResult
       type: object
-    sensorsdata.portal.v2.api.ProjectWithConfig:
-      description: 项目信息和项目配置
+    sensorsdata.portal.v2.api.ProjectConfig:
+      description: 项目配置信息
       properties:
-        project:
-          $ref: '#/components/schemas/sensorsdata.portal.v2.api.Project'
-        config:
-          $ref: '#/components/schemas/sensorsdata.portal.v2.api.ProjectConfig'
-      title: ProjectWithConfig
+        is_duty_required:
+          description: 是否需要职务
+          example: true
+          type: boolean
+        customize_default_roles:
+          description: 当前项目自定义默认角色的名字
+          example: admin
+          type: string
+        is_csm:
+          description: 是否为客景类项目
+          example: false
+          type: boolean
+        is_new_sign_up:
+          description: 多设备 ID 关联，开启后不能再关闭
+          example: false
+          type: boolean
+        is_schema_limited:
+          description: '是否开启强 Schema 模式；true: Schema Limited，false: Schema Free'
+          example: false
+          type: boolean
+      title: ProjectConfig
+      type: object
+    sensorsdata.portal.v2.api.GetLicenseProductResponse:
+      description: 获取产品线的授权信息返回结果
+      properties:
+        project_name:
+          description: 项目名称
+          example: production
+          type: string
+        product_name:
+          description: 产品线名称
+          example: SBP
+          type: string
+        authorized_modules:
+          description: 授权模块
+          items:
+            type: string
+          type: array
+      title: GetLicenseProductResponse
       type: object
 x-sd-openapi-service-name: Management
 x-sd-openapi-service-name-hyphen: management

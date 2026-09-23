@@ -10,7 +10,6 @@ tags:
 paths:
   /express-notify/set:
     post:
-      description: 增加一个通知配置
       operationId: SetNotifyConfig
       parameters:
       - description: 全局唯一的密钥，用于验证和授权访问 API 接口
@@ -61,7 +60,6 @@ paths:
       - Express Notify
   /express-notify/get:
     get:
-      description: 获取通知配置的相关列表，通过传入条件筛选查询
       operationId: GetNotifyConfig
       parameters:
       - description: 全局唯一的密钥，用于验证和授权访问 API 接口
@@ -108,7 +106,6 @@ paths:
       - Express Notify
   /express-notify/delete:
     post:
-      description: 删除一个通知配置
       operationId: DeleteNotifyConfig
       parameters:
       - description: 全局唯一的密钥，用于验证和授权访问 API 接口
@@ -159,6 +156,109 @@ paths:
       - Express Notify
 components:
   schemas:
+    sensorsdata.focus.v1.express.audience.GetNotifyConfigResponse:
+      description: ''
+      properties:
+        notify_config:
+          $ref: '#/components/schemas/sensorsdata.focus.v1.express.audience.NotifyConfig'
+      title: GetNotifyConfigResponse
+      type: object
+    sensorsdata.focus.v1.express.audience.SetNotifyConfigResponseHttpApiResult:
+      properties:
+        code:
+          type: string
+        message:
+          type: string
+        request_id:
+          type: string
+        data:
+          $ref: '#/components/schemas/sensorsdata.focus.v1.express.audience.SetNotifyConfigResponse'
+        error_info:
+          $ref: '#/components/schemas/sensorsdata.common.ErrorInfo'
+      title: sensorsdata.focus.v1.express.audience.SetNotifyConfigResponseHttpApiResult
+      type: object
+    sensorsdata.focus.v1.express.audience.DeleteNotifyConfigRequest:
+      description: ''
+      title: DeleteNotifyConfigRequest
+      type: object
+    sensorsdata.common.ErrorContext:
+      description: 发生错误时，系统快照信息
+      properties:
+        origin_stack:
+          description: 上游异常的 stack，由系统截获
+          type: string
+        origin_cause:
+          description: 上游异常的 cause by，由系统截获
+          type: string
+        origin_code:
+          description: 上游异常的错误简码
+          type: string
+        origin_complete_code:
+          description: 上游异常的完整错误码
+          type: string
+        error_extend_desc:
+          description: 本次异常的辅助说明，可传入
+          type: string
+      title: ErrorContext
+      type: object
+    sensorsdata.common.ErrorInfo:
+      properties:
+        code:
+          description: 具体的错误码
+          example: XX-D-F-2-1
+          type: string
+        description:
+          description: 错误描述
+          example: 前端参数校验异常,PARAMETER_FORMAT_ERROR(quantiles=[10, -90] is not include [0, 100])
+          type: string
+        system_response:
+          description: 致错的可能原因列表
+          example: 系统终止了查询处理
+          type: string
+        error_causes:
+          items:
+            $ref: '#/components/schemas/sensorsdata.common.ErrorCause'
+          type: array
+        context:
+          $ref: '#/components/schemas/sensorsdata.common.ErrorContext'
+      title: ErrorInfo
+      type: object
+    sensorsdata.focus.v1.express.audience.SetNotifyConfigResponse:
+      description: ''
+      title: SetNotifyConfigResponse
+      type: object
+    sensorsdata.focus.v1.express.audience.GetNotifyConfigResponseHttpApiResult:
+      properties:
+        code:
+          type: string
+        message:
+          type: string
+        request_id:
+          type: string
+        data:
+          $ref: '#/components/schemas/sensorsdata.focus.v1.express.audience.GetNotifyConfigResponse'
+        error_info:
+          $ref: '#/components/schemas/sensorsdata.common.ErrorInfo'
+      title: sensorsdata.focus.v1.express.audience.GetNotifyConfigResponseHttpApiResult
+      type: object
+    sensorsdata.focus.v1.express.audience.DeleteNotifyConfigResponseHttpApiResult:
+      properties:
+        code:
+          type: string
+        message:
+          type: string
+        request_id:
+          type: string
+        data:
+          $ref: '#/components/schemas/sensorsdata.focus.v1.express.audience.DeleteNotifyConfigResponse'
+        error_info:
+          $ref: '#/components/schemas/sensorsdata.common.ErrorInfo'
+      title: sensorsdata.focus.v1.express.audience.DeleteNotifyConfigResponseHttpApiResult
+      type: object
+    sensorsdata.focus.v1.express.audience.DeleteNotifyConfigResponse:
+      description: ''
+      title: DeleteNotifyConfigResponse
+      type: object
     sensorsdata.focus.v1.express.audience.NotifyConfig:
       description: ''
       properties:
@@ -187,37 +287,6 @@ components:
           type: string
       title: NotifyConfig
       type: object
-    sensorsdata.focus.v1.express.audience.SetNotifyConfigRequest:
-      description: ''
-      properties:
-        notify_config:
-          $ref: '#/components/schemas/sensorsdata.focus.v1.express.audience.NotifyConfig'
-      title: SetNotifyConfigRequest
-      type: object
-    sensorsdata.common.ErrorContext:
-      description: 发生错误时，系统快照信息
-      properties:
-        origin_stack:
-          description: 上游异常的 stack，由系统截获
-          type: string
-        origin_cause:
-          description: 上游异常的 cause by，由系统截获
-          type: string
-        origin_code:
-          description: 上游异常的错误简码
-          type: string
-        origin_complete_code:
-          description: 上游异常的完整错误码
-          type: string
-        error_extend_desc:
-          description: 本次异常的辅助说明，可传入
-          type: string
-      title: ErrorContext
-      type: object
-    sensorsdata.focus.v1.express.audience.DeleteNotifyConfigRequest:
-      description: ''
-      title: DeleteNotifyConfigRequest
-      type: object
     sensorsdata.focus.v1.express.audience.NotifyConfig.AuthConfig:
       description: ''
       properties:
@@ -228,49 +297,6 @@ components:
           description: ''
           type: string
       title: AuthConfig
-      type: object
-    sensorsdata.focus.v1.express.audience.DeleteNotifyConfigResponseHttpApiResult:
-      properties:
-        code:
-          type: string
-        message:
-          type: string
-        request_id:
-          type: string
-        data:
-          $ref: '#/components/schemas/sensorsdata.focus.v1.express.audience.DeleteNotifyConfigResponse'
-        error_info:
-          $ref: '#/components/schemas/sensorsdata.common.ErrorInfo'
-      title: sensorsdata.focus.v1.express.audience.DeleteNotifyConfigResponseHttpApiResult
-      type: object
-    sensorsdata.focus.v1.express.audience.DeleteNotifyConfigResponse:
-      description: ''
-      title: DeleteNotifyConfigResponse
-      type: object
-    sensorsdata.focus.v1.express.audience.SetNotifyConfigResponse:
-      description: ''
-      title: SetNotifyConfigResponse
-      type: object
-    sensorsdata.focus.v1.express.audience.GetNotifyConfigResponse:
-      description: ''
-      properties:
-        notify_config:
-          $ref: '#/components/schemas/sensorsdata.focus.v1.express.audience.NotifyConfig'
-      title: GetNotifyConfigResponse
-      type: object
-    sensorsdata.focus.v1.express.audience.SetNotifyConfigResponseHttpApiResult:
-      properties:
-        code:
-          type: string
-        message:
-          type: string
-        request_id:
-          type: string
-        data:
-          $ref: '#/components/schemas/sensorsdata.focus.v1.express.audience.SetNotifyConfigResponse'
-        error_info:
-          $ref: '#/components/schemas/sensorsdata.common.ErrorInfo'
-      title: sensorsdata.focus.v1.express.audience.SetNotifyConfigResponseHttpApiResult
       type: object
     sensorsdata.common.ErrorCause:
       properties:
@@ -284,41 +310,12 @@ components:
           type: string
       title: ErrorCause
       type: object
-    sensorsdata.focus.v1.express.audience.GetNotifyConfigResponseHttpApiResult:
+    sensorsdata.focus.v1.express.audience.SetNotifyConfigRequest:
+      description: ''
       properties:
-        code:
-          type: string
-        message:
-          type: string
-        request_id:
-          type: string
-        data:
-          $ref: '#/components/schemas/sensorsdata.focus.v1.express.audience.GetNotifyConfigResponse'
-        error_info:
-          $ref: '#/components/schemas/sensorsdata.common.ErrorInfo'
-      title: sensorsdata.focus.v1.express.audience.GetNotifyConfigResponseHttpApiResult
-      type: object
-    sensorsdata.common.ErrorInfo:
-      properties:
-        code:
-          description: 具体的错误码
-          example: XX-D-F-2-1
-          type: string
-        description:
-          description: 错误描述
-          example: 前端参数校验异常,PARAMETER_FORMAT_ERROR(quantiles=[10, -90] is not include [0, 100])
-          type: string
-        system_response:
-          description: 致错的可能原因列表
-          example: 系统终止了查询处理
-          type: string
-        error_causes:
-          items:
-            $ref: '#/components/schemas/sensorsdata.common.ErrorCause'
-          type: array
-        context:
-          $ref: '#/components/schemas/sensorsdata.common.ErrorContext'
-      title: ErrorInfo
+        notify_config:
+          $ref: '#/components/schemas/sensorsdata.focus.v1.express.audience.NotifyConfig'
+      title: SetNotifyConfigRequest
       type: object
 x-sd-openapi-service-name: ExpressNotify
 x-sd-openapi-service-name-hyphen: express-notify

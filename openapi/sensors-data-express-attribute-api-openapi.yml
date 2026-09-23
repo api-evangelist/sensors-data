@@ -113,7 +113,6 @@ paths:
       - Express Attribute
   /express-attribute/status/query:
     post:
-      description: 批量查询属性订阅状态
       operationId: GetEntityAttributeStatus
       parameters:
       - description: 全局唯一的密钥，用于验证和授权访问 API 接口
@@ -164,7 +163,6 @@ paths:
       - Express Attribute
   /express-attribute/list:
     post:
-      description: 获取实体属性列表
       operationId: ListAttributes
       parameters:
       - description: 全局唯一的密钥，用于验证和授权访问 API 接口
@@ -226,7 +224,6 @@ paths:
       - Express Attribute
   /express-attribute/quota/query:
     get:
-      description: 查询Quota
       operationId: QueryQuota
       parameters:
       - description: 全局唯一的密钥，用于验证和授权访问 API 接口
@@ -272,222 +269,6 @@ paths:
       - Express Attribute
 components:
   schemas:
-    sensorsdata.focus.v1.SubscribeEntityAttributeResponse:
-      description: ''
-      title: SubscribeEntityAttributeResponse
-      type: object
-    sensorsdata.focus.v1.web.PageFilter:
-      description: 分页信息
-      properties:
-        limit:
-          description: 每页大小
-          format: int32
-          type: integer
-        offset:
-          description: 偏移量
-          format: int32
-          type: integer
-        total:
-          description: 总数
-          format: int32
-          type: integer
-      title: PageFilter
-      type: object
-    sensorsdata.common.ErrorInfo:
-      properties:
-        code:
-          description: 具体的错误码
-          example: XX-D-F-2-1
-          type: string
-        description:
-          description: 错误描述
-          example: 前端参数校验异常,PARAMETER_FORMAT_ERROR(quantiles=[10, -90] is not include [0, 100])
-          type: string
-        system_response:
-          description: 致错的可能原因列表
-          example: 系统终止了查询处理
-          type: string
-        error_causes:
-          items:
-            $ref: '#/components/schemas/sensorsdata.common.ErrorCause'
-          type: array
-        context:
-          $ref: '#/components/schemas/sensorsdata.common.ErrorContext'
-      title: ErrorInfo
-      type: object
-    sensorsdata.focus.v1.QuotaResponseHttpApiResult:
-      properties:
-        code:
-          type: string
-        message:
-          type: string
-        request_id:
-          type: string
-        data:
-          $ref: '#/components/schemas/sensorsdata.focus.v1.QuotaResponse'
-        error_info:
-          $ref: '#/components/schemas/sensorsdata.common.ErrorInfo'
-      title: sensorsdata.focus.v1.QuotaResponseHttpApiResult
-      type: object
-    sensorsdata.focus.v1.UnSubscribeEntityAttributeResponse:
-      description: ''
-      properties:
-        success:
-          description: 是否成功取消订阅
-          example: true
-          type: boolean
-      title: UnSubscribeEntityAttributeResponse
-      type: object
-    sensorsdata.common.ErrorContext:
-      description: 发生错误时，系统快照信息
-      properties:
-        origin_stack:
-          description: 上游异常的 stack，由系统截获
-          type: string
-        origin_cause:
-          description: 上游异常的 cause by，由系统截获
-          type: string
-        origin_code:
-          description: 上游异常的错误简码
-          type: string
-        origin_complete_code:
-          description: 上游异常的完整错误码
-          type: string
-        error_extend_desc:
-          description: 本次异常的辅助说明，可传入
-          type: string
-      title: ErrorContext
-      type: object
-    sensorsdata.focus.v1.ListAttributesRequest:
-      description: ''
-      properties:
-        project_id:
-          description: 项目ID
-          example: 1
-          format: int32
-          type: integer
-        keyword:
-          description: 搜索的关键字(订阅ID、属性名、标签名称)
-          example: '2'
-          type: string
-        status:
-          description: 订阅状态
-          example: ACTIVE
-          type: string
-        subscribe_start_date:
-          description: 订阅开始时间
-          example: '2020-01-01'
-          type: string
-        subscribe_end_date:
-          description: 订阅结束时间
-          example: '2032-01-01'
-          type: string
-        page_filter:
-          $ref: '#/components/schemas/sensorsdata.focus.v1.web.PageFilter'
-        subscribers:
-          description: 订阅方
-          items:
-            type: string
-          type: array
-      title: ListAttributesRequest
-      type: object
-    sensorsdata.focus.v1.SubscribeEntityAttributeResponseHttpApiResult:
-      properties:
-        code:
-          type: string
-        message:
-          type: string
-        request_id:
-          type: string
-        data:
-          $ref: '#/components/schemas/sensorsdata.focus.v1.SubscribeEntityAttributeResponse'
-        error_info:
-          $ref: '#/components/schemas/sensorsdata.common.ErrorInfo'
-      title: sensorsdata.focus.v1.SubscribeEntityAttributeResponseHttpApiResult
-      type: object
-    sensorsdata.common.ErrorCause:
-      properties:
-        error_cause:
-          description: 致错原因1
-          example: 参数异常1
-          type: string
-        action_suggestion:
-          description: 操作建议，针对该原因，建议的解决方式
-          example: 检测入参的数据类型1
-          type: string
-      title: ErrorCause
-      type: object
-    sensorsdata.focus.v1.QuotaResponse:
-      description: ''
-      properties:
-        used_count:
-          description: 已经使用的额度
-          example: 2
-          format: int32
-          type: integer
-        remained_count:
-          description: 剩余的额度
-          example: 8
-          format: int32
-          type: integer
-      title: QuotaResponse
-      type: object
-    sensorsdata.focus.v1.GetEntityAttributeStatusResponse:
-      description: ''
-      properties:
-        attribute_subscribe_statuses:
-          description: 属性/标签订阅状态列表
-          items:
-            enum:
-            - ATTRIBUTE_SUBSCRIBE_PREPARING
-            - ATTRIBUTE_SUBSCRIBE_READY
-            - ATTRIBUTE_SUBSCRIBE_EXCEPTION
-            type: string
-          type: array
-      title: GetEntityAttributeStatusResponse
-      type: object
-    sensorsdata.focus.v1.SubscribeEntityAttributeRequest:
-      description: ''
-      properties:
-        entity_name:
-          description: 实体名，不传默认 user 实体
-          type: string
-        attribute_name:
-          description: 属性名
-          type: string
-        subscriber:
-          description: 订阅方
-          type: string
-      title: SubscribeEntityAttributeRequest
-      type: object
-    sensorsdata.focus.v1.GetEntityAttributeStatusResponseHttpApiResult:
-      properties:
-        code:
-          type: string
-        message:
-          type: string
-        request_id:
-          type: string
-        data:
-          $ref: '#/components/schemas/sensorsdata.focus.v1.GetEntityAttributeStatusResponse'
-        error_info:
-          $ref: '#/components/schemas/sensorsdata.common.ErrorInfo'
-      title: sensorsdata.focus.v1.GetEntityAttributeStatusResponseHttpApiResult
-      type: object
-    sensorsdata.focus.v1.ListAttributesResponseHttpApiResult:
-      properties:
-        code:
-          type: string
-        message:
-          type: string
-        request_id:
-          type: string
-        data:
-          $ref: '#/components/schemas/sensorsdata.focus.v1.ListAttributesResponse'
-        error_info:
-          $ref: '#/components/schemas/sensorsdata.common.ErrorInfo'
-      title: sensorsdata.focus.v1.ListAttributesResponseHttpApiResult
-      type: object
     sensorsdata.focus.v1.UnSubscribeEntityAttributeRequest:
       description: ''
       properties:
@@ -501,19 +282,6 @@ components:
           description: 订阅方
           type: string
       title: UnSubscribeEntityAttributeRequest
-      type: object
-    sensorsdata.focus.v1.GetEntityAttributeStatusRequest:
-      description: ''
-      properties:
-        entity_name:
-          description: 实体名，不传默认 user 实体
-          type: string
-        attribute_names:
-          description: 属性名
-          items:
-            type: string
-          type: array
-      title: GetEntityAttributeStatusRequest
       type: object
     sensorsdata.focus.v1.AttributeRecord:
       description: ''
@@ -564,17 +332,143 @@ components:
           type: string
       title: AttributeRecord
       type: object
-    sensorsdata.focus.v1.ListAttributesResponse:
+    sensorsdata.focus.v1.GetEntityAttributeStatusResponse:
       description: ''
       properties:
-        page_filter:
-          $ref: '#/components/schemas/sensorsdata.focus.v1.web.PageFilter'
-        attribute_records:
-          description: 属性订阅详情
+        attribute_subscribe_statuses:
+          description: 属性/标签订阅状态列表
           items:
-            $ref: '#/components/schemas/sensorsdata.focus.v1.AttributeRecord'
+            enum:
+            - ATTRIBUTE_SUBSCRIBE_PREPARING
+            - ATTRIBUTE_SUBSCRIBE_READY
+            - ATTRIBUTE_SUBSCRIBE_EXCEPTION
+            type: string
           type: array
-      title: ListAttributesResponse
+      title: GetEntityAttributeStatusResponse
+      type: object
+    sensorsdata.focus.v1.ListAttributesResponseHttpApiResult:
+      properties:
+        code:
+          type: string
+        message:
+          type: string
+        request_id:
+          type: string
+        data:
+          $ref: '#/components/schemas/sensorsdata.focus.v1.ListAttributesResponse'
+        error_info:
+          $ref: '#/components/schemas/sensorsdata.common.ErrorInfo'
+      title: sensorsdata.focus.v1.ListAttributesResponseHttpApiResult
+      type: object
+    sensorsdata.common.ErrorContext:
+      description: 发生错误时，系统快照信息
+      properties:
+        origin_stack:
+          description: 上游异常的 stack，由系统截获
+          type: string
+        origin_cause:
+          description: 上游异常的 cause by，由系统截获
+          type: string
+        origin_code:
+          description: 上游异常的错误简码
+          type: string
+        origin_complete_code:
+          description: 上游异常的完整错误码
+          type: string
+        error_extend_desc:
+          description: 本次异常的辅助说明，可传入
+          type: string
+      title: ErrorContext
+      type: object
+    sensorsdata.focus.v1.UnSubscribeEntityAttributeResponse:
+      description: ''
+      properties:
+        success:
+          description: 是否成功取消订阅
+          example: true
+          type: boolean
+      title: UnSubscribeEntityAttributeResponse
+      type: object
+    sensorsdata.common.ErrorInfo:
+      properties:
+        code:
+          description: 具体的错误码
+          example: XX-D-F-2-1
+          type: string
+        description:
+          description: 错误描述
+          example: 前端参数校验异常,PARAMETER_FORMAT_ERROR(quantiles=[10, -90] is not include [0, 100])
+          type: string
+        system_response:
+          description: 致错的可能原因列表
+          example: 系统终止了查询处理
+          type: string
+        error_causes:
+          items:
+            $ref: '#/components/schemas/sensorsdata.common.ErrorCause'
+          type: array
+        context:
+          $ref: '#/components/schemas/sensorsdata.common.ErrorContext'
+      title: ErrorInfo
+      type: object
+    sensorsdata.focus.v1.web.PageFilter:
+      description: 分页信息
+      properties:
+        limit:
+          description: 每页大小
+          format: int32
+          type: integer
+        offset:
+          description: 偏移量
+          format: int32
+          type: integer
+        total:
+          description: 总数
+          format: int32
+          type: integer
+      title: PageFilter
+      type: object
+    sensorsdata.focus.v1.GetEntityAttributeStatusRequest:
+      description: ''
+      properties:
+        entity_name:
+          description: 实体名，不传默认 user 实体
+          type: string
+        attribute_names:
+          description: 属性名
+          items:
+            type: string
+          type: array
+      title: GetEntityAttributeStatusRequest
+      type: object
+    sensorsdata.focus.v1.QuotaResponseHttpApiResult:
+      properties:
+        code:
+          type: string
+        message:
+          type: string
+        request_id:
+          type: string
+        data:
+          $ref: '#/components/schemas/sensorsdata.focus.v1.QuotaResponse'
+        error_info:
+          $ref: '#/components/schemas/sensorsdata.common.ErrorInfo'
+      title: sensorsdata.focus.v1.QuotaResponseHttpApiResult
+      type: object
+    sensorsdata.focus.v1.QuotaResponse:
+      description: ''
+      properties:
+        used_count:
+          description: 已经使用的额度
+          example: 2
+          format: int32
+          type: integer
+        remained_count:
+          description: 剩余的额度
+          example: 8
+          format: int32
+          type: integer
+      title: QuotaResponse
       type: object
     sensorsdata.focus.v1.UnSubscribeEntityAttributeResponseHttpApiResult:
       properties:
@@ -589,6 +483,109 @@ components:
         error_info:
           $ref: '#/components/schemas/sensorsdata.common.ErrorInfo'
       title: sensorsdata.focus.v1.UnSubscribeEntityAttributeResponseHttpApiResult
+      type: object
+    sensorsdata.focus.v1.SubscribeEntityAttributeResponseHttpApiResult:
+      properties:
+        code:
+          type: string
+        message:
+          type: string
+        request_id:
+          type: string
+        data:
+          $ref: '#/components/schemas/sensorsdata.focus.v1.SubscribeEntityAttributeResponse'
+        error_info:
+          $ref: '#/components/schemas/sensorsdata.common.ErrorInfo'
+      title: sensorsdata.focus.v1.SubscribeEntityAttributeResponseHttpApiResult
+      type: object
+    sensorsdata.common.ErrorCause:
+      properties:
+        error_cause:
+          description: 致错原因1
+          example: 参数异常1
+          type: string
+        action_suggestion:
+          description: 操作建议，针对该原因，建议的解决方式
+          example: 检测入参的数据类型1
+          type: string
+      title: ErrorCause
+      type: object
+    sensorsdata.focus.v1.GetEntityAttributeStatusResponseHttpApiResult:
+      properties:
+        code:
+          type: string
+        message:
+          type: string
+        request_id:
+          type: string
+        data:
+          $ref: '#/components/schemas/sensorsdata.focus.v1.GetEntityAttributeStatusResponse'
+        error_info:
+          $ref: '#/components/schemas/sensorsdata.common.ErrorInfo'
+      title: sensorsdata.focus.v1.GetEntityAttributeStatusResponseHttpApiResult
+      type: object
+    sensorsdata.focus.v1.ListAttributesRequest:
+      description: ''
+      properties:
+        project_id:
+          description: 项目ID
+          example: 1
+          format: int32
+          type: integer
+        keyword:
+          description: 搜索的关键字(订阅ID、属性名、标签名称)
+          example: '2'
+          type: string
+        status:
+          description: 订阅状态
+          example: ACTIVE
+          type: string
+        subscribe_start_date:
+          description: 订阅开始时间
+          example: '2020-01-01'
+          type: string
+        subscribe_end_date:
+          description: 订阅结束时间
+          example: '2032-01-01'
+          type: string
+        page_filter:
+          $ref: '#/components/schemas/sensorsdata.focus.v1.web.PageFilter'
+        subscribers:
+          description: 订阅方
+          items:
+            type: string
+          type: array
+      title: ListAttributesRequest
+      type: object
+    sensorsdata.focus.v1.SubscribeEntityAttributeResponse:
+      description: ''
+      title: SubscribeEntityAttributeResponse
+      type: object
+    sensorsdata.focus.v1.SubscribeEntityAttributeRequest:
+      description: ''
+      properties:
+        entity_name:
+          description: 实体名，不传默认 user 实体
+          type: string
+        attribute_name:
+          description: 属性名
+          type: string
+        subscriber:
+          description: 订阅方
+          type: string
+      title: SubscribeEntityAttributeRequest
+      type: object
+    sensorsdata.focus.v1.ListAttributesResponse:
+      description: ''
+      properties:
+        page_filter:
+          $ref: '#/components/schemas/sensorsdata.focus.v1.web.PageFilter'
+        attribute_records:
+          description: 属性订阅详情
+          items:
+            $ref: '#/components/schemas/sensorsdata.focus.v1.AttributeRecord'
+          type: array
+      title: ListAttributesResponse
       type: object
 x-sd-openapi-service-name: ExpressAttribute
 x-sd-openapi-service-name-hyphen: express-attribute
