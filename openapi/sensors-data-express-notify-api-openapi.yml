@@ -156,12 +156,60 @@ paths:
       - Express Notify
 components:
   schemas:
-    sensorsdata.focus.v1.express.audience.GetNotifyConfigResponse:
+    sensorsdata.focus.v1.express.audience.DeleteNotifyConfigResponse:
+      description: ''
+      title: DeleteNotifyConfigResponse
+      type: object
+    sensorsdata.focus.v1.express.audience.NotifyConfig:
+      description: ''
+      properties:
+        notify_id:
+          description: 客户自定义的业务相关 ID
+          type: string
+        notify_address:
+          description: 配置接收通知的地址
+          type: string
+        auth_type:
+          description: 鉴权方式
+          enum:
+          - NO_AUTH_UNSPECIFIED
+          - API_KEY
+          type: string
+        auth_configs:
+          description: 鉴权参数配置
+          items:
+            $ref: '#/components/schemas/sensorsdata.focus.v1.express.audience.NotifyConfig.AuthConfig'
+          type: array
+        send_mode:
+          description: 发送重试配置
+          enum:
+          - ONLY_ONCE_UNSPECIFIED
+          - RETRYABLE
+          type: string
+      title: NotifyConfig
+      type: object
+    sensorsdata.focus.v1.express.audience.DeleteNotifyConfigRequest:
+      description: ''
+      title: DeleteNotifyConfigRequest
+      type: object
+    sensorsdata.common.ErrorCause:
+      properties:
+        error_cause:
+          description: 致错原因1
+          example: 参数异常1
+          type: string
+        action_suggestion:
+          description: 操作建议，针对该原因，建议的解决方式
+          example: 检测入参的数据类型1
+          type: string
+      title: ErrorCause
+      type: object
+    sensorsdata.focus.v1.express.audience.SetNotifyConfigRequest:
       description: ''
       properties:
         notify_config:
           $ref: '#/components/schemas/sensorsdata.focus.v1.express.audience.NotifyConfig'
-      title: GetNotifyConfigResponse
+      title: SetNotifyConfigRequest
       type: object
     sensorsdata.focus.v1.express.audience.SetNotifyConfigResponseHttpApiResult:
       properties:
@@ -177,9 +225,23 @@ components:
           $ref: '#/components/schemas/sensorsdata.common.ErrorInfo'
       title: sensorsdata.focus.v1.express.audience.SetNotifyConfigResponseHttpApiResult
       type: object
-    sensorsdata.focus.v1.express.audience.DeleteNotifyConfigRequest:
+    sensorsdata.focus.v1.express.audience.NotifyConfig.AuthConfig:
       description: ''
-      title: DeleteNotifyConfigRequest
+      properties:
+        key:
+          description: ''
+          type: string
+        value:
+          description: ''
+          type: string
+      title: AuthConfig
+      type: object
+    sensorsdata.focus.v1.express.audience.GetNotifyConfigResponse:
+      description: ''
+      properties:
+        notify_config:
+          $ref: '#/components/schemas/sensorsdata.focus.v1.express.audience.NotifyConfig'
+      title: GetNotifyConfigResponse
       type: object
     sensorsdata.common.ErrorContext:
       description: 发生错误时，系统快照信息
@@ -223,10 +285,6 @@ components:
           $ref: '#/components/schemas/sensorsdata.common.ErrorContext'
       title: ErrorInfo
       type: object
-    sensorsdata.focus.v1.express.audience.SetNotifyConfigResponse:
-      description: ''
-      title: SetNotifyConfigResponse
-      type: object
     sensorsdata.focus.v1.express.audience.GetNotifyConfigResponseHttpApiResult:
       properties:
         code:
@@ -255,67 +313,9 @@ components:
           $ref: '#/components/schemas/sensorsdata.common.ErrorInfo'
       title: sensorsdata.focus.v1.express.audience.DeleteNotifyConfigResponseHttpApiResult
       type: object
-    sensorsdata.focus.v1.express.audience.DeleteNotifyConfigResponse:
+    sensorsdata.focus.v1.express.audience.SetNotifyConfigResponse:
       description: ''
-      title: DeleteNotifyConfigResponse
-      type: object
-    sensorsdata.focus.v1.express.audience.NotifyConfig:
-      description: ''
-      properties:
-        notify_id:
-          description: 客户自定义的业务相关 ID
-          type: string
-        notify_address:
-          description: 配置接收通知的地址
-          type: string
-        auth_type:
-          description: 鉴权方式
-          enum:
-          - NO_AUTH_UNSPECIFIED
-          - API_KEY
-          type: string
-        auth_configs:
-          description: 鉴权参数配置
-          items:
-            $ref: '#/components/schemas/sensorsdata.focus.v1.express.audience.NotifyConfig.AuthConfig'
-          type: array
-        send_mode:
-          description: 发送重试配置
-          enum:
-          - ONLY_ONCE_UNSPECIFIED
-          - RETRYABLE
-          type: string
-      title: NotifyConfig
-      type: object
-    sensorsdata.focus.v1.express.audience.NotifyConfig.AuthConfig:
-      description: ''
-      properties:
-        key:
-          description: ''
-          type: string
-        value:
-          description: ''
-          type: string
-      title: AuthConfig
-      type: object
-    sensorsdata.common.ErrorCause:
-      properties:
-        error_cause:
-          description: 致错原因1
-          example: 参数异常1
-          type: string
-        action_suggestion:
-          description: 操作建议，针对该原因，建议的解决方式
-          example: 检测入参的数据类型1
-          type: string
-      title: ErrorCause
-      type: object
-    sensorsdata.focus.v1.express.audience.SetNotifyConfigRequest:
-      description: ''
-      properties:
-        notify_config:
-          $ref: '#/components/schemas/sensorsdata.focus.v1.express.audience.NotifyConfig'
-      title: SetNotifyConfigRequest
+      title: SetNotifyConfigResponse
       type: object
 x-sd-openapi-service-name: ExpressNotify
 x-sd-openapi-service-name-hyphen: express-notify

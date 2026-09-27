@@ -1824,23 +1824,33 @@ paths:
       - Schema
 components:
   schemas:
-    sensorsdata.horizon.v1.BatchCreateSchemaFieldsResponse:
-      description: ''
-      title: BatchCreateSchemaFieldsResponse
-      type: object
-    sensorsdata.horizon.v1.ListLogicalSchemasResponseHttpApiResult:
+    sensorsdata.horizon.v1.ListSchemaFieldsRequest:
+      description: 获取属性列表
       properties:
-        code:
+        project_id:
+          description: 项目 id
+          format: int32
+          type: integer
+        schema_name:
+          description: schema 名字
           type: string
-        message:
+        field_names:
+          description: 属性名字
+          items:
+            type: string
+          type: array
+        field_display_names:
+          description: 属性显示名
+          items:
+            type: string
+          type: array
+        expand:
+          description: 扩展返回指定字段
           type: string
-        request_id:
-          type: string
-        data:
-          $ref: '#/components/schemas/sensorsdata.horizon.v1.ListLogicalSchemasResponse'
-        error_info:
-          $ref: '#/components/schemas/sensorsdata.common.ErrorInfo'
-      title: sensorsdata.horizon.v1.ListLogicalSchemasResponseHttpApiResult
+      required:
+      - project_id
+      - schema_name
+      title: ListSchemaFieldsRequest
       type: object
     sensorsdata.horizon.v1.ListSchemaExtendedTablesResponse:
       description: ''
@@ -1851,6 +1861,310 @@ components:
             $ref: '#/components/schemas/sensorsdata.horizon.v1.SchemaExtendedTable'
           type: array
       title: ListSchemaExtendedTablesResponse
+      type: object
+    sensorsdata.horizon.v1.FieldViewDataSource.InlineExpression:
+      description: ''
+      properties:
+        expression:
+          description: ''
+          type: string
+        related_mode:
+          description: 关联 Schema 的方式
+          enum:
+          - RELATED_MODE_UNSPECIFIED
+          - CONTAINS_ALL
+          - CONTAINS_ANY
+          type: string
+      required:
+      - expression
+      - related_mode
+      title: InlineExpression
+      type: object
+    sensorsdata.common.PredicateFunctionParam:
+      description: "```\n 函数的参数，有几种可能\n 1. 一个 field, 如 events.$Anything.$city\n 2. 一个 Literal 的常量\n 3. 一个变量, 如 $ENTRY_TIME, 需要在执行上下文里进行替换\n 4. 一个 TimePoint, 代表一个相对或绝对的时间点, 用于时间类型的条件\n 5. 一个 expression user.p1/user.p2+user.p3\n ```"
+      properties:
+        param_type:
+          description: 函数的参数类型
+          enum:
+          - FUNCTION_PARAM_TYPE_UNSPECIFIED
+          - FIELD
+          - VALUE
+          - VARIABLE
+          - TIME_POINT
+          - EXPRESSION
+          example: FIELD
+          type: string
+        field:
+          description: 字段名
+          example: '#ResourceId'
+          type: string
+        value:
+          $ref: '#/components/schemas/sensorsdata.common.Literal'
+        variable:
+          description: 变量，需要在执行上下文里进行替换
+          example: $ENTRY_TIME
+          type: string
+        time_point:
+          $ref: '#/components/schemas/sensorsdata.common.TimePoint'
+        expression:
+          description: 自定义表达式
+          example: user.p1/user.p2+user.p3
+          type: string
+      title: PredicateFunctionParam
+      type: object
+    sensorsdata.horizon.v1.GetSchemaFieldRequest:
+      description: 获取schema属性信息
+      properties:
+        project_id:
+          description: 项目 id
+          format: int32
+          type: integer
+        schema_name:
+          description: schema 名字
+          type: string
+        field_name:
+          description: 属性名字
+          example: event_id
+          type: string
+        expand:
+          description: 扩展返回指定字段
+          example: '"custom_params,data_mapping,view_data_source,unit"'
+          type: string
+      required:
+      - field_name
+      - project_id
+      - schema_name
+      title: GetSchemaFieldRequest
+      type: object
+    sensorsdata.horizon.v1.FieldDataMapping.ExtendedColumn:
+      description: ''
+      properties:
+        extended_table_id:
+          description: 扩展表关联id, SchemaExtendedTable.extended_table_id
+          type: string
+        column_name:
+          description: 映射的列名
+          type: string
+        version_column:
+          description: 版本字段，对应数据表中的 column
+          type: string
+      required:
+      - extended_table_id
+      title: ExtendedColumn
+      type: object
+    sensorsdata.horizon.v1.SchemaExtendedTableHttpApiResult:
+      properties:
+        code:
+          type: string
+        message:
+          type: string
+        request_id:
+          type: string
+        data:
+          $ref: '#/components/schemas/sensorsdata.horizon.v1.SchemaExtendedTable'
+        error_info:
+          $ref: '#/components/schemas/sensorsdata.common.ErrorInfo'
+      title: sensorsdata.horizon.v1.SchemaExtendedTableHttpApiResult
+      type: object
+    sensorsdata.horizon.v1.UpdateSchemaExtendedTableRequest:
+      description: 更新SchemaExtendedTable
+      properties:
+        project_id:
+          description: 项目 id
+          format: int32
+          type: integer
+        extended_table:
+          $ref: '#/components/schemas/sensorsdata.horizon.v1.SchemaExtendedTable'
+        update_mask:
+          description: 指定需要更新的字段,目前只能更新 display_name, join_on_expression
+          type: string
+      required:
+      - extended_table
+      - project_id
+      - update_mask
+      title: UpdateSchemaExtendedTableRequest
+      type: object
+    sensorsdata.horizon.v1.ListSchemaExtendedTablesResponseHttpApiResult:
+      properties:
+        code:
+          type: string
+        message:
+          type: string
+        request_id:
+          type: string
+        data:
+          $ref: '#/components/schemas/sensorsdata.horizon.v1.ListSchemaExtendedTablesResponse'
+        error_info:
+          $ref: '#/components/schemas/sensorsdata.common.ErrorInfo'
+      title: sensorsdata.horizon.v1.ListSchemaExtendedTablesResponseHttpApiResult
+      type: object
+    sensorsdata.horizon.v1.UpdateSchemaFieldRequest:
+      description: 更新schema属性
+      properties:
+        project_id:
+          description: 项目 id
+          format: int32
+          type: integer
+        schema_name:
+          description: schema 名字
+          type: string
+        field:
+          $ref: '#/components/schemas/sensorsdata.horizon.v1.Field'
+        dimension_dict:
+          $ref: '#/components/schemas/sensorsdata.horizon.v1.SchemaFieldDimensionDict'
+        update_mask:
+          description: 指定需要更新的字段
+          type: string
+      required:
+      - field
+      - project_id
+      - schema_name
+      - update_mask
+      title: UpdateSchemaFieldRequest
+      type: object
+    sensorsdata.horizon.v1.FieldViewDataSource.ViewColumnSourceData:
+      description: 用于构建 Schema View 中，表征扩展属性的列数据
+      properties:
+        extended_table_id:
+          description: 扩展表关联id, SchemaExtendedTable.extended_table_id
+          type: string
+        extended_table_condition:
+          description: ''
+          type: string
+        column_name:
+          description: 映射的列名
+          type: string
+        alias_view_name:
+          description: 使用视图实现的表别名。(select $column_name from $extended_table_id where $extended_table_condition) $alias_view_name
+          type: string
+      required:
+      - extended_table_id
+      title: ViewColumnSourceData
+      type: object
+    sensorsdata.common.ErrorContext:
+      description: 发生错误时，系统快照信息
+      properties:
+        origin_stack:
+          description: 上游异常的 stack，由系统截获
+          type: string
+        origin_cause:
+          description: 上游异常的 cause by，由系统截获
+          type: string
+        origin_code:
+          description: 上游异常的错误简码
+          type: string
+        origin_complete_code:
+          description: 上游异常的完整错误码
+          type: string
+        error_extend_desc:
+          description: 本次异常的辅助说明，可传入
+          type: string
+      title: ErrorContext
+      type: object
+    sensorsdata.horizon.v1.FieldUnit:
+      description: 属性单位
+      properties:
+        name:
+          description: 唯一标识
+          type: string
+        display_name:
+          description: 单位显示名
+          type: string
+        builtin:
+          description: 是否系统内置单位
+          type: boolean
+        data_type:
+          $ref: '#/components/schemas/sensorsdata.horizon.v1.DataType'
+        base:
+          description: 单位进制
+          format: int32
+          type: integer
+        unit_group_name:
+          description: 单位分组
+          type: string
+        unit_group_display_name:
+          description: ''
+          type: string
+        access_info:
+          $ref: '#/components/schemas/sensorsdata.horizon.v1.AccessInfo'
+      required:
+      - display_name
+      title: FieldUnit
+      type: object
+    sensorsdata.common.TimeInterval:
+      description: ''
+      properties:
+        size:
+          description: ''
+          format: int32
+          type: integer
+        unit:
+          description: ''
+          enum:
+          - DATE_TIME_UNIT_UNSPECIFIED
+          - MILLISECOND
+          - SECOND
+          - MINUTE
+          - HOUR
+          - DAY
+          - WEEK
+          - MONTH
+          - YEAR
+          type: string
+      title: TimeInterval
+      type: object
+    sensorsdata.horizon.v1.SchemaStatistics:
+      description: Schema 统计信息，只能更新不能新建和删除
+      properties:
+        last_30_day_count:
+          description: 过去 30 天数据量
+          format: int64
+          type: integer
+        track_platforms:
+          description: 埋点平台，只能进行全量覆盖更新
+          items:
+            $ref: '#/components/schemas/sensorsdata.horizon.v1.SchemaStatistics.SchemaTrackPlatform'
+          type: array
+        access_info:
+          $ref: '#/components/schemas/sensorsdata.horizon.v1.AccessInfo'
+      title: SchemaStatistics
+      type: object
+    sensorsdata.horizon.v1.GetSchemaRequest:
+      description: ''
+      properties:
+        project_id:
+          description: 项目 id
+          format: int32
+          type: integer
+        name:
+          description: Schema名称
+          type: string
+        expand:
+          description: 扩展返回指定字段
+          type: string
+      required:
+      - name
+      - project_id
+      title: GetSchemaRequest
+      type: object
+    sensorsdata.common.HttpApiResult:
+      properties:
+        code:
+          type: string
+        message:
+          type: string
+        request_id:
+          type: string
+        data:
+          properties: {}
+          type: object
+        error_info:
+          $ref: '#/components/schemas/sensorsdata.common.ErrorInfo'
+      title: HttpApiResult
+      type: object
+    sensorsdata.horizon.v1.BatchCreateSchemaFieldsResponse:
+      description: ''
+      title: BatchCreateSchemaFieldsResponse
       type: object
     sensorsdata.horizon.v1.Field:
       description: 属性定义
@@ -1946,25 +2260,6 @@ components:
       - name
       title: Field
       type: object
-    sensorsdata.horizon.v1.FieldDataMapping:
-      description: "数据应用查询时使用\n 查当前数据版本时，使用 schema_view_table.view_column_name 表示该 Field 数据\n 查询历史版本时，使用 source_table 自行拼接"
-      properties:
-        view_column_name:
-          description: 映射 Schema View 中的列名，不一定是 field name，SDH 内部会分配一个
-          type: string
-        source_type:
-          description: "属性来源类型\n```\n  FIELD_SOURCE_TYPE_UNSPECIFIED = 0;  // 表示 field 来自主表列，若单独使用时, 拼装方式为: SELECT ${source_column_name} AS ${view_column_name} FROM ${main_table}\n  MAIN_TABLE_COLUMN = 1;              // 主表 表示 field 是扩展表的列，若单独使用时, 拼装方式为: SELECT ${source_column_name} AS ${view_column_name} FROM ${extended_table}\n  EXTENDED_TABLE_COLUMN = 2;          // 使用表扩展属性，跨表计算出属性，原虚拟属性的逻辑, 例如: concat(events.aa, users.bb, items.cc)，均迁移到这个类型，官网文档: https://manual.sensorsdata.cn/sa/latest/%E8%99%9A%E6%8B%9F%E5%B1%9E%E6%80%A7-22253764.html\n  COMPLEX_EXPRESSION = 3;             // Schema 中多 Field 的计算， 暂不支持\n  INLINE_EXPRESSION = 4;\n```"
-          enum:
-          - FIELD_SOURCE_TYPE_UNSPECIFIED
-          - MAIN_TABLE_COLUMN
-          - EXTENDED_TABLE_COLUMN
-          - COMPLEX_EXPRESSION
-          - INLINE_EXPRESSION
-          type: string
-        extended_column:
-          $ref: '#/components/schemas/sensorsdata.horizon.v1.FieldDataMapping.ExtendedColumn'
-      title: FieldDataMapping
-      type: object
     sensorsdata.horizon.v1.DataType:
       description: 数据类型
       properties:
@@ -1998,88 +2293,251 @@ components:
       - type
       title: DataType
       type: object
-    sensorsdata.common.HttpApiResult:
+    sensorsdata.horizon.v1.FieldViewDataSource.ComplexExpression:
+      description: 原虚拟属性的表达
       properties:
-        code:
+        extended_table_ids:
+          description: 虚拟属性表达式引用的表
+          items:
+            type: string
+          type: array
+        expression:
+          description: 虚拟属性表达式
           type: string
-        message:
+        related_mode:
+          description: 关联 Schema 的方式，可选字段若不传默认为：CONTAINS_ALL
+          enum:
+          - RELATED_MODE_UNSPECIFIED
+          - CONTAINS_ALL
+          - CONTAINS_ANY
           type: string
-        request_id:
-          type: string
-        data:
-          properties: {}
-          type: object
-        error_info:
-          $ref: '#/components/schemas/sensorsdata.common.ErrorInfo'
-      title: HttpApiResult
+      required:
+      - expression
+      title: ComplexExpression
       type: object
-    sensorsdata.horizon.v1.ListSchemaExtendedTablesResponseHttpApiResult:
-      properties:
-        code:
-          type: string
-        message:
-          type: string
-        request_id:
-          type: string
-        data:
-          $ref: '#/components/schemas/sensorsdata.horizon.v1.ListSchemaExtendedTablesResponse'
-        error_info:
-          $ref: '#/components/schemas/sensorsdata.common.ErrorInfo'
-      title: sensorsdata.horizon.v1.ListSchemaExtendedTablesResponseHttpApiResult
-      type: object
-    sensorsdata.common.Literal:
+    sensorsdata.horizon.v1.GetSchemaByOriginalNameRequest:
       description: ''
       properties:
-        data_type:
-          description: ''
-          enum:
-          - DATA_TYPE_UNSPECIFIED
-          - BOOL
-          - INT
-          - NUMBER
-          - STRING
-          - LIST
-          - DATETIME
-          - DATE
-          - BIGINT
-          - DECIMAL
-          type: string
-        bool_value:
-          description: ''
-          type: boolean
-        int_value:
-          description: ''
-          format: int64
+        project_id:
+          description: 项目 id
+          format: int32
           type: integer
-        number_value:
-          description: ''
-          format: double
-          type: number
-        string_value:
+        physical_schema_name:
+          description: 物理 schema 的 name
+          type: string
+        original_name:
+          description: 物理 schema 下逻辑或者虚拟 schema 的 origin_name，对于 SDG Core 就是上传数据中的 event name
+          type: string
+        expand:
+          description: 扩展返回指定字段
+          type: string
+      required:
+      - original_name
+      - physical_schema_name
+      - project_id
+      title: GetSchemaByOriginalNameRequest
+      type: object
+    sensorsdata.common.ErrorCause:
+      properties:
+        error_cause:
+          description: 致错原因1
+          example: 参数异常1
+          type: string
+        action_suggestion:
+          description: 操作建议，针对该原因，建议的解决方式
+          example: 检测入参的数据类型1
+          type: string
+      title: ErrorCause
+      type: object
+    sensorsdata.horizon.v1.SchemaHttpApiResult:
+      properties:
+        code:
+          type: string
+        message:
+          type: string
+        request_id:
+          type: string
+        data:
+          $ref: '#/components/schemas/sensorsdata.horizon.v1.Schema'
+        error_info:
+          $ref: '#/components/schemas/sensorsdata.common.ErrorInfo'
+      title: sensorsdata.horizon.v1.SchemaHttpApiResult
+      type: object
+    sensorsdata.horizon.v1.BatchCreateSchemaFieldsRequest:
+      description: 批量创建schema属性
+      properties:
+        project_id:
+          description: 项目 id
+          format: int32
+          type: integer
+        fields:
+          description: 要创建的字段定义
+          items:
+            $ref: '#/components/schemas/sensorsdata.horizon.v1.BatchCreateSchemaFieldsRequest.FieldCreateDescriptor'
+          type: array
+      required:
+      - fields
+      - project_id
+      title: BatchCreateSchemaFieldsRequest
+      type: object
+    sensorsdata.horizon.v1.Schema.SchemaMapping:
+      description: 映射信息
+      properties:
+        target_schema_name:
+          description: 目标 schema 名称，必须是同一 SchemaClass 下的物理 Schema
+          type: string
+        condition:
+          $ref: '#/components/schemas/sensorsdata.common.CompoundFilterCondition'
+        raw_condition:
+          $ref: '#/components/schemas/sensorsdata.common.CompoundFilterCondition'
+      required:
+      - target_schema_name
+      title: SchemaMapping
+      type: object
+    sensorsdata.horizon.v1.ListLogicalSchemasResponse:
+      description: ''
+      properties:
+        schemas:
+          description: protolint:disable:next REPEATED_FIELD_NAMES_PLURALIZED
+          items:
+            $ref: '#/components/schemas/sensorsdata.horizon.v1.Schema'
+          type: array
+        total_size:
+          description: 总数据条数
+          format: int32
+          type: integer
+        has_next:
+          description: 是否还有下一页
+          type: boolean
+      title: ListLogicalSchemasResponse
+      type: object
+    sensorsdata.horizon.v1.AccessInfo:
+      description: 数据访问信息
+      properties:
+        creator_id:
+          description: 创建人 ID
+          type: string
+        modifier_id:
+          description: 最近一次修改人 ID
+          type: string
+        create_time:
+          description: 创建时间
+          format: date-time
+          type: string
+        update_time:
+          description: 最近一次修改时间
+          format: date-time
+          type: string
+      title: AccessInfo
+      type: object
+    sensorsdata.common.FilterCondition:
+      description: 单个过滤条件
+      properties:
+        function:
+          description: 过滤条件的判断函数
+          enum:
+          - PREDICATE_FUNCTION_TYPE_UNSPECIFIED
+          - IS_SET
+          - IS_NOT_SET
+          - EQUAL
+          - NOT_EQUAL
+          - IN
+          - NOT_IN
+          - LESS
+          - LESS_EQUAL
+          - GREATER
+          - GREATER_EQUAL
+          - BETWEEN
+          - RIGHT_OPEN_BETWEEN
+          - HASH_BETWEEN
+          - LEFT_OPEN_BETWEEN
+          - OPEN_BETWEEN
+          - IS_TRUE
+          - IS_FALSE
+          - CONTAIN
+          - NOT_CONTAIN
+          - IS_EMPTY
+          - IS_NOT_EMPTY
+          - RLIKE
+          - NOT_RLIKE
+          - INCLUDE
+          - NOT_INCLUDE
+          - ABSOLUTE_BETWEEN
+          - RELATIVE_WITHIN
+          - RELATIVE_BETWEEN
+          - RELATIVE_EVENT_TIME
+          - RELATIVE_BEFORE
+          - INTERSECTS
+          - NOT_INTERSECTS
+          - SUBSET_OF
+          - NOT_SUBSET_OF
+          - SUPERSET_OF
+          - NOT_SUPERSET_OF
+          example: EQUAL
+          type: string
+        params:
+          description: 函数的参数
+          items:
+            $ref: '#/components/schemas/sensorsdata.common.PredicateFunctionParam'
+          type: array
+        index:
+          description: 当前筛选条件所处的位置下标，主要为了保证前端展示顺序的稳定
+          example: 10
+          format: int32
+          type: integer
+      title: FilterCondition
+      type: object
+    sensorsdata.horizon.v1.SchemaExtendedTable:
+      description: 拓展表定义
+      properties:
+        extended_table_id:
+          description: 同一 table 在关联同一 Schema 但是 join 表达式不同时， 需要用唯一名称区分
+          type: string
+        schema_name:
+          description: 关联的 Schema
+          type: string
+        db_name:
           description: ''
           type: string
-        list_value:
+        table_name:
+          description: ''
+          type: string
+        table_display_type:
+          description: ''
+          type: string
+        display_name:
+          description: "显示名\n 最长 100 个字符 , 同一 schema 内唯一"
+          type: string
+        join_on_expression:
+          description: ''
+          type: string
+        join_key_columns:
           description: ''
           items:
             type: string
           type: array
-        datetime_value:
-          description: ''
-          format: date-time
+        join_mode:
+          description: "关联方式，默认 LEFT_JOIN\n```\n  SCHEMA_TABLE_JOIN_MODE_UNSPECIFIED = 0; // 未标识\n  INNER_JOIN = 1;                         // 内连接\n  LEFT_JOIN = 2;                          // 左外连接 默认方式\n  RIGHT_JOIN = 3;                         // 右外连接\n  LEFT_ANTI_JOIN = 4;                     // 左反连接\n  LEFT_SEMI_JOIN = 5;                     // 左半连接\n  FULL_OUTER_JOIN = 6;                    // 全外连接\n```"
+          enum:
+          - SCHEMA_TABLE_JOIN_MODE_UNSPECIFIED
+          - INNER_JOIN
+          - LEFT_JOIN
+          - RIGHT_JOIN
+          - LEFT_ANTI_JOIN
+          - LEFT_SEMI_JOIN
+          - FULL_OUTER_JOIN
           type: string
-        date_value:
-          description: ''
-          type: string
-        bigint_value:
-          description: ''
-          format: int64
-          type: integer
-        decimal_value:
-          description: ''
-          type: string
-      title: Literal
+        access_info:
+          $ref: '#/components/schemas/sensorsdata.horizon.v1.AccessInfo'
+      required:
+      - db_name
+      - extended_table_id
+      - join_on_expression
+      - schema_name
+      - table_name
+      title: SchemaExtendedTable
       type: object
-    sensorsdata.horizon.v1.SchemaExtendedTableHttpApiResult:
+    sensorsdata.horizon.v1.ListLogicalSchemasResponseHttpApiResult:
       properties:
         code:
           type: string
@@ -2088,10 +2546,70 @@ components:
         request_id:
           type: string
         data:
-          $ref: '#/components/schemas/sensorsdata.horizon.v1.SchemaExtendedTable'
+          $ref: '#/components/schemas/sensorsdata.horizon.v1.ListLogicalSchemasResponse'
         error_info:
           $ref: '#/components/schemas/sensorsdata.common.ErrorInfo'
-      title: sensorsdata.horizon.v1.SchemaExtendedTableHttpApiResult
+      title: sensorsdata.horizon.v1.ListLogicalSchemasResponseHttpApiResult
+      type: object
+    sensorsdata.horizon.v1.FieldHttpApiResult:
+      properties:
+        code:
+          type: string
+        message:
+          type: string
+        request_id:
+          type: string
+        data:
+          $ref: '#/components/schemas/sensorsdata.horizon.v1.Field'
+        error_info:
+          $ref: '#/components/schemas/sensorsdata.common.ErrorInfo'
+      title: sensorsdata.horizon.v1.FieldHttpApiResult
+      type: object
+    sensorsdata.horizon.v1.SchemaFieldDimensionDict:
+      description: schema字段维度字典
+      properties:
+        dict:
+          additionalProperties:
+            description: ''
+            type: string
+          description: 维度字典数据
+          type: object
+        upload_mode:
+          description: "字典上传模式\n```\n  UPLOAD_TYPE_UNSPECIFIED = 0;       // 未标识\n  OVERWRITE = 1;                     // 覆盖模式，会清空原来的字典再上传\n  INCREMENT_IGNORE_DUPLICATE = 2;    // 增量模式，若 key 重复，则忽略\n  INCREMENT_OVERWRITE_DUPLICATE = 3; // 增量模式，或 key 重复，则覆盖\n```"
+          enum:
+          - UPLOAD_TYPE_UNSPECIFIED
+          - OVERWRITE
+          - INCREMENT_IGNORE_DUPLICATE
+          - INCREMENT_OVERWRITE_DUPLICATE
+          example: OVERWRITE
+          type: string
+      required:
+      - dict
+      title: SchemaFieldDimensionDict
+      type: object
+    sensorsdata.horizon.v1.SchemaDataMapping:
+      description: Schema数据映射
+      properties:
+        view_table:
+          $ref: '#/components/schemas/sensorsdata.horizon.v1.SchemaDataMapping.SchemaSourceTable'
+        main_table:
+          $ref: '#/components/schemas/sensorsdata.horizon.v1.SchemaDataMapping.SchemaSourceTable'
+        extended_tables:
+          description: 拓展表
+          items:
+            $ref: '#/components/schemas/sensorsdata.horizon.v1.SchemaExtendedTable'
+          type: array
+      title: SchemaDataMapping
+      type: object
+    sensorsdata.horizon.v1.ListSchemaFieldsResponse:
+      description: ''
+      properties:
+        fields:
+          description: ''
+          items:
+            $ref: '#/components/schemas/sensorsdata.horizon.v1.Field'
+          type: array
+      title: ListSchemaFieldsResponse
       type: object
     sensorsdata.horizon.v1.ListSchemaFieldsResponseHttpApiResult:
       properties:
@@ -2125,63 +2643,6 @@ components:
       - update_mask
       title: UpdateSchemaRequest
       type: object
-    sensorsdata.horizon.v1.ListSchemaFieldsResponse:
-      description: ''
-      properties:
-        fields:
-          description: ''
-          items:
-            $ref: '#/components/schemas/sensorsdata.horizon.v1.Field'
-          type: array
-      title: ListSchemaFieldsResponse
-      type: object
-    sensorsdata.common.PredicateFunctionParam:
-      description: "```\n 函数的参数，有几种可能\n 1. 一个 field, 如 events.$Anything.$city\n 2. 一个 Literal 的常量\n 3. 一个变量, 如 $ENTRY_TIME, 需要在执行上下文里进行替换\n 4. 一个 TimePoint, 代表一个相对或绝对的时间点, 用于时间类型的条件\n 5. 一个 expression user.p1/user.p2+user.p3\n ```"
-      properties:
-        param_type:
-          description: 函数的参数类型
-          enum:
-          - FUNCTION_PARAM_TYPE_UNSPECIFIED
-          - FIELD
-          - VALUE
-          - VARIABLE
-          - TIME_POINT
-          - EXPRESSION
-          example: FIELD
-          type: string
-        field:
-          description: 字段名
-          example: '#ResourceId'
-          type: string
-        value:
-          $ref: '#/components/schemas/sensorsdata.common.Literal'
-        variable:
-          description: 变量，需要在执行上下文里进行替换
-          example: $ENTRY_TIME
-          type: string
-        time_point:
-          $ref: '#/components/schemas/sensorsdata.common.TimePoint'
-        expression:
-          description: 自定义表达式
-          example: user.p1/user.p2+user.p3
-          type: string
-      title: PredicateFunctionParam
-      type: object
-    sensorsdata.horizon.v1.BatchCreateSchemaFieldsRequest.FieldCreateDescriptor:
-      description: ''
-      properties:
-        schema_name:
-          description: ''
-          type: string
-        field:
-          $ref: '#/components/schemas/sensorsdata.horizon.v1.Field'
-        dimension_dict:
-          $ref: '#/components/schemas/sensorsdata.horizon.v1.SchemaFieldDimensionDict'
-      required:
-      - field
-      - schema_name
-      title: FieldCreateDescriptor
-      type: object
     sensorsdata.horizon.v1.SchemaStatistics.SchemaTrackPlatform:
       description: ''
       properties:
@@ -2194,6 +2655,34 @@ components:
       required:
       - platform
       title: SchemaTrackPlatform
+      type: object
+    sensorsdata.common.CompoundFilterCondition:
+      description: 复合过滤条件，用于描述 condition 或 compound_filter 之间的关系
+      properties:
+        operator:
+          description: 逻辑运算法
+          enum:
+          - LOGICAL_OPERATOR_UNSPECIFIED
+          - AND
+          - OR
+          example: AND
+          type: string
+        conditions:
+          description: 过滤条件列表，只有最后一级才有
+          items:
+            $ref: '#/components/schemas/sensorsdata.common.FilterCondition'
+          type: array
+        compound_conditions:
+          description: 嵌套的下一级复合过滤条件
+          items:
+            $ref: '#/components/schemas/sensorsdata.common.CompoundFilterCondition'
+          type: array
+        index:
+          description: 当前筛选条件所处的位置下标，主要为了保证前端展示顺序的稳定
+          example: 10
+          format: int32
+          type: integer
+      title: CompoundFilterCondition
       type: object
     sensorsdata.common.TimePoint:
       description: ''
@@ -2228,19 +2717,60 @@ components:
           type: string
       title: TimePoint
       type: object
-    sensorsdata.horizon.v1.SchemaHttpApiResult:
+    sensorsdata.horizon.v1.BatchCreateLogicalSchemasRequest:
+      description: 批量创建元事件
       properties:
-        code:
+        project_id:
+          description: 项目 id
+          format: int32
+          type: integer
+        physical_schema_name:
+          description: ''
           type: string
-        message:
+        schemas:
+          description: ''
+          items:
+            $ref: '#/components/schemas/sensorsdata.horizon.v1.Schema'
+          type: array
+      required:
+      - physical_schema_name
+      - project_id
+      - schemas
+      title: BatchCreateLogicalSchemasRequest
+      type: object
+    sensorsdata.horizon.v1.SchemaDataMapping.SchemaSourceTable:
+      description: ''
+      properties:
+        db_name:
+          description: ''
           type: string
-        request_id:
+        table_name:
+          description: 映射的表名称
           type: string
-        data:
-          $ref: '#/components/schemas/sensorsdata.horizon.v1.Schema'
-        error_info:
-          $ref: '#/components/schemas/sensorsdata.common.ErrorInfo'
-      title: sensorsdata.horizon.v1.SchemaHttpApiResult
+        condition:
+          description: "筛选条件，sql 中的 filter，用于查询方拼接 sql 使用\n 系统会通过 SchemaMapping 中的 condition 翻译成视图或者物理表的条件\n 使用场景：QE 和 EQL"
+          type: string
+      title: SchemaSourceTable
+      type: object
+    sensorsdata.horizon.v1.FieldViewDataSource:
+      description: "Schema View 依据此信息进行构建\n 更新该数据的角色：「数据生产系统」，如 Tag Service\n 使用该数据的场景：「系统」在发现 Field 发生改动时，使用此数据进行 Schema View 表的生成\n 可通过接口修改和查询"
+      properties:
+        field_name:
+          description: ''
+          type: string
+        view_column_source_data:
+          $ref: '#/components/schemas/sensorsdata.horizon.v1.FieldViewDataSource.ViewColumnSourceData'
+        complex_expression:
+          $ref: '#/components/schemas/sensorsdata.horizon.v1.FieldViewDataSource.ComplexExpression'
+        inline_expression:
+          $ref: '#/components/schemas/sensorsdata.horizon.v1.FieldViewDataSource.InlineExpression'
+        version:
+          description: 视图的版本，用于校验更新视图时是否有并发，从 1 开始，为 0 时不检查版本
+          format: int32
+          type: integer
+      required:
+      - field_name
+      title: FieldViewDataSource
       type: object
     sensorsdata.horizon.v1.BatchCreateSchemaFieldsResponseHttpApiResult:
       properties:
@@ -2256,35 +2786,92 @@ components:
           $ref: '#/components/schemas/sensorsdata.common.ErrorInfo'
       title: sensorsdata.horizon.v1.BatchCreateSchemaFieldsResponseHttpApiResult
       type: object
-    sensorsdata.common.TimePoint.RelativeTimePoint:
+    sensorsdata.horizon.v1.ListLogicalSchemasRequest:
       description: ''
       properties:
-        base_time:
-          description: ''
+        project_id:
+          description: 项目 id
+          format: int32
+          type: integer
+        physical_schema_name:
+          description: 物理 Schema
           type: string
-        time_interval:
-          $ref: '#/components/schemas/sensorsdata.common.TimeInterval'
-      title: RelativeTimePoint
+        schema_type:
+          description: LOGICAL or VIRTUAL, 也可以不填 (代表 LOGICAL and VIRTUAL)
+          enum:
+          - SCHEMA_TYPE_UNSPECIFIED
+          - PHYSICAL
+          - LOGICAL
+          - VIRTUAL
+          example: LOGICAL
+          type: string
+        contain_field_names:
+          description: 查询包含某些 Field 的所有 Schema
+          items:
+            type: string
+          type: array
+        display_names:
+          description: 显示名
+          items:
+            type: string
+          type: array
+        expand:
+          description: 扩展返回指定字段
+          type: string
+        page:
+          description: 从 0 开始
+          format: int32
+          type: integer
+        page_size:
+          description: 默认值 1000，最大值 1000，-1 返回所有数据
+          format: int32
+          type: integer
+      required:
+      - physical_schema_name
+      - project_id
+      title: ListLogicalSchemasRequest
       type: object
-    sensorsdata.common.ErrorContext:
-      description: 发生错误时，系统快照信息
+    sensorsdata.horizon.v1.ListSchemaExtendedTablesRequest:
+      description: 查询schema关联的table
       properties:
-        origin_stack:
-          description: 上游异常的 stack，由系统截获
+        project_id:
+          description: 项目 id
+          format: int32
+          type: integer
+        schema_names:
+          description: schema 名字
+          items:
+            type: string
+          type: array
+        table_display_types:
+          description: table显示类型
+          items:
+            type: string
+          type: array
+        expand:
+          description: 扩展返回指定字段
           type: string
-        origin_cause:
-          description: 上游异常的 cause by，由系统截获
-          type: string
-        origin_code:
-          description: 上游异常的错误简码
-          type: string
-        origin_complete_code:
-          description: 上游异常的完整错误码
-          type: string
-        error_extend_desc:
-          description: 本次异常的辅助说明，可传入
-          type: string
-      title: ErrorContext
+      required:
+      - project_id
+      - schema_names
+      title: ListSchemaExtendedTablesRequest
+      type: object
+    sensorsdata.horizon.v1.BatchCreateSchemaExtendedTablesRequest:
+      description: 批量创建维度表关联关系
+      properties:
+        project_id:
+          description: 项目id
+          format: int32
+          type: integer
+        extended_tables:
+          description: ''
+          items:
+            $ref: '#/components/schemas/sensorsdata.horizon.v1.SchemaExtendedTable'
+          type: array
+      required:
+      - extended_tables
+      - project_id
+      title: BatchCreateSchemaExtendedTablesRequest
       type: object
     sensorsdata.horizon.v1.Schema:
       description: Schema 定义
@@ -2380,6 +2967,66 @@ components:
       - type
       title: Schema
       type: object
+    sensorsdata.horizon.v1.BatchCreateSchemaFieldsRequest.FieldCreateDescriptor:
+      description: ''
+      properties:
+        schema_name:
+          description: ''
+          type: string
+        field:
+          $ref: '#/components/schemas/sensorsdata.horizon.v1.Field'
+        dimension_dict:
+          $ref: '#/components/schemas/sensorsdata.horizon.v1.SchemaFieldDimensionDict'
+      required:
+      - field
+      - schema_name
+      title: FieldCreateDescriptor
+      type: object
+    sensorsdata.horizon.v1.Field.ObjectField:
+      description: ''
+      properties:
+        name:
+          description: ''
+          type: string
+        display_name:
+          description: ''
+          type: string
+        data_type:
+          $ref: '#/components/schemas/sensorsdata.horizon.v1.DataType'
+        description:
+          description: ''
+          type: string
+      title: ObjectField
+      type: object
+    sensorsdata.common.TimePoint.RelativeTimePoint:
+      description: ''
+      properties:
+        base_time:
+          description: ''
+          type: string
+        time_interval:
+          $ref: '#/components/schemas/sensorsdata.common.TimeInterval'
+      title: RelativeTimePoint
+      type: object
+    sensorsdata.horizon.v1.FieldDataMapping:
+      description: "数据应用查询时使用\n 查当前数据版本时，使用 schema_view_table.view_column_name 表示该 Field 数据\n 查询历史版本时，使用 source_table 自行拼接"
+      properties:
+        view_column_name:
+          description: 映射 Schema View 中的列名，不一定是 field name，SDH 内部会分配一个
+          type: string
+        source_type:
+          description: "属性来源类型\n```\n  FIELD_SOURCE_TYPE_UNSPECIFIED = 0;  // 表示 field 来自主表列，若单独使用时, 拼装方式为: SELECT ${source_column_name} AS ${view_column_name} FROM ${main_table}\n  MAIN_TABLE_COLUMN = 1;              // 主表 表示 field 是扩展表的列，若单独使用时, 拼装方式为: SELECT ${source_column_name} AS ${view_column_name} FROM ${extended_table}\n  EXTENDED_TABLE_COLUMN = 2;          // 使用表扩展属性，跨表计算出属性，原虚拟属性的逻辑, 例如: concat(events.aa, users.bb, items.cc)，均迁移到这个类型，官网文档: https://manual.sensorsdata.cn/sa/latest/%E8%99%9A%E6%8B%9F%E5%B1%9E%E6%80%A7-22253764.html\n  COMPLEX_EXPRESSION = 3;             // Schema 中多 Field 的计算， 暂不支持\n  INLINE_EXPRESSION = 4;\n```"
+          enum:
+          - FIELD_SOURCE_TYPE_UNSPECIFIED
+          - MAIN_TABLE_COLUMN
+          - EXTENDED_TABLE_COLUMN
+          - COMPLEX_EXPRESSION
+          - INLINE_EXPRESSION
+          type: string
+        extended_column:
+          $ref: '#/components/schemas/sensorsdata.horizon.v1.FieldDataMapping.ExtendedColumn'
+      title: FieldDataMapping
+      type: object
     sensorsdata.common.ErrorInfo:
       properties:
         code:
@@ -2402,704 +3049,57 @@ components:
           $ref: '#/components/schemas/sensorsdata.common.ErrorContext'
       title: ErrorInfo
       type: object
-    sensorsdata.horizon.v1.Schema.SchemaMapping:
-      description: 映射信息
-      properties:
-        target_schema_name:
-          description: 目标 schema 名称，必须是同一 SchemaClass 下的物理 Schema
-          type: string
-        condition:
-          $ref: '#/components/schemas/sensorsdata.common.CompoundFilterCondition'
-        raw_condition:
-          $ref: '#/components/schemas/sensorsdata.common.CompoundFilterCondition'
-      required:
-      - target_schema_name
-      title: SchemaMapping
-      type: object
-    sensorsdata.common.FilterCondition:
-      description: 单个过滤条件
-      properties:
-        function:
-          description: 过滤条件的判断函数
-          enum:
-          - PREDICATE_FUNCTION_TYPE_UNSPECIFIED
-          - IS_SET
-          - IS_NOT_SET
-          - EQUAL
-          - NOT_EQUAL
-          - IN
-          - NOT_IN
-          - LESS
-          - LESS_EQUAL
-          - GREATER
-          - GREATER_EQUAL
-          - BETWEEN
-          - RIGHT_OPEN_BETWEEN
-          - HASH_BETWEEN
-          - LEFT_OPEN_BETWEEN
-          - OPEN_BETWEEN
-          - IS_TRUE
-          - IS_FALSE
-          - CONTAIN
-          - NOT_CONTAIN
-          - IS_EMPTY
-          - IS_NOT_EMPTY
-          - RLIKE
-          - NOT_RLIKE
-          - INCLUDE
-          - NOT_INCLUDE
-          - ABSOLUTE_BETWEEN
-          - RELATIVE_WITHIN
-          - RELATIVE_BETWEEN
-          - RELATIVE_EVENT_TIME
-          - RELATIVE_BEFORE
-          - INTERSECTS
-          - NOT_INTERSECTS
-          - SUBSET_OF
-          - NOT_SUBSET_OF
-          - SUPERSET_OF
-          - NOT_SUPERSET_OF
-          example: EQUAL
-          type: string
-        params:
-          description: 函数的参数
-          items:
-            $ref: '#/components/schemas/sensorsdata.common.PredicateFunctionParam'
-          type: array
-        index:
-          description: 当前筛选条件所处的位置下标，主要为了保证前端展示顺序的稳定
-          example: 10
-          format: int32
-          type: integer
-      title: FilterCondition
-      type: object
-    sensorsdata.horizon.v1.FieldViewDataSource.ViewColumnSourceData:
-      description: 用于构建 Schema View 中，表征扩展属性的列数据
-      properties:
-        extended_table_id:
-          description: 扩展表关联id, SchemaExtendedTable.extended_table_id
-          type: string
-        extended_table_condition:
-          description: ''
-          type: string
-        column_name:
-          description: 映射的列名
-          type: string
-        alias_view_name:
-          description: 使用视图实现的表别名。(select $column_name from $extended_table_id where $extended_table_condition) $alias_view_name
-          type: string
-      required:
-      - extended_table_id
-      title: ViewColumnSourceData
-      type: object
-    sensorsdata.horizon.v1.ListSchemaFieldsRequest:
-      description: 获取属性列表
-      properties:
-        project_id:
-          description: 项目 id
-          format: int32
-          type: integer
-        schema_name:
-          description: schema 名字
-          type: string
-        field_names:
-          description: 属性名字
-          items:
-            type: string
-          type: array
-        field_display_names:
-          description: 属性显示名
-          items:
-            type: string
-          type: array
-        expand:
-          description: 扩展返回指定字段
-          type: string
-      required:
-      - project_id
-      - schema_name
-      title: ListSchemaFieldsRequest
-      type: object
-    sensorsdata.horizon.v1.Field.ObjectField:
+    sensorsdata.common.Literal:
       description: ''
       properties:
-        name:
-          description: ''
-          type: string
-        display_name:
-          description: ''
-          type: string
         data_type:
-          $ref: '#/components/schemas/sensorsdata.horizon.v1.DataType'
-        description:
           description: ''
-          type: string
-      title: ObjectField
-      type: object
-    sensorsdata.horizon.v1.FieldViewDataSource.ComplexExpression:
-      description: 原虚拟属性的表达
-      properties:
-        extended_table_ids:
-          description: 虚拟属性表达式引用的表
-          items:
-            type: string
-          type: array
-        expression:
-          description: 虚拟属性表达式
-          type: string
-        related_mode:
-          description: 关联 Schema 的方式，可选字段若不传默认为：CONTAINS_ALL
           enum:
-          - RELATED_MODE_UNSPECIFIED
-          - CONTAINS_ALL
-          - CONTAINS_ANY
+          - DATA_TYPE_UNSPECIFIED
+          - BOOL
+          - INT
+          - NUMBER
+          - STRING
+          - LIST
+          - DATETIME
+          - DATE
+          - BIGINT
+          - DECIMAL
           type: string
-      required:
-      - expression
-      title: ComplexExpression
-      type: object
-    sensorsdata.horizon.v1.SchemaFieldDimensionDict:
-      description: schema字段维度字典
-      properties:
-        dict:
-          additionalProperties:
-            description: ''
-            type: string
-          description: 维度字典数据
-          type: object
-        upload_mode:
-          description: "字典上传模式\n```\n  UPLOAD_TYPE_UNSPECIFIED = 0;       // 未标识\n  OVERWRITE = 1;                     // 覆盖模式，会清空原来的字典再上传\n  INCREMENT_IGNORE_DUPLICATE = 2;    // 增量模式，若 key 重复，则忽略\n  INCREMENT_OVERWRITE_DUPLICATE = 3; // 增量模式，或 key 重复，则覆盖\n```"
-          enum:
-          - UPLOAD_TYPE_UNSPECIFIED
-          - OVERWRITE
-          - INCREMENT_IGNORE_DUPLICATE
-          - INCREMENT_OVERWRITE_DUPLICATE
-          example: OVERWRITE
-          type: string
-      required:
-      - dict
-      title: SchemaFieldDimensionDict
-      type: object
-    sensorsdata.horizon.v1.FieldViewDataSource.InlineExpression:
-      description: ''
-      properties:
-        expression:
+        bool_value:
           description: ''
-          type: string
-        related_mode:
-          description: 关联 Schema 的方式
-          enum:
-          - RELATED_MODE_UNSPECIFIED
-          - CONTAINS_ALL
-          - CONTAINS_ANY
-          type: string
-      required:
-      - expression
-      - related_mode
-      title: InlineExpression
-      type: object
-    sensorsdata.horizon.v1.BatchCreateSchemaExtendedTablesRequest:
-      description: 批量创建维度表关联关系
-      properties:
-        project_id:
-          description: 项目id
-          format: int32
-          type: integer
-        extended_tables:
-          description: ''
-          items:
-            $ref: '#/components/schemas/sensorsdata.horizon.v1.SchemaExtendedTable'
-          type: array
-      required:
-      - extended_tables
-      - project_id
-      title: BatchCreateSchemaExtendedTablesRequest
-      type: object
-    sensorsdata.horizon.v1.BatchCreateSchemaFieldsRequest:
-      description: 批量创建schema属性
-      properties:
-        project_id:
-          description: 项目 id
-          format: int32
-          type: integer
-        fields:
-          description: 要创建的字段定义
-          items:
-            $ref: '#/components/schemas/sensorsdata.horizon.v1.BatchCreateSchemaFieldsRequest.FieldCreateDescriptor'
-          type: array
-      required:
-      - fields
-      - project_id
-      title: BatchCreateSchemaFieldsRequest
-      type: object
-    sensorsdata.horizon.v1.BatchCreateLogicalSchemasRequest:
-      description: 批量创建元事件
-      properties:
-        project_id:
-          description: 项目 id
-          format: int32
-          type: integer
-        physical_schema_name:
-          description: ''
-          type: string
-        schemas:
-          description: ''
-          items:
-            $ref: '#/components/schemas/sensorsdata.horizon.v1.Schema'
-          type: array
-      required:
-      - physical_schema_name
-      - project_id
-      - schemas
-      title: BatchCreateLogicalSchemasRequest
-      type: object
-    sensorsdata.horizon.v1.UpdateSchemaExtendedTableRequest:
-      description: 更新SchemaExtendedTable
-      properties:
-        project_id:
-          description: 项目 id
-          format: int32
-          type: integer
-        extended_table:
-          $ref: '#/components/schemas/sensorsdata.horizon.v1.SchemaExtendedTable'
-        update_mask:
-          description: 指定需要更新的字段,目前只能更新 display_name, join_on_expression
-          type: string
-      required:
-      - extended_table
-      - project_id
-      - update_mask
-      title: UpdateSchemaExtendedTableRequest
-      type: object
-    sensorsdata.horizon.v1.FieldUnit:
-      description: 属性单位
-      properties:
-        name:
-          description: 唯一标识
-          type: string
-        display_name:
-          description: 单位显示名
-          type: string
-        builtin:
-          description: 是否系统内置单位
           type: boolean
-        data_type:
-          $ref: '#/components/schemas/sensorsdata.horizon.v1.DataType'
-        base:
-          description: 单位进制
-          format: int32
-          type: integer
-        unit_group_name:
-          description: 单位分组
-          type: string
-        unit_group_display_name:
+        int_value:
           description: ''
-          type: string
-        access_info:
-          $ref: '#/components/schemas/sensorsdata.horizon.v1.AccessInfo'
-      required:
-      - display_name
-      title: FieldUnit
-      type: object
-    sensorsdata.common.CompoundFilterCondition:
-      description: 复合过滤条件，用于描述 condition 或 compound_filter 之间的关系
-      properties:
-        operator:
-          description: 逻辑运算法
-          enum:
-          - LOGICAL_OPERATOR_UNSPECIFIED
-          - AND
-          - OR
-          example: AND
-          type: string
-        conditions:
-          description: 过滤条件列表，只有最后一级才有
-          items:
-            $ref: '#/components/schemas/sensorsdata.common.FilterCondition'
-          type: array
-        compound_conditions:
-          description: 嵌套的下一级复合过滤条件
-          items:
-            $ref: '#/components/schemas/sensorsdata.common.CompoundFilterCondition'
-          type: array
-        index:
-          description: 当前筛选条件所处的位置下标，主要为了保证前端展示顺序的稳定
-          example: 10
-          format: int32
-          type: integer
-      title: CompoundFilterCondition
-      type: object
-    sensorsdata.horizon.v1.FieldDataMapping.ExtendedColumn:
-      description: ''
-      properties:
-        extended_table_id:
-          description: 扩展表关联id, SchemaExtendedTable.extended_table_id
-          type: string
-        column_name:
-          description: 映射的列名
-          type: string
-        version_column:
-          description: 版本字段，对应数据表中的 column
-          type: string
-      required:
-      - extended_table_id
-      title: ExtendedColumn
-      type: object
-    sensorsdata.horizon.v1.GetSchemaByOriginalNameRequest:
-      description: ''
-      properties:
-        project_id:
-          description: 项目 id
-          format: int32
-          type: integer
-        physical_schema_name:
-          description: 物理 schema 的 name
-          type: string
-        original_name:
-          description: 物理 schema 下逻辑或者虚拟 schema 的 origin_name，对于 SDG Core 就是上传数据中的 event name
-          type: string
-        expand:
-          description: 扩展返回指定字段
-          type: string
-      required:
-      - original_name
-      - physical_schema_name
-      - project_id
-      title: GetSchemaByOriginalNameRequest
-      type: object
-    sensorsdata.common.ErrorCause:
-      properties:
-        error_cause:
-          description: 致错原因1
-          example: 参数异常1
-          type: string
-        action_suggestion:
-          description: 操作建议，针对该原因，建议的解决方式
-          example: 检测入参的数据类型1
-          type: string
-      title: ErrorCause
-      type: object
-    sensorsdata.horizon.v1.GetSchemaRequest:
-      description: ''
-      properties:
-        project_id:
-          description: 项目 id
-          format: int32
-          type: integer
-        name:
-          description: Schema名称
-          type: string
-        expand:
-          description: 扩展返回指定字段
-          type: string
-      required:
-      - name
-      - project_id
-      title: GetSchemaRequest
-      type: object
-    sensorsdata.horizon.v1.GetSchemaFieldRequest:
-      description: 获取schema属性信息
-      properties:
-        project_id:
-          description: 项目 id
-          format: int32
-          type: integer
-        schema_name:
-          description: schema 名字
-          type: string
-        field_name:
-          description: 属性名字
-          example: event_id
-          type: string
-        expand:
-          description: 扩展返回指定字段
-          example: '"custom_params,data_mapping,view_data_source,unit"'
-          type: string
-      required:
-      - field_name
-      - project_id
-      - schema_name
-      title: GetSchemaFieldRequest
-      type: object
-    sensorsdata.horizon.v1.SchemaDataMapping:
-      description: Schema数据映射
-      properties:
-        view_table:
-          $ref: '#/components/schemas/sensorsdata.horizon.v1.SchemaDataMapping.SchemaSourceTable'
-        main_table:
-          $ref: '#/components/schemas/sensorsdata.horizon.v1.SchemaDataMapping.SchemaSourceTable'
-        extended_tables:
-          description: 拓展表
-          items:
-            $ref: '#/components/schemas/sensorsdata.horizon.v1.SchemaExtendedTable'
-          type: array
-      title: SchemaDataMapping
-      type: object
-    sensorsdata.horizon.v1.ListSchemaExtendedTablesRequest:
-      description: 查询schema关联的table
-      properties:
-        project_id:
-          description: 项目 id
-          format: int32
-          type: integer
-        schema_names:
-          description: schema 名字
-          items:
-            type: string
-          type: array
-        table_display_types:
-          description: table显示类型
-          items:
-            type: string
-          type: array
-        expand:
-          description: 扩展返回指定字段
-          type: string
-      required:
-      - project_id
-      - schema_names
-      title: ListSchemaExtendedTablesRequest
-      type: object
-    sensorsdata.horizon.v1.SchemaStatistics:
-      description: Schema 统计信息，只能更新不能新建和删除
-      properties:
-        last_30_day_count:
-          description: 过去 30 天数据量
           format: int64
           type: integer
-        track_platforms:
-          description: 埋点平台，只能进行全量覆盖更新
-          items:
-            $ref: '#/components/schemas/sensorsdata.horizon.v1.SchemaStatistics.SchemaTrackPlatform'
-          type: array
-        access_info:
-          $ref: '#/components/schemas/sensorsdata.horizon.v1.AccessInfo'
-      title: SchemaStatistics
-      type: object
-    sensorsdata.horizon.v1.ListLogicalSchemasResponse:
-      description: ''
-      properties:
-        schemas:
-          description: protolint:disable:next REPEATED_FIELD_NAMES_PLURALIZED
-          items:
-            $ref: '#/components/schemas/sensorsdata.horizon.v1.Schema'
-          type: array
-        total_size:
-          description: 总数据条数
-          format: int32
-          type: integer
-        has_next:
-          description: 是否还有下一页
-          type: boolean
-      title: ListLogicalSchemasResponse
-      type: object
-    sensorsdata.horizon.v1.UpdateSchemaFieldRequest:
-      description: 更新schema属性
-      properties:
-        project_id:
-          description: 项目 id
-          format: int32
-          type: integer
-        schema_name:
-          description: schema 名字
-          type: string
-        field:
-          $ref: '#/components/schemas/sensorsdata.horizon.v1.Field'
-        dimension_dict:
-          $ref: '#/components/schemas/sensorsdata.horizon.v1.SchemaFieldDimensionDict'
-        update_mask:
-          description: 指定需要更新的字段
-          type: string
-      required:
-      - field
-      - project_id
-      - schema_name
-      - update_mask
-      title: UpdateSchemaFieldRequest
-      type: object
-    sensorsdata.horizon.v1.ListLogicalSchemasRequest:
-      description: ''
-      properties:
-        project_id:
-          description: 项目 id
-          format: int32
-          type: integer
-        physical_schema_name:
-          description: 物理 Schema
-          type: string
-        schema_type:
-          description: LOGICAL or VIRTUAL, 也可以不填 (代表 LOGICAL and VIRTUAL)
-          enum:
-          - SCHEMA_TYPE_UNSPECIFIED
-          - PHYSICAL
-          - LOGICAL
-          - VIRTUAL
-          example: LOGICAL
-          type: string
-        contain_field_names:
-          description: 查询包含某些 Field 的所有 Schema
-          items:
-            type: string
-          type: array
-        display_names:
-          description: 显示名
-          items:
-            type: string
-          type: array
-        expand:
-          description: 扩展返回指定字段
-          type: string
-        page:
-          description: 从 0 开始
-          format: int32
-          type: integer
-        page_size:
-          description: 默认值 1000，最大值 1000，-1 返回所有数据
-          format: int32
-          type: integer
-      required:
-      - physical_schema_name
-      - project_id
-      title: ListLogicalSchemasRequest
-      type: object
-    sensorsdata.horizon.v1.FieldHttpApiResult:
-      properties:
-        code:
-          type: string
-        message:
-          type: string
-        request_id:
-          type: string
-        data:
-          $ref: '#/components/schemas/sensorsdata.horizon.v1.Field'
-        error_info:
-          $ref: '#/components/schemas/sensorsdata.common.ErrorInfo'
-      title: sensorsdata.horizon.v1.FieldHttpApiResult
-      type: object
-    sensorsdata.common.TimeInterval:
-      description: ''
-      properties:
-        size:
+        number_value:
           description: ''
-          format: int32
-          type: integer
-        unit:
-          description: ''
-          enum:
-          - DATE_TIME_UNIT_UNSPECIFIED
-          - MILLISECOND
-          - SECOND
-          - MINUTE
-          - HOUR
-          - DAY
-          - WEEK
-          - MONTH
-          - YEAR
-          type: string
-      title: TimeInterval
-      type: object
-    sensorsdata.horizon.v1.SchemaExtendedTable:
-      description: 拓展表定义
-      properties:
-        extended_table_id:
-          description: 同一 table 在关联同一 Schema 但是 join 表达式不同时， 需要用唯一名称区分
-          type: string
-        schema_name:
-          description: 关联的 Schema
-          type: string
-        db_name:
+          format: double
+          type: number
+        string_value:
           description: ''
           type: string
-        table_name:
-          description: ''
-          type: string
-        table_display_type:
-          description: ''
-          type: string
-        display_name:
-          description: "显示名\n 最长 100 个字符 , 同一 schema 内唯一"
-          type: string
-        join_on_expression:
-          description: ''
-          type: string
-        join_key_columns:
+        list_value:
           description: ''
           items:
             type: string
           type: array
-        join_mode:
-          description: "关联方式，默认 LEFT_JOIN\n```\n  SCHEMA_TABLE_JOIN_MODE_UNSPECIFIED = 0; // 未标识\n  INNER_JOIN = 1;                         // 内连接\n  LEFT_JOIN = 2;                          // 左外连接 默认方式\n  RIGHT_JOIN = 3;                         // 右外连接\n  LEFT_ANTI_JOIN = 4;                     // 左反连接\n  LEFT_SEMI_JOIN = 5;                     // 左半连接\n  FULL_OUTER_JOIN = 6;                    // 全外连接\n```"
-          enum:
-          - SCHEMA_TABLE_JOIN_MODE_UNSPECIFIED
-          - INNER_JOIN
-          - LEFT_JOIN
-          - RIGHT_JOIN
-          - LEFT_ANTI_JOIN
-          - LEFT_SEMI_JOIN
-          - FULL_OUTER_JOIN
-          type: string
-        access_info:
-          $ref: '#/components/schemas/sensorsdata.horizon.v1.AccessInfo'
-      required:
-      - db_name
-      - extended_table_id
-      - join_on_expression
-      - schema_name
-      - table_name
-      title: SchemaExtendedTable
-      type: object
-    sensorsdata.horizon.v1.FieldViewDataSource:
-      description: "Schema View 依据此信息进行构建\n 更新该数据的角色：「数据生产系统」，如 Tag Service\n 使用该数据的场景：「系统」在发现 Field 发生改动时，使用此数据进行 Schema View 表的生成\n 可通过接口修改和查询"
-      properties:
-        field_name:
+        datetime_value:
           description: ''
-          type: string
-        view_column_source_data:
-          $ref: '#/components/schemas/sensorsdata.horizon.v1.FieldViewDataSource.ViewColumnSourceData'
-        complex_expression:
-          $ref: '#/components/schemas/sensorsdata.horizon.v1.FieldViewDataSource.ComplexExpression'
-        inline_expression:
-          $ref: '#/components/schemas/sensorsdata.horizon.v1.FieldViewDataSource.InlineExpression'
-        version:
-          description: 视图的版本，用于校验更新视图时是否有并发，从 1 开始，为 0 时不检查版本
-          format: int32
-          type: integer
-      required:
-      - field_name
-      title: FieldViewDataSource
-      type: object
-    sensorsdata.horizon.v1.AccessInfo:
-      description: 数据访问信息
-      properties:
-        creator_id:
-          description: 创建人 ID
-          type: string
-        modifier_id:
-          description: 最近一次修改人 ID
-          type: string
-        create_time:
-          description: 创建时间
           format: date-time
           type: string
-        update_time:
-          description: 最近一次修改时间
-          format: date-time
-          type: string
-      title: AccessInfo
-      type: object
-    sensorsdata.horizon.v1.SchemaDataMapping.SchemaSourceTable:
-      description: ''
-      properties:
-        db_name:
+        date_value:
           description: ''
           type: string
-        table_name:
-          description: 映射的表名称
+        bigint_value:
+          description: ''
+          format: int64
+          type: integer
+        decimal_value:
+          description: ''
           type: string
-        condition:
-          description: "筛选条件，sql 中的 filter，用于查询方拼接 sql 使用\n 系统会通过 SchemaMapping 中的 condition 翻译成视图或者物理表的条件\n 使用场景：QE 和 EQL"
-          type: string
-      title: SchemaSourceTable
+      title: Literal
       type: object
 x-sd-openapi-service-name: Schema
 x-sd-openapi-service-name-hyphen: schema

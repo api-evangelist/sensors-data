@@ -413,36 +413,31 @@ paths:
       - Catalog
 components:
   schemas:
-    sensorsdata.common.ErrorCause:
+    sensorsdata.horizon.v1.BindCatalogResourceRequest:
+      description: 挂载资源节点
       properties:
-        error_cause:
-          description: 致错原因1
-          example: 参数异常1
+        project_id:
+          description: 项目 ID
+          example: 1
+          format: int32
+          type: integer
+        parent_name:
+          description: 父目录标识
           type: string
-        action_suggestion:
-          description: 操作建议，针对该原因，建议的解决方式
-          example: 检测入参的数据类型1
+        resource_type:
+          description: 资源类型
+          example: TAG
           type: string
-      title: ErrorCause
-      type: object
-    sensorsdata.horizon.v1.AccessInfo:
-      description: 数据访问信息
-      properties:
-        creator_id:
-          description: 创建人 ID
+        resource_id:
+          description: 资源标识
+          example: user_tag_bq_meta_string
           type: string
-        modifier_id:
-          description: 最近一次修改人 ID
-          type: string
-        create_time:
-          description: 创建时间
-          format: date-time
-          type: string
-        update_time:
-          description: 最近一次修改时间
-          format: date-time
-          type: string
-      title: AccessInfo
+      required:
+      - parent_name
+      - project_id
+      - resource_id
+      - resource_type
+      title: BindCatalogResourceRequest
       type: object
     sensorsdata.horizon.v1.ListCatalogTreesResponseHttpApiResult:
       properties:
@@ -458,62 +453,24 @@ components:
           $ref: '#/components/schemas/sensorsdata.common.ErrorInfo'
       title: sensorsdata.horizon.v1.ListCatalogTreesResponseHttpApiResult
       type: object
-    sensorsdata.common.ErrorContext:
-      description: 发生错误时，系统快照信息
+    sensorsdata.horizon.v1.CatalogTree:
+      description: ''
       properties:
-        origin_stack:
-          description: 上游异常的 stack，由系统截获
+        business_name:
+          description: 业务名称
+          example: user
           type: string
-        origin_cause:
-          description: 上游异常的 cause by，由系统截获
-          type: string
-        origin_code:
-          description: 上游异常的错误简码
-          type: string
-        origin_complete_code:
-          description: 上游异常的完整错误码
-          type: string
-        error_extend_desc:
-          description: 本次异常的辅助说明，可传入
-          type: string
-      title: ErrorContext
-      type: object
-    sensorsdata.common.HttpApiResult:
-      properties:
-        code:
-          type: string
-        message:
-          type: string
-        request_id:
-          type: string
-        data:
-          properties: {}
+        catalog:
+          $ref: '#/components/schemas/sensorsdata.horizon.v1.Catalog'
+        custom_params:
+          additionalProperties:
+            description: ''
+            type: string
+          description: 自定义参数
+          example:
+            BELONG_KEY: USER_PROPERTY
           type: object
-        error_info:
-          $ref: '#/components/schemas/sensorsdata.common.ErrorInfo'
-      title: HttpApiResult
-      type: object
-    sensorsdata.common.ErrorInfo:
-      properties:
-        code:
-          description: 具体的错误码
-          example: XX-D-F-2-1
-          type: string
-        description:
-          description: 错误描述
-          example: 前端参数校验异常,PARAMETER_FORMAT_ERROR(quantiles=[10, -90] is not include [0, 100])
-          type: string
-        system_response:
-          description: 致错的可能原因列表
-          example: 系统终止了查询处理
-          type: string
-        error_causes:
-          items:
-            $ref: '#/components/schemas/sensorsdata.common.ErrorCause'
-          type: array
-        context:
-          $ref: '#/components/schemas/sensorsdata.common.ErrorContext'
-      title: ErrorInfo
+      title: CatalogTree
       type: object
     sensorsdata.horizon.v1.ListCatalogTreesResponse:
       description: ''
@@ -526,8 +483,8 @@ components:
           type: array
       title: ListCatalogTreesResponse
       type: object
-    sensorsdata.horizon.v1.UnbindCatalogResourceRequest:
-      description: 解绑资源节点
+    sensorsdata.horizon.v1.ListCatalogTreesRequest:
+      description: ''
       properties:
         project_id:
           description: 项目 ID
@@ -538,29 +495,42 @@ components:
           description: 业务类型
           example: ENTITY
           type: string
-        business_name:
-          description: 业务名称
-          example: user
+        business_names:
+          description: "业务名称\n 返回特定业务的目录树，不传则返回当前业务类型下所有的目录树"
+          example: '["user"]'
+          items:
+            type: string
+          type: array
+        query_catalog_node_type:
+          description: "查询的节点类型\n```\n QUERY_CATALOG_NODE_TYPE_UNSPECIFIED = 0; // 未标识\n ONLY_UNDELETE = 1;                       // 仅包含未删除的节点\n ONLY_DELETE = 2;                         // 仅包含删除的节点\n ALL = 3;                                 // 所有节点\n```"
+          enum:
+          - QUERY_CATALOG_NODE_TYPE_UNSPECIFIED
+          - ONLY_UNDELETE
+          - ONLY_DELETE
+          - ALL
+          example: ONLY_UNDELETE
           type: string
-        resource_type:
-          description: 资源类型
-          example: TAG
-          type: string
-        resource_id:
-          description: 资源标识
-          example: user_tag_bq_meta_string
-          type: string
-        skip_trash:
-          description: 是否跳过回收站
+        show_resource:
+          description: 返回的目录树是否包含资源节点
           example: true
           type: boolean
       required:
-      - business_name
       - business_type
       - project_id
-      - resource_id
-      - resource_type
-      title: UnbindCatalogResourceRequest
+      - query_catalog_node_type
+      title: ListCatalogTreesRequest
+      type: object
+    sensorsdata.common.ErrorCause:
+      properties:
+        error_cause:
+          description: 致错原因1
+          example: 参数异常1
+          type: string
+        action_suggestion:
+          description: 操作建议，针对该原因，建议的解决方式
+          example: 检测入参的数据类型1
+          type: string
+      title: ErrorCause
       type: object
     sensorsdata.horizon.v1.Catalog:
       description: 数据目录定义
@@ -625,8 +595,84 @@ components:
       - parent_name
       title: Catalog
       type: object
-    sensorsdata.horizon.v1.ListCatalogTreesRequest:
-      description: ''
+    sensorsdata.common.ErrorContext:
+      description: 发生错误时，系统快照信息
+      properties:
+        origin_stack:
+          description: 上游异常的 stack，由系统截获
+          type: string
+        origin_cause:
+          description: 上游异常的 cause by，由系统截获
+          type: string
+        origin_code:
+          description: 上游异常的错误简码
+          type: string
+        origin_complete_code:
+          description: 上游异常的完整错误码
+          type: string
+        error_extend_desc:
+          description: 本次异常的辅助说明，可传入
+          type: string
+      title: ErrorContext
+      type: object
+    sensorsdata.common.ErrorInfo:
+      properties:
+        code:
+          description: 具体的错误码
+          example: XX-D-F-2-1
+          type: string
+        description:
+          description: 错误描述
+          example: 前端参数校验异常,PARAMETER_FORMAT_ERROR(quantiles=[10, -90] is not include [0, 100])
+          type: string
+        system_response:
+          description: 致错的可能原因列表
+          example: 系统终止了查询处理
+          type: string
+        error_causes:
+          items:
+            $ref: '#/components/schemas/sensorsdata.common.ErrorCause'
+          type: array
+        context:
+          $ref: '#/components/schemas/sensorsdata.common.ErrorContext'
+      title: ErrorInfo
+      type: object
+    sensorsdata.horizon.v1.AccessInfo:
+      description: 数据访问信息
+      properties:
+        creator_id:
+          description: 创建人 ID
+          type: string
+        modifier_id:
+          description: 最近一次修改人 ID
+          type: string
+        create_time:
+          description: 创建时间
+          format: date-time
+          type: string
+        update_time:
+          description: 最近一次修改时间
+          format: date-time
+          type: string
+      title: AccessInfo
+      type: object
+    sensorsdata.common.HttpApiResult:
+      properties:
+        code:
+          type: string
+        message:
+          type: string
+        request_id:
+          type: string
+        data:
+          properties: {}
+          type: object
+        error_info:
+          $ref: '#/components/schemas/sensorsdata.common.ErrorInfo'
+      title: HttpApiResult
+      type: object
+    sensorsdata.horizon.v1.UnbindCatalogResourceRequest:
+      description: 解绑资源节点
       properties:
         project_id:
           description: 项目 ID
@@ -637,60 +683,9 @@ components:
           description: 业务类型
           example: ENTITY
           type: string
-        business_names:
-          description: "业务名称\n 返回特定业务的目录树，不传则返回当前业务类型下所有的目录树"
-          example: '["user"]'
-          items:
-            type: string
-          type: array
-        query_catalog_node_type:
-          description: "查询的节点类型\n```\n QUERY_CATALOG_NODE_TYPE_UNSPECIFIED = 0; // 未标识\n ONLY_UNDELETE = 1;                       // 仅包含未删除的节点\n ONLY_DELETE = 2;                         // 仅包含删除的节点\n ALL = 3;                                 // 所有节点\n```"
-          enum:
-          - QUERY_CATALOG_NODE_TYPE_UNSPECIFIED
-          - ONLY_UNDELETE
-          - ONLY_DELETE
-          - ALL
-          example: ONLY_UNDELETE
-          type: string
-        show_resource:
-          description: 返回的目录树是否包含资源节点
-          example: true
-          type: boolean
-      required:
-      - business_type
-      - project_id
-      - query_catalog_node_type
-      title: ListCatalogTreesRequest
-      type: object
-    sensorsdata.horizon.v1.CatalogTree:
-      description: ''
-      properties:
         business_name:
           description: 业务名称
           example: user
-          type: string
-        catalog:
-          $ref: '#/components/schemas/sensorsdata.horizon.v1.Catalog'
-        custom_params:
-          additionalProperties:
-            description: ''
-            type: string
-          description: 自定义参数
-          example:
-            BELONG_KEY: USER_PROPERTY
-          type: object
-      title: CatalogTree
-      type: object
-    sensorsdata.horizon.v1.BindCatalogResourceRequest:
-      description: 挂载资源节点
-      properties:
-        project_id:
-          description: 项目 ID
-          example: 1
-          format: int32
-          type: integer
-        parent_name:
-          description: 父目录标识
           type: string
         resource_type:
           description: 资源类型
@@ -700,12 +695,17 @@ components:
           description: 资源标识
           example: user_tag_bq_meta_string
           type: string
+        skip_trash:
+          description: 是否跳过回收站
+          example: true
+          type: boolean
       required:
-      - parent_name
+      - business_name
+      - business_type
       - project_id
       - resource_id
       - resource_type
-      title: BindCatalogResourceRequest
+      title: UnbindCatalogResourceRequest
       type: object
 x-sd-openapi-service-name: Catalog
 x-sd-openapi-service-name-hyphen: catalog

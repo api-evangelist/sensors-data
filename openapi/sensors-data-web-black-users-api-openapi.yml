@@ -61,6 +61,58 @@ paths:
       - Web Black Users
 components:
   schemas:
+    sensorsdata.focus.v1.WebBlackUserImportRequest:
+      description: 黑名单导入请求参数
+      properties:
+        distinct_ids:
+          description: 用户distinct id
+          items:
+            type: string
+          type: array
+      title: WebBlackUserImportRequest
+      type: object
+    sensorsdata.focus.v1.WebBlackUserImportResponse:
+      description: 黑名单导入响应参数
+      properties:
+        success_ids:
+          description: 成功 id
+          items:
+            type: string
+          type: array
+        duplicate_ids:
+          description: 重复 id
+          items:
+            type: string
+          type: array
+        nonexistent_ids:
+          description: 不存在 id
+          items:
+            type: string
+          type: array
+        invalid_ids:
+          description: 非法 id
+          items:
+            type: string
+          type: array
+        failed_ids:
+          description: 其他失败
+          items:
+            type: string
+          type: array
+      title: WebBlackUserImportResponse
+      type: object
+    sensorsdata.common.ErrorCause:
+      properties:
+        error_cause:
+          description: 致错原因1
+          example: 参数异常1
+          type: string
+        action_suggestion:
+          description: 操作建议，针对该原因，建议的解决方式
+          example: 检测入参的数据类型1
+          type: string
+      title: ErrorCause
+      type: object
     sensorsdata.focus.v1.WebBlackUserImportResponseHttpApiResult:
       properties:
         code:
@@ -116,58 +168,6 @@ components:
         context:
           $ref: '#/components/schemas/sensorsdata.common.ErrorContext'
       title: ErrorInfo
-      type: object
-    sensorsdata.focus.v1.WebBlackUserImportResponse:
-      description: 黑名单导入响应参数
-      properties:
-        success_ids:
-          description: 成功 id
-          items:
-            type: string
-          type: array
-        duplicate_ids:
-          description: 重复 id
-          items:
-            type: string
-          type: array
-        nonexistent_ids:
-          description: 不存在 id
-          items:
-            type: string
-          type: array
-        invalid_ids:
-          description: 非法 id
-          items:
-            type: string
-          type: array
-        failed_ids:
-          description: 其他失败
-          items:
-            type: string
-          type: array
-      title: WebBlackUserImportResponse
-      type: object
-    sensorsdata.focus.v1.WebBlackUserImportRequest:
-      description: 黑名单导入请求参数
-      properties:
-        distinct_ids:
-          description: 用户distinct id
-          items:
-            type: string
-          type: array
-      title: WebBlackUserImportRequest
-      type: object
-    sensorsdata.common.ErrorCause:
-      properties:
-        error_cause:
-          description: 致错原因1
-          example: 参数异常1
-          type: string
-        action_suggestion:
-          description: 操作建议，针对该原因，建议的解决方式
-          example: 检测入参的数据类型1
-          type: string
-      title: ErrorCause
       type: object
 x-sd-openapi-service-name: WebBlackUsers
 x-sd-openapi-service-name-hyphen: web-black-users

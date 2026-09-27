@@ -271,6 +271,27 @@ paths:
       - Web Materials
 components:
   schemas:
+    sensorsdata.focus.v1.WebCreateMaterialResponseHttpApiResult:
+      properties:
+        code:
+          type: string
+        message:
+          type: string
+        request_id:
+          type: string
+        data:
+          $ref: '#/components/schemas/sensorsdata.focus.v1.WebCreateMaterialResponse'
+        error_info:
+          $ref: '#/components/schemas/sensorsdata.common.ErrorInfo'
+      title: sensorsdata.focus.v1.WebCreateMaterialResponseHttpApiResult
+      type: object
+    sensorsdata.focus.v1.WebUpdateMaterialResponse:
+      description: 更新素材响应体
+      properties:
+        material:
+          $ref: '#/components/schemas/sensorsdata.focus.v1.web.Material'
+      title: WebUpdateMaterialResponse
+      type: object
     sensorsdata.focus.v1.web.AccountInfo:
       description: 用户信息
       properties:
@@ -285,27 +306,6 @@ components:
           description: 用户显示名
           type: string
       title: AccountInfo
-      type: object
-    sensorsdata.focus.v1.WebListMaterialRequestBody:
-      description: 获取素材列表请求体
-      properties:
-        page_filter:
-          $ref: '#/components/schemas/sensorsdata.focus.v1.web.PageFilter'
-      title: WebListMaterialRequest
-      type: object
-    sensorsdata.focus.v1.WebCreateMaterialResponseHttpApiResult:
-      properties:
-        code:
-          type: string
-        message:
-          type: string
-        request_id:
-          type: string
-        data:
-          $ref: '#/components/schemas/sensorsdata.focus.v1.WebCreateMaterialResponse'
-        error_info:
-          $ref: '#/components/schemas/sensorsdata.common.ErrorInfo'
-      title: sensorsdata.focus.v1.WebCreateMaterialResponseHttpApiResult
       type: object
     sensorsdata.common.ErrorContext:
       description: 发生错误时，系统快照信息
@@ -327,27 +327,136 @@ components:
           type: string
       title: ErrorContext
       type: object
-    sensorsdata.common.ErrorInfo:
+    sensorsdata.focus.v1.WebDeleteMaterialRequestBody:
+      description: 删除素材请求体
+      properties:
+        ids:
+          description: ''
+          items:
+            format: int32
+            type: integer
+          type: array
+      title: WebDeleteMaterialRequest
+      type: object
+    sensorsdata.focus.v1.WebCreateMaterialRequest:
+      description: 创建素材请求体
+      properties:
+        file_name:
+          description: ''
+          type: string
+        content:
+          description: ''
+          type: string
+        md5:
+          description: ''
+          type: string
+      title: WebCreateMaterialRequest
+      type: object
+    sensorsdata.common.ErrorCause:
+      properties:
+        error_cause:
+          description: 致错原因1
+          example: 参数异常1
+          type: string
+        action_suggestion:
+          description: 操作建议，针对该原因，建议的解决方式
+          example: 检测入参的数据类型1
+          type: string
+      title: ErrorCause
+      type: object
+    sensorsdata.focus.v1.WebCreateMaterialResponse:
+      description: 创建素材响应体
+      properties:
+        material:
+          $ref: '#/components/schemas/sensorsdata.focus.v1.web.Material'
+      title: WebCreateMaterialResponse
+      type: object
+    sensorsdata.focus.v1.WebListMaterialResponseHttpApiResult:
       properties:
         code:
-          description: 具体的错误码
-          example: XX-D-F-2-1
           type: string
-        description:
-          description: 错误描述
-          example: 前端参数校验异常,PARAMETER_FORMAT_ERROR(quantiles=[10, -90] is not include [0, 100])
+        message:
           type: string
-        system_response:
-          description: 致错的可能原因列表
-          example: 系统终止了查询处理
+        request_id:
           type: string
-        error_causes:
+        data:
+          $ref: '#/components/schemas/sensorsdata.focus.v1.WebListMaterialResponse'
+        error_info:
+          $ref: '#/components/schemas/sensorsdata.common.ErrorInfo'
+      title: sensorsdata.focus.v1.WebListMaterialResponseHttpApiResult
+      type: object
+    sensorsdata.focus.v1.WebGetMaterialResponse:
+      description: 获取单个素材响应体
+      properties:
+        material:
+          $ref: '#/components/schemas/sensorsdata.focus.v1.web.Material'
+      title: WebGetMaterialResponse
+      type: object
+    sensorsdata.focus.v1.WebUpdateMaterialRequest:
+      description: 更新素材请求体
+      properties:
+        id:
+          description: ''
+          format: int32
+          type: integer
+        title:
+          description: ''
+          type: string
+      title: WebUpdateMaterialRequest
+      type: object
+    sensorsdata.focus.v1.WebDeleteMaterialResponseHttpApiResult:
+      properties:
+        code:
+          type: string
+        message:
+          type: string
+        request_id:
+          type: string
+        data:
+          $ref: '#/components/schemas/sensorsdata.focus.v1.WebDeleteMaterialResponse'
+        error_info:
+          $ref: '#/components/schemas/sensorsdata.common.ErrorInfo'
+      title: sensorsdata.focus.v1.WebDeleteMaterialResponseHttpApiResult
+      type: object
+    sensorsdata.focus.v1.WebGetMaterialResponseHttpApiResult:
+      properties:
+        code:
+          type: string
+        message:
+          type: string
+        request_id:
+          type: string
+        data:
+          $ref: '#/components/schemas/sensorsdata.focus.v1.WebGetMaterialResponse'
+        error_info:
+          $ref: '#/components/schemas/sensorsdata.common.ErrorInfo'
+      title: sensorsdata.focus.v1.WebGetMaterialResponseHttpApiResult
+      type: object
+    sensorsdata.focus.v1.WebUpdateMaterialResponseHttpApiResult:
+      properties:
+        code:
+          type: string
+        message:
+          type: string
+        request_id:
+          type: string
+        data:
+          $ref: '#/components/schemas/sensorsdata.focus.v1.WebUpdateMaterialResponse'
+        error_info:
+          $ref: '#/components/schemas/sensorsdata.common.ErrorInfo'
+      title: sensorsdata.focus.v1.WebUpdateMaterialResponseHttpApiResult
+      type: object
+    sensorsdata.focus.v1.WebListMaterialResponse:
+      description: 获取素材列表响应体
+      properties:
+        page_filter:
+          $ref: '#/components/schemas/sensorsdata.focus.v1.web.PageFilter'
+        materials:
+          description: ''
           items:
-            $ref: '#/components/schemas/sensorsdata.common.ErrorCause'
+            $ref: '#/components/schemas/sensorsdata.focus.v1.web.Material'
           type: array
-        context:
-          $ref: '#/components/schemas/sensorsdata.common.ErrorContext'
-      title: ErrorInfo
+      title: WebListMaterialResponse
       type: object
     sensorsdata.focus.v1.web.PageFilter:
       description: 分页信息
@@ -366,27 +475,12 @@ components:
           type: integer
       title: PageFilter
       type: object
-    sensorsdata.focus.v1.WebGetMaterialResponse:
-      description: 获取单个素材响应体
+    sensorsdata.focus.v1.WebListMaterialRequestBody:
+      description: 获取素材列表请求体
       properties:
-        material:
-          $ref: '#/components/schemas/sensorsdata.focus.v1.web.Material'
-      title: WebGetMaterialResponse
-      type: object
-    sensorsdata.focus.v1.WebDeleteMaterialResponse:
-      description: 删除素材响应体
-      title: WebDeleteMaterialResponse
-      type: object
-    sensorsdata.focus.v1.WebDeleteMaterialRequestBody:
-      description: 删除素材请求体
-      properties:
-        ids:
-          description: ''
-          items:
-            format: int32
-            type: integer
-          type: array
-      title: WebDeleteMaterialRequest
+        page_filter:
+          $ref: '#/components/schemas/sensorsdata.focus.v1.web.PageFilter'
+      title: WebListMaterialRequest
       type: object
     sensorsdata.focus.v1.web.Material:
       description: 素材信息
@@ -431,125 +525,31 @@ components:
           type: string
       title: Material
       type: object
-    sensorsdata.focus.v1.WebUpdateMaterialResponse:
-      description: 更新素材响应体
-      properties:
-        material:
-          $ref: '#/components/schemas/sensorsdata.focus.v1.web.Material'
-      title: WebUpdateMaterialResponse
+    sensorsdata.focus.v1.WebDeleteMaterialResponse:
+      description: 删除素材响应体
+      title: WebDeleteMaterialResponse
       type: object
-    sensorsdata.focus.v1.WebListMaterialResponse:
-      description: 获取素材列表响应体
+    sensorsdata.common.ErrorInfo:
       properties:
-        page_filter:
-          $ref: '#/components/schemas/sensorsdata.focus.v1.web.PageFilter'
-        materials:
-          description: ''
+        code:
+          description: 具体的错误码
+          example: XX-D-F-2-1
+          type: string
+        description:
+          description: 错误描述
+          example: 前端参数校验异常,PARAMETER_FORMAT_ERROR(quantiles=[10, -90] is not include [0, 100])
+          type: string
+        system_response:
+          description: 致错的可能原因列表
+          example: 系统终止了查询处理
+          type: string
+        error_causes:
           items:
-            $ref: '#/components/schemas/sensorsdata.focus.v1.web.Material'
+            $ref: '#/components/schemas/sensorsdata.common.ErrorCause'
           type: array
-      title: WebListMaterialResponse
-      type: object
-    sensorsdata.focus.v1.WebDeleteMaterialResponseHttpApiResult:
-      properties:
-        code:
-          type: string
-        message:
-          type: string
-        request_id:
-          type: string
-        data:
-          $ref: '#/components/schemas/sensorsdata.focus.v1.WebDeleteMaterialResponse'
-        error_info:
-          $ref: '#/components/schemas/sensorsdata.common.ErrorInfo'
-      title: sensorsdata.focus.v1.WebDeleteMaterialResponseHttpApiResult
-      type: object
-    sensorsdata.focus.v1.WebUpdateMaterialRequest:
-      description: 更新素材请求体
-      properties:
-        id:
-          description: ''
-          format: int32
-          type: integer
-        title:
-          description: ''
-          type: string
-      title: WebUpdateMaterialRequest
-      type: object
-    sensorsdata.focus.v1.WebListMaterialResponseHttpApiResult:
-      properties:
-        code:
-          type: string
-        message:
-          type: string
-        request_id:
-          type: string
-        data:
-          $ref: '#/components/schemas/sensorsdata.focus.v1.WebListMaterialResponse'
-        error_info:
-          $ref: '#/components/schemas/sensorsdata.common.ErrorInfo'
-      title: sensorsdata.focus.v1.WebListMaterialResponseHttpApiResult
-      type: object
-    sensorsdata.focus.v1.WebCreateMaterialResponse:
-      description: 创建素材响应体
-      properties:
-        material:
-          $ref: '#/components/schemas/sensorsdata.focus.v1.web.Material'
-      title: WebCreateMaterialResponse
-      type: object
-    sensorsdata.common.ErrorCause:
-      properties:
-        error_cause:
-          description: 致错原因1
-          example: 参数异常1
-          type: string
-        action_suggestion:
-          description: 操作建议，针对该原因，建议的解决方式
-          example: 检测入参的数据类型1
-          type: string
-      title: ErrorCause
-      type: object
-    sensorsdata.focus.v1.WebGetMaterialResponseHttpApiResult:
-      properties:
-        code:
-          type: string
-        message:
-          type: string
-        request_id:
-          type: string
-        data:
-          $ref: '#/components/schemas/sensorsdata.focus.v1.WebGetMaterialResponse'
-        error_info:
-          $ref: '#/components/schemas/sensorsdata.common.ErrorInfo'
-      title: sensorsdata.focus.v1.WebGetMaterialResponseHttpApiResult
-      type: object
-    sensorsdata.focus.v1.WebUpdateMaterialResponseHttpApiResult:
-      properties:
-        code:
-          type: string
-        message:
-          type: string
-        request_id:
-          type: string
-        data:
-          $ref: '#/components/schemas/sensorsdata.focus.v1.WebUpdateMaterialResponse'
-        error_info:
-          $ref: '#/components/schemas/sensorsdata.common.ErrorInfo'
-      title: sensorsdata.focus.v1.WebUpdateMaterialResponseHttpApiResult
-      type: object
-    sensorsdata.focus.v1.WebCreateMaterialRequest:
-      description: 创建素材请求体
-      properties:
-        file_name:
-          description: ''
-          type: string
-        content:
-          description: ''
-          type: string
-        md5:
-          description: ''
-          type: string
-      title: WebCreateMaterialRequest
+        context:
+          $ref: '#/components/schemas/sensorsdata.common.ErrorContext'
+      title: ErrorInfo
       type: object
 x-sd-openapi-service-name: WebMaterials
 x-sd-openapi-service-name-hyphen: web-materials
