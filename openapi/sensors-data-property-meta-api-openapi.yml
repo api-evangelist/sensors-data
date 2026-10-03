@@ -257,298 +257,6 @@ paths:
       - Property Meta
 components:
   schemas:
-    sensorsdata.analytics.v1.EventPropertyRequest:
-      description: ''
-      properties:
-        events:
-          description: 指定事件列表
-          items:
-            type: string
-          type: array
-      title: EventPropertyRequest
-      type: object
-    sensorsdata.analytics.v1.UserGroupAllResponseHttpApiResult:
-      properties:
-        code:
-          type: string
-        message:
-          type: string
-        request_id:
-          type: string
-        data:
-          $ref: '#/components/schemas/sensorsdata.analytics.v1.UserGroupAllResponse'
-        error_info:
-          $ref: '#/components/schemas/sensorsdata.common.ErrorInfo'
-      title: sensorsdata.analytics.v1.UserGroupAllResponseHttpApiResult
-      type: object
-    sensorsdata.common.ErrorContext:
-      description: 发生错误时，系统快照信息
-      properties:
-        origin_stack:
-          description: 上游异常的 stack，由系统截获
-          type: string
-        origin_cause:
-          description: 上游异常的 cause by，由系统截获
-          type: string
-        origin_code:
-          description: 上游异常的错误简码
-          type: string
-        origin_complete_code:
-          description: 上游异常的完整错误码
-          type: string
-        error_extend_desc:
-          description: 本次异常的辅助说明，可传入
-          type: string
-      title: ErrorContext
-      type: object
-    sensorsdata.analytics.v1.GetPropertyValueResponseHttpApiResult:
-      properties:
-        code:
-          type: string
-        message:
-          type: string
-        request_id:
-          type: string
-        data:
-          $ref: '#/components/schemas/sensorsdata.analytics.v1.GetPropertyValueResponse'
-        error_info:
-          $ref: '#/components/schemas/sensorsdata.common.ErrorInfo'
-      title: sensorsdata.analytics.v1.GetPropertyValueResponseHttpApiResult
-      type: object
-    sensorsdata.analytics.v1.UserGroupDefine:
-      description: ''
-      properties:
-        id:
-          description: ''
-          format: int32
-          type: integer
-        name:
-          description: ''
-          type: string
-        cname:
-          description: ''
-          type: string
-        data_type:
-          description: ''
-          type: string
-        create_time:
-          description: ''
-          format: date-time
-          type: string
-        update_time:
-          description: ''
-          format: date-time
-          type: string
-      title: UserGroupDefine
-      type: object
-    sensorsdata.analytics.v1.UserTagDirDefine:
-      description: ''
-      properties:
-        name:
-          description: ''
-          type: string
-        cname:
-          description: ''
-          type: string
-        data_type:
-          description: ''
-          type: string
-        type:
-          description: ''
-          enum:
-          - USER_TAG_TYPE_UNSPECIFIED
-          - DIR
-          - TAG
-          type: string
-        sub_nodes:
-          description: ''
-          items:
-            $ref: '#/components/schemas/sensorsdata.analytics.v1.UserTagDirDefine'
-          type: array
-      title: UserTagDirDefine
-      type: object
-    sensorsdata.analytics.v1.EventPropertyAllResponse:
-      description: ''
-      properties:
-        properties:
-          description: 事件属性列表
-          items:
-            $ref: '#/components/schemas/sensorsdata.analytics.v1.PropertyDefine'
-          type: array
-      title: EventPropertyAllResponse
-      type: object
-    sensorsdata.analytics.v1.EventPropertyResponseHttpApiResult:
-      properties:
-        code:
-          type: string
-        message:
-          type: string
-        request_id:
-          type: string
-        data:
-          $ref: '#/components/schemas/sensorsdata.analytics.v1.EventPropertyResponse'
-        error_info:
-          $ref: '#/components/schemas/sensorsdata.common.ErrorInfo'
-      title: sensorsdata.analytics.v1.EventPropertyResponseHttpApiResult
-      type: object
-    sensorsdata.analytics.v1.EventWithProperty:
-      description: ''
-      properties:
-        event_define:
-          $ref: '#/components/schemas/sensorsdata.analytics.v1.EventDefine'
-        properties:
-          description: 事件下的属性信息
-          items:
-            $ref: '#/components/schemas/sensorsdata.analytics.v1.PropertyDefine'
-          type: array
-      title: EventWithProperty
-      type: object
-    sensorsdata.analytics.v1.EventPropertyAllResponseHttpApiResult:
-      properties:
-        code:
-          type: string
-        message:
-          type: string
-        request_id:
-          type: string
-        data:
-          $ref: '#/components/schemas/sensorsdata.analytics.v1.EventPropertyAllResponse'
-        error_info:
-          $ref: '#/components/schemas/sensorsdata.common.ErrorInfo'
-      title: sensorsdata.analytics.v1.EventPropertyAllResponseHttpApiResult
-      type: object
-    sensorsdata.common.ErrorCause:
-      properties:
-        error_cause:
-          description: 致错原因1
-          example: 参数异常1
-          type: string
-        action_suggestion:
-          description: 操作建议，针对该原因，建议的解决方式
-          example: 检测入参的数据类型1
-          type: string
-      title: ErrorCause
-      type: object
-    sensorsdata.analytics.v1.UserPropertyAllResponse:
-      description: ''
-      properties:
-        user_properties:
-          description: 用户属性列表
-          items:
-            $ref: '#/components/schemas/sensorsdata.analytics.v1.PropertyDefine'
-          type: array
-      title: UserPropertyAllResponse
-      type: object
-    sensorsdata.analytics.v1.UserPropertyAllResponseHttpApiResult:
-      properties:
-        code:
-          type: string
-        message:
-          type: string
-        request_id:
-          type: string
-        data:
-          $ref: '#/components/schemas/sensorsdata.analytics.v1.UserPropertyAllResponse'
-        error_info:
-          $ref: '#/components/schemas/sensorsdata.common.ErrorInfo'
-      title: sensorsdata.analytics.v1.UserPropertyAllResponseHttpApiResult
-      type: object
-    sensorsdata.analytics.v1.UserTagDirResponse:
-      description: ''
-      properties:
-        user_tags:
-          description: 用户标签列表
-          items:
-            $ref: '#/components/schemas/sensorsdata.analytics.v1.UserTagDirDefine'
-          type: array
-      title: UserTagDirResponse
-      type: object
-    sensorsdata.analytics.v1.GetPropertyValueResponse:
-      description: ''
-      properties:
-        values:
-          description: 候选值
-          items:
-            type: string
-          type: array
-      title: GetPropertyValueResponse
-      type: object
-    sensorsdata.analytics.v1.PropertyDefine:
-      description: ''
-      properties:
-        id:
-          description: ''
-          format: int32
-          type: integer
-        name:
-          description: ''
-          type: string
-        cname:
-          description: ''
-          type: string
-        data_type:
-          description: ''
-          type: string
-        is_virtual:
-          description: ''
-          type: boolean
-        has_dict:
-          description: ''
-          type: boolean
-        unit:
-          description: ''
-          type: string
-        platforms:
-          description: ''
-          items:
-            type: string
-          type: array
-        trigger_opportunity:
-          description: ''
-          type: string
-        create_time:
-          description: ''
-          format: date-time
-          type: string
-        update_time:
-          description: ''
-          format: date-time
-          type: string
-      title: PropertyDefine
-      type: object
-    sensorsdata.analytics.v1.GetPropertyValueRequest:
-      description: ''
-      properties:
-        table_type:
-          description: 属性类型
-          enum:
-          - TABLE_TYPE_UNSPECIFIED
-          - EVENT
-          - USER
-          type: string
-        property_name:
-          description: 属性名称
-          type: string
-        limit:
-          description: 限制返回值个数
-          format: int32
-          type: integer
-      title: GetPropertyValueRequest
-      type: object
-    sensorsdata.analytics.v1.UserTagDirResponseHttpApiResult:
-      properties:
-        code:
-          type: string
-        message:
-          type: string
-        request_id:
-          type: string
-        data:
-          $ref: '#/components/schemas/sensorsdata.analytics.v1.UserTagDirResponse'
-        error_info:
-          $ref: '#/components/schemas/sensorsdata.common.ErrorInfo'
-      title: sensorsdata.analytics.v1.UserTagDirResponseHttpApiResult
-      type: object
     sensorsdata.analytics.v1.EventDefine:
       description: ''
       properties:
@@ -596,6 +304,16 @@ components:
           type: string
       title: EventDefine
       type: object
+    sensorsdata.analytics.v1.EventPropertyRequest:
+      description: ''
+      properties:
+        events:
+          description: 指定事件列表
+          items:
+            type: string
+          type: array
+      title: EventPropertyRequest
+      type: object
     sensorsdata.analytics.v1.EventPropertyResponse:
       description: ''
       properties:
@@ -606,6 +324,214 @@ components:
           type: array
       title: EventPropertyResponse
       type: object
+    sensorsdata.analytics.v1.EventPropertyAllResponseHttpApiResult:
+      properties:
+        code:
+          type: string
+        message:
+          type: string
+        request_id:
+          type: string
+        data:
+          $ref: '#/components/schemas/sensorsdata.analytics.v1.EventPropertyAllResponse'
+        error_info:
+          $ref: '#/components/schemas/sensorsdata.common.ErrorInfo'
+      title: sensorsdata.analytics.v1.EventPropertyAllResponseHttpApiResult
+      type: object
+    sensorsdata.common.ErrorContext:
+      description: 发生错误时，系统快照信息
+      properties:
+        origin_stack:
+          description: 上游异常的 stack，由系统截获
+          type: string
+        origin_cause:
+          description: 上游异常的 cause by，由系统截获
+          type: string
+        origin_code:
+          description: 上游异常的错误简码
+          type: string
+        origin_complete_code:
+          description: 上游异常的完整错误码
+          type: string
+        error_extend_desc:
+          description: 本次异常的辅助说明，可传入
+          type: string
+      title: ErrorContext
+      type: object
+    sensorsdata.analytics.v1.PropertyDefine:
+      description: ''
+      properties:
+        id:
+          description: ''
+          format: int32
+          type: integer
+        name:
+          description: ''
+          type: string
+        cname:
+          description: ''
+          type: string
+        data_type:
+          description: ''
+          type: string
+        is_virtual:
+          description: ''
+          type: boolean
+        has_dict:
+          description: ''
+          type: boolean
+        unit:
+          description: ''
+          type: string
+        platforms:
+          description: ''
+          items:
+            type: string
+          type: array
+        trigger_opportunity:
+          description: ''
+          type: string
+        create_time:
+          description: ''
+          format: date-time
+          type: string
+        update_time:
+          description: ''
+          format: date-time
+          type: string
+      title: PropertyDefine
+      type: object
+    sensorsdata.analytics.v1.UserTagDirResponse:
+      description: ''
+      properties:
+        user_tags:
+          description: 用户标签列表
+          items:
+            $ref: '#/components/schemas/sensorsdata.analytics.v1.UserTagDirDefine'
+          type: array
+      title: UserTagDirResponse
+      type: object
+    sensorsdata.analytics.v1.UserGroupDefine:
+      description: ''
+      properties:
+        id:
+          description: ''
+          format: int32
+          type: integer
+        name:
+          description: ''
+          type: string
+        cname:
+          description: ''
+          type: string
+        data_type:
+          description: ''
+          type: string
+        create_time:
+          description: ''
+          format: date-time
+          type: string
+        update_time:
+          description: ''
+          format: date-time
+          type: string
+      title: UserGroupDefine
+      type: object
+    sensorsdata.analytics.v1.GetPropertyValueResponse:
+      description: ''
+      properties:
+        values:
+          description: 候选值
+          items:
+            type: string
+          type: array
+      title: GetPropertyValueResponse
+      type: object
+    sensorsdata.analytics.v1.GetPropertyValueRequest:
+      description: ''
+      properties:
+        table_type:
+          description: 属性类型
+          enum:
+          - TABLE_TYPE_UNSPECIFIED
+          - EVENT
+          - USER
+          type: string
+        property_name:
+          description: 属性名称
+          type: string
+        limit:
+          description: 限制返回值个数
+          format: int32
+          type: integer
+      title: GetPropertyValueRequest
+      type: object
+    sensorsdata.analytics.v1.UserTagDirDefine:
+      description: ''
+      properties:
+        name:
+          description: ''
+          type: string
+        cname:
+          description: ''
+          type: string
+        data_type:
+          description: ''
+          type: string
+        type:
+          description: ''
+          enum:
+          - USER_TAG_TYPE_UNSPECIFIED
+          - DIR
+          - TAG
+          type: string
+        sub_nodes:
+          description: ''
+          items:
+            $ref: '#/components/schemas/sensorsdata.analytics.v1.UserTagDirDefine'
+          type: array
+      title: UserTagDirDefine
+      type: object
+    sensorsdata.common.ErrorCause:
+      properties:
+        error_cause:
+          description: 致错原因1
+          example: 参数异常1
+          type: string
+        action_suggestion:
+          description: 操作建议，针对该原因，建议的解决方式
+          example: 检测入参的数据类型1
+          type: string
+      title: ErrorCause
+      type: object
+    sensorsdata.analytics.v1.EventPropertyResponseHttpApiResult:
+      properties:
+        code:
+          type: string
+        message:
+          type: string
+        request_id:
+          type: string
+        data:
+          $ref: '#/components/schemas/sensorsdata.analytics.v1.EventPropertyResponse'
+        error_info:
+          $ref: '#/components/schemas/sensorsdata.common.ErrorInfo'
+      title: sensorsdata.analytics.v1.EventPropertyResponseHttpApiResult
+      type: object
+    sensorsdata.analytics.v1.UserTagDirResponseHttpApiResult:
+      properties:
+        code:
+          type: string
+        message:
+          type: string
+        request_id:
+          type: string
+        data:
+          $ref: '#/components/schemas/sensorsdata.analytics.v1.UserTagDirResponse'
+        error_info:
+          $ref: '#/components/schemas/sensorsdata.common.ErrorInfo'
+      title: sensorsdata.analytics.v1.UserTagDirResponseHttpApiResult
+      type: object
     sensorsdata.analytics.v1.UserGroupAllResponse:
       description: ''
       properties:
@@ -615,6 +541,30 @@ components:
             $ref: '#/components/schemas/sensorsdata.analytics.v1.UserGroupDefine'
           type: array
       title: UserGroupAllResponse
+      type: object
+    sensorsdata.analytics.v1.UserPropertyAllResponseHttpApiResult:
+      properties:
+        code:
+          type: string
+        message:
+          type: string
+        request_id:
+          type: string
+        data:
+          $ref: '#/components/schemas/sensorsdata.analytics.v1.UserPropertyAllResponse'
+        error_info:
+          $ref: '#/components/schemas/sensorsdata.common.ErrorInfo'
+      title: sensorsdata.analytics.v1.UserPropertyAllResponseHttpApiResult
+      type: object
+    sensorsdata.analytics.v1.UserPropertyAllResponse:
+      description: ''
+      properties:
+        user_properties:
+          description: 用户属性列表
+          items:
+            $ref: '#/components/schemas/sensorsdata.analytics.v1.PropertyDefine'
+          type: array
+      title: UserPropertyAllResponse
       type: object
     sensorsdata.common.ErrorInfo:
       properties:
@@ -637,6 +587,56 @@ components:
         context:
           $ref: '#/components/schemas/sensorsdata.common.ErrorContext'
       title: ErrorInfo
+      type: object
+    sensorsdata.analytics.v1.GetPropertyValueResponseHttpApiResult:
+      properties:
+        code:
+          type: string
+        message:
+          type: string
+        request_id:
+          type: string
+        data:
+          $ref: '#/components/schemas/sensorsdata.analytics.v1.GetPropertyValueResponse'
+        error_info:
+          $ref: '#/components/schemas/sensorsdata.common.ErrorInfo'
+      title: sensorsdata.analytics.v1.GetPropertyValueResponseHttpApiResult
+      type: object
+    sensorsdata.analytics.v1.EventPropertyAllResponse:
+      description: ''
+      properties:
+        properties:
+          description: 事件属性列表
+          items:
+            $ref: '#/components/schemas/sensorsdata.analytics.v1.PropertyDefine'
+          type: array
+      title: EventPropertyAllResponse
+      type: object
+    sensorsdata.analytics.v1.EventWithProperty:
+      description: ''
+      properties:
+        event_define:
+          $ref: '#/components/schemas/sensorsdata.analytics.v1.EventDefine'
+        properties:
+          description: 事件下的属性信息
+          items:
+            $ref: '#/components/schemas/sensorsdata.analytics.v1.PropertyDefine'
+          type: array
+      title: EventWithProperty
+      type: object
+    sensorsdata.analytics.v1.UserGroupAllResponseHttpApiResult:
+      properties:
+        code:
+          type: string
+        message:
+          type: string
+        request_id:
+          type: string
+        data:
+          $ref: '#/components/schemas/sensorsdata.analytics.v1.UserGroupAllResponse'
+        error_info:
+          $ref: '#/components/schemas/sensorsdata.common.ErrorInfo'
+      title: sensorsdata.analytics.v1.UserGroupAllResponseHttpApiResult
       type: object
 x-sd-openapi-service-name: PropertyMeta
 x-sd-openapi-service-name-hyphen: property-meta

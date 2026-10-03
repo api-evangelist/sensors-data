@@ -650,6 +650,65 @@ paths:
       - Data Subscription
 components:
   schemas:
+    sensorsdata.horizon.v1.EntityDataSubscriptionConfig.DetailsAttributeSubscriptionConfig:
+      description: ''
+      properties:
+        detail_name:
+          description: 明细表名
+          example: cart
+          type: string
+        attribute_names:
+          description: 明细属性名
+          example: '["product_id", "price"]'
+          items:
+            type: string
+          type: array
+      title: DetailsAttributeSubscriptionConfig
+      type: object
+    sensorsdata.horizon.v1.CreateDataSubscriptionRequest:
+      description: ''
+      properties:
+        subscription:
+          $ref: '#/components/schemas/sensorsdata.horizon.v1.DataSubscription'
+      required:
+      - subscription
+      title: CreateDataSubscriptionRequest
+      type: object
+    sensorsdata.common.ErrorContext:
+      description: 发生错误时，系统快照信息
+      properties:
+        origin_stack:
+          description: 上游异常的 stack，由系统截获
+          type: string
+        origin_cause:
+          description: 上游异常的 cause by，由系统截获
+          type: string
+        origin_code:
+          description: 上游异常的错误简码
+          type: string
+        origin_complete_code:
+          description: 上游异常的完整错误码
+          type: string
+        error_extend_desc:
+          description: 本次异常的辅助说明，可传入
+          type: string
+      title: ErrorContext
+      type: object
+    sensorsdata.common.HttpApiResult:
+      properties:
+        code:
+          type: string
+        message:
+          type: string
+        request_id:
+          type: string
+        data:
+          properties: {}
+          type: object
+        error_info:
+          $ref: '#/components/schemas/sensorsdata.common.ErrorInfo'
+      title: HttpApiResult
+      type: object
     sensorsdata.common.PredicateFunctionParam:
       description: "```\n 函数的参数，有几种可能\n 1. 一个 field, 如 events.$Anything.$city\n 2. 一个 Literal 的常量\n 3. 一个变量, 如 $ENTRY_TIME, 需要在执行上下文里进行替换\n 4. 一个 TimePoint, 代表一个相对或绝对的时间点, 用于时间类型的条件\n 5. 一个 expression user.p1/user.p2+user.p3\n ```"
       properties:
@@ -682,185 +741,6 @@ components:
           type: string
       title: PredicateFunctionParam
       type: object
-    sensorsdata.horizon.v1.GetSubscriptionApplicationResponseHttpApiResult:
-      properties:
-        code:
-          type: string
-        message:
-          type: string
-        request_id:
-          type: string
-        data:
-          $ref: '#/components/schemas/sensorsdata.horizon.v1.GetSubscriptionApplicationResponse'
-        error_info:
-          $ref: '#/components/schemas/sensorsdata.common.ErrorInfo'
-      title: sensorsdata.horizon.v1.GetSubscriptionApplicationResponseHttpApiResult
-      type: object
-    sensorsdata.horizon.v1.KafkaDescriptor:
-      description: ''
-      properties:
-        type:
-          description: "kafka 的类型\n '''\n CUSTOMIZED_KAFKA: 业务方自定义的 kafka\n '''"
-          enum:
-          - CUSTOMIZED_KAFKA
-          example: CUSTOMIZED_KAFKA
-          type: string
-        customized_kafka_descriptor:
-          $ref: '#/components/schemas/sensorsdata.horizon.v1.KafkaTopicDescriptor'
-      title: KafkaDescriptor
-      type: object
-    sensorsdata.horizon.v1.GetSubscriptionApplicationRequest:
-      description: ''
-      properties:
-        application_id:
-          description: 订阅方的唯一标识
-          example: shence.sep-org-111.app.sensorsdata.cloud
-          type: string
-        application_name:
-          description: "订阅方业务唯一标识, 与 application_id 其一必填\n 如果未指定 application_id, 会使用 {application_name}.{organization_id}.app.sensorsdata.cloud 拼接成 application_id"
-          example: shence
-          type: string
-      title: GetSubscriptionApplicationRequest
-      type: object
-    sensorsdata.horizon.v1.AppendSubscriptionApplicationConfigResponse:
-      description: ''
-      properties:
-        application:
-          $ref: '#/components/schemas/sensorsdata.horizon.v1.SubscriptionApplication'
-      title: AppendSubscriptionApplicationConfigResponse
-      type: object
-    sensorsdata.horizon.v1.GetSubscriptionApplicationResponse:
-      description: ''
-      properties:
-        application:
-          $ref: '#/components/schemas/sensorsdata.horizon.v1.SubscriptionApplication'
-      title: GetSubscriptionApplicationResponse
-      type: object
-    sensorsdata.horizon.v1.DeleteSubscriptionApplicationResponseHttpApiResult:
-      properties:
-        code:
-          type: string
-        message:
-          type: string
-        request_id:
-          type: string
-        data:
-          $ref: '#/components/schemas/sensorsdata.horizon.v1.DeleteSubscriptionApplicationResponse'
-        error_info:
-          $ref: '#/components/schemas/sensorsdata.common.ErrorInfo'
-      title: sensorsdata.horizon.v1.DeleteSubscriptionApplicationResponseHttpApiResult
-      type: object
-    sensorsdata.horizon.v1.KafkaBasedAppConfig:
-      description: ''
-      properties:
-        event_kafka_descriptor:
-          $ref: '#/components/schemas/sensorsdata.horizon.v1.KafkaDescriptor'
-        profile_kafka_descriptor:
-          $ref: '#/components/schemas/sensorsdata.horizon.v1.KafkaDescriptor'
-        detail_kafka_descriptor:
-          $ref: '#/components/schemas/sensorsdata.horizon.v1.KafkaDescriptor'
-        data_format_type:
-          description: ''
-          enum:
-          - NESTED_JSON
-          - FLATTEN_JSON
-          example: NESTED_JSON
-          type: string
-      title: KafkaBasedAppConfig
-      type: object
-    sensorsdata.common.ErrorContext:
-      description: 发生错误时，系统快照信息
-      properties:
-        origin_stack:
-          description: 上游异常的 stack，由系统截获
-          type: string
-        origin_cause:
-          description: 上游异常的 cause by，由系统截获
-          type: string
-        origin_code:
-          description: 上游异常的错误简码
-          type: string
-        origin_complete_code:
-          description: 上游异常的完整错误码
-          type: string
-        error_extend_desc:
-          description: 本次异常的辅助说明，可传入
-          type: string
-      title: ErrorContext
-      type: object
-    sensorsdata.horizon.v1.BatchDeleteDataSubscriptionsRequest:
-      description: ''
-      properties:
-        application:
-          description: 订阅方的唯一标识, 即 application_id
-          example: shence.sep-org-111.app.sensorsdata.cloud
-          type: string
-        subscriber:
-          description: 订阅方业务标识, 一个 application_id 下可以有多个 subscriber，用户可通过 subscriber 确认订阅记录属于哪个业务方
-          example: sa
-          type: string
-        subscription_ids:
-          description: 要取消订阅的记录 id
-          example: '[1001,1002,1003]'
-          items:
-            format: int32
-            type: integer
-          type: array
-      required:
-      - application
-      - subscriber
-      title: BatchDeleteDataSubscriptionsRequest
-      type: object
-    sensorsdata.horizon.v1.DeleteSubscriptionApplicationRequest:
-      description: ''
-      properties:
-        application_id:
-          description: 订阅方的唯一标识
-          example: shence.sep-org-111.app.sensorsdata.cloud
-          type: string
-        application_name:
-          description: "订阅方业务唯一标识, 与 application_id 其一必填\n 如果未指定 application_id, 会使用 {application_name}.{organization_id}.app.sensorsdata.cloud 拼接成 application_id"
-          example: shence
-          type: string
-      title: DeleteSubscriptionApplicationRequest
-      type: object
-    sensorsdata.common.TimeInterval:
-      description: ''
-      properties:
-        size:
-          description: ''
-          format: int32
-          type: integer
-        unit:
-          description: ''
-          enum:
-          - DATE_TIME_UNIT_UNSPECIFIED
-          - MILLISECOND
-          - SECOND
-          - MINUTE
-          - HOUR
-          - DAY
-          - WEEK
-          - MONTH
-          - YEAR
-          type: string
-      title: TimeInterval
-      type: object
-    sensorsdata.common.HttpApiResult:
-      properties:
-        code:
-          type: string
-        message:
-          type: string
-        request_id:
-          type: string
-        data:
-          properties: {}
-          type: object
-        error_info:
-          $ref: '#/components/schemas/sensorsdata.common.ErrorInfo'
-      title: HttpApiResult
-      type: object
     sensorsdata.horizon.v1.AppendSubscriptionApplicationConfigRequest:
       description: ''
       properties:
@@ -876,27 +756,96 @@ components:
           $ref: '#/components/schemas/sensorsdata.horizon.v1.KafkaBasedAppConfig'
       title: AppendSubscriptionApplicationConfigRequest
       type: object
-    sensorsdata.common.ErrorCause:
-      properties:
-        error_cause:
-          description: 致错原因1
-          example: 参数异常1
-          type: string
-        action_suggestion:
-          description: 操作建议，针对该原因，建议的解决方式
-          example: 检测入参的数据类型1
-          type: string
-      title: ErrorCause
+    sensorsdata.horizon.v1.DeleteSubscriptionApplicationResponse:
+      description: ''
+      title: DeleteSubscriptionApplicationResponse
       type: object
-    sensorsdata.horizon.v1.ListDataSubscriptionsResponse:
+    sensorsdata.horizon.v1.DataSubscription:
       description: ''
       properties:
-        subscriptions:
-          description: 订阅记录列表
-          items:
-            $ref: '#/components/schemas/sensorsdata.horizon.v1.DataSubscription'
-          type: array
-      title: ListDataSubscriptionsResponse
+        subscription_id:
+          description: 订阅记录 id, 请求订阅数据接口返回, 可用于取消订阅
+          format: int32
+          type: integer
+        application:
+          description: 订阅方唯一标识
+          example: shence.org-sep-111.app.sensorsdata.cloud
+          type: string
+        subscriber:
+          description: 订阅方业务标识, 一个 application_id 下可以有多个 subscriber，用户可通过 subscriber 确认订阅记录属于哪个业务方
+          example: sa
+          type: string
+        target_type:
+          description: "订阅的数据类型\n '''\n ENTITY_DATA: 实体数据，包括 事件、普通属性、明细\n '''"
+          enum:
+          - ENTITY_DATA
+          example: ENTITY_DATA
+          type: string
+        entity_data_subscription_config:
+          $ref: '#/components/schemas/sensorsdata.horizon.v1.EntityDataSubscriptionConfig'
+      required:
+      - application
+      - subscriber
+      - target_type
+      title: DataSubscription
+      type: object
+    sensorsdata.horizon.v1.DataSubscriptionHttpApiResult:
+      properties:
+        code:
+          type: string
+        message:
+          type: string
+        request_id:
+          type: string
+        data:
+          $ref: '#/components/schemas/sensorsdata.horizon.v1.DataSubscription'
+        error_info:
+          $ref: '#/components/schemas/sensorsdata.common.ErrorInfo'
+      title: sensorsdata.horizon.v1.DataSubscriptionHttpApiResult
+      type: object
+    sensorsdata.horizon.v1.EntityDataSubscriptionConfig:
+      description: ''
+      properties:
+        entity_name:
+          description: 实体名
+          example: user
+          type: string
+        attribute_type:
+          description: "实体数据类型\n '''\n EVENTS: 事件\n SIMPLE: 普通属性\n DETAILS: 明细\n '''"
+          enum:
+          - SIMPLE
+          - EVENTS
+          - DETAILS
+          example: EVENTS
+          type: string
+        simple_attribute_config:
+          $ref: '#/components/schemas/sensorsdata.horizon.v1.EntityDataSubscriptionConfig.SimpleAttributeSubscriptionConfig'
+        events_attribute_config:
+          $ref: '#/components/schemas/sensorsdata.horizon.v1.EntityDataSubscriptionConfig.EventsAttributeSubscriptionConfig'
+        details_attribute_config:
+          $ref: '#/components/schemas/sensorsdata.horizon.v1.EntityDataSubscriptionConfig.DetailsAttributeSubscriptionConfig'
+      title: EntityDataSubscriptionConfig
+      type: object
+    sensorsdata.horizon.v1.AddSubscriptionApplicationRequest:
+      description: ''
+      properties:
+        application:
+          $ref: '#/components/schemas/sensorsdata.horizon.v1.SubscriptionApplication'
+      title: AddSubscriptionApplicationRequest
+      type: object
+    sensorsdata.horizon.v1.AddSubscriptionApplicationResponseHttpApiResult:
+      properties:
+        code:
+          type: string
+        message:
+          type: string
+        request_id:
+          type: string
+        data:
+          $ref: '#/components/schemas/sensorsdata.horizon.v1.AddSubscriptionApplicationResponse'
+        error_info:
+          $ref: '#/components/schemas/sensorsdata.common.ErrorInfo'
+      title: sensorsdata.horizon.v1.AddSubscriptionApplicationResponseHttpApiResult
       type: object
     sensorsdata.common.FilterCondition:
       description: 单个过滤条件
@@ -955,324 +904,6 @@ components:
           type: integer
       title: FilterCondition
       type: object
-    sensorsdata.horizon.v1.EntityDataSubscriptionConfig.DetailsAttributeSubscriptionConfig:
-      description: ''
-      properties:
-        detail_name:
-          description: 明细表名
-          example: cart
-          type: string
-        attribute_names:
-          description: 明细属性名
-          example: '["product_id", "price"]'
-          items:
-            type: string
-          type: array
-      title: DetailsAttributeSubscriptionConfig
-      type: object
-    sensorsdata.horizon.v1.KafkaTopicDescriptor:
-      description: ''
-      properties:
-        bootstrap_servers:
-          description: kafka 的 broker 地址, 多个地址之间使用英文逗号分隔
-          example: broker1:9092,broker2:9092
-          type: string
-        topic_name:
-          description: kafka 的 topic 名称
-          example: shence_data_topic
-          type: string
-        kafka_properties:
-          additionalProperties:
-            description: ''
-            type: string
-          description: kafka 相关参数，如 sasl 认证信息.
-          example:
-            security.protocol: SASL_SSL
-            sasl.username: admin
-            sasl.mechanism: SCRAM-SHA-256
-            sasl.password: pwd123
-          type: object
-        cert_file_token:
-          description: 如果 kafka 开启了认证, 使用 uploadFile 接口上传证书文件后返回的 file_token
-          example: 84e1f867bf4942ca9b7e985d197facc2
-          type: string
-      title: KafkaTopicDescriptor
-      type: object
-    sensorsdata.horizon.v1.AddSubscriptionApplicationResponseHttpApiResult:
-      properties:
-        code:
-          type: string
-        message:
-          type: string
-        request_id:
-          type: string
-        data:
-          $ref: '#/components/schemas/sensorsdata.horizon.v1.AddSubscriptionApplicationResponse'
-        error_info:
-          $ref: '#/components/schemas/sensorsdata.common.ErrorInfo'
-      title: sensorsdata.horizon.v1.AddSubscriptionApplicationResponseHttpApiResult
-      type: object
-    sensorsdata.horizon.v1.AddSubscriptionApplicationRequest:
-      description: ''
-      properties:
-        application:
-          $ref: '#/components/schemas/sensorsdata.horizon.v1.SubscriptionApplication'
-      title: AddSubscriptionApplicationRequest
-      type: object
-    sensorsdata.horizon.v1.DeleteSubscriptionApplicationResponse:
-      description: ''
-      title: DeleteSubscriptionApplicationResponse
-      type: object
-    sensorsdata.horizon.v1.DataSubscription:
-      description: ''
-      properties:
-        subscription_id:
-          description: 订阅记录 id, 请求订阅数据接口返回, 可用于取消订阅
-          format: int32
-          type: integer
-        application:
-          description: 订阅方唯一标识
-          example: shence.org-sep-111.app.sensorsdata.cloud
-          type: string
-        subscriber:
-          description: 订阅方业务标识, 一个 application_id 下可以有多个 subscriber，用户可通过 subscriber 确认订阅记录属于哪个业务方
-          example: sa
-          type: string
-        target_type:
-          description: "订阅的数据类型\n '''\n ENTITY_DATA: 实体数据，包括 事件、普通属性、明细\n '''"
-          enum:
-          - ENTITY_DATA
-          example: ENTITY_DATA
-          type: string
-        entity_data_subscription_config:
-          $ref: '#/components/schemas/sensorsdata.horizon.v1.EntityDataSubscriptionConfig'
-      required:
-      - application
-      - subscriber
-      - target_type
-      title: DataSubscription
-      type: object
-    sensorsdata.horizon.v1.AppendSubscriptionApplicationConfigResponseHttpApiResult:
-      properties:
-        code:
-          type: string
-        message:
-          type: string
-        request_id:
-          type: string
-        data:
-          $ref: '#/components/schemas/sensorsdata.horizon.v1.AppendSubscriptionApplicationConfigResponse'
-        error_info:
-          $ref: '#/components/schemas/sensorsdata.common.ErrorInfo'
-      title: sensorsdata.horizon.v1.AppendSubscriptionApplicationConfigResponseHttpApiResult
-      type: object
-    sensorsdata.common.CompoundFilterCondition:
-      description: 复合过滤条件，用于描述 condition 或 compound_filter 之间的关系
-      properties:
-        operator:
-          description: 逻辑运算法
-          enum:
-          - LOGICAL_OPERATOR_UNSPECIFIED
-          - AND
-          - OR
-          example: AND
-          type: string
-        conditions:
-          description: 过滤条件列表，只有最后一级才有
-          items:
-            $ref: '#/components/schemas/sensorsdata.common.FilterCondition'
-          type: array
-        compound_conditions:
-          description: 嵌套的下一级复合过滤条件
-          items:
-            $ref: '#/components/schemas/sensorsdata.common.CompoundFilterCondition'
-          type: array
-        index:
-          description: 当前筛选条件所处的位置下标，主要为了保证前端展示顺序的稳定
-          example: 10
-          format: int32
-          type: integer
-      title: CompoundFilterCondition
-      type: object
-    sensorsdata.common.TimePoint:
-      description: ''
-      properties:
-        type:
-          description: ''
-          enum:
-          - TIME_POINT_TYPE_UNSPECIFIED
-          - STATIC
-          - RELATIVE
-          - EXPRESSION
-          type: string
-        trunc_unit:
-          description: ''
-          enum:
-          - TRUNC_UNIT_UNSPECIFIED
-          - TRUNC_HOUR
-          - TRUNC_DAY
-          - TRUNC_WEEK
-          - TRUNC_MONTH
-          - TRUNC_YEAR
-          - TRUNC_BIGBANG
-          type: string
-        static_time:
-          description: ''
-          format: date-time
-          type: string
-        relative_time:
-          $ref: '#/components/schemas/sensorsdata.common.TimePoint.RelativeTimePoint'
-        expression:
-          description: ''
-          type: string
-      title: TimePoint
-      type: object
-    sensorsdata.horizon.v1.EntityDataSubscriptionConfig.SimpleAttributeSubscriptionConfig:
-      description: ''
-      properties:
-        attribute_names:
-          description: 普通属性名
-          example: '["name", "age", "gender"]'
-          items:
-            type: string
-          type: array
-      title: SimpleAttributeSubscriptionConfig
-      type: object
-    sensorsdata.horizon.v1.AddSubscriptionApplicationResponse:
-      description: ''
-      properties:
-        application:
-          $ref: '#/components/schemas/sensorsdata.horizon.v1.SubscriptionApplication'
-      title: AddSubscriptionApplicationResponse
-      type: object
-    sensorsdata.common.TimePoint.RelativeTimePoint:
-      description: ''
-      properties:
-        base_time:
-          description: ''
-          type: string
-        time_interval:
-          $ref: '#/components/schemas/sensorsdata.common.TimeInterval'
-      title: RelativeTimePoint
-      type: object
-    sensorsdata.horizon.v1.EntityDataSubscriptionConfig.EventsAttributeSubscriptionConfig:
-      description: ''
-      properties:
-        event_name:
-          description: 事件名
-          example: payOrder
-          type: string
-        attribute_names:
-          description: 事件属性名
-          example: '["time", "order_id", "amount"]'
-          items:
-            type: string
-          type: array
-        filter:
-          $ref: '#/components/schemas/sensorsdata.common.CompoundFilterCondition'
-      title: EventsAttributeSubscriptionConfig
-      type: object
-    sensorsdata.horizon.v1.DataSubscriptionHttpApiResult:
-      properties:
-        code:
-          type: string
-        message:
-          type: string
-        request_id:
-          type: string
-        data:
-          $ref: '#/components/schemas/sensorsdata.horizon.v1.DataSubscription'
-        error_info:
-          $ref: '#/components/schemas/sensorsdata.common.ErrorInfo'
-      title: sensorsdata.horizon.v1.DataSubscriptionHttpApiResult
-      type: object
-    sensorsdata.horizon.v1.CreateDataSubscriptionRequest:
-      description: ''
-      properties:
-        subscription:
-          $ref: '#/components/schemas/sensorsdata.horizon.v1.DataSubscription'
-      required:
-      - subscription
-      title: CreateDataSubscriptionRequest
-      type: object
-    sensorsdata.horizon.v1.SubscriptionApplication:
-      description: ''
-      properties:
-        application_name:
-          description: 订阅方业务唯一标识
-          example: shence
-          type: string
-        application_type:
-          description: "订阅方类型\n '''\n KAFKA_BASED_APP: 通过 Kafka 接收订阅数据的订阅方\n '''"
-          enum:
-          - KAFKA_BASED_APP
-          example: KAFKA_BASED_APP
-          type: string
-        kafka_based_app_config:
-          $ref: '#/components/schemas/sensorsdata.horizon.v1.KafkaBasedAppConfig'
-      required:
-      - application_type
-      title: SubscriptionApplication
-      type: object
-    sensorsdata.horizon.v1.ListDataSubscriptionsResponseHttpApiResult:
-      properties:
-        code:
-          type: string
-        message:
-          type: string
-        request_id:
-          type: string
-        data:
-          $ref: '#/components/schemas/sensorsdata.horizon.v1.ListDataSubscriptionsResponse'
-        error_info:
-          $ref: '#/components/schemas/sensorsdata.common.ErrorInfo'
-      title: sensorsdata.horizon.v1.ListDataSubscriptionsResponseHttpApiResult
-      type: object
-    sensorsdata.horizon.v1.EntityDataSubscriptionConfig:
-      description: ''
-      properties:
-        entity_name:
-          description: 实体名
-          example: user
-          type: string
-        attribute_type:
-          description: "实体数据类型\n '''\n EVENTS: 事件\n SIMPLE: 普通属性\n DETAILS: 明细\n '''"
-          enum:
-          - SIMPLE
-          - EVENTS
-          - DETAILS
-          example: EVENTS
-          type: string
-        simple_attribute_config:
-          $ref: '#/components/schemas/sensorsdata.horizon.v1.EntityDataSubscriptionConfig.SimpleAttributeSubscriptionConfig'
-        events_attribute_config:
-          $ref: '#/components/schemas/sensorsdata.horizon.v1.EntityDataSubscriptionConfig.EventsAttributeSubscriptionConfig'
-        details_attribute_config:
-          $ref: '#/components/schemas/sensorsdata.horizon.v1.EntityDataSubscriptionConfig.DetailsAttributeSubscriptionConfig'
-      title: EntityDataSubscriptionConfig
-      type: object
-    sensorsdata.common.ErrorInfo:
-      properties:
-        code:
-          description: 具体的错误码
-          example: XX-D-F-2-1
-          type: string
-        description:
-          description: 错误描述
-          example: 前端参数校验异常,PARAMETER_FORMAT_ERROR(quantiles=[10, -90] is not include [0, 100])
-          type: string
-        system_response:
-          description: 致错的可能原因列表
-          example: 系统终止了查询处理
-          type: string
-        error_causes:
-          items:
-            $ref: '#/components/schemas/sensorsdata.common.ErrorCause'
-          type: array
-        context:
-          $ref: '#/components/schemas/sensorsdata.common.ErrorContext'
-      title: ErrorInfo
-      type: object
     sensorsdata.common.Literal:
       description: ''
       properties:
@@ -1324,6 +955,375 @@ components:
           description: ''
           type: string
       title: Literal
+      type: object
+    sensorsdata.horizon.v1.AppendSubscriptionApplicationConfigResponseHttpApiResult:
+      properties:
+        code:
+          type: string
+        message:
+          type: string
+        request_id:
+          type: string
+        data:
+          $ref: '#/components/schemas/sensorsdata.horizon.v1.AppendSubscriptionApplicationConfigResponse'
+        error_info:
+          $ref: '#/components/schemas/sensorsdata.common.ErrorInfo'
+      title: sensorsdata.horizon.v1.AppendSubscriptionApplicationConfigResponseHttpApiResult
+      type: object
+    sensorsdata.horizon.v1.KafkaTopicDescriptor:
+      description: ''
+      properties:
+        bootstrap_servers:
+          description: kafka 的 broker 地址, 多个地址之间使用英文逗号分隔
+          example: broker1:9092,broker2:9092
+          type: string
+        topic_name:
+          description: kafka 的 topic 名称
+          example: shence_data_topic
+          type: string
+        kafka_properties:
+          additionalProperties:
+            description: ''
+            type: string
+          description: kafka 相关参数，如 sasl 认证信息.
+          example:
+            security.protocol: SASL_SSL
+            sasl.username: admin
+            sasl.mechanism: SCRAM-SHA-256
+            sasl.password: pwd123
+          type: object
+        cert_file_token:
+          description: 如果 kafka 开启了认证, 使用 uploadFile 接口上传证书文件后返回的 file_token
+          example: 84e1f867bf4942ca9b7e985d197facc2
+          type: string
+      title: KafkaTopicDescriptor
+      type: object
+    sensorsdata.horizon.v1.AppendSubscriptionApplicationConfigResponse:
+      description: ''
+      properties:
+        application:
+          $ref: '#/components/schemas/sensorsdata.horizon.v1.SubscriptionApplication'
+      title: AppendSubscriptionApplicationConfigResponse
+      type: object
+    sensorsdata.horizon.v1.ListDataSubscriptionsResponse:
+      description: ''
+      properties:
+        subscriptions:
+          description: 订阅记录列表
+          items:
+            $ref: '#/components/schemas/sensorsdata.horizon.v1.DataSubscription'
+          type: array
+      title: ListDataSubscriptionsResponse
+      type: object
+    sensorsdata.horizon.v1.KafkaBasedAppConfig:
+      description: ''
+      properties:
+        event_kafka_descriptor:
+          $ref: '#/components/schemas/sensorsdata.horizon.v1.KafkaDescriptor'
+        profile_kafka_descriptor:
+          $ref: '#/components/schemas/sensorsdata.horizon.v1.KafkaDescriptor'
+        detail_kafka_descriptor:
+          $ref: '#/components/schemas/sensorsdata.horizon.v1.KafkaDescriptor'
+        data_format_type:
+          description: ''
+          enum:
+          - NESTED_JSON
+          - FLATTEN_JSON
+          example: NESTED_JSON
+          type: string
+      title: KafkaBasedAppConfig
+      type: object
+    sensorsdata.horizon.v1.EntityDataSubscriptionConfig.SimpleAttributeSubscriptionConfig:
+      description: ''
+      properties:
+        attribute_names:
+          description: 普通属性名
+          example: '["name", "age", "gender"]'
+          items:
+            type: string
+          type: array
+      title: SimpleAttributeSubscriptionConfig
+      type: object
+    sensorsdata.horizon.v1.DeleteSubscriptionApplicationResponseHttpApiResult:
+      properties:
+        code:
+          type: string
+        message:
+          type: string
+        request_id:
+          type: string
+        data:
+          $ref: '#/components/schemas/sensorsdata.horizon.v1.DeleteSubscriptionApplicationResponse'
+        error_info:
+          $ref: '#/components/schemas/sensorsdata.common.ErrorInfo'
+      title: sensorsdata.horizon.v1.DeleteSubscriptionApplicationResponseHttpApiResult
+      type: object
+    sensorsdata.common.ErrorCause:
+      properties:
+        error_cause:
+          description: 致错原因1
+          example: 参数异常1
+          type: string
+        action_suggestion:
+          description: 操作建议，针对该原因，建议的解决方式
+          example: 检测入参的数据类型1
+          type: string
+      title: ErrorCause
+      type: object
+    sensorsdata.horizon.v1.ListDataSubscriptionsResponseHttpApiResult:
+      properties:
+        code:
+          type: string
+        message:
+          type: string
+        request_id:
+          type: string
+        data:
+          $ref: '#/components/schemas/sensorsdata.horizon.v1.ListDataSubscriptionsResponse'
+        error_info:
+          $ref: '#/components/schemas/sensorsdata.common.ErrorInfo'
+      title: sensorsdata.horizon.v1.ListDataSubscriptionsResponseHttpApiResult
+      type: object
+    sensorsdata.horizon.v1.KafkaDescriptor:
+      description: ''
+      properties:
+        type:
+          description: "kafka 的类型\n '''\n CUSTOMIZED_KAFKA: 业务方自定义的 kafka\n '''"
+          enum:
+          - CUSTOMIZED_KAFKA
+          example: CUSTOMIZED_KAFKA
+          type: string
+        customized_kafka_descriptor:
+          $ref: '#/components/schemas/sensorsdata.horizon.v1.KafkaTopicDescriptor'
+      title: KafkaDescriptor
+      type: object
+    sensorsdata.common.TimePoint:
+      description: ''
+      properties:
+        type:
+          description: ''
+          enum:
+          - TIME_POINT_TYPE_UNSPECIFIED
+          - STATIC
+          - RELATIVE
+          - EXPRESSION
+          type: string
+        trunc_unit:
+          description: ''
+          enum:
+          - TRUNC_UNIT_UNSPECIFIED
+          - TRUNC_HOUR
+          - TRUNC_DAY
+          - TRUNC_WEEK
+          - TRUNC_MONTH
+          - TRUNC_YEAR
+          - TRUNC_BIGBANG
+          type: string
+        static_time:
+          description: ''
+          format: date-time
+          type: string
+        relative_time:
+          $ref: '#/components/schemas/sensorsdata.common.TimePoint.RelativeTimePoint'
+        expression:
+          description: ''
+          type: string
+      title: TimePoint
+      type: object
+    sensorsdata.horizon.v1.BatchDeleteDataSubscriptionsRequest:
+      description: ''
+      properties:
+        application:
+          description: 订阅方的唯一标识, 即 application_id
+          example: shence.sep-org-111.app.sensorsdata.cloud
+          type: string
+        subscriber:
+          description: 订阅方业务标识, 一个 application_id 下可以有多个 subscriber，用户可通过 subscriber 确认订阅记录属于哪个业务方
+          example: sa
+          type: string
+        subscription_ids:
+          description: 要取消订阅的记录 id
+          example: '[1001,1002,1003]'
+          items:
+            format: int32
+            type: integer
+          type: array
+      required:
+      - application
+      - subscriber
+      title: BatchDeleteDataSubscriptionsRequest
+      type: object
+    sensorsdata.horizon.v1.GetSubscriptionApplicationResponseHttpApiResult:
+      properties:
+        code:
+          type: string
+        message:
+          type: string
+        request_id:
+          type: string
+        data:
+          $ref: '#/components/schemas/sensorsdata.horizon.v1.GetSubscriptionApplicationResponse'
+        error_info:
+          $ref: '#/components/schemas/sensorsdata.common.ErrorInfo'
+      title: sensorsdata.horizon.v1.GetSubscriptionApplicationResponseHttpApiResult
+      type: object
+    sensorsdata.common.ErrorInfo:
+      properties:
+        code:
+          description: 具体的错误码
+          example: XX-D-F-2-1
+          type: string
+        description:
+          description: 错误描述
+          example: 前端参数校验异常,PARAMETER_FORMAT_ERROR(quantiles=[10, -90] is not include [0, 100])
+          type: string
+        system_response:
+          description: 致错的可能原因列表
+          example: 系统终止了查询处理
+          type: string
+        error_causes:
+          items:
+            $ref: '#/components/schemas/sensorsdata.common.ErrorCause'
+          type: array
+        context:
+          $ref: '#/components/schemas/sensorsdata.common.ErrorContext'
+      title: ErrorInfo
+      type: object
+    sensorsdata.horizon.v1.GetSubscriptionApplicationResponse:
+      description: ''
+      properties:
+        application:
+          $ref: '#/components/schemas/sensorsdata.horizon.v1.SubscriptionApplication'
+      title: GetSubscriptionApplicationResponse
+      type: object
+    sensorsdata.horizon.v1.EntityDataSubscriptionConfig.EventsAttributeSubscriptionConfig:
+      description: ''
+      properties:
+        event_name:
+          description: 事件名
+          example: payOrder
+          type: string
+        attribute_names:
+          description: 事件属性名
+          example: '["time", "order_id", "amount"]'
+          items:
+            type: string
+          type: array
+        filter:
+          $ref: '#/components/schemas/sensorsdata.common.CompoundFilterCondition'
+      title: EventsAttributeSubscriptionConfig
+      type: object
+    sensorsdata.common.CompoundFilterCondition:
+      description: 复合过滤条件，用于描述 condition 或 compound_filter 之间的关系
+      properties:
+        operator:
+          description: 逻辑运算法
+          enum:
+          - LOGICAL_OPERATOR_UNSPECIFIED
+          - AND
+          - OR
+          example: AND
+          type: string
+        conditions:
+          description: 过滤条件列表，只有最后一级才有
+          items:
+            $ref: '#/components/schemas/sensorsdata.common.FilterCondition'
+          type: array
+        compound_conditions:
+          description: 嵌套的下一级复合过滤条件
+          items:
+            $ref: '#/components/schemas/sensorsdata.common.CompoundFilterCondition'
+          type: array
+        index:
+          description: 当前筛选条件所处的位置下标，主要为了保证前端展示顺序的稳定
+          example: 10
+          format: int32
+          type: integer
+      title: CompoundFilterCondition
+      type: object
+    sensorsdata.horizon.v1.AddSubscriptionApplicationResponse:
+      description: ''
+      properties:
+        application:
+          $ref: '#/components/schemas/sensorsdata.horizon.v1.SubscriptionApplication'
+      title: AddSubscriptionApplicationResponse
+      type: object
+    sensorsdata.horizon.v1.DeleteSubscriptionApplicationRequest:
+      description: ''
+      properties:
+        application_id:
+          description: 订阅方的唯一标识
+          example: shence.sep-org-111.app.sensorsdata.cloud
+          type: string
+        application_name:
+          description: "订阅方业务唯一标识, 与 application_id 其一必填\n 如果未指定 application_id, 会使用 {application_name}.{organization_id}.app.sensorsdata.cloud 拼接成 application_id"
+          example: shence
+          type: string
+      title: DeleteSubscriptionApplicationRequest
+      type: object
+    sensorsdata.horizon.v1.GetSubscriptionApplicationRequest:
+      description: ''
+      properties:
+        application_id:
+          description: 订阅方的唯一标识
+          example: shence.sep-org-111.app.sensorsdata.cloud
+          type: string
+        application_name:
+          description: "订阅方业务唯一标识, 与 application_id 其一必填\n 如果未指定 application_id, 会使用 {application_name}.{organization_id}.app.sensorsdata.cloud 拼接成 application_id"
+          example: shence
+          type: string
+      title: GetSubscriptionApplicationRequest
+      type: object
+    sensorsdata.common.TimePoint.RelativeTimePoint:
+      description: ''
+      properties:
+        base_time:
+          description: ''
+          type: string
+        time_interval:
+          $ref: '#/components/schemas/sensorsdata.common.TimeInterval'
+      title: RelativeTimePoint
+      type: object
+    sensorsdata.common.TimeInterval:
+      description: ''
+      properties:
+        size:
+          description: ''
+          format: int32
+          type: integer
+        unit:
+          description: ''
+          enum:
+          - DATE_TIME_UNIT_UNSPECIFIED
+          - MILLISECOND
+          - SECOND
+          - MINUTE
+          - HOUR
+          - DAY
+          - WEEK
+          - MONTH
+          - YEAR
+          type: string
+      title: TimeInterval
+      type: object
+    sensorsdata.horizon.v1.SubscriptionApplication:
+      description: ''
+      properties:
+        application_name:
+          description: 订阅方业务唯一标识
+          example: shence
+          type: string
+        application_type:
+          description: "订阅方类型\n '''\n KAFKA_BASED_APP: 通过 Kafka 接收订阅数据的订阅方\n '''"
+          enum:
+          - KAFKA_BASED_APP
+          example: KAFKA_BASED_APP
+          type: string
+        kafka_based_app_config:
+          $ref: '#/components/schemas/sensorsdata.horizon.v1.KafkaBasedAppConfig'
+      required:
+      - application_type
+      title: SubscriptionApplication
       type: object
 x-sd-openapi-service-name: DataSubscription
 x-sd-openapi-service-name-hyphen: data-subscription

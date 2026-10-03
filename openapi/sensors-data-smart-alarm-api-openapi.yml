@@ -213,24 +213,100 @@ paths:
       - Smart Alarm
 components:
   schemas:
-    sensorsdata.analytics.v1.TriggeredSmartAlarmPollingResult:
-      description: ''
+    sensorsdata.analytics.v1.SmartAlarmPollingExecutionResultResponseHttpApiResult:
       properties:
-        group_value:
-          description: 分组值
-          example: CN
+        code:
           type: string
-        current_value:
-          description: 当前值
-          example: '120'
+        message:
           type: string
-        rules:
-          description: 命中的规则文案列表
-          example: '["低于昨天同期 20", "高于上一小时 30%"]'
+        request_id:
+          type: string
+        data:
+          $ref: '#/components/schemas/sensorsdata.analytics.v1.SmartAlarmPollingExecutionResultResponse'
+        error_info:
+          $ref: '#/components/schemas/sensorsdata.common.ErrorInfo'
+      title: sensorsdata.analytics.v1.SmartAlarmPollingExecutionResultResponseHttpApiResult
+      type: object
+    sensorsdata.analytics.v1.SmartAlarmConfigListResponse:
+      description: 获取所有的预警配置列表接口返回结构描述
+      properties:
+        total:
+          description: 总记录数
+          example: 10
+          format: int32
+          type: integer
+        ids:
+          description: 预警配置 id 列表
+          example: '[1,2,3]'
           items:
+            format: int32
+            type: integer
+          type: array
+      title: SmartAlarmConfigListResponse
+      type: object
+    sensorsdata.common.ErrorInfo:
+      properties:
+        code:
+          description: 具体的错误码
+          example: XX-D-F-2-1
+          type: string
+        description:
+          description: 错误描述
+          example: 前端参数校验异常,PARAMETER_FORMAT_ERROR(quantiles=[10, -90] is not include [0, 100])
+          type: string
+        system_response:
+          description: 致错的可能原因列表
+          example: 系统终止了查询处理
+          type: string
+        error_causes:
+          items:
+            $ref: '#/components/schemas/sensorsdata.common.ErrorCause'
+          type: array
+        context:
+          $ref: '#/components/schemas/sensorsdata.common.ErrorContext'
+      title: ErrorInfo
+      type: object
+    sensorsdata.analytics.v1.SmartAlarmRequest:
+      description: 获取所有的预警配置列表接口的参数描述
+      properties:
+        title:
+          description: 预警标题
+          example: 测试预警信息
+          type: string
+        units:
+          description: 时间单位
+          example: DAY
+          items:
+            enum:
+            - UNIT_TYPE_UNSPECIFIED
+            - HOUR
+            - DAY
+            - WEEK
+            - MONTH
+            - YEAR
+            - QUARTER
+            - MINUTE
+            - SECOND
             type: string
           type: array
-      title: TriggeredSmartAlarmPollingResult
+        create_user_ids:
+          description: 创建者 id 列表
+          example: '[1,2,3]'
+          items:
+            format: int32
+            type: integer
+          type: array
+        disables:
+          description: 是否可用
+          example: '[true]'
+          items:
+            type: boolean
+          type: array
+        request_id:
+          description: 本次请求 ID, 方便后续追踪问题
+          example: '12345696321548954'
+          type: string
+      title: SmartAlarmRequest
       type: object
     sensorsdata.analytics.v1.SmartAlarmConfigResponseHttpApiResult:
       properties:
@@ -245,6 +321,52 @@ components:
         error_info:
           $ref: '#/components/schemas/sensorsdata.common.ErrorInfo'
       title: sensorsdata.analytics.v1.SmartAlarmConfigResponseHttpApiResult
+      type: object
+    sensorsdata.common.ErrorContext:
+      description: 发生错误时，系统快照信息
+      properties:
+        origin_stack:
+          description: 上游异常的 stack，由系统截获
+          type: string
+        origin_cause:
+          description: 上游异常的 cause by，由系统截获
+          type: string
+        origin_code:
+          description: 上游异常的错误简码
+          type: string
+        origin_complete_code:
+          description: 上游异常的完整错误码
+          type: string
+        error_extend_desc:
+          description: 本次异常的辅助说明，可传入
+          type: string
+      title: ErrorContext
+      type: object
+    sensorsdata.common.ErrorCause:
+      properties:
+        error_cause:
+          description: 致错原因1
+          example: 参数异常1
+          type: string
+        action_suggestion:
+          description: 操作建议，针对该原因，建议的解决方式
+          example: 检测入参的数据类型1
+          type: string
+      title: ErrorCause
+      type: object
+    sensorsdata.analytics.v1.SmartAlarmConfigListResponseHttpApiResult:
+      properties:
+        code:
+          type: string
+        message:
+          type: string
+        request_id:
+          type: string
+        data:
+          $ref: '#/components/schemas/sensorsdata.analytics.v1.SmartAlarmConfigListResponse'
+        error_info:
+          $ref: '#/components/schemas/sensorsdata.common.ErrorInfo'
+      title: sensorsdata.analytics.v1.SmartAlarmConfigListResponseHttpApiResult
       type: object
     sensorsdata.analytics.v1.SmartAlarmConfigResponse:
       description: 获取一个预警配置的详细信息接口返回结构描述
@@ -407,110 +529,24 @@ components:
           type: array
       title: LatestSmartAlarmRecord
       type: object
-    sensorsdata.common.ErrorCause:
+    sensorsdata.analytics.v1.TriggeredSmartAlarmPollingResult:
+      description: ''
       properties:
-        error_cause:
-          description: 致错原因1
-          example: 参数异常1
+        group_value:
+          description: 分组值
+          example: CN
           type: string
-        action_suggestion:
-          description: 操作建议，针对该原因，建议的解决方式
-          example: 检测入参的数据类型1
+        current_value:
+          description: 当前值
+          example: '120'
           type: string
-      title: ErrorCause
-      type: object
-    sensorsdata.analytics.v1.SmartAlarmConfigListResponse:
-      description: 获取所有的预警配置列表接口返回结构描述
-      properties:
-        total:
-          description: 总记录数
-          example: 10
-          format: int32
-          type: integer
-        ids:
-          description: 预警配置 id 列表
-          example: '[1,2,3]'
+        rules:
+          description: 命中的规则文案列表
+          example: '["低于昨天同期 20", "高于上一小时 30%"]'
           items:
-            format: int32
-            type: integer
-          type: array
-      title: SmartAlarmConfigListResponse
-      type: object
-    sensorsdata.common.ErrorContext:
-      description: 发生错误时，系统快照信息
-      properties:
-        origin_stack:
-          description: 上游异常的 stack，由系统截获
-          type: string
-        origin_cause:
-          description: 上游异常的 cause by，由系统截获
-          type: string
-        origin_code:
-          description: 上游异常的错误简码
-          type: string
-        origin_complete_code:
-          description: 上游异常的完整错误码
-          type: string
-        error_extend_desc:
-          description: 本次异常的辅助说明，可传入
-          type: string
-      title: ErrorContext
-      type: object
-    sensorsdata.analytics.v1.SmartAlarmPollingExecutionResultResponseHttpApiResult:
-      properties:
-        code:
-          type: string
-        message:
-          type: string
-        request_id:
-          type: string
-        data:
-          $ref: '#/components/schemas/sensorsdata.analytics.v1.SmartAlarmPollingExecutionResultResponse'
-        error_info:
-          $ref: '#/components/schemas/sensorsdata.common.ErrorInfo'
-      title: sensorsdata.analytics.v1.SmartAlarmPollingExecutionResultResponseHttpApiResult
-      type: object
-    sensorsdata.analytics.v1.SmartAlarmRequest:
-      description: 获取所有的预警配置列表接口的参数描述
-      properties:
-        title:
-          description: 预警标题
-          example: 测试预警信息
-          type: string
-        units:
-          description: 时间单位
-          example: DAY
-          items:
-            enum:
-            - UNIT_TYPE_UNSPECIFIED
-            - HOUR
-            - DAY
-            - WEEK
-            - MONTH
-            - YEAR
-            - QUARTER
-            - MINUTE
-            - SECOND
             type: string
           type: array
-        create_user_ids:
-          description: 创建者 id 列表
-          example: '[1,2,3]'
-          items:
-            format: int32
-            type: integer
-          type: array
-        disables:
-          description: 是否可用
-          example: '[true]'
-          items:
-            type: boolean
-          type: array
-        request_id:
-          description: 本次请求 ID, 方便后续追踪问题
-          example: '12345696321548954'
-          type: string
-      title: SmartAlarmRequest
+      title: TriggeredSmartAlarmPollingResult
       type: object
     sensorsdata.analytics.v1.NonTriggeredSmartAlarmPollingResult:
       description: ''
@@ -524,42 +560,6 @@ components:
           example: '85'
           type: string
       title: NonTriggeredSmartAlarmPollingResult
-      type: object
-    sensorsdata.analytics.v1.SmartAlarmConfigListResponseHttpApiResult:
-      properties:
-        code:
-          type: string
-        message:
-          type: string
-        request_id:
-          type: string
-        data:
-          $ref: '#/components/schemas/sensorsdata.analytics.v1.SmartAlarmConfigListResponse'
-        error_info:
-          $ref: '#/components/schemas/sensorsdata.common.ErrorInfo'
-      title: sensorsdata.analytics.v1.SmartAlarmConfigListResponseHttpApiResult
-      type: object
-    sensorsdata.common.ErrorInfo:
-      properties:
-        code:
-          description: 具体的错误码
-          example: XX-D-F-2-1
-          type: string
-        description:
-          description: 错误描述
-          example: 前端参数校验异常,PARAMETER_FORMAT_ERROR(quantiles=[10, -90] is not include [0, 100])
-          type: string
-        system_response:
-          description: 致错的可能原因列表
-          example: 系统终止了查询处理
-          type: string
-        error_causes:
-          items:
-            $ref: '#/components/schemas/sensorsdata.common.ErrorCause'
-          type: array
-        context:
-          $ref: '#/components/schemas/sensorsdata.common.ErrorContext'
-      title: ErrorInfo
       type: object
 x-sd-openapi-service-name: SmartAlarm
 x-sd-openapi-service-name-hyphen: smart-alarm
