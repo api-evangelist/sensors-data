@@ -264,6 +264,88 @@ paths:
       - Real Time Tag
 components:
   schemas:
+    sensorsdata.focus.v1.QueryRealTimeTagQuotaResponse:
+      description: 查询实时标签响应
+      properties:
+        remain:
+          description: 实时标签剩余额度
+          format: int32
+          type: integer
+        use:
+          description: 实时标签已使用额度
+          format: int32
+          type: integer
+      title: QueryRealTimeTagQuotaResponse
+      type: object
+    sensorsdata.focus.v1.StartRealTimeTagRequest:
+      description: 启动实时标签的请求体
+      properties:
+        name:
+          description: 实时标签 名称
+          type: string
+      required:
+      - name
+      title: StartRealTimeTagRequest
+      type: object
+    sensorsdata.common.ErrorCause:
+      properties:
+        error_cause:
+          description: 致错原因1
+          example: 参数异常1
+          type: string
+        action_suggestion:
+          description: 操作建议，针对该原因，建议的解决方式
+          example: 检测入参的数据类型1
+          type: string
+      title: ErrorCause
+      type: object
+    sensorsdata.focus.v1.GetRealTimeTagResponse:
+      description: 获取实时标签详情响应
+      properties:
+        realtime_tag:
+          $ref: '#/components/schemas/sensorsdata.focus.v1.RealTimeTag'
+      title: GetRealTimeTagResponse
+      type: object
+    sensorsdata.focus.v1.QueryRealTimeTagQuotaRequest:
+      description: 查询实时标签请求
+      title: QueryRealTimeTagQuotaRequest
+      type: object
+    sensorsdata.common.ErrorInfo:
+      properties:
+        code:
+          description: 具体的错误码
+          example: XX-D-F-2-1
+          type: string
+        description:
+          description: 错误描述
+          example: 前端参数校验异常,PARAMETER_FORMAT_ERROR(quantiles=[10, -90] is not include [0, 100])
+          type: string
+        system_response:
+          description: 致错的可能原因列表
+          example: 系统终止了查询处理
+          type: string
+        error_causes:
+          items:
+            $ref: '#/components/schemas/sensorsdata.common.ErrorCause'
+          type: array
+        context:
+          $ref: '#/components/schemas/sensorsdata.common.ErrorContext'
+      title: ErrorInfo
+      type: object
+    sensorsdata.focus.v1.QueryRealTimeTagQuotaResponseHttpApiResult:
+      properties:
+        code:
+          type: string
+        message:
+          type: string
+        request_id:
+          type: string
+        data:
+          $ref: '#/components/schemas/sensorsdata.focus.v1.QueryRealTimeTagQuotaResponse'
+        error_info:
+          $ref: '#/components/schemas/sensorsdata.common.ErrorInfo'
+      title: sensorsdata.focus.v1.QueryRealTimeTagQuotaResponseHttpApiResult
+      type: object
     sensorsdata.focus.v1.DeleteRealTimeTagResponseHttpApiResult:
       properties:
         code:
@@ -277,6 +359,100 @@ components:
         error_info:
           $ref: '#/components/schemas/sensorsdata.common.ErrorInfo'
       title: sensorsdata.focus.v1.DeleteRealTimeTagResponseHttpApiResult
+      type: object
+    sensorsdata.common.ErrorContext:
+      description: 发生错误时，系统快照信息
+      properties:
+        origin_stack:
+          description: 上游异常的 stack，由系统截获
+          type: string
+        origin_cause:
+          description: 上游异常的 cause by，由系统截获
+          type: string
+        origin_code:
+          description: 上游异常的错误简码
+          type: string
+        origin_complete_code:
+          description: 上游异常的完整错误码
+          type: string
+        error_extend_desc:
+          description: 本次异常的辅助说明，可传入
+          type: string
+      title: ErrorContext
+      type: object
+    sensorsdata.focus.v1.DeleteRealTimeTagRequest:
+      description: 删除实时标签的请求体
+      properties:
+        name:
+          description: 实时标签 名称
+          type: string
+      required:
+      - name
+      title: DeleteRealTimeTagRequest
+      type: object
+    sensorsdata.focus.v1.StopRealTimeTagRequest:
+      description: 停用实时标签的请求体
+      properties:
+        name:
+          description: 实时标签 名称
+          type: string
+      required:
+      - name
+      title: StopRealTimeTagRequest
+      type: object
+    sensorsdata.focus.v1.StartRealTimeTagResponse:
+      description: 启动实时标签的响应体
+      title: StartRealTimeTagResponse
+      type: object
+    sensorsdata.focus.v1.GetRealTimeTagResponseHttpApiResult:
+      properties:
+        code:
+          type: string
+        message:
+          type: string
+        request_id:
+          type: string
+        data:
+          $ref: '#/components/schemas/sensorsdata.focus.v1.GetRealTimeTagResponse'
+        error_info:
+          $ref: '#/components/schemas/sensorsdata.common.ErrorInfo'
+      title: sensorsdata.focus.v1.GetRealTimeTagResponseHttpApiResult
+      type: object
+    sensorsdata.focus.v1.DeleteRealTimeTagResponse:
+      description: 删除实时标签的响应体
+      title: DeleteRealTimeTagResponse
+      type: object
+    sensorsdata.focus.v1.StartRealTimeTagResponseHttpApiResult:
+      properties:
+        code:
+          type: string
+        message:
+          type: string
+        request_id:
+          type: string
+        data:
+          $ref: '#/components/schemas/sensorsdata.focus.v1.StartRealTimeTagResponse'
+        error_info:
+          $ref: '#/components/schemas/sensorsdata.common.ErrorInfo'
+      title: sensorsdata.focus.v1.StartRealTimeTagResponseHttpApiResult
+      type: object
+    sensorsdata.focus.v1.StopRealTimeTagResponseHttpApiResult:
+      properties:
+        code:
+          type: string
+        message:
+          type: string
+        request_id:
+          type: string
+        data:
+          $ref: '#/components/schemas/sensorsdata.focus.v1.StopRealTimeTagResponse'
+        error_info:
+          $ref: '#/components/schemas/sensorsdata.common.ErrorInfo'
+      title: sensorsdata.focus.v1.StopRealTimeTagResponseHttpApiResult
+      type: object
+    sensorsdata.focus.v1.StopRealTimeTagResponse:
+      description: 停用实时标签的响应体
+      title: StopRealTimeTagResponse
       type: object
     sensorsdata.focus.v1.RealTimeTag:
       description: 实时标签元数据信息，仅用于查询返回查看
@@ -327,182 +503,6 @@ components:
           description: ''
           type: string
       title: RealTimeTag
-      type: object
-    sensorsdata.focus.v1.GetRealTimeTagResponse:
-      description: 获取实时标签详情响应
-      properties:
-        realtime_tag:
-          $ref: '#/components/schemas/sensorsdata.focus.v1.RealTimeTag'
-      title: GetRealTimeTagResponse
-      type: object
-    sensorsdata.common.ErrorInfo:
-      properties:
-        code:
-          description: 具体的错误码
-          example: XX-D-F-2-1
-          type: string
-        description:
-          description: 错误描述
-          example: 前端参数校验异常,PARAMETER_FORMAT_ERROR(quantiles=[10, -90] is not include [0, 100])
-          type: string
-        system_response:
-          description: 致错的可能原因列表
-          example: 系统终止了查询处理
-          type: string
-        error_causes:
-          items:
-            $ref: '#/components/schemas/sensorsdata.common.ErrorCause'
-          type: array
-        context:
-          $ref: '#/components/schemas/sensorsdata.common.ErrorContext'
-      title: ErrorInfo
-      type: object
-    sensorsdata.common.ErrorContext:
-      description: 发生错误时，系统快照信息
-      properties:
-        origin_stack:
-          description: 上游异常的 stack，由系统截获
-          type: string
-        origin_cause:
-          description: 上游异常的 cause by，由系统截获
-          type: string
-        origin_code:
-          description: 上游异常的错误简码
-          type: string
-        origin_complete_code:
-          description: 上游异常的完整错误码
-          type: string
-        error_extend_desc:
-          description: 本次异常的辅助说明，可传入
-          type: string
-      title: ErrorContext
-      type: object
-    sensorsdata.common.ErrorCause:
-      properties:
-        error_cause:
-          description: 致错原因1
-          example: 参数异常1
-          type: string
-        action_suggestion:
-          description: 操作建议，针对该原因，建议的解决方式
-          example: 检测入参的数据类型1
-          type: string
-      title: ErrorCause
-      type: object
-    sensorsdata.focus.v1.QueryRealTimeTagQuotaRequest:
-      description: 查询实时标签请求
-      title: QueryRealTimeTagQuotaRequest
-      type: object
-    sensorsdata.focus.v1.DeleteRealTimeTagRequest:
-      description: 删除实时标签的请求体
-      properties:
-        name:
-          description: 实时标签 名称
-          type: string
-      required:
-      - name
-      title: DeleteRealTimeTagRequest
-      type: object
-    sensorsdata.focus.v1.StopRealTimeTagResponseHttpApiResult:
-      properties:
-        code:
-          type: string
-        message:
-          type: string
-        request_id:
-          type: string
-        data:
-          $ref: '#/components/schemas/sensorsdata.focus.v1.StopRealTimeTagResponse'
-        error_info:
-          $ref: '#/components/schemas/sensorsdata.common.ErrorInfo'
-      title: sensorsdata.focus.v1.StopRealTimeTagResponseHttpApiResult
-      type: object
-    sensorsdata.focus.v1.StartRealTimeTagResponse:
-      description: 启动实时标签的响应体
-      title: StartRealTimeTagResponse
-      type: object
-    sensorsdata.focus.v1.QueryRealTimeTagQuotaResponse:
-      description: 查询实时标签响应
-      properties:
-        remain:
-          description: 实时标签剩余额度
-          format: int32
-          type: integer
-        use:
-          description: 实时标签已使用额度
-          format: int32
-          type: integer
-      title: QueryRealTimeTagQuotaResponse
-      type: object
-    sensorsdata.focus.v1.QueryRealTimeTagQuotaResponseHttpApiResult:
-      properties:
-        code:
-          type: string
-        message:
-          type: string
-        request_id:
-          type: string
-        data:
-          $ref: '#/components/schemas/sensorsdata.focus.v1.QueryRealTimeTagQuotaResponse'
-        error_info:
-          $ref: '#/components/schemas/sensorsdata.common.ErrorInfo'
-      title: sensorsdata.focus.v1.QueryRealTimeTagQuotaResponseHttpApiResult
-      type: object
-    sensorsdata.focus.v1.DeleteRealTimeTagResponse:
-      description: 删除实时标签的响应体
-      title: DeleteRealTimeTagResponse
-      type: object
-    sensorsdata.focus.v1.StartRealTimeTagResponseHttpApiResult:
-      properties:
-        code:
-          type: string
-        message:
-          type: string
-        request_id:
-          type: string
-        data:
-          $ref: '#/components/schemas/sensorsdata.focus.v1.StartRealTimeTagResponse'
-        error_info:
-          $ref: '#/components/schemas/sensorsdata.common.ErrorInfo'
-      title: sensorsdata.focus.v1.StartRealTimeTagResponseHttpApiResult
-      type: object
-    sensorsdata.focus.v1.GetRealTimeTagResponseHttpApiResult:
-      properties:
-        code:
-          type: string
-        message:
-          type: string
-        request_id:
-          type: string
-        data:
-          $ref: '#/components/schemas/sensorsdata.focus.v1.GetRealTimeTagResponse'
-        error_info:
-          $ref: '#/components/schemas/sensorsdata.common.ErrorInfo'
-      title: sensorsdata.focus.v1.GetRealTimeTagResponseHttpApiResult
-      type: object
-    sensorsdata.focus.v1.StopRealTimeTagResponse:
-      description: 停用实时标签的响应体
-      title: StopRealTimeTagResponse
-      type: object
-    sensorsdata.focus.v1.StopRealTimeTagRequest:
-      description: 停用实时标签的请求体
-      properties:
-        name:
-          description: 实时标签 名称
-          type: string
-      required:
-      - name
-      title: StopRealTimeTagRequest
-      type: object
-    sensorsdata.focus.v1.StartRealTimeTagRequest:
-      description: 启动实时标签的请求体
-      properties:
-        name:
-          description: 实时标签 名称
-          type: string
-      required:
-      - name
-      title: StartRealTimeTagRequest
       type: object
 x-sd-openapi-service-name: RealTimeTag
 x-sd-openapi-service-name-hyphen: real-time-tag

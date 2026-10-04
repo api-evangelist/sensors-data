@@ -61,16 +61,6 @@ paths:
       - Web Black Users
 components:
   schemas:
-    sensorsdata.focus.v1.WebBlackUserImportRequest:
-      description: 黑名单导入请求参数
-      properties:
-        distinct_ids:
-          description: 用户distinct id
-          items:
-            type: string
-          type: array
-      title: WebBlackUserImportRequest
-      type: object
     sensorsdata.focus.v1.WebBlackUserImportResponseHttpApiResult:
       properties:
         code:
@@ -84,48 +74,6 @@ components:
         error_info:
           $ref: '#/components/schemas/sensorsdata.common.ErrorInfo'
       title: sensorsdata.focus.v1.WebBlackUserImportResponseHttpApiResult
-      type: object
-    sensorsdata.common.ErrorInfo:
-      properties:
-        code:
-          description: 具体的错误码
-          example: XX-D-F-2-1
-          type: string
-        description:
-          description: 错误描述
-          example: 前端参数校验异常,PARAMETER_FORMAT_ERROR(quantiles=[10, -90] is not include [0, 100])
-          type: string
-        system_response:
-          description: 致错的可能原因列表
-          example: 系统终止了查询处理
-          type: string
-        error_causes:
-          items:
-            $ref: '#/components/schemas/sensorsdata.common.ErrorCause'
-          type: array
-        context:
-          $ref: '#/components/schemas/sensorsdata.common.ErrorContext'
-      title: ErrorInfo
-      type: object
-    sensorsdata.common.ErrorContext:
-      description: 发生错误时，系统快照信息
-      properties:
-        origin_stack:
-          description: 上游异常的 stack，由系统截获
-          type: string
-        origin_cause:
-          description: 上游异常的 cause by，由系统截获
-          type: string
-        origin_code:
-          description: 上游异常的错误简码
-          type: string
-        origin_complete_code:
-          description: 上游异常的完整错误码
-          type: string
-        error_extend_desc:
-          description: 本次异常的辅助说明，可传入
-          type: string
-      title: ErrorContext
       type: object
     sensorsdata.common.ErrorCause:
       properties:
@@ -168,6 +116,58 @@ components:
             type: string
           type: array
       title: WebBlackUserImportResponse
+      type: object
+    sensorsdata.common.ErrorInfo:
+      properties:
+        code:
+          description: 具体的错误码
+          example: XX-D-F-2-1
+          type: string
+        description:
+          description: 错误描述
+          example: 前端参数校验异常,PARAMETER_FORMAT_ERROR(quantiles=[10, -90] is not include [0, 100])
+          type: string
+        system_response:
+          description: 致错的可能原因列表
+          example: 系统终止了查询处理
+          type: string
+        error_causes:
+          items:
+            $ref: '#/components/schemas/sensorsdata.common.ErrorCause'
+          type: array
+        context:
+          $ref: '#/components/schemas/sensorsdata.common.ErrorContext'
+      title: ErrorInfo
+      type: object
+    sensorsdata.focus.v1.WebBlackUserImportRequest:
+      description: 黑名单导入请求参数
+      properties:
+        distinct_ids:
+          description: 用户distinct id
+          items:
+            type: string
+          type: array
+      title: WebBlackUserImportRequest
+      type: object
+    sensorsdata.common.ErrorContext:
+      description: 发生错误时，系统快照信息
+      properties:
+        origin_stack:
+          description: 上游异常的 stack，由系统截获
+          type: string
+        origin_cause:
+          description: 上游异常的 cause by，由系统截获
+          type: string
+        origin_code:
+          description: 上游异常的错误简码
+          type: string
+        origin_complete_code:
+          description: 上游异常的完整错误码
+          type: string
+        error_extend_desc:
+          description: 本次异常的辅助说明，可传入
+          type: string
+      title: ErrorContext
       type: object
 x-sd-openapi-service-name: WebBlackUsers
 x-sd-openapi-service-name-hyphen: web-black-users
