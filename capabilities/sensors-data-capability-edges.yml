@@ -1,0 +1,54 @@
+slug: sensors-data
+provider: Sensors Data
+generated_by: planning/capability-mapping/scripts/classify_capabilities.py
+model: claude-opus-5
+frame:
+- Software & Technology
+min_confidence: 0.7
+capability_model:
+  source: https://github.com/vincentmakes/turbo-ea-capabilities
+  license: CC-BY-4.0
+  attribution: Turbo EA Capabilities by Vincent Verdet — Turbo EA, https://github.com/vincentmakes/turbo-ea-capabilities,
+    CC BY 4.0
+  notice: NOTICE
+edge_count: 4
+edges:
+- tag: Identity
+  spec_file: sensors-data-identity-api-openapi.yml
+  capability_id: BC-620.20
+  capability_id_l1: BC-620
+  capability_name: Identity & Access Management
+  confidence: 0.85
+  evidence: 身份服务主要负责管理账号权限相关的接口，例如：账号、角色、权限点资源等; POST /identity/account/role/add AddAccountRole
+  reason: Accounts, roles, permission resources, enable/disable and project invitation operations are
+    classic identity and access administration, not customer identity resolution.
+- tag: Segment
+  spec_file: sensors-data-segment-api-openapi.yml
+  capability_id: BC-420.20
+  capability_id_l1: BC-420
+  capability_name: Customer Segmentation Management
+  confidence: 0.8
+  evidence: 分群管理服务; POST /segment/definition/create-with-rule CreateSegmentDefinitionWithRule 创建分群
+  reason: Full lifecycle of customer segment definitions (create, edit, delete, schedule, evaluate) with
+    segment rule expressions — unambiguously Customer Segmentation Management for this CDP.
+- tag: Express Audience Meta
+  spec_file: sensors-data-express-audience-meta-api-openapi.yml
+  capability_id: BC-420.20
+  capability_id_l1: BC-420
+  capability_name: Customer Segmentation Management
+  confidence: 0.75
+  evidence: POST /express-audience-meta/rule/realtime-mark/create CreateRealtimeMarkAudienceFilterRule
+    创建一个实时标记受众
+  reason: Creates, queries, modifies and terminates audience filter rules (AudienceRuleDetailParam, PqlUserGroupRule)
+    — definition and stewardship of customer audiences/segments in a CDP, which is Customer Segmentation
+    Management.
+- tag: Express Audience Online
+  spec_file: sensors-data-express-audience-online-api-openapi.yml
+  capability_id: BC-420.20
+  capability_id_l1: BC-420
+  capability_name: Customer Segmentation Management
+  confidence: 0.7
+  evidence: POST /express-audience-online/audience-entity/put PutBatchAudienceEntity 将一批用户写入一个受众规则
+  reason: Runtime membership operations on audiences — writing/removing users from an audience rule and
+    testing whether a user belongs to it. This is operational execution of customer segments; mapped to
+    Customer Segmentation Management.
