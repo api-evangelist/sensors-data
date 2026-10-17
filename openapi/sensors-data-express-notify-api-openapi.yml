@@ -156,9 +156,12 @@ paths:
       - Express Notify
 components:
   schemas:
-    sensorsdata.focus.v1.express.audience.SetNotifyConfigResponse:
+    sensorsdata.focus.v1.express.audience.GetNotifyConfigResponse:
       description: ''
-      title: SetNotifyConfigResponse
+      properties:
+        notify_config:
+          $ref: '#/components/schemas/sensorsdata.focus.v1.express.audience.NotifyConfig'
+      title: GetNotifyConfigResponse
       type: object
     sensorsdata.common.ErrorCause:
       properties:
@@ -186,10 +189,6 @@ components:
           $ref: '#/components/schemas/sensorsdata.common.ErrorInfo'
       title: sensorsdata.focus.v1.express.audience.SetNotifyConfigResponseHttpApiResult
       type: object
-    sensorsdata.focus.v1.express.audience.DeleteNotifyConfigRequest:
-      description: ''
-      title: DeleteNotifyConfigRequest
-      type: object
     sensorsdata.common.ErrorInfo:
       properties:
         code:
@@ -212,12 +211,24 @@ components:
           $ref: '#/components/schemas/sensorsdata.common.ErrorContext'
       title: ErrorInfo
       type: object
-    sensorsdata.focus.v1.express.audience.GetNotifyConfigResponse:
+    sensorsdata.focus.v1.express.audience.SetNotifyConfigResponse:
+      description: ''
+      title: SetNotifyConfigResponse
+      type: object
+    sensorsdata.focus.v1.express.audience.NotifyConfig.AuthConfig:
       description: ''
       properties:
-        notify_config:
-          $ref: '#/components/schemas/sensorsdata.focus.v1.express.audience.NotifyConfig'
-      title: GetNotifyConfigResponse
+        key:
+          description: ''
+          type: string
+        value:
+          description: ''
+          type: string
+      title: AuthConfig
+      type: object
+    sensorsdata.focus.v1.express.audience.DeleteNotifyConfigResponse:
+      description: ''
+      title: DeleteNotifyConfigResponse
       type: object
     sensorsdata.common.ErrorContext:
       description: 发生错误时，系统快照信息
@@ -238,6 +249,27 @@ components:
           description: 本次异常的辅助说明，可传入
           type: string
       title: ErrorContext
+      type: object
+    sensorsdata.focus.v1.express.audience.SetNotifyConfigRequest:
+      description: ''
+      properties:
+        notify_config:
+          $ref: '#/components/schemas/sensorsdata.focus.v1.express.audience.NotifyConfig'
+      title: SetNotifyConfigRequest
+      type: object
+    sensorsdata.focus.v1.express.audience.GetNotifyConfigResponseHttpApiResult:
+      properties:
+        code:
+          type: string
+        message:
+          type: string
+        request_id:
+          type: string
+        data:
+          $ref: '#/components/schemas/sensorsdata.focus.v1.express.audience.GetNotifyConfigResponse'
+        error_info:
+          $ref: '#/components/schemas/sensorsdata.common.ErrorInfo'
+      title: sensorsdata.focus.v1.express.audience.GetNotifyConfigResponseHttpApiResult
       type: object
     sensorsdata.focus.v1.express.audience.DeleteNotifyConfigResponseHttpApiResult:
       properties:
@@ -281,41 +313,9 @@ components:
           type: string
       title: NotifyConfig
       type: object
-    sensorsdata.focus.v1.express.audience.DeleteNotifyConfigResponse:
+    sensorsdata.focus.v1.express.audience.DeleteNotifyConfigRequest:
       description: ''
-      title: DeleteNotifyConfigResponse
-      type: object
-    sensorsdata.focus.v1.express.audience.GetNotifyConfigResponseHttpApiResult:
-      properties:
-        code:
-          type: string
-        message:
-          type: string
-        request_id:
-          type: string
-        data:
-          $ref: '#/components/schemas/sensorsdata.focus.v1.express.audience.GetNotifyConfigResponse'
-        error_info:
-          $ref: '#/components/schemas/sensorsdata.common.ErrorInfo'
-      title: sensorsdata.focus.v1.express.audience.GetNotifyConfigResponseHttpApiResult
-      type: object
-    sensorsdata.focus.v1.express.audience.SetNotifyConfigRequest:
-      description: ''
-      properties:
-        notify_config:
-          $ref: '#/components/schemas/sensorsdata.focus.v1.express.audience.NotifyConfig'
-      title: SetNotifyConfigRequest
-      type: object
-    sensorsdata.focus.v1.express.audience.NotifyConfig.AuthConfig:
-      description: ''
-      properties:
-        key:
-          description: ''
-          type: string
-        value:
-          description: ''
-          type: string
-      title: AuthConfig
+      title: DeleteNotifyConfigRequest
       type: object
 x-sd-openapi-service-name: ExpressNotify
 x-sd-openapi-service-name-hyphen: express-notify

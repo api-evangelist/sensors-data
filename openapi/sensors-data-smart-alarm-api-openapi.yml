@@ -225,18 +225,19 @@ components:
           type: string
       title: ErrorCause
       type: object
-    sensorsdata.analytics.v1.NonTriggeredSmartAlarmPollingResult:
-      description: ''
+    sensorsdata.analytics.v1.SmartAlarmConfigListResponseHttpApiResult:
       properties:
-        group_value:
-          description: 分组值
-          example: US
+        code:
           type: string
-        current_value:
-          description: 当前值
-          example: '85'
+        message:
           type: string
-      title: NonTriggeredSmartAlarmPollingResult
+        request_id:
+          type: string
+        data:
+          $ref: '#/components/schemas/sensorsdata.analytics.v1.SmartAlarmConfigListResponse'
+        error_info:
+          $ref: '#/components/schemas/sensorsdata.common.ErrorInfo'
+      title: sensorsdata.analytics.v1.SmartAlarmConfigListResponseHttpApiResult
       type: object
     sensorsdata.common.ErrorInfo:
       properties:
@@ -260,7 +261,7 @@ components:
           $ref: '#/components/schemas/sensorsdata.common.ErrorContext'
       title: ErrorInfo
       type: object
-    sensorsdata.analytics.v1.SmartAlarmConfigListResponseHttpApiResult:
+    sensorsdata.analytics.v1.SmartAlarmPollingExecutionResultResponseHttpApiResult:
       properties:
         code:
           type: string
@@ -269,104 +270,23 @@ components:
         request_id:
           type: string
         data:
-          $ref: '#/components/schemas/sensorsdata.analytics.v1.SmartAlarmConfigListResponse'
+          $ref: '#/components/schemas/sensorsdata.analytics.v1.SmartAlarmPollingExecutionResultResponse'
         error_info:
           $ref: '#/components/schemas/sensorsdata.common.ErrorInfo'
-      title: sensorsdata.analytics.v1.SmartAlarmConfigListResponseHttpApiResult
+      title: sensorsdata.analytics.v1.SmartAlarmPollingExecutionResultResponseHttpApiResult
       type: object
-    sensorsdata.analytics.v1.SmartAlarmPollingExecutionResultResponse:
-      description: 获取轮询模式某次 execution 结果接口返回结构描述
+    sensorsdata.analytics.v1.NonTriggeredSmartAlarmPollingResult:
+      description: ''
       properties:
-        config_id:
-          description: 预警配置 ID
-          example: 1
-          format: int32
-          type: integer
-        execution_id:
-          description: execution ID
-          example: 456
-          format: int64
-          type: integer
-        title:
-          description: 预警标题
-          example: 测试预警
+        group_value:
+          description: 分组值
+          example: US
           type: string
-        project_id:
-          description: 项目 ID
-          example: 1
-          format: int32
-          type: integer
-        project_name:
-          description: 项目名称
-          example: production
+        current_value:
+          description: 当前值
+          example: '85'
           type: string
-        execute_time:
-          description: 执行时间
-          example: '2026-03-23 15:05:00'
-          type: string
-        unit:
-          description: 预警单位
-          enum:
-          - UNIT_TYPE_UNSPECIFIED
-          - HOUR
-          - DAY
-          - WEEK
-          - MONTH
-          - YEAR
-          - QUARTER
-          - MINUTE
-          - SECOND
-          example: HOUR
-          type: string
-        group_by_fields:
-          description: 分组字段
-          example: country
-          type: string
-        truncated:
-          description: 是否因上限被截断
-          example: true
-          type: boolean
-        candidate_group_count:
-          description: 本次参与判断的分组数
-          example: 100
-          format: int32
-          type: integer
-        triggered_group_count:
-          description: 本次触发预警的分组数
-          example: 2
-          format: int32
-          type: integer
-        triggered_results:
-          description: 触发预警的结果列表
-          items:
-            $ref: '#/components/schemas/sensorsdata.analytics.v1.TriggeredSmartAlarmPollingResult'
-          type: array
-        non_triggered_results:
-          description: 未触发预警的结果列表
-          items:
-            $ref: '#/components/schemas/sensorsdata.analytics.v1.NonTriggeredSmartAlarmPollingResult'
-          type: array
-      title: SmartAlarmPollingExecutionResultResponse
-      type: object
-    sensorsdata.common.ErrorContext:
-      description: 发生错误时，系统快照信息
-      properties:
-        origin_stack:
-          description: 上游异常的 stack，由系统截获
-          type: string
-        origin_cause:
-          description: 上游异常的 cause by，由系统截获
-          type: string
-        origin_code:
-          description: 上游异常的错误简码
-          type: string
-        origin_complete_code:
-          description: 上游异常的完整错误码
-          type: string
-        error_extend_desc:
-          description: 本次异常的辅助说明，可传入
-          type: string
-      title: ErrorContext
+      title: NonTriggeredSmartAlarmPollingResult
       type: object
     sensorsdata.analytics.v1.SmartAlarmConfigResponse:
       description: 获取一个预警配置的详细信息接口返回结构描述
@@ -450,22 +370,25 @@ components:
           type: string
       title: SmartAlarmRequest
       type: object
-    sensorsdata.analytics.v1.SmartAlarmConfigListResponse:
-      description: 获取所有的预警配置列表接口返回结构描述
+    sensorsdata.common.ErrorContext:
+      description: 发生错误时，系统快照信息
       properties:
-        total:
-          description: 总记录数
-          example: 10
-          format: int32
-          type: integer
-        ids:
-          description: 预警配置 id 列表
-          example: '[1,2,3]'
-          items:
-            format: int32
-            type: integer
-          type: array
-      title: SmartAlarmConfigListResponse
+        origin_stack:
+          description: 上游异常的 stack，由系统截获
+          type: string
+        origin_cause:
+          description: 上游异常的 cause by，由系统截获
+          type: string
+        origin_code:
+          description: 上游异常的错误简码
+          type: string
+        origin_complete_code:
+          description: 上游异常的完整错误码
+          type: string
+        error_extend_desc:
+          description: 本次异常的辅助说明，可传入
+          type: string
+      title: ErrorContext
       type: object
     sensorsdata.analytics.v1.SmartAlarmConfigResponseHttpApiResult:
       properties:
@@ -480,20 +403,6 @@ components:
         error_info:
           $ref: '#/components/schemas/sensorsdata.common.ErrorInfo'
       title: sensorsdata.analytics.v1.SmartAlarmConfigResponseHttpApiResult
-      type: object
-    sensorsdata.analytics.v1.SmartAlarmPollingExecutionResultResponseHttpApiResult:
-      properties:
-        code:
-          type: string
-        message:
-          type: string
-        request_id:
-          type: string
-        data:
-          $ref: '#/components/schemas/sensorsdata.analytics.v1.SmartAlarmPollingExecutionResultResponse'
-        error_info:
-          $ref: '#/components/schemas/sensorsdata.common.ErrorInfo'
-      title: sensorsdata.analytics.v1.SmartAlarmPollingExecutionResultResponseHttpApiResult
       type: object
     sensorsdata.analytics.v1.LatestSmartAlarmRecord:
       description: ''
@@ -542,6 +451,23 @@ components:
           type: array
       title: LatestSmartAlarmRecord
       type: object
+    sensorsdata.analytics.v1.SmartAlarmConfigListResponse:
+      description: 获取所有的预警配置列表接口返回结构描述
+      properties:
+        total:
+          description: 总记录数
+          example: 10
+          format: int32
+          type: integer
+        ids:
+          description: 预警配置 id 列表
+          example: '[1,2,3]'
+          items:
+            format: int32
+            type: integer
+          type: array
+      title: SmartAlarmConfigListResponse
+      type: object
     sensorsdata.analytics.v1.TriggeredSmartAlarmPollingResult:
       description: ''
       properties:
@@ -560,6 +486,80 @@ components:
             type: string
           type: array
       title: TriggeredSmartAlarmPollingResult
+      type: object
+    sensorsdata.analytics.v1.SmartAlarmPollingExecutionResultResponse:
+      description: 获取轮询模式某次 execution 结果接口返回结构描述
+      properties:
+        config_id:
+          description: 预警配置 ID
+          example: 1
+          format: int32
+          type: integer
+        execution_id:
+          description: execution ID
+          example: 456
+          format: int64
+          type: integer
+        title:
+          description: 预警标题
+          example: 测试预警
+          type: string
+        project_id:
+          description: 项目 ID
+          example: 1
+          format: int32
+          type: integer
+        project_name:
+          description: 项目名称
+          example: production
+          type: string
+        execute_time:
+          description: 执行时间
+          example: '2026-03-23 15:05:00'
+          type: string
+        unit:
+          description: 预警单位
+          enum:
+          - UNIT_TYPE_UNSPECIFIED
+          - HOUR
+          - DAY
+          - WEEK
+          - MONTH
+          - YEAR
+          - QUARTER
+          - MINUTE
+          - SECOND
+          example: HOUR
+          type: string
+        group_by_fields:
+          description: 分组字段
+          example: country
+          type: string
+        truncated:
+          description: 是否因上限被截断
+          example: true
+          type: boolean
+        candidate_group_count:
+          description: 本次参与判断的分组数
+          example: 100
+          format: int32
+          type: integer
+        triggered_group_count:
+          description: 本次触发预警的分组数
+          example: 2
+          format: int32
+          type: integer
+        triggered_results:
+          description: 触发预警的结果列表
+          items:
+            $ref: '#/components/schemas/sensorsdata.analytics.v1.TriggeredSmartAlarmPollingResult'
+          type: array
+        non_triggered_results:
+          description: 未触发预警的结果列表
+          items:
+            $ref: '#/components/schemas/sensorsdata.analytics.v1.NonTriggeredSmartAlarmPollingResult'
+          type: array
+      title: SmartAlarmPollingExecutionResultResponse
       type: object
 x-sd-openapi-service-name: SmartAlarm
 x-sd-openapi-service-name-hyphen: smart-alarm
