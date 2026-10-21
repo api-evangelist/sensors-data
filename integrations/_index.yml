@@ -15,3 +15,56 @@
   relationship: distribution-channel
   status: not-a-workflow
   arazzo: null
+- slug: sensors-data-maven-central
+  label: Maven Central
+  partner: maven-central
+  partner_name: Maven Central
+  category: official SDK (Java/JVM)
+  type: register
+  channel: package-registry
+  evidence: https://central.sonatype.com/artifact/com.sensorsdata.analytics.javasdk/SensorsABTesting
+  source: edge
+  relationship: distribution-channel
+  contract_reference:
+    register: Maven Central (public registry JSON)
+    spec_file: null
+    language: Java/JVM
+    packages:
+    - name: com.sensorsdata.analytics.javasdk:SensorsABTesting
+      version: 1.1.0
+      released: '2026-04-21'
+      released_field: lastUpdated
+      lapsed: false
+      page: https://central.sonatype.com/artifact/com.sensorsdata.analytics.javasdk/SensorsABTesting
+      repo_leg: github-org:sensorsdata
+      publisher_leg: groupId:sensorsdata.com
+      matched_by: domain
+    - name: com.sensorsdata.analytics.javasdk:SensorsAnalyticsSDK
+      version: 3.6.10
+      released: '2026-02-26'
+      released_field: lastUpdated
+      lapsed: false
+      page: https://central.sonatype.com/artifact/com.sensorsdata.analytics.javasdk/SensorsAnalyticsSDK
+      repo_leg: github-org:sensorsdata
+      publisher_leg: groupId:sensorsdata.com
+      matched_by: domain
+    current: true
+    signal_note: 'an official package on the registry: distribution, not an integration; lapsed = no release in
+      24 months'
+    detected_by: sweep-official-sdks.py
+    detected: '2026-10-18'
+  status: not-a-workflow
+  arazzo: null
+- slug: sensors-data-google-play-developer-google-play-sdk-index
+  label: Google Play Developer (Google Play SDK Index)
+  partner: google-play
+  partner_name: Google Play Developer (Google Play SDK Index)
+  category: mobile SDK (analytics)
+  type: marketplace
+  marketplace: Google Play SDK Index
+  channel: partner-built
+  evidence: https://play.google.com/sdks/details/com-sensorsdata-analytics-android-sensorsanalyticssdk
+  source: edge
+  relationship: platform-app
+  status: not-a-workflow
+  arazzo: null
